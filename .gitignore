@@ -1,0 +1,14 @@
+tmp
+.DS_Store
+bin/
+.bundle/
+bundle/
+output
+.sass-cache
+build/
+.mm-pid-*
+/b
+*.swp
+.rvmrc
+.ruby-gemset
+.cache
