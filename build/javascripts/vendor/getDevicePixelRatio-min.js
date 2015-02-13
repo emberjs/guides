@@ -1,0 +1,2 @@
+/*! GetDevicePixelRatio | Author: Tyson Matanich, 2012 | License: MIT */
+!function(e){e.getDevicePixelRatio=function(){var i=1;return void 0!==e.screen.systemXDPI&&void 0!==e.screen.logicalXDPI&&e.screen.systemXDPI>e.screen.logicalXDPI?i=e.screen.systemXDPI/e.screen.logicalXDPI:void 0!==e.devicePixelRatio&&(i=e.devicePixelRatio),i}}(this);

@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ember.js - Contributing to Ember.js: Adding New Features</title>
+    <meta property="st:title" content="Contributing to Ember.js: Adding New Features" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <!--[if lte IE 7 ]><link href="../../../stylesheets/fonts/fontello-ie7.css" rel="stylesheet" type="text/css" /><![endif]-->
+    <link href="../../../stylesheets/site.css" rel="stylesheet" type="text/css" />
+    <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
+    
+  </head>
+
+  <body class="guides guides_contributing guides_contributing_adding-new-features guides_contributing_adding-new-features_index">
+
+    <script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" type="text/javascript"></script>
+    <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js" type="text/javascript"></script>
+
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="/javascripts/common-old-ie.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <script type="text/javascript" src="/javascripts/common-modern.js"></script>
+    <!--<![endif]-->
+
+    <div id="header">
+      <div id="wrapper">
+        <a id="logo" href="/">&nbsp;</a>
+        <ul id="nav">
+          <li><a href="/about">about</a></li>
+          <li class="active"><a href="/guides">guides</a></li>
+          <li><a href="/api">api</a></li>
+          <li><a href="/community">community</a></li>
+          <li><a href="/blog">blog</a></li>
+          <li><a href="/builds">builds</a></li>
+          <li id="search">
+            <form>
+              <input type="text" id="st-search-input" class="st-search-input" />
+            </form>
+            <div id="st-results-container"></div>
+          </li>
+        </ul>
+
+        <div id="github">
+          <a href="https://github.com/emberjs/ember.js"><i class="icon-fork"></i>Fork Us!</a>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div id="content-wrapper">
+        <div id="sidebar">
+              <ol id="toc-list">
+          <li class="level-1">
+            <a href="../../getting-started/">Getting Started</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../getting-started/">Getting Started</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/planning-the-application/">Planning The Application</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/creating-a-static-mockup/">Creating a Static Mockup</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/obtaining-emberjs-and-dependencies/">Obtaining Ember.js and Dependencies</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/adding-a-route-and-template/">Adding the First Route and Template</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/modeling-data/">Modeling Data</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/using-fixtures/">Using Fixtures</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/displaying-model-data/">Displaying Model Data</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/displaying-a-models-completeness/">Displaying a Model's Complete State</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/creating-a-new-model/">Creating a New Model Instance</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/marking-a-model-as-complete-incomplete/">Marking a Model as Complete or Incomplete</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/displaying-the-number-of-incomplete-todos/">Displaying the Number of Incomplete Todos</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/toggle-todo-editing-state/">Toggling between Showing and Editing States</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/accepting-edits/">Accepting Edits</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/deleting-todos/">Deleting a Model</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/adding-child-routes/">Adding Child Routes</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/show-only-incomplete-todos/">Transitioning to Show Only Incomplete Todos</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/show-only-complete-todos/">Transitioning to Show Only Complete Todos</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/show-all-todos-again/">Transitioning back to Show All Todos</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/display-a-button-to-remove-completed-todos/">Displaying a Button to Remove All Completed Todos</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/show-when-all-todos-are-complete/">Indicating When All Todos Are Complete</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/toggle-all-todos/">Toggling All Todos Between Complete and Incomplete</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../getting-started/using-other-adapters/">Replacing the Fixture Adapter with Another Adapter</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../getting-ember/">Getting Ember</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../getting-ember/">Getting Ember</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../concepts/core-concepts/">Concepts</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../concepts/core-concepts/">Core Concepts</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../concepts/naming-conventions/">Naming Conventions</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../object-model/classes-and-instances/">The Object Model</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../object-model/classes-and-instances/">Classes and Instances</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../object-model/computed-properties/">Computed Properties</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../object-model/computed-properties-and-aggregate-data/">Computed Properties and Aggregate Data with @each</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../object-model/observers/">Observers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../object-model/bindings/">Bindings</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../object-model/reopening-classes-and-instances/">Reopening Classes and Instances</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../object-model/what-do-i-use-when/">Bindings, Observers, Computed Properties: What Do I Use When?</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../application/">Application</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../application/">Introduction</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../templates/the-application-template/">Templates</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../templates/the-application-template/">The Application Template</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/handlebars-basics/">Handlebars Basics</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/conditionals/">Conditionals</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/displaying-a-list-of-items/">Displaying a List of Items</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/binding-element-attributes/">Binding Element Attributes</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/binding-element-class-names/">Binding Element Class Names</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/links/">Links</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/actions/">Actions</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/input-helpers/">Input Helpers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/development-helpers/">Development Helpers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/rendering-with-helpers/">Rendering with Helpers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../templates/writing-helpers/">Writing Helpers</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../routing/">Routing</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../routing/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/defining-your-routes/">Defining Your Routes</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/generated-objects/">Generated Objects</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/specifying-a-routes-model/">Specifying a Route's Model</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/setting-up-a-controller/">Setting Up a Controller</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/rendering-a-template/">Rendering a Template</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/redirection/">Redirecting</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/specifying-the-location-api/">Specifying the URL Type</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/query-params/">Query Parameters</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/asynchronous-routing/">Asynchronous Routing</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/loading-and-error-substates/">Loading / Error Substates</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../routing/preventing-and-retrying-transitions/">Preventing and Retrying Transitions</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../components/">Components</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../components/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../components/defining-a-component/">Defining a Component</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../components/passing-properties-to-a-component/">Passing Properties to a Component</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../components/wrapping-content-in-a-component/">Wrapping Content in a Component</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../components/customizing-a-components-element/">Customizing a Component's Element</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../components/handling-user-interaction-with-actions/">Handling User Interaction with Actions</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../components/sending-actions-from-components-to-your-application/">Sending Actions from Components to Your Application</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../controllers/">Controllers</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../controllers/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../controllers/representing-a-single-model-with-objectcontroller/">Representing a Single Model with ObjectController</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../controllers/representing-multiple-models-with-arraycontroller/">Representing Multiple Models with ArrayController</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../controllers/dependencies-between-controllers/">Managing Dependencies Between Controllers</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../models/">Models</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../models/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/defining-models/">Defining Models</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/creating-and-deleting-records/">Creating and Deleting Records</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/pushing-records-into-the-store/">Pushing Records into the Store</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/persisting-records/">Persisting Records</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/finding-records/">Finding Records</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/working-with-records/">Working with Records</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/the-fixture-adapter/">Using Fixtures</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/the-rest-adapter/">The Rest Adapter</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/connecting-to-an-http-server/">Connecting to an HTTP Server</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/handling-metadata/">Handling Metadata</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/customizing-adapters/">Customizing Adapters</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../models/frequently-asked-questions/">Frequently Asked Questions</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../views/">Views</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../views/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/defining-a-view/">Defining a View</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/handling-events/">Handling Events</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/inserting-views-in-templates/">Inserting Views in Templates</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/adding-layouts-to-views/">Adding Layouts to Views</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/customizing-a-views-element/">Customizing a View's Element</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/built-in-views/">Built-in Views</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../views/manually-managing-view-hierarchy/">Manually Managing View Hierarchy</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../enumerables/">Enumerables</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../enumerables/">Introduction</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../testing/">Testing</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../testing/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/integration/">Integration Tests</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/test-helpers/">Test Helpers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/testing-user-interaction/">Testing User Interaction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/unit-testing-basics/">Unit Testing Basics</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/unit-test-helpers/">Unit Test Helpers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/testing-components/">Testing Components</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/testing-controllers/">Testing Controllers</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/testing-routes/">Testing Routes</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/testing-models/">Testing Models</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../testing/test-runners/">Automating Tests with Runners</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../configuring-ember/disabling-prototype-extensions/">Configuring Ember.js</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../configuring-ember/disabling-prototype-extensions/">Disabling Prototype Extensions</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../configuring-ember/embedding-applications/">Embedding Applications</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../configuring-ember/feature-flags/">Feature Flags</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../cookbook/">Cookbook</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../cookbook/">Introduction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="/guides/cookbook/contributing.html">Contributing</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="/guides/cookbook/user_interface_and_interaction.html">User Interface and Interaction</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="/guides/cookbook/event_handling_and_data_binding.html">Event Handling & Data Binding</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="/guides/cookbook/helpers_and_components.html">Helpers & Components</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="/guides/cookbook/working_with_objects.html">Working with Objects</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="/guides/deprecations.html">Deprecations</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="/guides/deprecations.html">Deprecations/index</a>
+            </li>
+          </ol></li>
+          <li class="level-1">
+            <a href="../../understanding-ember/the-view-layer/">Understanding Ember.js</a>
+            <ol>
+        
+            <li class="level-3">
+              <a href="../../understanding-ember/the-view-layer/">The View Layer</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../understanding-ember/managing-asynchrony/">Managing Asynchrony</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../understanding-ember/keeping-templates-up-to-date/">Keeping Templates Up-to-Date</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../understanding-ember/debugging/">Debugging</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../understanding-ember/run-loop/">The Run Loop</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../../understanding-ember/dependency-injection-and-service-lookup/">Dependency Injection & Service Lookup</a>
+            </li>
+          </ol></li>
+          <li class="level-1 selected">
+            <a href="./">Contributing to Ember.js</a>
+            <ol class='selected'>
+        
+            <li class="level-3 sub-selected">
+              <a href="./">Adding New Features</a>
+            </li>
+          
+            <li class="level-3">
+              <a href="../repositories/">Repositories</a>
+            </li>
+          </ol></li></ol>
+
+          <div id="back-to-top"><a id="back-top-top" href="#">&#11014; Back to Top</a></div>
+        </div>
+      <div id="content" class="has-sidebar">
+        
+  <div class="chapter">
+    
+        <h1>Adding New Features
+          <a href="https://github.com/emberjs/website/tree/master/source/guides/contributing/adding-new-features.md" target="_blank" class="edit-page icon-pencil">Edit Page</a>
+        </h1>
+      
+    <hr>
+    <p>In general, new feature development should be done on master.</p>
+
+<p>Bugfixes should not introduce new APIs or break existing APIs, and do
+not need feature flags.</p>
+
+<p>Features can introduce new APIs, and need feature flags. They should not
+be applied to the release or beta branches, since SemVer requires
+bumping the minor version to introduce new features.</p>
+
+<p>Security fixes should not introduce new APIs, but may, if strictly
+necessary, break existing APIs. Such breakages should be as limited as
+possible.</p>
+<h3 class='anchorable-toc' id='toc_bug-fixes'>Bug Fixes</h3><h4 class='anchorable-toc' id='toc_urgent-bug-fixes'>Urgent Bug Fixes</h4>
+<p>Urgent bugfixes are bugfixes that need to be applied to the existing
+release branch. If possible, they should be made on master and prefixed
+with [BUGFIX release].</p>
+<h4 class='anchorable-toc' id='toc_beta-bug-fixes'>Beta Bug Fixes</h4>
+<p>Beta bugfixes are bugfixes that need to be applied to the beta branch.
+If possible, they should be made on master and tagged with [BUGFIX
+beta].</p>
+<h4 class='anchorable-toc' id='toc_security-fixes'>Security Fixes</h4>
+<p>Security fixes need to be applied to the beta branch, the current
+release branch, and the previous tag. If possible, they should be made
+on master and tagged with [SECURITY].</p>
+<h3 class='anchorable-toc' id='toc_features'>Features</h3>
+<p>Features must always be wrapped in a feature flag. Tests for the feature
+must also be wrapped in a feature flag.</p>
+
+<p>Because the build-tools will process feature-flags, flags must use
+precisely this format. We are choosing conditionals rather than a block
+form because functions change the surrounding scope and may introduce
+problems with early return.</p>
+<div class="highlight js "><div class="ribbon"></div><div class="scroller"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre><span class="keyword">if</span> (Ember.FEATURES.isEnabled(<span class="string"><span class="delimiter">&quot;</span><span class="content">feature</span><span class="delimiter">&quot;</span></span>)) {
+  <span class="comment">// implementation</span>
+} 
+</pre></td>
+</tr></table>
+</div></div>
+<p>Tests will always run with all features on, so make sure that any tests
+for the feature are passing against the current state of the feature.</p>
+<h4 class='anchorable-toc' id='toc_commits'>Commits</h4>
+<p>Commits related to a specific feature should include  a prefix like
+[FEATURE htmlbars]. This will allow us to quickly identify all commits
+for a specific feature in the future. Features will never be applied to
+beta or release branches. Once a beta or release branch has been cut, it
+contains all of the new features it will ever have.</p>
+
+<p>If a feature has made it into beta or release, and you make a commit to
+master that fixes a bug in the feature, treat it like a bugfix as
+described above.</p>
+<h4 class='anchorable-toc' id='toc_feature-naming-conventions'>Feature Naming Conventions</h4><div class="highlight js "><div class="ribbon"></div><div class="scroller"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>Ember.FEATURES[<span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;packageName&gt;-&lt;feature&gt;</span><span class="delimiter">&quot;</span></span>] <span class="comment">// if package specific</span>
+Ember.FEATURES[<span class="string"><span class="delimiter">&quot;</span><span class="content">container-factory-injections</span><span class="delimiter">&quot;</span></span>]
+Ember.FEATURES[<span class="string"><span class="delimiter">&quot;</span><span class="content">htmlbars</span><span class="delimiter">&quot;</span></span>]
+</pre></td>
+</tr></table>
+</div></div><h3 class='anchorable-toc' id='toc_builds'>Builds</h3>
+<p>The Canary build, which is based off master, will include all features,
+guarded by the conditionals in the original source. This means that
+users of the canary build can enable whatever features they want by
+enabling them before creating their Ember.Application.</p>
+<div class="highlight js "><div class="ribbon"></div><div class="scroller"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>Ember.FEATURES[<span class="string"><span class="delimiter">&quot;</span><span class="content">htmlbars</span><span class="delimiter">&quot;</span></span>] = <span class="predefined-constant">true</span>;
+</pre></td>
+</tr></table>
+</div></div><h3 class='anchorable-toc' id='toc_code-features-json-code'><code>features.json</code></h3>
+<p>The root of the repository will contain a features.json file, which will
+contain a list of features that should be enabled for beta or release
+builds.</p>
+
+<p>This file is populated when branching, and may not gain additional
+features after the original branch. It may remove features.</p>
+<div class="highlight js "><div class="ribbon"></div><div class="scroller"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlbars</span><span class="delimiter">&quot;</span></span>: <span class="predefined-constant">true</span>
+}
+</pre></td>
+</tr></table>
+</div></div>
+<p>The build process will remove any features not included in the list, and
+remove the conditionals for features in the list.</p>
+<h3 class='anchorable-toc' id='toc_travis-testing'>Travis Testing</h3>
+<p>For a new PR:</p>
+
+<ol>
+<li>Travis will test against master with all feature flags on.</li>
+<li>If a commit is tagged with [BUGFIX beta], Travis will also
+cherry-pick the commit into beta, and run the tests on that
+branch. If the commit doesn&#39;t apply cleanly or the tests fail, the
+tests will fail.</li>
+<li>If a commit is tagged with [BUGFIX release], Travis will also cherry-pick
+the commit into release, and run the test on that branch. If the commit
+doesn&#39;t apply cleanly or the tests fail, the tests will fail.</li>
+</ol>
+
+<p>For a new commit to master:</p>
+
+<ol>
+<li>Travis will run the tests as described above.</li>
+<li>If the build passes, Travis will cherry-pick the commits into the
+appropriate branches.</li>
+</ol>
+
+<p>The idea is that new commits should be submitted as PRs to ensure they
+apply cleanly, and once the merge button is pressed, Travis will apply
+them to the right branches.</p>
+<h3 class='anchorable-toc' id='toc_go-no-go-process'>Go/No-Go Process</h3>
+<p>Every six weeks, the core team goes through the following process.</p>
+<h4 class='anchorable-toc' id='toc_beta-branch'>Beta Branch</h4>
+<p>All remaining features on the beta branch are vetted for readiness. If
+any feature isn&#39;t ready, it is removed from features.json.</p>
+
+<p>Once this is done, the beta branch is tagged and merged into release.</p>
+<h4 class='anchorable-toc' id='toc_master-branch'>Master Branch</h4>
+<p>All features on the master branch are vetted for readiness. In order for
+a feature to be considered &quot;ready&quot; at this stage, it must be ready as-is
+with no blockers. Features are a no-go even if they are close and
+additional work on the beta branch would make it ready.</p>
+
+<p>Because this process happens every six weeks, there will be another
+opportunity for a feature to make it soon enough.</p>
+
+<p>Once this is done, the master branch is merged into beta. A
+<code>features.json</code> file is added with the features that are ready.</p>
+<h3 class='anchorable-toc' id='toc_beta-releases'>Beta Releases</h3>
+<p>Every week, we repeat the Go/No-Go process for the features that remain
+on the beta branch. Any feature that has become unready is removed from
+the features.json.</p>
+
+<p>Once this is done, a Beta release is tagged and pushed.</p>
+
+    
+      <footer>
+        
+          <a class="previous-guide" href="../guides/understanding-ember/dependency-injection-and-service-lookup">
+             ← Understanding Ember.js: Dependency Injection & Service Lookup
+          </a>
+         
+        <a class="next-guide" href="/guides/contributing/repositories">
+          Repositories →
+        </a>
+      
+      </footer>
+      
+  </div>
+
+      </div>
+    </div>
+
+    <div id="footer">
+      <div id="footer-wrapper">
+        <div class="info">
+          Copyright 2015 <a href="http://tilde.io">Tilde Inc.</a><br>
+          <a href="/team">Core Team</a> | <a href="/sponsors">Sponsors</a> | <a href="/legal">Legal</a></br>
+          <a href="/guidelines">Community Guidelines</a>
+        </div>
+        <div class="statement">Ember.js is free, open source and always will be.</div>
+        <div class="links">
+          <a class="twitter" href="http://twitter.com/emberjs">
+            <i class="icon-twitter"></i><span>Twitter</span>
+          </a>
+          <a class="github" href="https://github.com/emberjs/ember.js">
+            <i class="icon-github"></i><span>GitHub</span>
+          </a>
+          <a class="googleplus" href="https://plus.google.com/communities/106387049790387471205">
+            <i class="icon-gplus"></i><span>Google+</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+        <script type="text/javascript" src="/javascripts/guides.js"></script>
+    <script src="http://static.jsbin.com/js/embed.js"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+      _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+      _gaq.push(['_setAccount', 'UA-27675533-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
