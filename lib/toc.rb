@@ -37,7 +37,7 @@ module TOC
 
         current = (chapter == current_url)
 
-        url = "/guides/#{entries[0].url}.html"
+        url = "/#{entries[0].url}.html"
 
         result << %Q{
           <li class="level-1#{current ? ' selected' : ''}">
@@ -59,7 +59,7 @@ module TOC
             false
           end
 
-          url = "/guides/#{entry.url}.html"
+          url = "/#{entry.url}.html"
 
           result << %Q{
             <li class="level-3#{sub_current ? ' sub-selected' : ''}">
