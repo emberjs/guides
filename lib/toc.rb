@@ -18,56 +18,41 @@ module TOC
   end
 
   module Helpers
-    def index_for(data)
+    def index_for(guides)
       result = '<ol id="toc-list">'
 
-      data.each_entry do |section, entries|
-        next if entries.any? do |entry|
+      guides.each do |guide|
+        next if guide.chapters.any? do |entry|
           entry[:skip_sidebar]
         end
 
-        request_path_splits = request.path.split('/')
-        # puts request_path_splits
+        slugs = request.path.split('/')
 
-        current_url = request_path_splits[1]
-        sub_url     = request_path_splits[2]
-        intro_page  = request_path_splits.length == 3
-        sub_url     = nil if intro_page
-        chapter     = entries[0].url.split("/")[0]
+        requested_guide_url = slugs[0]
+        current = (guide.url == requested_guide_name)
 
-        current = (chapter == current_url)
-
-        url = "/#{entries[0].url}.html"
+        middleman_url = "/#{guide.url}/#{guide.chapters[0].url}.html"
 
         result << %Q{
           <li class="level-1#{current ? ' selected' : ''}">
-            #{link_to(section, url)}
+            #{link_to(guide.title, middleman_url)}
             <ol#{current ? " class='selected'" : ''}>
         }
 
-        entries.each do |entry|
-          next if entry[:skip_sidebar_item]
+        guide.chapters.each do |chapter|
+          next if chapter[:skip_sidebar_item]
 
+          url = "#{guide.url}/#{chapter.url}.html"
 
-          current_segment = entry.url.split("/")[1]
+          sub_current = (url == current_page.path)
 
-          sub_current = if current_segment and current_segment == sub_url
-            true
-          elsif intro_page and current_url == entry.url
-            true
-          else
-            false
-          end
-
-          url = "/#{entry.url}.html"
-
+          middleman_url = "/" + url
           result << %Q{
             <li class="level-3#{sub_current ? ' sub-selected' : ''}">
-              #{link_to(entry.title, url)}
+              #{link_to(chapter.title, middleman_url)}
             </li>
           }
         end
-
         result << '</ol></li>'
       end
 
@@ -117,13 +102,13 @@ module TOC
     end
 
     def current_section
-      section_prefix = section_slug + "/"
-      data.guides.find do |section, entries|
-        entries.find do |entry|
-          url = entry.url
-          url.starts_with?(section_prefix) || url == section_slug
-        end
-      end
+      # section_prefix = section_slug + "/"
+      # data.guides.find do |section, entries|
+      #   entries.find do |entry|
+      #     url = entry.url
+      #     url.starts_with?(section_prefix) || url == section_slug
+      #   end
+      # end
     end
 
     def current_guide
@@ -138,12 +123,12 @@ module TOC
       end
     end
 
-    def chapter_links
-      %Q{
-      <footer>
-        #{previous_chapter_link} #{next_chapter_link}
-      </footer>
-      }
+    def chapter_links(current_page)
+      # %Q{
+      # <footer>
+      #   #{previous_chapter_link} #{next_chapter_link}
+      # </footer>
+      # }
     end
 
     def previous_chapter_link
