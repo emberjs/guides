@@ -1,59 +1,19 @@
-## Ember Website
+## Ember Guides Source
 
-The website for the Ember.js project.
+The sourc for the Ember.js guides.
 
 ### Contributing
 
 To get started:
 
 ``` sh
-git clone git://github.com/emberjs/website.git
-cd website
+git clone git://github.com/emberjs/guides.git
+cd guides
 bundle
 bundle exec middleman
 ```
 
 Then visit [http://localhost:4567/](http://localhost:4567/)
-
-**Note**: unless you're working with the API docs, don't use `rake preview`—use `middleman` (aka `middleman server`) instead.
-
-To populate organizers data from meetup.com on http://localhost:4567/meetups
-
-  * get a [meetup API Key](https://secure.meetup.com/meetup_api/key/)
-  * set ENV["MEETUP_API_KEY"]
-  * run the following rake command
-
-``` sh
-rake findorganizers [force=true]
-
-The force=true flag will overwrite all existing organizer data
-```
-
-#### API Documentation
-
-You can preview api documention, by generating docs from the source code.
-Clone the three repositories, then from project executing the specific
-tasks to build the docs locally.
-
-* For the ember.js and website projects a rake task will build the docs
-* For the data project the yuidocjs npm library is required to build docs
-
-Node, npm, Ruby, bundler are required to preview documentation locally
-
-The repositories for ember.js, data and the website need to be located in
-the same directory:
-
-    emberjs/
-        website/
-        ember.js/
-        ember-data/
-
-Notice that the name of the data project needs to use `ember-data` not `data`
-
-In the website directory execute `bundle exec rake generate_docs`
-
-You can launch the website via `bundle exec middleman` to preview the generated docs.
-
 
 ### Requirements
 
