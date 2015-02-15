@@ -18,59 +18,54 @@ module TOC
   end
 
   module Helpers
-    def index_for(guides)
-      result = '<ol id="toc-list">'
+    def toc_for(guides)
+      buffer = "<ol id='toc-list'>"
+      # indentation below is to aid in understanding the HTML structure
+        guides.each do |guide|
+          next if guide.chapters.any? do |entry|
+            entry[:skip_sidebar]
+          end
 
-      guides.each do |guide|
-        next if guide.chapters.any? do |entry|
-          entry[:skip_sidebar]
+          slugs = request.path.split('/')
+
+          requested_guide_url = slugs[0]
+          current = (guide.url == requested_guide_url)
+
+          middleman_url = "/#{guide.url}/#{guide.chapters[0].url}.html"
+
+          buffer << "<li class='level-1 #{current ? 'selected' : ''}'>"
+            buffer << link_to(guide.title, middleman_url)
+            buffer << "<ol class='#{(current ? 'selected' : '')}'>"
+              guide.chapters.each do |chapter|
+                next if chapter[:skip_sidebar_item]
+                url = "#{guide.url}/#{chapter.url}.html"
+
+                sub_current = (url == current_page.path)
+
+                middleman_url = "/" + url
+
+                buffer << "<li class='level-3 #{sub_current ? ' sub-selected' : ''}'>"
+                  buffer << link_to(chapter.title, middleman_url)
+                buffer << "</li>"
+              end
+            buffer << "</ol>"
+          buffer << "</li>"
         end
 
-        slugs = request.path.split('/')
+      buffer << "</ol>"
+      buffer
+    end
 
-        requested_guide_url = slugs[0]
-        current = (guide.url == requested_guide_name)
-
-        middleman_url = "/#{guide.url}/#{guide.chapters[0].url}.html"
-
-        result << %Q{
-          <li class="level-1#{current ? ' selected' : ''}">
-            #{link_to(guide.title, middleman_url)}
-            <ol#{current ? " class='selected'" : ''}>
-        }
-
-        guide.chapters.each do |chapter|
-          next if chapter[:skip_sidebar_item]
-
-          url = "#{guide.url}/#{chapter.url}.html"
-
-          sub_current = (url == current_page.path)
-
-          middleman_url = "/" + url
-          result << %Q{
-            <li class="level-3#{sub_current ? ' sub-selected' : ''}">
-              #{link_to(chapter.title, middleman_url)}
-            </li>
-          }
-        end
-        result << '</ol></li>'
-      end
-
-      result << '</ol>'
-
-      result
+    def guide_name
+      current_guide.name if current_guide
     end
 
     def chapter_name
-      if current_guide
-        return current_guide.title
+      if current_chapter
+        return current_chapter.title
       else
         return ""
       end
-    end
-
-    def section_name
-      current_section[0] if current_section
     end
 
     def chapter_heading
@@ -78,172 +73,165 @@ module TOC
       return if name.blank?
 
       %Q{
-        <h1>#{name}
+        <h1>
+          #{name}
           <a href="#{chapter_github_source_url}" target="_blank" class="edit-page icon-pencil">Edit Page</a>
         </h1>
       }
     end
 
-    def section_slug
-      request.path.split('/')[1]
+    def guide_slug
+      request.path.split('/')[0]
     end
 
-    def guide_slug
-      request.path.split('/')[1..-2].join('/')
+    def chapter_slug
+      request.path.split('/')[0..-2].join('/')
     end
 
     def chapter_github_source_url
       base_guide_url = "https://github.com/emberjs/website/tree/master/source/guides"
-      if section_slug == guide_slug
-        return "#{base_guide_url}/#{current_guide['url']}/index.md"
+      if guide_slug == chapter_slug
+        return "#{base_guide_url}/#{current_chapter['url']}/index.md"
       else
-        return "#{base_guide_url}/#{current_guide['url'].gsub(/.html/, '')}.md"
+        return "#{base_guide_url}/#{current_chapter['url'].gsub(/.html/, '')}.md"
       end
-    end
-
-    def current_section
-      # section_prefix = section_slug + "/"
-      # data.guides.find do |section, entries|
-      #   entries.find do |entry|
-      #     url = entry.url
-      #     url.starts_with?(section_prefix) || url == section_slug
-      #   end
-      # end
     end
 
     def current_guide
-      return unless current_section
+      return @current_guide if @current_guide
 
-      if guide_slug == '' && section_slug == 'index.html'
-        current_section[1][0]
-      else
-        current_section[1].find do |guide|
-          guide.url == guide_slug
-        end
+      path = current_page.path.gsub('.html', '')
+      guide_path = path.split("/")[0]
+
+      @current_guide = data.guides.find do |guide|
+        guide.url == guide_path
       end
     end
 
-    def chapter_links(current_page)
-      # %Q{
-      # <footer>
-      #   #{previous_chapter_link} #{next_chapter_link}
-      # </footer>
-      # }
+    def current_chapter
+      return unless current_guide
+
+      return @current_chapter if @current_chapter
+      path = current_page.path.gsub('.html', '')
+      chapter_path = path.split('/')[1..-1].join('/')
+
+      @current_chapter = current_guide.chapters.find do |chapter|
+        chapter.url == chapter_path
+      end
+    end
+
+    def chapter_links
+      %Q{
+      <footer>
+        #{previous_chapter_link} #{next_chapter_link}
+      </footer>
+      }
     end
 
     def previous_chapter_link
+      options = {:class => 'previous-guide'}
+
       if previous_chapter
-        %Q{
-          <a class="previous-guide" href="../guides/#{previous_chapter.url}">
-            \u2190 #{previous_chapter.title}
-          </a>
-        }
+        url = "/#{current_guide.url}/#{previous_chapter.url}.html"
+        title = " \u2190 #{previous_chapter.title}"
+
+        link_to(title, url, options)
       elsif whats_before = previous_guide
-        previous_chapter = whats_before[1][-1]
-        %Q{
-          <a class="previous-guide" href="../guides/#{previous_chapter.url}">
-             \u2190 #{whats_before[0]}: #{previous_chapter.title}
-          </a>
-        }
+        previous_chapter = whats_before.chapters.last
+
+        url = "/#{previous_guide.url}/#{previous_chapter.url}.html"
+        title = " \u2190 #{previous_chapter.title}"
+
+        link_to(title, url, options)
       else
         ''
       end
     end
 
     def next_chapter_link
+      options = {:class => 'next-guide'}
+
       if next_chapter
-      %Q{
-        <a class="next-guide" href="/guides/#{next_chapter.url}">
-          #{next_chapter.title} \u2192
-        </a>
-      }
+        url = "/#{current_guide.url}/#{next_chapter.url}.html"
+        title = "#{next_chapter.title} \u2192"
+
+        link_to(title, url, options)
       elsif whats_next = next_guide
-        next_chapter = whats_next[1][0]
-        if section_slug == 'index.html'
-          %Q{
-            <a class="next-guide" href="../guides/#{next_chapter.url}">
-              #{next_chapter.title} \u2192
-            </a>
-          }
-        else
-          %Q{
-            <a class="next-guide" href="../guides/#{next_chapter.url}">
-               We're done with #{current_section[0]}. Next up: #{whats_next[0]} - #{next_chapter.title} \u2192
-            </a>
-          }
-        end
+        next_chapter = whats_next.chapters.first
+        title = "We're done with #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title} \u2192"
+        url = "/#{next_guide.url}/#{next_chapter.url}.html"
+
+        link_to(title, url, options)
       else
         ''
       end
     end
 
     def previous_chapter
-      return if not current_section
+      return unless current_guide
 
-      guides = current_section[1]
-      current_index = guides.find_index(current_guide)
+      current_chapter_index = current_guide.chapters.find_index(current_chapter)
 
-      return unless current_index
+      return unless current_chapter_index
 
-      if current_index != 0
-        guides[current_index-1]
+      previous_chapter_index = current_chapter_index - 1
+
+      if current_chapter_index > 0
+        current_guide.chapters[previous_chapter_index]
       else
         nil
       end
     end
 
     def next_chapter
-      return if not current_section
+      return unless current_guide
 
-      guides = current_section[1]
-      current_index = guides.find_index(current_guide)
-      return unless current_index
+      current_chapter_index = current_guide.chapters.find_index(current_chapter)
+      return unless current_chapter_index
 
-      next_guide_index = current_index + 1
+      next_chapter_index = current_chapter_index + 1
 
-      if current_index < guides.length
-        guides[next_guide_index]
-      else
-        nil
-      end
-    end
-
-    def next_guide
-      return if not current_section
-      guide = current_section[0]
-      current_guide_index = data.guides.keys.find_index(guide)
-
-      return unless current_guide_index
-
-      next_guide_index = current_guide_index + 1
-
-      if current_guide_index < data.guides.length
-        data.guides.entries[next_guide_index]
+      if current_chapter_index < current_guide.chapters.length
+        current_guide.chapters[next_chapter_index]
       else
         nil
       end
     end
 
     def previous_guide
-      return if not current_section
-      guide = current_section[0]
+      return unless current_guide
 
-      current_guide_index = data.guides.keys.find_index(guide)
+      current_guide_index = data.guides.find_index(current_guide)
       return unless current_guide_index
 
       previous_guide_index = current_guide_index - 1
 
       if previous_guide_index >= 0
-        data.guides.entries[previous_guide_index]
+        data.guides[previous_guide_index]
+      else
+        nil
+      end
+    end
+
+    def next_guide
+      return unless current_guide
+
+      current_guide_index = data.guides.find_index(current_guide)
+      return unless current_guide_index
+
+      next_guide_index = current_guide_index + 1
+
+      if current_guide_index < data.guides.length
+        data.guides[next_guide_index]
       else
         nil
       end
     end
 
     def warning
+      return unless current_chapter
       return unless current_guide
-      return unless current_section
-      warning_key = current_guide["warning"]
+      warning_key = current_chapter["warning"]
       warning_key ? WARNINGS[warning_key] : nil
     end
 

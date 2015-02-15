@@ -1,5 +1,5 @@
 - title: "Guides and Tutorials"
-  url: ''
+  url: '/'
   chapters:
     - title: "Ember.js Guides"
       url: "index"
@@ -131,7 +131,7 @@
     - title: "Writing Helpers"
       url: "writing-helpers"
 
-- title: "Routing":
+- title: "Routing"
   url: 'routing'
   chapters:
     - title: "Introduction"
@@ -167,7 +167,7 @@
     #- title: "Nested Routes"
       #url: "nested-routes"
 
-- title: "Components":
+- title: "Components"
   url: 'components'
   chapters:
     - title: "Introduction"
@@ -229,7 +229,7 @@
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
 
-- title: ""
+- title: "Views"
   url: 'views'
   chapters:
     - title: "Introduction"
@@ -252,6 +252,7 @@
       #url: "/building-reusable-views"
 
 - title: "Enumerables"
+  url: 'enumerables'
   chapters:
     - title: "Introduction"
       url: "index"

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
 
     <%
-      @title = section_name
-      if not chapter_name.blank?
+      @title = guide_name || ''
+      unless chapter_name.blank?
         @title += ": #{chapter_name}"
       else
        @title = 'Guides'
@@ -60,7 +60,7 @@
 
     <div id="content-wrapper">
       <div id="sidebar">
-        <%= index_for(data.guides) %>
+        <%= toc_for(data.guides) %>
         <div id="back-to-top"><a id="back-top-top" href="#">&#11014; Back to Top</a></div>
       </div>
       <div id="content" class="has-sidebar">
@@ -71,7 +71,7 @@
           <%= yield %>
 
 
-          <%= chapter_links(current_page) %>
+          <%= chapter_links %>
         </div>
       </div>
     </div>
