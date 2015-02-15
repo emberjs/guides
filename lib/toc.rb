@@ -60,10 +60,10 @@ module TOC
       buffer = ""
 
       if current_guide
-        buffer << current_guide.name
+        buffer << current_guide.title
         if current_chapter
           buffer << ": "
-          buffer current_chapter.name
+          buffer << current_chapter.title
         end
       else
         buffer << "Guides"
@@ -73,7 +73,7 @@ module TOC
     end
 
     def guide_name
-      current_guide.name if current_guide
+      current_guide.title if current_guide
     end
 
     def chapter_name
