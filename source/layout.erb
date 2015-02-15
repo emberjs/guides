@@ -3,17 +3,8 @@
   <head>
     <meta charset="utf-8">
 
-    <%
-      @title = guide_name || ''
-      unless chapter_name.blank?
-        @title += ": #{chapter_name}"
-      else
-       @title = 'Guides'
-      end
-    %>
-
-    <title>Ember.js - <%= current_page.data.title || @title %></title>
-    <meta property="st:title" content="<%= current_page.data.title || @title %>" />
+    <title>Ember.js - <%= current_page.data.title || page_title %></title>
+    <meta property="st:title" content="<%= current_page.data.title || page_title %>" />
     <link rel="shortcut icon" href="/images/favicon.png" />
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
     <%= stylesheet_link_tag "site" %>
@@ -37,11 +28,22 @@
           <li>
             <a href="http://emberjs.com/">about</a>
           </li>
-          <%= link_to_page "guides", "/" %>
-          <%= link_to_page "api", "/api" %>
-          <%= link_to_page "community", "/community" %>
-          <%= link_to_page "blog", "/blog" %>
-          <%= link_to_page "builds", "/builds" %>
+          <li>
+            <a href="/" class='active'>guides</a>
+          </li>
+          <li>
+            <a href="http://emberjs.com/api">api</a>
+          </li>
+          <li>
+            <a href="http://emberjs.com/community">community</a>
+          </li>
+          <li>
+            <a href="http://emberjs.com/blog">blog</a>
+          </li>
+          <li>
+            <a href="http://emberjs.com/builds">builds</a>
+          </li>
+
           <li id="search">
             <form>
               <input type="text" id="st-search-input" class="st-search-input" />

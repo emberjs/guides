@@ -56,6 +56,22 @@ module TOC
       buffer
     end
 
+    def page_title
+      buffer = ""
+
+      if current_guide
+        buffer << current_guide.name
+        if current_chapter
+          buffer << ": "
+          buffer current_chapter.name
+        end
+      else
+        buffer << "Guides"
+      end
+
+      buffer
+    end
+
     def guide_name
       current_guide.name if current_guide
     end

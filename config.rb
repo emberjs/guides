@@ -20,7 +20,6 @@ activate :directory_indexes
 activate :toc
 activate :highlighter
 activate :alias
-activate :column_balancer
 
 ###
 # Build
@@ -34,14 +33,6 @@ end
 ###
 # Pages
 ###
-
-page 'guides*', layout: :guide do
-  @guides = data.guides
-end
-
-
-# page 'index.html', proxy: 'about.html'
-
 page '404.html', directory_index: false
 
 # Don't build layouts standalone
@@ -65,19 +56,6 @@ helpers do
   def rendered_partial_for(key)
     partial_name = partial_for(key)
     partial(partial_name) if partial_name
-  end
-
-  def link_to_page name, url
-    path = request.path
-    current = path =~ Regexp.new('^' + url[1..-1] + '.*\.html')
-
-    if path == 'index.html' and name == 'about'
-      current = true
-    end
-
-    class_name = current ? ' class="active"' : ''
-
-    "<li#{class_name}><a href=\"#{url}\">#{name}</a></li>"
   end
 
   def page_classes
