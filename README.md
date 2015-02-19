@@ -16,7 +16,7 @@ bundle exec middleman
 Then visit [http://localhost:4567/](http://localhost:4567/)
 
 ### Publishing
-When a new version of Ember.js is released we use this repo to generate a guides snapshot. This represents the state of the Guides at the moment of Ember.js release. This allows us to continually update the guides for current best practices in the Ember.js ecosystem while still providing stable documentation for users on earily versions of the framework.
+When a new version of Ember.js is released we use this repo to generate a guides snapshot. This represents the state of the Guides at the moment of Ember.js release. This allows us to continually update the guides for current best practices in the Ember.js ecosystem while still providing stable documentation for users on early versions of the framework.
 
 No attempt is made to update content, layout, or styles for older versions of the Guides. They are considrered static and immutable.
 
