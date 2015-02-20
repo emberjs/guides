@@ -1,8 +1,8 @@
 - title: "Guides and Tutorials"
-  url: '/'
+  url: 'index'
   chapters:
     - title: "Ember.js Guides"
-      url: "index"
+      url: ""
       skip_sidebar: true
 
 - title: "Getting Started"
@@ -233,23 +233,23 @@
   url: 'views'
   chapters:
     - title: "Introduction"
-      url: "/index"
+      url: "index"
     - title: "Defining a View"
-      url: "/defining-a-view"
+      url: "defining-a-view"
     - title: "Handling Events"
-      url: "/handling-events"
+      url: "handling-events"
     - title: "Inserting Views in Templates"
-      url: "/inserting-views-in-templates"
+      url: "inserting-views-in-templates"
     - title: "Adding Layouts to Views"
-      url: "/adding-layouts-to-views"
+      url: "adding-layouts-to-views"
     - title: "Customizing a View's Element"
-      url: "/customizing-a-views-element"
+      url: "customizing-a-views-element"
     - title: "Built-in Views"
-      url: "/built-in-views"
+      url: "built-in-views"
     - title: "Manually Managing View Hierarchy"
-      url: "/manually-managing-view-hierarchy"
+      url: "manually-managing-view-hierarchy"
     #- title: "Building Reusable Views"
-      #url: "/building-reusable-views"
+      #url: "building-reusable-views"
 
 - title: "Enumerables"
   url: 'enumerables'
