@@ -6,6 +6,16 @@
       skip_sidebar: true
 
 - title: "Getting Started"
+  url: 'ember-cli'
+  chapters:
+    - title: "Installing Ember"
+      url: "index"
+    - title: "The Inspector Tool"
+      url: "inspector"
+    - title: "Glossary"
+      url: "glossary"
+
+- title: "Tutorial: TodoMVC"
   url: 'getting-started'
   chapters:
     - title: "Getting Started"
