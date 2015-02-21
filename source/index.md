@@ -12,11 +12,11 @@ Source code for the app we build in the video is available at <a href="https://g
 
 Most of these guides are designed to help you start building apps right
 away. If you'd like to know more about the thinking behind Ember.js,
-you'll find what you're looking for in the [Understanding Ember.js](/guides/understanding-ember/the-view-layer)
+you'll find what you're looking for in the [Understanding Ember.js](understanding-ember/the-view-layer)
 section.
 
 These guides are written in Markdown and are [available on
-GitHub](https://github.com/emberjs/website/), inside the `source/guides`
+GitHub](https://github.com/emberjs/guides/), inside the `source/guides`
 directory.  If there is something missing, or you find a typo or
 mistake, please help us by filing an issue or submitting a pull
 request. Thanks!
