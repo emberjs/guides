@@ -306,7 +306,7 @@
       url: "index"
     # contributing
     - title: "Contributing"
-      url: "contributing"
+      url: "contributing/index"
     - title: "Understanding the Cookbook Format"
       url: "contributing/understanding_the_cookbook_format"
       skip_sidebar_item: true
@@ -324,7 +324,7 @@
       skip_sidebar_item: true
     # ui and ux
     - title: "User Interface and Interaction"
-      url: "user_interface_and_interaction"
+      url: "user_interface_and_interaction/index"
     - title: "Adding CSS Classes to Your Components"
       url: "user_interface_and_interaction/adding_css_classes_to_your_components"
       skip_sidebar_item: true
@@ -351,7 +351,7 @@
     #   skip_sidebar_item: true
     # events and bindings
     - title: "Event Handling & Data Binding"
-      url: "event_handling_and_data_binding"
+      url: "event_handling_and_data_binding/index"
     - title: "Binding Properties of an Object to Its Own Properties"
       url: "event_handling_and_data_binding/binding_properties_of_an_object_to_its_own_properties"
       skip_sidebar_item: true
@@ -381,7 +381,7 @@
     #   skip_sidebar_item: true
     # helpers & components
     - title: "Helpers & Components"
-      url: "helpers_and_components"
+      url: "helpers_and_components/index"
     # - title: "Writing a Custom Handlebars Helper"
     #   url: "helpers_and_components/writing_a_custom_handlebars_helper"
     #   skip_sidebar_item: true
@@ -399,7 +399,7 @@
       skip_sidebar_item: true
     # objects
     - title: "Working with Objects"
-      url: "working_with_objects"
+      url: "working_with_objects/index"
     # - title: "Displaying Content Arrays in Reverse Order"
     #   url: "working_with_objects/displaying_content_arrays_in_reverse_order"
     #   skip_sidebar_item: true
