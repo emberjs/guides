@@ -67,19 +67,27 @@ This makes it easy to write apps with asynchronous data using Ember
 Data. Just return the requested record from the `model` hook, and let
 Ember deal with figuring out whether a network request is needed or not.
 
-```javascript
+```app/router.js
+var Router = Ember.Router.extend({});
+
 App.Router.map(function() {
   this.resource('posts');
   this.resource('post', { path: ':post_id' });
 });
 
-App.PostsRoute = Ember.Route.extend({
+export default Router;
+```
+
+```app/routes/posts.js
+export default Ember.Route.extend({
   model: function() {
     return this.store.find('post');
   }
 });
+```
 
-App.PostRoute = Ember.Route.extend({
+```app/routes/post.js
+export default Ember.Route.extend({
   model: function(params) {
     return this.store.find('post', params.post_id);
   }
