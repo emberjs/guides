@@ -9,8 +9,10 @@ the model.
 For example, imagine you are writing a music player. You have defined
 your `SongController` to represent the currently playing song.
 
-```javascript
-App.SongController = Ember.ObjectController.extend({
+```app/controllers/song.js
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   soundVolume: 1
 });
 ```
@@ -18,8 +20,10 @@ App.SongController = Ember.ObjectController.extend({
 In the Song route, you set the `model` of the controller to the
 currently playing song:
 
-```javascript
-App.SongRoute = Ember.Route.extend({
+```app/routes/song.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
   setupController: function(controller, song) {
     controller.set('model', song);
   }
@@ -29,7 +33,7 @@ App.SongRoute = Ember.Route.extend({
 In your template, you want to display the name of the currently playing
 song, as well as the volume at which it is playing.
 
-```handlebars
+```app/templates/song.hbs
 <p>
   <strong>Song</strong>: {{name}} by {{artist}}
 </p>
@@ -54,7 +58,7 @@ the model.
 
 For example, imagine we want to display the duration of the song:
 
-```handlebars
+```app/templates/song.hbs
 <p>
   <strong>Song</strong>: {{name}} by {{artist}}
 </p>
@@ -82,8 +86,10 @@ This is very easy to do by defining a computed property on the
 controller which transforms the model's value into a human-readable
 format for the template:
 
-```javascript
-App.SongController = Ember.ObjectController.extend({
+```app/controllers/song.js
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   duration: function() {
     var duration = this.get('model.duration'),
          minutes = Math.floor(duration / 60),

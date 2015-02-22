@@ -2,12 +2,18 @@ Sometimes, especially when nesting resources, we find ourselves needing
 to have some kind of connection between two controllers. Let's take this
 router as an example:
 
-```javascript
-App.Router.map(function() {
+```app/router.js
+import Ember from 'ember';
+
+var Router = Ember.Router.extend({});
+
+Router.map(function() {
   this.resource("post", { path: "/posts/:post_id" }, function() {
     this.resource("comments", { path: "/comments" });
   });
 });
+
+export default Router;
 ```
 
 If we visit a `/posts/1/comments` URL, our `Post` model will get
@@ -18,8 +24,10 @@ some information about it in the `comments` template.
 To be able to do this we define our `CommentsController` to `need` the `PostController`
 which has our desired `Post` model.
 
-```javascript
-App.CommentsController = Ember.ArrayController.extend({
+```app/controllers/comments.js
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   needs: "post"
 });
 ```
@@ -28,7 +36,7 @@ This tells Ember that our `CommentsController` should be able to access
 its parent `PostController`, which can be done via `controllers.post`
 (either in the template or in the controller itself).
 
-```handlebars
+```app/templates/comments.hbs
 <h1>Comments for {{controllers.post.title}}</h1>
 
 <ul>
@@ -42,8 +50,10 @@ We can also create an aliased property to give ourselves a shorter way to access
 the `PostController` (since it is an `ObjectController`, we don't need
 or want the `Post` instance directly).
 
-```javascript
-App.CommentsController = Ember.ArrayController.extend({
+```app/controllers/comments.js
+import Ember from 'ember';
+
+export default Ember.ArrayController.extend({
   needs: "post",
   post: Ember.computed.alias("controllers.post")
 });
@@ -53,8 +63,10 @@ App.CommentsController = Ember.ArrayController.extend({
 If you want to connect multiple controllers together, you can specify an
 array of controller names:
 
-```javascript
-App.AnotherController = Ember.Controller.extend({
+```app/controllers/overview.js
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   needs: ['post', 'comments']
 });
 ```
