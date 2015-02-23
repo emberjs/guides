@@ -24,9 +24,10 @@ activate :alias
 ###
 # Swiftype
 ###
-activate :swiftype do |st|
-  st.api_key = "put api key here"
-  st.engine_slug = "put slug here"
+activate :swiftype do |swift|
+  swift.api_key = "put api key here"
+  swift.engine_slug = "put slug here"
+  swift.pages_selector = lambda { |p| p.path.match(/\.html/) && p.metadata[:options][:layout] == nil }
 end
 
 ###
