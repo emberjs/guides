@@ -1,1 +1,1 @@
-1. [Setting Ember Global Flags](/guides/cookbook/debugging_and_configuration/setting_ember_global_flags)
+1. [Setting Ember Global Flags](./setting_ember_global_flags)

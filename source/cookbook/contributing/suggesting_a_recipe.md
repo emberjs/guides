@@ -20,9 +20,9 @@ filename name for this recipe &nash; "Suggesting a Recipe" &ndash; would be `sug
 
 When you are ready to submit your recipe, push your local branch to the remote branch on your Github fork and
 submit a pull request. Before submitting a pull request, make sure someone hasn't already submitted a similar
-recipe and that your recipe is a good fit for the Cookbook (see _Deciding If A Recipe Is A Good Fit_). 
+recipe and that your recipe is a good fit for the Cookbook (see _Deciding If A Recipe Is A Good Fit_).
 
 [fork_repo]: https://github.com/emberjs/website
 [feature_branch]: http://nvie.com/posts/a-successful-git-branching-model/
-[understanding]: /guides/cookbook/contributing/understanding_the_cookbook_format
-[deciding]: /guides/cookbook/contributing/deciding_if_a_recipe_is_a_good_fit
+[understanding]: ./understanding_the_cookbook_format
+[deciding]: ./deciding_if_a_recipe_is_a_good_fit
