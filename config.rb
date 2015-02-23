@@ -22,6 +22,14 @@ activate :highlighter
 activate :alias
 
 ###
+# Swiftype
+###
+activate :swiftype do |st|
+  st.api_key = "put api key here"
+  st.engine_slug = "put slug here"
+end
+
+###
 # Build
 ###
 
