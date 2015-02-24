@@ -10,24 +10,19 @@ these objects is not found, appropriate objects will be generated in memory for 
 Given you have the following route:
 
 ```javascript
-App.Router.map(function() {
+// app/router.js
+Router.map(function() {
   this.resource('posts');
 });
 ```
 
-When you navigate to `/posts`, Ember.js looks for `App.PostsRoute`.
-If it doesn't find it, it will automatically generate an `App.PostsRoute` for you.
-
-
-##### Custom Generated Routes
-You can have all your generated routes extend a custom route.  If you define `App.Route`,
-all generated routes will be instances of that route.
-
+When you navigate to `/posts`, Ember.js looks for `route:posts`.
+If it doesn't find it, it will automatically generate an `route:posts` for you.
 
 
 #### Generated Controllers
 
-If you navigate to route `posts`, Ember.js looks for a controller called `App.PostsController`.
+If you navigate to route `posts`, Ember.js looks for a controller called `controller:posts`.
 If you did not define it, one will be generated for you.
 
 Ember.js can generate three types of controllers:
@@ -45,13 +40,6 @@ The type of controller Ember.js chooses to generate for you depends on your rout
 [3]: /guides/controllers/representing-multiple-models-with-arraycontroller
 
 
-##### Custom Generated Controllers
-
-If you want to customize generated controllers, you can define your own `App.Controller`, `App.ObjectController`
-and `App.ArrayController`.  Generated controllers will extend one of these three (depending on the conditions above).
-
-
-
 #### Generated Views and Templates
 
 A route also expects a view and a template.  If you don't define a view,
@@ -64,6 +52,3 @@ as an `outlet` so that nested routes can be seamlessly inserted.  It is equivale
 ```handlebars
 {{outlet}}
 ```
-
-
-

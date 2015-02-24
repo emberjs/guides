@@ -16,11 +16,13 @@ If you want to redirect from one route to another, you can do the transition in
 the `beforeModel` hook of your route handler.
 
 ```javascript
-App.Router.map(function() {
+// app/router.js
+Router.map(function() {
   this.resource('posts');
 });
 
-App.IndexRoute = Ember.Route.extend({
+// app/index/route.js
+export default Ember.Route.extend({
   beforeModel: function() {
     this.transitionTo('posts');
   }
@@ -36,12 +38,14 @@ and thus function as aliases. (In fact, the default implementation of `afterMode
 
 ```javascript
 
-App.Router.map(function() {
+// app/router.js
+Router.map(function() {
   this.resource('posts');
   this.resource('post', { path: '/post/:post_id' });
 });
 
-App.PostsRoute = Ember.Route.extend({
+// app/posts/route.js
+export default Ember.Route.extend({
   afterModel: function(posts, transition) {
     if (posts.get('length') === 1) {
       this.transitionTo('post', posts.get('firstObject'));
@@ -59,7 +63,8 @@ with the single post object being its model.
 You can conditionally transition based on some other application state.
 
 ```javascript
-App.Router.map(function() {
+// app/router.js
+Router.map(function() {
   this.resource('topCharts', function() {
     this.route('choose', { path: '/' });
     this.route('albums');
@@ -69,7 +74,8 @@ App.Router.map(function() {
   });
 });
 
-App.TopChartsChooseRoute = Ember.Route.extend({
+// app/top-charts-choose/route.js
+export default Ember.Route.extend({
   beforeModel: function() {
     var lastFilter = this.controllerFor('application').get('lastFilter');
     this.transitionTo('topCharts.' + (lastFilter || 'songs'));
@@ -77,17 +83,22 @@ App.TopChartsChooseRoute = Ember.Route.extend({
 });
 
 // Superclass to be used by all of the filter routes below
-App.FilterRoute = Ember.Route.extend({
+// app/filter/route.js
+export default Ember.Route.extend({
   activate: function() {
     var controller = this.controllerFor('application');
     controller.set('lastFilter', this.templateName);
   }
 });
 
-App.TopChartsSongsRoute = App.FilterRoute.extend();
-App.TopChartsAlbumsRoute = App.FilterRoute.extend();
-App.TopChartsArtistsRoute = App.FilterRoute.extend();
-App.TopChartsPlaylistsRoute = App.FilterRoute.extend();
+// app/top-charts-songs/route.js
+export default Ember.Route.extend({
+// app/top-charts-albums/route.js
+export default Ember.Route.extend({
+// app/top-charts-artists/route.js
+export default Ember.Route.extend({
+// app/top-charts-playlists/route.js
+export default Ember.Route.extend({
 ```
 
 In this example, navigating to the `/` URL immediately transitions into

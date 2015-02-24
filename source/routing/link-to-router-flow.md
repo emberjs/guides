@@ -8,8 +8,8 @@ phases of the transition.
 Lets imagine a user is on the `/about/faq/` page of an application
 with the following router.
 
-```js
-App.Router.map(function() {
+```app/router.js
+Router.map(function() {
   this.resource('about', function() {
     this.route('faq');
   });
@@ -21,11 +21,11 @@ App.Router.map(function() {
 ```
 
 This would mean there are currently three nested active routes in this
-application. The `ApplicationRoute`, `AboutRoute` and the `AboutFaqRoute`.
+application. The `route:application`, `route:about` and the `route:about-faq`.
 
 <img src="../images/guides/routing/active-route.png" alt="Active route" class="highlight">
 
-Lets assume a user clicks on a `link-to` for the `UserProfileRoute` like
+Lets assume a user clicks on a `link-to` for the `controller:user/profile` like
 the one below.
 
 ```handlebars
@@ -37,7 +37,7 @@ user profile page. Broadly these steps are grouped into three phases,
 the Pre Transition Phase, the Model Resolution Phase and the Sync
 Phase. We will explore these phases in more depth below.
 
-#### Pre Transition Phase
+#### Pre-Transition Phase
 
 First Ember will create a transition object. This object is a promise
 which will be resolved when the transition is complete or rejected
@@ -56,8 +56,8 @@ whether or not the transition should occur. The code to intercept the
 `willTransition` action and abort a transition might looks something
 like this.
 
-```js
-App.AboutFaqRoute = Ember.Route.extend({
+```app/about-faq/route.js
+export default Ember.Route.extend({
   actions: {
     willTransition: function(transition) {
       if (this.controllerFor('form').get('userHasEnteredData') &&
