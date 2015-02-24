@@ -105,7 +105,7 @@ module TOC
     end
 
     def chapter_github_source_url
-      base_guide_url = "https://github.com/emberjs/website/tree/master/source/guides"
+      base_guide_url = "https://github.com/emberjs/guides/tree/master/source/"
       if guide_slug == chapter_slug
         return "#{base_guide_url}/#{current_chapter['url']}/index.md"
       else
