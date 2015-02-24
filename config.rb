@@ -33,7 +33,6 @@ end
 ###
 # Build
 ###
-
 configure :build do
   activate :minify_css
   activate :minify_javascript, ignore: /.*examples.*js/
@@ -50,7 +49,6 @@ ignore '*_layout.erb'
 ###
 # Helpers
 ###
-
 helpers do
   # Workaround for content_for not working in nested layouts
   def partial_for(key, partial_name=nil)
@@ -71,21 +69,5 @@ helpers do
     classes = super
     return 'not-found' if classes == '404'
     classes
-  end
-
-  def load_example_files
-    root = Pathname(__FILE__).join('../source/javascripts/app/examples')
-    all_files = Hash.new {|hash, key| hash[key] = [] }
-
-    Dir[root.join('**/*.*').to_s].each do |path|
-      relative_path = Pathname(path).relative_path_from(root)
-      match_data = relative_path.to_s.match(%r{^([^/]+)/(.+)$})
-      name = match_data[1]
-      file = match_data[2]
-
-      all_files[name] << {name: file, contents: File.read(path)}
-    end
-
-    all_files
   end
 end

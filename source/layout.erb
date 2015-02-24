@@ -5,7 +5,7 @@
 
     <title>Ember.js - <%= current_page.data.title || page_title %></title>
     <meta property="st:title" content="<%= current_page.data.title || page_title %>" />
-    <link rel="shortcut icon" href="/images/favicon.png" />
+    <%= favicon_tag 'images/favicon.png' %>
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
     <%= stylesheet_link_tag "site" %>
     <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
@@ -15,10 +15,10 @@
   <body class="guides <%= page_classes %>">
 
     <!--[if lt IE 9]>
-      <script type="text/javascript" src="/javascripts/common-old-ie.js"></script>
+      <%= javascript_include_tag 'common-old-ie' %>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-      <script type="text/javascript" src="/javascripts/common-modern.js"></script>
+      <%= javascript_include_tag 'common-modern' %>
     <!--<![endif]-->
 
     <div id="header">
@@ -102,7 +102,7 @@
 
     <%= yield_content :foot %>
 
-    <script type="text/javascript" src="/javascripts/guides.js"></script>
+    <%= javascript_include_tag 'guides' %>
     <script src="http://static.jsbin.com/js/embed.js"></script>
 
     <script type="text/javascript">
