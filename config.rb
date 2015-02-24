@@ -22,6 +22,15 @@ activate :highlighter
 activate :alias
 
 ###
+# Swiftype
+###
+activate :swiftype do |swift|
+  swift.api_key = ""
+  swift.engine_slug = ""
+  swift.pages_selector = lambda { |p| p.path.match(/\.html/) && p.metadata[:options][:layout] == nil }
+end
+
+###
 # Build
 ###
 
