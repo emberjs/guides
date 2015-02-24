@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/bsclifton/middleman-swiftype.git
+  revision: d4d128bdaf54824feb2198118fd77fdde6a1e364
+  specs:
+    middleman-swiftype (0.0.1)
+      middleman-core (>= 3.0)
+      nokogiri
+      swiftype (>= 0.0.4)
+
+GIT
   remote: git://github.com/dgeb/coderay.git
   revision: 1362fd4af63331aed51ce9907ad7295cea228874
   branch: handlebars
@@ -163,6 +172,7 @@ GEM
     sprockets-sass (1.3.1)
       sprockets (~> 2.0)
       tilt (~> 1.1)
+    swiftype (1.1.0)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0)
@@ -203,6 +213,7 @@ DEPENDENCIES
   middleman (~> 3.0)
   middleman-alias
   middleman-blog (~> 3.0)
+  middleman-swiftype!
   poltergeist
   pry
   rack

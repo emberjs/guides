@@ -33,7 +33,8 @@ Next, build a new artifact and move it to the guides site repo, committing it to
 
 ```shell
 middleman build
-mv ./build <path to guides site repo>/<revision number>
+middleman switftype --only-generate
+mv ./build <path to guides site repo>/artifacts/<revision number>
 cd <path to guides site repo>
 git add --all
 gc -m "Adding artifact for Ember.js revision <revision number>"
