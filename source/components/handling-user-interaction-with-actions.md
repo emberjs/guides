@@ -19,24 +19,31 @@ For example, imagine the following component that shows a post's title.
 When the title is clicked, the entire post body is shown:
 
 ```handlebars
-<script type="text/x-handlebars" id="components/post-summary">
-  <h3 {{action "toggleBody"}}>{{title}}</h3>
-  {{#if isShowingBody}}
-    <p>{{{body}}}</p>
-  {{/if}}
-</script>
+{{! app/templates/components/post-summary.js }}
+
+<h3 {{action "toggleBody"}}>{{title}}</h3>
+{{#if isShowingBody}}
+<p>{{{body}}}</p>
+{{/if}}
 ```
 
 ```js
-App.PostSummaryComponent = Ember.Component.extend({
+// app/components/post-summary.js
+
+import Ember from 'ember';
+
+var PostSummaryComponent = Ember.Component.extend({
   actions: {
     toggleBody: function() {
       this.toggleProperty('isShowingBody');
     }
   }
 });
+
+export default PostSummaryComponent;
 ```
-<a class="jsbin-embed" href="http://jsbin.com/yuzena/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+
+<a class="jsbin-embed" href="http://jsbin.com/wozezuwopi/4/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 The `{{action}}` helper can accept arguments, listen for different event
 types, control how action bubbling occurs, and more.

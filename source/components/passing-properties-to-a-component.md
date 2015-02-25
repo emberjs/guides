@@ -5,7 +5,7 @@ For example, imagine you have a `blog-post` component that is used to
 display a blog post:
 
 ```handlebars
-// app/templates/components/blog-post.hbs
+{{! app/templates/components/blog-post.hbs }}
 
 <h1>Component: {{title}}</h1>
 <p>Lorem ipsum dolor sit amet.</p>
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
 ```
 
 ```handlebars
-{{! index.handlebars }}
+{{! app/templates/index.hbs }}
 <h1>Template: {{title}}</h1>
 {{blog-post}}
 ```

@@ -9,9 +9,10 @@ ensures Ember picks up the components automatically.
 A sample component template would look like this:
 
 ```handlebars
-// app/components/blog-post.hbs
-  <h1>Blog Post</h1>
-  <p>Lorem ipsum dolor sit amet.</p>
+{{! app/components/blog-post.hbs }}
+
+<h1>Blog Post</h1>
+<p>Lorem ipsum dolor sit amet.</p>
 ```
 
 If you're using build tools, create a Handlebars file at
@@ -21,13 +22,14 @@ Having a template whose name starts with `components/` creates a
 component of the same name. Given the above template, you can now use the
 `{{blog-post}}` custom element:
 
-<a class="jsbin-embed" href="http://jsbin.com/bizahivuta/2/edit?html,js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/bizahivuta/2/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
 
 
 ```handlebars
-app/templates/index.hbs
+{{! app/templates/index.hbs }}
+
 {{#each}}
     {{#blog-post title=title}}
       {{body}}
@@ -36,7 +38,8 @@ app/templates/index.hbs
 ```
 
 ```handlebars
-// app/templates/components/blog-post.hbs --> name must have a dash
+{{! app/templates/components/blog-post.hbs --> name must have a dash }}
+
 <article class="blog-post">
     <h1>{{title}}</h1>
     <p>{{yield}}</p>
@@ -46,6 +49,7 @@ app/templates/index.hbs
 
 ```js
 // app/routes/index.js
+
 import Ember from 'ember'
 
 var posts = [{

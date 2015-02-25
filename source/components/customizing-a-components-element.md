@@ -30,9 +30,8 @@ export default NavigationBarComponent;
 ```
 
 ```handlebars
-// app/templates/index.hbs
+{{! app/templates/components/navigation-bar }}
 
-{{! templates/components/navigation-bar }}
 <ul>
   <li>{{#link-to 'home'}}Home{{/link-to}}</li>
   <li>{{#link-to 'about'}}About{{/link-to}}</li>
@@ -128,10 +127,16 @@ You can also specify a class which should only be added when the property is
 `false` by declaring `classNameBindings` like this:
 
 ```javascript
-App.TodoItemComponent = Ember.Component.extend({
+// app/components/todo-item.js
+
+import Ember from 'ember';
+
+var TodoItemComponent = Ember.Component.extend({
   classNameBindings: ['isEnabled::disabled'],
   isEnabled: false
 });
+
+export default TodoItemComponent;
 ```
 
 This would render this HTML:
@@ -150,10 +155,16 @@ If the bound property's value is a string, that value will be added as a class n
 modification:
 
 ```javascript
-App.TodoItemComponent = Ember.Component.extend({
+// app/components/todo-item.js
+
+import Ember from 'ember';
+
+var TodoItemComponent = Ember.Component.extend({
   classNameBindings: ['priority'],
   priority: 'highestPriority'
 });
+
+export default TodoItemComponent;
 ```
 
 This would render this HTML:
@@ -168,6 +179,10 @@ You can bind attributes to the DOM element that represents a component
 by using `attributeBindings`:
 
 ```javascript
+// app/components/link-item.js
+
+import Ember from 'ember';
+
 App.LinkItemComponent = Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['href'],
@@ -178,11 +193,17 @@ App.LinkItemComponent = Ember.Component.extend({
 You can also bind these attributes to differently named properties:
 
 ```javascript
-App.LinkItemComponent = Ember.Component.extend({
+// app/components/link-item.js
+
+import Ember from 'ember';
+
+var LinkItemComponent = Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['customHref:href'],
   customHref: "http://emberjs.com"
 });
+
+export default LinkItemComponent;
 ```
 
 ### Example

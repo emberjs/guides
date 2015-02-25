@@ -29,12 +29,13 @@ To highlight the power of components, here is a short example of turning a blog 
 application. Keep reading this section for more details on building
 components.
 
-<a class="jsbin-embed" href="http://jsbin.com/bizahivuta/2/edit?html,js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/bizahivuta/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
 
 ```handlebars
-// bapp/templates/index.hbs
+{{! app/templates/index.hbs }}
+
 {{#each}}
     {{#blog-post title=title}}
       {{body}}
@@ -43,7 +44,8 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 ```
 
 ```handlebars
-// app/templates/components/blog-post.hbs --> name must have a dash
+{{! app/templates/components/blog-post.hbs --> name must have a dash }}
+
 <article class="blog-post">
     <h1>{{title}}</h1>
     <p>{{yield}}</p>
