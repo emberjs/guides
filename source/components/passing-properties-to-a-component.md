@@ -5,10 +5,10 @@ For example, imagine you have a `blog-post` component that is used to
 display a blog post:
 
 ```handlebars
-<script type="text/x-handlebars" id="components/blog-post">
-  <h1>Component: {{title}}</h1>
-  <p>Lorem ipsum dolor sit amet.</p>
-</script>
+// app/templates/components/blog-post.hbs
+
+<h1>Component: {{title}}</h1>
+<p>Lorem ipsum dolor sit amet.</p>
 ```
 
 You can see that it has a `{{title}}` Handlebars expression to print the
@@ -17,7 +17,9 @@ value of the `title` property inside the `<h1>`.
 Now imagine we have the following template and route:
 
 ```js
-App.IndexRoute = Ember.Route.extend({
+// app/routes/index.js
+
+export default Ember.Route.extend({
   model: function() {
     return {
       title: "Rails is omakase"
@@ -36,7 +38,7 @@ Running this code, you will see that the first `<h1>` (from the outer
 template) displays the `title` property, but the second `<h1>` (from
 inside the component) is empty.
 
-<a class="jsbin-embed" href="http://jsbin.com/japiv/1/embed?live">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/seloqiwobo/1/embed?live">JS Bin</a>
 
 We can fix this by making the `title` property available to the
 component:
@@ -48,17 +50,17 @@ component:
 This will make the `title` property in the outer template scope
 available inside the component's template using the same name, `title`.
 
-<a class="jsbin-embed" href="http://jsbin.com/japiv/2/embed?live">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/meqimayico/1/embed?live">JS Bin</a>
 <script src="http://static.jsbin.com/js/embed.js"></script>
 
 If, in the above example, the model's `title` property was instead
 called `name`, we would change the component usage to:
 
-```
+```handlebars
 {{blog-post title=name}}
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/japiv/3/embed?live">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/pusemuzunu/1/embed?live">JS Bin</a>
 <script src="http://static.jsbin.com/js/embed.js"></script>
 
 In other words, you are binding a named property from the outer scope to
@@ -83,5 +85,5 @@ create a component for each item and bind it to each model in the loop.
   {{blog-post title=post.title}}
 {{/each}}
 ```
-<a class="jsbin-embed" href="http://jsbin.com/yexeyi/embed?live">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/jasiwubuho/1/embed?live">JS Bin</a>
 <script src="http://static.jsbin.com/js/embed.js"></script>
