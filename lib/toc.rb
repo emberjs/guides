@@ -96,21 +96,8 @@ module TOC
       }
     end
 
-    def guide_slug
-      request.path.split('/')[0]
-    end
-
-    def chapter_slug
-      request.path.split('/')[0..-2].join('/')
-    end
-
     def chapter_github_source_url
-      base_guide_url = "https://github.com/emberjs/guides/tree/master/source/"
-      if guide_slug == chapter_slug
-        return "#{base_guide_url}/#{current_chapter['url']}/index.md"
-      else
-        return "#{base_guide_url}/#{current_chapter['url'].gsub(/.html/, '')}.md"
-      end
+      "https://github.com/emberjs/guides/edit/master/source/#{current_page.path.gsub('.html', '.md')}"
     end
 
     def current_guide
