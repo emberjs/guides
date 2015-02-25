@@ -29,4 +29,54 @@ To highlight the power of components, here is a short example of turning a blog 
 application. Keep reading this section for more details on building
 components.
 
-<a class="jsbin-embed" href="http://jsbin.com/juvic/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/bizahivuta/2/edit?html,js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+
+The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
+
+```handlebars
+// bapp/templates/index.hbs
+{{#each}}
+    {{#blog-post title=title}}
+      {{body}}
+    {{/blog-post}}
+{{/each}}
+```
+
+```handlebars
+// app/templates/components/blog-post.hbs --> name must have a dash
+<article class="blog-post">
+    <h1>{{title}}</h1>
+    <p>{{yield}}</p>
+    <p>Edit title: {{input type="text" value=title}}</p>
+</article>
+```
+
+```js
+// app/routes/index.js
+import Ember from 'ember'
+
+var posts = [{
+  title: "Rails is omakase",
+  body: "There are lots of à la carte software environments in this world."
+}, {
+  title: "Broken Promises",
+  body: "James Coglan wrote a lengthy article about Promises in node.js."
+}];
+
+var IndexRoute = Ember.Route.extend({
+  model: function() {
+  return posts;
+  }
+});
+
+export default IndexRoute;
+
+```
+
+```js
+// app/components/blog-post.js
+
+export default Ember.Component.extend({
+
+});
+```
