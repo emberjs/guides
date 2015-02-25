@@ -45,11 +45,17 @@ the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
 ```js
-App.MyButtonComponent = Ember.Component.extend({
+// app/components/my-button.js
+
+import Ember from 'ember'
+
+var MyButtonComponent = Ember.Component.extend({
   click: function() {
     this.sendAction();
   }
 });
+
+export default MyButtonComponent;
 ```
 
 In the above example, the `my-button` component will send the `showUser`
@@ -73,7 +79,11 @@ For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
 ```js
-App.IndexRoute = Ember.Route.extend({
+// app/routes/index.js
+
+import Ember from 'ember';
+
+var IndexRoute = Ember.Route.extend({
   model: function() {
     return {
       todos: [{
@@ -91,10 +101,12 @@ App.IndexRoute = Ember.Route.extend({
     }
   }
 });
+
+export default IndexRoute;
 ```
 
 ```handlebars
-{{! index.handlebars }}
+{{! app/templates/index.hbs }}
 
 {{#each todo in todos}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
@@ -110,7 +122,9 @@ In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
 ```js
-App.ConfirmButtonComponent = Ember.Component.extend({
+// app/components/confirm-button.js
+
+var ConfirmButtonComponent = Ember.Component.extend({
   actions: {
     showConfirmation: function() {
       this.toggleProperty('isShowingConfirmation');
@@ -122,10 +136,12 @@ App.ConfirmButtonComponent = Ember.Component.extend({
     }
   }
 });
+
+export default ConfirmButtonComponent;
 ```
 
 ```handlebars
-{{! templates/components/confirm-button.handlebars }}
+{{! app/templates/components/confirm-button.hbs }}
 
 {{#if isShowingConfirmation}}
   <button {{action "confirm"}}>Click again to confirm</button>
@@ -138,18 +154,18 @@ Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
 ```handlebars
-{{! index.handlebars }}
+{{! app/templates/index.hbs }}
 
-    {{#each todo in todos}}
-      <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
-    {{/each}}
+{{#each todo in todos}}
+  <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
+{{/each}}
 ```
 
 Note that we've specified the action to send by setting the component's
 `action` attribute, and we've specified which argument should be sent as
 a parameter by setting the component's `param` attribute.
 
-<a class="jsbin-embed" href="http://jsbin.com/mucilo/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/cuyavipobe/7/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ### Sending Multiple Actions
 
@@ -173,7 +189,7 @@ In this case, you can send the `createUser` action by calling
 `this.sendAction('submit')`, or send the `cancelUserCreation` action by
 calling `this.sendAction('cancel')`.
 
-<a class="jsbin-embed" href="http://jsbin.com/qafaq/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/ratijahosu/5/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ### Actions That Aren't Specified
 
@@ -184,11 +200,17 @@ For example, if you define a component that triggers the primary action
 on click:
 
 ```js
-App.MyButtonComponent = Ember.Component.extend({
+// app/components/my-button.js
+
+import Ember from 'ember'
+
+var MyButtonComponent = Ember.Component.extend({
   click: function() {
     this.sendAction();
   }
 });
+
+export default MyButtonComponent;
 ```
 
 Using this component without assigning a primary action will have no
