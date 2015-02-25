@@ -4,8 +4,8 @@ todo items in a controller to determine how many of them are completed.
 
 Here's what that computed property might look like:
 
-```javascript
-App.TodosController = Ember.Controller.extend({
+```app/controllers/todos.js
+export default Ember.Controller.extend({
   todos: [
     Ember.Object.create({ isDone: true }),
     Ember.Object.create({ isDone: false }),
@@ -31,8 +31,9 @@ this computed property when one of the following four events occurs:
 In the example above, the `remaining` count is `1`:
 
 ```javascript
-App.todosController = App.TodosController.create();
-App.todosController.get('remaining');
+import TodosController from 'app/controllers/todos';
+todosController = TodosController.create();
+todosController.get('remaining');
 // 1
 ```
 
@@ -40,17 +41,17 @@ If we change the todo's `isDone` property, the `remaining` property is updated
 automatically:
 
 ```javascript
-var todos = App.todosController.get('todos');
+var todos = todosController.get('todos');
 var todo = todos.objectAt(1);
 todo.set('isDone', true);
 
-App.todosController.get('remaining');
+todosController.get('remaining');
 // 0
 
 todo = Ember.Object.create({ isDone: false });
 todos.pushObject(todo);
 
-App.todosController.get('remaining');
+todosController.get('remaining');
 // 1
 ```
 

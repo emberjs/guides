@@ -93,7 +93,7 @@ cannot rely on the side effect of set. Instead, specify that the observer
 should also run after init by using `.on('init')`:
 
 ```javascript
-App.Person = Ember.Object.extend({
+Person = Ember.Object.extend({
   init: function() {
     this.set('salutation', "Mr/Ms");
   },
