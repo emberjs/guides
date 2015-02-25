@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 gem "redcarpet"
 gem "activesupport"
@@ -13,9 +12,12 @@ gem "listen"
 gem "builder"
 gem "middleman-alias"
 gem "middleman-swiftype", :git => "git://github.com/LeonB/middleman-swiftype.git"
-gem "rails-assets-js-md5"
-gem "rails-assets-moment"
 gem "underscore-rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-js-md5"
+  gem "rails-assets-moment"
+end
 
 group :development, :test do
   gem 'pry'
@@ -25,6 +27,7 @@ group :test do
   gem "rspec"
   gem "capybara"
   gem "poltergeist"
+  gem "hashie"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

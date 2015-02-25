@@ -17,7 +17,7 @@ jQuery.getJSON('/posts/1', function(post) {
 });
 ```
 
-In a raw jQuery application, you would use this callback to make
+In a selector-based jQuery application, you would use this callback to make
 whatever changes you needed to make to the DOM.
 
 When using an event-based MVC framework, you move the logic out of the
@@ -79,30 +79,38 @@ tasks.
 You would normally use ember-data for this example, but let's see how
 you would model the above example using jQuery for Ajax in Ember.
 
-```javascript
-App.Post = Ember.Object.extend({
-  
-});
+```app/models/post.js
+export default Ember.Object.extend({
 
-App.PostController = Ember.ObjectController.extend({
+});
+```
+
+```app/controllers/post.js
+export default Ember.ObjectController.extend({
   author: function() {
     return [this.get('salutation'), this.get('name')].join(' ');
   }.property('salutation', 'name')
 });
+```
 
-App.PostView = Ember.View.extend({
+```app/views/post.js
+export default Ember.View.extend({
   // the controller is the initial context for the template
   controller: null,
   template: Ember.Handlebars.compile("<h1>{{title}}</h1><h2>{{author}}</h2><div>{{body}}</div>")
 });
+```
 
-var post = App.Post.create();
-var postController = App.PostController.create({ model: post });
 
-App.PostView.create({ controller: postController }).appendTo('body');
+```app/routes/post.js
+import Post from "app/models/post";
 
-jQuery.getJSON("/posts/1", function(json) {
-  post.setProperties(json);
+export default Ember.Route.extend({
+  model: function(){
+    return jQuery.getJSON("/posts/1", function(json) {
+      return Post.create(json);
+    });
+  }
 });
 ```
 
@@ -111,7 +119,7 @@ need to explicitly register an observer when the `post`'s properties
 change.
 
 The `{{title}}`, `{{author}}` and `{{body}}` template elements are bound
-to those properties on the `PostController`. When the `PostController`'s
+to those properties on the `post` controller. When the `post` controller's
 model changes, it automatically propagates those changes to the DOM.
 
 Using a computed property for `author` eliminated the need to explicitly
@@ -130,8 +138,8 @@ to each user event.
 
 Let's take another look at the `author` computed property.
 
-```javascript
-App.PostController = Ember.ObjectController.extend({
+```app/controllers/post.js
+export default Ember.ObjectController.extend({
   author: function() {
     return [this.get('salutation'), this.get('name')].join(' ');
   }.property('salutation', 'name')
@@ -197,19 +205,18 @@ you execute the jQuery UI code at the right time?
 
 The answer is lifecycle callbacks.
 
-```javascript
-App.Button = Ember.View.extend({
+```app/components/my-button.js
+export default Ember.Component.extend({
   tagName: 'button',
-  template: Ember.Handlebars.compile("{{view.title}}"),
 
   didInsertElement: function() {
     this.$().button();
   }
 });
+```
 
-var button = App.Button.create({
-  title: "Hi jQuery UI!"
-}).appendTo('#something');
+```app/templates/example-usage.hbs
+{{my-button}}
 ```
 
 In this case, as soon as the button actually appears in the DOM, Ember
@@ -244,99 +251,6 @@ control of creating and inserting views in appropriate situations.
 This also means that all of the code for working with the DOM is in a
 few sanctioned parts of your application, so Ember has more freedom in
 the parts of the render process outside of these callbacks.
-
-### Observers
-
-In some rare cases, you will want to perform certain behavior after a
-property's changes have propagated. As in the previous section, Ember
-provides a mechanism to hook into the property change notifications.
-
-Let's go back to our salutation example.
-
-```javascript
-App.PostController = Ember.ObjectController.extend({
-  author: function() {
-    return [this.get('salutation'), this.get('name')].join(' ');
-  }.property('salutation', 'name')
-});
-```
-
-If we want to be notified when the author changes, we can register an
-observer. Let's say that the view object wants to be notified:
-
-```javascript
-App.PostView = Ember.View.extend({
-  controller: null,
-  template: Ember.Handlebars.compile("<h1>{{title}}</h1><h2>{{author}}</h2><div>{{body}}</div>"),
-
-  authorDidChange: function() {
-    alert("New author name: " + this.get('controller.author'));
-  }.observes('controller.author')
-});
-```
-
-Ember triggers observers after it successfully propagates the change. In
-this case, that means that Ember will only call the `authorDidChange`
-callback once in response to each user event, even if both of `salutation`
-and `name` changed.
-
-This gives you the benefits of executing code after the property has
-changed, without forcing all property changes to be synchronous. This
-basically means that if you need to do some manual work in response to a
-change in a computed property, you get the same coalescing benefits as
-Ember's binding system.
-
-Finally, you can also register observers manually, outside of an object
-definition:
-
-```javascript
-App.PostView = Ember.View.extend({
-  controller: null,
-  template: Ember.Handlebars.compile("<h1>{{title}}</h1><h2>{{author}}</h2><div>{{body}}</div>"),
-
-  didInsertElement: function() {
-    this.addObserver('controller.author', function() {
-      alert("New author name: " + this.get('controller.author'));
-    });
-  }
-});
-```
-
-However, when you use the object definition syntax, Ember will
-automatically tear down the observers when the object is destroyed. For
-example, if an `{{#if}}` statement changes from truthy to falsy, Ember
-destroys all of the views defined inside the block. As part of that
-process, Ember also disconnects all bindings and inline observers.
-
-If you define an observer manually, you need to make sure you remove it.
-In general, you will want to remove observers in the opposite callback
-to when you created it. In this case, you will want to remove the
-callback in `willDestroyElement`.
-
-```javascript
-App.PostView = Ember.View.extend({
-  controller: null,
-  template: Ember.Handlebars.compile("<h1>{{title}}</h1><h2>{{author}}</h2><div>{{body}}</div>"),
-
-  didInsertElement: function() {
-    this.addObserver('controller.author', function() {
-      alert("New author name: " + this.get('controller.author'));
-    });
-  },
-
-  willDestroyElement: function() {
-    this.removeObserver('controller.author');
-  }
-});
-```
-
-If you added the observer in the `init` method, you would want to tear
-it down in the `willDestroy` callback.
-
-In general, you will very rarely want to register a manual observer in
-this way. Because of the memory management guarantees, we strongly
-recommend that you define your observers as part of the object
-definition if possible.
 
 ### Routing
 

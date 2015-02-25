@@ -58,8 +58,8 @@ You can also customize metadata extraction by overriding the `extractMeta` metho
 
 You could extract it like so:
 
-```js
-App.ApplicationSerializer = DS.RESTSerializer.extend({
+```app/serializers/application.js
+export default DS.RESTSerializer.extend({
   extractMeta: function(store, type, payload) {
     if (payload && payload.total) {
       store.setMetadataFor(type, { total: payload.total });  // sets the metadata for "post"

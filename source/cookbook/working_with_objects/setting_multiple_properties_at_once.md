@@ -11,7 +11,7 @@ person.setProperties({
 })
 ```
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/uPaPEcO/2/edit?js,output">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/wukapotoyi/3/edit?live">JS Bin</a>-->
 

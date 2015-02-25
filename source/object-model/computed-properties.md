@@ -9,7 +9,7 @@ It's super handy for taking one or more normal properties and transforming or ma
 We'll start with a simple example:
 
 ```javascript
-App.Person = Ember.Object.extend({
+Person = Ember.Object.extend({
   // these will be supplied by `create`
   firstName: null,
   lastName: null,
@@ -19,7 +19,7 @@ App.Person = Ember.Object.extend({
   }.property('firstName', 'lastName')
 });
 
-var ironMan = App.Person.create({
+var ironMan = Person.create({
   firstName: "Tony",
   lastName:  "Stark"
 });
@@ -45,7 +45,7 @@ At this point, you might be wondering how you are able to call the `.property` f
 You can use computed properties as values to create new computed properties. Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
 
 ```javascript
-App.Person = Ember.Object.extend({
+Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
   age: null,
@@ -60,7 +60,7 @@ App.Person = Ember.Object.extend({
   }.property('fullName', 'age', 'country')
 });
 
-var captainAmerica = App.Person.create({
+var captainAmerica = Person.create({
   firstName: 'Steve',
   lastName: 'Rogers',
   age: 80,
@@ -89,7 +89,7 @@ Setting any dependent property will propagate changes through any computed prope
 You can also define what Ember should do when setting a computed property. If you try to set a computed property, it will be invoked with the key (property name), the value you want to set it to, and the previous value.
 
 ```javascript
-App.Person = Ember.Object.extend({
+Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
 
@@ -107,7 +107,7 @@ App.Person = Ember.Object.extend({
 });
 
 
-var captainAmerica = App.Person.create();
+var captainAmerica = Person.create();
 captainAmerica.set('fullName', "William Burnside");
 captainAmerica.get('firstName'); // William
 captainAmerica.get('lastName'); // Burnside

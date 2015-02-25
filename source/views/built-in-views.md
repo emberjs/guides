@@ -1,4 +1,4 @@
-Ember comes pre-packaged with a set of views for building a basic controls like text inputs, check boxes, and select lists. Usually, these views will be used via the [input helpers](../../templates/input-helpers/). However, the base views may be helpful in creating custom form behaviors.
+Ember comes pre-packaged with a set of views for building basic controls like text inputs, check boxes, and select lists. Usually, these views will be used via the [input helpers](../../templates/input-helpers/). However, the base views may be helpful in creating custom form behaviors.
 
 * [Ember.Checkbox](http://emberjs.com/api/classes/Ember.Checkbox.html)
 * [Ember.TextField](http://emberjs.com/api/classes/Ember.TextField.html)
@@ -6,9 +6,12 @@ Ember comes pre-packaged with a set of views for building a basic controls like 
 
 For example, here we have created a custom text field that toggles a dirty property:
 
-```javascript
-// {{view "my-text" value=name inputDidChange=nameDidChange}}
-App.MyTextView = Ember.TextField.extend({
+```app/templates/some-template-using-a-view.hbs
+{{view "my-input" value=name inputDidChange=nameDidChange}}
+```
+
+```app/views/my-input.js
+export default Ember.TextField.extend({
   inputDidChange: false,
   change: function() {
     this.set('inputDidChange', true);

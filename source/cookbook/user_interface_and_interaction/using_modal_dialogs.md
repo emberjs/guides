@@ -26,8 +26,8 @@ In a template:
 
 In your application route:
 
-```javascript
-App.ApplicationRoute = Ember.Route.extend({
+```app/routes/application.js
+export default Ember.Route.extend({
   actions: {
     openModal: function(modalName) {
       return this.render(modalName, {
@@ -43,19 +43,19 @@ When closing a modal, you can use the route's `disconnectOutlet` method to remov
 the modal from the DOM.
 
 ```javascript
-  closeModal: function() {
-    return this.disconnectOutlet({
-      outlet: 'modal',
-      parentView: 'application'
-    });
-  }
+closeModal: function() {
+  return this.disconnectOutlet({
+    outlet: 'modal',
+    parentView: 'application'
+  });
+}
 ```
 
 It may also be helpful to use a `modal-dialog` component to handle common markup
 and interactions such as rendering an overlay and handling clicks outside of the
 modal.
 
-#### Example
+<!---#### Example
 
 This example shows:
 
@@ -64,6 +64,6 @@ This example shows:
   1. Wrapping the common modal markup and actions in a component.
   1. Handling events to close the modal when the overlay is clicked.
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/peyogo/2/embed?html,js,output">
+<a class="jsbin-embed" href="http://jsbin.com/qebutipuqa/1/embed?live">
   Recipe: Using a Modal Dialog
-</a>
+</a>-->

@@ -34,8 +34,12 @@ Add google analytic's base code to the html file that renders your ember app.
 Then reopen the application router and add this function. It will be called when
 `didTransition` is fired by the router.
 
-```js
-App.Router.reopen({
+```app/router.js
+var Router = Ember.Router.extend({
+  // customization goes here
+});
+
+Router.reopen({
   notifyGoogleAnalytics: function() {
     return ga('send', 'pageview', {
         'page': this.get('url'),
@@ -43,6 +47,8 @@ App.Router.reopen({
       });
   }.on('didTransition')
 });
+
+export default Router;
 ```
 
 ### Discussion
@@ -52,4 +58,4 @@ changes, in this example we are getting the path after the hash in the url so we
 can notify Google Analytics about moving between areas of the site.
 
 
-[JSBin Example](http://jsbin.com/xebevu)
+<!--[JSBin Example](http://jsbin.com/xebevu)-->

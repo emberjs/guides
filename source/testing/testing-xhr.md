@@ -10,7 +10,7 @@ When a promise runs, it schedules fulfillment/rejection to be executed by the ru
 
 Getting the results of a promise requires you to use the `then` method. Calling the `then` function on an existing promise:
 
-``` javascript
+```javascript
 // let's call the existing promise promise1, so you'd write:
 promise1.then(fulfillmentCallback, rejectionCallback);
 
@@ -27,7 +27,7 @@ In the case that `promise1` succeeds, then the `fulfillmentCallback` function wi
 
 If you pass in a function to `then` it casts the function into a promise and returns the promise.  The results of that promise will be what's returned from the function.
 
-``` javascript
+```javascript
 // let's call the existing promise promise1 and will have the result `3`, so you'd write:
 var promise2 = promise1.then(function(results){
   return results + 2;
@@ -57,7 +57,7 @@ var promise4 = promise1.then(function(results){
 
 If you pass a promise into `then` it will return the results of that promise.
 
-``` javascript
+```javascript
 // let's call the existing promises promise1 and promise2, so you'd write:
 var promise3 = promise1.then(promise2);
 
@@ -74,19 +74,23 @@ promise3.then(function(result){
 
 ####Promise Resolution
 
-    var promise = new Ember.RSVP.Promise(function(resolve){
-      // calling resolve will schedule an action to fulfill the promise 
-      // and call observers/chained promises.
-      resolve('hello world'); // Run loop needs to be on here
-    });
+```javascript
+var promise = new Ember.RSVP.Promise(function(resolve){
+  // calling resolve will schedule an action to fulfill the promise
+  // and call observers/chained promises.
+  resolve('hello world'); // Run loop needs to be on here
+});
+```
 
 ####Chaining/Observing Promises
 
-    // once the above promise has been resolved it will then notify 
-    // the observers/chained promises to.
-    promise.then(function(result){  // Run loop might* need to be on here
-      alert(result);
-    });
+```javascript
+// once the above promise has been resolved it will then notify
+// the observers/chained promises to.
+promise.then(function(result){  // Run loop might* need to be on here
+  alert(result);
+});
+```
 
 * Calling `then` (observing/chaining) only needs to be implicitely wrapped in a run call statement (eg `Ember.run(...)`) if there is a possibility you will chain/observe the promise after it's been fulfilled.  See the examples below which will help explain the different scenarios.
 
@@ -100,7 +104,7 @@ promise3.then(function(result){
 6. Run loop: run "fulfill the promise" task (which includes notifying all chained promises/observers of fulfillment)
 7. Run loop is off since there are no more tasks
 
-``` javascript
+```javascript
 new Ember.RSVP.Promise(function(resolve){
   // resolve will run ~10 ms after the then has been called and is observing
   Ember.run.later(this, resolve, 'hello', 10);
@@ -109,7 +113,7 @@ new Ember.RSVP.Promise(function(resolve){
 });
 ```
 
- 
+
 #####Walk through example of observing/chaining after the promise has fulfilled
 
 1. Run loop is off (testing mode)
@@ -121,7 +125,7 @@ new Ember.RSVP.Promise(function(resolve){
 8. Code: Observe Promise1 (since the promise has already fulfilled, schedule an async task to notify this observer of fulfillment)
 9. Uncaught Error: Assertion Failed: You have turned on testing mode, which disabled the run-loop's autorun. You will need to wrap any code with asynchronous side-effects in an Ember.run
 
-``` javascript
+```javascript
 var promise = new Ember.RSVP.Promise(function(resolve){
   // this will run before the then has happened below
   // and finish the triggered run loop
@@ -132,7 +136,7 @@ var promise = new Ember.RSVP.Promise(function(resolve){
 promise.then(function(result){
   alert(result);
 });
-  
+
 // correct, start the run loop again
 Ember.run(function(){
   promise.then(function(result){
@@ -149,19 +153,23 @@ When you are using Ember normally (ie when not in testing mode), the run loop is
 
 Here we are setting up a promise, and intentionally using `setTimeout` to mimic a delayed response from a fake server.  Once our fake server has responded we need to invoke the run loop manually, by wrapping the statement in a run call.
 
-    var promise = new Ember.RSVP.Promise(function(resolve){
-      setTimeout(function(){
-        Ember.run(this, resolve, 'hello world');
-      }, 20);
-    });
+```javascript
+var promise = new Ember.RSVP.Promise(function(resolve){
+  setTimeout(function(){
+    Ember.run(this, resolve, 'hello world');
+  }, 20);
+});
+```
 
 If you were to pass the above promise around to multiple methods, and they choose to observe/chain to the promise, it is likely that at some point the promise may already be resolved.  In that case you will need to wrap the observer/chained promise in a run call.
 
-    Ember.run(function(){
-      promise.then(function(result){
-        alert(result);
-      });
-    });
+```javascript
+Ember.run(function(){
+  promise.then(function(result){
+    alert(result);
+  });
+});
+```
 
 ####Synchronous Example using promises
 
@@ -169,7 +177,6 @@ If you're using a promise, but it resolves immediately then you can simply follo
 
 <script src="http://static.jsbin.com/js/embed.js"></script>
 <a class="jsbin-embed" href="http://jsbin.com/qoyinucu/45/embed?js,output">Simple promise example</a>
-
 
 ####Asynchronous Example using promises
 
@@ -189,29 +196,32 @@ AJAX requests are the most prevelant use case where you will be creating promise
 
 Imagine you wanted to request a list of colors from a server.  Using ic-ajax you would use the following syntax
 
-    var promise = ic.ajax.request('/colors');
+```javascript
+var promise = ic.ajax.request('/colors');
+```
 
 This is an asynchronous call which returns a promise. When the promise has resolved, it will contain the list of colors. The convenient thing about ic-ajax is that it wraps the resolve of your ajax call in a call to Ember.run so you don't need to worry about it. We're going to set up some fixture data that can be returned instead of making an ajax call to fake the server so we can test our code
 
-    ic.ajax.defineFixture('/colors', {
-      response: [
-        {
-          id: 1,
-          color: "red"
-        },
-        {
-          id: 2,
-          color: "green"
-        },
-        {
-          id: 3,
-          color: "blue"
-        }
-      ],
-      jqXHR: {},
-      textStatus: 'success'
-    });
-
+```javascript
+ic.ajax.defineFixture('/colors', {
+  response: [
+    {
+      id: 1,
+      color: "red"
+    },
+    {
+      id: 2,
+      color: "green"
+    },
+    {
+      id: 3,
+      color: "blue"
+    }
+  ],
+  jqXHR: {},
+  textStatus: 'success'
+});
+```
 
 <a class="jsbin-embed" href="http://jsbin.com/OxIDiVU/366/embed?js,output">Using ic-ajax</a>
 
@@ -235,40 +245,46 @@ Often while doing integration tests, you don't actually want to hit the server b
 
 Imagine you wanted to request a list of colors from a server.  Using vanilla `jQuery` you would use the following syntax
 
-    $.getJSON('/colors', function(response){ /* ... */ });
+```javascript
+$.getJSON('/colors', function(response){ /* ... */ });
+```
 
 This is an asynchronous call which will pass the server's response to the callback provided. Unlike `ic-ajax`, with vanilla `jQuery` you need to wrap the callback syntax in a promise.
 
-    var promise = new Ember.RSVP.Promise(function(resolve){
-      $.getJSON('/colors', function(data){
-        resolve(data.response);
-      });
-    });
+```javascript
+var promise = new Ember.RSVP.Promise(function(resolve){
+  $.getJSON('/colors', function(data){
+    resolve(data.response);
+  });
+});
+```
 
 We're going to set up some fixture data that can be returned instead of making an ajax call to fake the server so we can test our code
 
-    $.mockjax({
-      type: 'GET',
-      url: '/colors',
-      status: '200',
-      dataType: 'json',
-      responseText: {
-        response: [
-          {
-            id: 1,
-            color: "red"
-          },
-          {
-            id: 2,
-            color: "green"
-          },
-          {
-            id: 3,
-            color: "blue"
-          }
-         ]
+```javascript
+$.mockjax({
+  type: 'GET',
+  url: '/colors',
+  status: '200',
+  dataType: 'json',
+  responseText: {
+    response: [
+      {
+        id: 1,
+        color: "red"
+      },
+      {
+        id: 2,
+        color: "green"
+      },
+      {
+        id: 3,
+        color: "blue"
       }
-    });
+     ]
+  }
+});
+```
 
 As you can see, there is a lot of flexibility in the `jquery-mockjax` api. You can specify not only the url and the response but the method, status code and data type. For the full jquery-mockax api check [their docs](https://github.com/appendto/jquery-mockjax).
 

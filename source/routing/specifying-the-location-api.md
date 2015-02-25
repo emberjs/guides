@@ -6,7 +6,8 @@ Given the following router, entering `/#/posts/new` will take you to the `posts.
 route.
 
 ```javascript
-App.Router.map(function() {
+// app/router.js
+Router.map(function() {
   this.resource('posts', function() {
     this.route('new');
   });
@@ -14,13 +15,13 @@ App.Router.map(function() {
 ```
 
 If you want `/posts/new` to work instead, you can tell the Router to use the browser's
-[history](http://caniuse.com/history) API. 
+[history](http://caniuse.com/history) API.
 
-Keep in mind that your server must serve the Ember app from all the URLs defined in your 
-`Router.map` function. 
+Keep in mind that your server must serve the Ember app from all the URLs defined in your
+`Router.map` function.
 
 ```js
-App.Router.reopen({
+Router.reopen({
   location: 'history'
 });
 ```
@@ -32,7 +33,7 @@ don't want it to muck with the URL (for example when you embed your
 application in a larger page).
 
 ```js
-App.Router.reopen({
+Router.reopen({
   location: 'none'
 });
 ```

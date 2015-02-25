@@ -6,8 +6,8 @@ Subclass `Ember.TextField` and define a method marked with
 `.on('didInsertElement')`. Inside this method apply `focus`
 to the text field by accessing the components's jQuery `$` property:
 
-```javascript
-App.FocusInputComponent = Ember.TextField.extend({
+```app/components/focus-input.js
+export default Ember.TextField.extend({
   becomeFocused: function() {
     this.$().focus();
   }.on('didInsertElement')
@@ -47,6 +47,6 @@ of our component.
 
 Prototype extension can be disabled by setting the `Ember.EXTEND_PROTOTYPES` property to false.
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/OlUGODo/4/edit?html,js,output">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/yejamevaqa/1/embed?live">JS Bin</a>-->

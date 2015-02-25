@@ -1,64 +1,725 @@
-#NOTE: start the middleman as in readme, then run bundle exec rspec
+require "spec_helper"
+require "hashie"
 
-require 'capybara/rspec'
-require 'capybara/poltergeist'
-require 'pry'
+describe TOC::Helpers do
+  let(:helper)                 { HelperTester.new }
+  let(:basic_chapter_title)    { "What even is middleman?" }
+  let(:basic_guide_title)      { "Middleman Basics" }
+  let(:basics_page)            { double(path: "middleman-basics/index.html") }
 
-unless `which phantomjs`.empty?
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, { :inspector => true, })
-  end
-  Capybara.javascript_driver = :poltergeist
-end
-
-describe "TOC", :type => :feature do
-  include Capybara::DSL
-
-  before do
-    Capybara.app_host = 'http://localhost:4567'
-    unless `which phantomjs`.empty?
-      Capybara.current_driver = :poltergeist
-    else
-      Capybara.current_driver = :selenium
+  before(:each) do
+    class HelperTester
+      include TOC::Helpers
     end
-    Capybara.run_server = false
+
+    data_yml = %Q{
+guides:
+  - title: "Middleman Basics"
+    url: "middleman-basics"
+    chapters:
+      - title: "What even is middleman?"
+        url: "index"
+    }
+
+    data = Hashie::Mash.new(YAML.load(data_yml))
+    testing_page = double(path: "custom-extensions/testing-custom-extensions.html")
+
+    allow(helper).to receive(:data).and_return(data)
+    allow(helper).to receive(:current_page).and_return(testing_page)
+    allow(helper).to receive(:link_to).and_wrap_original do |_, title, url|
+      %Q{<a href="#{url}">#{title}</a>}
+    end
   end
 
-  it "Within-guide page link" do
-    visit "/guides/models/finding-records"
-    find('a.next-guide').text.should =~ /Working with Records/
+  after do
+    # Remove our testing class
+    Object.send :remove_const, :HelperTester
   end
 
-  it "Another within-guide page link " do
-    visit "/guides/object-model/bindings"
-    find('a.next-guide').text.should =~ /Reopening Classes and Instances/
+  describe "#toc_for" do
+    before(:each) do
+      building_page = double(path: "custom-extensions/building-custom-extensions.html")
+      allow(helper).to receive(:request).and_return(building_page)
+    end
+
+    it "includes guide titles except guides that are marked to skip sidbar" do
+      data_yml = %Q{
+guides:
+  - title: "Middleman Basics"
+    url: "middleman-basics"
+    chapters:
+      - title: "What even is middleman?"
+        url: ""
+        skip_sidebar: true
+
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Advanced Concepts"
+        url: "index"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      }
+
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      toc = helper.toc_for(data.guides)
+      expect(toc).to include("Advanced Middleman")
+      expect(toc).to include("Extending Middleman")
+
+      expect(toc).not_to include("Middleman Basics")
+    end
+
+    it "includes chapter titles except for chapter that are marked to skip sidbar" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+        skip_sidebar_item: true
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      - title: "Testing Middleman Extensions"
+        url: "testing-middleman-extensions"
+      }
+
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      toc = helper.toc_for(data.guides)
+
+      expect(toc).to include("Building Middleman Extensions")
+      expect(toc).to include("Testing Middleman Extensions")
+
+      expect(toc).not_to include("What are extensions?")
+    end
+
+    it "includes guide urls except guides that are marked to skip sidbar" do
+      data_yml = %Q{
+guides:
+  - title: "Middleman Basics"
+    url: "middleman-basics"
+    chapters:
+      - title: "What even is middleman?"
+        url: ""
+        skip_sidebar: true
+
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Advanced Concepts"
+        url: "index"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      }
+
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      toc = helper.toc_for(data.guides)
+
+      expect(toc).to include("advanced-middleman")
+      expect(toc).to include("extending-middleman")
+
+      expect(toc).not_to include("middleman-basics")
+    end
+
+    it "includes chapter urls except for chapter that are marked to skip sidbar" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Advanced Concepts"
+        url: "index"
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+        skip_sidebar_item: true
+      - title: "Contributing to Middleman"
+        url: "contributing-to-middleman"
+      }
+
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      toc = helper.toc_for(data.guides)
+      advanced_index_page = double(path: "advanced-middleman/index.html")
+      allow(helper).to receive(:request).and_return(advanced_index_page)
+
+      expect(toc).to include(advanced_index_page.path)
+      expect(toc).to include("contributing-to-middleman")
+
+      expect(toc).not_to include("middleman-architecture")
+    end
+
+    it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+        skip_sidebar_item: true
+      }
+
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      toc = helper.toc_for(data.guides)
+      expectation = %Q{<li class='level-1 '><a href=\"/extending-middleman/index.html\">Extending Middleman</a>}
+      expect(toc).to include(expectation)
+    end
   end
 
-  it "Shows next section link" do
-    visit "/guides/views/manually-managing-view-hierarchy"
-    find('a.next-guide').text.should =~ /We're done with Views/
-    find('a.next-guide').text.should =~ /Next up: /
-    find('a.next-guide').text.should =~ /Enumerables/
-    find('a.next-guide').text.should =~ /Introduction/
+  describe "#page_title" do
+    before(:each) do
+      allow(helper).to receive(:current_page).and_return(basics_page)
+    end
+
+    it "is generic when current guide is not specified" do
+      allow(helper).to receive(:current_guide).and_return(nil)
+
+      expect(helper.page_title).to eq("Guides")
+    end
+
+    it "is current guide's title when current chapter is not specified" do
+      allow(helper).to receive(:current_chapter).and_return(nil)
+
+      expect(helper.page_title).to eq("Middleman Basics")
+    end
+
+    it "is a combination of current guide & chapter titles when both are specified" do
+      expect(helper.page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
+    end
   end
 
-  it "Shows previous section link" do
-    visit "/guides/routing"
-    find('a.previous-guide').text.should =~ /Templates: Writing Helpers/
+  describe "#guide_name" do
+    before(:each) do
+      allow(helper).to receive(:current_page).and_return(basics_page)
+    end
+
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_guide).and_return(nil)
+
+      expect(helper.guide_name).to be_nil
+    end
+
+    it "is the current guide's title when current guide is specified" do
+      expect(helper.guide_name).to eq(basic_guide_title)
+    end
   end
 
-  it "Chills on the first page" do
-    visit "/guides/index.html"
-    page.should_not have_css('a.previous-guide')
+  describe "#chapter_name" do
+    before(:each) do
+      allow(helper).to receive(:current_page).and_return(basics_page)
+    end
+
+    it "is an empty string when current chapter is not specified" do
+      allow(helper).to receive(:current_chapter).and_return(nil)
+
+      expect(helper.chapter_name).to eq("")
+    end
+
+    it "is current chapter's title when current chapter is specified" do
+      expect(helper.chapter_name).to eq(basic_chapter_title)
+    end
   end
 
-  it "First page should have a link to the first guide" do
-    visit "/guides/index.html"
-    find('a.next-guide').text.should =~ /Getting Started/
+  describe "#chapter_heading" do
+    before(:each) do
+      allow(helper).to receive(:current_page).and_return(basics_page)
+    end
+
+    it "is nil if chapter name is blank" do
+      allow(helper).to receive(:chapter_name).and_return("")
+
+      expect(helper.chapter_heading).to be_nil
+    end
+
+    it "is header markup with name & source URL when chapter name is specified" do
+      expect(helper.chapter_heading).to include(basic_chapter_title)
+      expect(helper.chapter_heading).to include("https://github.com/emberjs/guides/edit")
+    end
   end
 
-  it "Chills on the last page" do
-    visit "/guides/contributing/adding-new-features"
-    page.should_not have_css('a.next-guide')
+  describe "#chapter_github_source_url" do
+    it "is the github URL to the source file for current page" do
+      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/custom-extensions/testing-custom-extensions.md")
+    end
+  end
+
+  describe "#current_guide" do
+    before(:each) do
+      allow(helper).to receive(:current_page).and_return(basics_page)
+    end
+
+    it "is the current value if present" do
+      helper.instance_variable_set(:@current_guide, "some random value")
+      expect(helper.current_guide).to eq("some random value")
+    end
+
+    it "sets the guide associated with the current page as current guide & returns it" do
+      guide = helper.data.guides.first
+
+      expect(helper.instance_variable_get(:@current_guide)).to be_nil
+      expect(helper.current_guide).to eq(guide)
+      expect(helper.instance_variable_get(:@current_guide)).to eq(guide)
+    end
+  end
+
+  describe "#current_guide_index" do
+    before(:each) do
+      data_yml = %Q{
+guides:
+  - title: "Middleman Basics"
+    url: "middleman-basics"
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Advanced Concepts"
+        url: "index"
+    }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(basics_page)
+    end
+
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.current_guide_index).to be_nil
+    end
+
+    it "is the index of the current guide when specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/index.html"))
+
+      expect(helper.current_guide_index).to eq(1)
+    end
+  end
+
+  describe "#current_chapter" do
+    before(:each) do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Advanced Concepts"
+        url: "index"
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+      }
+      @data = Hashie::Mash.new(YAML.load(data_yml))
+    end
+
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.current_chapter).to be_nil
+    end
+
+    it "is the current value if present" do
+      allow(helper).to receive(:data).and_return(@data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture.html"))
+      architecture_chapter = helper.data.guides.first.chapters.last
+
+      helper.instance_variable_set(:@current_chapter, architecture_chapter)
+
+      expect(helper.current_chapter).to eq(architecture_chapter)
+    end
+
+    it "sets the chapter associated with the current page as current chapter & returns it" do
+      allow(helper).to receive(:data).and_return(@data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture.html"))
+      architecture_chapter = helper.data.guides.first.chapters.last
+
+      expect(helper.instance_variable_get(:@current_chapter)).to be_nil
+      expect(helper.current_chapter).to eq(architecture_chapter)
+      expect(helper.instance_variable_get(:@current_chapter)).to eq(architecture_chapter)
+    end
+  end
+
+  describe "#current_chapter_index" do
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.current_chapter_index).to be_nil
+    end
+
+    it "is nil if the current chapter is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.current_chapter_index).to be_nil
+    end
+
+    it "is the index of the current chapter in the current guide if both are specified" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Advanced Concepts"
+        url: "index"
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture.html"))
+
+      expect(helper.current_chapter_index).to eq(1)
+    end
+  end
+
+  describe "#chapter_links" do
+    it "is markup that consists of previous & next chapter links" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+        skip_sidebar_item: true
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      - title: "Testing Middleman Extensions"
+        url: "testing-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/building-middleman-extensions"))
+
+      expect(helper.chapter_links).to include("What are extensions?")
+      expect(helper.chapter_links).to include("Testing Middleman Extensions")
+    end
+  end
+
+  describe "#previous_chapter_link" do
+    it "is link to previous chapter in current guide if previous chapter is specified" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/building-middleman-extensions"))
+
+      expect(helper.previous_chapter_link).to include("What are extensions?")
+      expect(helper.previous_chapter_link).to include("index")
+    end
+
+    it "is link to last chapter in previous guide if current chapter is first chapter in previous guide" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/building-middleman-extensions"))
+
+      expect(helper.previous_chapter_link).to include("Middleman Architecture")
+    end
+  end
+
+  describe "#next_chapter_link" do
+    it "is link to next chapter in current guide if next chapter is specified" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
+
+      expect(helper.next_chapter_link).to include("Building Middleman Extensions")
+    end
+
+    it "is link to the first chapter in next guide if next chapter is not specified" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture"))
+
+      expectation = "We're done with Advanced Middleman. Next up: Extending Middleman - Building Middleman Extensions"
+      expect(helper.next_chapter_link).to include(expectation)
+    end
+  end
+
+  describe "#previous_chapter" do
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.previous_chapter).to be_nil
+    end
+
+    it "is nil if current chapter index is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.previous_chapter).to be_nil
+    end
+
+    it "is nil if current chapter is the first chapter in the guide" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture"))
+
+      expect(helper.previous_chapter).to be_nil
+    end
+
+    it "is the previous chapter when current guide & current chapter are specified & there is a chapter before that" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/building-middleman-extensions"))
+      extensions_chapter = helper.data.guides.first.chapters.first
+
+      expect(helper.previous_chapter).to eq(extensions_chapter)
+    end
+  end
+
+  describe "#next_chapter" do
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.next_chapter).to be_nil
+    end
+
+    it "is nil if current chapter index is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.next_chapter).to be_nil
+    end
+
+    it "is nil if current chapter is the last chapter in the guide" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture"))
+
+      expect(helper.next_chapter).to be_nil
+    end
+
+    it "is the next chapter when current guide has a next chapter" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
+      building_chapter = helper.data.guides.first.chapters.last
+
+      expect(helper.next_chapter).to eq(building_chapter)
+    end
+  end
+
+  describe "#previous_guide" do
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.previous_guide).to be_nil
+    end
+
+    it "is nil if current guide index is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.previous_guide).to be_nil
+    end
+
+    it "is nil if current guide is the first guide" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
+
+      expect(helper.previous_guide).to be_nil
+    end
+
+    it "is the previous guide when current guide is specified & there is a guide before that" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/building-middleman-extensions"))
+      first_guide = helper.data.guides.first
+
+      expect(helper.previous_guide).to eq(first_guide)
+    end
+  end
+
+  describe "#next_guide" do
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.next_guide).to be_nil
+    end
+
+    it "is nil if current guide index is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.next_guide).to be_nil
+    end
+
+    it "is nil if current guide is the last guide" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
+
+      expect(helper.next_guide).to be_nil
+    end
+
+    it "is the next guide when current guide is specified & next guide exists" do
+      data_yml = %Q{
+guides:
+  - title: "Advanced Middleman"
+    url: "advanced-middleman"
+    chapters:
+      - title: "Middleman Architecture"
+        url: "middleman-architecture"
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "Building Middleman Extensions"
+        url: "building-middleman-extensions"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "advanced-middleman/middleman-architecture"))
+      next_guide = helper.data.guides.last
+      expect(helper.next_guide).to eq(next_guide)
+    end
+  end
+
+  describe "#warning" do
+    it "is nil if current guide is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.warning).to be_nil
+    end
+
+    it "is nil if current chapter is not specified" do
+      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
+
+      expect(helper.warning).to be_nil
+    end
+
+    it "is nil if current chapter does not have a warning set" do
+      allow(helper).to receive(:current_chapter).and_return(double(:[] => false))
+
+      expect(helper.warning).to be_nil
+    end
+
+    it "is markup specific to the specified type of warning" do
+      data_yml = %Q{
+guides:
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+      }
+      data = Hashie::Mash.new(YAML.load(data_yml))
+      allow(helper).to receive(:data).and_return(data)
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
+      allow(helper).to receive(:current_chapter).and_return({ "warning" => "canary" })
+
+      expect(helper.warning).to include("WARNING")
+    end
   end
 end

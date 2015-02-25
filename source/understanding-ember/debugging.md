@@ -1,20 +1,19 @@
-### Debugging Ember and Ember Data
+### Debugging Ember
+All Ember developers should install the
+[Ember Inspector](https://github.com/emberjs/ember-inspector)
+which provides debugging and development tools for the browser.
 
-Here are some tips you can use to help debug your Ember application.
-
-Also, check out the
-[ember-extension](https://github.com/tildeio/ember-extension)
-project, which adds an Ember tab to Chrome DevTools that allows you
-to inspect Ember objects in your application.
+You should also become comfortable with the browser debugging
+tooling for Chrome, Firefox, Safari, and Internet Explorer.
 
 ## Routing
 
 #### Log router transitions
 
-```javascript
-window.App = Ember.Application.create({
+```app/app.js
+export default Ember.Application.extend({
   // Basic logging, e.g. "Transitioned into 'post'"
-  LOG_TRANSITIONS: true, 
+  LOG_TRANSITIONS: true,
 
   // Extremely detailed logging, highlighting every internal
   // step made while transitioning into a route, including
@@ -23,55 +22,13 @@ window.App = Ember.Application.create({
   LOG_TRANSITIONS_INTERNAL: true
 });
 ```
-
-#### View all registered routes
-
-```javascript
-Ember.keys(App.Router.router.recognizer.names)
-```
-
-####  Get current route name / path
-
-Ember installs the current route name and path on your
-app's `ApplicationController` as the properties
-`currentRouteName` and `currentPath`. `currentRouteName`'s
-value (e.g. `"comments.edit"`) can be used as the destination parameter of 
-`transitionTo` and the `{{linkTo}}` Handlebars helper, while 
-`currentPath` serves as a full descriptor of each
-parent route that has been entered (e.g.
-`"admin.posts.show.comments.edit"`).
-
-```javascript
-// From within a Route
-this.controllerFor("application").get("currentRouteName");
-this.controllerFor("application").get("currentPath");
-
-// From within a controller, after specifying `needs: ['application']`
-this.get('controllers.application.currentRouteName');
-this.get('controllers.application.currentPath');
-
-// From the console:
-App.__container__.lookup("controller:application").get("currentRouteName")
-App.__container__.lookup("controller:application").get("currentPath")
-```
-
 ## Views / Templates
 
 #### Log view lookups
 
-```javascript
-window.App = Ember.Application.create({
-  LOG_VIEW_LOOKUPS: true
-});
+```config/environment.js
+ENV.APP.LOG_VIEW_LOOKUPS = true;
 ```
-
-#### Get the View object from its DOM Element's ID
-
-```javascript
-Ember.View.views['ember605']
-```
-
-#### View all registered templates
 
 ```javascript
 Ember.keys(Ember.TEMPLATES)
@@ -81,38 +38,15 @@ Ember.keys(Ember.TEMPLATES)
 
 ```handlebars
 {{debugger}}
-{{log record}}
+{{log model}}
 ```
 
 ## Controllers
 
-#### Log generated controller 
+#### Log generated controller
 
-```javascript
-window.App = Ember.Application.create({
-  LOG_ACTIVE_GENERATION: true
-});
-```
-
-## Ember Data
-
-#### View ember-data's type maps
-
-```javascript
-// all type maps in memory
-App.__container__.lookup('store:main').typeMaps 
-
-// specific type map in memory
-App.__container__.lookup('store:main').typeMapFor(App.Color)
-
-// map of id to record for all cached records for a type
-App.__container__.lookup('store:main').typeMapFor(App.Color).idToRecord
-
-// array of all cached records for a type
-App.__container__.lookup('store:main').typeMapFor(App.Color).records
-
-// grab a property off record id "33"
-App.__container__.lookup('store:main').typeMapFor(App.Color).idToRecord["33"].get('color')
+```config/environment.js
+ENV.APP.LOG_ACTIVE_GENERATION = true;
 ```
 
 ## Observers / Binding
@@ -125,8 +59,8 @@ Ember.observersFor(comments, keyName);
 
 #### Log object bindings
 
-```javascript
-Ember.LOG_BINDINGS = true
+```config/environments.js
+ENV.APP.LOG_BINDINGS = true
 ```
 
 ## Miscellaneous
@@ -139,24 +73,16 @@ you've created yourself have a tick, and Ember generated ones don't.
 It's useful for understanding which objects Ember is finding when it does a lookup
 and which it is generating automatically for you.
 
-```javascript
-App = Ember.Application.create({
+```app/app.js
+export default Ember.Application.extend({
   LOG_RESOLVER: true
 });
 ```
-
-#### View an instance of something from the container
-
-```javascript
-App.__container__.lookup("controller:posts")
-App.__container__.lookup("route:application")
-```
-
 #### Dealing with deprecations
 
 ```javascript
 Ember.ENV.RAISE_ON_DEPRECATION = true
-Ember.LOG_STACKTRACE_ON_DEPRECATION = true
+Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true
 ```
 
 
@@ -200,7 +126,7 @@ details if any errors occur within your promise. This function can be anything
 but a common practice is to call `console.assert` to dump the error to the
 console.
 
-```javascript
+```app/app.js
 Ember.RSVP.on('error', function(error) {
   Ember.Logger.assert(false, error);
 });

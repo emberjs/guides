@@ -100,7 +100,7 @@ pattern, then rest easy knowing that data will always flow correctly from layer 
 Computed properties allow you to treat a function like a property:
 
 ```javascript
-MyApp.president = Ember.Object.create({
+var president = Ember.Object.create({
   firstName: "Barack",
   lastName: "Obama",
 
@@ -111,7 +111,7 @@ MyApp.president = Ember.Object.create({
   }.property()
 });
 
-MyApp.president.get('fullName');
+president.get('fullName');
 // "Barack Obama"
 ```
 
@@ -123,7 +123,7 @@ example, the `fullName` property depends on `firstName` and `lastName` to determ
 You can tell Ember about these dependencies like this:
 
 ```javascript
-MyApp.president = Ember.Object.create({
+var president = Ember.Object.create({
   firstName: "Barack",
   lastName: "Obama",
 
@@ -141,14 +141,10 @@ to a computed property.
 
 #### Auto-updating Templates
 
-Ember uses Handlebars, a semantic templating library. To take data from your JavaScript application
-and put it into the DOM, create a `<script>` tag and put it into your HTML, wherever you'd like the
-value to appear:
+Ember uses Handlebars, a semantic templating library:
 
-```html
-<script type="text/x-handlebars">
-  The President of the United States is {{MyApp.president.fullName}}.
-</script>
+```handlebars
+  The President of the United States is {{president.fullName}}.
 ```
 
 Here's the best part: templates are bindings-aware. That means that if you ever change the value of
@@ -164,7 +160,7 @@ categories of edge cases that developers struggle with every day.
 
 ### Differences from Server-Side MVC
 
-A common misconception about Ember.js's MVC implementation is that it must be similar to that of Ruby on Rails. This is incorrect. 
+A common misconception about Ember.js's MVC implementation is that it must be similar to that of Ruby on Rails. This is incorrect.
 
 The reason for this difference is due to Ruby on Rails being a server-side framework, whereas Ember is a client-side framework.[1]
 
@@ -180,6 +176,6 @@ Rails, on the other hand, runs on the server. As such, it can only communicate w
   <img alt="Rails MVC Diagram" src="../images/ember_mvc/railsmvc.png">
 </figure>
 
-It is important to keep this difference in mind when architecting your applications. 
+It is important to keep this difference in mind when architecting your applications.
 
 [1] Although it is possible to use Ember.js on the server side, that is beyond the scope of this guide.

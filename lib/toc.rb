@@ -57,19 +57,13 @@ module TOC
     end
 
     def page_title
-      buffer = ""
-
-      if current_guide
-        buffer << current_guide.title
-        if current_chapter
-          buffer << ": "
-          buffer << current_chapter.title
-        end
+      if current_guide && current_chapter
+        "#{current_guide.title}: #{current_chapter.title}"
+      elsif current_guide
+        current_guide.title
       else
-        buffer << "Guides"
+        "Guides"
       end
-
-      buffer
     end
 
     def guide_name
@@ -78,9 +72,9 @@ module TOC
 
     def chapter_name
       if current_chapter
-        return current_chapter.title
+        current_chapter.title
       else
-        return ""
+        ""
       end
     end
 
@@ -111,6 +105,10 @@ module TOC
       end
     end
 
+    def current_guide_index
+      data.guides.find_index(current_guide)
+    end
+
     def current_chapter
       return unless current_guide
 
@@ -122,6 +120,11 @@ module TOC
         chapter.url == chapter_path
       end
     end
+
+    def current_chapter_index
+      return unless current_guide
+      current_guide.chapters.find_index(current_chapter)
+   end
 
     def chapter_links
       %Q{

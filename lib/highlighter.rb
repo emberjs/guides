@@ -2,6 +2,7 @@ require "redcarpet"
 require "coderay"
 
 module Highlighter
+  class MissingLanguageError < StandardError; end
   class << self
     def registered(app)
       app.helpers Helpers
@@ -11,6 +12,11 @@ module Highlighter
 
   module Helpers
     def _highlight(string, language, class_name=nil)
+      error_message = "Code blocks must be fenced with proper language designated. If you don't know what language to use, specify ```text.\n\n"
+      error_message << "Offending Code Block:\n\n#{string}"
+
+      raise MissingLanguageError, error_message if language.nil?
+
       language, file_name = _detect_language_and_filename(language)
 
       result = %Q{<div class="highlight #{language} #{class_name}">}
@@ -23,6 +29,7 @@ module Highlighter
     end
 
     def _detect_language_and_filename(language)
+
       file_name = nil
       bare_language_regex = /\A\w+\z/
 

@@ -47,6 +47,14 @@ describe Highlighter::Helpers do
   end
 
   describe '#_highlight' do
+    it 'raises appropriate error in case language is nil' do
+      code = 'var blah = Ember.Object.create()'
+
+      expect {
+        HelperTester.new._highlight(code, nil)
+      }.to raise_error(Highlighter::MissingLanguageError)
+    end
+
     it 'returns a code block without a filename in the table when using a bare language fence' do
       code_block = HelperTester.new._highlight('var blah = Ember.Object.create()', 'javascript')
       expect(code_block).to eq <<-OUTPUT.sub(/\n$/, '')

@@ -12,8 +12,8 @@ Make sure to include `ember-data.js` after `ember.js`
 
 For every model in your application, create a subclass of `DS.Model`:
 
-```javascript
-App.Person = DS.Model.extend();
+```app/models/person.js
+export default DS.Model.extend();
 ```
 
 After you have defined a model class, you can start finding and creating
@@ -26,7 +26,7 @@ type of record to find:
 store.find('person', 1);
 ```
 
-The table below shows how model names map to model classes.
+The table below shows how model names map to model file paths.
 
 <table>
   <thead>
@@ -37,11 +37,11 @@ The table below shows how model names map to model classes.
   </thead>
   <tr>
     <td><code>photo</code></td>
-    <td><code>App.Photo</code></td>
+    <td><code>app/models/photo.js</code></td>
   </tr>
   <tr>
-    <td><code>adminUserProfile</code></td>
-    <td><code>App.AdminUserProfile</code></td>
+    <td><code>admin-user-profile</code></td>
+    <td><code>app/models/admin-user-profile.js</code></td>
   </tr>
 </table>
 
@@ -49,13 +49,11 @@ The table below shows how model names map to model classes.
 
 You can specify which attributes a model has by using `DS.attr`.
 
-```javascript
-var attr = DS.attr;
-
-App.Person = DS.Model.extend({
-  firstName: attr(),
-  lastName: attr(),
-  birthday: attr()
+```app/models/person.js
+export default DS.Model.extend({
+  firstName: DS.attr(),
+  lastName: DS.attr(),
+  birthday: DS.attr()
 });
 ```
 
@@ -67,10 +65,8 @@ You can use attributes just like any other property, including as part of a
 computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
-```javascript
-var attr = DS.attr;
-
-App.Person = DS.Model.extend({
+```app/models/person.js
+export default DS.Model.extend({
   firstName: attr(),
   lastName: attr(),
 
@@ -87,8 +83,8 @@ If you don't specify the type of the attribute, it will be whatever was
 provided by the server. You can make sure that an attribute is always
 coerced into a particular type by passing a `type` to `attr`:
 
-```js
-App.Person = DS.Model.extend({
+```app/models/person.js
+export default DS.Model.extend({
   birthday: DS.attr('date')
 });
 ```
@@ -111,14 +107,12 @@ attribute types, and new types can be registered as transforms. See the
 
   Example
 
-  ```JavaScript
-  var attr = DS.attr;
-
-  App.User = DS.Model.extend({
-      username: attr('string'),
-      email: attr('string'),
-      verified: attr('boolean', {defaultValue: false}),
-      createdAt: attr('string', {
+  ```app/models/user.js
+  export default DS.Model.extend({
+      username: DS.attr('string'),
+      email: DS.attr('string'),
+      verified: DS.attr('boolean', {defaultValue: false}),
+      createdAt: DS.attr('string', {
           defaultValue: function() { return new Date(); }
       })
   });
@@ -135,12 +129,14 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
 
-```js
-App.User = DS.Model.extend({
+```app/models/user.js
+export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
+```
 
-App.Profile = DS.Model.extend({
+```app/models/profile.js
+export default DS.Model.extend({
   user: DS.belongsTo('user')
 });
 ```
@@ -150,12 +146,14 @@ App.Profile = DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```js
-App.Post = DS.Model.extend({
+```app/models/post.js
+export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
+```
 
-App.Comment = DS.Model.extend({
+```app/models/comment.js
+export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
 ```
@@ -165,12 +163,13 @@ App.Comment = DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```js
-App.Post = DS.Model.extend({
+```app/models/post.js
+export default DS.Model.extend({
   tags: DS.hasMany('tag')
 });
 
-App.Tag = DS.Model.extend({
+```app/models/tag.js
+export default DS.Model.extend({
   posts: DS.hasMany('post')
 });
 ```
@@ -187,20 +186,18 @@ However, sometimes you may have multiple `belongsTo`/`hasMany`s for the
 same type. You can specify which property on the related model is the
 inverse using `DS.hasMany`'s `inverse` option:
 
-```javascript
-var belongsTo = DS.belongsTo,
-    hasMany = DS.hasMany;
-
-App.Comment = DS.Model.extend({
-  onePost: belongsTo('post'),
-  twoPost: belongsTo('post'),
-  redPost: belongsTo('post'),
-  bluePost: belongsTo('post')
+```app/models/comment.js
+export default DS.Model.extend({
+  onePost: DS.belongsTo('post'),
+  twoPost: DS.belongsTo('post'),
+  redPost: DS.belongsTo('post'),
+  bluePost: DS.belongsTo('post')
 });
+```
 
-
-App.Post = DS.Model.extend({
-  comments: hasMany('comment', {
+```app/models/post.js
+export default DS.Model.extend({
+  comments: DS.hasMany('comment', {
     inverse: 'redPost'
   })
 });
@@ -214,23 +211,17 @@ When you want to define a reflexive relation, you must either explicitly define
 the other side, and set the explicit inverse accordingly, and if you don't need the
 other side, set the inverse to null.
 
-```javascript
-var belongsTo = DS.belongsTo,
-    hasMany = DS.hasMany;
-
-App.Folder = DS.Model.extend({
-  children: hasMany('folder', {inverse: 'parent'}),
-  parent: belongsTo('folder', {inverse: 'children'})
+```app/models/folder.js
+export default DS.Model.extend({
+  children: DS.hasMany('folder', {inverse: 'parent'}),
+  parent: DS.belongsTo('folder', {inverse: 'children'})
 });
 ```
 
 or
 
-```javascript
-var belongsTo = DS.belongsTo,
-
-App.Folder = DS.Model.extend({
+```app/models/folder.js
+export default DS.Model.extend({
   parent: belongsTo('folder', {inverse: null})
 });
 ```
-

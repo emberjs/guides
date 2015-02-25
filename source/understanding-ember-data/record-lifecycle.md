@@ -6,8 +6,8 @@ Data record.
 Throughout this guide, we will assume the existence of the following
 model:
 
-```javascript
-Person = DS.Model.extend({
+```app/models/person.js
+export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),
   father: DS.belongsTo('Person'),
@@ -25,8 +25,8 @@ materialized into an Ember Data record.
 
 ## Step 1: Finding a Record
 
-When you request a record using `Person.find(1)`, Ember Data will ask
-the store to find the record (`store.find(Person, 1)`).
+When you request a record using `store.find('person', 1)`, Ember Data
+will ask the store to find the record.
 
 <figure>
   <img src="../images/ember-data-guide/step1.png">
@@ -40,7 +40,7 @@ store will ask the adapter to fetch it.
 </figure>
 
 Since the adapter's request is asynchronous, the store will return a new
-`Person` instance immediately. At this point, the record has no backing
+`model:person` instance immediately. At this point, the record has no backing
 data.
 
 <figure>
@@ -69,7 +69,7 @@ This will, in turn, notify all attributes (`DS.attr`) and relationships
 ## Step 3: Getting an Attribute
 
 In response to the notification, the app will typically request some
-attribute. In this case, imagine that the `Person` was represented by
+attribute. In this case, imagine that the `model:person` was represented by
 the following template:
 
 ```handlebars
@@ -142,7 +142,7 @@ its `lastName` will not trigger additional materialization.
 ## Identity Map
 
 Additional requests for Person 1 will skip all of these steps, because
-`store.find(Person, 1)` will see that it has already created an instance
+`store.find('person', 1)` will see that it has already created an instance
 for that record and return it.
 
 This means that all requests for a record with the same model type and
@@ -153,7 +153,7 @@ JavaScript _identity_ for objects representing the same backend data.
 
 ## Practical Note
 
-In the example above, we used a template that rendered the `Person`
+In the example above, we used a template that rendered the `model:person`
 object directly. As a result, we got partially loaded output that
 automatically filled in as the data loaded.
 

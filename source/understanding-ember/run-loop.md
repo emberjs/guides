@@ -19,7 +19,7 @@ Consider the following HTML snippet:
 
 and executing the following code:
 
-```js
+```javascript
 foo.style.height = "500px" // write
 foo.offsetHeight // read (recalculate style, layout, expensive!)
 
@@ -35,7 +35,7 @@ and relayout after each step. However, if we were able to batch similar jobs tog
 the browser would have only needed to recalulate the style and layout once.
 
 
-```js
+```javascript
 foo.style.height = "500px" // write
 bar.style.height = "400px" // write
 baz.style.height = "200px" // write
@@ -50,7 +50,7 @@ batching similar work allows for better pipelining, and further optimization.
 
 Let's look at a similar example that is optimized in Ember, starting with a `User` object:
 
-```js
+```javascript
 var User = Ember.Object.extend({
   firstName: null,
   lastName: null,
@@ -69,7 +69,7 @@ and a template to display its attributes:
 
 If we execute the following code without the run loop:
 
-```js
+```javascript
 var user = User.create({firstName:'Tom', lastName:'Huda'});
 user.set('firstName', 'Yehuda');
 // {{firstName}} and {{fullName}} are updated
@@ -80,7 +80,7 @@ user.set('lastName', 'Katz');
 
 We see that the browser will rerender the template twice.
 
-```js
+```javascript
 var user = User.create({firstName:'Tom', lastName:'Huda'});
 user.set('firstName', 'Yehuda');
 user.set('lastName', 'Katz');
@@ -90,7 +90,7 @@ user.set('lastName', 'Katz');
 
 However, if we have the run loop in the above code, the browser will only rerender the template once the attributes have all been set.
 
-```js
+```javascript
 var user = User.create({firstName:'Tom', lastName:'Huda'});
 user.set('firstName', 'Yehuda');
 user.set('lastName', 'Katz');
@@ -111,7 +111,7 @@ queues, and these queues are processed to completion in priority order.
 
 What are the queues, and what is their priority order?
 
-```js
+```javascript
 Ember.run.queues
 // => ["sync", "actions", "routerTransitions", "render", "afterRender", "destroy"]
 ```
@@ -175,7 +175,7 @@ You should begin a run loop when the callback fires.
 
 #### How do I tell Ember to start a run loop?
 
-```js
+```javascript
 $('a').click(function(){
   Ember.run(function(){  // begin loop
     // Code that results in jobs being scheduled goes here
@@ -189,7 +189,7 @@ As mentioned above, you should wrap any non-Ember async callbacks in
 `Ember.run`. If you don't, Ember will try to approximate a beginning and end for you.
 Consider the following callback:
 
-```js
+```javascript
 $('a').click(function(){
   console.log('Doing things...');
 
@@ -209,7 +209,7 @@ runloops we call _autoruns_.
 
 Here is some pseudocode to describe what happens using the example above:
 
-```js
+```javascript
 $('a').click(function(){
   // 1. autoruns do not change the execution of arbitrary code in a callback.
   //    This code is still run when this callback is executed and will not be
@@ -255,7 +255,7 @@ Wrapping event handlers manually is preferred.
 
 #### How is runloop behaviour different when testing?
 
-When `Ember.testing` is set i.e. your application is in _testing mode_ then
+When your application is in _testing mode_ then
 Ember will throw an error if you try to schedule work without an available
 runloop.
 

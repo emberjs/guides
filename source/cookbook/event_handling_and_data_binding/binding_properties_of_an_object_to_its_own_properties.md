@@ -4,8 +4,8 @@ You want to base the value of one property on the value of another property.
 ### Solution
 Use one of the computed property macros like `Ember.computed.alias` or `Ember.computed.gte`
 
-```js
-App.Person = Ember.Object.extend({
+```app/models/person.js
+export default Ember.Object.extend({
 	firstName : null,
 	lastName : null,
 	surname : Ember.computed.alias("lastName"),
@@ -19,5 +19,5 @@ on the values of other properties, correctly connecting them with bindings so th
 updated when values change. These all are stored on the `Ember.computed` object
 and [documented in the API documentation](http://emberjs.com/api/#method_computed)
 
-#### Example
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/AfufoSO/3/edit?output">JS Bin</a>
+<!---#### Example
+<a class="jsbin-embed" href="http://jsbin.com/tahigobage/4/edit?output">JS Bin</a>-->

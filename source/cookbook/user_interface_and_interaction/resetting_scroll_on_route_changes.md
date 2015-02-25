@@ -6,8 +6,8 @@ The page scroller keeps in the same position when you go from one page to anothe
 
 Add the following mixin to the affected Routes:
 
-```js
-App.ResetScroll = Ember.Mixin.create({
+```app/mixins/reset-scroll.js
+export default Ember.Mixin.create({
   activate: function() {
     this._super();
     window.scrollTo(0,0);
@@ -17,8 +17,10 @@ App.ResetScroll = Ember.Mixin.create({
 
 Only if you need do something on the `activate` method you must call `this._super()` at the beginning:
 
-```js
-App.IndexRoute = Ember.Route.extend(App.ResetScroll, {
+```app/routes/index.js
+import ResetScroll from '../mixins/reset-scroll/';
+
+export default Ember.Route.extend(ResetScroll, {
   //I need to do other things with activate
   activate: function() {
     this._super.apply(this, arguments); // Call super at the beginning
@@ -27,6 +29,6 @@ App.IndexRoute = Ember.Route.extend(App.ResetScroll, {
 });
 ```
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/kixowati/1/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/yiqijopilo/1/embed?live">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>-->

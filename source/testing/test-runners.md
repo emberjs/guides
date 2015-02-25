@@ -213,7 +213,7 @@ module.exports = function(config) {
 
 The reporters option determines how your test results are communicated back to you. The `progress` reporter will display a line that says something like this.
 
-```
+```text
 PhantomJS 1.9.7 (Mac OS X): Executed 2 of 2 SUCCESS (0.008 secs / 0.002 secs)
 ```
 

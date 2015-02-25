@@ -1,120 +1,117 @@
-Ember.js uses naming conventions to wire up your objects without a
-lot of boilerplate. You will want to use these conventional names
-for your routes, controllers and templates.
+Ember.js uses a runtime resolver to wire up your objects without a
+lot of boilerplate. As a developer, this resolver will work automatically
+if you place code in conventional locations within your project.
 
-You can usually guess the names, but this guide outlines, in one place, 
-all of the naming conventions. In the following examples 'App' is a name 
-that we chose to namespace or represent our Ember application when it was 
-created, but you can choose any name you want for your application.
-We will show you later how to create an Ember application, but for now we
-will focus on conventions.
+You can usually guess the names and locations, but this guide outlines, in one place,
+all of the naming conventions.
 
 ## The Application
 
-When your application boots, Ember will look for these objects:
+When your application boots, Ember will look for the objects exported
+by these modules in your project:
 
-* `App.ApplicationRoute`
-* `App.ApplicationController`
-* the `application` template
+* `app/app.js`
+* `app/controllers/application.js`
+* `app/templates/application.hbs`
 
 Ember.js will render the `application` template as the main template.
-If `App.ApplicationController` is provided, Ember.js will set an
-instance of `App.ApplicationController` as the controller for the
+If `controller:application` is provided, Ember.js will set an
+instance of `controller:application` as the controller for the
 template. This means that the template will get its properties from
 the controller.
 
-If your app provides an `App.ApplicationRoute`, Ember.js will invoke
+If your app provides an route at `app/routes/application.js` Ember.js will invoke
 [the][1] [router's][2] [hooks][3] first, before rendering the
-`application` template. Hooks are implemented as methods and provide 
-you access points within an Ember object's lifecycle to intercept and 
-execute code to modify the default behavior at these points to meet 
+`application` template. Hooks are implemented as methods and provide
+you access points within an Ember object's lifecycle to intercept and
+execute code to modify the default behavior at these points to meet
 your needs. Ember provides several hooks for you to utilize for various
-purposes (e.g. `model`, `setupController`, etc). In the example below 
-`App.ApplicationRoute`, which is an `Ember.Route` object, implements 
+purposes (e.g. `model`, `setupController`, etc). In the example below
+`route:application` Route, which is an `Ember.Route` object, implements
 the `setupController` hook.
 
-[1]: /guides/routing/specifying-a-routes-model
-[2]: /guides/routing/setting-up-a-controller
-[3]: /guides/routing/rendering-a-template
+[1]: ../../routing/specifying-a-routes-model
+[2]: ../../routing/setting-up-a-controller
+[3]: ../../routing/rendering-a-template
 
 Here's a simple example that uses a route, controller, and template:
 
-```javascript
-App.ApplicationRoute = Ember.Route.extend({
+```app/routes/application.js
+export default Ember.Route.extend({
   setupController: function(controller) {
     // `controller` is the instance of ApplicationController
     controller.set('title', "Hello world!");
   }
 });
+```
 
-App.ApplicationController = Ember.Controller.extend({
+```app/controllers/application.js
+export default Ember.Controller.extend({
   appName: 'My First Example'
 });
 ```
 
-```handlebars
-<!-- application template -->
+```app/templates/application.hbs
 <h1>{{appName}}</h1>
-
 <h2>{{title}}</h2>
 ```
 
-In Ember.js applications, you will always specify your controllers
+In Ember.js applications, you will always provide your objects
 as **classes**, and the framework is responsible for instantiating
-them and providing them to your templates.
+them and providing them to your templates at runtime through the resolver.
 
-This makes it super-simple to test your controllers, and ensures that
-your entire application shares a single instance of each controller.
+
 
 ## Simple Routes
 
-Each of your routes will have a controller, and a template with the 
+Each of your routes will have a controller, and a template with the
 same name as the route.
 
 Let's start with a simple router:
 
-```javascript
-App.Router.map(function() {
+```app/router.js
+export default Ember.Router.extend().map(function(){
   this.route('favorites');
 });
 ```
 
 If your user navigates to `/favorites`, Ember.js will look for these
-objects:
+classes in your project:
 
-* `App.FavoritesRoute`
-* `App.FavoritesController`
-* the `favorites` template
+* `app/routes/favorites.js`
+* `app/controllers/favorites.js`
+* `app/templates/favorites.hbs`
 
 Ember.js will render the `favorites` template into the `{{outlet}}`
 in the `application` template. It will set an instance of the
-`App.FavoritesController` as the controller for the template.
+`controller:favorites` as the controller for the template.
 
-If your app provides an `App.FavoritesRoute`, the framework will
+If your app provides an `route:favorites`, the framework will
 invoke it before rendering the template. Yes, this is a bit
 repetitive.
 
-For a route like `App.FavoritesRoute`, you will probably implement
+For a route like `route:favorites`, you will probably implement
 the `model` hook to specify what model your controller will present
 to the template.
 
 Here's an example:
 
-```javascript
-App.FavoritesRoute = Ember.Route.extend({
+```app/routes/favorites.js
+export default Ember.Route.extend({
   model: function() {
     // the model is an Array of all of the posts
-    return this.store.find('post');
+    // fetched from this url
+    return $.ajax('/a/service/url/where/posts/live');
   }
 });
 ```
 
-In this example, we didn't provide a `FavoritesController`. Because
+In this example, we didn't provide a `controller:favorites`. Because
 the model is an Array, Ember.js will automatically supply an instance
 of `Ember.ArrayController`, which will present the backing Array as
 its model.
 
-You can treat the `ArrayController` as if it was the model itself.
+You can treat the `Ember.ArrayController` as if it was the model itself.
 This has two major benefits:
 
 * You can replace the controller's model at any time without having
@@ -142,7 +139,7 @@ on the value of that segment provided by the user.
 Consider this router definition:
 
 ```javascript
-App.Router.map(function() {
+export default Ember.Router.extend().map(function(){
   this.resource('post', { path: '/posts/:post_id' });
 });
 ```
@@ -150,23 +147,23 @@ App.Router.map(function() {
 In this case, the route's name is `post`, so Ember.js will look for
 these objects:
 
-* `App.PostRoute`
-* `App.PostController`
-* the `post` template
+* `app/routes/post.js`
+* `app/controllers/post.js`
+* `app/templates/post.hbs`
 
 Your route handler's `model` hook converts the dynamic `:post_id`
 parameter into a model. The `serialize` hook converts a model object
 back into the URL parameters for this route (for example, when
 generating a link for a model object).
 
-```javascript
-App.PostRoute = Ember.Route.extend({
+```app/routes/post.js
+export default Ember.Route.extend({
   model: function(params) {
-    return this.store.find('post', params.post_id);
+    return $.ajax('/my-service/posts/' + params.post_id);
   },
 
   serialize: function(post) {
-    return { post_id: post.get('id') };
+    return { post_id: Ember.get(post, 'id') };
   }
 });
 ```
@@ -176,20 +173,20 @@ handlers.
 
 * If your dynamic segment ends in `_id`, the default `model`
   hook will convert the first part into a model class on the
-  application's namespace (`post` becomes `App.Post`). It will
+  application's namespace (`post` looks for `app/models/post.js`). It will
   then call `find` on that class with the value of the dynamic
   segment.
-* The default behaviour of the `serialize` hook is to replace 
-  the route's dynamic segment with the value of the model 
+* The default behaviour of the `serialize` hook is to replace
+  the route's dynamic segment with the value of the model
   object's `id` property.
 
 ## Route, Controller and Template Defaults
 
 If you don't specify a route handler for the `post` route
-(`App.PostRoute`), Ember.js  will still render the `post`
-template with the app's instance of `App.PostController`.
+(`app/routes/post.js`), Ember.js  will still render the `app/templates/post.hbs`
+template with the app's instance of `app/controllers/post.js`.
 
-If you don't specify the controller (`App.PostController`),
+If you don't specify the controller (`app/controllers/post.js`),
 Ember will automatically make one for you based on the return value
 of the route's `model` hook. If the model is an Array, you get an
 `ArrayController`. Otherwise, you get an `ObjectController`.
@@ -202,7 +199,7 @@ anything!
 You can nest routes under a `resource`.
 
 ```javascript
-App.Router.map(function() {
+export default Ember.Router.extend().map(function(){
   this.resource('posts', function() { // the `posts` route
     this.route('favorites');          // the `posts.favorites` route
     this.resource('post');            // the `post` route
@@ -232,21 +229,21 @@ this router:
   </thead>
   <tr>
     <td><code>posts</code></td>
-    <td><code>PostsController</code></td>
-    <td><code>PostsRoute</code></td>
-    <td><code>posts</code></td>
+    <td><code>app/controllers/posts.js</code></td>
+    <td><code>app/routes/posts.js</code></td>
+    <td><code>app/templates/posts.hbs</code></td>
   </tr>
   <tr>
     <td><code>posts.favorites</code></td>
-    <td><code>PostsFavoritesController</code></td>
-    <td><code>PostsFavoritesRoute</code></td>
-    <td><code>posts/favorites</code></td>
+    <td><code>app/controllers/posts/favorites.js</code></td>
+    <td><code>app/routes/posts/favorites.js</code></td>
+    <td><code>app/templates/posts/favorites.hbs</code></td>
   </tr>
   <tr>
     <td><code>post</code></td>
-    <td><code>PostController</code></td>
-    <td><code>PostRoute</code></td>
-    <td><code>post</code></td>
+    <td><code>app/controllers/post.js</code></td>
+    <td><code>app/routes/post.js</code></td>
+    <td><code>app/templates/post.hbs</code></td>
   </tr>
 </table>
 
@@ -262,16 +259,16 @@ automatically provides a route for the `/` path named `index`.
 
 For example, if you write a simple router like this:
 
-```javascript
-App.Router.map(function() {
+```app/router.js
+export default Ember.Router.extend().map(function(){
   this.route('favorites');
 });
 ```
 
 It is the equivalent of:
 
-```javascript
-App.Router.map(function() {
+```app/router.js
+export default Ember.Router.extend().map(function(){
   this.route('index', { path: '/' });
   this.route('favorites');
 });
@@ -279,9 +276,9 @@ App.Router.map(function() {
 
 If the user visits `/`, Ember.js will look for these objects:
 
-* `App.IndexRoute`
-* `App.IndexController`
-* the `index` template
+* `app/routes/index.js`
+* `app/controllers/index.js`
+* `app/templates/index.hbs`
 
 The `index` template will be rendered into the `{{outlet}}` in the
 `application` template. If the user navigates to `/favorites`,
@@ -290,8 +287,8 @@ template.
 
 A nested router like this:
 
-```javascript
-App.Router.map(function() {
+```app/router.js
+export default Ember.Router.extend().map(function(){
   this.resource('posts', function() {
     this.route('favorites');
   });
@@ -300,8 +297,8 @@ App.Router.map(function() {
 
 Is the equivalent of:
 
-```javascript
-App.Router.map(function() {
+```app/router.js
+export default Ember.Router.extend().map(function(){
   this.route('index', { path: '/' });
   this.resource('posts', function() {
     this.route('index', { path: '/' });
@@ -313,9 +310,9 @@ App.Router.map(function() {
 If the user navigates to `/posts`, the current route will be
 `posts.index`. Ember.js will look for objects named:
 
-* `App.PostsIndexRoute`
-* `App.PostsIndexController`
-* The `posts/index` template
+* `app/routes/posts/index.js`
+* `app/controllers/posts/index.js`
+* `app/templates/posts/index.hbs`
 
 First, the `posts` template will be rendered into the `{{outlet}}`
 in the `application` template. Then, the `posts/index` template

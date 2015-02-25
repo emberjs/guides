@@ -44,8 +44,8 @@ So how do you trigger sending a component's primary action? After
 the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
-```js
-App.MyButtonComponent = Ember.Component.extend({
+```app/components/my-button.js
+export default Ember.Component.extend({
   click: function() {
     this.sendAction();
   }
@@ -72,8 +72,8 @@ this.sendAction('action', param1, param2);
 For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
-```js
-App.IndexRoute = Ember.Route.extend({
+```app/routes/index.js
+export default Ember.Route.extend({
   model: function() {
     return {
       todos: [{
@@ -93,9 +93,7 @@ App.IndexRoute = Ember.Route.extend({
 });
 ```
 
-```handlebars
-{{! index.handlebars }}
-
+```app/templates/index.hbs
 {{#each todo in todos}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
 {{/each}}
@@ -109,8 +107,8 @@ action.
 In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
-```js
-App.ConfirmButtonComponent = Ember.Component.extend({
+```app/components/confirm-button.js
+export default Ember.Component.extend({
   actions: {
     showConfirmation: function() {
       this.toggleProperty('isShowingConfirmation');
@@ -124,9 +122,7 @@ App.ConfirmButtonComponent = Ember.Component.extend({
 });
 ```
 
-```handlebars
-{{! templates/components/confirm-button.handlebars }}
-
+```app/templates/components/confirm-button.hbs
 {{#if isShowingConfirmation}}
   <button {{action "confirm"}}>Click again to confirm</button>
 {{else}}
@@ -137,19 +133,17 @@ App.ConfirmButtonComponent = Ember.Component.extend({
 Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
-```handlebars
-{{! index.handlebars }}
-
-    {{#each todo in todos}}
-      <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
-    {{/each}}
+```app/templates/index.hbs
+{{#each todo in todos}}
+  <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
+{{/each}}
 ```
 
 Note that we've specified the action to send by setting the component's
 `action` attribute, and we've specified which argument should be sent as
 a parameter by setting the component's `param` attribute.
 
-<a class="jsbin-embed" href="http://jsbin.com/mucilo/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!---<a class="jsbin-embed" href="http://jsbin.com/tihavobiki/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 ### Sending Multiple Actions
 
@@ -173,7 +167,7 @@ In this case, you can send the `createUser` action by calling
 `this.sendAction('submit')`, or send the `cancelUserCreation` action by
 calling `this.sendAction('cancel')`.
 
-<a class="jsbin-embed" href="http://jsbin.com/qafaq/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!---<a class="jsbin-embed" href="http://jsbin.com/fimevowehe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 ### Actions That Aren't Specified
 
@@ -183,8 +177,8 @@ particular event, calling `sendAction()` has no effect.
 For example, if you define a component that triggers the primary action
 on click:
 
-```js
-App.MyButtonComponent = Ember.Component.extend({
+```app/components/my-button.js
+export default Ember.Component.extend({
   click: function() {
     this.sendAction();
   }

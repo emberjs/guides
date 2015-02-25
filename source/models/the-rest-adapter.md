@@ -45,7 +45,7 @@ inflector.irregular('formula', 'formulae');
 inflector.uncountable('advice');
 ```
 
-This will tell the REST adapter that requests for `App.Formula` requests
+This will tell the REST adapter that requests for `formula`
 should go to `/formulae/1` instead of `/formulas/1`.
 
 #### Endpoint Path Customization
@@ -53,25 +53,25 @@ should go to `/formulae/1` instead of `/formulas/1`.
 Endpoint paths can be prefixed with a namespace by setting the `namespace`
 property on the adapter:
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
 ```
 
-Requests for `App.Person` would now target `http://emberjs.com/api/1/people/1`.
+Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
 
 #### Host Customization
 
 An adapter can target other hosts by setting the `host` property.
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
 ```
 
-Requests for `App.Person` would now target `https://api.example.com/people/1`.
+Requests for `person` would now target `https://api.example.com/people/1`.
 
 ### JSON Conventions
 
@@ -111,8 +111,8 @@ extractDeleteRecord: function(store, type, payload) {
 
 Attribute names should be camelized.  For example, if you have a model like this:
 
-```js
-App.Person = DS.Model.extend({
+```app/models/person.js
+export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
 
@@ -133,16 +133,18 @@ The JSON returned from your server should look like this:
 ```
 
 Irregular keys can be mapped with a custom serializer. If the JSON for
-the `Person` model has a key of `lastNameOfPerson`, and the desired
+`person` has a key of `lastNameOfPerson`, and the desired
 attribute name is simply `lastName`, then create a custom Serializer
 for the model and override the `normalizeHash` property.
 
-```js
-App.Person = DS.Model.extend({
+```app/models/person.js
+export default DS.Model.extend({
   lastName: DS.attr('string')
 });
+```
 
-App.PersonSerializer = DS.RESTSerializer.extend({
+```app/serializers/person.js
+export default DS.RESTSerializer.extend({
   normalizeHash: {
     lastNameOfPerson: function(hash) {
       hash.lastName = hash.lastNameOfPerson;
@@ -159,8 +161,8 @@ App.PersonSerializer = DS.RESTSerializer.extend({
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
-```js
-App.Post = DS.Model.extend({
+```app/models/post.js
+export default DS.Model.extend({
   comments: DS.hasMany('comment', {async: true})
 });
 ```
@@ -182,8 +184,8 @@ Any `belongsTo` relationships in the JSON representation should be the
 camelized version of the Ember Data model's name, with the string
 `Id` appended. For example, if you have a model:
 
-```js
-App.Comment = DS.Model.extend({
+```app/models/comment.js
+export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
 ```
@@ -201,13 +203,13 @@ The JSON should encode the relationship as an ID to another record:
 If needed these naming conventions can be overwritten by implementing
 the `keyForRelationship` method.
 
-```js
- App.ApplicationSerializer = DS.RESTSerializer.extend({
-   keyForRelationship: function(key, relationship) {
-      return key + 'Ids';
-   }
- });
- ```
+```app/serializers/application.js
+export default DS.RESTSerializer.extend({
+  keyForRelationship: function(key, relationship) {
+    return key + 'Ids';
+  }
+});
+```
 
 #### Sideloaded Relationships
 
@@ -247,8 +249,8 @@ server may return a non-standard date format.
 Ember Data can have new JSON transforms
 registered for use as attributes:
 
-```js
-App.CoordinatePointTransform = DS.Transform.extend({
+```app/transforms/coordinate-point.js
+export default DS.Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
   },
@@ -256,8 +258,10 @@ App.CoordinatePointTransform = DS.Transform.extend({
     return Ember.create({ x: value[0], y: value[1] });
   }
 });
+```
 
-App.Cursor = DS.Model.extend({
+```app/models/cursor.js
+export default DS.Model.extend({
   position: DS.attr('coordinatePoint')
 });
 ```

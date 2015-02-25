@@ -22,7 +22,7 @@ It's worth noting that it's not at all necessary to host an Ember.js application
 
 Use the `rails` command to generate a new project:
 
-```
+```bash
 rails new photoblog -m http://emberjs.com/template.rb
 ```
 
@@ -36,7 +36,7 @@ The -m option specifies a template on which to base your new project. We have pr
   
 When rails has finished creating your application it will reside in the `photoblog` directory. Switch to this newly created directory:
 
-```
+```bash
 cd photoblog
 ```
 
@@ -44,19 +44,19 @@ cd photoblog
 
 This part will be familiar to anyone who has done Ruby on Rails development before. We'll create two new models, Photo and Comment. We start by asking Rails to generate the scaffolding for a Photo object.
 
-```
+```bash
 rails generate scaffold Photo title:string url:string
 ```
 
 Rails will generate a database migration, model, controller, resource routes, and other helpful files for us to start using. It will actually create more than we need: By default, rails scaffolding will generate standard CRUD (Create/Retrieve/Update/Destroy) views for our new model. Since our Ember.js application is going to be providing these views, we can safely remove them.
 
-```
+```bash
 rm -rf app/views/photos
 ```
 
 We should also ask Rails to generate our comment object and remove its views as well.
 
-```
+```bash
 rails generate scaffold Comment text:string
 rm -rf app/views/comments
 ```
@@ -96,7 +96,7 @@ end
 
 We can now run `rake db:migrate` to run these migrations and set up our database.
 
-```
+```bash
 → rake db:migrate
 ==  CreatePhotos: migrating ===================================================
 -- create_table(:photos)
@@ -115,11 +115,11 @@ Our server-side models are now setup and ready for use! What we've done here is 
 
 Now that we have models set up to persist our data on the server, we need to describe them to Ember. ember-rails, included with our project template, provides generators to help us with this.
 
-```
+```bash
 rails generate ember:model Photo title:string url:string
 ```
 
-```
+```bash
 rails generate ember:model Comment text:string
 ```
 
@@ -193,7 +193,7 @@ Here, we're defining a state manager for our application. We set up our states o
 
 To see all our photos, we need an write an index view which shows them.  We have a generator that will help us with this.
 
-```
+```bash
 rails generate ember:view index photos
 ```
 
@@ -281,7 +281,7 @@ Now that we're done, we close out the subview and our iteration block. Our view 
 
 Controllers serve as a mediator between your views and models. We've already discussed that we're going to need an `Ember.ArrayController` to manage our photo objects, so let's create it. You can create a new controller using the `ember:controller` generator. We can also create a new array controller by invoking the generator with the `--array` option:
 
-```
+```bash
 rails generate ember:controller photos --array
 ```
 
@@ -316,7 +316,7 @@ There's our title, but there's no content! We need to add some photos first, of 
 
 We need to add the ability to add photos to our application in order to see some on the index page. First, let's verify everything is working as expected by sending a POST request to our API with a new photo object. Ensure the server is running, and execute the following command:
 
-```
+```bash
 curl -H "Content-Type: application/json" -X POST -d '{"photo":{"url":"http://farm8.staticflickr.com/7101/7007178689_9cd571fa10.jpg", "title":"Books"}}' http://localhost:3000/photos
 ```
 
@@ -330,13 +330,13 @@ We want to add a button at the bottom of of our index view that lets us create a
 
 First create the controller. A standard controller will work fine, we don't need an array controller in this case.
 
-```
+```bash
 rails generate ember:controller photo
 ```
 
 Next, create the new view.
 
-```
+```bash
 rails generate ember:view create photo
 ```
 
