@@ -37,9 +37,9 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 {{! app/templates/index.hbs }}
 
 {{#each}}
-    {{#blog-post title=title}}
-      {{body}}
-    {{/blog-post}}
+   {{#blog-post title=title}}
+     {{body}}
+   {{/blog-post}}
 {{/each}}
 ```
 
@@ -47,9 +47,9 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 {{! app/templates/components/blog-post.hbs --> name must have a dash }}
 
 <article class="blog-post">
-    <h1>{{title}}</h1>
-    <p>{{yield}}</p>
-    <p>Edit title: {{input type="text" value=title}}</p>
+  <h1>{{title}}</h1>
+  <p>{{yield}}</p>
+  <p>Edit title: {{input type="text" value=title}}</p>
 </article>
 ```
 

@@ -26,14 +26,13 @@ component of the same name. Given the above template, you can now use the
 
 The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
 
-
 ```handlebars
 {{! app/templates/index.hbs }}
 
 {{#each}}
-    {{#blog-post title=title}}
-      {{body}}
-    {{/blog-post}}
+  {{#blog-post title=title}}
+    {{body}}
+  {{/blog-post}}
 {{/each}}
 ```
 
@@ -41,9 +40,9 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 {{! app/templates/components/blog-post.hbs --> name must have a dash }}
 
 <article class="blog-post">
-    <h1>{{title}}</h1>
-    <p>{{yield}}</p>
-    <p>Edit title: {{input type="text" value=title}}</p>
+  <h1>{{title}}</h1>
+  <p>{{yield}}</p>
+  <p>Edit title: {{input type="text" value=title}}</p>
 </article>
 ```
 
@@ -60,14 +59,11 @@ var posts = [{
   body: "James Coglan wrote a lengthy article about Promises in node.js."
 }];
 
-var IndexRoute = Ember.Route.extend({
+export default Ember.Route.extend({
   model: function() {
   return posts;
   }
 });
-
-export default IndexRoute;
-
 ```
 
 ```js
@@ -77,8 +73,6 @@ export default Ember.Component.extend({
   
 });
 ```
-
-
 
 Each component, under the hood, is backed by an element. By default
 Ember will use a `<div>` element to contain your component's template.
