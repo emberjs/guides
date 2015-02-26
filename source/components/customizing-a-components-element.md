@@ -22,11 +22,9 @@ string.
 // app/components/navigation-bar.js
 import Ember from 'ember';
 
-var NavigationBarComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   tagName: 'nav'
 });
-
-export default NavigationBarComponent;
 ```
 
 ```handlebars
@@ -48,11 +46,9 @@ element by setting its `classNames` property to an array of strings:
 
 import Ember from 'ember';
 
-var NavigationBarComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   classNames: ['primary']
 });
-
-export default NavigationBarComponent;
 ```
 
 If you want class names to be determined by properties of the component,
@@ -64,12 +60,10 @@ class name will be added or removed depending on the value:
 
 import Ember from 'ember';
 
-var TodoItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   classNameBindings: ['isUrgent'],
   isUrgent: true
 });
-
-export default TodoItemComponent;
 ```
 
 This component would render the following:
@@ -88,12 +82,10 @@ applied by delimiting it with a colon:
 
 import Ember from 'ember';
 
-var TodoItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   classNameBindings: ['isUrgent:urgent'],
   isUrgent: true
 });
-
-export default TodoItemComponent;
 ```
 
 This would render this HTML:
@@ -109,12 +101,10 @@ Besides the custom class name for the value being `true`, you can also specify a
 
 import Ember from 'ember';
 
-var TodoItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   classNameBindings: ['isEnabled:enabled:disabled'],
   isEnabled: false
 });
-
-export default TodoItemComponent;
 ```
 
 This would render this HTML:
@@ -131,12 +121,10 @@ You can also specify a class which should only be added when the property is
 
 import Ember from 'ember';
 
-var TodoItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   classNameBindings: ['isEnabled::disabled'],
   isEnabled: false
 });
-
-export default TodoItemComponent;
 ```
 
 This would render this HTML:
@@ -159,12 +147,10 @@ modification:
 
 import Ember from 'ember';
 
-var TodoItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   classNameBindings: ['priority'],
   priority: 'highestPriority'
 });
-
-export default TodoItemComponent;
 ```
 
 This would render this HTML:
@@ -183,7 +169,7 @@ by using `attributeBindings`:
 
 import Ember from 'ember';
 
-App.LinkItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['href'],
   href: "http://emberjs.com"
@@ -197,13 +183,11 @@ You can also bind these attributes to differently named properties:
 
 import Ember from 'ember';
 
-var LinkItemComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['customHref:href'],
   customHref: "http://emberjs.com"
 });
-
-export default LinkItemComponent;
 ```
 
 ### Example
@@ -211,7 +195,7 @@ export default LinkItemComponent;
 Here is an example todo application that shows completed todos with a
 red background:
 
-<a class="jsbin-embed" href="http://jsbin.com/rabotiriji/3/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/nefisejade/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 **Note:** The binding functionality in this very simple example could also be implemented without
 the use of `Ember.Component` but by simply [binding element attributes](../templates/binding-element-attributes) or [binding element class names](../templates/binding-element-class-names).

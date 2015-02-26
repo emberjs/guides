@@ -32,18 +32,16 @@ When the title is clicked, the entire post body is shown:
 
 import Ember from 'ember';
 
-var PostSummaryComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   actions: {
     toggleBody: function() {
       this.toggleProperty('isShowingBody');
     }
   }
 });
-
-export default PostSummaryComponent;
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/wozezuwopi/4/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/ciwenemedi/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 The `{{action}}` helper can accept arguments, listen for different event
 types, control how action bubbling occurs, and more.
