@@ -49,13 +49,11 @@ without arguments:
 
 import Ember from 'ember'
 
-var MyButtonComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   click: function() {
     this.sendAction();
   }
 });
-
-export default MyButtonComponent;
 ```
 
 In the above example, the `my-button` component will send the `showUser`
@@ -83,7 +81,7 @@ delete a todo:
 
 import Ember from 'ember';
 
-var IndexRoute = Ember.Route.extend({
+export default Ember.Route.extend({
   model: function() {
     return {
       todos: [{
@@ -101,8 +99,6 @@ var IndexRoute = Ember.Route.extend({
     }
   }
 });
-
-export default IndexRoute;
 ```
 
 ```handlebars
@@ -124,7 +120,7 @@ additional argument that the component user can specify:
 ```js
 // app/components/confirm-button.js
 
-var ConfirmButtonComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   actions: {
     showConfirmation: function() {
       this.toggleProperty('isShowingConfirmation');
@@ -136,8 +132,6 @@ var ConfirmButtonComponent = Ember.Component.extend({
     }
   }
 });
-
-export default ConfirmButtonComponent;
 ```
 
 ```handlebars
@@ -165,7 +159,7 @@ Note that we've specified the action to send by setting the component's
 `action` attribute, and we've specified which argument should be sent as
 a parameter by setting the component's `param` attribute.
 
-<a class="jsbin-embed" href="http://jsbin.com/cuyavipobe/7/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/tihavobiki/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ### Sending Multiple Actions
 
@@ -189,7 +183,7 @@ In this case, you can send the `createUser` action by calling
 `this.sendAction('submit')`, or send the `cancelUserCreation` action by
 calling `this.sendAction('cancel')`.
 
-<a class="jsbin-embed" href="http://jsbin.com/ratijahosu/5/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/fimevowehe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ### Actions That Aren't Specified
 
@@ -204,13 +198,11 @@ on click:
 
 import Ember from 'ember'
 
-var MyButtonComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   click: function() {
     this.sendAction();
   }
 });
-
-export default MyButtonComponent;
 ```
 
 Using this component without assigning a primary action will have no

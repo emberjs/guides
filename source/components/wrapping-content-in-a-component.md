@@ -18,7 +18,7 @@ in another template:
 {{blog-post title=title body=body}}
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/cuyoxorofe/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/hihunemapu/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 (See [Passing Properties to a
 Component](./passing-properties-to-a-component/) for
@@ -64,7 +64,7 @@ form:
 {{/blog-post}}
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/jokejuwoho/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/homepowihe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 It's important to note that the template scope inside the component
 block is the same as outside. If a property is available in the template
@@ -72,4 +72,4 @@ outside the component, it is also available inside the component block.
 
 This JSBin illustrates the concept:
 
-<a class="jsbin-embed" href="http://jsbin.com/bonagokoke/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/cavucexuru/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
