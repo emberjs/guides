@@ -23,7 +23,7 @@ When the title is clicked, the entire post body is shown:
 
 <h3 {{action "toggleBody"}}>{{title}}</h3>
 {{#if isShowingBody}}
-<p>{{{body}}}</p>
+  <p>{{{body}}}</p>
 {{/if}}
 ```
 
