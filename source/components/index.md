@@ -29,7 +29,7 @@ To highlight the power of components, here is a short example of turning a blog 
 application. Keep reading this section for more details on building
 components.
 
-<a class="jsbin-embed" href="http://jsbin.com/bizahivuta/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/xexumomaru/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
 
@@ -65,14 +65,11 @@ var posts = [{
   body: "James Coglan wrote a lengthy article about Promises in node.js."
 }];
 
-var IndexRoute = Ember.Route.extend({
+export default Ember.Route.extend({
   model: function() {
   return posts;
   }
 });
-
-export default IndexRoute;
-
 ```
 
 ```js
