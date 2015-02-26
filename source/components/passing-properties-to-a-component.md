@@ -30,6 +30,7 @@ export default Ember.Route.extend({
 
 ```handlebars
 {{! app/templates/index.hbs }}
+
 <h1>Template: {{title}}</h1>
 {{blog-post}}
 ```
@@ -38,7 +39,7 @@ Running this code, you will see that the first `<h1>` (from the outer
 template) displays the `title` property, but the second `<h1>` (from
 inside the component) is empty.
 
-<a class="jsbin-embed" href="http://jsbin.com/jijalecize/1/embed?live">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/wucabozico/1/embed?live">JS Bin</a>
 
 We can fix this by making the `title` property available to the
 component:
