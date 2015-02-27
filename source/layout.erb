@@ -5,7 +5,7 @@
 
     <title>Ember.js - <%= current_page.data.title || page_title %></title>
     <meta property="st:title" content="<%= current_page.data.title || page_title %>" />
-    <link rel="shortcut icon" href="/images/favicon.png" />
+    <%= favicon_tag 'images/favicon.png' %>
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
     <%= stylesheet_link_tag "site" %>
     <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
@@ -15,10 +15,10 @@
   <body class="guides <%= page_classes %>">
 
     <!--[if lt IE 9]>
-      <script type="text/javascript" src="/javascripts/common-old-ie.js"></script>
+      <%= javascript_include_tag 'common-old-ie' %>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-      <script type="text/javascript" src="/javascripts/common-modern.js"></script>
+      <%= javascript_include_tag 'common-modern' %>
     <!--<![endif]-->
 
     <div id="header">
@@ -46,7 +46,7 @@
 
           <li id="search">
             <form>
-              <input type="text" id="st-search-input" class="st-search-input" />
+              <input type="text" id="st-search-input" class="st-search-input" placeholder="Search the guides"/>
             </form>
             <div id="st-results-container"></div>
           </li>
@@ -82,8 +82,8 @@
       <div id="footer-wrapper">
         <div class="info">
           Copyright <%= Time.now.strftime('%Y') %> <a href="http://tilde.io">Tilde Inc.</a><br>
-          <a href="/team">Core Team</a> | <a href="/sponsors">Sponsors</a> | <a href="/legal">Legal</a></br>
-          <a href="/guidelines">Community Guidelines</a>
+          <a href="http:emberjs.com/team">Core Team</a> | <a href="http:emberjs.com/sponsors">Sponsors</a> | <a href="http:emberjs.com/legal">Legal</a></br>
+          <a href="http:emberjs.com/guidelines">Community Guidelines</a>
         </div>
         <div class="statement">Ember.js is free, open source and always will be.</div>
         <div class="links">
@@ -102,7 +102,7 @@
 
     <%= yield_content :foot %>
 
-    <script type="text/javascript" src="/javascripts/guides.js"></script>
+    <%= javascript_include_tag 'guides' %>
     <script src="http://static.jsbin.com/js/embed.js"></script>
 
     <script type="text/javascript">

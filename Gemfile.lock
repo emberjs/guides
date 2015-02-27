@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/bsclifton/middleman-swiftype.git
-  revision: 56f3461c51f26c8d154a5a41c821704242876601
+  revision: d4d128bdaf54824feb2198118fd77fdde6a1e364
   specs:
     middleman-swiftype (0.0.1)
       middleman-core (>= 3.0)
@@ -24,7 +24,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    addressable (2.3.7)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -88,10 +87,6 @@ GEM
       uglifier (~> 2.5)
     middleman-alias (0.0.9)
       middleman-core (~> 3.2)
-    middleman-blog (3.5.3)
-      addressable (~> 2.3.5)
-      middleman-core (~> 3.2)
-      tzinfo (>= 0.3.0)
     middleman-core (3.3.7)
       activesupport (~> 4.1.0)
       bundler (~> 1.1)
@@ -212,7 +207,10 @@ DEPENDENCIES
   listen
   middleman (~> 3.0)
   middleman-alias
+<<<<<<< HEAD
   middleman-blog (~> 3.0)
+=======
+>>>>>>> upstream/master
   middleman-swiftype!
   poltergeist
   pry
