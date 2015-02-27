@@ -207,10 +207,6 @@ DEPENDENCIES
   listen
   middleman (~> 3.0)
   middleman-alias
-<<<<<<< HEAD
-  middleman-blog (~> 3.0)
-=======
->>>>>>> upstream/master
   middleman-swiftype!
   poltergeist
   pry
