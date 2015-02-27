@@ -15,29 +15,6 @@ bundle exec middleman
 
 Then visit [http://localhost:4567/](http://localhost:4567/)
 
-If you want to generate the search.json file (used for swiftype), you'll want to make sure the config.rb initializes the swiftype-middleman plugin. For example:
-
-```ruby
-###
-# Swiftype
-###
-activate :swiftype do |swift|
-  swift.api_key = "put api key here"
-  swift.engine_slug = "put slug here"
-  swift.pages_selector = lambda { |p| p.path.match(/\.html/) && p.metadata[:options][:layout] == nil }
-end
-```
-
-Even though the api key and engine slug may not be used, the library needs a value (or it'll crash).
-
-To build the search.json (once the plugin is configured), run:
-
-```shell
-bundle exec middleman swiftype --only-generate
-```
-
-The search.json will get put into the build folder (where `middleman build` puts its output).
-
 ### Publishing
 When a new version of Ember.js is released we use this repo to generate a guides snapshot. This represents the state of the Guides at the moment of Ember.js release. This allows us to continually update the guides for current best practices in the Ember.js ecosystem while still providing stable documentation for users on early versions of the framework.
 
