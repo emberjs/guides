@@ -29,11 +29,11 @@ git tag <revision number>
 git push --tags
 ```
 
-Next, build a new artifact and move it to the guides site repo, committing it to Github
+Next, build a new artifact and move it to the guides site repo, committing it to GitHub
 
 ```shell
 middleman build
-middleman switftype --only-generate
+middleman swiftype --only-generate
 mv ./build <path to guides site repo>/artifacts/<revision number>
 cd <path to guides site repo>
 git add --all
@@ -41,7 +41,7 @@ gc -m "Adding artifact for Ember.js revision <revision number>"
 git push
 ```
 
-Finally, publish this to Divshot's staging environemnt (our site host)
+Finally, publish this to Divshot's staging environment (our site host)
 
 ```
 cd <path to guides site repo>
