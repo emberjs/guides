@@ -1,0 +1,32 @@
+// var Swiftype = window.Swiftype || {};
+// (function() {
+//   Swiftype.engineKey = '<%= data.search.engine_key %>';
+//   Swiftype.documentTypes = ['<%= data.search.document_type %>'];
+//   Swiftype.inputElement = '#st-search-input';
+//   Swiftype.resultContainingElement = '#st-results-container';
+//   Swiftype.attachElement = '#st-search-input';
+//   Swiftype.renderStyle = "overlay";
+
+//   var script = document.createElement('script');
+//   script.type = 'text/javascript';
+//   script.async = true;
+//   script.src = "//swiftype.com/embed.js";
+//   var entry = document.getElementsByTagName('script')[0];
+//   entry.parentNode.insertBefore(script, entry);
+// }());
+
+$(function() {
+
+  var defaultRenderFunctionWithLog = function(document_type, item) {
+    console.log(item, item.highlight);
+    return '<p class="title">' + item['title'] + '</p>';
+  };
+
+  $('#st-search-input').swiftype({
+    engineKey:  '<%= data.search.engine_key %>',
+    searchFields: {'<%= data.search.document_type %>': ['body', 'title', 'url']},
+    fetchFields:  {'<%= data.search.document_type %>': ['title','body',  'url']},
+    documentTypes: ['<%= data.search.document_type %>'],
+    renderFunction: defaultRenderFunctionWithLog
+  });
+});
