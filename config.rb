@@ -24,10 +24,34 @@ activate :alias
 ###
 # Swiftype
 ###
+def current_guide(mm_instance, current_page)
+  path = current_page.path.gsub('.html', '')
+  guide_path = path.split("/")[0]
+
+  current_guide = mm_instance.data.guides.find do |guide|
+    guide.url == guide_path
+  end
+
+  current_guide
+end
+
+def current_chapter(mm_instance, current_page)
+  guide = current_guide(mm_instance, current_page)
+  return unless guide
+
+  path = current_page.path.gsub('.html', '')
+  chapter_path = path.split('/')[1..-1].join('/')
+
+  current_chapter = guide.chapters.find do |chapter|
+    chapter.url == chapter_path
+  end
+
+  current_chapter
+end
+
 activate :swiftype do |swift|
-  swift.api_key = ""
-  swift.engine_slug = ""
   swift.pages_selector = lambda { |p| p.path.match(/\.html/) && p.metadata[:options][:layout] == nil }
+  swift.title_selector = lambda { |mm_instance, p| return current_chapter(mm_instance, p) == nil ? "" : current_chapter(mm_instance, p).title }
 end
 
 ###
