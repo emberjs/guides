@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/bsclifton/middleman-swiftype.git
-  revision: d4d128bdaf54824feb2198118fd77fdde6a1e364
+  revision: a5fceed82c0675d5a4e4aea26b44ea168418f3ce
   specs:
     middleman-swiftype (0.0.1)
       middleman-core (>= 3.0)
