@@ -52,7 +52,7 @@ end
 activate :swiftype do |swift|
   swift.pages_selector = lambda { |p| p.path.match(/\.html/) && p.metadata[:options][:layout] == nil }
   swift.title_selector = lambda { |mm_instance, p| return current_chapter(mm_instance, p) == nil ? "" : current_chapter(mm_instance, p).title }
-  swift.exclude_empty_titles = true
+  swift.should_index = lambda { |p, title| return title.to_s == '' ? false : true }
 end
 
 ###
