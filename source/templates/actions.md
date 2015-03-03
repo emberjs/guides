@@ -10,7 +10,7 @@ When a user clicks the element, the named event will be sent to your
 application.
 
 ```handlebars
-<!-- post.handlebars -->
+// app/templates/post.hbs
 
 <div class='intro'>
   {{intro}}
@@ -25,7 +25,10 @@ application.
 ```
 
 ```js
-App.PostController = Ember.ObjectController.extend({
+// app/controllers/post.js
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   // initial value
   isExpanded: false,
 
@@ -73,7 +76,10 @@ put your action handling methods inside an `actions` hash for forward
 compatibility.
 
 ```js
-App.PostRoute = Ember.Route.extend({
+// app/routes/post.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
   actions: {
     expand: function() {
       this.controller.set('isExpanded', true);
@@ -92,7 +98,10 @@ that when executed, `this` is the route, not the `actions` hash.
 To continue bubbling the action, you must return true from the handler:
 
 ```js
-App.PostRoute = Ember.Route.extend({
+// app/routes/post.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
   actions: {
     expand: function() {
       this.controller.set('isExpanded', true);
@@ -141,7 +150,10 @@ The controller's `select` action handler would be called with a single argument
 containing the post model:
 
 ```js
-App.PostController = Ember.ObjectController.extend({
+// app/controllers/post.js
+import Ember from 'ember';
+
+export default Ember.ObjectController.extend({
   actions: {
     select: function(post) {
       console.log(post.get('title'));
@@ -176,11 +188,9 @@ pressed modifier keys. You can supply an `allowedKeys` option
 to specify which keys should not be ignored.
 
 ```handlebars
-<script type="text/x-handlebars" data-template-name='a-template'>
-  <div {{action 'anActionName' allowedKeys="alt"}}>
-    click me
-  </div>
-</script>
+<div {{action 'anActionName' allowedKeys="alt"}}>
+  click me
+</div>
 ```
 
 This way the `{{action}}` will fire when clicking with the alt key
@@ -229,7 +239,10 @@ is most commonly used to send actions to a view instead of a controller.
 You would handle this in an `actions` hash on your view.
 
 ```javascript
-App.PostsIndexView = Ember.View.extend({
+// app/views/posts.js
+import Ember from 'ember';
+
+export default Ember.View.extend({
   actions: {
     select: function(post) {
       // do your business.

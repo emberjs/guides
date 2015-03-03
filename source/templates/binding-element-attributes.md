@@ -60,11 +60,13 @@ There are two ways to enable support for data attributes. One way would be to ad
 attribute binding on the view, e.g. `Ember.LinkView` or `Ember.TextField` for the specific attribute:
 
 ```javascript
-Ember.LinkView.reopen({
+import Ember from 'ember';
+
+export default Ember.LinkView.reopen({
   attributeBindings: ['data-toggle']
 });
 
-Ember.TextField.reopen({
+export default Ember.TextField.reopen({
   attributeBindings: ['data-toggle', 'data-placement']
 });
 ```
@@ -82,7 +84,9 @@ You can also automatically bind data attributes on the base view with the
 following:
 
 ```javascript
-Ember.View.reopen({
+import Ember from 'ember';
+
+export default Ember.View.reopen({
   init: function() {
     this._super();
     var self = this;
