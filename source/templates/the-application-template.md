@@ -29,17 +29,4 @@ currently at `/posts` or `/posts/15`, for example.
 For more information about how outlets are filled in by the router, see
 [Routing](../../routing).
 
-If you are keeping your templates in HTML, create a `<script>` tag
-without a template name. Ember will use the template without a name as the application template and it will automatically be compiled and appended
-to the screen.
-
-```html
-<script type="text/x-handlebars">
-  <div>
-    {{outlet}}
-  </div>
-</script>
-```
-
-If you're using build tools to load your templates, make sure you name
-the template `application`.
+Ember CLI will create `application.hbs` for you by default in `app/templates/application.hbs`.
