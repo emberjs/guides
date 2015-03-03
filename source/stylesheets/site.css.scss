@@ -135,19 +135,26 @@ p {
   Sidebar
 **/
 
-#sidebar {
-  font-family: 'Maven Pro';
-  font-weight: normal;
-  margin-top: 38px;
+#sidebar-wrapper {
   float: left;
   width: $sidebar-width;
+  margin-top: 38px;
+}
+
+#sidebar {
+  margin-top: 10px;
+  float: left;
+  width: $sidebar-width;
+  position: relative;
+  font-family: 'Maven Pro';
+  font-weight: normal;
+  background: #f4ece9;
+
+  border-left: 1px solid #d4ccc8;
+  border-right: 1px solid #d4ccc8;
   min-height: 475px;
   margin-bottom: 28px;
   padding-bottom: 120px;
-  background: #f4ece9;
-  border-left: 1px solid #d4ccc8;
-  border-right: 1px solid #d4ccc8;
-  position: relative;
 
   #back-to-top {
     padding-left: 13px;
