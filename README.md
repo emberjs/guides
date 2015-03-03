@@ -32,7 +32,6 @@ git push --tags
 Next, build a new artifact and move it to the guides site repo, committing it to GitHub
 
 ```shell
-middleman build
 middleman swiftype --only-generate
 mv ./build <path to guides site repo>/artifacts/<revision number>
 cd <path to guides site repo>
