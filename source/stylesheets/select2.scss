@@ -2,7 +2,6 @@
   box-sizing: border-box;
   display: inline-block;
   margin: 0;
-  outline: none;
   position: relative;
   vertical-align: middle; }
   .select2-container .select2-selection--single {
@@ -117,7 +116,8 @@
 .select2-container--default .select2-selection--single {
   background-color: #fff;
   border: 1px solid #aaa;
-  border-radius: 4px; }
+  border-radius: 4px;
+  outline: none; }
   .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #444;
     line-height: 28px; }
