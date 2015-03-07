@@ -1,0 +1,14 @@
+$(function() {
+
+  var onComplete = function(item, prefix) {
+    window.location = '/<%= data.search.revision %>' + item['url'];
+  };
+
+  $('#st-search-input').swiftype({
+    engineKey:  '<%= data.search.engine_key %>',
+    searchFields: {'<%= data.search.document_type %>': ['body', 'title', 'url']},
+    fetchFields:  {'<%= data.search.document_type %>': ['title','body',  'url']},
+    documentTypes: ['<%= data.search.document_type %>'],
+    onComplete: onComplete
+  });
+});
