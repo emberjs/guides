@@ -4,8 +4,7 @@ provided by other templates.
 For example, imagine we are building a `blog-post` component that we can
 use in our application to display a blog post:
 
-```handlebars
-{{! app/components/blog-post.hbs }}
+```app/components/blog-post.hbs
 
 <h1>{{title}}</h1>
 <div class="body">{{body}}</div>
@@ -42,8 +41,7 @@ and tell Ember where the block content should be rendered using the
 `{{yield}}` helper. To update the example above, we'll first change the component's
 template:
 
-```handlebars
-{{! app/templates/components/blog-post.hbs }}
+```app/templates/components/blog-post.hbs
 
 <h1>{{title}}</h1>
 <div class="body">{{yield}}</div>
@@ -55,8 +53,7 @@ Ember that this content will be provided when the component is used.
 Next, we'll update the template using the component to use the block
 form:
 
-```handlebars
-{{! app/templates/index.hbs }}
+```app/templates/index.hbs
 
 {{#blog-post title=title}}
   <p class="author">by {{author}}</p>

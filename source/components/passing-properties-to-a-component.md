@@ -16,8 +16,7 @@ value of the `title` property inside the `<h1>`.
 
 Now imagine we have the following template and route:
 
-```js
-// app/routes/index.js
+```app/routes/index.js
 
 export default Ember.Route.extend({
   model: function() {
@@ -28,8 +27,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```handlebars
-{{! app/templates/index.hbs }}
+```app/templates/index.hbs
 
 <h1>Template: {{title}}</h1>
 {{blog-post}}

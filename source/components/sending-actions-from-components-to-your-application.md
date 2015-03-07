@@ -44,8 +44,7 @@ So how do you trigger sending a component's primary action? After
 the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
-```js
-// app/components/my-button.js
+```app/components/my-button.js
 
 import Ember from 'ember'
 
@@ -76,8 +75,7 @@ this.sendAction('action', param1, param2);
 For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
-```js
-// app/routes/index.js
+```app/routes/index.js
 
 import Ember from 'ember';
 
@@ -101,8 +99,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```handlebars
-{{! app/templates/index.hbs }}
+```app/templates/index.hbs
 
 {{#each todo in todos}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
@@ -117,8 +114,7 @@ action.
 In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
-```js
-// app/components/confirm-button.js
+```app/components/confirm-button.js
 
 export default Ember.Component.extend({
   actions: {
@@ -134,8 +130,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```handlebars
-{{! app/templates/components/confirm-button.hbs }}
+```app/templates/components/confirm-button.hbs
 
 {{#if isShowingConfirmation}}
   <button {{action "confirm"}}>Click again to confirm</button>
@@ -147,8 +142,7 @@ export default Ember.Component.extend({
 Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
-```handlebars
-{{! app/templates/index.hbs }}
+```app/templates/index.hbs
 
 {{#each todo in todos}}
   <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
@@ -193,8 +187,7 @@ particular event, calling `sendAction()` has no effect.
 For example, if you define a component that triggers the primary action
 on click:
 
-```js
-// app/components/my-button.js
+```app/components/my-button.js
 
 import Ember from 'ember'
 
