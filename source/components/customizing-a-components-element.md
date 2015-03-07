@@ -164,9 +164,7 @@ This would render this HTML:
 You can bind attributes to the DOM element that represents a component
 by using `attributeBindings`:
 
-```javascript
-// app/components/link-item.js
-
+```app/components/link-item.js
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -178,9 +176,7 @@ export default Ember.Component.extend({
 
 You can also bind these attributes to differently named properties:
 
-```javascript
-// app/components/link-item.js
-
+```app/components/link-item.js
 import Ember from 'ember';
 
 export default Ember.Component.extend({
