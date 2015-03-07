@@ -18,8 +18,7 @@ bubble.
 For example, imagine the following component that shows a post's title.
 When the title is clicked, the entire post body is shown:
 
-```handlebars
-{{! app/templates/components/post-summary.js }}
+```app/templates/components/post-summary.js
 
 <h3 {{action "toggleBody"}}>{{title}}</h3>
 {{#if isShowingBody}}
@@ -27,8 +26,7 @@ When the title is clicked, the entire post body is shown:
 {{/if}}
 ```
 
-```js
-// app/components/post-summary.js
+```app/components/post-summary.js
 
 import Ember from 'ember';
 
