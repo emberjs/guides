@@ -8,7 +8,7 @@ based on the current URL.
 
 Here's an example template:
 
-```handlebars
+```app/templates/application.hbs
 <header>
   <h1>Igor's Blog</h1>
 </header>
