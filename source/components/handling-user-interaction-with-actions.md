@@ -42,4 +42,4 @@ The `{{action}}` helper can accept arguments, listen for different event
 types, control how action bubbling occurs, and more.
 
 For details about using the `{{action}}` helper, see the [Actions
-section](../templates/actions) of the Templates chapter.
+section](../../templates/actions) of the Templates chapter.
