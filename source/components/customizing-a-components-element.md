@@ -18,8 +18,7 @@ To use a tag other than `div`, subclass `Ember.Component` and assign it
 a `tagName` property. This property can be any valid HTML5 tag name as a
 string.
 
-```js
-// app/components/navigation-bar.js
+```app/components/navigation-bar.js
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -27,8 +26,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```handlebars
-{{! app/templates/components/navigation-bar }}
+```app/templates/components/navigation-bar.js
 
 <ul>
   <li>{{#link-to 'home'}}Home{{/link-to}}</li>
@@ -41,8 +39,7 @@ export default Ember.Component.extend({
 You can also specify which class names are applied to the component's
 element by setting its `classNames` property to an array of strings:
 
-```javascript
-// app/components/navigation-bar.js
+```app/components/navigation-bar.js
 
 import Ember from 'ember';
 
@@ -55,8 +52,7 @@ If you want class names to be determined by properties of the component,
 you can use class name bindings. If you bind to a Boolean property, the
 class name will be added or removed depending on the value:
 
-```js
-// app/components/todo-item.js
+```app/components/todo-item.js
 
 import Ember from 'ember';
 
@@ -77,8 +73,7 @@ If `isUrgent` is changed to `false`, then the `is-urgent` class name will be rem
 By default, the name of the Boolean property is dasherized. You can customize the class name
 applied by delimiting it with a colon:
 
-```javascript
-// app/components/todo-item.js
+```app/components/todo-item.js
 
 import Ember from 'ember';
 
@@ -96,8 +91,7 @@ This would render this HTML:
 
 Besides the custom class name for the value being `true`, you can also specify a class name which is used when the value is `false`:
 
-```javascript
-// app/components/todo-item.js
+```app/components/todo-item.js
 
 import Ember from 'ember';
 
@@ -116,8 +110,7 @@ This would render this HTML:
 You can also specify a class which should only be added when the property is
 `false` by declaring `classNameBindings` like this:
 
-```javascript
-// app/components/todo-item.js
+```app/components/todo-item.js
 
 import Ember from 'ember';
 
@@ -142,8 +135,7 @@ If the `isEnabled` property is set to `true`, no class name is added:
 If the bound property's value is a string, that value will be added as a class name without
 modification:
 
-```javascript
-// app/components/todo-item.js
+```app/components/todo-item.js
 
 import Ember from 'ember';
 
