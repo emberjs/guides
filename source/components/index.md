@@ -33,8 +33,7 @@ components.
 
 The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
 
-```handlebars
-{{! app/templates/index.hbs }}
+```app/templates/index.hbs
 
 {{#each}}
    {{#blog-post title=title}}
@@ -43,8 +42,7 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 {{/each}}
 ```
 
-```handlebars
-{{! app/templates/components/blog-post.hbs --> name must have a dash }}
+```app/templates/components/blog-post.hbs
 
 <article class="blog-post">
   <h1>{{title}}</h1>
@@ -53,8 +51,7 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 </article>
 ```
 
-```js
-// app/routes/index.js
+```app/routes/index.js
 import Ember from 'ember'
 
 var posts = [{
@@ -72,8 +69,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```js
-// app/components/blog-post.js
+```app/components/blog-post.js
 
 export default Ember.Component.extend({
 
