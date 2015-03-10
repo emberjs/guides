@@ -171,13 +171,13 @@ The reason for this difference is due to Ruby on Rails being a server-side frame
 Ember runs in the browser, so it can detect and respond to browser events such as mouse clicks, finger taps, scrolling, key presses, etc. The view objects that receive these events can then send them to controller objects, which can work with the data model to save changes. Everything happens client-side, in the browser, and ember-data takes care of sending and receiving appropriate data to and from the server API.
 
 <figure>
-  <img alt="Ember.js MVC Diagram" src="/images/ember_mvc/embermvc.png">
+  <img alt="Ember.js MVC Diagram" src="../images/ember_mvc/embermvc.png">
 </figure>
 
 Rails, on the other hand, runs on the server. As such, it can only communicate with the client through HTTP requests. Rather than receive direct user events, the server takes HTTP requests as input (GET /, POST /users/1, etc.), reads the route and maps it to a controller action. The controller then interacts with the model and the view templates to construct a response (usually in the form of an HTML document) to send back over HTTP. The user is always interacting with what is basically a flat page, assembled on demand for them based on their requests.
 
 <figure>
-  <img alt="Rails MVC Diagram" src="/images/ember_mvc/railsmvc.png">
+  <img alt="Rails MVC Diagram" src="../images/ember_mvc/railsmvc.png">
 </figure>
 
 It is important to keep this difference in mind when architecting your applications. 

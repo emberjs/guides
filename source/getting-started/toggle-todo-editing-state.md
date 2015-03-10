@@ -45,7 +45,7 @@ Reload your web browser to ensure that no errors occur. You can now double-click
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/616bc4f22900bbaa2bf9bdb8de53ba41209d8cc0)
-  * [Handlebars Conditionals Guide](/guides/templates/conditionals)
+  * [Handlebars Conditionals Guide](../../templates/conditionals)
   * [bind-attr API documentation](/api/classes/Ember.Handlebars.helpers.html#method_bind-attr)
   * [action API documentation](/api/classes/Ember.Handlebars.helpers.html#method_action)
   * [bind and bindAttr article by Peter Wagenet](http://www.emberist.com/2012/04/06/bind-and-bindattr.html)

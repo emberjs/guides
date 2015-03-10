@@ -29,4 +29,4 @@ Reload your web browser to ensure that there are no errors and the behavior desc
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/47b289bb9f669edaa39abd971f5e884142988663)
   * [Ember.Checkbox API documentation](/api/classes/Ember.Checkbox.html)
-  * [Computed Properties Guide](/guides/object-model/computed-properties/)
+  * [Computed Properties Guide](../../object-model/computed-properties/)

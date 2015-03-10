@@ -29,14 +29,14 @@ When you request a record using `Person.find(1)`, Ember Data will ask
 the store to find the record (`store.find(Person, 1)`).
 
 <figure>
-  <img src="/images/ember-data-guide/step1.png">
+  <img src="../images/ember-data-guide/step1.png">
 </figure>
 
 If the adapter has not already loaded the record into the store, the
 store will ask the adapter to fetch it.
 
 <figure>
-  <img src="/images/ember-data-guide/step2.png">
+  <img src="../images/ember-data-guide/step2.png">
 </figure>
 
 Since the adapter's request is asynchronous, the store will return a new
@@ -44,7 +44,7 @@ Since the adapter's request is asynchronous, the store will return a new
 data.
 
 <figure>
-  <img src="/images/ember-data-guide/step3.png">
+  <img src="../images/ember-data-guide/step3.png">
 </figure>
 
 ## Step 2: Adapter Loads Data Into the Store
@@ -52,7 +52,7 @@ data.
 At some point later, the server will return some data to the adapter.
 
 <figure>
-  <img src="/images/ember-data-guide/step5.png">
+  <img src="../images/ember-data-guide/step5.png">
 </figure>
 
 Once the adapter receives the data hash, it loads it into the store.
@@ -63,7 +63,7 @@ This will, in turn, notify all attributes (`DS.attr`) and relationships
 (`DS.hasMany` and `DS.belongsTo`).
 
 <figure>
-  <img src="/images/ember-data-guide/step6.png">
+  <img src="../images/ember-data-guide/step6.png">
 </figure>
 
 ## Step 3: Getting an Attribute
@@ -83,7 +83,7 @@ data hash loads in from the server, the registered observer will call
 `person.get('firstName')`.
 
 <figure>
-  <img src="/images/ember-data-guide/step7.png">
+  <img src="../images/ember-data-guide/step7.png">
 </figure>
 
 ## Step 4: Materialization
@@ -92,7 +92,7 @@ Because this is the first time the record needs its backend-provided
 data, it will ask the store to load it in using `materializeData`.
 
 <figure>
-  <img src="/images/ember-data-guide/step8.png">
+  <img src="../images/ember-data-guide/step8.png">
 </figure>
 
 The store will, in turn, ask the adapter to materialize the data. This
@@ -100,7 +100,7 @@ allows the adapter to apply adapter-specific mappings to the
 backend-provided data hash.
 
 <figure>
-  <img src="/images/ember-data-guide/step9.png">
+  <img src="../images/ember-data-guide/step9.png">
 </figure>
 
 Finally, the adapter asks its serializer object to perform the
@@ -110,7 +110,7 @@ backend-provided data hashes into records, and serializing records into
 JSON hashes for the backend.
 
 <figure>
-  <img src="/images/ember-data-guide/step10.png">
+  <img src="../images/ember-data-guide/step10.png">
 </figure>
 
 The serializer is now responsible for extracting the information from
@@ -118,19 +118,19 @@ the backend-provided data hash and hydrating the record object. First,
 it populates the record's `id`.
 
 <figure>
-  <img src="/images/ember-data-guide/step11.png">
+  <img src="../images/ember-data-guide/step11.png">
 </figure>
 
 Next, it populates the record's attributes.
 
 <figure>
-  <img src="/images/ember-data-guide/step12.png">
+  <img src="../images/ember-data-guide/step12.png">
 </figure>
 
 Finally, it populates the `belongsTo` association.
 
 <figure>
-  <img src="/images/ember-data-guide/step13.png">
+  <img src="../images/ember-data-guide/step13.png">
 </figure>
 
 Once the adapter finishes materializing the record, it returns the
@@ -164,7 +164,7 @@ template would look something like this:
 {{#if isLoaded}}
   <p>{{name}}</p>
 {{else}}
-  <img src="/images/spinner.gif">
+  <img src="../images/spinner.gif">
 {{/if}}
 ```
 

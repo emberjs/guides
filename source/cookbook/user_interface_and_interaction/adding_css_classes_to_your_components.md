@@ -32,4 +32,4 @@ classNames: ['bold', 'italic', 'blue']
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/ifUDExu/2/edit?js,output">JS Bin</a>
 
-See [Customizing a Component's Element](/guides/components/customizing-a-components-element/) for further examples.
+See [Customizing a Component's Element](../../components/customizing-a-components-element/) for further examples.

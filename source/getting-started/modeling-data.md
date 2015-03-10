@@ -30,4 +30,4 @@ Reload your web browser to ensure that all files have been referenced correctly 
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/a1ccdb43df29d316a7729321764c00b8d850fcd1)
-  * [Models Guide](/guides/models)
+  * [Models Guide](../../models)

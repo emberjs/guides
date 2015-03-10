@@ -2,7 +2,7 @@ _Unit testing methods and computed properties follows previous patterns shown
 in [Unit Testing Basics] because Ember.Controller extends Ember.Object._
 
 Unit testing controllers is very simple using the unit test helper 
-[moduleFor](/guides/testing/unit) which is part of the ember-qunit framework.
+[moduleFor](../../testing/unit) which is part of the ember-qunit framework.
 
 ### Testing Controller Actions
 

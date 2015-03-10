@@ -29,7 +29,7 @@ template inside your HTML by putting it inside a `<script>` tag, like so:
 ```
 
 This template will be compiled automatically and become your
-[application template](/guides/templates/the-application-template),
+[application template](../../templates/the-application-template),
 which will be displayed on the page when your app loads.
 
 You can also define templates by name that can be used later. For

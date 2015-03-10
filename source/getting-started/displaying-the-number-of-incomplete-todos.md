@@ -39,4 +39,4 @@ The `inflection` property will return either a plural or singular version of the
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/b418407ed9666714c82d894d6b70f785674f7a45)
-  * [Computed Properties Guide](/guides/object-model/computed-properties/)
+  * [Computed Properties Guide](../../object-model/computed-properties/)

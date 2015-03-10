@@ -11,7 +11,7 @@ Todos.TodosRoute = Ember.Route.extend({
 });
 ```
 
-Because we hadn't implemented this class before, Ember.js provided a `Route` for us with the default behavior of rendering a matching template named `todos` using its [naming conventions for object creation](/guides/concepts/naming-conventions/).
+Because we hadn't implemented this class before, Ember.js provided a `Route` for us with the default behavior of rendering a matching template named `todos` using its [naming conventions for object creation](../../concepts/naming-conventions/).
 
 Now that we need custom behavior (returning a specific set of models), we implement the class and add the desired behavior.
 
@@ -40,6 +40,6 @@ Reload your web browser to ensure that all files have been referenced correctly 
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/87bd57700110d9dd0b351c4d4855edf90baac3a8)
-  * [Templates Guide](/guides/templates/handlebars-basics)
-  * [Controllers Guide](/guides/controllers)
-  * [Naming Conventions Guide](/guides/concepts/naming-conventions)
+  * [Templates Guide](../../templates/handlebars-basics)
+  * [Controllers Guide](../../controllers)
+  * [Naming Conventions Guide](../../concepts/naming-conventions)

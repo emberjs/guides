@@ -56,4 +56,4 @@ Reload your web browser to ensure that there are no errors and the behavior desc
   * [link-to API documentation](/api/classes/Ember.Handlebars.helpers.html#method_link-to)
   * [Route#renderTemplate API documentation](/api/classes/Ember.Route.html#method_renderTemplate)
   * [Route#render API documentation](/api/classes/Ember.Route.html#method_render)
-  * [Ember Router Guide](/guides/routing)
+  * [Ember Router Guide](../../routing)

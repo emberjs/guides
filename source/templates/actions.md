@@ -117,7 +117,7 @@ When an action is triggered, but no matching action handler is
 implemented on the controller, the current route, or any of the
 current route's ancestors, an error will be thrown.
 
-![Action Bubbling](/images/template-guide/action-bubbling.png)
+![Action Bubbling](../images/template-guide/action-bubbling.png)
 
 This allows you to create a button that has different behavior based on
 where you are in the application. For example, you might want to have a
@@ -238,7 +238,7 @@ App.PostsIndexView = Ember.View.extend({
 });
 ```
 
-Note that actions sent to views in this way do not bubble up the 
+Note that actions sent to views in this way do not bubble up the
 currently rendered view hierarchy. If you want to handle the action in
 a parent view, use the following:
 
