@@ -336,7 +336,7 @@ And here's the Handlebars template that uses them:
 If you clicked on the `<h1>`, you'd see the following output in your
 browser's console:
 
-```
+```shell
 Child!
 Parent!
 ```

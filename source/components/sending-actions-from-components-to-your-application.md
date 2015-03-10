@@ -8,7 +8,7 @@ first go to the template's controller. If the controller does not
 implement a handler for that action, it will bubble to the template's
 route, and then up the route hierarchy. For more information about this
 bubbling behavior, see [Action
-Bubbling](../templates/actions/#toc_action-bubbling).
+Bubbling](../../templates/actions/#toc_action-bubbling).
 
 Components are designed to be reusable across different parts of your
 application. In order to achieve this reusability, it's important that

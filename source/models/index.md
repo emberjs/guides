@@ -5,7 +5,7 @@ implementing a route's `model` hook, by passing the model as an argument
 to `{{link-to}}`, or by calling a route's `transitionTo()` method.
 
 See [Specifying a Route's
-Model](/guides/routing/specifying-a-routes-model) for more information
+Model](../../routing/specifying-a-routes-model) for more information
 on setting a route's model.
 
 For simple applications, you can get by using jQuery to load JSON data
@@ -209,11 +209,11 @@ adapter. Your adapter will go and retrieve the record from your
 persistence layer; typically, this will be a JSON representation of the
 record served from an HTTP server.
 
-![Diagram showing process for finding an unloaded record](/images/guides/models/finding-unloaded-record-step1-diagram.png)
+![Diagram showing process for finding an unloaded record](../images/guides/models/finding-unloaded-record-step1-diagram.png)
 
-As illustrated in the diagram above, the adapter cannot always return the 
-requested record immediately. In this case, the adapter must make an 
-_asynchronous_ request to the server, and only when that request finishes 
+As illustrated in the diagram above, the adapter cannot always return the
+requested record immediately. In this case, the adapter must make an
+_asynchronous_ request to the server, and only when that request finishes
 loading can the record be created with its backing data.
 
 Because of this asynchronicity, the store immediately returns a
@@ -228,12 +228,12 @@ The store then takes that JSON, initializes the record with the
 JSON data, and resolves the promise returned to your application
 with the newly-loaded record.
 
-![Diagram showing process for finding an unloaded record after the payload has returned from the server](/images/guides/models/finding-unloaded-record-step2-diagram.png)
+![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-unloaded-record-step2-diagram.png)
 
 Let's look at what happens if you request a record that the store
-already has in its cache. 
+already has in its cache.
 
-![Diagram showing process for finding an unloaded record after the payload has returned from the server](/images/guides/models/finding-loaded-record-diagram.png)
+![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-loaded-record-diagram.png)
 
 In this case, because the store already knew about the record, it
 returns a promise that it resolves with the record immediately. It does
