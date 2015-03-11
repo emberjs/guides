@@ -1,6 +1,6 @@
 ## Controllers
 
-In Ember.js, controllers allow you to decorate your models with 
+In Ember.js, controllers allow you to decorate your models with
 display logic. In general, your models will have properties that
 are saved to the server, while controllers will have properties
 that your app does not need to save to the server.
@@ -15,7 +15,7 @@ Your `BlogPost` model would have properties like:
 * `body`
 * `author`
 
-Your template would bind to these properties in the `blog_post` 
+Your template would bind to these properties in the `blog_post`
 template:
 
 ```handlebars
@@ -36,9 +36,9 @@ or actions just yet. For now, our controller just acts as a
 pass-through (or "proxy") for the model properties. (Remember that
 a controller gets the model it represents from its route handler.)
 
-Let's say we wanted to add a feature that would allow the user to 
+Let's say we wanted to add a feature that would allow the user to
 toggle the display of the body section. To implement this, we would
-first modify our template to show the body only if the value of a 
+first modify our template to show the body only if the value of a
 new `isExpanded` property is true.
 
 ```handlebars
@@ -60,7 +60,7 @@ new `isExpanded` property is true.
 {{/if}}
 ```
 
-You might think you should put this property on the model, but 
+You might think you should put this property on the model, but
 whether the  body is expanded or not is strictly a display concern.
 
 Putting this property on the controller cleanly separates logic
@@ -80,7 +80,7 @@ nothing about which (if any) controllers are decorating it, and
 controller does not know which views are presenting its properties.
 
 <figure>
-<img src="/images/controller-guide/objects.png">
+<img src="../images/controller-guide/objects.png">
 </figure>
 
 This also means that as far as a template is concerned, all of its
@@ -98,22 +98,22 @@ the `PostController` will change its model from `Post.find(1)` to
 properties on the model, as well as any computed properties on the
 controller that depend on the model.
 
-This makes it easy to test a template in isolation by rendering it 
+This makes it easy to test a template in isolation by rendering it
 with a controller object that contains the properties the template
 expects. From the template's perspective, a **controller** is simply
 an object that provides its data.
 
 ### Representing Models
 
-Templates are always connected to controllers, not models. This 
-makes it easy to separate display-specific properties from model 
+Templates are always connected to controllers, not models. This
+makes it easy to separate display-specific properties from model
 specific properties, and to swap out the controller's model as the
 user navigates around the page.
 
-For convenience, Ember.js provides controllers that _proxy_ 
+For convenience, Ember.js provides controllers that _proxy_
 properties from their models so that you can say `{{name}}` in your
-template rather than `{{model.name}}`. An `Ember.ArrayController` 
-proxies properties from an Array, and an `Ember.ObjectController` 
+template rather than `{{model.name}}`. An `Ember.ArrayController`
+proxies properties from an Array, and an `Ember.ObjectController`
 proxies properties from an object.
 
 If your controller is an `ArrayController`, you can iterate directly
@@ -123,7 +123,7 @@ and makes isolation testing and refactoring easier.
 
 ### Storing Application Properties
 
-Not all properties in your application need to be saved to the 
+Not all properties in your application need to be saved to the
 server. Any time you need to store information only for the lifetime
 of this application run, you should store it on a controller.
 
@@ -156,7 +156,7 @@ App.ApplicationController = Ember.Controller.extend({
 });
 ```
 
-The `application` template stores its properties and sends its 
+The `application` template stores its properties and sends its
 actions to the `ApplicationController`. In this case, when the user
 hits enter, the application will transition to the `search` route,
 passing the query as a parameter.

@@ -81,7 +81,7 @@ on an application as `select`. The new usage is:
 ```
 
 See the updated [Ember.Select](/api/classes/Ember.Select.html) documentation
-and the [built-in views guide](/guides/views/built-in-views) for more details
+and the [built-in views guide](../../views/built-in-views) for more details
 and examples.
 
 ##### Ember.js libraries and plugins
@@ -111,7 +111,7 @@ Ember.Application.initializer({
 
 More details on how to register an Ember.js framework component are available
 in the [initializer API documentation](/api/classes/Ember.Application.html#toc_initializers)
-and the [dependency injection guide](/guides/understanding-ember/dependency-injection-and-service-lookup).
+and the [dependency injection guide](../../understanding-ember/dependency-injection-and-service-lookup).
 
 #### Deprecate location: 'hash' paths that don't include a forward slash. e.g. #/foo NOT #foo
 

@@ -341,4 +341,4 @@ definition if possible.
 ### Routing
 
 There's an entire page dedicated to managing async within the Ember
-Router: [Asynchronous Routing](/guides/routing/asynchronous-routing)
+Router: [Asynchronous Routing](../../routing/asynchronous-routing)
