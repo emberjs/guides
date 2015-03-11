@@ -13,7 +13,7 @@ App.Router.map(function() {
   this.resource('about', function() {
     this.route('faq');
   });
-  
+
   this.resource('user', { path: '/user/:user_id' }, function() {
     this.route('profile');
   });
@@ -118,5 +118,5 @@ resolved and the user is now on the profile page.
 
 ### More Resources
 
-- [Preventing and retrying transitions](../../routing/preventing-and-retrying-transitions)
+- [Preventing and retrying transitions](./preventing-and-retrying-transitions)
 - [Ember.js: Transition promises, redirects](https://www.youtube.com/watch?v=EwkaMRJ2tMo)

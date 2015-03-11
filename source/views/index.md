@@ -19,7 +19,7 @@ application.
 For example, imagine you have a list of todo items. Next to each todo is
 a button to delete that item:
 
-![Todo List](../../views/images/todo-list.png)
+![Todo List](./images/todo-list.png)
 
 The view is responsible for turning a _primitive event_ (a click) into a
 _semantic event_: delete this todo! These semantic events are first sent
@@ -28,4 +28,4 @@ router, which is responsible for reacting to the event based on the
 current state of the application.
 
 
-![Todo List](../../views/images/primitive-to-semantic-event.png)
+![Todo List](./images/primitive-to-semantic-event.png)

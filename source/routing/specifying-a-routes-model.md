@@ -114,7 +114,7 @@ default behavior. Note that if you override the default behavior and do
 not set the `model` property on a controller, your template will not
 have any data to render!
 
-[1]: /guides/routing/setting-up-a-controller
+[1]: ../setting-up-a-controller
 
 ### Dynamic Models
 
@@ -158,7 +158,7 @@ For example, if you transitioned to the `photo` route with a model whose
 `id` property was `47`, the URL in the user's browser would be updated
 to:
 
-```
+```shell
 /photos/47
 ```
 
@@ -197,7 +197,7 @@ when it is entered via the URL. If the route is entered through a transition
 already provided and the hook is not executed. Routes without dynamic segments
 will always execute the model hook.
 
-[2]: /guides/templates/links
+[2]: ../../templates/links
 
 
 ### Refreshing your model
