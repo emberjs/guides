@@ -1,7 +1,7 @@
 TodoMVC, despite its small size, contains most of the behaviors typical in modern single page applications. Before continuing, take a moment to understand how TodoMVC works from the user's perspective.
 
 TodoMVC has the following main features:
-<img src="/guides/getting-started/images/todo-mvc.png" width="680">
+<img src="../images/todo-mvc.png" width="680">
 
   1. It displays a list of todos for a user to see. This list will grow and shrink as the user adds and removes todos.
 

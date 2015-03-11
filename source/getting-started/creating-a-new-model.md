@@ -16,11 +16,11 @@ This will render an `<input>` element at this location with the same `id` and `p
 
 Additionally, we connect user interaction (pressing the `<enter>` key) to a method `createTodo` on this template's controller.
 
-Because we have not needed a custom controller behavior until this point, Ember.js provided a default controller object for this template. To handle our new behavior, we can implement the controller class Ember.js expects to find [according to its naming conventions](/guides/concepts/naming-conventions) and add our custom behavior. This new controller class will automatically be associated with this template for us.
+Because we have not needed a custom controller behavior until this point, Ember.js provided a default controller object for this template. To handle our new behavior, we can implement the controller class Ember.js expects to find [according to its naming conventions](../../concepts/naming-conventions) and add our custom behavior. This new controller class will automatically be associated with this template for us.
 
 Add a `js/controllers/todos_controller.js` file. You may place this file anywhere you like (even just putting all code into the same file), but this guide will assume you have created the file and named it as indicated.
 
-Inside `js/controllers/todos_controller.js` implement the controller Ember.js expects to find [according to its naming conventions](/guides/concepts/naming-conventions):
+Inside `js/controllers/todos_controller.js` implement the controller Ember.js expects to find [according to its naming conventions](../../concepts/naming-conventions):
 
 ```javascript
 Todos.TodosController = Ember.ArrayController.extend({
@@ -67,5 +67,5 @@ Reload your web browser to ensure that all files have been referenced correctly 
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/60feb5f369c8eecd9df3f561fbd01595353ce803)
   * [Ember.TextField API documention](/api/classes/Ember.TextField.html)
-  * [Ember Controller Guide](/guides/controllers)
-  * [Naming Conventions Guide](/guides/concepts/naming-conventions)
+  * [Ember Controller Guide](../../controllers)
+  * [Naming Conventions Guide](../../concepts/naming-conventions)
