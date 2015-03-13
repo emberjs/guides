@@ -5,7 +5,7 @@ To accomplish this, we'll create a new custom component and register it with Han
 Create a new file `js/views/edit_todo_view.js`. You may place this file anywhere you like (even just putting all code into the same file), but this guide will assume you have created the file and named it as indicated.
 
 In `js/views/edit_todo_view.js` create an extension of `Ember.TextField` and register it as
-a [helper](/api/classes/Ember.Handlebars.html#method_helper):
+a [helper](http://emberjs.com/api/classes/Ember.Handlebars.html#method_helper):
 
 ```javascript
 Todos.EditTodoView = Ember.TextField.extend({
@@ -79,4 +79,4 @@ This method will set the controller's `isEditing` property to false and commit a
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/a7e2f40da4d75342358acdfcbda7a05ccc90f348)
   * [Controller Guide](../../controllers)
-  * [Ember.TextField API documentation](/api/classes/Ember.TextField.html)
+  * [Ember.TextField API documentation](http://emberjs.com/api/classes/Ember.TextField.html)
