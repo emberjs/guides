@@ -1,5 +1,5 @@
 By default, your store will use
-[DS.RESTAdapter](/api/data/classes/DS.RESTAdapter.html) to load and
+[DS.RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html) to load and
 save records. The RESTAdapter assumes that the URLs and JSON
 associated with each model are conventional; this means that, if you
 follow the rules, you will not need to configure the adapter or write
@@ -59,7 +59,7 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 });
 ```
 
-Requests for `App.Person` would now target `/api/1/people/1`.
+Requests for `App.Person` would now target `http://emberjs.com/api/1/people/1`.
 
 #### Host Customization
 
@@ -97,7 +97,7 @@ be nested inside a property called `person`:
 _Note: Although after `destroyRecord` or `deleteRecord`/`save` the adapter expects an empty object e.g. `{}` to be returned from the server after destroying a record._
 
 If you don't have the option to change the data that the server responds with, you can override the 
-[DS.JSONSerializer#extractDeleteRecord](/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
+[DS.JSONSerializer#extractDeleteRecord](http://emberjs.com/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
 
 ```js
 extractDeleteRecord: function(store, type, payload) {

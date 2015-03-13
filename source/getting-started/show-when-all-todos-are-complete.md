@@ -31,4 +31,4 @@ Reload your web browser to ensure that there are no errors and the behavior desc
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/9bf8a430bc4afb06f31be55f63f1d9806e6ab01c)
-  * [Ember.Checkbox API documentation](/api/classes/Ember.Checkbox.html)
+  * [Ember.Checkbox API documentation](http://emberjs.com/api/classes/Ember.Checkbox.html)

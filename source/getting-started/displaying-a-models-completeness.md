@@ -19,5 +19,5 @@ The first fixture todo in our application has an `isCompleted` property of `true
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/b15e5deffc41cf5ba4161808c7f46a283dc2277f)
-  * [bind-attr API documentation](/api/classes/Ember.Handlebars.helpers.html#method_bind-attr)
+  * [bind-attr API documentation](http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_bind-attr)
   * [bind and bind-attr article by Peter Wagenet](http://www.emberist.com/2012/04/06/bind-and-bindattr.html)
