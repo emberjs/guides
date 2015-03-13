@@ -22,4 +22,4 @@ Reload your web browser to ensure that there are no errors and the behaviors des
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/14e1f129f76bae8f8ea6a73de1e24d810678a8fe)
-  * [action API documentation](/api/classes/Ember.Handlebars.helpers.html#method_action)
+  * [action API documentation](http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_action)

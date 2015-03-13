@@ -66,6 +66,6 @@ Reload your web browser to ensure that all files have been referenced correctly 
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/60feb5f369c8eecd9df3f561fbd01595353ce803)
-  * [Ember.TextField API documention](/api/classes/Ember.TextField.html)
+  * [Ember.TextField API documention](http://emberjs.com/api/classes/Ember.TextField.html)
   * [Ember Controller Guide](../../controllers)
   * [Naming Conventions Guide](../../concepts/naming-conventions)
