@@ -24,4 +24,4 @@ Reload your web browser to ensure that there are no errors. You should be able t
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/843ff914873081560e4ba97df0237b8595b6ae51)
-  * [link-to API documentation](/api/classes/Ember.Handlebars.helpers.html#method_link-to)
+  * [link-to API documentation](http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_link-to)

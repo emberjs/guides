@@ -68,4 +68,4 @@ This mapping is described in more detail in the [Naming Conventions Guide](../..
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/3bab8f1519ffc1ca2d5a12d1de35e4c764c91f05)
   * [Ember Router Guide](../../routing)
   * [Ember Controller Guide](../../controllers)
-  * [outlet API documentation](/api/classes/Ember.Handlebars.helpers.html#method_outlet)
+  * [outlet API documentation](http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_outlet)

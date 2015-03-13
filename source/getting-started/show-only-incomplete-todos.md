@@ -51,7 +51,7 @@ Reload your web browser to ensure that there are no errors and the behavior desc
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/2a1d35293a52e40d0125f552a1a8b2c01f759313)
-  * [link-to API documentation](/api/classes/Ember.Handlebars.helpers.html#method_link-to)
-  * [Route#renderTemplate API documentation](/api/classes/Ember.Route.html#method_renderTemplate)
-  * [Route#render API documentation](/api/classes/Ember.Route.html#method_render)
+  * [link-to API documentation](http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_link-to)
+  * [Route#renderTemplate API documentation](http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate)
+  * [Route#render API documentation](http://emberjs.com/api/classes/Ember.Route.html#method_render)
   * [Ember Router Guide](../../routing)

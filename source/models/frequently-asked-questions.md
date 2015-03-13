@@ -102,15 +102,15 @@ methods. This is useful for web applications that have a channel
 [Web Sockets](http://www.w3.org/TR/2009/WD-websockets-20091222/)) to
 notify it of new or updated records on the backend.
 
-[push](/api/data/classes/DS.Store.html#method_push)
+[push](http://emberjs.com/api/data/classes/DS.Store.html#method_push)
 is the simplest way to load or update records in Ember Data's store.
 When using `push` it is important to
-[normalize](/api/data/classes/DS.Store.html#method_normalize)
+[normalize](http://emberjs.com/api/data/classes/DS.Store.html#method_normalize)
 the JSON object before pushing it into the store.
 
 `push` only accepts one record at a time. If you would like to load an
 array of records to the store you can call
-[pushMany](/api/data/classes/DS.Store.html#method_pushMany).
+[pushMany](http://emberjs.com/api/data/classes/DS.Store.html#method_pushMany).
 
 ```js
 socket.on('message', function (message) {
@@ -124,7 +124,7 @@ updating existing records. The `update` method is therefore deprecated.
 Updating partial attributes is useful if your web application only
 receives notifications of the changed attributes on a model.
 
-[pushPayload](/api/data/classes/DS.Store.html#method_pushPayload)
+[pushPayload](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload)
 is a convenience wrapper for `store#push` that will deserialize
 payloads if the model's Serializer implements a `pushPayload`
 method. It is important to note this method will not work with the
