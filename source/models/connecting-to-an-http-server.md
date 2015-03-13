@@ -120,7 +120,7 @@ If your JSON API lives somewhere other than on the host root,
 you can set a prefix that will be added to all requests.
 
 For example, if you are using a versioned JSON API, a request for a
-particular person might go to `/api/v1/people/1`.
+particular person might go to `http://emberjs.com/api/v1/people/1`.
 
 In that case, set `namespace` property to `api/v1`.
 
@@ -130,7 +130,7 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 });
 ```
 
-Requests for a `person` with ID `1`  would now go to `/api/v1/people/1`.
+Requests for a `person` with ID `1`  would now go to `http://emberjs.com/api/v1/people/1`.
 
 #### URL Host
 

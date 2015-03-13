@@ -41,7 +41,7 @@
       doc_id: docId,
       prefix: value
     };
-    var url = Swiftype.root_url + '/api/v1/public/analytics/pas?' + $.param(params);
+    var url = Swiftype.root_url + 'http://emberjs.com/api/v1/public/analytics/pas?' + $.param(params);
     Swiftype.pingUrl(url, callback);
   };
   Swiftype.findSelectedSection = function() {
@@ -312,7 +312,7 @@
     params['sort_direction'] = handleFunctionParam(config.sortDirection);
     params['per_page'] = config.resultLimit;
 
-    var endpoint = Swiftype.root_url + '/api/v1/public/engines/suggest.json';
+    var endpoint = Swiftype.root_url + 'http://emberjs.com/api/v1/public/engines/suggest.json';
     $this.currentRequest = $.ajax({
       type: 'GET',
       dataType: 'jsonp',
