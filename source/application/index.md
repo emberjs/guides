@@ -1,6 +1,6 @@
 ## Creating an Application
 Every Ember.js application has one instance of `Ember.Application`.
-This object is located at `./app/app.js` inside your application.
+This object is located at `./app/app.js` inside your project.
 
 What does creating an `Ember.Application` instance get you?
 
