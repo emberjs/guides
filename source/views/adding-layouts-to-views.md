@@ -9,29 +9,25 @@ The HTML contents of a view's rendered `template` will be inserted where the `{{
 
 First, you define the following layout template:
 
-```html
-<script type="text/x-handlebars" data-template-name="my_layout">
-  <div class="content-wrapper">
-    {{yield}}
-  </div>
-</script>
+```app/templates/my-layout.hbs
+<div class="content-wrapper">
+  {{yield}}
+</div>
 ```
 
 And then the following main template:
 
-```html
-<script type="text/x-handlebars" data-template-name="my_content">
+```app/templates/has-a-layout.hbs
   Hello, <b>{{view.name}}</b>!
-</script>
 ```
 
 Finally, you define a view, and instruct it to wrap the template with the defined layout:
 
-```javascript
-AViewWithLayout = Ember.View.extend({
+```app/views/with-a-layout.js
+export default Ember.View.extend({
   name: 'Teddy',
-  layoutName: 'my_layout',
-  templateName: 'my_content'
+  layoutName: 'my-layout',
+  templateName: 'has-a-layout'
 });
 ```
 

@@ -1,20 +1,15 @@
 You can use `Ember.View` to render a Handlebars template and insert it into the DOM.
 
-To tell the view which template to use, set its `templateName` property. For example, if I had a `<script>` tag like this:
+To tell the view which template to use, set its `templateName` property. For example
+if your project contains this template:
 
-```html
-<html>
-  <head>
-    <script type="text/x-handlebars" data-template-name="say-hello">
-      Hello, <b>{{view.name}}</b>
-    </script>
-  </head>
-</html>
+```app/templates/say-hello.hbs
+Hello, <b>{{view.name}}</b>
 ```
 
 I would set the `templateName` property to `"say-hello"`.
 
-```javascript
+```app/views/some-view.js
 var view = Ember.View.create({
   templateName: 'say-hello',
   name: "Bob"
