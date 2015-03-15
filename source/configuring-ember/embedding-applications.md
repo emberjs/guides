@@ -6,15 +6,14 @@ existing page, or run alongside other JavaScript frameworks?
 
 ### Changing the Root Element
 
-By default, your application will render the [application
-template](../templates/the-application-template) and attach it to
-the document's `body` element.
+By default, your application will render the [application template](../../templates/the-application-template)
+and attach it to the document's `body` element.
 
 You can tell the application to append the application template to a
 different element by specifying its `rootElement` property:
 
-```js
-App = Ember.Application.create({
+```app/app.js
+export default Ember.Application.extend({
   rootElement: '#app'
 });
 ```
@@ -26,11 +25,12 @@ string](http://api.jquery.com/category/selectors/).
 ### Disabling URL Management
 
 You can prevent Ember from making changes to the URL by [changing the
-router's `location`](../routing/specifying-the-location-api) to
+router's `location`](../../routing/specifying-the-location-api) to
 `none`:
 
-```js
-App.Router = Ember.Router.extend({
-  location: 'none'
-});
+```config/environment.js
+var ENV = {
+  locationType: 'none'
+};
+export default ENV;
 ```

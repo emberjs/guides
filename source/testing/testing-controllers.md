@@ -1,12 +1,12 @@
-_Unit testing methods and computed properties follows previous patterns shown 
+_Unit testing methods and computed properties follows previous patterns shown
 in [Unit Testing Basics] because Ember.Controller extends Ember.Object._
 
-Unit testing controllers is very simple using the unit test helper 
-[moduleFor](/guides/testing/unit) which is part of the ember-qunit framework.
+Unit testing controllers is very simple using the unit test helper which is part
+of the ember-qunit framework.
 
 ### Testing Controller Actions
 
-Here we have a controller `PostsController` with some computed properties and an 
+Here we have a controller `PostsController` with some computed properties and an
 action `setProps`.
 
 ```javascript
@@ -29,22 +29,22 @@ App.PostsController = Ember.ArrayController.extend({
 ```
 
 `setProps` sets a property on the controller and also calls a method. To write a
-test for this action, we would use the `moduleFor` helper to setup a test 
+test for this action, we would use the `moduleFor` helper to setup a test
 container:
 
 ```javascript
 moduleFor('controller:posts', 'Posts Controller');
 ```
 
-Next we use `this.subject()` to get an instance of the `PostsController` and 
-write a test to check the action. `this.subject()` is a helper method from the 
-`ember-qunit` library that returns a singleton instance of the module set up 
+Next we use `this.subject()` to get an instance of the `PostsController` and
+write a test to check the action. `this.subject()` is a helper method from the
+`ember-qunit` library that returns a singleton instance of the module set up
 using `moduleFor`.
 
 ```javascript
 test('calling the action setProps updates props A and B', function() {
   expect(4);
-  
+
   // get the controller instance
   var ctrl = this.subject();
 
@@ -52,11 +52,11 @@ test('calling the action setProps updates props A and B', function() {
   equal(ctrl.get('propA'), 'You need to write tests');
   equal(ctrl.get('propB'), 'And write one for me too');
 
-  // trigger the action on the controller by using the `send` method, 
+  // trigger the action on the controller by using the `send` method,
   // passing in any params that our action may be expecting
   ctrl.send('setProps', 'Testing Rocks!');
 
-  // finally we assert that our values have been updated 
+  // finally we assert that our values have been updated
   // by triggering our action.
   equal(ctrl.get('propA'), 'Testing is cool');
   equal(ctrl.get('propB'), 'Testing Rocks!');
@@ -70,7 +70,7 @@ Controllers "Actions"</a>
 
 ### Testing Controller Needs
 
-Sometimes controllers have dependencies on other controllers. This is 
+Sometimes controllers have dependencies on other controllers. This is
 accomplished by using [needs]. For example, here are two simple controllers. The
 `PostController` is a dependency of the `CommentsController`:
 
@@ -94,7 +94,7 @@ moduleFor('controller:comments', 'Comments Controller', {
 });
 ```
 
-Now let's write a test that sets a property on our `post` model in the 
+Now let's write a test that sets a property on our `post` model in the
 `PostController` that would be available on the `CommentsController`.
 
 ```javascript

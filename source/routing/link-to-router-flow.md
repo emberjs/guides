@@ -13,7 +13,7 @@ App.Router.map(function() {
   this.resource('about', function() {
     this.route('faq');
   });
-  
+
   this.resource('user', { path: '/user/:user_id' }, function() {
     this.route('profile');
   });
@@ -23,7 +23,7 @@ App.Router.map(function() {
 This would mean there are currently three nested active routes in this
 application. The `ApplicationRoute`, `AboutRoute` and the `AboutFaqRoute`.
 
-<img src="/images/guides/routing/active-route.png" alt="Active route" class="highlight">
+<img src="../images/guides/routing/active-route.png" alt="Active route" class="highlight">
 
 Lets assume a user clicks on a `link-to` for the `UserProfileRoute` like
 the one below.
@@ -48,7 +48,7 @@ Next Ember will trigger a `willTransition` action on the currently
 active routes starting with the leaf-most route (in this example the
 `AboutFaqRoute`).
 
-<img src="/images/guides/routing/willtransition-event.png" alt="Active route" class="highlight">
+<img src="../images/guides/routing/willtransition-event.png" alt="Active route" class="highlight">
 
 The argument for the `willTransition` action is the transition
 object. This gives each active route, the opportunity to decide
@@ -81,15 +81,15 @@ the model.
 The purpose of this phase is both to collect and resolve all model
 promises for newly entered routes (or routes with updated contexts),
 as well as allow for any of the
-[beforeModel](/api/classes/Ember.Route.html#method_beforeModel)
+[beforeModel](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel)
 /
-[model](/api/classes/Ember.Route.html#method_model)
+[model](http://emberjs.com/api/classes/Ember.Route.html#method_model)
 /
-[afterModel](/api/classes/Ember.Route.html#method_afterModel)
+[afterModel](http://emberjs.com/api/classes/Ember.Route.html#method_afterModel)
 hooks to reject elsewhere. If any of these hooks return a promise, the
 transition will pause until the promise resolves/rejects.
 
-<img src="/images/guides/routing/route-model-validation.png" alt="Active route" class="highlight">
+<img src="../images/guides/routing/route-model-validation.png" alt="Active route" class="highlight">
 
 If the promise rejects, and `error` action is triggered from the
 erroring route and upwards with the rejected/thrown error. Calling
@@ -100,14 +100,14 @@ no errors).
 
 After the transition has been validated and any models are resolved
 ember enters the Sync exit/enter/setup Phase. Here Ember calls
-[exit](/api/classes/Ember.Route.html#method_exit) on the existing
+[exit](http://emberjs.com/api/classes/Ember.Route.html#method_exit) on the existing
 routes and
-[enter](/api/classes/Ember.Route.html#method_enter)
+[enter](http://emberjs.com/api/classes/Ember.Route.html#method_enter)
 /
-[setup](/api/classes/Ember.Route.html#method_setup)
+[setup](http://emberjs.com/api/classes/Ember.Route.html#method_setup)
 on the newly entered routes.
 
-<img src="/images/guides/routing/sync-phase.png" alt="Active route" class="highlight">
+<img src="../images/guides/routing/sync-phase.png" alt="Active route" class="highlight">
 
 If any errors are thrown, the transition promise will be rejected and
 the `error` action will be triggered from the erroring route and
@@ -118,5 +118,5 @@ resolved and the user is now on the profile page.
 
 ### More Resources
 
-- [Preventing and retrying transitions](/guides/routing/preventing-and-retrying-transitions)
+- [Preventing and retrying transitions](./preventing-and-retrying-transitions)
 - [Ember.js: Transition promises, redirects](https://www.youtube.com/watch?v=EwkaMRJ2tMo)

@@ -1,8 +1,8 @@
 During a route transition, the Ember Router passes a transition
 object to the various hooks on the routes involved in the transition.
 Any hook that has access to this transition object has the ability
-to immediately abort the transition by calling `transition.abort()`, 
-and if the transition object is stored, it can be re-attempted at a 
+to immediately abort the transition by calling `transition.abort()`,
+and if the transition object is stored, it can be re-attempted at a
 later time by calling `transition.retry()`.
 
 ### Preventing Transitions via `willTransition`
@@ -36,18 +36,18 @@ App.FormRoute = Ember.Route.extend({
 });
 ```
 
-When the user clicks on a `{{link-to}}` helper, or when the app initiates a 
+When the user clicks on a `{{link-to}}` helper, or when the app initiates a
 transition by using `transitionTo`, the transition will be aborted and the URL
-will remain unchanged. However, if the browser back button is used to 
-navigate away from `FormRoute`, or if the user manually changes the URL, the 
-new URL will be navigated to before the `willTransition` action is 
-called. This will result in the browser displaying the new URL, even if 
+will remain unchanged. However, if the browser back button is used to
+navigate away from `FormRoute`, or if the user manually changes the URL, the
+new URL will be navigated to before the `willTransition` action is
+called. This will result in the browser displaying the new URL, even if
 `willTransition` calls `transition.abort()`.
 
 ### Aborting Transitions Within `model`, `beforeModel`, `afterModel`
 
 The `model`, `beforeModel`, and `afterModel` hooks described in
-[Asynchronous Routing](/guides/routing/asynchronous-routing)
+[Asynchronous Routing](../asynchronous-routing)
 each get called with a transition object. This makes it possible for
 destination routes to abort attempted transitions.
 
@@ -67,7 +67,7 @@ App.DiscoRoute = Ember.Route.extend({
 Aborted transitions can be retried at a later time. A common use case
 for this is having an authenticated route redirect the user to a login
 page, and then redirecting them back to the authenticated route once
-they've logged in. 
+they've logged in.
 
 ```js
 App.SomeAuthenticatedRoute = Ember.Route.extend({
@@ -96,4 +96,3 @@ App.LoginController = Ember.Controller.extend({
   }
 });
 ```
-

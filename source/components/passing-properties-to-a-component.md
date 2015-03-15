@@ -54,7 +54,7 @@ available inside the component's template using the same name, `title`.
 If, in the above example, the model's `title` property was instead
 called `name`, we would change the component usage to:
 
-```
+```handlebars
 {{blog-post title=name}}
 ```
 

@@ -7,7 +7,7 @@ users of your application to interact with it.
 
 You can make elements in your component interactive by using the
 `{{action}}` helper. This is the [same `{{action}}` helper you use in
-application templates](../templates/actions), but it has an
+application templates](../../templates/actions), but it has an
 important difference when used inside a component.
 
 Instead of sending an action to the template's controller, then bubbling
@@ -42,4 +42,4 @@ The `{{action}}` helper can accept arguments, listen for different event
 types, control how action bubbling occurs, and more.
 
 For details about using the `{{action}}` helper, see the [Actions
-section](../templates/actions) of the Templates chapter.
+section](../../templates/actions) of the Templates chapter.

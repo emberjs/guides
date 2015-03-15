@@ -9,7 +9,7 @@ describing the user interface of your app. And, once you've told
 Ember.js to render a given template on the screen, you don't need to
 write any additional code to make sure it keeps up-to-date.
 
-If you'd prefer an indentation-based alternative to Handlebars syntax, 
+If you'd prefer an indentation-based alternative to Handlebars syntax,
 try [Emblem.js](http://www.emblemjs.com), but make sure you're comfortable
 with Handlebars first!
 
@@ -29,7 +29,7 @@ template inside your HTML by putting it inside a `<script>` tag, like so:
 ```
 
 This template will be compiled automatically and become your
-[application template](/guides/templates/the-application-template),
+[application template](../../templates/the-application-template),
 which will be displayed on the page when your app loads.
 
 You can also define templates by name that can be used later. For
@@ -54,7 +54,7 @@ to Ember.js.
 
 ### Handlebars Expressions
 
-Each template has an associated _controller_: this is where the template 
+Each template has an associated _controller_: this is where the template
 finds the properties that it displays.
 
 You can display a property from your controller by wrapping the property

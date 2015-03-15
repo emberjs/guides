@@ -6,8 +6,10 @@ objects in the following ways:
   interfaces. This polyfills ECMAScript 5 array methods in browsers that
   do not implement them, adds convenience methods and properties to
   built-in arrays, and makes array mutations observable.
+
 * `String` is extended to add convenience methods, such as
-  `camelize()` and `fmt()`. 
+  `camelize()` and `fmt()`.
+
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
   via the `observes()` or `observesBefore()` methods.
@@ -27,24 +29,29 @@ In those cases, where you can't or don't want to modify native
 prototypes, Ember.js allows you to completely disable the extensions
 described above.
 
-To do so, simply set the `EXTEND_PROTOTYPES` flag to `false`:
+To do so, simply set the `EmberENV.EXTEND_PROTOTYPES` flag to `false`:
 
-```javascript
-window.EmberENV = {};
-EmberENV.EXTEND_PROTOTYPES = false;
+```config/environment.js
+ENV = {
+  EmberENV: {
+    EXTEND_PROTOTYPES: false
+  }
+}
 ```
 
-Or you can choose class which you want to disable prototype extension.
-``` javascript
-EmberENV.EXTEND_PROTOTYPES = {
-  String: false,
-  Array: true
-};
-```
+Or you can choose class which you want to disable prototype extension
+by added a property to your application's configuration:
 
-Note that the above code must be evaluated **before** Ember.js loads. If
-you set the flag after the Ember.js JavaScript file has been evaluated,
-the native prototypes will already have been modified.
+```config/environment.js
+ENV = {
+  EmberENV: {
+    EXTEND_PROTOTYPES: {
+      String: false,
+      Array: true
+    }
+  }
+}
+```
 
 ### Life Without Prototype Extension
 
@@ -83,7 +90,7 @@ islands.contains('Oahu');
 #### Strings
 
 Strings will no longer have the convenience methods described in the
-[Ember.String API reference.](/api/classes/Ember.String.html). Instead,
+[Ember.String API reference.](http://emberjs.com/api/classes/Ember.String.html). Instead,
 you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
 
