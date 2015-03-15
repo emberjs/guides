@@ -21,9 +21,11 @@ Having a template whose name starts with `components/` creates a
 component of the same name. Given the above template, you can now use the
 `{{blog-post}}` custom element:
 
-<a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> 
 
-The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:
+The example above uses `<script>` tags to work inside of JSBin.--> 
+
+Ember-cli works by file structure, so there are no `<script>` tags:
 
 ```app/templates/index.hbs
 
