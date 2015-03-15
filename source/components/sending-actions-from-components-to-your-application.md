@@ -153,7 +153,7 @@ Note that we've specified the action to send by setting the component's
 `action` attribute, and we've specified which argument should be sent as
 a parameter by setting the component's `param` attribute.
 
-<a class="jsbin-embed" href="http://jsbin.com/tihavobiki/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!---<a class="jsbin-embed" href="http://jsbin.com/tihavobiki/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 ### Sending Multiple Actions
 
@@ -177,7 +177,7 @@ In this case, you can send the `createUser` action by calling
 `this.sendAction('submit')`, or send the `cancelUserCreation` action by
 calling `this.sendAction('cancel')`.
 
-<a class="jsbin-embed" href="http://jsbin.com/fimevowehe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!---<a class="jsbin-embed" href="http://jsbin.com/fimevowehe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 ### Actions That Aren't Specified
 
