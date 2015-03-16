@@ -2,13 +2,13 @@
 
 Calling `transitionTo` from a route or `transitionToRoute` from a controller
 will stop any transition currently in progress and start a new one, functioning
-as a redirect. `transitionTo` takes parameters and behaves exactly like the [link-to](/guides/templates/links) helper:
+as a redirect. `transitionTo` takes parameters and behaves exactly like the [link-to](../../templates/links) helper:
 
 * If you transition into a route without dynamic segments that route's `model` hook
 will always run.
 
 * If the new route has dynamic segments, you need to pass either a _model_ or an _identifier_ for each segment.
-Passing a model will skip that segment's `model` hook.  Passing an identifier will run the `model` hook and you'll be able to access the identifier in the params. See [Links](/guides/templates/links) for more detail.
+Passing a model will skip that segment's `model` hook.  Passing an identifier will run the `model` hook and you'll be able to access the identifier in the params. See [Links](../../templates/links) for more detail.
 
 ### Before the model is known
 

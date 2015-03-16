@@ -62,10 +62,10 @@ globals from a template.
 ##### New usage of Ember.Select
 
 Most of Ember's provided views are already accessed via helpers. For example,
-the [Ember.TextField](/api/classes/Ember.TextField.html) view is used via the
-[input helper](/api/classes/Ember.Handlebars.helpers.html#method_input).
+the [Ember.TextField](http://emberjs.com/api/classes/Ember.TextField.html) view is used via the
+[input helper](http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_input).
 
-The [Ember.Select](/api/classes/Ember.Select.html) view has not been upgraded to
+The [Ember.Select](http://emberjs.com/api/classes/Ember.Select.html) view has not been upgraded to
 have a helper. Instead, it was suggested that you call it via the global
 class name:
 
@@ -80,8 +80,8 @@ on an application as `select`. The new usage is:
 {{view "select" content=manyItems}}
 ```
 
-See the updated [Ember.Select](/api/classes/Ember.Select.html) documentation
-and the [built-in views guide](/guides/views/built-in-views) for more details
+See the updated [Ember.Select](http://emberjs.com/api/classes/Ember.Select.html) documentation
+and the [built-in views guide](../../views/built-in-views) for more details
 and examples.
 
 ##### Ember.js libraries and plugins
@@ -110,8 +110,8 @@ Ember.Application.initializer({
 ```
 
 More details on how to register an Ember.js framework component are available
-in the [initializer API documentation](/api/classes/Ember.Application.html#toc_initializers)
-and the [dependency injection guide](/guides/understanding-ember/dependency-injection-and-service-lookup).
+in the [initializer API documentation](http://emberjs.com/api/classes/Ember.Application.html#toc_initializers)
+and the [dependency injection guide](../../understanding-ember/dependency-injection-and-service-lookup).
 
 #### Deprecate location: 'hash' paths that don't include a forward slash. e.g. #/foo NOT #foo
 

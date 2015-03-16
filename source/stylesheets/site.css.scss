@@ -7,6 +7,7 @@
 @import 'guides';
 @import 'shared';
 @import 'vendor/swiftype.autocomplete';
+@import 'vendor/select2';
 @import 'select2';
 
 /* Calculated page dimensions. */
@@ -812,20 +813,6 @@ a.toc-anchor {
 
 .next-guide {
   float: right;
-}
-
-.guides_getting-started {
-  .jsbin-embed {
-    /**
-      height of TodoMVC with three sample todos
-      after rendering. JSBin calculates height
-      before ember has a chance to render.
-
-      This style is !important to get around
-      the inline style on .jsbin-embed
-    **/
-    min-height: 519px !important;
-  }
 }
 
 /**

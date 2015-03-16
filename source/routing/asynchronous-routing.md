@@ -206,7 +206,7 @@ App.SecretArticlesRoute  = Ember.Route.extend({
 });
 ```
 
-[See the API Docs for `beforeModel`](/api/classes/Ember.Route.html#method_beforeModel)
+[See the API Docs for `beforeModel`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel)
 
 #### `afterModel`
 
@@ -219,9 +219,9 @@ depends on the fully resolved value of a model.
 ```js
 App.ArticlesRoute = Ember.Route.extend({
   model: function() {
-    // App.Article.find() returns a promise-like object
+    // `this.store.find('article')` returns a promise-like object
     // (it has a `then` method that can be used like a promise)
-    return App.Article.find();
+    return this.store.find('article');
   },
   afterModel: function(articles) {
     if (articles.get('length') === 1) {
@@ -237,7 +237,7 @@ reason, as mentioned above, is that transitions initiated
 via `{{link-to}}` or `transitionTo` likely already provided the
 model for this route, so `model` wouldn't be called in these cases.
 
-[See the API Docs for `afterModel`](/api/classes/Ember.Route.html#method_afterModel)
+[See the API Docs for `afterModel`](http://emberjs.com/api/classes/Ember.Route.html#method_afterModel)
 
 ### More Resources
 

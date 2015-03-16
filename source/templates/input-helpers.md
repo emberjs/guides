@@ -7,9 +7,9 @@ create common form controls. The `{{input}}` helper wraps the built-in
 declarations almost identical to how you'd create a traditional `<input>` or
 `<textarea>` element.
 
-[1]: /api/classes/Ember.TextField.html
-[2]: /api/classes/Ember.Checkbox.html
-[3]: /api/classes/Ember.TextArea.html
+[1]: http://emberjs.com/api/classes/Ember.TextField.html
+[2]: http://emberjs.com/api/classes/Ember.Checkbox.html
+[3]: http://emberjs.com/api/classes/Ember.TextArea.html
 
 ### Text fields
 
@@ -59,7 +59,7 @@ To dispatch an action on specific events, such as `enter` or `key-press`, use th
 {{input value=firstName action="updateFirstName" on="key-press"}}
 ```
 
-[Event Names](/api/classes/Ember.View.html#toc_event-names) must be dasherized when assigned to `on`.
+[Event Names](http://emberjs.com/api/classes/Ember.View.html#toc_event-names) must be dasherized when assigned to `on`.
 
 ### Checkboxes
 
@@ -116,4 +116,4 @@ Will bind the value of the text area to `name` on the current context.
 See the [Built-in Views][4] section of these guides to learn how to further
 extend these views.
 
-[4]: /guides/views/built-in-views
+[4]: ../../views/built-in-views
