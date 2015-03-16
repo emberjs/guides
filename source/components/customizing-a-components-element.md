@@ -19,15 +19,12 @@ a `tagName` property. This property can be any valid HTML5 tag name as a
 string.
 
 ```app/components/navigation-bar.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   tagName: 'nav'
 });
 ```
 
-```app/templates/components/navigation-bar.js
-
+```templates/components/navigation-bar.hbs
 <ul>
   <li>{{#link-to 'home'}}Home{{/link-to}}</li>
   <li>{{#link-to 'about'}}About{{/link-to}}</li>
@@ -40,9 +37,6 @@ You can also specify which class names are applied to the component's
 element by setting its `classNames` property to an array of strings:
 
 ```app/components/navigation-bar.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   classNames: ['primary']
 });
@@ -53,9 +47,6 @@ you can use class name bindings. If you bind to a Boolean property, the
 class name will be added or removed depending on the value:
 
 ```app/components/todo-item.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   classNameBindings: ['isUrgent'],
   isUrgent: true
@@ -74,9 +65,6 @@ By default, the name of the Boolean property is dasherized. You can customize th
 applied by delimiting it with a colon:
 
 ```app/components/todo-item.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   classNameBindings: ['isUrgent:urgent'],
   isUrgent: true
@@ -92,9 +80,6 @@ This would render this HTML:
 Besides the custom class name for the value being `true`, you can also specify a class name which is used when the value is `false`:
 
 ```app/components/todo-item.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   classNameBindings: ['isEnabled:enabled:disabled'],
   isEnabled: false
@@ -157,8 +142,6 @@ You can bind attributes to the DOM element that represents a component
 by using `attributeBindings`:
 
 ```app/components/link-item.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['href'],
@@ -169,8 +152,6 @@ export default Ember.Component.extend({
 You can also bind these attributes to differently named properties:
 
 ```app/components/link-item.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['customHref:href'],
@@ -178,7 +159,7 @@ export default Ember.Component.extend({
 });
 ```
 
-<!---### Example
+<!-- ### Example
 
 Here is an example todo application that shows completed todos with a
 red background:
@@ -186,4 +167,4 @@ red background:
 <a class="jsbin-embed" href="http://jsbin.com/nefisejade/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 **Note:** The binding functionality in this very simple example could also be implemented without
-the use of `Ember.Component` but by simply [binding element attributes](../templates/binding-element-attributes) or [binding element class names](../templates/binding-element-class-names).-->
+the use of `Ember.Component` but by simply [binding element attributes](../../templates/binding-element-attributes) or [binding element class names](../../templates/binding-element-class-names). -->
