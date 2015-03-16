@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/bsclifton/middleman-swiftype.git
-  revision: 0fbf932f53eaa04f062909e7ff98814c6d6e5c83
+  remote: git://github.com/LeonB/middleman-swiftype.git
+  revision: 13bd1dffa195553cc4bab0f01985dab31388ec82
   specs:
     middleman-swiftype (0.0.1)
       middleman-core (>= 3.0)
@@ -127,6 +127,11 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry (0.9.12.6-x86-mingw32)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -185,6 +190,7 @@ GEM
     websocket-driver (0.5.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.1)
+    win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -205,8 +211,8 @@ DEPENDENCIES
   poltergeist
   pry
   rack
-  rails-assets-js-md5
-  rails-assets-moment
+  rails-assets-js-md5!
+  rails-assets-moment!
   rake
   redcarpet
   rspec
