@@ -9,13 +9,9 @@ ensures Ember picks up the components automatically.
 A sample component template would look like this:
 
 ```app/components/blog-post.hbs
-
 <h1>Blog Post</h1>
 <p>Lorem ipsum dolor sit amet.</p>
 ```
-
-If you're using build tools, create a Handlebars file at
-`app/components/blog-post.hbs`.
 
 Having a template whose name starts with `components/` creates a
 component of the same name. Given the above template, you can now use the
@@ -41,25 +37,22 @@ The example above uses `<script>` tags to work inside of JSBin.-->
 ```
 
 ```app/routes/index.js
-import Ember from 'ember'
+  var posts = [{
+    title: "Rails is omakase",
+    body: "There are lots of à la carte software environments in this world."
+  }, {
+    title: "Broken Promises",
+    body: "James Coglan wrote a lengthy article about Promises in node.js."
+  }];
 
-var posts = [{
-  title: "Rails is omakase",
-  body: "There are lots of à la carte software environments in this world."
-}, {
-  title: "Broken Promises",
-  body: "James Coglan wrote a lengthy article about Promises in node.js."
-}];
-
-export default Ember.Route.extend({
-  model: function() {
-  return posts;
-  }
-});
+  export default Ember.Route.extend({
+    model: function() {
+    return posts;
+    }
+  });
 ```
 
 ```app/components/blog-post.js
-
 export default Ember.Component.extend({
   
 });
