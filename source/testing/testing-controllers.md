@@ -9,8 +9,8 @@ of the ember-qunit framework.
 Here we have a controller `PostsController` with some computed properties and an
 action `setProps`.
 
-```javascript
-App.PostsController = Ember.ArrayController.extend({
+```app/controllers/posts.js
+export default Ember.Controller.extend({
 
   propA: 'You need to write tests',
   propB: 'And write one for me too',
@@ -28,12 +28,15 @@ App.PostsController = Ember.ArrayController.extend({
 });
 ```
 
-`setProps` sets a property on the controller and also calls a method. To write a
-test for this action, we would use the `moduleFor` helper to setup a test
+`setProps` sets a property on the controller and also calls a method. In our 
+generated test, ember-cli already uses the `moduleFor` helper to setup a test 
 container:
 
-```javascript
-moduleFor('controller:posts', 'Posts Controller');
+```tests/unit/controllers/posts-test.js
+moduleFor('controller:posts', {
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+});
 ```
 
 Next we use `this.subject()` to get an instance of the `PostsController` and
@@ -41,16 +44,16 @@ write a test to check the action. `this.subject()` is a helper method from the
 `ember-qunit` library that returns a singleton instance of the module set up
 using `moduleFor`.
 
-```javascript
-test('calling the action setProps updates props A and B', function() {
-  expect(4);
+```tests/unit/controllers/posts-test.js
+test('calling the action setProps updates props A and B', function(assert) {
+  assert.expect(4);
 
   // get the controller instance
   var ctrl = this.subject();
 
   // check the properties before the action is triggered
-  equal(ctrl.get('propA'), 'You need to write tests');
-  equal(ctrl.get('propB'), 'And write one for me too');
+  assert.equal(ctrl.get('propA'), 'You need to write tests');
+  assert.equal(ctrl.get('propB'), 'And write one for me too');
 
   // trigger the action on the controller by using the `send` method,
   // passing in any params that our action may be expecting
@@ -58,15 +61,10 @@ test('calling the action setProps updates props A and B', function() {
 
   // finally we assert that our values have been updated
   // by triggering our action.
-  equal(ctrl.get('propA'), 'Testing is cool');
-  equal(ctrl.get('propB'), 'Testing Rocks!');
+  assert.equal(ctrl.get('propA'), 'Testing is cool');
+  assert.equal(ctrl.get('propB'), 'Testing Rocks!');
 });
 ```
-
-#### Live Example
-
-<a class="jsbin-embed" href="http://jsbin.com/pulenamuwu/1/embed?output">Unit Testing
-Controllers "Actions"</a>
 
 ### Testing Controller Needs
 
@@ -74,12 +72,14 @@ Sometimes controllers have dependencies on other controllers. This is
 accomplished by using [needs]. For example, here are two simple controllers. The
 `PostController` is a dependency of the `CommentsController`:
 
-```javascript
-App.PostController = Ember.ObjectController.extend({
-  // ...
+```app/controllers/post.js
+export default Ember.Controller.extend({
+  title: Ember.computed.alias('model.title')
 });
+```
 
-App.CommentsController = Ember.ArrayController.extend({
+```app/controllers/comments.js
+export default Ember.Controller.extend({
   needs: 'post',
   title: Ember.computed.alias('controllers.post.title'),
 });
@@ -88,7 +88,7 @@ App.CommentsController = Ember.ArrayController.extend({
 This time when we setup our `moduleFor` we need to pass an options object as
 our third argument that has the controller's `needs`.
 
-```javascript
+```tests/unit/controllers/comments-test.js
 moduleFor('controller:comments', 'Comments Controller', {
   needs: ['controller:post']
 });
@@ -97,13 +97,13 @@ moduleFor('controller:comments', 'Comments Controller', {
 Now let's write a test that sets a property on our `post` model in the
 `PostController` that would be available on the `CommentsController`.
 
-```javascript
-test('modify the post', function() {
-  expect(2);
+```tests/unit/controllers/comments-test.js
+test('modify the post', function(assert) {
+  assert.expect(2);
 
   // grab an instance of `CommentsController` and `PostController`
-  var ctrl = this.subject(),
-      postCtrl = ctrl.get('controllers.post');
+  var ctrl = this.subject();
+  var postCtrl = ctrl.get('controllers.post');
 
   // wrap the test in the run loop because we are dealing with async functions
   Ember.run(function() {
@@ -112,23 +112,16 @@ test('modify the post', function() {
     postCtrl.set('model', Ember.Object.create({ title: 'foo' }));
 
     // check the values before we modify the post
-    equal(ctrl.get('title'), 'foo');
+    assert.equal(ctrl.get('title'), 'foo');
 
     // modify the title of the post
     postCtrl.get('model').set('title', 'bar');
 
     // assert that the controllers title has changed
-    equal(ctrl.get('title'), 'bar');
-
+    assert.equal(ctrl.get('title'), 'bar');
   });
 });
 ```
-
-#### Live Example
-
-<a class="jsbin-embed" href="http://jsbin.com/loluhixoya/1/embed?output">Unit Testing Controllers "Needs"</a>
-
-<script src="http://static.jsbin.com/js/embed.js"></script>
 
 [Unit Testing Basics]: /guides/testing/unit-testing-basics
 [needs]: /guides/controllers/dependencies-between-controllers

@@ -210,8 +210,8 @@
   chapters:
     - title: "Introduction"
       url: "index"
-    - title: "Integration Tests"
-      url: "integration"
+    - title: "Acceptance Tests"
+      url: "acceptance"
     - title: "Test Helpers"
       url: "test-helpers"
     - title: "Testing User Interaction"
@@ -234,8 +234,6 @@
       url: "testing-models"
     # - title: "Testing XHR"
     #   url: "testing-xhr"
-    - title: "Automating Tests with Runners"
-      url: "test-runners"
 
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
