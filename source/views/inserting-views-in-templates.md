@@ -2,42 +2,35 @@ So far, we've discussed writing templates for a single view. However, as your ap
 
 ### {{view}}
 
-To add a child view to a parent, use the `{{view}}` helper. The `{{view}}` helper takes a string used to look up the view class.
+To add a child view to a parent, use the `{{view}}` helper.
+The `{{view}}` helper takes a string used to look up the view class.
 
-```javascript
-// Define parent view
-App.UserView = Ember.View.extend({
-  templateName: 'user',
-
+```app/views/user.js
+export default Ember.View.extend({
   firstName: "Albert",
   lastName: "Hofmann"
 });
+```
 
-// Define child view
-App.InfoView = Ember.View.extend({
-  templateName: 'info',
-
+```app/views/info.js
+export default Ember.View.extend({
   posts: 25,
   hobbies: "Riding bicycles"
 });
 ```
 
-```html
-<script type="text/x-handlebars" data-template-name="user">
-  User: {{view.firstName}} {{view.lastName}}
-  {{view "info"}}
-</script>
+```app/templates/user.hbs
+User: {{view.firstName}} {{view.lastName}}
+{{view "info"}}
 ```
 
-```html
-<script type="text/x-handlebars" data-template-name="info">
-  <b>Posts:</b> {{view.posts}}
-  <br>
-  <b>Hobbies:</b> {{view.hobbies}}
-</script>
+```app/templates/info.hbs
+<b>Posts:</b> {{view.posts}}
+<br>
+<b>Hobbies:</b> {{view.hobbies}}
 ```
 
-If we were to create an instance of `App.UserView` and render it, we would get
+If we were to create an instance of `view:user` and render it, we would get
 a DOM representation like this:
 
 ```html
@@ -49,50 +42,21 @@ User: Albert Hofmann
 </div>
 ```
 
-#### Relative Paths
-
-Instead of specifying an absolute path, you can also specify which view class
-to use relative to the parent view. For example, we could nest the above view
-hierarchy like this:
-
-```javascript
-App.UserView = Ember.View.extend({
-  templateName: 'user',
-
-  firstName: "Albert",
-  lastName: "Hofmann",
-
-  infoView: Ember.View.extend({
-    templateName: 'info',
-
-    posts: 25,
-    hobbies: "Riding bicycles"
-  })
-});
-```
-
-```handlebars
-User: {{view.firstName}} {{view.lastName}}
-{{view view.infoView}}
-```
-
-When using the view helper with a property, prefer starting the property name with a lowercase letter. Using an uppercase letter, such as in `{{view MyClass}}` may trigger a deprecated use-case.
-
 ### Setting Child View Templates
 
 If you'd like to specify the template your child views use inline in
 the main template, you can use the block form of the `{{view}}` helper.
 We might rewrite the above example like this:
 
-```javascript
-App.UserView = Ember.View.extend({
-  templateName: 'user',
-
+```app/views/user.js
+export default Ember.View.extend({
   firstName: "Albert",
   lastName: "Hofmann"
 });
+```
 
-App.InfoView = Ember.View.extend({
+```app/views/info.js
+export default Ember.View.extend({
   posts: 25,
   hobbies: "Riding bicycles"
 });
