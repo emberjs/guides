@@ -16,10 +16,9 @@ A sample component template would look like this:
 Having a template whose name starts with `components/` creates a
 component of the same name. Given the above template, you can now use the
 `{{blog-post}}` custom element:
-<!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> 
 
-The example above uses `<script>` tags to work inside of JSBin.-->
-
+<!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> -->
+<!--- The example above uses `<script>` tags to work inside of JSBin.-->
 ```app/templates/index.hbs
 {{#each}}
   {{#blog-post title=title}}
@@ -47,7 +46,7 @@ var posts = [{
 
 export default Ember.Route.extend({
   model: function() {
-  return posts;
+    return posts;
   }
 });
 ```
@@ -81,7 +80,7 @@ changes to the component's element using JavaScript.
 
 Ember knows which subclass powers a component based on its name. For
 example, if you have a component called `blog-post`, you would create a
-a file at `app/components/blog-post.js`. If your component was called
+file at `app/components/blog-post.js`. If your component was called
 `audio-player-controls`, the file name would be at 
 `app/components/audio-player-controls.js`
 
