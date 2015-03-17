@@ -8,7 +8,7 @@ ensures Ember picks up the components automatically.
 
 A sample component template would look like this:
 
-```app/components/blog-post.hbs
+```app/templates/components/blog-post.hbs
 <h1>Blog Post</h1>
 <p>Lorem ipsum dolor sit amet.</p>
 ```

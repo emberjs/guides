@@ -62,13 +62,12 @@ var posts = [{
 
 export default Ember.Route.extend({
   model: function() {
-  return posts;
+    return posts;
   }
 });
 ```
 
 ```app/components/blog-post.js
-
 export default Ember.Component.extend({
 
 });
