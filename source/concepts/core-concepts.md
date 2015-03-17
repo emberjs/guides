@@ -1,5 +1,5 @@
 To get started with Ember.js, there are a few core concepts you
-should understand. 
+should understand.
 
 Ember.js is designed to help developers build ambitiously large web
 applications that are competitive with native apps. Doing so requires
@@ -72,17 +72,9 @@ although Ember is agnostic to the backend that you choose.
 A **route** is an object that tells the template which model it should
 display.
 
-#### Controllers
-
-A **controller** is an object that stores _application state_. A
-template can optionally have a controller in addition to a model, and
-can retrieve properties from both.
-
----
-
 These are the core concepts you'll need to understand as you develop
 your Ember.js app. They are designed to scale up in complexity, so that
-adding new functionality doesn't force you to go back and refactor major 
+adding new functionality doesn't force you to go back and refactor major
 parts of your app.
 
 Now that you understand the roles of these objects, you're equipped to
