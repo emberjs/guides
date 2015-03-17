@@ -18,7 +18,7 @@ bubble.
 For example, imagine the following component that shows a post's title.
 When the title is clicked, the entire post body is shown:
 
-```app/templates/components/post-summary.js
+```app/templates/components/post-summary.hbs
 <h3 {{action "toggleBody"}}>{{title}}</h3>
 {{#if isShowingBody}}
   <p>{{{body}}}</p>
