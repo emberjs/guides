@@ -76,9 +76,6 @@ For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
 ```app/routes/index.js
-
-import Ember from 'ember';
-
 export default Ember.Route.extend({
   model: function() {
     return {
@@ -100,7 +97,6 @@ export default Ember.Route.extend({
 ```
 
 ```app/templates/index.hbs
-
 {{#each todo in todos}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
 {{/each}}
@@ -115,7 +111,6 @@ In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
 ```app/components/confirm-button.js
-
 export default Ember.Component.extend({
   actions: {
     showConfirmation: function() {
@@ -131,7 +126,6 @@ export default Ember.Component.extend({
 ```
 
 ```app/templates/components/confirm-button.hbs
-
 {{#if isShowingConfirmation}}
   <button {{action "confirm"}}>Click again to confirm</button>
 {{else}}
@@ -143,7 +137,6 @@ Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
 ```app/templates/index.hbs
-
 {{#each todo in todos}}
   <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
 {{/each}}
@@ -188,9 +181,6 @@ For example, if you define a component that triggers the primary action
 on click:
 
 ```app/components/my-button.js
-
-import Ember from 'ember'
-
 export default Ember.Component.extend({
   click: function() {
     this.sendAction();

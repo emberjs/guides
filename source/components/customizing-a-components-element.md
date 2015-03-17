@@ -96,9 +96,6 @@ You can also specify a class which should only be added when the property is
 `false` by declaring `classNameBindings` like this:
 
 ```app/components/todo-item.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   classNameBindings: ['isEnabled::disabled'],
   isEnabled: false
@@ -121,9 +118,6 @@ If the bound property's value is a string, that value will be added as a class n
 modification:
 
 ```app/components/todo-item.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   classNameBindings: ['priority'],
   priority: 'highestPriority'

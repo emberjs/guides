@@ -37,19 +37,19 @@ The example above uses `<script>` tags to work inside of JSBin.-->
 ```
 
 ```app/routes/index.js
-  var posts = [{
+var posts = [{
     title: "Rails is omakase",
     body: "There are lots of à la carte software environments in this world."
   }, {
     title: "Broken Promises",
     body: "James Coglan wrote a lengthy article about Promises in node.js."
-  }];
+}];
 
-  export default Ember.Route.extend({
-    model: function() {
-    return posts;
-    }
-  });
+export default Ember.Route.extend({
+  model: function() {
+  return posts;
+  }
+});
 ```
 
 ```app/components/blog-post.js
