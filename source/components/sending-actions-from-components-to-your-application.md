@@ -45,9 +45,6 @@ the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
 ```app/components/my-button.js
-
-import Ember from 'ember'
-
 export default Ember.Component.extend({
   click: function() {
     this.sendAction();
