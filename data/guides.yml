@@ -198,8 +198,6 @@
       url: "built-in-views"
     - title: "Manually Managing View Hierarchy"
       url: "manually-managing-view-hierarchy"
-    #- title: "Building Reusable Views"
-      #url: "building-reusable-views"
 
 - title: "Enumerables"
   url: 'enumerables'
