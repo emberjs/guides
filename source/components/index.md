@@ -52,14 +52,12 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 ```
 
 ```app/routes/index.js
-import Ember from 'ember'
-
 var posts = [{
   title: "Rails is omakase",
   body: "There are lots of à la carte software environments in this world."
-}, {
-  title: "Broken Promises",
-  body: "James Coglan wrote a lengthy article about Promises in node.js."
+  }, {
+    title: "Broken Promises",
+    body: "James Coglan wrote a lengthy article about Promises in node.js."
 }];
 
 export default Ember.Route.extend({

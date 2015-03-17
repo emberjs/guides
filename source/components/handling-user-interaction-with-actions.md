@@ -19,7 +19,6 @@ For example, imagine the following component that shows a post's title.
 When the title is clicked, the entire post body is shown:
 
 ```app/templates/components/post-summary.js
-
 <h3 {{action "toggleBody"}}>{{title}}</h3>
 {{#if isShowingBody}}
   <p>{{{body}}}</p>
@@ -27,9 +26,6 @@ When the title is clicked, the entire post body is shown:
 ```
 
 ```app/components/post-summary.js
-
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   actions: {
     toggleBody: function() {

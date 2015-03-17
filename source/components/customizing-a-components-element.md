@@ -95,8 +95,8 @@ This would render this HTML:
 You can also specify a class which should only be added when the property is
 `false` by declaring `classNameBindings` like this:
 
-```javascript
-App.TodoItemComponent = Ember.Component.extend({
+```app/components/todo-item.js
+export default Ember.Component.extend({
   classNameBindings: ['isEnabled::disabled'],
   isEnabled: false
 });
@@ -117,8 +117,8 @@ If the `isEnabled` property is set to `true`, no class name is added:
 If the bound property's value is a string, that value will be added as a class name without
 modification:
 
-```javascript
-App.TodoItemComponent = Ember.Component.extend({
+```app/components/todo-item.js
+export default Ember.Component.extend({
   classNameBindings: ['priority'],
   priority: 'highestPriority'
 });
