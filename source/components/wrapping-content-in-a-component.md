@@ -4,11 +4,9 @@ provided by other templates.
 For example, imagine we are building a `blog-post` component that we can
 use in our application to display a blog post:
 
-```handlebars
-<script type="text/x-handlebars" id="components/blog-post">
-  <h1>{{title}}</h1>
-  <div class="body">{{body}}</div>
-</script>
+```app/components/blog-post.hbs
+<h1>{{title}}</h1>
+<div class="body">{{body}}</div>
 ```
 
 Now, we can use the `{{blog-post}}` component and pass it properties
@@ -18,7 +16,7 @@ in another template:
 {{blog-post title=title body=body}}
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/cojuk/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!---<a class="jsbin-embed" href="http://jsbin.com/hihunemapu/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 (See [Passing Properties to a
 Component](../passing-properties-to-a-component/) for
@@ -42,11 +40,9 @@ and tell Ember where the block content should be rendered using the
 `{{yield}}` helper. To update the example above, we'll first change the component's
 template:
 
-```handlebars
-<script type="text/x-handlebars" id="components/blog-post">
-  <h1>{{title}}</h1>
-  <div class="body">{{yield}}</div>
-</script>
+```app/templates/components/blog-post.hbs
+<h1>{{title}}</h1>
+<div class="body">{{yield}}</div>
 ```
 
 You can see that we've replaced `{{body}}` with `{{yield}}`. This tells
@@ -55,19 +51,19 @@ Ember that this content will be provided when the component is used.
 Next, we'll update the template using the component to use the block
 form:
 
-```handlebars
+```app/templates/index.hbs
 {{#blog-post title=title}}
   <p class="author">by {{author}}</p>
   {{body}}
 {{/blog-post}}
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/quyoco/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<!---<a class="jsbin-embed" href="http://jsbin.com/homepowihe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 It's important to note that the template scope inside the component
 block is the same as outside. If a property is available in the template
 outside the component, it is also available inside the component block.
 
-This JSBin illustrates the concept:
+<!---This JSBin illustrates the concept:
 
-<a class="jsbin-embed" href="http://jsbin.com/rewasu/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/cavucexuru/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->

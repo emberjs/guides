@@ -6,31 +6,56 @@ create a `components/blog-post` template.
 but `post` is not. This prevents clashes with current or future HTML element names, and
 ensures Ember picks up the components automatically.
 
-If you are including your Handlebars templates inside an HTML file via
-`<script>` tags, it would look like this:
+A sample component template would look like this:
 
-```handlebars
-<script type="text/x-handlebars" id="components/blog-post">
-  <h1>Blog Post</h1>
-  <p>Lorem ipsum dolor sit amet.</p>
-</script>
+```app/templates/components/blog-post.hbs
+<h1>Blog Post</h1>
+<p>Lorem ipsum dolor sit amet.</p>
 ```
-
-If you're using build tools, create a Handlebars file at
-`templates/components/blog-post.handlebars`.
 
 Having a template whose name starts with `components/` creates a
 component of the same name. Given the above template, you can now use the
 `{{blog-post}}` custom element:
 
-```handlebars
-<h1>My Blog</h1>
-{{#each post in model}}
-  {{blog-post}}
+<!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> -->
+<!--- The example above uses `<script>` tags to work inside of JSBin.-->
+```app/templates/index.hbs
+{{#each}}
+  {{#blog-post title=title}}
+    {{body}}
+  {{/blog-post}}
 {{/each}}
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/juvic/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+```app/templates/components/blog-post.hbs
+<article class="blog-post">
+  <h1>{{title}}</h1>
+  <p>{{yield}}</p>
+  <p>Edit title: {{input type="text" value=title}}</p>
+</article>
+```
+
+```app/routes/index.js
+var posts = [{
+    title: "Rails is omakase",
+    body: "There are lots of à la carte software environments in this world."
+  }, {
+    title: "Broken Promises",
+    body: "James Coglan wrote a lengthy article about Promises in node.js."
+}];
+
+export default Ember.Route.extend({
+  model: function() {
+    return posts;
+  }
+});
+```
+
+```app/components/blog-post.js
+export default Ember.Component.extend({
+  
+});
+```
 
 Each component, under the hood, is backed by an element. By default
 Ember will use a `<div>` element to contain your component's template.
@@ -55,9 +80,9 @@ changes to the component's element using JavaScript.
 
 Ember knows which subclass powers a component based on its name. For
 example, if you have a component called `blog-post`, you would create a
-subclass called `App.BlogPostComponent`. If your component was called
-`audio-player-controls`, the class name would be
-`App.AudioPlayerControlsComponent`.
+file at `app/components/blog-post.js`. If your component was called
+`audio-player-controls`, the file name would be at 
+`app/components/audio-player-controls.js`
 
 In other words, Ember will look for a class with the camelized name of
 the component, followed by `Component`.

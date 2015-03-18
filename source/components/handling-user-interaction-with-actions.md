@@ -18,17 +18,15 @@ bubble.
 For example, imagine the following component that shows a post's title.
 When the title is clicked, the entire post body is shown:
 
-```handlebars
-<script type="text/x-handlebars" id="components/post-summary">
-  <h3 {{action "toggleBody"}}>{{title}}</h3>
-  {{#if isShowingBody}}
-    <p>{{{body}}}</p>
-  {{/if}}
-</script>
+```app/templates/components/post-summary.hbs
+<h3 {{action "toggleBody"}}>{{title}}</h3>
+{{#if isShowingBody}}
+  <p>{{{body}}}</p>
+{{/if}}
 ```
 
-```js
-App.PostSummaryComponent = Ember.Component.extend({
+```app/components/post-summary.js
+export default Ember.Component.extend({
   actions: {
     toggleBody: function() {
       this.toggleProperty('isShowingBody');
@@ -36,7 +34,8 @@ App.PostSummaryComponent = Ember.Component.extend({
   }
 });
 ```
-<a class="jsbin-embed" href="http://jsbin.com/yuzena/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+
+<!---<a class="jsbin-embed" href="http://jsbin.com/ciwenemedi/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 The `{{action}}` helper can accept arguments, listen for different event
 types, control how action bubbling occurs, and more.
