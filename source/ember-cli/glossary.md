@@ -23,7 +23,7 @@ Browsers that update themselves (without user intervention).
 
 
 ## ES3, ES5, ES5.1, ES6 (aka ES2015), etc
-The ES standing for EMCAScript and the numeral following being its spec version; basically the version of JavaScript.
+ES stands for ECMAScript, which is the specification that JavaScript is based on. The number that follows is the version of the specification.
 
 Most browsers support at least ES5, and some even have ES6 (also known as ES2015) support. You can check each browser's support (including yours) here:
 
@@ -55,6 +55,7 @@ Asynchronous calls typically return a promise (or deferred). This is an object w
 Ember makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
 
 [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
+[emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
 
 
 ## SSR
@@ -68,7 +69,7 @@ When related to JavaScript, this can be part of your build process which "transp
 
 Besides ES6, you'll see a lot of content about compiling/transpiling CoffeeScript, a short-hand language which can "compile" to JavaScript.
 
-* Ember CLI specifically uses the <a href="https://github.com/esnext/es6-module-transpiler">ES6 Module Transpiler
+* Ember CLI specifically uses [Babel](https://babeljs.io/) via the [ember-cli-babel](https://github.com/babel/ember-cli-babel) plugin.
 
 
 ## Shadow DOM
