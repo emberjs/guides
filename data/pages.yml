@@ -112,6 +112,8 @@
       url: "handling-user-interaction-with-actions"
     - title: "Sending Actions from Components to Your Application"
       url: "sending-actions-from-components-to-your-application"
+    - title: "Composing Components"
+      url: "composing-components"
 
 - title: "Controllers"
   url: 'controllers'
