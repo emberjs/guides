@@ -228,3 +228,38 @@ function fooObserver(obj){
 addObserver(obj, 'foo', fooObserver);
 fooObserver(obj); // Optionally call the observer immediately
 ```
+
+### Deprecations Added in 1.12
+
+#### Deprecate non-block-params {{each}} helper syntax
+
+Now that we have the new block params helper syntax, this old syntax has become redundant.
+
+Before:
+
+```js
+{{#each foo in bar}}
+```
+
+After:
+
+```js
+{{#each bar as |foo|}}
+```
+
+#### Deprecate non-block-params {{with}} syntax
+
+Now that we have the new block helper syntax, this old syntax has become redundant.
+
+Before:
+
+```js
+{{#with foo as bar}}
+```
+
+After:
+
+```js
+{{#with foo as |bar|}}
+```
+
