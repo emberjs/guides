@@ -6,15 +6,11 @@ Ember.js provides several helpers that allow you to render other views and templ
 
 `{{partial}}` does not change context or scope.  It simply drops the given template into place with the current scope.
 
-```handlebars
-// app/templates/author.hbs
-
+```app/templates/author.hbs
 Written by {{author.firstName}} {{author.lastName}}
 ```
 
-```handlebars
-// app/templates/post.hbs
-
+```app/templates/post.hbs
 <h1>{{title}}</h1>
 <div>{{body}}</div>
 {{partial "author"}}
@@ -32,9 +28,7 @@ Written by {{author.firstName}} {{author.lastName}}
 
 This helper works like the partial helper, except instead of providing a template to be rendered within the current template, you provide a view class.  The view controls what template is rendered.
 
-```javascript
-// app/views/author.js
-
+```app/views/author.js
 export default Ember.View.extend({
   // We are setting templateName manually here to the default value
   templateName: "author",
@@ -47,15 +41,11 @@ export default Ember.View.extend({
 })
 ```
 
-```handlebars
-// app/views/author.hbs
-
+```app/views/author.hbs
 Written by {{view.fullName}}
 ```
 
-```handlebars
-// app/templates/author.hbs
-
+```app/templates/author.hbs
 <h1>{{title}}</h1>
 <div>{{body}}</div>
 {{view "author"}}
@@ -97,25 +87,18 @@ For more information, see [Inserting Views in Templates](../../views/inserting-v
 
 Modifying the post / author example slightly:
 
-```handlebars
-// app/templates/author.hbs
-
+```app/templates/author.hbs
 Written by {{firstName}} {{lastName}}.
 Total Posts: {{postCount}}
 ```
 
-```handlebars
-// app/templates/post.hbs
-
+```app/templates/post.hbs
 <h1>{{title}}</h1>
 <div>{{body}}</div>
 {{render "author" author}}
 ```
 
-```javascript
-// app/controllers/author.js
-import Ember from 'ember';
-
+```app/controllers/author.js
 export default Ember.ObjectController.extend({
   postCount: function() {
     return this.get("model.posts.length");

@@ -33,10 +33,7 @@ put them into the DOM.
 
 By default, your top-most application template is bound to your `ApplicationController`. Note that this file is not shown by default because it is created behind the scenes by Ember CLI. To customize the controller, create the following file:
 
-```javascript
-// app/controllers/application.js
-import Ember from 'ember';
-
+```app/controllers/application.js
 export default Ember.Controller.extend({
   firstName: "Trek",
   lastName: "Glowacki"

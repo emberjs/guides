@@ -56,12 +56,10 @@ renders the following HTML:
 <input id="ember257" class="ember-view ember-text-field" type="text" title="Name">
 ```
 
-There are two ways to enable support for data attributes. One way would be to add an 
+There are two ways to enable support for data attributes. One way would be to add an
 attribute binding on the view, e.g. `Ember.LinkView` or `Ember.TextField` for the specific attribute:
 
 ```javascript
-import Ember from 'ember';
-
 export default Ember.LinkView.reopen({
   attributeBindings: ['data-toggle']
 });
@@ -76,7 +74,7 @@ Now the same handlebars code above renders the following HTML:
 ```html
 <a id="ember240" class="ember-view" href="#/photos" data-toggle="dropdown">Photos</a>
 
-<input id="ember259" class="ember-view ember-text-field" 
+<input id="ember259" class="ember-view ember-text-field"
        type="text" data-toggle="tooltip" data-placement="bottom" title="Name">
 ```
 
@@ -84,8 +82,6 @@ You can also automatically bind data attributes on the base view with the
 following:
 
 ```javascript
-import Ember from 'ember';
-
 export default Ember.View.reopen({
   init: function() {
     this._super();

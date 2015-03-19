@@ -3,8 +3,6 @@ Sometimes, you may use the same HTML in your application multiple times. In thos
 For example, imagine you are frequently wrapping certain values in a `<span>` tag with a custom class. You can register a helper from your JavaScript like this:
 
 ```app/helpers/highlight.js
-import Ember from 'ember';
-
 export default Ember.Handlebars.makeBoundHelper( function(value, options) {
   var escaped = Handlebars.Utils.escapeExpression(value);
   return new Ember.Handlebars.SafeString('<span class="highlight">' + escaped + '</span>');
@@ -37,9 +35,7 @@ Imagine you want to render the full name of an `Person`. In this
 case, you will want to update the output if the person itself changes,
 or if the `firstName` or `lastName` properties change.
 
-```js
-// app/helpers/full-name.js
-
+```app/helpers/full-name.js
 export default Ember.Handlebars.makeBoundHelper( function(person) {
   return person.get('firstName') + ' ' + person.get('lastName');
 }, 'firstName', 'lastName');
