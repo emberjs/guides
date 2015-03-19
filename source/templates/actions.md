@@ -117,8 +117,6 @@ When an action is triggered, but no matching action handler is
 implemented on the controller, the current route, or any of the
 current route's ancestors, an error will be thrown.
 
-![Action Bubbling](../images/template-guide/action-bubbling.png)
-
 This allows you to create a button that has different behavior based on
 where you are in the application. For example, you might want to have a
 button in a sidebar that does one thing if you are somewhere inside of
