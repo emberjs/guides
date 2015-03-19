@@ -10,8 +10,6 @@
   chapters:
     - title: "Installing Ember"
       url: "index"
-    - title: "The Inspector Tool"
-      url: "inspector"
     - title: "Glossary"
       url: "glossary"
 
