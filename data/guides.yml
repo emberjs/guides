@@ -373,12 +373,6 @@
     #   url: "debugging_and_configuration/setting_ember_global_flags"
     #   skip_sidebar_item: true
 
-- title: "Deprecations"
-  url: 'deprecations'
-  chapters:
-    - title: "Deprecations"
-      url: "index"
-
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
   chapters:
