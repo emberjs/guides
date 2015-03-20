@@ -17,22 +17,24 @@ more testable, easier to understand and reduces bloat for people who
 may want to subclass your adapter.
 
 If your backend has some consistent rules you can define an
-`ApplicationAdapter`. The `ApplicationAdapter` will get priority over
+`adapter:application`. The `adapter:application` will get priority over
 the default Adapter, however it will still be superseded by model
 specific Adapters.
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   // Application specific overrides go here
 });
 ```
 
 If you have one model that has exceptional rules for communicating
 with its backend than the others you can create a Model specific
-Adapter by naming an adapter "ModelName" + "Adapter".
+Adapter by running the command `ember generate adapter adapter-name`".
+For example, running `ember generate adapter post` will create the
+following file:
 
-```js
-App.PostAdapter = DS.RESTAdapter.extend({
+```app/adapters/post.js
+export default DS.RESTAdapter.extend({
   namespace: 'api/v1'
 });
 ```
@@ -72,13 +74,13 @@ non-standard backends.
 The `namespace` property can be used to prefix requests with a
 specific url namespace.
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
 ```
 
-Requests for `App.Person` would now target `http://emberjs.com/api/1/people/1`.
+Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
 
 
 #### Host Customization
@@ -87,13 +89,13 @@ By default the adapter will target the current domain. If you would
 like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
 ```
 
-Requests for `App.Person` would now target `https://api.example.com/people/1`.
+Requests for `person` would now target `https://api.example.com/people/1`.
 
 
 #### Path Customization
@@ -106,16 +108,16 @@ For example, if you did not want to pluralize model names and needed
 underscore_case instead of camelCase you could override the
 `pathForType` method like this:
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   pathForType: function(type) {
     return Ember.String.underscore(type);
   }
 });
 ```
 
-Requests for `App.Person` would now target `/person/1`.
-Requests for `App.UserProfile` would now target `/user_profile/1`.
+Requests for `person` would now target `/person/1`.
+Requests for `userProfile` would now target `/user_profile/1`.
 
 #### Authoring Adapters
 
@@ -129,8 +131,8 @@ adapter it is important to remember to set this property to ensure
 Ember does the right thing in the case a user of your adapter
 does not specify an `ApplicationSerializer`.
 
-```js
-MyCustomAdapterAdapter = DS.RESTAdapter.extend({
+```app/adapters/my-custom-adapter.js
+export default DS.RESTAdapter.extend({
   defaultSerializer: '-default'
 });
 ```

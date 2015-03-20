@@ -20,10 +20,10 @@ data is structured.
 The REST adapter uses the name of the model to determine what URL to
 send JSON to.
 
-For example, if you ask for an `App.Photo` record by ID:
+For example, if you ask for a `photo` record by ID:
 
-```js
-App.PhotoRoute = Ember.Route.extend({
+```app/routes/photo.js
+export default Ember.Route.extend({
   model: function(params) {
     return this.store.find('photo', params.photo_id);
   }
@@ -52,12 +52,18 @@ REST adapter:
 
 Given the following models:
 
-```js
-App.Post = DS.Model.extend({
+```app/models/post.js
+import DS from 'ember-data';
+
+export default DS.Model.extend({
   title:    DS.attr(),
   comments: DS.hasMany('comment'),
   user:     DS.belongsTo('user')
 });
+```
+
+```app/models/comment.js
+import DS from 'ember-data';
 
 App.Comment = DS.Model.extend({
   body: DS.attr()
@@ -90,21 +96,29 @@ To quickly prototype a model and see the expected JSON, try using the [Ember Dat
 
 ### Customizing the Adapter
 
-To customize the REST adapter, define a subclass of `DS.RESTAdapter` and
-name it `App.ApplicationAdapter`. You can then override its properties
+To customize the REST adapter, create a `app/adapters/application.js` file
+and export a subclass of `DS.RESTAdapter`. You can then override its properties
 and methods to customize how records are retrieved and saved.
+
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
+  ...
+});
+```
 
 #### Customizing a Specific Model
 
 It's entirely possible that you need to define options for just one model instead of an application-wide customization. In that case, you can create an adapter named after the model you are specifying:
 
-```js
-App.PostAdapter = DS.RESTAdapter.extend({
+```app/adapters/post.js
+export default DS.RESTAdapter.extend({
   namespace: 'api/v2',
   host: 'https://api.example2.com'
 });
+```
 
-App.PhotoAdapter = DS.RESTAdapter.extend({
+```app/adapters/photo.js
+export default DS.RESTAdapter.extend({
   namespace: 'api/v1',
   host: 'https://api.example.com'
 });
@@ -124,8 +138,8 @@ particular person might go to `/api/v1/people/1`.
 
 In that case, set `namespace` property to `api/v1`.
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   namespace: 'api/v1'
 });
 ```
@@ -143,8 +157,8 @@ your server will need to be configured to send the correct CORS headers.
 
 To change the host that requests are sent to, set the `host` property:
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
 ```
@@ -159,8 +173,8 @@ property and Ember Data will send them along with each ajax request.
 
 For Example
 
-```js
-App.ApplicationAdapter = DS.RESTAdapter.extend({
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
   headers: {
     'API_KEY': 'secret key',
     'ANOTHER_HEADER': 'Some header value'

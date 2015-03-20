@@ -24,20 +24,20 @@ To push a record into the store, call the store's `push()` method.
 For example, imagine we want to preload some data into the store when
 the application boots for the first time.
 
-We can use the `ApplicationRoute` to do so. The `ApplicationRoute` is
+We can use the `route:application` to do so. The `route:application` is
 the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
-```js
-var attr = DS.attr;
-
-App.Album = DS.Model.extend({
-  title: attr(),
-  artist: attr(),
-  songCount: attr()
+```app/models/album.js
+export default DS.Model.extend({
+  title: DS.attr(),
+  artist: DS.attr(),
+  songCount: DS.attr()
 });
+```
 
-App.ApplicationRoute = Ember.Route.extend({
+```app/routes/application.js
+export default Ember.Route.extend({
   model: function() {
     this.store.push('album', {
       id: 1,
