@@ -82,7 +82,7 @@ module.exports = function(environment) {
   var ENV = {
     EmberENV: {
       FEATURES: {
-        Ember.FEATURES["htmlbars"] = true
+        htmlbars: true
       }
     },
   }
