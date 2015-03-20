@@ -796,6 +796,12 @@ a.toc-anchor {
     th, td {
       padding: 5px 10px;
     }
+
+    &.specific {
+      th, td {
+        padding: 5px 6px;
+      }
+    }
   }
 
   .note {

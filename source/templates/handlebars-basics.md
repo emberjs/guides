@@ -9,48 +9,11 @@ describing the user interface of your app. And, once you've told
 Ember.js to render a given template on the screen, you don't need to
 write any additional code to make sure it keeps up-to-date.
 
-If you'd prefer an indentation-based alternative to Handlebars syntax,
-try [Emblem.js](http://www.emblemjs.com), but make sure you're comfortable
-with Handlebars first!
-
 ### Defining Templates
 
-If you're not using build tools, you can define your application's main
-template inside your HTML by putting it inside a `<script>` tag, like so:
+By default, adjust your [application template](../the-application-template), that is created automatically for you and will be displayed on the page when your app loads.
 
-```html
-<html>
-  <body>
-    <script type="text/x-handlebars">
-      Hello, <strong>{{firstName}} {{lastName}}</strong>!
-    </script>
-  </body>
-</html>
-```
-
-This template will be compiled automatically and become your
-[application template](../../templates/the-application-template),
-which will be displayed on the page when your app loads.
-
-You can also define templates by name that can be used later. For
-example, you may want to define a reusable control that is used in many
-different places in your user interface. To tell Ember.js to save the
-template for later, instead of displaying it immediately, you can add
-the `data-template-name` attribute:
-
-```html
-<html>
-  <head>
-    <script type="text/x-handlebars" data-template-name="say-hello">
-      <div class="my-cool-control">{{name}}</div>
-    </script>
-  </head>
-</html>
-```
-
-If you are using build tools to manage your application's assets, most
-will know how to precompile Handlebars templates and make them available
-to Ember.js.
+You can also define templates by name that can be used later. If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/). The components section information on creating a re-usable template.
 
 ### Handlebars Expressions
 
@@ -68,13 +31,14 @@ This would look up the `firstName` and `lastName` properties from the
 controller, insert them into the HTML described in the template, then
 put them into the DOM.
 
-By default, your top-most application template is bound to your `ApplicationController`:
+By default, your top-most application template is bound to your application controller. Note that this file is not shown by default because it is created behind the scenes by Ember CLI. To customize the controller, create the following file:
 
-```javascript
-App.ApplicationController = Ember.Controller.extend({
+```app/controllers/application.js
+export default Ember.Controller.extend({
   firstName: "Trek",
   lastName: "Glowacki"
 });
+
 ```
 
 The above template and controller would combine to display the following

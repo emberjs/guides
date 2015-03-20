@@ -9,9 +9,7 @@ You can use the `{{action}}` helper to make an HTML element clickable.
 When a user clicks the element, the named event will be sent to your
 application.
 
-```handlebars
-<!-- post.handlebars -->
-
+```app/templates/post.hbs
 <div class='intro'>
   {{intro}}
 </div>
@@ -24,8 +22,8 @@ application.
 {{/if}}
 ```
 
-```js
-App.PostController = Ember.ObjectController.extend({
+```app/controllers/post.js
+export default Ember.ObjectController.extend({
   // initial value
   isExpanded: false,
 
@@ -72,8 +70,8 @@ a method directly on the controller, it is strongly recommended that you
 put your action handling methods inside an `actions` hash for forward
 compatibility.
 
-```js
-App.PostRoute = Ember.Route.extend({
+```app/routes/post.js
+export default Ember.Route.extend({
   actions: {
     expand: function() {
       this.controller.set('isExpanded', true);
@@ -91,8 +89,8 @@ that when executed, `this` is the route, not the `actions` hash.
 
 To continue bubbling the action, you must return true from the handler:
 
-```js
-App.PostRoute = Ember.Route.extend({
+```app/routes/post.js
+export default Ember.Route.extend({
   actions: {
     expand: function() {
       this.controller.set('isExpanded', true);
@@ -117,7 +115,7 @@ When an action is triggered, but no matching action handler is
 implemented on the controller, the current route, or any of the
 current route's ancestors, an error will be thrown.
 
-![Action Bubbling](../images/template-guide/action-bubbling.png)
+![Action Bubbling](/images/template-guide/action-bubbling.png)
 
 This allows you to create a button that has different behavior based on
 where you are in the application. For example, you might want to have a
@@ -140,8 +138,8 @@ For example, if the `post` argument was passed:
 The controller's `select` action handler would be called with a single argument
 containing the post model:
 
-```js
-App.PostController = Ember.ObjectController.extend({
+```app/controllers/post.js
+export default Ember.ObjectController.extend({
   actions: {
     select: function(post) {
       console.log(post.get('title'));
@@ -176,11 +174,9 @@ pressed modifier keys. You can supply an `allowedKeys` option
 to specify which keys should not be ignored.
 
 ```handlebars
-<script type="text/x-handlebars" data-template-name='a-template'>
-  <div {{action 'anActionName' allowedKeys="alt"}}>
-    click me
-  </div>
-</script>
+<div {{action 'anActionName' allowedKeys="alt"}}>
+  click me
+</div>
 ```
 
 This way the `{{action}}` will fire when clicking with the alt key
@@ -228,8 +224,8 @@ is most commonly used to send actions to a view instead of a controller.
 
 You would handle this in an `actions` hash on your view.
 
-```javascript
-App.PostsIndexView = Ember.View.extend({
+```app/views/posts.js
+export default Ember.View.extend({
   actions: {
     select: function(post) {
       // do your business.

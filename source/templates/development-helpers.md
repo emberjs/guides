@@ -24,7 +24,6 @@ you the ability to inspect the current rendering context:
 ```handlebars
 {{debugger}}
 ```
-
 Just before the helper is invoked two useful variables are defined:
 
 * `templateContext` The current context that variables are fetched from. This
