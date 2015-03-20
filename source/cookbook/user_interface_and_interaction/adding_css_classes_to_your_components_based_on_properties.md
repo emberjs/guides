@@ -29,8 +29,8 @@ classNameBindings: ['isRelated:relative'],
 isRelatedBinding: "content.isRelated" // value resolves to boolean
 ```
 
-#### Example
+<!--- #### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/AwAYUwe/2/edit?js,output">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/jogizaqepe/2/embed?live">JS Bin</a>
 
-See [Customizing a Component's Element](../../components/customizing-a-components-element/) for further examples.
+See [Customizing a Component's Element](../../components/customizing-a-components-element/) for further examples. -->

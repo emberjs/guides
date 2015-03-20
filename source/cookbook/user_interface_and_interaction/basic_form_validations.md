@@ -12,8 +12,8 @@ that the field has been focused, and add a computed property named
 been focused. The component expects to get the validation result as the
 `valid` property.
 
-```javascript
-App.ValidatedInputComponent = Ember.Component.extend({
+```app/components/validated-input.js
+export default Ember.Component.extend({
   beenFocused: false,
   valid: null,
   hasError: function() {
@@ -31,12 +31,10 @@ And in the template of the component, put an `{{input}}` and wrap it
 into a div, which would have the class of `has-error` bound to
 `hasError`. 
 
-```html
-<script type="text/x-handlebars" data-template-name="components/validated-input">
-  <div {{bindAttr class="hasError :form-group"}}>
+```app/templates/components/validated-input.hbs
+<div {{bindAttr class="hasError :form-group"}}>
     {{input type=type value=value size=size pattern=pattern name=name placeholder=placeholder disaled=disabled maxlength=maxlength tabindex=tabindex class=input-class}}
   </div>
-</script>
 ```
 
 The use like this:
@@ -62,6 +60,6 @@ It renders a wrapped input field. The wrapper has the `has-error` class
 if `hasError` property of the component is true. It's true only when
 the validation fails and the field has been focused at.
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://jsbin.com/UpaXeta/3/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/UpaXeta/3/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> -->

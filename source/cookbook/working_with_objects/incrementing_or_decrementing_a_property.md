@@ -23,6 +23,6 @@ You can optionally specify a value to increment or decrement by:
 person.incrementProperty('age', 10);
 ```
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/aTipaQO/2/edit?js,output">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/huxojisaha/1/edit?live">JS Bin</a>-->

@@ -21,10 +21,9 @@ formattedAmount: function(key, value) {
 }.property('amount')
 ```
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/AqeVuZI/2/embed?live,js,output">JS Bin</a>
-
+<a class="jsbin-embed" href="http://emberjs.jsbin.com/AqeVuZI/2/embed?live">JS Bin</a>-->
 [setters]: /guides/object-model/computed-properties/
 [accounting]: http://josscrowcroft.github.io/accounting.js/
 
