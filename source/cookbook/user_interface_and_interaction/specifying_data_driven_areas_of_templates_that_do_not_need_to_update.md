@@ -26,6 +26,6 @@ life, you can specifiy that the property is not bound by applying the `{{unbound
 that is not bound will avoid adding unnecessary observers on a property.
 
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/ayUkOWo/3/edit?output">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/sazomoceza/15/edit?output">JS Bin</a>-->

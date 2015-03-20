@@ -15,8 +15,8 @@ Let's look at a simple example. You're working on a website for your
 client, and one of the requirements is to have the current date on the index page in human readable format. This is a perfect place to use a
 Handlebars helper that "pretty prints" the current date:
 
-```javascript
-Ember.Handlebars.registerBoundHelper('currentDate', function() {
+```app/helpers/current-date.js
+export default Ember.Handlebars.makeBoundHelper(function() {
   return moment().format('LL');
 });
 ```
@@ -29,9 +29,12 @@ Today's date: {{currentDate}}  // Today's date: August 30 2013
 
 You can even enhance your code and pass in the date format to the helper:
 
-```javascript
+```app/route/application.js
 Ember.Handlebars.registerBoundHelper('currentDate', function(format) {
   return moment().format(format);
+});
+
+export default Ember.Route.extend({
 });
 ```
 
@@ -49,8 +52,8 @@ Define `formattedDate` computed property that depends on
 `date` and `format`. Computed property in this example does
 the same thing as Handlebars helpers defined above.
 
-```javascript
-App.ApplicationController = Ember.Controller.extend({
+```app/controllers/application.js
+export default Ember.Controller.extend({
   format: "YYYYMMDD",
   date: null,
   formattedDate: function() {
@@ -61,7 +64,7 @@ App.ApplicationController = Ember.Controller.extend({
 });
 ```
 
-```html
+```/app/templates/application.hbs
 {{input value=date}}
 {{input value=format}}
 <div>{{formattedDate}}</div>
@@ -84,6 +87,6 @@ Handlebars helper with one big difference:
 `formattedDate` can be consumed later without applying
 date format on the date property again.
 
-#### Example
+<!---#### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/iCaGUne/4/edit?output">JS Bin</a>
+<a class="jsbin-embed" href="http://jsbin.com/nipujoneqe/1/embed?live">JS Bin</a>-->
