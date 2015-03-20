@@ -99,14 +99,19 @@ var App.ListView = Ember.View.extend(ListView);
 A more advanced solution is to use an initializer to register the plugin's
 views on the the application:
 
-```JavaScript
+```app/initializers/list-view.js
+import ListView from 'list-view/list-view';
+
 // usage is {{view "list"}}
-Ember.Application.initializer({
+
+export function initialize(container, application) {
+  container.register('view:list', ListView);
+}
+
+export default {
   name: 'list-view',
-  initialize: function(container, application) {
-    container.register('view:list', ListView);
-  }
-});
+  initialize: initialize
+};
 ```
 
 More details on how to register an Ember.js framework component are available
