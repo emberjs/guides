@@ -7,8 +7,6 @@ example, imagine we want to display the current playlist. In our route,
 we setup our `SongsController` to represent the songs in the playlist:
 
 ```app/routes/songs.js
-import Ember from 'ember';
-
 export default Ember.Route.extend({
   setupController: function(controller, playlist) {
     controller.set('model', playlist.get('songs'));
@@ -35,8 +33,6 @@ number of songs that are over 30 seconds long. We can add a new computed
 property called `longSongCount` to the controller:
 
 ```app/controllers/songs.js
-import Ember from 'ember';
-
 export default Ember.ArrayController.extend({
   longSongCount: function() {
     var longSongs = this.filter(function(song) {
@@ -65,8 +61,6 @@ The `Ember.ArrayController` uses the [Ember.SortableMixin](http://emberjs.com/ap
 of content. There are two properties that can be set in order to set up sorting:
 
 ```app/controllers/songs.js
-import Ember from 'ember';
-
 export default Ember.ArrayController.extend({
   sortProperties: ['name', 'artist'],
   sortAscending: true // false for descending
@@ -80,8 +74,6 @@ the `ArrayController` while iterating over them. This can be done by
 creating an `ObjectController`:
  
 ```app/controllers/song.js
-import Ember from 'ember';
-
 export default Ember.ObjectController.extend({
   fullName: function() {
  
@@ -95,8 +87,6 @@ Then, the `ArrayController` `itemController` property must be set to
 the decorating controller.
  
 ```app/controllers/songs.js
-import Ember from 'ember';
-
 export default Ember.ArrayController.extend({
   itemController: 'song'
 });
@@ -111,8 +101,6 @@ export default Ember.ArrayController.extend({
 or you could setup the `itemController` directly in the template:
  
 ```app/controllers/songs.js
-import Ember from 'ember';
-
 export default Ember.ArrayController.extend({
 });
 ```

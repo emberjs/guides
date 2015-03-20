@@ -3,8 +3,6 @@ to have some kind of connection between two controllers. Let's take this
 router as an example:
 
 ```app/router.js
-import Ember from 'ember';
-
 var Router = Ember.Router.extend({});
 
 Router.map(function() {
@@ -25,8 +23,6 @@ To be able to do this we define our `CommentsController` to `need` the `PostCont
 which has our desired `Post` model.
 
 ```app/controllers/comments.js
-import Ember from 'ember';
-
 export default Ember.ArrayController.extend({
   needs: "post"
 });
@@ -51,8 +47,6 @@ the `PostController` (since it is an `ObjectController`, we don't need
 or want the `Post` instance directly).
 
 ```app/controllers/comments.js
-import Ember from 'ember';
-
 export default Ember.ArrayController.extend({
   needs: "post",
   post: Ember.computed.alias("controllers.post")
@@ -64,8 +58,6 @@ If you want to connect multiple controllers together, you can specify an
 array of controller names:
 
 ```app/controllers/overview.js
-import Ember from 'ember';
-
 export default Ember.Controller.extend({
   needs: ['post', 'comments']
 });

@@ -10,8 +10,6 @@ For example, imagine you are writing a music player. You have defined
 your `SongController` to represent the currently playing song.
 
 ```app/controllers/song.js
-import Ember from 'ember';
-
 export default Ember.ObjectController.extend({
   soundVolume: 1
 });
@@ -21,8 +19,6 @@ In the Song route, you set the `model` of the controller to the
 currently playing song:
 
 ```app/routes/song.js
-import Ember from 'ember';
-
 export default Ember.Route.extend({
   setupController: function(controller, song) {
     controller.set('model', song);
@@ -87,8 +83,6 @@ controller which transforms the model's value into a human-readable
 format for the template:
 
 ```app/controllers/song.js
-import Ember from 'ember';
-
 export default Ember.ObjectController.extend({
   duration: function() {
     var duration = this.get('model.duration'),
