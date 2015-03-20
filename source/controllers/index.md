@@ -15,10 +15,10 @@ Your `BlogPost` model would have properties like:
 * `body`
 * `author`
 
-Your template would bind to these properties in the `blog_post`
+Your template would bind to these properties in the `blog-post` 
 template:
 
-```handlebars
+```app/templates/blog-post.hbs
 <h1>{{title}}</h1>
 <h2>by {{author}}</h2>
 
@@ -41,7 +41,7 @@ toggle the display of the body section. To implement this, we would
 first modify our template to show the body only if the value of a
 new `isExpanded` property is true.
 
-```handlebars
+```app/templates/blog-post.hbs
 <h1>{{title}}</h1>
 <h2>by {{author}}</h2>
 
@@ -132,8 +132,7 @@ is always present. You could store a `search` property on your
 `ApplicationController`, and bind the search field in the `
 application` template to that property, like this:
 
-```handlebars
-<!-- application.handlebars -->
+```app/templates/application.hbs
 <header>
   {{input type="text" value=search action="query"}}
 </header>
@@ -141,8 +140,8 @@ application` template to that property, like this:
 {{outlet}}
 ```
 
-```javascript
-App.ApplicationController = Ember.Controller.extend({
+```app/controllers/application.js
+export default Ember.Controller.extend({
   // the initial value of the `search` property
   search: '',
 
