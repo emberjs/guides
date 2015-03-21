@@ -5,6 +5,14 @@
       url: ""
       skip_sidebar: true
 
+- title: "Getting Started"
+  url: 'ember-cli'
+  chapters:
+    - title: "Installing Ember"
+      url: "index"
+    - title: "Glossary"
+      url: "glossary"
+
 - title: "Getting Ember"
   url: 'getting-ember'
   chapters:
