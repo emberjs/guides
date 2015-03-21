@@ -27,6 +27,7 @@ group :test do
   gem "rspec"
   gem "capybara"
   gem "poltergeist"
+  gem "hashie"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
