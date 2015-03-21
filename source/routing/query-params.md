@@ -2,7 +2,9 @@ Query parameters are optional key-value pairs that appear to the right of
 the `?` in a URL. For example, the following URL has two query params,
 `sort` and `page`, with respective values `ASC` and `2`:
 
-    http://example.com/articles?sort=ASC&page=2
+```text
+http://example.com/articles?sort=ASC&page=2
+```
 
 Query params allow for additional application state to be serialized
 into the URL that can't otherwise fit into the _path_ of the URL (i.e.
