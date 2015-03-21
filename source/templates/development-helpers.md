@@ -35,7 +35,7 @@ For example, if you are wondering why a specific variable isn't displaying in
 your template, you could use the `{{debugger}}` helper. When the breakpoint is
 hit, you can use the `templateContext` in your console to lookup properties:
 
-```
+```javascript
 > templateContext.get('name')
 "Bruce Lee"
 ```
