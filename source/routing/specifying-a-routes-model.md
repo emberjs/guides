@@ -9,10 +9,10 @@ which model it should render by defining a route with the same name as
 the template, and implementing its `model` hook.
 
 For example, to provide some model data to the `photos` template, we
-would define an `App.PhotosRoute` object:
+would define an `route:photos` object:
 
-```js
-App.PhotosRoute = Ember.Route.extend({
+```app/photos/route.js
+export default Ember.Route.extend({
   model: function() {
     return [{
       title: "Tomster",
@@ -56,8 +56,8 @@ in the Asynchronous Routing guide.
 Let's look at an example in action. Here's a route that loads the most
 recent pull requests sent to Ember.js on GitHub:
 
-```js
-App.PullRequestsRoute = Ember.Route.extend({
+```app/pull-requests/route.js
+export default Ember.Route.extend({
   model: function() {
     return Ember.$.getJSON('https://api.github.com/repos/emberjs/ember.js/pulls');
   }
@@ -83,8 +83,8 @@ the template only displayed the three most recent pull requests. We can
 rely on promise chaining to modify the data returned from the JSON
 request before it gets passed to the template:
 
-```js
-App.PullRequestsRoute = Ember.Route.extend({
+```app/pull-requests/route.js
+export default Ember.Route.extend({
   model: function() {
     var url = 'https://api.github.com/repos/emberjs/ember.js/pulls';
     return Ember.$.getJSON(url).then(function(data) {
@@ -101,12 +101,12 @@ hook?
 
 By default, the value returned from your `model` hook will be assigned
 to the `model` property of the associated controller. For example, if your
-`App.PostsRoute` returns an object from its `model` hook, that object
-will be set as the `model` property of the `App.PostsController`.
+`route:posts` returns an object from its `model` hook, that object
+will be set as the `model` property of the `controller:posts`.
 
 (This, under the hood, is how templates know which model to render: they
 look at their associated controller's `model` property. For example, the
-`photos` template will render whatever the `App.PhotosController`'s
+`photos` template will render whatever the `controller:photos`'s
 `model` property is set to.)
 
 See the [Setting Up a Controller guide][1] to learn how to change this
@@ -140,8 +140,8 @@ A dynamic segment is a part of the URL that is filled in by the current
 model's ID. Dynamic segments always start with a colon (`:`). Our photo
 example might have its `photo` route defined like this:
 
-```js
-App.Router.map(function() {
+```app/router.js
+Router.map(function() {
   this.resource('photo', { path: '/photos/:photo_id' });
 });
 ```
@@ -172,12 +172,14 @@ from the URL.
 Luckily, Ember will extract any dynamic segments from the URL for
 you and pass them as a hash to the `model` hook as the first argument:
 
-```js
-App.Router.map(function() {
+```app/router.js
+Router.map(function() {
   this.resource('photo', { path: '/photos/:photo_id' });
 });
+```
 
-App.PhotoRoute = Ember.Route.extend({
+```app/photo/route.js
+export default Ember.Route.extend({
   model: function(params) {
     return Ember.$.getJSON('/photos/'+params.photo_id);
   }

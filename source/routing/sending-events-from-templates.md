@@ -20,8 +20,8 @@ Although the view containing the `{{action}}` helper will be targeted by default
 
 The action handler can optionally accept a jQuery event object, which will be extended to include `view` and `context` properties. These properties can be useful when targeting a different view with your action. For instance:
 
-```javascript
-App.ListingView = Ember.View.extend({
+```app/views/loading.js
+export default Ember.View.extend({
   templateName: 'listing',
 
   edit: function(event) {
@@ -37,4 +37,3 @@ Any of the templates discussed above will produce an HTML element like this:
 ```
 
 Ember will delegate the event you specified to your target view's handler based upon the internally assigned `data-ember-action` id.
-

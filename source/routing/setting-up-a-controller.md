@@ -13,12 +13,13 @@ display-specific properties.
 To tell one of these controllers which model to present, set its
 `model` property in the route handler's `setupController` hook.
 
-```js
-App.Router.map(function() {
+```app/router.js
+Router.map(function() {
   this.resource('post', { path: '/posts/:post_id' });
 });
 
-App.PostRoute = Ember.Route.extend({
+``` app/post/route.js
+export default Ember.Route.extend({
   // The code below is the default behavior, so if this is all you
   // need, you do not need to provide a setupController implementation
   // at all.
@@ -31,13 +32,13 @@ App.PostRoute = Ember.Route.extend({
 The `setupController` hook receives the route handler's associated
 controller as its first argument. In this case, the `PostRoute`'s
 `setupController` receives the application's instance of
-`App.PostController`.
+`controller:posts`.
 
 To specify a controller other than the default, set the route's
 `controllerName` property:
 
-```js
-App.SpecialPostRoute = Ember.Route.extend({
+```app/special-post/route.js
+export default Ember.Route.extend({
   controllerName: 'post'
 });
 ```
@@ -53,8 +54,8 @@ associated controller to the route handler's model.
 If you want to configure a controller other than the controller
 associated with the route handler, use the `controllerFor` method:
 
-```js
-App.PostRoute = Ember.Route.extend({
+```app/post/route.js
+export default Ember.Route.extend({
   setupController: function(controller, model) {
     this.controllerFor('topPost').set('model', model);
   }
