@@ -1,27 +1,62 @@
-Installing Ember is *easy*! And our new install process includes *Ember CLI*, Ember's build tool
+Installing Ember is easy using *Ember CLI*, Ember's build tool.
+
+Ember CLI provides:
 
 * State of the art asset management (including combining, minifying, and versioning)
-* Built-in generators can help you create components, routes, and more (and their test cases!)
-* A standard project layout. Working on other Ember apps is easy, they're organized similarly
+* Built-in generators to create components, routes, and more (and their test cases!)
+* A standard project layout to make jumping into other Ember apps is easy
 * Native [JavaScript modules](http://jsmodules.io/) to keep your project organized
-* A complete testing framework (unit tests, integration tests)
-* Access to a growing ecosystem of [Ember Addons](http://www.emberaddons.com/). Add functionality to your app without writing a single line of code! They're already packaged up and ready to add to your app
+* A framework for unit and integration tests
+* Access to a growing ecosystem of [Ember Addons](http://www.emberaddons.com/)
 
+## Prerequisites
+
+Ember CLI is installed using npm (the Node Package Manager), which is bundled
+with Node.js. If you're not sure whether you have Node.js, try running from your
+command line:
+
+```bash
+node --version
+```
+
+If you get back something like `0.10.x`, you've got Node.js and npm!
+
+If you **don't**:
+
+* Windows or Mac users [can simply download and run the installer](http://nodejs.org/download/).
+* Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After
+installing Homebrew, run `brew install node` to install Node.js.
+* Linux users [can check out this great guide](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) by Joyent for install instructions.
+
+Once you've got Node.js installed, re-run `node --version` to verify your install.
+
+## Optional prerequisites
+
+On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
 ## Installation
 
-Installing Ember is done using [NPM](#toc_got-node-and-npm). While you're at it we recommend you to also install phantomjs (if you don't have it already). Ember CLI uses phantomjs to run tests from the command line (without the need for a browser to be open).
+Install Ember using [npm](#toc_got-node-and-npm). While you're at it we recommend
+you also install PhantomJS to run tests from the command line (without the need
+for a browser to be open).
 
 ```bash
 npm install -g ember-cli
 npm install -g phantomjs
 ```
 
+To verify that your installation was successful, run:
+
+```bash
+ember -v
+```
+
+If you get back something like `version: 0.2.0`, you're ready to go.
+
+
 ## Testing your installation
 
-At this point, you should be good to go... but we can test out your install to make sure everything works great.
-
-Let's run the generator for your project:
+To make sure everything works properly, let's run the generator to create a project:
 
 ```bash
 ember new my-app
@@ -36,23 +71,4 @@ cd my-app
 ember server
 ```
 
-navigate to `http://localhost:4200` to see your new app in action.
-
-## Troubleshooting
-
-### Got Node (and NPM)?
-
-Node Package Manager (npm) comes bundled with node.js and makes installing easy.  If you're not sure if you have node.js installed, try running the following from your command line:
-
-```bash
-node --version
-```
-
-If the command works and you get back something like 0.10.x, you've already got it installed!
-
-If you **don't** have it installed...
-
-* Windows or Mac users [can simply download and run the installer](http://nodejs.org/download/).
-* Linux users [can check out this great guide](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) by Joyent for install instructions.
-
-Once you've got node.js installed, re-run the above ```node --version``` to verify your install.
+Navigate to `http://localhost:4200` to see your new app in action.
