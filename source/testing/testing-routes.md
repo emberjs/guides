@@ -1,7 +1,7 @@
 _Unit testing methods and computed properties follows previous patterns shown 
 in [Unit Testing Basics] because Ember.Route extends Ember.Object._
 
-Testing routes can be done both via integration or unit tests. Integration tests 
+Testing routes can be done both via acceptance or unit tests. Acceptance tests 
 will likely provide better coverage for routes because routes are typically used 
 to perform transitions and load data, both of which are tested more easily in 
 full context rather than isolation.
@@ -12,8 +12,8 @@ our application. The alert function `displayAlert` should be put into the
 `ApplicationRoute` because all actions and events bubble up to it from 
 sub-routes, controllers and views.
 
-```javascript
-App.ApplicationRoute = Em.Route.extend({
+```app/routes/application.js
+export default Ember.Route.extend({
   actions: {
     displayAlert: function(text) {
       this._displayAlert(text);
@@ -37,39 +37,35 @@ for testing, which in turn allows you to catch bugs more easily.
 
 Here is an example of how to unit test this route:
 
-```javascript
+```tests/unit/routes/application-test.js
+let originalAlert;
 
-moduleFor('route:application', 'Unit: route/application', {
-  setup: function() {
-    originalAlert = window.alert; // store a reference to the window.alert
+moduleFor('route:application', {
+  beforeEach: function() {
+    originalAlert = window.alert; // store a reference to window.alert
   },
-  teardown: function() {
-    window.alert = originalAlert; // restore original functions
+
+  afterEach: function() {
+    window.alert = originalAlert; // restore window.alert
   }
 });
 
-test('Alert is called on displayAlert', function() {
-  expect(1);
+test('Alert is called on displayAlert', function(assert) {
+  assert.expect(1);
 
   // with moduleFor, the subject returns an instance of the route
-  var route = this.subject(),
-      expectedText = 'foo';
+  var route = this.subject();
+  var expectedText = 'foo';
 
   // stub window.alert to perform a qunit test
   window.alert = function(text) {
-    equal(text, expectedText, 'expected ' + text + ' to be ' + expectedText);
-  }
+    assert.equal(text, expectedText, 'expected ' + text + ' to be ' + expectedText);
+  };
 
   // call the _displayAlert function which triggers the qunit test above
   route._displayAlert(expectedText);
 });
 ```
-
-#### Live Example
-
-<a class="jsbin-embed" href="http://jsbin.com/kazenefuku/1/embed?output">Custom Test Helpers</a>
-
-<script src="http://static.jsbin.com/js/embed.js"></script>
 
 [Unit Testing Basics]: /guides/testing/unit-testing-basics
 [separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns

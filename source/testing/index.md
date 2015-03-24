@@ -6,12 +6,12 @@ also include interactions such as _login_ and _create post_. Let's finally
 assume that you would like to have [automated tests] in place for your application. 
 
 There are two different classifications of tests that you will need: 
-**Integration** and **Unit**.
+**Acceptance** and **Unit**.
 
-### Integration Tests
+### Acceptance Tests
 
-Integration tests are used to test user interaction and application flow. With 
-the example scenario above, some integration tests you might write are:
+Acceptance tests are used to test user interaction and application flow. With 
+the example scenario above, some acceptance tests you might write are:
 
 * A user is able to log in via the login form.
 * A user is able to create a blog post.
@@ -19,7 +19,7 @@ the example scenario above, some integration tests you might write are:
 
 ### Unit Tests
 
-Unit tests are used to test isolated chunks of functionality, or "units" without 
+Unit tests are used to test isolated chunks of functionality, or "units", without 
 worrying about their dependencies. Some examples of unit tests for the scenario 
 above might be:
 
@@ -33,7 +33,7 @@ above might be:
 ### Testing Frameworks
 
 [QUnit] is the default testing framework for this guide, but others are 
-supported through third-party adapters.
+supported through third-party addons.
 
 ### Contributing
 
@@ -43,4 +43,4 @@ improved, please feel free to [contribute].
 
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
-[contribute]: https://github.com/emberjs/website
+[contribute]: https://github.com/emberjs/guides

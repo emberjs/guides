@@ -190,7 +190,7 @@ AJAX requests are the most prevelant use case where you will be creating promise
 
 ###ic-ajax
 
-[ic-ajax] is an Ember-friendly `jQuery-ajax` wrapper, which is very convenient for building up fixture data and mocking ajax calls for unit/integration testing. The most common use case for promises is when you're making an asynchronous call to a server, and ic-ajax can help alleviate having to worry about wrapping `resolve` in a run call.
+[ic-ajax] is an Ember-friendly `jQuery-ajax` wrapper, which is very convenient for building up fixture data and mocking ajax calls for unit/acceptance testing. The most common use case for promises is when you're making an asynchronous call to a server, and ic-ajax can help alleviate having to worry about wrapping `resolve` in a run call.
 
 ####Simple ic-ajax example:
 
@@ -231,9 +231,9 @@ Ember Data can be dealt with just as easily, you will just need to define the fi
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/OxIDiVU/361/embed?js,output">Using ic-ajax</a>
 
-####Integration test using ic-ajax and Ember Data
+####Acceptance test using ic-ajax and Ember Data
 
-Often while doing integration tests, you don't actually want to hit the server because its state won't be consistent. Using the previously established patterns you can set up fixture data which will be returned in place of real ajax call responses so you can isolate your code as being the only thing under test. Below we'e provided you with a simple example test using ic-ajax and Ember Data.
+Often while doing acceptance tests, you don't actually want to hit the server because its state won't be consistent. Using the previously established patterns you can set up fixture data which will be returned in place of real ajax call responses so you can isolate your code as being the only thing under test. Below we'e provided you with a simple example test using ic-ajax and Ember Data.
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/OxIDiVU/365/embed?js,output">Using ic-ajax</a>
 
@@ -296,8 +296,8 @@ Ember Data can be dealt with just as easily. You will just need to define the fi
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/vojas/5/embed?js,output">Using jquery-mockjax</a>
 
-####Integration test using jquery-mockjax and Ember Data
+####Acceptance test using jquery-mockjax and Ember Data
 
-Often while writing integration tests, you don't actually want to hit the server because its state won't be consistent. Using the previously established patterns you can set up fixture data which will be returned in place of real ajax call responses so you can isolate your code as being the only thing under test. Below we've provided you with a simple example test using jquery-mockjax and Ember Data.
+Often while writing acceptance tests, you don't actually want to hit the server because its state won't be consistent. Using the previously established patterns you can set up fixture data which will be returned in place of real ajax call responses so you can isolate your code as being the only thing under test. Below we've provided you with a simple example test using jquery-mockjax and Ember Data.
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/hoxub/5/embed?js,output">Using jquery-mockjax</a>

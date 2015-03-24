@@ -18,7 +18,7 @@ back in a synchronized state when it makes its assertions. It saves you from
 having to wrap everything in code that does that, and it makes it easier to read
 your tests because there's less boilerplate in them.
 
-Ember includes several helpers to facilitate integration testing. There are two
+Ember includes several helpers to facilitate acceptance testing. There are two
 types of helpers: **asynchronous** and **synchronous**.
 
 ### Asynchronous Helpers
@@ -32,38 +32,38 @@ chain. You can rest assured, therefore, that the order you call them in will als
 be their execution order, and that the previous helper has finished before the
 next one starts.
 
-* `visit(url)`
-  - Visits the given route and returns a promise that fulfills when all resulting
-     async behavior is complete.
-* `fillIn(selector, text)`
-  - Fills in the selected input with the given text and returns a promise that
-     fulfills when all resulting async behavior is complete.
 * `click(selector)`
   - Clicks an element and triggers any actions triggered by the element's `click`
     event and returns a promise that fulfills when all resulting async behavior
     is complete.
+* `fillIn(selector, text)`
+  - Fills in the selected input with the given text and returns a promise that
+     fulfills when all resulting async behavior is complete.
 * `keyEvent(selector, type, keyCode)`
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
 * `triggerEvent(selector, type, options)`
   - Triggers the given event, e.g. `blur`, `dblclick` on the element identified
     by the provided selector.
+* `visit(url)`
+  - Visits the given route and returns a promise that fulfills when all resulting
+     async behavior is complete.
 
 ### Synchronous Helpers
 
 Synchronous helpers are performed immediately when triggered.
 
-* `find(selector, context)`
-  - Finds an element within the app's root element and within the context
-    (optional). Scoping to the root element is especially useful to avoid
-    conflicts with the test framework's reporter, and this is done by default
-    if the context is not specified.
 * `currentPath()`
   - Returns the current path.
 * `currentRouteName()`
   - Returns the currently active route name.
 * `currentURL()`
   - Returns the current URL.
+* `find(selector, context)`
+  - Finds an element within the app's root element and within the context
+    (optional). Scoping to the root element is especially useful to avoid
+    conflicts with the test framework's reporter, and this is done by default
+    if the context is not specified.
 
 ### Wait Helpers
 
@@ -71,9 +71,9 @@ The `andThen` helper will wait for all preceding asynchronous helpers to
 complete prior to progressing forward. Let's take a look at the following
 example.
 
-```javascript
-test('simple test', function() {
-  expect(1); // Ensure that we will perform one assertion
+```tests/acceptance/new-post-appears-first-test.js
+test('simple test', function(assert) {
+  assert.expect(1); // Ensure that we will perform one assertion
 
   visit('/posts/new');
   fillIn('input.title', 'My new post');
@@ -81,13 +81,13 @@ test('simple test', function() {
 
   // Wait for asynchronous helpers above to complete
   andThen(function() {
-    equal(find('ul.posts li:last').text(), 'My new post');
+    assert.equal(find('ul.posts li:first').text(), 'My new post');
   });
 });
 ```
 
-First we tell qunit that this test should have one assertion made by the end 
-of the test by calling `expect` with an argument of `1`. We then visit the new
+First we tell QUnit that this test should have one assertion made by the end 
+of the test by calling `assert.expect` with an argument of `1`. We then visit the new
 posts URL "/posts/new", enter the text "My new post" into an input control
 with the CSS class "title", and click on a button whose class is "submit".
 
@@ -98,42 +98,55 @@ submit button was clicked, **and** the browser has returned from doing whatever
 those actions required). Note `andThen` has a single argument of the function
 that contains the code to execute after the other test helpers have finished.
 
-In the `andThen` helper, we finally make our call to equal which makes an
-assertion that the text found in the last li of the ul whose class is "posts"
+In the `andThen` helper, we finally make our call to `assert.equal` which makes an
+assertion that the text found in the first li of the ul whose class is "posts"
 is equal to "My new post".
 
 ### Custom Test Helpers
 
-`Ember.Test.registerHelper` and `Ember.Test.registerAsyncHelper` are used to
-register test helpers that will be injected when `App.injectTestHelpers` is
+For creating your own test helper, just run `ember generate test-helper
+<helper-name>`. Here is the result of running `ember g test-helper
+shouldHaveElementWithCount`:
+
+```tests/helpers/should-have-element-with-count.js
+export default Ember.Test.registerAsyncHelper(
+    'shouldHaveElementWithCount', function(app) {
+
+});
+```
+
+`Ember.Test.registerAsyncHelper` and `Ember.Test.registerHelper` are used to
+register test helpers that will be injected when `startApp` is
 called. The difference between `Ember.Test.registerHelper` and
 `Ember.Test.registerAsyncHelper` is that the latter will not run until any
 previous async helper has completed and any subsequent async helper will wait
 for it to finish before running.
 
 The helper method will always be called with the current Application as the
-first parameter. Helpers need to be registered prior to calling
-`App.injectTestHelpers()`.
+first parameter and `assert` as the second one. Helpers need to be registered prior to calling
+`startApp`, but ember-cli will take care of it for you.
 
 Here is an example of a non-async helper:
 
-```javascript
-Ember.Test.registerHelper('shouldHaveElementWithCount',
-  function(app, selector, n, context) {
+```tests/helpers/should-have-element-with-count.js
+export default Ember.Test.registerHelper(
+    'shouldHaveElementWithCount',
+    function(app, assert, selector, n, context) {
+
     var el = findWithAssert(selector, context);
     var count = el.length;
-    equal(n, count, 'found ' + count + ' times');
+    assert.equal(n, count, 'found ' + count + ' times');
   }
 );
 
-// shouldHaveElementWithCount("ul li", 3);
+// shouldHaveElementWithCount(assert, "ul li", 3);
 ```
 
 Here is an example of an async helper:
 
-```javascript
-Ember.Test.registerAsyncHelper('dblclick',
-  function(app, selector, context) {
+```tests/helpers/dblclick.js
+export default Ember.Test.registerAsyncHelper('dblclick',
+  function(app, assert, selector, context) {
     var $el = findWithAssert(selector, context);
     Ember.run(function() {
       $el.dblclick();
@@ -147,21 +160,47 @@ Ember.Test.registerAsyncHelper('dblclick',
 Async helpers also come in handy when you want to group interaction
 into one helper. For example:
 
-```javascript
-Ember.Test.registerAsyncHelper('addContact',
-  function(app, name, context) {
+```tests/helpers/add-contact.js
+export default Ember.Test.registerAsyncHelper('addContact',
+  function(app, assert, name, context) {
     fillIn('#name', name);
     click('button.create');
   }
 );
 
+Finally, don't forget to add your helpers in `tests/.jshintrc` and in 
+`tests/helpers/start-app.js`. In `tests/.jshintrc` you need to add it in the
+`predef` section, otherwise you will get failing jshint tests:
+
+```tests/.jshintc
+{
+  "predef": [
+    "document",
+    "window",
+    "location",
+    ...
+    "shouldHaveElementWithCount",
+    "dblclick",
+    "addContact"
+  ],
+  ...
+}
+```
+
+In `tests/helpers/start-app.js` you just need to import the helper file: it
+will be registered then.
+
+```tests/helpers/start-app.js
+import Ember from 'ember';
+import Application from '../../app';
+import Router from '../../router';
+import config from '../../config/environment';
+import shouldHaveElementWithCount from "./should-have-element-with-count";
+import dblclick from "./dblclick";
+import addContact from "./add-contact";
+```
+
 // addContact("Bob");
 // addContact("Dan");
 ```
 
-#### Example
-
-Here is an example using both `registerHelper` and
-`registerAsyncHelper`.
-
-<a class="jsbin-embed" href="http://jsbin.com/yoyatiluta/1/embed?output">Custom Test Helpers</a>
