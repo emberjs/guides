@@ -1,6 +1,13 @@
 require "redcarpet"
+require "byebug"
 require "coderay"
 require "nokogiri"
+
+class EmberEncoder < CodeRay::Encoders::Div
+  FILE_EXTENSION = 'ember.html'
+  register_for :ember
+
+end
 
 module Highlighter
   class MissingLanguageError < StandardError; end
@@ -82,9 +89,11 @@ module Highlighter
     def _code_table(string, language, file_name, changes)
       code = CodeRay.scan(string, language)
 
-      table = code.div css: :class,
+      # debugger
+      table = code.ember css: :class,
         line_numbers: :table,
-        line_number_anchors: false
+        line_number_anchors: false,
+        highlight_lines: [1,3]
 
       if file_name.present?
 
