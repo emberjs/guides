@@ -9,8 +9,7 @@ these objects is not found, appropriate objects will be generated in memory for 
 
 Given you have the following route:
 
-```javascript
-// app/router.js
+```app/router.js
 Router.map(function() {
   this.resource('posts');
 });
