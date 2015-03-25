@@ -10,10 +10,6 @@
   chapters:
     - title: "Installing Ember"
       url: "index"
-    - title: "Key Background Concepts"
-      url: "key-background-concepts"
-    - title: "Other Terms"
-      url: "other-terms"
 
 - title: "Getting Ember"
   url: 'getting-ember'
@@ -24,6 +20,10 @@
 - title: "Concepts"
   url: 'concepts'
   chapters:
+    - title: "Key Background Concepts"
+      url: "key-background-concepts"
+    - title: "Other Terms"
+      url: "other-terms"
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
