@@ -30,10 +30,18 @@ export default Ember.ArrayController.extend({
 
 This tells Ember that our `CommentsController` should be able to access
 its parent `PostController`, which can be done via `controllers.post`
-(either in the template or in the controller itself).
+(either in the template or in the controller itself). In order to get the
+actual `Post` model, we need to refer to `controllers.post.model`:
+
+```app/controllers/comments.js
+export default Ember.ArrayController.extend({
+  needs: "post",
+  post: Ember.computed.alias("controllers.post.model")
+});
+```
 
 ```app/templates/comments.hbs
-<h1>Comments for {{controllers.post.title}}</h1>
+<h1>Comments for {{post.title}}</h1>
 
 <ul>
   {{#each comments as |comment|}}
@@ -41,18 +49,6 @@ its parent `PostController`, which can be done via `controllers.post`
   {{/each}}
 </ul>
 ```
-
-We can also create an aliased property to give ourselves a shorter way to access
-the `PostController` (since it is an `ObjectController`, we don't need
-or want the `Post` instance directly).
-
-```app/controllers/comments.js
-export default Ember.ArrayController.extend({
-  needs: "post",
-  post: Ember.computed.alias("controllers.post")
-});
-```
-
 
 If you want to connect multiple controllers together, you can specify an
 array of controller names:

@@ -68,7 +68,7 @@ The controller has (session) data to display `seconds` to visitors, as well as
 a handful of properties used as conditions in the Handlebars template.
 
 ```app/controllers/interval.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
     secondsBinding: 'clock.pulse',
     fullSecond: function () {
       return (this.get('seconds') % 1 === 0);
@@ -91,7 +91,7 @@ the `seconds` binding, used by the template to show the time since the
 comment was created.
 
 ```app/controllers/comment-item.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   seconds: Ember.computed.oneWay('clock.pulse').readOnly()
 });
 ```

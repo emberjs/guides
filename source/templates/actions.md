@@ -23,7 +23,10 @@ application.
 ```
 
 ```app/controllers/post.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
+  intro: Ember.computed.alias('model.intro'),
+  body: Ember.computed.alias('model.body'),
+
   // initial value
   isExpanded: false,
 
@@ -139,7 +142,7 @@ The controller's `select` action handler would be called with a single argument
 containing the post model:
 
 ```app/controllers/post.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   actions: {
     select: function(post) {
       console.log(post.get('title'));

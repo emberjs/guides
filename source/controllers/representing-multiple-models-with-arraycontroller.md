@@ -71,10 +71,14 @@ export default Ember.ArrayController.extend({
 
 It is often useful to specify a controller to decorate individual items in
 the `ArrayController` while iterating over them. This can be done by
-creating an `ObjectController`:
-
+creating a `Controller`:
+ 
 ```app/controllers/song.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
+
+  name: Ember.computed.alias('model.name'),
+  artist: Ember.computed.alias('model.artist'),
+
   fullName: function() {
     return this.get('name') + ' by ' + this.get('artist');
   }.property('name', 'artist')

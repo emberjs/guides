@@ -110,15 +110,10 @@ makes it easy to separate display-specific properties from model
 specific properties, and to swap out the controller's model as the
 user navigates around the page.
 
-For convenience, Ember.js provides controllers that _proxy_
-properties from their models so that you can say `{{name}}` in your
-template rather than `{{model.name}}`. An `Ember.ArrayController`
-proxies properties from an Array, and an `Ember.ObjectController`
-proxies properties from an object.
-
-If your controller is an `ArrayController`, you can iterate directly
-over the controller using `{{#each controller as |item|}}`. This keeps the
-template from having to know about how the controller is implemented
+For convenience, Ember.js provides an `Ember.ArrayController` that proxies
+properties from an Array. If your controller is an `ArrayController`, you can
+iterate directly over the controller using `{{#each controller as |item|}}`. This
+keeps the template from having to know about how the controller is implemented
 and makes isolation testing and refactoring easier.
 
 ### Storing Application Properties
