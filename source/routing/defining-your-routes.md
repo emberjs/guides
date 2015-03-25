@@ -457,8 +457,7 @@ You can define wildcard routes that will match multiple routes. This could be us
 if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed
 by your app.
 
-```javascript
-// app/router.js
+```app/router.js
 Router.map(function() {
   this.route('catchall', {path: '/*wildcard'});
 });

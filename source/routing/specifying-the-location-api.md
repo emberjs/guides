@@ -5,8 +5,7 @@ on a [hashchange](http://caniuse.com/hashchange) event existing in the browser.
 Given the following router, entering `/#/posts/new` will take you to the `posts.new`
 route.
 
-```javascript
-// app/router.js
+```app/router.js
 Router.map(function() {
   this.resource('posts', function() {
     this.route('new');
