@@ -13,12 +13,6 @@
     - title: "Glossary"
       url: "glossary"
 
-- title: "Getting Ember"
-  url: 'getting-ember'
-  chapters:
-    - title: "Getting Ember"
-      url: "index"
-
 - title: "Concepts"
   url: 'concepts'
   chapters:
