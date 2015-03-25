@@ -10,6 +10,8 @@
   chapters:
     - title: "Installing Ember"
       url: "index"
+    - title: "Key Background Concepts"
+      url: "key-background-concepts"
     - title: "Glossary"
       url: "glossary"
 
