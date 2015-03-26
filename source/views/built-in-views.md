@@ -1,8 +1,8 @@
 Ember comes pre-packaged with a set of views for building a basic controls like text inputs, check boxes, and select lists. Usually, these views will be used via the [input helpers](../../templates/input-helpers/). However, the base views may be helpful in creating custom form behaviors.
 
-* [Ember.Checkbox](/api/classes/Ember.Checkbox.html)
-* [Ember.TextField](/api/classes/Ember.TextField.html)
-* [Ember.TextArea](/api/classes/Ember.TextArea.html)
+* [Ember.Checkbox](http://emberjs.com/api/classes/Ember.Checkbox.html)
+* [Ember.TextField](http://emberjs.com/api/classes/Ember.TextField.html)
+* [Ember.TextArea](http://emberjs.com/api/classes/Ember.TextArea.html)
 
 For example, here we have created a custom text field that toggles a dirty property:
 
@@ -18,7 +18,7 @@ App.MyTextView = Ember.TextField.extend({
 
 Ember itself provides one additional view not covered by the input helpers, and this is the select box view.
 
-* [Ember.Select](/api/classes/Ember.Select.html)
+* [Ember.Select](http://emberjs.com/api/classes/Ember.Select.html)
 
 This class can also be customized by extending it. To use the select view bundled with Ember, call it via the view helper:
 

@@ -54,4 +54,4 @@ Reload your web browser to ensure that all files have been referenced correctly 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/8775d1bf4c05eb82adf178be4429e5b868ac145b)
   * [Handlebars Guide](../../templates/handlebars-basics)
   * [Ember.Application Guide](../../application)
-  * [Ember.Application API Documentation](/api/classes/Ember.Application.html)
+  * [Ember.Application API Documentation](http://emberjs.com/api/classes/Ember.Application.html)

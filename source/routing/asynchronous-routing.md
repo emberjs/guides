@@ -206,7 +206,7 @@ App.SecretArticlesRoute  = Ember.Route.extend({
 });
 ```
 
-[See the API Docs for `beforeModel`](/api/classes/Ember.Route.html#method_beforeModel)
+[See the API Docs for `beforeModel`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel)
 
 #### `afterModel`
 
@@ -237,7 +237,7 @@ reason, as mentioned above, is that transitions initiated
 via `{{link-to}}` or `transitionTo` likely already provided the
 model for this route, so `model` wouldn't be called in these cases.
 
-[See the API Docs for `afterModel`](/api/classes/Ember.Route.html#method_afterModel)
+[See the API Docs for `afterModel`](http://emberjs.com/api/classes/Ember.Route.html#method_afterModel)
 
 ### More Resources
 

@@ -3,7 +3,7 @@
 As you probably know by now, views usually create their child views
 by using the `{{view}}` helper. However, it is sometimes useful to
 _manually_ manage a view's child views.
-[`Ember.ContainerView`](/api/classes/Ember.ContainerView.html)
+[`Ember.ContainerView`](http://emberjs.com/api/classes/Ember.ContainerView.html)
 is the way to do just that.
 
 As you programmatically add or remove views to a `ContainerView`,
@@ -82,9 +82,9 @@ container.get('secondView').toString(); //=> '<App.SecondView:ember124>'
 
 You may have noticed that some of these examples use `pushObject` to add
 a child view, just like you would interact with an Ember array.
-[`Ember.ContainerView`](/api/classes/Ember.ContainerView.html)
+[`Ember.ContainerView`](http://emberjs.com/api/classes/Ember.ContainerView.html)
 gains its collection-like behavior by mixing in
-[`Ember.MutableArray`](/api/classes/Ember.MutableArray.html). That means
+[`Ember.MutableArray`](http://emberjs.com/api/classes/Ember.MutableArray.html). That means
 that you can manipulate the collection of views very expressively, using
 methods like `pushObject`, `popObject`, `shiftObject`, `unshiftObject`, `insertAt`,
 `removeAt`, or any other method you would use to interact with an Ember array.
