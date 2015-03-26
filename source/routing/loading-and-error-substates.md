@@ -169,7 +169,7 @@ Similar to how the default `loading` event handlers are implemented,
 the default `error` handlers will look for an appropriate error substate to
 enter, if one can be found.
 
-```$1
+```app/router.js
 Router.map(function() {
   this.resource('articles', function() { // -> ArticlesRoute
     this.route('overview');              // -> ArticlesOverviewRoute
