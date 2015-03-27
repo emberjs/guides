@@ -2,7 +2,9 @@ $.ajax('/versions.json')
   .done(function(data) {
     var versionSelectBox = $(".version-select");
     versionSelectBox.select2({
-      data: data
+      data: $.map(data, function(v) {
+        return v.version;
+      })
     });
     var slugs = window.location.href.split('/');
     var currentRevision = slugs[slugs.length - 2];
