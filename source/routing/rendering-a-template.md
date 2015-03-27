@@ -11,7 +11,7 @@ Router.map(function() {
 ```
 
 ```app/posts/route.js
-export default Ember.Route.extend({
+export default Ember.Route.extend();
 ```
 
 If you want to render a template other than the one associated with the
