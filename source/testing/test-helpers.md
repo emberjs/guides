@@ -123,7 +123,7 @@ previous async helper has completed and any subsequent async helper will wait
 for it to finish before running.
 
 The helper method will always be called with the current Application as the
-first parameter and `assert` as the second one. Helpers need to be registered prior to calling
+first parameter. Other parameters need to be provided when calling the helper. Helpers need to be registered prior to calling
 `startApp`, but ember-cli will take care of it for you.
 
 Here is an example of a non-async helper:
