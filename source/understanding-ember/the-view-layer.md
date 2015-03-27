@@ -21,7 +21,7 @@ In a typical client-side application, views may represent elements nested inside
 Here is a simple example, representing one main app view, a collection nested inside of it, and individual items nested inside of the collection.
 
 <figure>
-  <img src="/images/view-guide/view-hierarchy-simple.png">
+  <img src="../../images/view-guide/view-hierarchy-simple.png">
 </figure>
 
 This system works well at first glance, but imagine that we want to open Joe's Lamprey Shack at 8am instead of 9am. In this situation, we will want to re-render the App View. Because the developer needed to build up the references to the children on an ad-hoc basis, this re-rendering process has several problems.
@@ -31,7 +31,7 @@ In order to re-render the App View, the App View must also manually re-render th
 In order to avoid these problems, Ember's view hierarchy has the concept of child views baked in.
 
 <figure>
-  <img src="/images/view-guide/view-hierarchy-ember.png">
+  <img src="../../images/view-guide/view-hierarchy-ember.png">
 </figure>
 
 When the App View re-renders, Ember is responsible for re-rendering and inserting the child views, not application code. This also means that Ember can perform any memory management for you, such as cleaning up observers and bindings.
@@ -45,13 +45,13 @@ In the past, web developers have added event listeners to individual elements in
 However, this approach often does not scale when dealing with large numbers of interactive elements. For example, imagine a `<ul>` with 100 `<li>`s in it, with a delete button next to each item. Since the behavior is the same for all of these items, it would be inefficient to create 100 event listeners, one for each delete button.
 
 <figure>
-  <img src="/images/view-guide/undelegated.png">
+  <img src="../../images/view-guide/undelegated.png">
 </figure>
 
 To solve this problem, developers discovered a technique called "event delegation". Instead of registering a listener on each element in question, you can register a single listener for the containing element and use `event.target` to identify which element the user clicked on.
 
 <figure>
-  <img src="/images/view-guide/delegated.png">
+  <img src="../../images/view-guide/delegated.png">
 </figure>
 
 Implementing this is a bit tricky, because some events (like `focus`, `blur` and `change`) don't bubble. Fortunately, jQuery has solved this problem thoroughly; using jQuery's `on` method reliably works for all native browser events.
@@ -75,7 +75,7 @@ While the process of displaying a template is automatic for developers, under th
 This is the approximate lifecycle of an Ember view:
 
 <figure>
-  <img src="/images/view-guide/view-lifecycle-ember.png">
+  <img src="../../images/view-guide/view-lifecycle-ember.png">
 </figure>
 
 ##### 1. Template Compilation
@@ -99,7 +99,7 @@ Once the main view has finished rendering, the render process has created a tree
 Here is a simple example:
 
 <figure>
-  <img src="/images/view-guide/render-buffer.png">
+  <img src="../../images/view-guide/render-buffer.png">
 </figure>
 
 In addition to children (Strings and other `RenderBuffer`s), a `RenderBuffer` also encapsulates the element's tag name, id, classes, style, and other attributes. This makes it possible for the render process to modify one of these properties (style, for example), even after its child Strings have rendered. Because many of these properties are controlled via bindings (e.g. using `bind-attr`), this makes the process robust and transparent.
@@ -130,7 +130,7 @@ In addition to these cases, the application may sometimes want to explicitly re-
 The process looks something like:
 
 <figure>
-  <img src="/images/view-guide/re-render.png">
+  <img src="../../images/view-guide/re-render.png">
 </figure>
 
 ### The View Hierarchy
@@ -156,7 +156,7 @@ var view = Ember.View.create({
 This will create a small view hierarchy that looks like this:
 
 <figure>
-  <img src="/images/view-guide/simple-view-hierarchy.png">
+  <img src="../../images/view-guide/simple-view-hierarchy.png">
 </figure>
 
 You can move around in the view hierarchy using the `parentView` and `childViews` properties.
@@ -227,14 +227,14 @@ please use the form below to submit a complaint to the FDA.
 Rendering this template would create a hierarchy like this:
 
 <figure>
-  <img src="/images/view-guide/public-view-hierarchy.png">
+  <img src="../../images/view-guide/public-view-hierarchy.png">
 </figure>
 
 Behind the scenes, Ember tracks additional virtual views for the
 Handlebars expressions:
 
 <figure>
-  <img src="/images/view-guide/virtual-view-hierarchy.png">
+  <img src="../../images/view-guide/virtual-view-hierarchy.png">
 </figure>
 
 From inside of the `TextArea`, the `parentView` would point to the
@@ -445,7 +445,7 @@ Calling `appendChild` does two things:
    buffer.
 
 <figure>
-  <img src="/images/view-guide/template-appendChild-interaction.png">
+  <img src="../../images/view-guide/template-appendChild-interaction.png">
 </figure>
 
 You may not call `appendChild` on a view after it has left the rendering
@@ -534,7 +534,7 @@ is automatically instantiated, if necessary, and added to the
 `childViews` array.
 
 <figure>
-  <img src="/images/view-guide/container-view-shorthand.png">
+  <img src="../../images/view-guide/container-view-shorthand.png">
 </figure>
 
 ### Template Scopes
