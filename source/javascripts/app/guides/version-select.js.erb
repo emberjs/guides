@@ -9,7 +9,7 @@ $.ajax('/versions.json')
     versionSelect.select2('val', currentRevision);
 
     versionSelect.on('change', function() {
-      var version = this.selectedOptions[0].value;
+      var version = this.value;
 
       window.location = '/' + version + '/';
     });
