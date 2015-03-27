@@ -234,35 +234,6 @@ module TOC
       end
     end
 
-    def warning
-      return unless current_chapter
-      return unless current_guide
-      warning_key = current_chapter["warning"]
-      warning_key ? WARNINGS[warning_key] : nil
-    end
-
-
-    WARNINGS = {
-        "canary"=>  %Q{
-          <div class="under_construction_warning">
-            <h3>
-              <div class="msg">
-                WARNING: this guide refers to a feature only available in canary (nightly/unstable) builds of Ember.js.
-              </div>
-            </h3>
-          </div>
-        },
-        "canary-data"=>  %Q{
-          <div class="under_construction_warning">
-            <h3>
-              <div class="msg">
-                WARNING: this guide refers to a feature only available in canary (nightly/unstable) builds of Ember Data.
-              </div>
-            </h3>
-          </div>
-        }
-    }
-
   end
 end
 

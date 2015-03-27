@@ -686,40 +686,4 @@ guides:
     end
   end
 
-  describe "#warning" do
-    it "is nil if current guide is not specified" do
-      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
-
-      expect(helper.warning).to be_nil
-    end
-
-    it "is nil if current chapter is not specified" do
-      allow(helper).to receive(:current_page).and_return(double(path: "some/nonexistent/path.html"))
-
-      expect(helper.warning).to be_nil
-    end
-
-    it "is nil if current chapter does not have a warning set" do
-      allow(helper).to receive(:current_chapter).and_return(double(:[] => false))
-
-      expect(helper.warning).to be_nil
-    end
-
-    it "is markup specific to the specified type of warning" do
-      data_yml = %Q{
-guides:
-  - title: "Extending Middleman"
-    url: "extending-middleman"
-    chapters:
-      - title: "What are extensions?"
-        url: "index"
-      }
-      data = Hashie::Mash.new(YAML.load(data_yml))
-      allow(helper).to receive(:data).and_return(data)
-      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
-      allow(helper).to receive(:current_chapter).and_return({ "warning" => "canary" })
-
-      expect(helper.warning).to include("WARNING")
-    end
-  end
 end
