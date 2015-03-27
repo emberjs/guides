@@ -6,11 +6,11 @@ to an image:
 
 ```handlebars
 <div id="logo">
-  <img {{bind-attr src=logoUrl}} alt="Logo">
+  <img src={{logoUrl}} alt="Logo">
 </div>
 ```
 
-This generates the following HTML:
+This generates the following HTML when the `logoUrl` property is set in the controller:
 
 ```html
 <div id="logo">
@@ -18,25 +18,16 @@ This generates the following HTML:
 </div>
 ```
 
-If you use `{{bind-attr}}` with a Boolean value, it will add or remove
-the specified attribute. For example, given this template:
+### Binding multiple values
+
+Multiple values can also be bound to a single attribute:
 
 ```handlebars
-<input type="checkbox" {{bind-attr disabled=isAdministrator}}>
+<div class="{{priority}} {{placement}}"></div>
 ```
 
-If `isAdministrator` is `true`, Handlebars will produce the following
-HTML element:
-
-```html
-<input type="checkbox" disabled>
-```
-
-If `isAdministrator` is `false`, Handlebars will produce the following:
-
-```html
-<input type="checkbox">
-```
+For further control over how these values are applied, see the [inline-if syntax
+documentation on the Conditionals page](/templates/conditionals/#toc_inline-if-syntax).
 
 ### Adding data attributes
 

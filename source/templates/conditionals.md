@@ -35,3 +35,23 @@ To only render a block if a value is falsy, use `{{#unless}}`:
 to invoke a helper with a portion of your template. Block expressions look like
 normal expressions except that they contain a hash (#) before the helper name,
 and require a closing expression.
+
+## Inline-if syntax
+
+We can also use the inline-if to keep code terse:
+
+```handlebars
+This message is {{if isImportant 'important' 'unimportant'}}.
+```
+
+We can even use this inline-if syntax to bind values to attributes:
+
+```handlebars
+<div class="message {{if isImportant 'important' 'unimportant'}}"></div>
+```
+
+The inline-if syntax also support the inverse syntax using an inline-unless:
+
+```handlebars
+This message is {{unless isImportant 'unimportant' 'important'}}.
+```
