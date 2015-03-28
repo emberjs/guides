@@ -15,7 +15,7 @@ representing the current page, filter criteria, or sorting criteria.
 
 Query params can be declared on route-driven controllers, e.g. to
 configure query params that are active within the `articles` route,
-they must be declared on `controller:application`.
+they must be declared on `controller:articles`.
 
 **Note:** The controller associated with a given route can be changed
 by specifying the `controllerName` property on that route.
@@ -25,7 +25,7 @@ query parameter that will filter out all the articles that haven't
 been categorized as popular. To do this, we specify `'category'`
 as one of `controller:article`'s `queryParams`:
 
-```app/articles/controller.js
+```app/controllers/articles.js
 export default Ember.ArrayController.extend({
   queryParams: ['category'],
   category: null
@@ -136,7 +136,7 @@ associated with that controller, and set that query param's
 `refreshModel` config property to `true`:
 
 
-```app/articles/route.js
+```app/routes/articles.js
 export default Ember.Route.extend({
   queryParams: {
     category: {
@@ -155,7 +155,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/articles/controller.js
+```app/controllers/articles.js
 export default Ember.ArrayController.extend({
   queryParams: ['category'],
   category: null
@@ -171,7 +171,7 @@ additional item from being added to your browser's history), you can
 specify this on the `Route`'s `queryParams` config hash, e.g. (continued
 from the example above):
 
-```app/articles/route.js
+```app/routes/articles.js
 export default Ember.Route.extend({
   queryParams: {
     category: {
@@ -192,7 +192,7 @@ bind to a query param whose key is `foo`, e.g. `?foo=123`. You can also map
 a controller property to a different query param key using the
 following configuration syntax:
 
-```app/articles/controller.js
+```app/controllers/articles.js
 export default Ember.ArrayController.extend({
   queryParams: {
     category: "articles_category"
@@ -304,7 +304,7 @@ even as a route's model changes. This can be accomplished by setting the
 `scope` option to `"controller"` within the controller's `queryParams`
 config hash:
 
-```app/articles/controller.js
+```app/controllers/articles.js
 export default Ember.ArrayController.extend({
   queryParams: [{
     showMagnifyingGlass: {
@@ -317,7 +317,7 @@ export default Ember.ArrayController.extend({
 The following demonstrates how you can override both the scope and the
 query param URL key of a single controller query param property:
 
-```app/articles/controller.js
+```app/controllers/articles.js
 export default Ember.Controller.extend({
   queryParams: [ "page", "filter",
     {
