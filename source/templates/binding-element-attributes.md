@@ -10,7 +10,7 @@ to an image:
 </div>
 ```
 
-This generates the following HTML when the `logoUrl` property is set in the controller:
+This generates the following HTML:
 
 ```html
 <div id="logo">
@@ -20,14 +20,14 @@ This generates the following HTML when the `logoUrl` property is set in the cont
 
 ### Binding multiple values
 
-Multiple values can also be bound to a single attribute:
+You can also bind multiple values to a single attribute:
 
 ```handlebars
 <div class="{{priority}} {{placement}}"></div>
 ```
 
 For further control over how these values are applied, see the [inline-if syntax
-documentation on the Conditionals page](/templates/conditionals/#toc_inline-if-syntax).
+documentation on the Conditionals page](../conditionals/#toc_inline-if-syntax).
 
 ### Adding data attributes
 

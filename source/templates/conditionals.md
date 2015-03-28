@@ -1,7 +1,7 @@
 Sometimes you may only want to display part of your template if a property
 exists.
 
-We can use the `{{#if}}` helper to conditionally render a block:
+You can use the `{{#if}}` helper to conditionally render a block:
 
 ```handlebars
 {{#if person}}
@@ -38,13 +38,13 @@ and require a closing expression.
 
 ## Inline-if syntax
 
-We can also use the inline-if to keep code terse:
+You can also use the inline-if to keep code terse:
 
 ```handlebars
 This message is {{if isImportant 'important' 'unimportant'}}.
 ```
 
-We can even use this inline-if syntax to bind values to attributes:
+You can even use this inline-if syntax to bind values to attributes:
 
 ```handlebars
 <div class="message {{if isImportant 'important' 'unimportant'}}"></div>
