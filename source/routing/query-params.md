@@ -15,7 +15,7 @@ representing the current page, filter criteria, or sorting criteria.
 
 Query params can be declared on route-driven controllers, e.g. to
 configure query params that are active within the `articles` route,
-they must be declared on `controller:application`.
+they must be declared on `controller:articles`.
 
 **Note:** The controller associated with a given route can be changed
 by specifying the `controllerName` property on that route.
@@ -41,7 +41,7 @@ on `controller:articles`, and vice versa.
 Now we just need to define a computed property of our category-filtered
 array that the `articles` template will render:
 
-```app/controllers/articles.js
+```app/articles/controller.js
 export default Ember.ArrayController.extend({
   queryParams: ['category'],
   category: null,
@@ -207,7 +207,7 @@ property to update the `articles_category` query param, and vice versa.
 Note that query params that require additional customization can
 be provided along with strings in the `queryParams` array.
 
-```app/controllers/articles.js
+```app/articles/controller.js
 export default Ember.ArrayController.extend({
   queryParams: [ "page", "filter", {
     category: "articles_category"
@@ -223,7 +223,7 @@ export default Ember.ArrayController.extend({
 In the following example, the controller query param property `page` is
 considered to have a default value of `1`.
 
-```app/controllers/articles.js
+```app/articles/controller.js
 export default Ember.ArrayController.extend({
   queryParams: 'page',
   page: 1
