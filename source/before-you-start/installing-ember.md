@@ -34,6 +34,21 @@ Once you've got Node.js installed, re-run `node --version` to verify your instal
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
+On Windows, you can avoid slow build times by installing a
+[utility](http://www.felixrieseberg.com/improved-ember-cli-performance-with-windows/)
+that configures Search and Defender to ignore your project's `tmp/` folder:
+
+```bash
+npm install -g ember-cli-windows
+```
+
+Then, after you create a new Ember app, simply run this command from the root of
+your project:
+
+```bash
+ember-cli-windows
+```
+
 ## Installation
 
 Install Ember using [npm](#toc_got-node-and-npm). While you're at it we recommend
