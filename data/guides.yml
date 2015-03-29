@@ -36,6 +36,8 @@
       url: 'creating-an-app'
     - title: 'Running In Development'
       url: 'running-in-development'
+    - title: 'Building For Production'
+      url: 'building-for-production'
 
 - title: "The Object Model"
   url: 'object-model'
