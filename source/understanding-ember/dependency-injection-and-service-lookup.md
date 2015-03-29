@@ -94,7 +94,7 @@ And we must create an `app/templates/audio.hbs` template to render:
 
 ```app/templates/audio.hbs
 <audio id="audio" controls loop>
-  <source {{bind-attr src=currentSrc}} type="audio/mpeg"></source>
+  <source src={{currentSrc}} type="audio/mpeg"></source>
 </audio>
 <div>{{currentSrc}}</div>
 ```

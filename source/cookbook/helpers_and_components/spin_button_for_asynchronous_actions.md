@@ -12,7 +12,7 @@ For example a button to save data could be as
 
 ```app/templates/components/spin-button.hbs
 
-<button {{bind-attr id=id}} {{action 'showLoading'}}>
+<button id={{id}} {{action 'showLoading'}}>
   {{#if isLoading}}
     <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">
   {{else}}

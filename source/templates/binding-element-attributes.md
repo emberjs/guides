@@ -21,9 +21,16 @@ This generates the following HTML:
 ### Binding multiple values
 
 You can also bind multiple values to a single attribute:
-
 ```handlebars
 <div class="{{priority}} {{placement}}"></div>
+```
+
+### Binding boolean values
+If you use data binding with a Boolean value, it will add or remove
+the specified attribute. For example, given this template:
+
+```handlebars
+<input type="checkbox" disabled={{isAdministrator}}>
 ```
 
 For further control over how these values are applied, see the [inline-if syntax
