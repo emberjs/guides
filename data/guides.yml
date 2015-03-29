@@ -5,21 +5,20 @@
       url: ""
       skip_sidebar: true
 
-- title: "Getting Started"
-  url: 'ember-cli'
+- title: "Before You Start"
+  url: 'before-you-start'
   chapters:
-    - title: "Installing Ember"
-      url: "index"
-    - title: "Glossary"
-      url: "glossary"
-
-- title: "Concepts"
-  url: 'concepts'
-  chapters:
+    - title: "Key Background Concepts"
+      url: "key-background-concepts"
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
       url: "naming-conventions"
+    - title: "Other Terms"
+      url: "other-terms"
+    - title: "Installing Ember"
+      url: "installing-ember"
+
     #- title: "What is Ember.js?"
       #url: "what-is-ember-js"
     #- title: "Getting Ember.js"
@@ -28,6 +27,16 @@
       #url: "build-tools"
     #- title: "Understanding Web Apps"
       #url: "understanding-web-apps"
+
+- title: "Ember CLI Basics"
+  url: 'ember-cli-basics'
+  chapters:
+    - title: 'Creating An App'
+      url: 'creating-an-app'
+    - title: 'Running In Development'
+      url: 'running-in-development'
+    - title: 'Building For Production'
+      url: 'building-for-production'
 
 - title: "The Object Model"
   url: 'object-model'
@@ -46,12 +55,6 @@
       url: "reopening-classes-and-instances"
     - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
       url: "what-do-i-use-when"
-
-- title: "Application"
-  url: 'application'
-  chapters:
-    - title: "Introduction"
-      url: "index"
 
 - title: "Templates"
   url: 'templates'
