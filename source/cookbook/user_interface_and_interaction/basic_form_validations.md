@@ -29,10 +29,10 @@ export default Ember.Component.extend({
 
 And in the template of the component, put an `{{input}}` and wrap it
 into a div, which would have the class of `has-error` bound to
-`hasError`. 
+`hasError`.
 
 ```app/templates/components/validated-input.hbs
-<div {{bindAttr class="hasError :form-group"}}>
+<div class="{{if hasError 'has-error'}} form-group">
     {{input type=type value=value size=size pattern=pattern name=name placeholder=placeholder disaled=disabled maxlength=maxlength tabindex=tabindex class=input-class}}
   </div>
 ```

@@ -313,8 +313,6 @@
     #   url: "event_handling_and_data_binding/using_computed_properties"
     #   skip_sidebar_item: true
     # - title: "Setting The Attributes of a View's Element"
-    #   url: "event_handling_and_data_binding/setting_the_attributes_of_a_views_element"
-    #   skip_sidebar_item: true
     # client/server
     # - title: "Client/Server Interaction"
     #   url: "client_server_interaction"
