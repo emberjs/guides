@@ -3,7 +3,7 @@ Ember.js attempts to find corresponding Route, Controller, View, and Template
 classes named according to naming conventions. If an implementation of any of
 these objects is not found, appropriate objects will be generated in memory for you.
 
-[1]: /guides/routing/defining-your-routes
+[1]: ../defining-your-routes
 
 #### Generated routes
 
@@ -35,8 +35,8 @@ The type of controller Ember.js chooses to generate for you depends on your rout
 - If it does not return anything, an instance of `Ember.Controller` will be generated.
 
 
-[2]: /guides/controllers/representing-a-single-model-with-objectcontroller
-[3]: /guides/controllers/representing-multiple-models-with-arraycontroller
+[2]: ../../controllers/representing-a-single-model-with-objectcontroller
+[3]: ../../controllers/representing-multiple-models-with-arraycontroller
 
 
 #### Generated Views and Templates
