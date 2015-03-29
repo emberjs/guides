@@ -16,7 +16,7 @@ changes, and saving them back to the server can dramatically simplify
 your code while improving the robustness and performance of your
 application.
 
-Many Ember apps use [Ember Data][emberdata] to handle this.
+Many Ember apps use [Ember Data](https://github.com/emberjs/data) to handle this.
 Ember Data is a library that integrates tightly with Ember.js to make it
 easy to retrieve records from a server, cache them for performance,
 save updates back to the server, and create new records on the client.
