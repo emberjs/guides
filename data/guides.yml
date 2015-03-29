@@ -5,23 +5,20 @@
       url: ""
       skip_sidebar: true
 
-- title: "Getting Started"
-  url: 'ember-cli'
-  chapters:
-    - title: "Installing Ember"
-      url: "index"
-
-- title: "Concepts"
-  url: 'concepts'
+- title: "Before You Start"
+  url: 'before-you-start'
   chapters:
     - title: "Key Background Concepts"
       url: "key-background-concepts"
-    - title: "Other Terms"
-      url: "other-terms"
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
       url: "naming-conventions"
+    - title: "Other Terms"
+      url: "other-terms"
+    - title: "Installing Ember"
+      url: "installing-ember"
+
     #- title: "What is Ember.js?"
       #url: "what-is-ember-js"
     #- title: "Getting Ember.js"
