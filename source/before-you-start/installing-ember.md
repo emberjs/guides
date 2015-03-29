@@ -52,23 +52,3 @@ ember -v
 ```
 
 If you get back something like `version: 0.2.0`, you're ready to go.
-
-
-## Testing your installation
-
-To make sure everything works properly, let's run the generator to create a project:
-
-```bash
-ember new my-app
-```
-
-This will create a new `my-app` folder and generate an application structure for you.
-
-Once the generation process finishes, let's verify that we can launch the newly created app:
-
-```bash
-cd my-app
-ember server
-```
-
-Navigate to `http://localhost:4200` to see your new app in action.
