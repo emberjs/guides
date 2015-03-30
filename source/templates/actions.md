@@ -165,7 +165,7 @@ You can specify an alternative event by using the `on` option.
 You should use the normalized event names [listed in the View guide][1].
 In general, two-word event names (like `keypress`) become `keyPress`.
 
-[1]: /guides/understanding-ember/the-view-layer/#toc_adding-new-events
+[1]: ../../understanding-ember/the-view-layer/#toc_adding-new-events
 
 ### Specifying Whitelisted Modifier Keys
 
