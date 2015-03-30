@@ -159,7 +159,7 @@ You can assign class names similarly:
 {{view "info" class="info urgent"}}
 ```
 
-You can bind class names to a property of the view by using `classBinding` instead of `class`. The same behavior as described in `bind-attr` applies:
+You can bind class names to a property of the view by using `classBinding` instead of `class`.
 
 ```app/views/alert.js
 export default Ember.View.extend({
