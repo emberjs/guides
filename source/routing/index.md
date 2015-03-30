@@ -33,21 +33,21 @@ or more of the following:
 
 ###Logging Route Changes
 
-As your application increases in complexity, it can be helpful to see exactly what is going on with the router. To have Ember write out transition events to the log, simply modify your `config/environment.js`:
+As your application increases in complexity, it can be helpful to see exactly what is going on with the router. To have Ember write out transition events to the log modify your project configuration:
 
-```javascript
+```config/environment.js
 ENV.APP.LOG_TRANSITIONS = true;
 ```
 
 ###Specifying a Root URL
 If your Ember application is one of multiple web applications served from the same domain, it may be necessary to indicate to the router what the root URL for your Ember application is. By default, Ember will assume it is served from the root of your domain.
 
-If for example, you wanted to serve your blogging application from `emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
+For example, if you wanted to serve your blogging application from `http://emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
 
-This can be achieved by setting the rootURL on the router:
+This can be achieved by setting the `rootURL` on the router:
 
-```js
-Router.reopen({
+```app/router.js
+Ember.Router.extend({
   rootURL: '/blog/'
 });
 ```

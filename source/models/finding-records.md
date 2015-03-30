@@ -71,8 +71,8 @@ Ember deal with figuring out whether a network request is needed or not.
 var Router = Ember.Router.extend({});
 
 App.Router.map(function() {
-  this.resource('posts');
-  this.resource('post', { path: ':post_id' });
+  this.route('posts');
+  this.route('post', { path: ':post_id' });
 });
 
 export default Router;
