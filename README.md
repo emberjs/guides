@@ -18,9 +18,9 @@ Then visit [http://localhost:4567/](http://localhost:4567/)
 ### Publishing
 When a new version of Ember.js is released we use this repo to generate a guides snapshot. This represents the state of the Guides at the moment of Ember.js release. This allows us to continually update the guides for current best practices in the Ember.js ecosystem while still providing stable documentation for users on early versions of the framework.
 
-No attempt is made to update content, layout, or styles for older versions of the Guides. They are considrered static and immutable.
+No attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable.
 
-To publish a new Guide versions, you'll also need a copy of the Guides site repo: https://github.com/emberjs/guides.emberjs.com
+To publish a new Guide version, you'll also need a copy of the Guides site repo: https://github.com/emberjs/guides.emberjs.com
 
 First, tag a copy of the repo:
 
@@ -29,7 +29,7 @@ git tag <revision number>
 git push --tags
 ```
 
-Next, build a new artifact and move it to the guides site repo, committing it to GitHub
+Next, build a new artifact and move it to the guides site repo, committing it to GitHub:
 
 ```shell
 middleman swiftype --only-generate
@@ -40,7 +40,7 @@ gc -m "Adding artifact for Ember.js revision <revision number>"
 git push
 ```
 
-Finally, publish this to Divshot's staging environment (our site host)
+Finally, publish this to Divshot's staging environment (our site host):
 
 ```
 cd <path to guides site repo>
