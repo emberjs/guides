@@ -15,13 +15,13 @@ Passing a model will skip that segment's `model` hook.  Passing an identifier wi
 If you want to redirect from one route to another, you can do the transition in
 the `beforeModel` hook of your route handler.
 
-```javascript
-// app/router.js
+```app/router.js
 Router.map(function() {
-  this.resource('posts');
+  this.route('posts');
 });
+```
 
-// app/index/route.js
+```app/routes/index.js
 export default Ember.Route.extend({
   beforeModel: function() {
     this.transitionTo('posts');
@@ -31,20 +31,20 @@ export default Ember.Route.extend({
 
 ### After the model is known
 
-If you need some information about the current model in order to decide about
-the redirection, you should either use the `afterModel` or the `redirect` hook. They
-receive the resolved model as the first parameter and the transition as the second one,
-and thus function as aliases. (In fact, the default implementation of `afterModel` just calls `redirect`.)
+If you need information about the current model in order to decide about
+redirection, you should either use the `afterModel` or the `redirect` hook.
+They receive the resolved model as the first parameter and the transition as
+the second one, and thus function as aliases. (In fact, the default
+implementation of `afterModel` just calls `redirect`.)
 
-```javascript
-
-// app/router.js
+```app/router.js
 Router.map(function() {
-  this.resource('posts');
-  this.resource('post', { path: '/post/:post_id' });
+  this.route('posts');
+  this.route('post', { path: '/post/:post_id' });
 });
+```
 
-// app/posts/route.js
+```app/routes/post.js
 export default Ember.Route.extend({
   afterModel: function(posts, transition) {
     if (posts.get('length') === 1) {
@@ -54,7 +54,7 @@ export default Ember.Route.extend({
 });
 ```
 
-When transitioning to the `PostsRoute` if it turns out that there is only one post,
+When transitioning to the `posts` route if it turns out that there is only one post,
 the current transition will be aborted in favor of redirecting to the `PostRoute`
 with the single post object being its model.
 
@@ -62,10 +62,9 @@ with the single post object being its model.
 
 You can conditionally transition based on some other application state.
 
-```javascript
-// app/router.js
+```app/router.js
 Router.map(function() {
-  this.resource('topCharts', function() {
+  this.route('topCharts', function() {
     this.route('choose', { path: '/' });
     this.route('albums');
     this.route('songs');
@@ -73,32 +72,25 @@ Router.map(function() {
     this.route('playlists');
   });
 });
+```
 
-// app/top-charts-choose/route.js
+```app/routes/top-charts-choose.js
 export default Ember.Route.extend({
   beforeModel: function() {
     var lastFilter = this.controllerFor('application').get('lastFilter');
     this.transitionTo('topCharts.' + (lastFilter || 'songs'));
   }
 });
+```
 
-// Superclass to be used by all of the filter routes below
-// app/filter/route.js
+```app/routes/filter.js
+// Superclass to be used by all of the filter routes: albums, songs, artists, playlists
 export default Ember.Route.extend({
   activate: function() {
     var controller = this.controllerFor('application');
     controller.set('lastFilter', this.templateName);
   }
 });
-
-// app/top-charts-songs/route.js
-export default Ember.Route.extend({
-// app/top-charts-albums/route.js
-export default Ember.Route.extend({
-// app/top-charts-artists/route.js
-export default Ember.Route.extend({
-// app/top-charts-playlists/route.js
-export default Ember.Route.extend({
 ```
 
 In this example, navigating to the `/` URL immediately transitions into
