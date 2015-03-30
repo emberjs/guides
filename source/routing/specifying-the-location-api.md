@@ -7,7 +7,7 @@ route.
 
 ```app/router.js
 Router.map(function() {
-  this.resource('posts', function() {
+  this.route('posts', function() {
     this.route('new');
   });
 });
@@ -19,8 +19,8 @@ If you want `/posts/new` to work instead, you can tell the Router to use the bro
 Keep in mind that your server must serve the Ember app from all the URLs defined in your
 `Router.map` function.
 
-```js
-Router.reopen({
+```app/router.js
+Ember.Router.extend({
   location: 'history'
 });
 ```
@@ -31,8 +31,8 @@ testing, or when you need to manage state with your Router, but temporarily
 don't want it to muck with the URL (for example when you embed your
 application in a larger page).
 
-```js
-Router.reopen({
-  location: 'none'
+```app/router.js
+Ember.Router.extend({
+  location: 'history'
 });
 ```

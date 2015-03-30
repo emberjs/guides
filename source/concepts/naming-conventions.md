@@ -140,7 +140,7 @@ Consider this router definition:
 
 ```javascript
 export default Ember.Router.extend().map(function(){
-  this.resource('post', { path: '/posts/:post_id' });
+  this.route('post', { path: '/posts/:post_id' });
 });
 ```
 
@@ -200,21 +200,12 @@ You can nest routes under a `resource`.
 
 ```javascript
 export default Ember.Router.extend().map(function(){
-  this.resource('posts', function() { // the `posts` route
+  this.route('posts', function() {    // the `posts` route
     this.route('favorites');          // the `posts.favorites` route
-    this.resource('post');            // the `post` route
+    this.route('post');               // the `posts.post` route
   });
 });
 ```
-
-A **resource** is the beginning of a route, controller, or template
-name. Even though the `post` resource is nested, its route is named
-`App.PostRoute`, its controller is named `App.PostController` and its
-template is `post`.
-
-When you nest a **route** inside a resource, the route name is added
-to the resource name, after a `.`.
-
 Here are the naming conventions for each of the routes defined in
 this router:
 
@@ -246,11 +237,6 @@ this router:
     <td><code>app/templates/post.hbs</code></td>
   </tr>
 </table>
-
-The rule of thumb is to use resources for nouns, and routes for
-adjectives (`favorites`) or verbs (`edit`). This ensures that
-nesting does not create ridiculously long names, but avoids
-collisions with common adjectives and verbs.
 
 ## The Index Route
 
@@ -289,7 +275,7 @@ A nested router like this:
 
 ```app/router.js
 export default Ember.Router.extend().map(function(){
-  this.resource('posts', function() {
+  this.route('posts', function() {
     this.route('favorites');
   });
 });
@@ -300,7 +286,7 @@ Is the equivalent of:
 ```app/router.js
 export default Ember.Router.extend().map(function(){
   this.route('index', { path: '/' });
-  this.resource('posts', function() {
+  this.route('posts', function() {
     this.route('index', { path: '/' });
     this.route('favorites');
   });

@@ -1,9 +1,7 @@
-As explained in the [routing guide][1], whenever you define a new route,
+As explained in the [routing guide](../defining-your-routes), whenever you define a new route,
 Ember.js attempts to find corresponding Route, Controller, View, and Template
 classes named according to naming conventions. If an implementation of any of
 these objects is not found, appropriate objects will be generated in memory for you.
-
-[1]: /guides/routing/defining-your-routes
 
 #### Generated routes
 
@@ -11,7 +9,7 @@ Given you have the following route:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('posts');
+  this.route('posts');
 });
 ```
 
@@ -23,21 +21,6 @@ If it doesn't find it, it will automatically generate an `route:posts` for you.
 
 If you navigate to route `posts`, Ember.js looks for a controller called `controller:posts`.
 If you did not define it, one will be generated for you.
-
-Ember.js can generate three types of controllers:
-`Ember.ObjectController`, `Ember.ArrayController`, and `Ember.Controller`.
-
-The type of controller Ember.js chooses to generate for you depends on your route's
-`model` hook:
-
-- If it returns an object (such as a single record), an [ObjectController][2] will be generated.
-- If it returns an array, an [ArrayController][3] will be generated.
-- If it does not return anything, an instance of `Ember.Controller` will be generated.
-
-
-[2]: /guides/controllers/representing-a-single-model-with-objectcontroller
-[3]: /guides/controllers/representing-multiple-models-with-arraycontroller
-
 
 #### Generated Views and Templates
 

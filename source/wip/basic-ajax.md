@@ -18,7 +18,7 @@ You should use jQuery Ajax to communicate with your server if:
   around the page, or are willing to roll your own in-memory cache.
 
 See the bottom of this guide for a brief description of other, more
-advanced ways you can work with data, and links to guides about 
+advanced ways you can work with data, and links to guides about
 
 ## Getting Data Into Your App
 
@@ -29,13 +29,13 @@ For example, if you have a `posts` resource:
 
 ```js
 App.Router.map(function() {
-  this.resource('posts');
+  this.route('posts');
 });
 ```
 
 When the user goes to `/posts`, Ember will ask `App.PostsRoute` which
 model to use. This method, called the "model hook", can return an Array,
-which will then become the model for the `posts` template. 
+which will then become the model for the `posts` template.
 
 ```js
 App.PostsRoute = Ember.Route.extend({
@@ -94,8 +94,8 @@ a single route to represent many different models?
 
 ```js
 App.Router.map(function() {
-  this.resource('posts');
-  this.resource('post', { path: '/posts/:post_id' });
+  this.route('posts');
+  this.route('post', { path: '/posts/:post_id' });
 });
 ```
 

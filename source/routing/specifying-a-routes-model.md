@@ -11,7 +11,7 @@ the template, and implementing its `model` hook.
 For example, to provide some model data to the `photos` template, we
 would define an `route:photos` object:
 
-```app/photos/route.js
+```app/routes/photos.js
 export default Ember.Route.extend({
   model: function() {
     return [{
@@ -56,7 +56,7 @@ in the Asynchronous Routing guide.
 Let's look at an example in action. Here's a route that loads the most
 recent pull requests sent to Ember.js on GitHub:
 
-```app/pull-requests/route.js
+```app/routes/pull-requests.js
 export default Ember.Route.extend({
   model: function() {
     return Ember.$.getJSON('https://api.github.com/repos/emberjs/ember.js/pulls');
@@ -83,7 +83,7 @@ the template only displayed the three most recent pull requests. We can
 rely on promise chaining to modify the data returned from the JSON
 request before it gets passed to the template:
 
-```app/pull-requests/route.js
+```app/routes/pull-requests.js
 export default Ember.Route.extend({
   model: function() {
     var url = 'https://api.github.com/repos/emberjs/ember.js/pulls';
@@ -142,7 +142,7 @@ example might have its `photo` route defined like this:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('photo', { path: '/photos/:photo_id' });
+  this.route('photo', { path: '/photos/:photo_id' });
 });
 ```
 
@@ -174,11 +174,11 @@ you and pass them as a hash to the `model` hook as the first argument:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('photo', { path: '/photos/:photo_id' });
+  this.route('photo', { path: '/photos/:photo_id' });
 });
 ```
 
-```app/photo/route.js
+```app/routes/photo.js
 export default Ember.Route.extend({
   model: function(params) {
     return Ember.$.getJSON('/photos/'+params.photo_id);
@@ -195,12 +195,9 @@ return a promise for the JSON model data.
 
 Note: A route with a dynamic segment will only have its `model` hook called
 when it is entered via the URL. If the route is entered through a transition
-(e.g. when using the [link-to][2] Handlebars helper), then a model context is
+(e.g. when using the [link-to](../../templates/links) Handlebars helper), then a model context is
 already provided and the hook is not executed. Routes without dynamic segments
 will always execute the model hook.
-
-[2]: ../../templates/links
-
 
 ### Refreshing your model
 
