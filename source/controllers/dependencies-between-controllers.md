@@ -6,8 +6,8 @@ router as an example:
 var Router = Ember.Router.extend({});
 
 Router.map(function() {
-  this.resource("post", { path: "/posts/:post_id" }, function() {
-    this.resource("comments", { path: "/comments" });
+  this.route("post", { path: "/posts/:post_id" }, function() {
+    this.route("comments", { path: "/comments" });
   });
 });
 

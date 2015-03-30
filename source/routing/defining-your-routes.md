@@ -7,8 +7,7 @@ The [map](http://emberjs.com/api/classes/Ember.Router.html#method_map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create
-[routes](http://emberjs.com/guides/routing/defining-your-routes/) and
-[resources](http://emberjs.com/guides/routing/defining-your-routes/#toc_resources).
+[routes](../defining-your-routes/).
 
 ```app/router.js
 Router.map(function() {
@@ -24,7 +23,7 @@ template. Visiting `/favs` will render the `favorites` template.
 `route:index` (corresponding to the `/` path).
 [See below](#toc_initial-routes) for more details.
 
-Note that you can leave off the path if it is the same as the route
+You can leave off the path if it is the same as the route
 name. In this case, the following is equivalent to the above example:
 
 ```app/router.js
@@ -82,96 +81,103 @@ the name you pass to `this.route`.
   <tr>
     <th>URL</th>
     <th>Route Name</th>
-    <th>Controller</th>
-    <th>Route</th>
-    <th>Template</th>
+    <th>
+      Controller<br/>
+      <code>app/controllers/</code>
+    </th>
+    <th>
+      Route<br/>
+      <code>app/routes/</code>
+    </th>
+    <th>
+      Template<br/>
+      <code>app/templates/</code>
+    </th>
   </tr>
   </thead>
   <tr>
     <td><code>/</code></td>
     <td><code>index</code></td>
-    <td><code>app/controllers/index</code></td>
-    <td><code>app/routes/index</code></td>
-    <td><code>index</code></td>
+    <td>↳<code>index.js</code></td>
+    <td>↳<code>index.js</code></td>
+    <td>↳<code>index.hbs</code></td>
   </tr>
   <tr>
     <td><code>/about</code></td>
     <td><code>about</code></td>
-    <td><code>app/controllers/about</code></td>
-    <td><code>app/routes/about</code></td>
-    <td><code>about</code></td>
+    <td>↳<code>about.js</code></td>
+    <td>↳<code>about.js</code></td>
+    <td>↳<code>about.hbs</code></td>
   </tr>
   <tr>
     <td><code>/favs</code></td>
     <td><code>favorites</code></td>
-    <td><code>app/controllers/favorites</code></td>
-    <td><code>app/routes/favorites</code></td>
-    <td><code>favorites</code></td>
+    <td>↳<code>favorites.js</code></td>
+    <td>↳<code>favorites.js</code></td>
+    <td>↳<code>favorites.hbs</code></td>
   </tr>
 </table>
 
-### Resources
+### Nested Routes
 
-You can define groups of routes that work with a resource:
+You can define nested routes by passing a callback to `this.route`:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('posts', { path: '/posts' }, function() {
+  this.route('posts', { path: '/posts' }, function() {
     this.route('new');
   });
 });
 ```
 
-As with `this.route`, you can leave off the path if it's the same as the
-name of the route, so the following router is equivalent:
-
-```app/router.js
-Router.map(function() {
-  this.resource('posts', function() {
-    this.route('new');
-  });
-});
-```
-
-This router creates three routes:
+This router creates these routes:
 
 <table>
   <thead>
   <tr>
-    <th>URL</th>
-    <th>Route Name</th>
-    <th>Controller</th>
-    <th>Route</th>
-    <th>Template</th>
+   <th>URL</th>
+   <th>Route Name</th>
+   <th>
+     Controller<br/>
+     <code>app/controllers/</code>
+   </th>
+   <th>
+     Route<br/>
+     <code>app/routes/</code>
+   </th>
+   <th>
+     Template<br/>
+     <code>app/templates/</code>
+   </th>
   </tr>
   </thead>
   <tr>
     <td><code>/</code></td>
     <td><code>index</code></td>
-    <td><code>app/controllers/index</code></td>
-    <td><code>app/routes/index</code></td>
-    <td><code>index</code></td>
+    <td>↳<code>index.js</code></td>
+    <td>↳<code>index.js</code></td>
+    <td>↳<code>index.js</code></td>
   </tr>
   <tr>
     <td>N/A</td>
     <td><code>posts</code><sup>1</sup></td>
-    <td><code>app/controllers/posts</code></td>
-    <td><code>app/routes/posts</code></td>
-    <td><code>posts</code></td>
+    <td>↳<code>posts.js</code></td>
+    <td>↳<code>posts.js</code></td>
+    <td>↳<code>posts.hbs</code></td>
   </tr>
   <tr>
     <td><code>/posts</code></td>
     <td><code>posts.index</code></code></td>
-    <td><code>app/controllers/posts</code><br>↳<code>app/controllers/posts/index</code></td>
-    <td><code>app/routes/posts</code><br>↳<code>app/routes/posts/index</code></td>
-    <td><code>posts</code><br>↳<code>posts/index</code></td>
+    <td>↳<code>posts.js</code><br>↳<code>/posts/index.js</code></td>
+    <td>↳<code>posts.js</code><br>↳<code>/posts/index.js</code></td>
+    <td>↳<code>posts.hbs</code><br>↳<code>posts/index.hbs</code></td>
   </tr>
   <tr>
     <td><code>/posts/new</code></td>
     <td><code>posts.new</code></td>
-    <td><code>app/controllers/posts</code><br>↳<code>app/controllers/posts/new</code></td>
-    <td><code>app/routes/posts</code><br>↳<code>app/posts/new</code></td>
-    <td><code>posts</code><br>↳<code>posts/new</code></td>
+    <td>↳<code>posts.js</code><br>↳<code>/posts/new.js</code></td>
+    <td>↳<code>posts.js</code><br>↳<code>/posts/new.js</code></td>
+    <td>↳<code>posts.hbs</code><br>↳<code>/templates/posts/new.hbs</code></td>
   </tr>
 </table>
 
@@ -179,13 +185,8 @@ This router creates three routes:
 `posts` is equivalent to transitioning to `posts.index` or linking to
 `posts.index`</small>
 
-NOTE: If you define a resource using `this.resource` and **do not** supply
-a function, then the implicit `resource.index` route is **not** created. In
-that case, `/resource` will only use the `route:resource`, `resource:controllers`,
-and `resource` template.
-
-Routes nested under a resource take the name of the resource plus their
-name as their route name. If you want to transition to a route (either
+A nested route's names includes the names of its ancestors.
+If you want to transition to a route (either
 via `transitionTo` or `{{#link-to}}`), make sure to use the full route
 name (`posts.new`, not `new`).
 
@@ -198,29 +199,22 @@ Visiting `/posts` is slightly different. It will first render the
 Finally, visiting `/posts/new` will first render the `posts` template,
 then render the `posts/new` template into its outlet.
 
-NOTE: You should use `this.resource` for URLs that represent a **noun**,
-and `this.route` for URLs that represent **adjectives** or **verbs**
-modifying those nouns. For example, in the code sample above, when
-specifying URLs for posts (a noun), the route was defined with
-`this.resource('posts')`. However, when defining the `new` action
-(a verb), the route was defined with `this.route('new')`.
-
 ### Multi-word Model Names
 
 For multi-word models all the names are camel cased except for the dynamic segment. For example, a model named `BigMac` would have a resource path of `/bigMacs/:big_mac_id`, route named `bigMac`, template named `bigMac`.
 
 ### Dynamic Segments
 
-One of the responsibilities of a resource's route handler is to convert a URL
+One of the responsibilities of a route handler is to convert a URL
 into a model.
 
-For example, if we have the resource `this.resource('posts');`, our
+For example, if we have the route `this.route('posts');`, our
 route handler might look like this:
 
 ```app/posts/route.js
 export default Ember.Route.extend({
   model: function() {
-    return this.store.find('post');
+    return $.getJSON("/url/to/some/posts.json");
   }
 });
 ```
@@ -240,41 +234,30 @@ followed by an identifier.
 
 ```app/router.js
 Router.map(function() {
-  this.resource('posts');
-  this.resource('post', { path: '/post/:post_id' });
+  this.route('posts');
+  this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```app/post/route.js
+```app/routes/post.js
 export default Ember.Route.extend({
   model: function(params) {
-    return this.store.find('post', params.post_id);
+    return $.getJSON("/url/to/some/posts/" + params.post_id + ".json");
   }
 });
 ```
 
-Because this pattern is so common, the above `model` hook is the
-default behavior.
-
-For example, if the dynamic segment is `:post_id`, Ember.js is smart
-enough to know that it should use the Post model (with the ID
-provided in the URL). Specifically, unless you override `model`, the route will
-return `this.store.find('post', params.post_id)` automatically.
-
-Not coincidentally, this is exactly what Ember Data expects. So if you
-use the Ember router with Ember Data, your dynamic segments will work
-as expected out of the box.
 
 If your model does not use the `id` property in the URL, you should
 define a serialize method on your route:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('post', {path: '/posts/:post_slug'});
+  this.route('post', {path: '/posts/:post_slug'});
 });
 ```
 
-```app/post/route.js
+```app/routes/post.js
 export default Ember.Route.extend({
   model: function(params) {
     // the server returns `{ slug: 'foo-post' }`
@@ -291,152 +274,6 @@ export default Ember.Route.extend({
 The default `serialize` method inserts the model's `id` into the route's
 dynamic segment (in this case, `:post_id`).
 
-### Nested Resources
-
-You can nest both routes and resources:
-
-```app/router.js
-Router.map(function() {
-  this.resource('post', { path: '/post/:post_id' }, function() {
-    this.route('edit');
-    this.resource('comments', function() {
-      this.route('new');
-    });
-  });
-});
-```
-
-This router creates five routes:
-
-<div style="overflow: auto">
-  <table>
-    <thead>
-    <tr>
-      <th>URL</th>
-      <th>Route Name</th>
-      <th>Controller</th>
-      <th>Route</th>
-      <th>Template</th>
-    </tr>
-    </thead>
-    <tr>
-      <td><code>/</code></td>
-      <td><code>index</code></td>
-      <td><code>app/controllers/index</code></td>
-      <td><code>app/routes/index</code></td>
-      <td><code>app/templates/index</code></td>
-    </tr>
-    <tr>
-      <td>N/A</td>
-      <td><code>post</code></td>
-      <td><code>app/controllers/post</code></td>
-      <td><code>app/routes/post</code></td>
-      <td><code>app/templates/post</code></td>
-    </tr>
-    <tr>
-      <td><code>/post/:post_id<sup>2</sup></code></td>
-      <td><code>post.index</code></td>
-      <td><code>app/controllers/post/index</code></td>
-      <td><code>app/routes/post/index</code></td>
-      <td><code>app/templates/post/index</code></td>
-    </tr>
-    <tr>
-      <td><code>/post/:post_id/edit</code></td>
-      <td><code>post.edit</code></td>
-      <td><code>app/controllers/post/edit</code></td>
-      <td><code>app/routes/post/edit</code></td>
-      <td><code>app/templates/post/edit</code></td>
-    </tr>
-    <tr>
-      <td>N/A</td>
-      <td><code>comments</code></td>
-      <td><code>app/controllers/comments</code></td>
-      <td><code>app/routes/comments</code></td>
-      <td><code>app/templates/comments</code></td>
-    </tr>
-    <tr>
-      <td><code>/post/:post_id/comments</code></td>
-      <td><code>comments.index</code></td>
-      <td><code>app/controllers/comments/index</code></td>
-      <td><code>app/routes/comments/index</code></td>
-      <td><code>app/templates/comments/index</code></td>
-    </tr>
-    <tr>
-      <td><code>/post/:post_id/comments/new</code></td>
-      <td><code>comments.new</code></td>
-      <td><code>app/controllers/comments/new</code></td>
-      <td><code>app/routes/comments/new</code></td>
-      <td><code>app/templates/comments/new</code></td>
-    </tr>
-  </table>
-</div>
-
-<small><sup>2</sup> `:post_id` is the post's id.  For a post with id = 1, the route will be:
-`/post/1`</small>
-
-The `comments` template will be rendered in the `post` outlet.
-All templates under `comments` (`comments/index` and `comments/new`) will be rendered in the `comments` outlet.
-
-The route, controller, and view class names for the comments resource are not prefixed with `Post`. Resources
-always reset the namespace, ensuring that the classes can be re-used between multiple parent resources and that
-class names don't get longer the deeper nested the resources are.
-
-You are also able to create deeply nested resources in order to preserve the namespace on your routes:
-
-```app/router.js
-Router.map(function() {
-  this.resource('foo', function() {
-    this.resource('foo.bar', { path: '/bar' }, function() {
-      this.route('baz'); // This will be foo.bar.baz
-    });
-  });
-});
-```
-
-This router creates the following routes:
-
-<div style="overflow: auto">
-  <table>
-    <thead>
-    <tr>
-      <th>URL</th>
-      <th>Route Name</th>
-      <th>Controller</th>
-      <th>Route</th>
-      <th>Template</th>
-    </tr>
-    </thead>
-    <tr>
-      <td><code>/</code></td>
-      <td><code>index</code></td>
-      <td><code>app/controllers/index</code></td>
-      <td><code>app/routes/index</code></td>
-      <td><code>app/templates/index</code></td>
-    </tr>
-    <tr>
-      <td><code>/foo</code></td>
-      <td><code>foo.index</code></td>
-      <td><code>app/controllers/foo/index</code></td>
-      <td><code>app/routes/foo/index</code></td>
-      <td><code>app/templates/foo/index</code></td>
-    </tr>
-    <tr>
-      <td><code>/foo/bar</code></td>
-      <td><code>foo.bar.index</code></td>
-      <td><code>app/controllers/foo/bar/index</code></td>
-      <td><code>app/routes/foo/bar/index</code></td>
-      <td><code>app/templates/foo/bar/index</code></td>
-    </tr>
-    <tr>
-      <td><code>/foo/bar/baz</code></td>
-      <td><code>foo.bar.baz</code></td>
-      <td><code>app/controllers/foo/bar/baz</code></td>
-      <td><code>app/routes/foo/bar/baz</code></td>
-      <td><code>app/templates/foo/bar/baz</code></td>
-    </tr>
-  </table>
-</div>
-
 ### Initial routes
 
 A few routes are immediately available within your application:
@@ -448,7 +285,7 @@ A few routes are immediately available within your application:
     when the user visits `/` (unless `/` has been overridden by your own
     custom route).
 
-Remember, these routes are part of every application, so you don't need to
+These routes are part of every application, so you don't need to
 specify them in your `app/router.js`.
 
 ### Wildcard / globbing routes
@@ -466,7 +303,7 @@ Router.map(function() {
 Like all routes with a dynamic segment, you must provide a context when using a `{{link-to}}`
 or `transitionTo` to programatically enter this route.
 
-```app/application/route.js
+```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
     error: function() {

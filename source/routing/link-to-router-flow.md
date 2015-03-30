@@ -10,11 +10,11 @@ with the following router.
 
 ```app/router.js
 Router.map(function() {
-  this.resource('about', function() {
+  this.route('about', function() {
     this.route('faq');
   });
 
-  this.resource('user', { path: '/user/:user_id' }, function() {
+  this.route('user', { path: '/user/:user_id' }, function() {
     this.route('profile');
   });
 });
@@ -56,7 +56,7 @@ whether or not the transition should occur. The code to intercept the
 `willTransition` action and abort a transition might looks something
 like this.
 
-```app/about-faq/route.js
+```app/routes/about-faq.js
 export default Ember.Route.extend({
   actions: {
     willTransition: function(transition) {
