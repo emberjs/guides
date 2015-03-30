@@ -12,8 +12,6 @@
       url: "key-background-concepts"
     - title: "Core Concepts"
       url: "core-concepts"
-    - title: "Naming Conventions"
-      url: "naming-conventions"
     - title: "Other Terms"
       url: "other-terms"
     - title: "Installing Ember"
@@ -37,6 +35,8 @@
       url: 'running-in-development'
     - title: 'Building For Production'
       url: 'building-for-production'
+    - title: "Naming Conventions"
+      url: "naming-conventions"
 
 - title: "The Object Model"
   url: 'object-model'
