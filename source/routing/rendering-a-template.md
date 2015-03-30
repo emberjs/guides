@@ -10,7 +10,6 @@ Router.map(function() {
 });
 ```
 
-
 ```app/routes/posts.js
 export default Ember.Route.extend();
 ```

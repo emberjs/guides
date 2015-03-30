@@ -119,7 +119,6 @@ the name you pass to `this.route`.
 </table>
 
 ### Nested Routes
-
 You can define nested routes by passing a callback to `this.route`:
 
 ```app/router.js
