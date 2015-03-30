@@ -20,7 +20,7 @@ instance of `controller:application` as the controller for the
 template. This means that the template will get its properties from
 the controller.
 
-If your app provides an route at `app/routes/application.js` Ember.js will invoke
+If your app provides a route at `app/routes/application.js` Ember.js will invoke
 [the][1] [router's][2] [hooks][3] first, before rendering the
 `application` template. Hooks are implemented as methods and provide
 you access points within an Ember object's lifecycle to intercept and
