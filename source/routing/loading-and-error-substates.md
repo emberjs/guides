@@ -17,13 +17,13 @@ Consider the following:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('foo', function() { // -> FooRoute
-    this.route('slowModel');        // -> FooSlowModelRoute
+  this.route('foo', function() {
+    this.route('slow-model');
   });
 });
 ```
 
-```app/foo-slow-model/route.js
+```app/routes/foo/slow-model.s
 export default Ember.Route.extend({
   model: function() {
     return somePromiseThatTakesAWhileToResolve();
@@ -31,16 +31,16 @@ export default Ember.Route.extend({
 });
 ```
 
-If you navigate to `foo/slow_model`, and in `FooSlowModelRoute#model`,
+If you navigate to `foo/slow-model`, and in the `model` hook,
 you return an AJAX query promise that takes a long time to complete.
 During this time, your UI isn't really giving you any feedback as to
 what's happening; if you're entering this route after a full page
 refresh, your UI will be entirely blank, as you have not actually
 finished fully entering any route and haven't yet displayed any
-templates; if you're navigating to `foo/slow_model` from another
+templates; if you're navigating to `foo/slow-model` from another
 route, you'll continue to see the templates from the previous route
 until the model finish loading, and then, boom, suddenly all the
-templates for `foo/slow_model` load.
+templates for `foo/slow-model` load.
 
 So, how can we provide some visual feedback during the transition?
 
@@ -49,9 +49,9 @@ the following loading substate behavior.
 
 ```app/router.js
 Router.map(function() {
-  this.resource('foo', function() {       // -> FooRoute
-    this.resource('foo.bar', function() { // -> FooBarRoute
-      this.route('baz');                  // -> FooBarBazRoute
+  this.route('foo', function() {
+    this.route('bar', function() {
+      this.route('baz');
     });
   });
 });
@@ -69,15 +69,15 @@ above `foo.bar.baz` that it can transition into, starting with
 Ember will find a loading route at the above location if either a) a
 Route subclass has been defined for such a route, e.g.
 
-1. `app/routes/foo/bar/loading`
-2. `app/routes/foo/loading`
-3. `app/routes/loading`
+1. `app/routes/foo/bar/loading.js`
+2. `app/routes/foo/loading.js`
+3. `app/routes/loading.js`
 
 or b) a properly-named loading template has been found, e.g.
 
-1. `app/templates/foo/bar/loading`
-2. `app/templates/foo/loading`
-3. `app/templates/loading`
+1. `app/templates/foo/bar/loading.hbs`
+2. `app/templates/foo/loading.hbs`
+3. `app/templates/loading.hbs`
 
 During a slow asynchronous transition, Ember will transition into the
 first loading sub-state/route that it finds, if one exists. The
@@ -126,7 +126,7 @@ If the `loading` handler is not defined at the specific route,
 the event will continue to bubble above a transition's pivot
 route, providing the `route:application` the opportunity to manage it.
 
-```app/foo-slow-model/route.js
+```app/routes/foo-slow-model.js
 export default Ember.Route.extend({
   model: function() {
     return somePromiseThatTakesAWhileToResolve();
@@ -147,7 +147,7 @@ The `loading` handler provides the ability to decide what to do during
 the loading process. If the last loading handler is not defined
 or returns `true`, Ember will perform the loading substate behavior.
 
-```app/application/route.js
+```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
     loading: function(transition, originRoute) {
@@ -171,14 +171,14 @@ enter, if one can be found.
 
 ```app/router.js
 Router.map(function() {
-  this.resource('articles', function() { // -> ArticlesRoute
-    this.route('overview');              // -> ArticlesOverviewRoute
+  this.route('articles', function() {
+    this.route('overview');
   });
 });
 ```
 
-For instance, an error thrown or rejecting promise returned from
-`ArticlesOverviewRoute#model` (or `beforeModel` or `afterModel`)
+For instance, an thrown error or rejected promise returned from
+`route:articles/overview`'s `#model` hook (or `beforeModel` or `afterModel`)
 will look for:
 
 1. Either `route:articles/error` or `articles/error` template
@@ -200,13 +200,13 @@ separate levels." Take for example:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('foo', {path: '/foo/:id'}, function() {
+  this.route('foo', {path: '/foo/:id'}, function() {
     this.route('baz');
   });
 });
 ```
 
-```app/foo/route.js
+```app/routes/foo.js
 export default Ember.Route.extend({
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -226,8 +226,8 @@ into `foo`'s `outlet` you would need to split the dynamic segment:
 
 ```app/router.js
 Router.map(function() {
-  this.resource('foo', {path: '/foo'}, function() {
-    this.resource('elem', {path: ':id'}, function() {
+  this.route('foo', {path: '/foo'}, function() {
+    this.route('elem', {path: ':id'}, function() {
       this.route('baz');
     });
   });
@@ -239,14 +239,14 @@ Router.map(function() {
 
 ### The `error` event
 
-If `ArticlesOverviewRoute#model` returns a promise that rejects (because, for
-instance, the server returned an error, or the user isn't logged in,
-etc.), an `error` event will fire on `ArticlesOverviewRoute` and bubble upward.
+If `route:articles/overview`'s `model` hook returns a promise that rejects (for
+instance the server returned an error, the user isn't logged in,
+etc.), an `error` event will fire on `route:articles/overview` and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
 
-```app/articles-overview/route.js
+```app/routes/articles-overview.js
 export default Ember.Route.extend({
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -268,12 +268,12 @@ export default Ember.Route.extend({
 });
 ```
 
-In analogy with the `loading` event, you could manage the `error` event
-at the Application level to perform any app logic and based on the
+Analogous to the `loading` event, you could manage the `error` event
+at the Application level to perform any application logic and based on the
 result of the last `error` handler, Ember will decide if substate behavior
 must be performed or not.
 
-```app/application/route.js
+```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
     error: function(error, transition) {
@@ -288,37 +288,3 @@ export default Ember.Route.extend({
   }
 });
 ```
-
-
-## Legacy `LoadingRoute`
-
-Previous versions of Ember (somewhat inadvertently) allowed you to define a global `route:loading`
-which would be activated whenever a slow promise was encountered during
-a transition and exited upon completion of the transition. Because the
-`loading` template rendered as a top-level view and not within an
-outlet, it could be used for little more than displaying a loading
-spinner during slow transitions. Loading events/substates give you far
-more control, but if you'd like to emulate something similar to the legacy
-`route:loading` behavior, you could do as follows:
-
-```app/views/loading.js
-export default Ember.View.extend({
-  templateName: 'global-loading',
-  elementId: 'global-loading'
-});
-```
-
-```app/application/route.js
-export default Ember.Route.extend({
-  actions: {
-    loading: function() {
-      var view = this.container.lookup('view:loading').append();
-      this.router.one('didTransition', view, 'destroy');
-    }
-  }
-});
-```
-
-This will, like the legacy `route:loading`, append a top-level view when the
-router goes into a loading state, and tear down the view once the
-transition finishes.

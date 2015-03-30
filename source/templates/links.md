@@ -4,19 +4,17 @@ You create a link to a route using the `{{link-to}}` helper.
 
 ```app/router.js
 Router.map(function() {
-  this.resource("photos", function(){
+  this.route("photos", function(){
     this.route("edit", { path: "/:photo_id" });
   });
 });
 ```
 
-```handlebars
-{{! photos.handlebars }}
-
+```app/templates/photos.hbs
 <ul>
-{{#each photo in photos}}
-  <li>{{#link-to 'photos.edit' photo}}{{photo.title}}{{/link-to}}</li>
-{{/each}}
+  {{#each photo in photos}}
+    <li>{{#link-to 'photos.edit' photo}}{{photo.title}}{{/link-to}}</li>
+  {{/each}}
 </ul>
 ```
 
@@ -46,10 +44,8 @@ The `{{link-to}}` helper takes:
   of the route, and will make sure that the `model` hook is triggered.
 * An optional title which will be bound to the `a` title attribute
 
-```handlebars
-{{! photos.handlebars }}
-
-{{#link-to 'photo.edit' 1}}
+```app/templates/photos.hbs
+{{#link-to 'photos.photo.edit' 1}}
   First Photo Ever
 {{/link-to}}
 ```
@@ -61,8 +57,8 @@ segment.
 
 ```app/router.js
 Router.map(function() {
-  this.resource("photos", function(){
-    this.resource("photo", { path: "/:photo_id" }, function(){
+  this.route("photos", function(){
+    this.route("photo", { path: "/:photo_id" }, function(){
       this.route("comments");
       this.route("comment", { path: "/comments/:comment_id" });
     });
@@ -70,14 +66,12 @@ Router.map(function() {
 });
 ```
 
-```handlebars
-<!-- photoIndex.handlebars -->
-
+```app/templates/photo/index.hbs
 <div class="photo">
   {{body}}
 </div>
 
-<p>{{#link-to 'photo.comment' primaryComment}}Main Comment{{/link-to}}</p>
+<p>{{#link-to 'photos.photo.comment' primaryComment}}Main Comment{{/link-to}}</p>
 ```
 
 If you specify only one model, it will represent the innermost dynamic segment `:comment_id`.
@@ -85,7 +79,7 @@ The `:photo_id` segment will use the current photo.
 
 Alternatively, you could pass both a photo and a comment to the helper:
 
-```handlebars
+```app/templates/photo/index.hbs
 <p>
   {{#link-to 'photo.comment' 5 primaryComment}}
     Main Comment for the Next Photo

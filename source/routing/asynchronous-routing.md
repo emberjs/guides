@@ -67,7 +67,7 @@ arrays, the transition will complete immediately. But if the `model` hook
 if a promise was provided as an argument to `transitionTo`), the transition
 will pause until that promise fulfills or rejects.
 
-**Note:** The router considers any object with a `then` method
+The router considers any object with a `then` method
 defined on it to be a promise.
 
 If the promise fulfills, the transition will pick up where it left off and
