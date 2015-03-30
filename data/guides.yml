@@ -6,7 +6,7 @@
       skip_sidebar: true
 
 - title: "Getting Started"
-  url: 'ember-cli'
+  url: 'getting-started'
   chapters:
     - title: "Installing Ember"
       url: "index"

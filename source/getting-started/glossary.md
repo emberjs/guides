@@ -11,7 +11,7 @@ Behind the scenes, the CDN will distribute your content geographically with the 
 
 
 ## CoffeeScript, TypeScript
-These are both languages which end up compiling to JavaScript; you're able to write your code using the syntax provided and when ready you compile/transpile your TypesScript or CoffeeScript into JavaScript.
+These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypesScript or CoffeeScript into JavaScript.
 
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
@@ -34,7 +34,7 @@ Most browsers support at least ES5, and some even have ES6 (also known as ES2015
 
 
 ## LESS, Sass
-Both LESS and Sass are types of CSS preprocessor markup intended to give you much more control over your CSS. During the build process, the LESS or Sass resources "compile" down to vanilla CSS (which is what the end-user downloads and use in their browser).
+Both LESS and Sass are types of CSS preprocessor markup intended to give you much more control over your CSS. During the build process, the LESS or Sass resources compile down to vanilla CSS (which can be executed in a browser).
 
 [Sass/Less Comparison](https://gist.github.com/chriseppstein/674726)
 
@@ -52,7 +52,7 @@ This is concept that typically means providing JavaScript which tests for featur
 ## Promise
 Asynchronous calls typically return a promise (or deferred). This is an object which has a state: it can be given handlers for when it's fulfilled or rejected.
 
-Ember makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
+Ember.js makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
 
 [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
 [emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
@@ -73,7 +73,7 @@ Besides ES6, you'll see a lot of content about compiling/transpiling CoffeeScrip
 
 
 ## Shadow DOM
-**Not to be confused with Virtual DOM**. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
+Not to be confused with Virtual DOM. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
 
 Creating a re-usable "widget" or control might be a good use-case for this. Browsers implement some of their controls using their own version of a shadow DOM.
 
@@ -82,4 +82,4 @@ Creating a re-usable "widget" or control might be a good use-case for this. Brow
 
 
 ## Virtual DOM
-**Not to be confused with Shadow DOM**. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
+Not to be confused with Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
