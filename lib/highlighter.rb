@@ -1,5 +1,7 @@
 require "redcarpet"
-require "coderay"
+unless defined?(EmberEncoder)
+  require "lib/ember_encoder"
+end
 
 module Highlighter
   class MissingLanguageError < StandardError; end
@@ -8,6 +10,7 @@ module Highlighter
       app.helpers Helpers
     end
     alias :included :registered
+
   end
 
   module Helpers
@@ -17,47 +20,74 @@ module Highlighter
 
       raise MissingLanguageError, error_message if language.nil?
 
-      language, file_name = _detect_language_and_filename(language)
+      language, file_name, changes = _detect_language_filename_and_changes(language)
 
       result = %Q{<div class="highlight #{language} #{class_name}">}
       result += '<div class="ribbon"></div>'
       result += '<div class="scroller">'
-      result += _code_table(string, language, file_name)
+      result += _code_table(string, language, file_name, changes)
       result += '</div>'
       result += %Q{</div>}
       result
     end
 
-    def _detect_language_and_filename(language)
-
+    def _detect_language_filename_and_changes(language)
       file_name = nil
+      changes = []
+      changes_regex = /\{(.+)\}$/
       bare_language_regex = /\A\w+\z/
+
+      if change_numbers = changes_regex.match(language)
+        language = language.sub(changes_regex, '')
+
+        changes = _parse_changes(change_numbers[1])
+      end
 
       unless language =~ bare_language_regex
         file_name = language
 
-        language = case /\.(\w+)$/.match(language)[1]
-                   when 'hbs'
-                     'handlebars'
-                   when 'js'
-                     'javascript'
-                   when 'html'
-                     'html'
-                   when 'css'
-                     'css'
-                   when 'json'
-                     'json'
-                   end
+        language = _determine_language(language)
       end
-      [language, file_name]
+      [language, file_name, changes]
     end
 
-    def _code_table(string, language, file_name)
+    def _determine_language(language)
+      case /\.(\w+)$/.match(language)[1]
+      when 'hbs'
+        'handlebars'
+      when 'js'
+        'javascript'
+      when 'html'
+        'html'
+      when 'css'
+        'css'
+      when 'json'
+        'json'
+      end
+    end
+
+    def _parse_changes(change_numbers)
+      changes = change_numbers.split(',').map do |change|
+        state = case change.slice(0)
+                when '+'
+                  'added'
+                when '-'
+                  'removed'
+                else
+                  nil
+                end
+
+        [change.to_i.abs, state]
+      end
+    end
+
+    def _code_table(string, language, file_name, changes)
       code = CodeRay.scan(string, language)
 
-      table = code.div css: :class,
+      table = code.ember css: :class,
         line_numbers: :table,
-        line_number_anchors: false
+        line_number_anchors: false,
+        highlights: changes
 
       if file_name.present?
 
