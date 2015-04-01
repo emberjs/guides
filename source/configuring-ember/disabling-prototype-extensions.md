@@ -135,3 +135,16 @@ fullNameDidChange: Ember.observer('fullName', function() {
 })
 ```
 
+Evented functions are annotated using `Ember.on()`:
+
+```javascript
+// This won't work:
+doStuffWhenInserted: function() {
+  /* awesome sauce */
+}.on('didInsertElement');
+
+// Instead, do this:
+doStuffWhenInserted: on('didInsertElement', function() {
+  /* awesome sauce */
+});
+```
