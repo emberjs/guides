@@ -84,5 +84,5 @@ look at the [Ember Data tests] for examples of deeper relationship testing if yo
 feel the need to do it._
 
 [Ember Data]: https://github.com/emberjs/data
-[Unit Testing Basics]: /guides/testing/unit-testing-basics
+[Unit Testing Basics]: ../unit-testing-basics
 [Ember Data tests]: https://github.com/emberjs/data/tree/master/tests

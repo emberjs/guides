@@ -67,5 +67,5 @@ test('Alert is called on displayAlert', function(assert) {
 });
 ```
 
-[Unit Testing Basics]: /guides/testing/unit-testing-basics
+[Unit Testing Basics]: ../unit-testing-basics
 [separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns
