@@ -57,7 +57,7 @@ the Route's model hook.
 ```js
 App.PostRoute = Ember.Route.extend({
   model: function(params) {
-    return this.store.findOne('post', {slug: params.post_slug});
+    return this.store.findOne('post', { slug: params.post_slug });
   }
 });
 ```

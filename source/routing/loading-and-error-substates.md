@@ -200,7 +200,7 @@ separate levels." Take for example:
 
 ```app/router.js
 Router.map(function() {
-  this.route('foo', {path: '/foo/:id'}, function() {
+  this.route('foo', { path: '/foo/:id' }, function() {
     this.route('baz');
   });
 });
