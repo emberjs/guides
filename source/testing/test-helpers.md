@@ -198,7 +198,6 @@ import config from '../../config/environment';
 import shouldHaveElementWithCount from "./should-have-element-with-count";
 import dblclick from "./dblclick";
 import addContact from "./add-contact";
-```
 
 // addContact("Bob");
 // addContact("Dan");
