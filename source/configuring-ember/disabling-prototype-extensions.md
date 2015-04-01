@@ -144,7 +144,7 @@ doStuffWhenInserted: function() {
 }.on('didInsertElement');
 
 // Instead, do this:
-doStuffWhenInserted: on('didInsertElement', function() {
+doStuffWhenInserted: Ember.on('didInsertElement', function() {
   /* awesome sauce */
 });
 ```
