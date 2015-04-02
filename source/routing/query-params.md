@@ -281,7 +281,7 @@ The result of this is that all links pointing back into the exited route
 will use the newly reset value `1` as the value for the `page` query
 param.
 
-```app/articles/route.js
+```app/routes/articles.js
 export default Ember.Route.extend({
   resetController: function (controller, isExiting, transition) {
     if (isExiting) {

@@ -24,7 +24,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```templates/components/navigation-bar.hbs
+```app/templates/components/navigation-bar.hbs
 <ul>
   <li>{{#link-to 'home'}}Home{{/link-to}}</li>
   <li>{{#link-to 'about'}}About{{/link-to}}</li>
