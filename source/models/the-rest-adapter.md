@@ -163,7 +163,7 @@ have a model with a `hasMany` relationship:
 
 ```app/models/post.js
 export default DS.Model.extend({
-  comments: DS.hasMany('comment', {async: true})
+  comments: DS.hasMany('comment', { async: true })
 });
 ```
 

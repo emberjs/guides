@@ -215,8 +215,8 @@ other side, set the inverse to null.
 
 ```app/models/folder.js
 export default DS.Model.extend({
-  children: DS.hasMany('folder', {inverse: 'parent'}),
-  parent: DS.belongsTo('folder', {inverse: 'children'})
+  children: DS.hasMany('folder', { inverse: 'parent' }),
+  parent: DS.belongsTo('folder', { inverse: 'children' })
 });
 ```
 
@@ -224,6 +224,6 @@ or
 
 ```app/models/folder.js
 export default DS.Model.extend({
-  parent: belongsTo('folder', {inverse: null})
+  parent: belongsTo('folder', { inverse: null })
 });
 ```

@@ -30,7 +30,7 @@ But when you need to create class methods or add properties to the class itself 
 ```javascript
 Person.reopenClass({
   createMan: function() {
-    return Person.create({isMan: true})
+    return Person.create({ isMan: true })
   }
 });
 

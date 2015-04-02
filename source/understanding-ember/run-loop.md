@@ -70,7 +70,7 @@ and a template to display its attributes:
 If we execute the following code without the run loop:
 
 ```javascript
-var user = User.create({firstName:'Tom', lastName:'Huda'});
+var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
 user.set('firstName', 'Yehuda');
 // {{firstName}} and {{fullName}} are updated
 
@@ -91,7 +91,7 @@ user.set('lastName', 'Katz');
 However, if we have the run loop in the above code, the browser will only rerender the template once the attributes have all been set.
 
 ```javascript
-var user = User.create({firstName:'Tom', lastName:'Huda'});
+var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
 user.set('firstName', 'Yehuda');
 user.set('lastName', 'Katz');
 user.set('firstName', 'Tom');

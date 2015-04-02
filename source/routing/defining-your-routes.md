@@ -253,7 +253,7 @@ define a serialize method on your route:
 
 ```app/router.js
 Router.map(function() {
-  this.route('post', {path: '/posts/:post_slug'});
+  this.route('post', { path: '/posts/:post_slug' });
 });
 ```
 
@@ -296,7 +296,7 @@ by your app.
 
 ```app/router.js
 Router.map(function() {
-  this.route('catchall', {path: '/*wildcard'});
+  this.route('catchall', { path: '/*wildcard' });
 });
 ```
 
