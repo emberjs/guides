@@ -79,20 +79,7 @@ completing all async behaviour are suspended to give you a chance to set up
 state and make assertions in a known state. In other words, you know that if you
 run "visit" to get to a particular URL, you can be sure the URL has been visited
 and that's the only behaviour that has transpired. If we didn't use this mode,
-our assertions would most likely be executed before the async behaviour had taken place, so
-our assertion results would be unpredictable.
-
-With a module-based application, you have access to the unit test helpers simply
-by requiring the exports of the module. However, if you are testing a global
-Ember application, you are still able to use the unit test helpers. Instead of
-importing the `ember-qunit` module, you need to make the unit test helpers
-global with `emq.globalize()`:
-
-```javascript
-emq.globalize();
-```
-
-This will make the above helpers available globally.
+our assertions would most likely be executed before the async behaviour had taken place, so our assertion results would be unpredictable.
 
 ### The Resolver
 
