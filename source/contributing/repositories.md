@@ -9,9 +9,13 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 
 * [https://github.com/emberjs/data](https://github.com/emberjs/data)
 
-**Ember Website** - Source for [http://emberjs.com](http://emberjs.com) including these guides.
+**Ember Website** - Source for [http://emberjs.com](http://emberjs.com)
 
 * [https://github.com/emberjs/website](https://github.com/emberjs/website)
+
+**Ember Guides** - Source for [http://guides.emberjs.com](http://guides.emberjs.com) which you are currently reading.
+
+* [https://github.com/emberjs/guides](https://github.com/emberjs/guides)
 
 # Libraries Used By Ember
 
