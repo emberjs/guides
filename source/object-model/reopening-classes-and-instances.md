@@ -25,14 +25,18 @@ Person.reopen({
 `reopen` is used to add instance methods and properties that are shared across all instances of a class. It does not add
 methods and properties to a particular instance of a class as in vanilla JavaScript (without using prototype).
 
-But when you need to create class methods or add properties to the class itself you can use `reopenClass`.
+But when you need to add static methods or static properties to the class itself you can use `reopenClass`.
 
 ```javascript
+// add static property to class
 Person.reopenClass({
-  createMan: function() {
-    return Person.create({ isMan: true })
-  }
+  isPerson: false
+});
+// override property of Person inctances
+Person.reopen({
+  isPerson: true
 });
 
-Person.createMan().get('isMan') // true
+Person.isPerson; // false - because it is static property created by `reopenClass`
+Person.create.get("isPerson"); // true
 ```
