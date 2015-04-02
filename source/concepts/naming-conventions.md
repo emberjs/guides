@@ -86,7 +86,7 @@ Ember.js will render the `favorites` template into the `{{outlet}}`
 in the `application` template. It will set an instance of the
 `controller:favorites` as the controller for the template.
 
-If your app provides an `route:favorites`, the framework will
+If your app provides a `route:favorites`, the framework will
 invoke it before rendering the template. Yes, this is a bit
 repetitive.
 
