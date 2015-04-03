@@ -170,6 +170,8 @@
       url: "working-with-records"
     - title: "Using Fixtures"
       url: "the-fixture-adapter"
+    - title: "Validation Errors"
+      url: "validation-errors"
     - title: "The Rest Adapter"
       url: "the-rest-adapter"
     - title: "Connecting to an HTTP Server"
