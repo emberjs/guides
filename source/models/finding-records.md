@@ -56,7 +56,7 @@ var peters = this.store.find('person', { name: "Peter" }); // => GET to /persons
 As discussed in [Specifying a Route's Model][3], routes are
 responsible for telling their template which model to render.
 
-[3]: /guides/routing/specifying-a-routes-model
+[3]: ../../routing/specifying-a-routes-model
 
 `Ember.Route`'s `model` hook supports asynchronous values
 out-of-the-box. If you return a promise from the `model` hook, the
