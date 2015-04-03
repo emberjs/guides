@@ -67,8 +67,8 @@ properties that combine or transform primitive attributes.
 
 ```app/models/person.js
 export default DS.Model.extend({
-  firstName: attr(),
-  lastName: attr(),
+  firstName: DS.attr(),
+  lastName: DS.attr(),
 
   fullName: function() {
     return this.get('firstName') + ' ' + this.get('lastName');
