@@ -136,3 +136,151 @@ socket.on('message', function (message) {
   store.pushPayload(message.model, message.data);
 });
 ```
+
+
+
+#### How do I access metadata returned by the API?
+
+Along with the records returned from your store, you'll likely need to
+handle some kind of metadata. *Metadata* is data that goes along with
+a specific *model* or *type* instead of a record.
+
+Pagination is a common example of using metadata. Imagine a blog with
+far more posts than you can display at once. You might query it like
+so:
+
+```js
+var result = this.store.find("post", {
+  limit: 10,
+  offset: 0
+});
+```
+
+To get different *pages* of data, you'd simply change your offset in
+increments of 10. So far, so good. But how do you know how many pages
+of data you have? Your server would need to return the total number of
+records as a piece of metadata.
+
+By default, Ember Data's JSON deserializer looks for a `meta` key:
+
+```js
+{
+  "post": {
+    "id": 1,
+    "title": "Progressive Enhancement is Dead",
+    "comments": ["1", "2"],
+    "links": {
+      "user": "/people/tomdale"
+    },
+    // ...
+  },
+
+  "meta": {
+    "total": 100
+  }
+}
+```
+
+The metadata for a specific type is then set to the contents of
+`meta`. You can access it either with `store.metadataFor`, which is
+updated any time any query is made against the same type:
+
+```js
+var meta = this.store.metadataFor("post");
+```
+
+Or you can access the metadata just for this query:
+
+```js
+var meta = result.get("content.meta");
+```
+
+Now, `meta.total` can be used to calculate how many pages of posts
+you'll have.
+
+You can also customize metadata extraction by overriding the
+`extractMeta` method. For example, if instead of a `meta` object, your
+server simply returned:
+
+```js
+{
+  "post": [
+    // ...
+  ],
+  "total": 100
+}
+```
+
+You could extract it like so:
+
+```app/serializers/application.js
+export default DS.RESTSerializer.extend({
+  extractMeta: function(store, type, payload) {
+    if (payload && payload.total) {
+      store.setMetadataFor(type, { total: payload.total });  // sets the metadata for "post"
+      delete payload.total;  // keeps ember data from trying to parse "total" as a record
+    }
+  }
+});
+```
+
+
+#### How do I bootstrap data into the store?
+
+One way to think about the store is as a cache of all of the records
+that have been loaded by your application. If a route or a controller in
+your app asks for a record, the store can return it immediately if it is
+in the cache. Otherwise, the store must ask the adapter to load it,
+which usually means a trip over the network to retrieve it from the
+server.
+
+Instead of waiting for the app to request a record, however, you can
+push records into the store's cache ahead of time.
+
+This is useful if you have a good sense of what records the user
+will need next. When they click on a link, instead of waiting for a
+network request to finish, Ember.js can render the new template
+immediately. It feels instantaneous.
+
+Another use case for pushing in records is if your application has a
+streaming connection to a backend. If a record is created or modified,
+you want to update the UI immediately.
+
+##### Pushing Records
+
+To push a record into the store, call the store's `push()` method.
+
+For example, imagine we want to preload some data into the store when
+the application boots for the first time.
+
+We can use the `route:application` to do so. The `route:application` is
+the top-most route in the route hierarchy, and its `model` hook gets
+called once when the app starts up.
+
+```app/models/album.js
+export default DS.Model.extend({
+  title: DS.attr(),
+  artist: DS.attr(),
+  songCount: DS.attr()
+});
+```
+
+```app/routes/application.js
+export default Ember.Route.extend({
+  model: function() {
+    this.store.push('album', {
+      id: 1,
+      title: "Fewer Moving Parts",
+      artist: "David Bazan",
+      songCount: 10
+    });
+
+    this.store.push('album', {
+      id: 2,
+      title: "Calgary b/w I Can't Make You Love Me/Nick Of Time",
+      artist: "Bon Iver",
+      songCount: 2
+    });
+  }
+});
+```
