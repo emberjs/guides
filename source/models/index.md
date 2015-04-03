@@ -46,28 +46,6 @@ $ npm rm ember-data --save-dev
 Learning to use Ember Data is easiest once you understand some of the
 concepts that underpin its design.
 
-#### Store
-
-The **store** is the central repository of records in your application.
-You can think of the store as a cache of all of the records available in
-your app. Both your application's controllers and routes have access to this
-shared store; when they need to display or modify a record, they will
-first ask the store for it.
-
-This instance of `DS.Store` is created for you automatically and is shared
-among all of the objects in your application.
-
-You will use the store to retrieve records, as well to create new ones.
-For example, we might want to find a `person` with the ID of
-`1` from our route's `model` hook:
-
-```app/routes/index.js
-export default Ember.Route.extend({
-  model: function() {
-    return this.store.find('person', 1);
-  }
-});
-```
 
 #### Models
 
@@ -80,14 +58,8 @@ For example, if you were writing a web application for placing orders at
 a restaurant, you might have models like `order`, `line-item`, and
 `menu-item`.
 
-Fetching orders becomes very easy:
-
-```js
-this.store.find('order');
-```
-
 Models define the type of data that will be provided by your server. For
-example, a `Person` model might have a `firstName` attribute that is a
+example, a `person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```app/models/person.js
@@ -128,12 +100,50 @@ For example, if you were writing a contact management app, you might
 have a `person`. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
+Records act just like normal Ember.js objects. You can call `get` and
+`set` to update their attributes.
+
 ```js
-this.store.find('person', 1); // => { id: 1, name: 'steve-buscemi' }
+person.get('id'); // 'steve-buscemi'
+person.set('firstName', 'Steve');
+```
+
+Ember Data takes care of tracking the record for you. This can be
+useful for undoing changes that are made locally or using different
+codepaths to save a new record vs updating an existing record.
+
+```js
+person.get('lastName'); // 'Buscemi'
+person.set('lastName', 'Martin');
+person.rollback();
+person.set('lastName'); // 'Buscemi'
 ```
 
 IDs are usually assigned by the server when you save them for the first
 time, but you can also generate IDs client-side.
+
+#### Store
+
+The **store** is the central repository of records in your application.
+You can think of the store as a cache of all of the records available in
+your app. Both your application's controllers and routes have access to this
+shared store; when they need to display or modify a record, they will
+first ask the store for it.
+
+This instance of `DS.Store` is created for you automatically and is
+shared among all of the Routes and Controllers in your application.
+
+You will use the store to find and retrieve records, as well to create
+new ones.  For example, we might want to find a `person` with the ID
+of `1` from our route's `model` hook:
+
+```app/routes/index.js
+export default Ember.Route.extend({
+  model: function() {
+    return this.store.find('person', 1);
+  }
+});
+```
 
 #### Adapter
 
