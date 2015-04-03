@@ -1,16 +1,12 @@
 var currentRevision = '<%= data.search.revision %>';
+var versionSelect = $('.version-select');
 
-$.ajax('/versions.json')
-  .done(function(data) {
-    var versionSelect = $(".version-select");
-    versionSelect.select2({
-        data: data
-    })
-    versionSelect.select2('val', currentRevision);
+versionSelect.select2({
+  val: currentRevision
+});
 
-    versionSelect.on('change', function() {
-      var version = this.value;
+versionSelect.on('change', function() {
+  var version = this.value;
 
-      window.location = '/' + version + '/';
-    });
-  });
+  window.location = '/' + version + '/';
+});

@@ -62,9 +62,23 @@
 
     <div id="content-wrapper">
       <div id="sidebar-wrapper">
-        <select class="version-select" style="width: 100%"></select>
-        <div id="sidebar">
+        <div id="versions">
+          <noscript>
+            <ul>
+              <% data.versions.each do |version| %>
+                <li><a href="/<%= version %>"><%= version %></a></li>
+              <% end %>
+            </ul>
+          </noscript>
 
+          <select class="version-select" style="width: 100%">
+            <% data.versions.each do |version| %>
+              <option value="<%= version %>"><%= version %></option>
+            <% end %>
+          </select>
+        </div>
+
+        <div id="sidebar">
           <%= toc_for(data.guides) %>
           <div id="back-to-top"><a id="back-top-top" href="#">&#11014; Back to Top</a></div>
         </div>
@@ -75,7 +89,6 @@
           <hr>
 
           <%= yield %>
-
 
           <%= chapter_links %>
         </div>
