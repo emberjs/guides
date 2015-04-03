@@ -69,6 +69,54 @@ most commonly extended adapter that ships with Ember Data. It has a
 handful of hooks that are commonly used to extend it to work with
 non-standard backends.
 
+### URL Conventions
+
+The REST adapter is smart enough to determine the URLs it communicates
+with based on the name of the model. For example, if you ask for a
+`Post` by ID:
+
+```js
+store.find('post', 1).then(function(post) {
+});
+```
+
+The REST adapter will automatically send a `GET` request to `/posts/1`.
+
+The actions you can take on a record map onto the following URLs in the
+REST adapter:
+
+<table>
+  <thead>
+    <tr><th>Action</th><th>HTTP Verb</th><th>URL</th></tr>
+  </thead>
+  <tbody>
+    <tr><th>Find</th><td>GET</td><td>/posts/123</td></tr>
+    <tr><th>Find All</th><td>GET</td><td>/posts</td></tr>
+    <tr><th>Update</th><td>PUT</td><td>/posts/123</td></tr>
+    <tr><th>Create</th><td>POST</td><td>/posts</td></tr>
+    <tr><th>Delete</th><td>DELETE</td><td>/posts/123</td></tr>
+  </tbody>
+</table>
+
+#### Pluralization Customization
+
+To facilitate pluralizing model names when generating route urls Ember
+Data comes bundled with
+[Ember Inflector](https://github.com/stefanpenner/ember-inflector), a
+ActiveSupport::Inflector compatible library for inflecting words
+between plural and singular forms. Irregular or uncountable
+pluralizations can be specified via `Ember.Inflector.inflector`:
+
+```js
+var inflector = Ember.Inflector.inflector;
+
+inflector.irregular('formula', 'formulae');
+inflector.uncountable('advice');
+```
+
+This will tell the REST adapter that requests for `formula`
+should go to `/formulae/1` instead of `/formulas/1`.
+
 #### Endpoint Path Customization
 
 The `namespace` property can be used to prefix requests with a
@@ -119,6 +167,54 @@ export default DS.RESTAdapter.extend({
 Requests for `person` would now target `/person/1`.
 Requests for `userProfile` would now target `/user_profile/1`.
 
+#### Headers customization
+
+Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
+headers can be set as key/value pairs on the `RESTAdapter`'s `headers`
+object and Ember Data will send them along with each ajax request.
+
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
+  headers: {
+    'API_KEY': 'secret key',
+    'ANOTHER_HEADER': 'Some header value'
+  }
+});
+```
+
+`headers` can also be used as a computed property to support dynamic
+headers. In the example below, the `session` object has been
+injected into an adapter by Ember's container.
+
+```app/adapters/application.js
+export default DS.RESTAdapter.extend({
+  headers: function() {
+    return {
+      'API_KEY': this.get('session.authToken'),
+      'ANOTHER_HEADER': 'Some header value'
+    };
+  }.property('session.authToken')
+});
+```
+
+In some cases, your dynamic headers may require data from some
+object outside of Ember's observer system (for example
+`document.cookie`). You can use the
+[volatile](/api/classes/Ember.ComputedProperty.html#method_volatile)
+function to set the property into a non-cached mode causing the headers to
+be recomputed with every request.
+
+```js
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  headers: function() {
+    return {
+      'API_KEY': Ember.get(document.cookie.match(/apiKey\=([^;]*)/), '1'),
+      'ANOTHER_HEADER': 'Some header value'
+    };
+  }.property().volatile()
+});
+```
+
 #### Authoring Adapters
 
 The `defaultSerializer` property can be used to specify the serializer
@@ -144,5 +240,6 @@ If none of the builtin Ember Data Adapters work for your backend,
 be sure to check out some of the community maintained Ember Data
 Adapters. Some good places to look for Ember Data Adapters include:
 
+- [Ember Observer](http://emberobserver.com/categories/data)
 - [GitHub](https://github.com/search?q=ember+data+adapter&ref=cmdform)
 - [Bower](http://bower.io/search/?q=ember-data-)
