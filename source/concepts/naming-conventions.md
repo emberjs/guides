@@ -231,10 +231,10 @@ this router:
     <td><code>app/templates/posts/favorites.hbs</code></td>
   </tr>
   <tr>
-    <td><code>post</code></td>
-    <td><code>app/controllers/post.js</code></td>
-    <td><code>app/routes/post.js</code></td>
-    <td><code>app/templates/post.hbs</code></td>
+    <td><code>posts.post</code></td>
+    <td><code>app/controllers/posts/post.js</code></td>
+    <td><code>app/routes/posts/post.js</code></td>
+    <td><code>app/templates/posts/post.hbs</code></td>
   </tr>
 </table>
 
