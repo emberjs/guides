@@ -21,7 +21,7 @@ each song:
 <h1>Playlist</h1>
 
 <ul>
-  {{#each song in model}}
+  {{#each model as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>
   {{/each}}
 </ul>
@@ -47,7 +47,7 @@ Now we can use this property in our template:
 
 ```app/templates/songs.hbs
 <ul>
-  {{#each song in model}}
+  {{#each model as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>
   {{/each}}
 </ul>
@@ -72,41 +72,39 @@ export default Ember.ArrayController.extend({
 It is often useful to specify a controller to decorate individual items in
 the `ArrayController` while iterating over them. This can be done by
 creating an `ObjectController`:
- 
+
 ```app/controllers/song.js
 export default Ember.ObjectController.extend({
   fullName: function() {
- 
     return this.get('name') + ' by ' + this.get('artist');
- 
   }.property('name', 'artist')
 });
 ```
- 
+
 Then, the `ArrayController` `itemController` property must be set to
 the decorating controller.
- 
+
 ```app/controllers/songs.js
 export default Ember.ArrayController.extend({
   itemController: 'song'
 });
 ```
- 
+
 ```app/templates/songs.hbs
-{{#each item in controller}}
+{{#each controller as |item|}}
   <li>{{item.fullName}}</li>
 {{/each}}
 ```
- 
+
 or you could setup the `itemController` directly in the template:
- 
+
 ```app/controllers/songs.js
 export default Ember.ArrayController.extend({
 });
 ```
- 
+
 ```app/templates/songs.hbs
-{{#each item in controller itemController="song"}}
+{{#each controller itemController="song" as |item|}}
   <li>{{item.fullName}}</li>
 {{/each}}
 ```

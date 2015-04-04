@@ -2,7 +2,7 @@ If you need to enumerate over a list of objects, use Handlebars' `{{#each}}` hel
 
 ```handlebars
 <ul>
-  {{#each person in people}}
+  {{#each people as |person|}}
     <li>Hello, {{person.name}}!</li>
   {{/each}}
 </ul>
@@ -29,7 +29,7 @@ The `{{#each}}` helper can have a matching `{{else}}`.
 The contents of this block will render if the collection is empty:
 
 ```handlebars
-{{#each person in people}}
+{{#each people as |person|}}
   Hello, {{person.name}}!
 {{else}}
   Sorry, nobody is here.
