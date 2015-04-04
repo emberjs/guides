@@ -39,7 +39,9 @@ Navigate to `http://localhost:4200` to see your new app in action.
 
 ## Troubleshooting
 
-### Got Node and npm?
+### Got Node, npm, and Git?
+
+ember-cli requires Node.js 0.12 or higher, npm 2.7 or higher, and Git.
 
 Node Package Manager (npm) comes bundled with node.js.  If you're not sure if
 you have node.js installed, try running the following command in your terminal:
@@ -48,11 +50,14 @@ you have node.js installed, try running the following command in your terminal:
 node --version
 ```
 
-If you have node installed you'll see a message like `0.10.x` in your terminal.
+If you have node installed you'll see a message like `0.12.x` in your terminal.
 
-If you don't have node installed:
+If you don't have node 0.12 or higher installed:
 
 * Windows or Mac users [can download and run the installer](http://nodejs.org/download/).
 * Linux users [should read through this guide](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) by Joyent for install instructions.
 
 Once you've got node.js installed, run the `node --version` command again to verify your install.
+
+Git comes with Mac OS X and most Linux distributions.
+Windows users can [download and run the installer](http://git-scm.com/download/win).
