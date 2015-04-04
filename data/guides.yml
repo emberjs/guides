@@ -378,8 +378,6 @@
       url: "the-view-layer"
     - title: "Managing Asynchrony"
       url: "managing-asynchrony"
-    - title: "Keeping Templates Up-to-Date"
-      url: "keeping-templates-up-to-date"
     - title: "Debugging"
       url: "debugging"
     - title: "The Run Loop"
