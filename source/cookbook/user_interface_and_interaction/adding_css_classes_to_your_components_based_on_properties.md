@@ -17,9 +17,9 @@ You can also set the class name based on a computed property.
 
 ```js
 classNameBindings: ['isActive'],
-isActive: function() {
+isActive: Ember.computed('someAttribute', function() {
   return 'active';
-}.property('someAttribute')
+})
 ```
 
 Another way would be to bind the class name to a bound property.

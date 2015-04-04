@@ -6,16 +6,19 @@ Here's what that computed property might look like:
 
 ```app/controllers/todos.js
 export default Ember.Controller.extend({
-  todos: [
-    Ember.Object.create({ isDone: true }),
-    Ember.Object.create({ isDone: false }),
-    Ember.Object.create({ isDone: true })
-  ],
+  init: function() {
+    this._super.apply(this, arguments);
+    this.set('todos', [
+      { isDone: true  },
+      { isDone: false },
+      { isDone: true  }
+    ]);
+  },
 
-  remaining: function() {
+  remaining: Ember.computed('todos.@each.isDone', function() {
     var todos = this.get('todos');
     return todos.filterBy('isDone', false).get('length');
-  }.property('todos.@each.isDone')
+  })
 });
 ```
 

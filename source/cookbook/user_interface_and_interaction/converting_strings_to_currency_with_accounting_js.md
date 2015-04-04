@@ -10,15 +10,15 @@ Make use of the [computed property's setter][setters] to remove the
 display formatting and set the property to the proper value.
 
 ```js
-formattedAmount: function(key, value) {
+formattedAmount: Ember.computed('amount', function(key, value) {
   if (arguments.length > 1) {
     // setter
     var cleanAmount = accounting.unformat(value);
     this.set('amount', cleanAmount);
   }
-  
+
   return accounting.formatMoney(this.get('amount'));
-}.property('amount')
+});
 ```
 
 <!---#### Example

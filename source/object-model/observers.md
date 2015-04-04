@@ -3,21 +3,25 @@ You can set up an observer on an object by using the `observes`
 method on a function:
 
 ```javascript
+var computed = Ember.computed;
+var observer = Ember.observer;
+var on = Ember.on;
+
 Person = Ember.Object.extend({
   // these will be supplied by `create`
   firstName: null,
   lastName: null,
   
-  fullName: function() {
+  fullName: computed('firstName', 'lastName', function() {
     var firstName = this.get('firstName');
     var lastName = this.get('lastName');
 
     return firstName + ' ' + lastName;
-  }.property('firstName', 'lastName'),
+  }),
 
-  fullNameChanged: function() {
+  fullNameChanged: on('init', observer('fullName', function() {
     // deal with the change
-  }.observes('fullName').on('init')
+  }))
 });
 
 var person = Person.create({
@@ -40,12 +44,12 @@ is easy to introduce bugs where properties are not yet synchronized:
 
 ```javascript
 Person.reopen({
-  lastNameChanged: function() {
+  lastNameChanged: Ember.observer('lastName', function() {
     // The observer depends on lastName and so does fullName. Because observers
     // are synchronous, when this function is called the value of fullName is
     // not updated yet so this will log the old value of fullName
     console.log(this.get('fullName'));
-  }.observes('lastName')
+  })
 });
 ```
 
@@ -54,9 +58,9 @@ times when observing multiple properties:
 
 ```javascript
 Person.reopen({
-  partOfNameChanged: function() {
+  partOfNameChanged: Ember.observer('firstName', 'lastName', function() {
     // Because both firstName and lastName were set, this observer will fire twice.
-  }.observes('firstName', 'lastName')
+  })
 });
 
 person.set('firstName', 'John');
@@ -69,9 +73,9 @@ next run loop once all bindings are synchronized:
 
 ```javascript
 Person.reopen({
-  partOfNameChanged: function() {
+  partOfNameChanged: Ember.observer('firstName', 'lastName', function() {
     Ember.run.once(this, 'processFullName');
-  }.observes('firstName', 'lastName'),
+  }),
 
   processFullName: function() {
     // This will only fire once if you set two properties at the same time, and
@@ -90,17 +94,21 @@ Observers never fire until after the initialization of an object is complete.
 
 If you need an observer to fire as part of the initialization process, you
 cannot rely on the side effect of set. Instead, specify that the observer
-should also run after init by using `.on('init')`:
+should also run after init by using `Ember.on('init')`:
 
 ```javascript
+var observer = Ember.observer;
+var on = Ember.on;
+
 Person = Ember.Object.extend({
   init: function() {
+    this._super.apply(this, arguments);
     this.set('salutation', "Mr/Ms");
   },
 
-  salutationDidChange: function() {
+  salutationDidChange: on('init', observer('salutation', function() {
     // some side effect of salutation changing
-  }.observes('salutation').on('init')
+  }))
 });
 ```
 
@@ -117,20 +125,6 @@ observe it so you can update the DOM once the property changes.
 
 If you need to observe a computed property but aren't currently retrieving it,
 just get it in your init method.
-
-
-### Without prototype extensions
-
-You can define inline observers by using the `Ember.observer` method if you
-are using Ember without prototype extensions:
-
-```javascript
-Person.reopen({
-  fullNameChanged: Ember.observer('fullName', function() {
-    // deal with the change
-  })
-});
-```
 
 ### Outside of class definitions
 

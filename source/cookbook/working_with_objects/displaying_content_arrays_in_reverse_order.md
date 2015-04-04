@@ -11,9 +11,9 @@ You want to display an Ember content array from an ArrayController in descending
 One way to achieve that is to extend `Ember.ArrayController` with a new function called `reverse`.
 You will also have to create a computed property:
 ```javascript
-reversedArray: function() {
-    return this.toArray().reverse();
-  }.property('myArray.@each')
+reversedArray: Ember.computed('myArray.[]', function() {
+  return this.toArray().reverse();
+})
 ```
 
 Once you do that, you will be able to use `reversedArray` property in your Handlebars template: `{{#each reversedArray}}{{/each}}`.

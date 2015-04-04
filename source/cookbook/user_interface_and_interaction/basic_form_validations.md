@@ -16,11 +16,12 @@ been focused. The component expects to get the validation result as the
 export default Ember.Component.extend({
   beenFocused: false,
   valid: null,
-  hasError: function() {
+  hasError: Ember.computed('valid', 'beenFocused', function() {
     if (this.get('beenFocused')) {
       return !this.get('valid');
     }
-  }.property('valid', 'beenFocused'),
+  }),
+
   focusOut: function() {
     this.set('beenFocused', true);
   }

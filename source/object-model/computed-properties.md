@@ -14,9 +14,9 @@ Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
 
-  fullName: function() {
+  fullName: Ember.computed('firstName', 'lastName', function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')
+  })
 });
 
 var ironMan = Person.create({
@@ -30,16 +30,6 @@ Notice that the `fullName` function calls `property`. This declares the function
 
 Whenever you access the `fullName` property, this function gets called, and it returns the value of the function, which simply calls `firstName` + `lastName`.
 
-#### Alternate invocation
-
-At this point, you might be wondering how you are able to call the `.property` function on a function.  This is possible because Ember extends the `function` prototype.  More information about extending native prototypes is available in the [disabling prototype extensions guide](../../configuring-ember/disabling-prototype-extensions/). If you'd like to replicate the declaration from above without using these extensions you could do so with the following:
-
-```javascript
-  fullName: Ember.computed('firstName', 'lastName', function() {
-    return this.get('firstName') + ' ' + this.get('lastName');
-  })
-```
-
 ### Chaining computed properties
 
 You can use computed properties as values to create new computed properties. Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
@@ -51,13 +41,13 @@ Person = Ember.Object.extend({
   age: null,
   country: null,
 
-  fullName: function() {
+  fullName: Ember.computed('firstName', 'lastName', function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName'),
+  }),
 
-  description: function() {
+  description: Ember.computed('fullName', 'age', 'country', function() {
     return this.get('fullName') + '; Age: ' + this.get('age') + '; Country: ' + this.get('country');
-  }.property('fullName', 'age', 'country')
+  })
 });
 
 var captainAmerica = Person.create({
@@ -93,7 +83,7 @@ Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
 
-  fullName: function(key, value, previousValue) {
+  fullName: Ember.computed('firstName', 'lastName', function(key, value, previousValue) {
     // setter
     if (arguments.length > 1) {
       var nameParts = value.split(/\s+/);
@@ -103,7 +93,7 @@ Person = Ember.Object.extend({
 
     // getter
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')
+  })
 });
 
 

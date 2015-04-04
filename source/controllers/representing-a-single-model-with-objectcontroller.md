@@ -84,13 +84,13 @@ format for the template:
 
 ```app/controllers/song.js
 export default Ember.ObjectController.extend({
-  duration: function() {
-    var duration = this.get('model.duration'),
-         minutes = Math.floor(duration / 60),
-         seconds = duration % 60;
+  duration: Ember.computed('model.duration', function() {
+    var duration = this.get('model.duration');
+    var minutes = Math.floor(duration / 60);
+    var seconds = duration % 60;
 
     return [minutes, seconds].join(':');
-  }.property('model.duration')
+  })
 });
 ```
 

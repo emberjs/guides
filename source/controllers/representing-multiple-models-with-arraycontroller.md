@@ -34,12 +34,12 @@ property called `longSongCount` to the controller:
 
 ```app/controllers/songs.js
 export default Ember.ArrayController.extend({
-  longSongCount: function() {
+  longSongCount: Ember.computed('@each.duration', function() {
     var longSongs = this.filter(function(song) {
       return song.get('duration') > 30;
     });
     return longSongs.get('length');
-  }.property('@each.duration')
+  })
 });
 ```
 
@@ -75,11 +75,9 @@ creating an `ObjectController`:
  
 ```app/controllers/song.js
 export default Ember.ObjectController.extend({
-  fullName: function() {
- 
+  fullName: Ember.computed('name', 'artist', function() {
     return this.get('name') + ' by ' + this.get('artist');
- 
-  }.property('name', 'artist')
+  })
 });
 ```
  

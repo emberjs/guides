@@ -27,19 +27,26 @@ of the interval. Since the `tick` method observes the incremented property
 another interval is triggered each time the property increases.
 
 ```app/services/clock.js
+var observer = Ember.observer;
+var on = Ember.on;
+
 export default Ember.Object.extend({
-    pulse: Ember.computed.oneWay('_seconds').readOnly(),
-    tick: function () {
-      var clock = this;
-      Ember.run.later(function () {
-        var seconds = clock.get('_seconds');
-        if (typeof seconds === 'number') {
-          clock.set('_seconds', seconds + (1/4));
-        }
-      }, 250);
-    }.observes('_seconds').on('init'),
-    _seconds: 0
-  });
+  init: function() {
+    this._super.apply(this, arguments);
+    this._seconds = 0;
+  },
+
+  pulse: Ember.computed.oneWay('_seconds').readOnly(),
+  tick: on(observer('_seconds', function () {
+    var clock = this;
+    Ember.run.later(function () {
+      var seconds = clock.get('_seconds');
+      if (typeof seconds === 'number') {
+        clock.set('_seconds', seconds + (1/4));
+      }
+    }, 250);
+  }), 'init')
+});
 ```
 
 ### Binding to the `pulse` attribute
@@ -69,20 +76,20 @@ a handful of properties used as conditions in the Handlebars template.
 
 ```app/controllers/interval.js
 export default Ember.ObjectController.extend({
-    secondsBinding: 'clock.pulse',
-    fullSecond: function () {
-      return (this.get('seconds') % 1 === 0);
-    }.property('seconds'),
-    quarterSecond: function () {
-      return (this.get('seconds') % 1 === 1/4);
-    }.property('seconds'),
-    halfSecond: function () {
-      return (this.get('seconds') % 1 === 1/2);
-    }.property('seconds'),
-    threeQuarterSecond: function () {
-      return (this.get('seconds') % 1 === 3/4);
-    }.property('seconds')
-  });
+  secondsBinding: 'clock.pulse',
+  fullSecond: Ember.computed('seconds', function () {
+    return (this.get('seconds') % 1 === 0);
+  }),
+  quarterSecond: Ember.computed('seconds', function () {
+    return (this.get('seconds') % 1 === 1/4);
+  }),
+  halfSecond: Ember.computed('seconds', function () {
+    return (this.get('seconds') % 1 === 1/2);
+  }),
+  threeQuarterSecond: Ember.computed('seconds', function () {
+    return (this.get('seconds') % 1 === 3/4);
+  })
+});
 ```
 
 A controller for a list of comments, each comment will have a new clock
@@ -92,7 +99,7 @@ comment was created.
 
 ```app/controllers/comment-item.js
 export default Ember.ObjectController.extend({
-    seconds: Ember.computed.oneWay('clock.pulse').readOnly()
+  seconds: Ember.computed.oneWay('clock.pulse').readOnly()
 });
 ```
 
@@ -100,18 +107,18 @@ export default Ember.ObjectController.extend({
 import ClockService from '../services/clock';
 
 export default Ember.ArrayController.extend({
-    itemController: 'commentItem',
-    comment: null,
-    actions: {
-      add: function () {
-        this.addObject(Em.Object.create({
-          comment: this.get('comment'),
-          clock: ClockService.create()
-        }));
-        this.set('comment', null);
-      }
+  itemController: 'commentItem',
+  comment: null,
+  actions: {
+    add: function () {
+      this.addObject(Em.Object.create({
+        comment: this.get('comment'),
+        clock: ClockService.create()
+      }));
+      this.set('comment', null);
     }
-  });
+  }
+});
 ```
 
 ### Handlebars template which displays the `pulse`

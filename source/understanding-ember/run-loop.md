@@ -54,9 +54,9 @@ Let's look at a similar example that is optimized in Ember, starting with a `Use
 var User = Ember.Object.extend({
   firstName: null,
   lastName: null,
-  fullName: function() {
+  fullName: Ember.computed('firstName', 'lastName', function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')
+  })
 });
 ```
 

@@ -87,9 +87,9 @@ export default Ember.Object.extend({
 
 ```app/controllers/post.js
 export default Ember.ObjectController.extend({
-  author: function() {
+  author: Ember.computed('salutation', 'name', function() {
     return [this.get('salutation'), this.get('name')].join(' ');
-  }.property('salutation', 'name')
+  })
 });
 ```
 
@@ -140,9 +140,9 @@ Let's take another look at the `author` computed property.
 
 ```app/controllers/post.js
 export default Ember.ObjectController.extend({
-  author: function() {
+  author: Ember.computed('salutation', 'name', function() {
     return [this.get('salutation'), this.get('name')].join(' ');
-  }.property('salutation', 'name')
+  })
 });
 ```
 

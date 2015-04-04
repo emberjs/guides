@@ -104,11 +104,11 @@ var president = Ember.Object.create({
   firstName: "Barack",
   lastName: "Obama",
 
-  fullName: function() {
+  fullName: Ember.computed(function() {
     return this.get('firstName') + ' ' + this.get('lastName');
 
   // Call this flag to mark the function as a property
-  }.property()
+  })
 });
 
 president.get('fullName');
@@ -124,15 +124,18 @@ You can tell Ember about these dependencies like this:
 
 ```javascript
 var president = Ember.Object.create({
-  firstName: "Barack",
-  lastName: "Obama",
+  init: function() {
+    this._super.apply(this, arguments);
+    this.set('firstName', 'Barack');
+    this.set('lastName', 'Obama');
+  },
 
-  fullName: function() {
+  fullName: Ember.computed('firstName', 'lastName', function() {
     return this.get('firstName') + ' ' + this.get('lastName');
 
-  // Tell Ember that this computed property depends on firstName
-  // and lastName
-  }.property('firstName', 'lastName')
+    // Tell Ember that this computed property depends on firstName
+    // and lastName
+  })
 });
 ```
 

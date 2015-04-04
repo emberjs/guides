@@ -8,9 +8,9 @@ to the text field by accessing the components's jQuery `$` property:
 
 ```app/components/focus-input.js
 export default Ember.TextField.extend({
-  becomeFocused: function() {
+  becomeFocused: Ember.on('didInsertElement', function() {
     this.$().focus();
-  }.on('didInsertElement')
+  })
 });
 ```
 
