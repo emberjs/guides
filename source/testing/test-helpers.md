@@ -86,7 +86,7 @@ test('simple test', function(assert) {
 });
 ```
 
-First we tell QUnit that this test should have one assertion made by the end 
+First we tell QUnit that this test should have one assertion made by the end
 of the test by calling `assert.expect` with an argument of `1`. We then visit the new
 posts URL "/posts/new", enter the text "My new post" into an input control
 with the CSS class "title", and click on a button whose class is "submit".
@@ -167,8 +167,9 @@ export default Ember.Test.registerAsyncHelper('addContact',
     click('button.create');
   }
 );
+```
 
-Finally, don't forget to add your helpers in `tests/.jshintrc` and in 
+Finally, don't forget to add your helpers in `tests/.jshintrc` and in
 `tests/helpers/start-app.js`. In `tests/.jshintrc` you need to add it in the
 `predef` section, otherwise you will get failing jshint tests:
 
