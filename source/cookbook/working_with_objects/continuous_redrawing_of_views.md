@@ -104,7 +104,7 @@ export default Ember.ArrayController.extend({
     comment: null,
     actions: {
       add: function () {
-        this.addObject(Em.Object.create({
+        this.addObject(Ember.Object.create({
           comment: this.get('comment'),
           clock: ClockService.create()
         }));

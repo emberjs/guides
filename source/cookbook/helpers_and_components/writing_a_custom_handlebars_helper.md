@@ -15,7 +15,7 @@ Write a custom Handlebars helper that can be called from any template and gets u
 ```js
 App = Ember.Application.create();
 
-App.ApplicationRoute = Em.Route.extend({
+App.ApplicationRoute = Ember.Route.extend({
   model: function() {
     return 980; // cents
   }
