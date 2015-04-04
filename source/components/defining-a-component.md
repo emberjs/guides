@@ -20,9 +20,9 @@ component of the same name. Given the above template, you can now use the
 <!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> -->
 <!--- The example above uses `<script>` tags to work inside of JSBin.-->
 ```app/templates/index.hbs
-{{#each}}
-  {{#blog-post title=title}}
-    {{body}}
+{{#each model as |post|}}
+  {{#blog-post title=post.title}}
+    {{post.body}}
   {{/blog-post}}
 {{/each}}
 ```
@@ -53,7 +53,6 @@ export default Ember.Route.extend({
 
 ```app/components/blog-post.js
 export default Ember.Component.extend({
-  
 });
 ```
 
@@ -81,7 +80,7 @@ changes to the component's element using JavaScript.
 Ember knows which subclass powers a component based on its name. For
 example, if you have a component called `blog-post`, you would create a
 file at `app/components/blog-post.js`. If your component was called
-`audio-player-controls`, the file name would be at 
+`audio-player-controls`, the file name would be at
 `app/components/audio-player-controls.js`
 
 In other words, Ember will look for a class with the camelized name of
