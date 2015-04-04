@@ -247,6 +247,32 @@
     - title: "Feature Flags"
       url: "feature-flags"
 
+- title: "Ember Inspector"
+  url: "ember-inspector"
+  chapters:
+    - title: "Installing the Inspector"
+      url: "installation"
+    - title: "Object Inspector"
+      url: "object-inspector"
+    - title: "The View Tree"
+      url: "view-tree"
+    - title: "Inspecting Routes"
+      url: "routes"
+    - title: "Data Tab"
+      url: "data"
+    - title: "Tackling Deprecations"
+      url: "deprecations"
+    - title: "Library Info"
+      url: "info"
+    - title: "Debugging Promises"
+      url: "promises"
+    - title: "Inspecting the Container"
+      url: "container"
+    - title: "Rendering Performance"
+      url: "render-performance"
+    - title: "Troubleshooting"
+      url: "troubleshooting"
+
 - title: "Cookbook"
   url: 'cookbook'
   chapters:
