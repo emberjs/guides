@@ -32,7 +32,7 @@ git push --tags
 Next, build a new artifact and move it to the guides site repo, committing it to GitHub:
 
 ```shell
-middleman swiftype --only-generate
+middleman build
 mv ./build <path to guides site repo>/artifacts/<revision number>
 cd <path to guides site repo>
 git add --all
@@ -51,7 +51,7 @@ Visit the site to ensure that everything looks good. Assuming there are no issue
 
 ```shell
 cd <path to guides site repo>
-npm publish # runs `divshot promote staging production` && `npm switftype`
+npm publish # runs `divshot promote staging production` && `npm swiftype`
 ```
 
 
