@@ -622,7 +622,7 @@ most recent view with one.
 #### Other Variables
 
 Handlebars helpers in Ember may also specify variables. For example, the
-`{{#with controller.person as tom}}` form specifies a `tom` variable
+`{{#with controller.person as |tom|}}` form specifies a `tom` variable
 that descendent scopes can access. Even if a child context has a `tom`
 property, the `tom` variable will supersede it.
 
