@@ -1,6 +1,9 @@
-Joining a web development community can be a challenge within itself, especially when all the resources you visit assume you're familiar with other technologies that you're not familiar with.
+In addition to the background concepts, there are some other concepts you may
+run into and/or find useful as you develop Ember apps. It's not necessary to
+understand these fully before building your first Ember app, but you may find it
+useful to refer back here as you encounter these topics or want to expand your
+skill set.
 
-Our goal is to help you avoid that mess and come up to speed as fast as possible; you can consider us your internet friend.
 
 ## CDN
 Content Delivery Network
