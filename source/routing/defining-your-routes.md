@@ -187,7 +187,7 @@ This router creates these routes:
 
 A nested route's names includes the names of its ancestors.
 If you want to transition to a route (either
-via `transitionTo` or `{{#link-to}}`), make sure to use the full route
+via `transitionToRoute` or `{{#link-to}}`), make sure to use the full route
 name (`posts.new`, not `new`).
 
 Visiting `/` renders the `index` template, as you would expect.
@@ -301,13 +301,13 @@ Router.map(function() {
 ```
 
 Like all routes with a dynamic segment, you must provide a context when using a `{{link-to}}`
-or `transitionTo` to programatically enter this route.
+or `transitionToRoute` to programatically enter this route.
 
 ```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
     error: function() {
-      this.transitionTo('catchall', 'application-error');
+      this.transitionToRoute('catchall', 'application-error');
     }
   }
 });
