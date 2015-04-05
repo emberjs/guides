@@ -3,7 +3,7 @@ You'd like to redraw your views every few seconds/minutes e.g. to update
 relative timestamps (like on twitter.com).
 
 ## Solution
-Have a clock object with a `pulse` attribute in your application which 
+Have a clock object with a `pulse` attribute in your application which
 increments using a timed interval. You want to let view(s) bind values to be
 refreshed when the `pulse` attribute increments.
 
@@ -92,7 +92,7 @@ comment was created.
 
 ```app/controllers/comment-item.js
 export default Ember.ObjectController.extend({
-    seconds: Ember.computed.oneWay('clock.pulse').readOnly()
+  seconds: Ember.computed.oneWay('clock.pulse').readOnly()
 });
 ```
 
@@ -104,7 +104,7 @@ export default Ember.ArrayController.extend({
     comment: null,
     actions: {
       add: function () {
-        this.addObject(Em.Object.create({
+        this.addObject(Ember.Object.create({
           comment: this.get('comment'),
           clock: ClockService.create()
         }));
@@ -144,7 +144,7 @@ A template for a list of comments
   <button>Add Comment</button>
 </form>
 <ul>
-{{#each item in this}}
+{{#each this as |item|}}
   <li>{{item.comment}} ({{digital-clock item.seconds}})</li>
 {{/each}}
 </ul>

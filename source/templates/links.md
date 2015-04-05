@@ -12,7 +12,7 @@ Router.map(function() {
 
 ```app/templates/photos.hbs
 <ul>
-  {{#each photo in photos}}
+  {{#each photos as |photo|}}
     <li>{{#link-to 'photos.edit' photo}}{{photo.title}}{{/link-to}}</li>
   {{/each}}
 </ul>

@@ -299,6 +299,8 @@ p {
 }
 
 .version-select {
+  // Hide from users without javascript enabled
+  // select2 will override this for users with javascript
   display: none;
 }
 

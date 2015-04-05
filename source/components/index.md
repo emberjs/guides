@@ -34,16 +34,14 @@ components.
 The example above uses `<script>` tags to work inside of JSBin. Ember-cli works by file structure, so there are no `<script>` tags:-->
 
 ```app/templates/index.hbs
-
-{{#each}}
-   {{#blog-post title=title}}
-     {{body}}
+{{#each model as |post|}}
+   {{#blog-post title=post.title}}
+     {{post.body}}
    {{/blog-post}}
 {{/each}}
 ```
 
 ```app/templates/components/blog-post.hbs
-
 <article class="blog-post">
   <h1>{{title}}</h1>
   <p>{{yield}}</p>
@@ -53,8 +51,8 @@ The example above uses `<script>` tags to work inside of JSBin. Ember-cli works 
 
 ```app/routes/index.js
 var posts = [{
-  title: "Rails is omakase",
-  body: "There are lots of à la carte software environments in this world."
+    title: "Rails is omakase",
+    body: "There are lots of à la carte software environments in this world."
   }, {
     title: "Broken Promises",
     body: "James Coglan wrote a lengthy article about Promises in node.js."
@@ -69,6 +67,5 @@ export default Ember.Route.extend({
 
 ```app/components/blog-post.js
 export default Ember.Component.extend({
-
 });
 ```
