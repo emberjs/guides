@@ -33,6 +33,6 @@ application in a larger page).
 
 ```app/router.js
 Ember.Router.extend({
-  location: 'history'
+  location: 'none'
 });
 ```
