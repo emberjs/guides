@@ -189,7 +189,10 @@ template with the app's instance of `app/controllers/post.js`.
 If you don't specify the controller (`app/controllers/post.js`),
 Ember will automatically make one for you based on the return value
 of the route's `model` hook. If the model is an Array, you get an
-`ArrayController`. Otherwise, you get an `ObjectController`.
+`ArrayController`. Otherwise, you get an `ObjectController`. As of 1.11,
+`ObjectController`s are deprecated and if you try to use its proxy feature you
+will get a warning. Please, take a look at the [deprecations guide](http://emberjs.com/deprecations/v1.x/) for more
+detailed information.
 
 If you don't specify a `post` template, Ember.js won't render
 anything!

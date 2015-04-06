@@ -36,7 +36,7 @@ export default Ember.View.extend({
   // A fullName property should probably go on App.Author,
   // but we're doing it here for the example
   fullName: (function() {
-    return this.get("author").get("firstName") + " " + this.get("author").get("lastName");
+    return this.get("author.firstName") + " " + this.get("author.lastName");
   }).property("firstName","lastName")
 })
 ```
@@ -99,7 +99,7 @@ Total Posts: {{postCount}}
 ```
 
 ```app/controllers/author.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   postCount: function() {
     return this.get("model.posts.length");
   }.property("model.posts.[]")
