@@ -39,7 +39,7 @@ export default Ember.Route.extend({
 Ember allows you to name your outlets. For instance, this code allows
 you to specify two outlets with distinct names:
 
-```handlebars
+```app/templates/application.hbs
 <div class="toolbar">{{outlet "toolbar"}}</div>
 <div class="sidebar">{{outlet "sidebar"}}</div>
 ```
