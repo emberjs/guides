@@ -29,6 +29,16 @@
     #- title: "Understanding Web Apps"
       #url: "understanding-web-apps"
 
+- title: "Ember CLI Basics"
+  url: 'ember-cli-basics'
+  chapters:
+    - title: 'Creating An App'
+      url: 'creating-an-app'
+    - title: 'Running In Development'
+      url: 'running-in-development'
+    - title: 'Building For Production'
+      url: 'building-for-production'
+
 - title: "The Object Model"
   url: 'object-model'
   chapters:
@@ -46,12 +56,6 @@
       url: "reopening-classes-and-instances"
     - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
       url: "what-do-i-use-when"
-
-- title: "Application"
-  url: 'application'
-  chapters:
-    - title: "Introduction"
-      url: "index"
 
 - title: "Templates"
   url: 'templates'
