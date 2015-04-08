@@ -109,8 +109,9 @@ For creating your own test helper, just run `ember generate test-helper
 shouldHaveElementWithCount`:
 
 ```tests/helpers/should-have-element-with-count.js
-export default Ember.Test.registerAsyncHelper(
-    'shouldHaveElementWithCount', function(app) {
+import Ember from 'ember';
+
+export default Ember.Test.registerAsyncHelper('shouldHaveElementWithCount', function(app) {
 
 });
 ```
