@@ -71,8 +71,8 @@ module('Acceptance: Transitions', {
   }
 });
 
-test('visiting /transitions', function(assert) {
-  visit('/transitions');
+test('visiting /profile', function(assert) {
+  visit('/profile');
 
   andThen(function() {
     assert.equal(currentRouteName(), 'login');
