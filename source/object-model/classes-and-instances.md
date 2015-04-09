@@ -97,6 +97,7 @@ instances:
 ```js
 Person = Ember.Object.extend({
   init: function() {
+    this._super.apply(this, arguments);
     var name = this.get('name');
     alert(name + ", reporting for duty!");
   }
@@ -111,9 +112,12 @@ Person.create({
 
 If you are subclassing a framework class, like `Ember.View` or
 `Ember.ArrayController`, and you override the `init` method, make sure
-you call `this._super()`! If you don't, the system may not have an
+you call `this._super.apply(this, arguments)`! If you don't, the system may not have an
 opportunity to do important setup work, and you'll see strange behavior
 in your application.
+
+Typically, call `_super` before you access `this`, this allows base classes to correctly
+initializer `this` before child classes conume
 
 When accessing the properties of an object, use the `get`
 and `set` accessor methods:
