@@ -1,3 +1,5 @@
+### Defining Classes
+
 To define a new Ember _class_, call the `extend()` method on
 `Ember.Object`:
 
@@ -114,6 +116,8 @@ If you are subclassing a framework class, like `Ember.View` or
 you call `this._super()`! If you don't, the system may not have an
 opportunity to do important setup work, and you'll see strange behavior
 in your application.
+
+### Accessing Object Properties
 
 When accessing the properties of an object, use the `get`
 and `set` accessor methods:
