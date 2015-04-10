@@ -1,4 +1,5 @@
 require 'middleman'
+require 'ember_encoder'
 require 'highlighter'
 describe Highlighter::Helpers do
   before do
@@ -12,37 +13,65 @@ describe Highlighter::Helpers do
     Object.send :remove_const, :HelperTester
   end
 
-  describe '#_detect_language_and_filename' do
+  describe '#_detect_language_filename_and_changes' do
     it 'returns bare languages and does not return a filename' do
-      language, filename = HelperTester.new._detect_language_and_filename('javascript')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('javascript')
       expect(language).to eq 'javascript'
       expect(filename).to be_nil
+      expect(changes).to eq []
 
-      language, filename = HelperTester.new._detect_language_and_filename('handlebars')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('handlebars')
       expect(language).to eq 'handlebars'
       expect(filename).to be_nil
+      expect(changes).to eq []
     end
 
     it 'returns the detected language and the filename from a filename' do
-      language, filename = HelperTester.new._detect_language_and_filename('app/components/my-component.js')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('app/components/my-component.js')
       expect(language).to eq 'javascript'
       expect(filename).to eq 'app/components/my-component.js'
+      expect(changes).to eq []
 
-      language, filename = HelperTester.new._detect_language_and_filename('app/templates/application.hbs')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('app/templates/application.hbs')
       expect(language).to eq 'handlebars'
       expect(filename).to eq 'app/templates/application.hbs'
+      expect(changes).to eq []
 
-      language, filename = HelperTester.new._detect_language_and_filename('app/index.html')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('app/index.html')
       expect(language).to eq 'html'
       expect(filename).to eq 'app/index.html'
+      expect(changes).to eq []
 
-      language, filename = HelperTester.new._detect_language_and_filename('app/styles/app.css')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('app/styles/app.css')
       expect(language).to eq 'css'
       expect(filename).to eq 'app/styles/app.css'
+      expect(changes).to eq []
 
-      language, filename = HelperTester.new._detect_language_and_filename('bower.json')
+      language, filename, changes = HelperTester.new._detect_language_filename_and_changes('bower.json')
       expect(language).to eq 'json'
       expect(filename).to eq 'bower.json'
+      expect(changes).to eq []
+    end
+
+    it 'returns detected code changes' do
+      _, _, changes = HelperTester.new._detect_language_filename_and_changes('app/components/my-component.js{1,+3,4,-5,+6,-7}')
+
+      expect(changes).to eq [
+        [1, nil],
+        [3, 'added'],
+        [4, nil],
+        [5, 'removed'],
+        [6, 'added'],
+        [7, 'removed'],
+      ]
+
+      _, _, changes = HelperTester.new._detect_language_filename_and_changes('javascript{+2,3,-5}')
+
+      expect(changes).to eq [
+        [2, 'added'],
+        [3, nil],
+        [5, 'removed']
+      ]
     end
   end
 
@@ -59,8 +88,7 @@ describe Highlighter::Helpers do
       code_block = HelperTester.new._highlight('var blah = Ember.Object.create()', 'javascript')
       expect(code_block).to eq <<-OUTPUT.sub(/\n$/, '')
 <div class="highlight javascript "><div class="ribbon"></div><div class="scroller"><table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
-</pre></td>
+  <td class="line-numbers"><pre>1</pre></td>
   <td class="code"><pre><span class="keyword">var</span> blah = Ember.Object.create()</pre></td>
 </tr></table>
 </div></div>
@@ -77,8 +105,7 @@ OUTPUT
     </tr>
   </thead>
 <tr>
-  <td class="line-numbers"><pre>1
-</pre></td>
+  <td class="line-numbers"><pre>1</pre></td>
   <td class="code"><pre><span class="reserved">export</span> <span class="keyword">default</span> Ember.Component.extend()</pre></td>
 </tr></table>
 </div></div>
