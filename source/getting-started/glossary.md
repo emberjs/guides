@@ -54,8 +54,8 @@ Asynchronous calls typically return a promise (or deferred). This is an object w
 
 Ember.js makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
 
-[An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
-[emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
+* [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
+* [emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
 
 
 ## SSR
