@@ -23,6 +23,16 @@ using `{{else}}`:
 {{/if}}
 ```
 
+Handlebars also supports chained else helpers, the most common use being else if. An example:
+
+```handlebars
+{{#if isAtWork}}
+  Ship that code!
+{{else if isReading}}
+  You can finish War and Peace eventually...
+{{/if}}
+```
+
 To only render a block if a value is falsy, use `{{#unless}}`:
 
 ```handlebars
