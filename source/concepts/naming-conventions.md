@@ -199,7 +199,7 @@ anything!
 
 ## Nesting
 
-You can nest routes under a `resource`.
+You can nest routes:
 
 ```javascript
 export default Ember.Router.extend().map(function(){
@@ -209,6 +209,7 @@ export default Ember.Router.extend().map(function(){
   });
 });
 ```
+
 Here are the naming conventions for each of the routes defined in
 this router:
 
