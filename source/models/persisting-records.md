@@ -81,7 +81,7 @@ function retry(callback, nTimes) {
   // if the promise fails
   return callback().catch(function(reason) {
     // if we haven't hit the retry limit
-    if (nTimes-- > 0) {
+    if (nTimes > 0) {
       // retry again with the result of calling the retry callback
       // and the new retry limit
       return retry(callback, nTimes);
