@@ -5,7 +5,7 @@ source of information to display.
 In Ember.js, a template retrieves information to display from a
 controller.
 
-Two built-in controllers—`Ember.ObjectController` and
+Two built-in controllers—`Ember.Controller` and
 `Ember.ArrayController`—make it easy for a controller to present a
 model's properties to a template, along with any additional
 display-specific properties.
