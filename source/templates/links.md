@@ -29,25 +29,33 @@ rendered HTML would look something like this:
 </ul>
 ```
 
-When the rendered link matches the current route, and the same
-object instance is passed into the helper, then the link is given
-`class="active"`.
-
-The `{{link-to}}` helper takes:
+The `{{link-to}}` helper takes one or two arguments:
 
 * The name of a route. In this example, it would be `index`, `photos`, or
   `photos.edit`.
 * At most one model for each [dynamic segment](../../routing/defining-your-routes/#toc_dynamic-segments).
   By default, Ember.js will replace each segment with the value of the corresponding object's `id` property.
-  If there is no model to pass to the helper, you can provide an explicit identifier value instead.
-  The value will be filled into the [dynamic segment](../../routing/defining-your-routes/#toc_dynamic-segments)
-  of the route, and will make sure that the `model` hook is triggered.
-* An optional title which will be bound to the `a` title attribute
+  In the example above, the second argument is each `photo` object, and the `id` property is used to fill in
+  the dynamic segment with either `1`, `2`, or `3`. If there is no model to pass to the helper, you can provide
+  an explicit value instead:
 
 ```app/templates/photos.hbs
 {{#link-to 'photos.photo.edit' 1}}
   First Photo Ever
 {{/link-to}}
+```
+
+When the rendered link matches the current route, and the same
+object instance is passed into the helper, then the link is given
+`class="active"`. For example, if you were at the URL `/photos/2`,
+the first example above would render as:
+
+```html
+<ul>
+  <li><a href="/photos/1">Happy Kittens</a></li>
+  <li><a href="/photos/2" class="active">Puppy Running</a></li>
+  <li><a href="/photos/3">Mountain Landscape</a></li>
+</ul>
 ```
 
 ### Example for Multiple Segments
@@ -77,7 +85,7 @@ Router.map(function() {
 If you specify only one model, it will represent the innermost dynamic segment `:comment_id`.
 The `:photo_id` segment will use the current photo.
 
-Alternatively, you could pass both a photo and a comment to the helper:
+Alternatively, you could pass both a photo's ID and a comment to the helper:
 
 ```app/templates/photo/index.hbs
 <p>
