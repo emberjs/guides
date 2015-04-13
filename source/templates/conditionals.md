@@ -45,3 +45,9 @@ To only render a block if a value is falsy, use `{{#unless}}`:
 to invoke a helper with a portion of your template. Block expressions look like
 normal expressions except that they contain a hash (#) before the helper name,
 and require a closing expression.
+
+There is also an inline, non-block form of the `if` helper:
+
+```handlebars
+<div class="{{color}} {{if isEnabled 'active' 'disabled'}}"></div>
+```
