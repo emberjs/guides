@@ -15,11 +15,11 @@ Written by {{author.firstName}} {{author.lastName}}
 <div>{{body}}</div>
 {{partial "author"}}
 ```
-
+Output:
 
 ```html
 <div>
-  <h1>Why You Should Use Ember.JS</h1>
+  <h1>Why You Should Use Ember.js</h1>
   <div>Because it's awesome!</div>
   Written by Yehuda Katz
 </div>
@@ -33,8 +33,8 @@ export default Ember.View.extend({
   // We are setting templateName manually here to the default value
   templateName: "author",
 
-  // A fullName property should probably go on App.Author,
-  // but we're doing it here for the example
+  // A fullName property should probably go on the model,
+  // but we're doing it here for the sake of example
   fullName: (function() {
     return this.get("author").get("firstName") + " " + this.get("author").get("lastName");
   }).property("firstName","lastName")
@@ -51,9 +51,11 @@ Written by {{view.fullName}}
 {{view "author"}}
 ```
 
+Output:
+
 ```html
 <div>
-  <h1>Why You Should Use Ember.JS</h1>
+  <h1>Why You Should Use Ember.js</h1>
   <div>Because it's awesome!</div>
   Written by Yehuda Katz
 </div>
@@ -69,7 +71,7 @@ When using `{{view "author"}}`:
 * An instance of author view will be created
 * It will be rendered here, using the template associated with that view (the default template being "author")
 
-For more information, see [Inserting Views in Templates](../../views/inserting-views-in-templates)
+For more information, see [Inserting Views in Templates](../../views/inserting-views-in-templates).
 
 ### The `{{render}}` Helper
 
