@@ -1,5 +1,5 @@
 One of the major issues in testing web applications is that all code is
-event-driven, therefore has the potential to be asynchronous (ie output can
+event-driven, therefore has the potential to be asynchronous (i.e. output can
 happen out of sequence from input). This has the ramification that code can be
 executed in any order.
 
@@ -27,8 +27,7 @@ Asynchronous helpers are "aware" of (and wait for) asynchronous behavior within
 your application, making it much easier to write deterministic tests.
 
 Also, these helpers register themselves in the order that you call them and will
-be run in a chain; each one is only called after the previous one finishes, in a
-chain. You can rest assured, therefore, that the order you call them in will also
+be run in a chain; each one is only called after the previous one finishes. You can rest assured, therefore, that the order you call them in will also
 be their execution order, and that the previous helper has finished before the
 next one starts.
 
