@@ -142,8 +142,6 @@
   chapters:
     - title: "Introduction"
       url: "index"
-    - title: "Representing a Single Model with ObjectController"
-      url: "representing-a-single-model-with-objectcontroller"
     - title: "Representing Multiple Models with ArrayController"
       url: "representing-multiple-models-with-arraycontroller"
     - title: "Managing Dependencies Between Controllers"

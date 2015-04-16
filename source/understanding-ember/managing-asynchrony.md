@@ -86,7 +86,13 @@ export default Ember.Object.extend({
 ```
 
 ```app/controllers/post.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
+
+  salutation: Ember.computed.alias('model.salutation'),
+  name: Ember.computed.alias('model.name'),
+  title: Ember.computed.alias('model.title'),
+  body: Ember.computed.alias('model.body'),
+
   author: function() {
     return [this.get('salutation'), this.get('name')].join(' ');
   }.property('salutation', 'name')
@@ -96,9 +102,14 @@ export default Ember.ObjectController.extend({
 ```app/views/post.js
 export default Ember.View.extend({
   // the controller is the initial context for the template
-  controller: null,
-  template: Ember.Handlebars.compile("<h1>{{title}}</h1><h2>{{author}}</h2><div>{{body}}</div>")
+  controller: null
 });
+```
+
+```app/templates/post.hbs
+<h1>  {{title}}  </h1>
+<h2>  {{author}} </h2>
+<div> {{body}}   </div>
 ```
 
 
@@ -107,8 +118,8 @@ import Post from "app/models/post";
 
 export default Ember.Route.extend({
   model: function(){
-    return jQuery.getJSON("/posts/1", function(json) {
-      return Post.create(json);
+    return Ember.$.getJSON('/posts/1', function(data) {
+      return Post.create(data);
     });
   }
 });
@@ -139,7 +150,8 @@ to each user event.
 Let's take another look at the `author` computed property.
 
 ```app/controllers/post.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
+  // ...
   author: function() {
     return [this.get('salutation'), this.get('name')].join(' ');
   }.property('salutation', 'name')

@@ -14,7 +14,7 @@ export default Ember.Route.extend({
 Sometimes an Ember.js library will use dependency injection to expose its API to developers. An example of this is Ember-Data, which injects its store into all routes and controllers.
 
 ```app/controllers/index.js
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   actions: {
     findItems: function(){
       var controller = this;

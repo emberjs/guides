@@ -34,3 +34,5 @@ as an `outlet` so that nested routes can be seamlessly inserted.  It is equivale
 ```handlebars
 {{outlet}}
 ```
+
+[deprecations guide]: http://emberjs.com/deprecations/v1.x/
