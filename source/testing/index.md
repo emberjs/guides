@@ -35,6 +35,10 @@ above might be:
 [QUnit] is the default testing framework for this guide, but others are 
 supported through third-party addons.
 
+### How to Run Your Tests
+
+Run your tests with `ember test` on the command-line. You can re-run your tests on every file-change with `ember test --server`. For more details and options, see [Ember CLI – Testing](http://www.ember-cli.com/#testing) and `ember help test`.
+
 ### Contributing
 
 The Ember testing guide provides best practices and examples on how to test your
