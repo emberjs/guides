@@ -1,5 +1,25 @@
-$(function() {
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = '<%= data.search.engine_key %>';
+  Swiftype.inputElement = '#st-search-input';
+  Swiftype.resultContainingElement = '#st-results-container';
+  Swiftype.attachElement = '#st-search-input';
+  Swiftype.renderStyle = 'overlay';
+  Swiftype.disableAutocomplete = true;
 
+  Swiftype.searchSearchFields = {'<%= data.search.document_type %>': ['body', 'title', 'url']};
+  Swiftype.searchFetchFields = {'<%= data.search.document_type %>': ['title','body',  'url']};
+  Swiftype.searchDocumentTypes = ['<%= data.search.document_type %>'];
+
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = true;
+  script.src = '//swiftype.com/embed.js';
+  var entry = document.getElementsByTagName('script')[0];
+  entry.parentNode.insertBefore(script, entry);
+}());
+
+$(function() {
   var onComplete = function(item, prefix) {
     window.location = '/<%= data.search.revision %>' + item['url'];
   };
