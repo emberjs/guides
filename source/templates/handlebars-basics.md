@@ -13,7 +13,7 @@ write any additional code to make sure it keeps up-to-date.
 
 By default, adjust your [application template](../the-application-template), that is created automatically for you and will be displayed on the page when your app loads.
 
-You can also define templates by name that can be used later. If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/). The components section information on creating a re-usable template.
+You can also define templates by name that can be used later. If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/). The components section contains information on creating re-usable templates.
 
 ### Handlebars Expressions
 
