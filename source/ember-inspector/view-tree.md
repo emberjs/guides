@@ -1,6 +1,6 @@
 You can inspect the current views and components rendered in your
 application. The View Tree shows you a tree of what is currently rendered,
-along with templates, controsllers, and models backing each view.
+along with templates, controllers, and models backing each view.
 
 Click on the `View Tree` menu on the left to see your views.
 
@@ -84,5 +84,5 @@ width="500">
 Instrumentation however adds its own delay to rendering, so the
 numbers you see are not an exact representation of production apps.
 These numbers should be used to compare rendering times, and not as a
-replacement for peformance benchmarking.
+replacement for performance benchmarking.
 

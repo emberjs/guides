@@ -18,7 +18,7 @@ reversedArray: function() {
 
 Once you do that, you will be able to use `reversedArray` property in your Handlebars template: `{{#each reversedArray}}{{/each}}`.
 
-Another way to do it is to leverage out of the box EmberJs functionality and to use `sortProperties` and `sortAscending` properties.
+Another way to do it is to leverage out of the box Ember.js functionality and to use `sortProperties` and `sortAscending` properties.
 Just specify them on your controller, like so:
 ```javascript
 App.MyController = Ember.ArrayController.extend({

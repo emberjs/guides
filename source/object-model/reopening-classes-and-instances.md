@@ -32,7 +32,7 @@ But when you need to add static methods or static properties to the class itself
 Person.reopenClass({
   isPerson: false
 });
-// override property of Person inctances
+// override property of Person instance
 Person.reopen({
   isPerson: true
 });

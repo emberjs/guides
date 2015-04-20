@@ -38,7 +38,7 @@ A one-way binding only propagates changes in one direction. Often, one-way
 bindings are just a performance optimization and you can safely use a two-way binding
 (as, of course, two-way bindings are de facto one-way bindings if you only ever change
 one side). Sometimes one-way bindings are useful to achieve specific behaviour such
-as a default that is the same as another property but can be overriden (e.g. a
+as a default that is the same as another property but can be overridden (e.g. a
 shipping address that starts the same as a billing address but can later be changed)
 
 ```javascript

@@ -19,7 +19,7 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 
 # Libraries Used By Ember
 
-These libraries are part of the Ember.js source, but development of them takes place in a seperate repository.
+These libraries are part of the Ember.js source, but development of them takes place in a separate repository.
 
 ## `packages/ember-metal/lib/vendor/backburner.js`
 * **backburner.js** - Implements the Ember run loop.

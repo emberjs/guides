@@ -7,7 +7,7 @@ To view the list of deprecations, click on the `Deprecations` menu.
 <img src="../../images/guides/ember-inspector/deprecations-screenshot.png" width="680"/>
 
 You can see the total number of deprecations next to the `Deprecations` menu.
-You can also see the number of occurences for each deprecation.
+You can also see the number of occurrences for each deprecation.
 
 ### Ember Cli Deprecation Sources
 
@@ -21,7 +21,7 @@ the code that caused the deprecation message.
 <img src="../../images/guides/ember-inspector/deprecations-sources-panel.png" width="550"/>
 
 You can send the entire stack trace of the deprecation message to the
-console by clickng on `Trace in the console`.
+console by clicking on `Trace in the console`.
 
 
 ### Transition Plans

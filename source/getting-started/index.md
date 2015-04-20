@@ -1,4 +1,4 @@
-Gettins started with Ember.js is easy. Ember.js projects are created and managed
+Getting started with Ember.js is easy. Ember.js projects are created and managed
 through our command line build tool ember-cli. The command line tool brings:
 
 * Modern application asset management (including combining, minifying, and versioning).
