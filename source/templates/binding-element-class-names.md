@@ -15,9 +15,9 @@ If the component's `priority` property is `"p4"`, this template will emit the fo
 </div>
 ```
 
-### Conditonal Values
+### Conditional Values
 
-If you want a class value based on a conditonal property, use the Handlebars `if` helper:
+If you want a class value based on a conditional property, use the Handlebars `if` helper:
 
 ```handlebars
 <div class={{if isUrgent 'is-urgent'}}>

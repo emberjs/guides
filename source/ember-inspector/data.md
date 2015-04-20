@@ -45,7 +45,7 @@ You can also filter records by entering a query in the search box.
 ### Building a Data Custom Adapter
 
 If you have built your own data persistence library (as opposed to using Ember Data
-for example), you can build a data dapter so you can inspect your models
+for example), you can build a data adapter so you can inspect your models
 using the data tab.
 
 You can see the documentation for the data adapter

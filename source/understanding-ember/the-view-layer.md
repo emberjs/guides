@@ -623,7 +623,7 @@ most recent view with one.
 
 Handlebars helpers in Ember may also specify variables. For example, the
 `{{#with controller.person as |tom|}}` form specifies a `tom` variable
-that descendent scopes can access. Even if a child context has a `tom`
+that descendant scopes can access. Even if a child context has a `tom`
 property, the `tom` variable will supersede it.
 
 This form has one major benefit: it allows you to shorten long paths
@@ -631,7 +631,7 @@ without losing access to the parent scope.
 
 It is especially important in the `{{#each}}` helper, which provides
 the `{{#each people as |person|}}` form.
-In this form, descendent context have access to the `person` variable,
+In this form, descendant context have access to the `person` variable,
 but remain in the same scope as where the template invoked the `each`.
 
 ```handlebars

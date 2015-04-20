@@ -32,7 +32,7 @@ baz.offsetHeight // read (recalculate style, layout, expensive!)
 
 In this example, the sequence of code forced the browser to recalculate style,
 and relayout after each step. However, if we were able to batch similar jobs together,
-the browser would have only needed to recalulate the style and layout once.
+the browser would have only needed to recalculate the style and layout once.
 
 
 ```javascript
