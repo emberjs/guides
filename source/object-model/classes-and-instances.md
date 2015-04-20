@@ -61,7 +61,7 @@ var person = Person.create();
 person.say("Hello"); // alerts " says: Hello"
 ```
 
-When creating an instance, you can initialize the value of its properties
+When creating an instance, you can initialize the values of its properties
 by passing an optional hash to the `create()` method:
 
 ```javascript

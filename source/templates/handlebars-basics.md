@@ -23,7 +23,7 @@ a route will render a template with the same name as the route.
 <p>Kittens are the cutest!</p>
 ```
 
-If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/).
+If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/). The components section contains information on creating re-usable templates.
 
 ### Handlebars Expressions
 
