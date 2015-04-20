@@ -1,7 +1,7 @@
 New features are added to Ember.js within conditional statements.
 
 Code behind these flags can be conditionally enabled
-(or completely removed) based on you project's configuration. This
+(or completely removed) based on your project's configuration. This
 allows newly developed features to be selectively released when the
 Ember.js community considers them ready for production use.
 
