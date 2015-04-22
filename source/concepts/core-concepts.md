@@ -67,7 +67,7 @@ HTML. In many applications, models are loaded via an HTTP JSON API,
 although Ember is agnostic to the backend that you choose.
 
 
-#### Route
+#### Routes
 
 A **route** is an object that tells the template which model it should
 display.
