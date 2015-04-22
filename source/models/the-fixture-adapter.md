@@ -13,12 +13,11 @@ Using the fixture adapter entails three very simple setup steps:
 
 #### Creating a Fixture Adapter
 
-Simply attach it as the `ApplicationAdapter` property on your instance
-of `Ember.Application`:
+Simply set the default adapter of your `Ember.Application` to be a `FixtureAdapter` by creating `app/adapters/application.js` and inserting the following:
 
-```JavaScript
-var App = Ember.Application.create();
-App.ApplicationAdapter = DS.FixtureAdapter;
+```app/adapters/application.js
+import DS from 'ember-data';
+export default DS.FixtureAdapter.extend();
 ```
 
 #### Define Your Model
