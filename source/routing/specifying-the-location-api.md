@@ -13,8 +13,8 @@ Router.map(function() {
 });
 ```
 
-If you want `/posts/new` to work instead, you can tell the Router to use the browser's
-[history](http://caniuse.com/history) API.
+If you want to remove the `#/` at the beginning so that the URL is simply `/posts/new`,
+you can tell the Router to use the browser's [history](http://caniuse.com/history) API.
 
 Keep in mind that your server must serve the Ember app from all the URLs defined in your
 `Router.map` function.
