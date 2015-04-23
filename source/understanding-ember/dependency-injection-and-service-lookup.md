@@ -149,7 +149,7 @@ Ember's container should be viewed as an implementation detail, and is not part 
 Instead of accessing the container directly, Ember provides an API for registering factories and managing injections on the application instance with an initializer
 
 ```app/initializers/logger.js
-export function initialize(/* container, application */) {
+export function initialize(container, application) {
   var logger = {
     log: function(message) {
       console.log(message);
