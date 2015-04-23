@@ -211,7 +211,7 @@ into a model.
 For example, if we have the route `this.route('posts');`, our
 route handler might look like this:
 
-```app/posts/route.js
+```app/routes/posts.js
 export default Ember.Route.extend({
   model: function() {
     return $.getJSON("/url/to/some/posts.json");
