@@ -56,10 +56,10 @@
 - title: "Templates"
   url: 'templates'
   chapters:
-    - title: "The Application Template"
-      url: "the-application-template"
     - title: "Handlebars Basics"
       url: "handlebars-basics"
+    - title: "The Application Template"
+      url: "the-application-template"
     - title: "Conditionals"
       url: "conditionals"
     - title: "Displaying a List of Items"
