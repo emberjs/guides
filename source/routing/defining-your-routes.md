@@ -160,7 +160,7 @@ This router creates these routes:
   </tr>
   <tr>
     <td>N/A</td>
-    <td><code>posts</code><sup>1</sup></td>
+    <td><code>posts</code></td>
     <td>↳<code>posts.js</code></td>
     <td>↳<code>posts.js</code></td>
     <td>↳<code>posts.hbs</code></td>
@@ -181,14 +181,13 @@ This router creates these routes:
   </tr>
 </table>
 
-<small><sup>1</sup> Transitioning to `posts` or creating a link to
-`posts` is equivalent to transitioning to `posts.index` or linking to
-`posts.index`</small>
-
 A nested route's names includes the names of its ancestors.
 If you want to transition to a route (either
 via `transitionTo` or `{{#link-to}}`), make sure to use the full route
 name (`posts.new`, not `new`).
+
+That said, transitioning to `posts` or creating a link to `posts` is equivalent
+to transitioning to `posts.index` or linking to `posts.index`.
 
 Visiting `/` renders the `index` template, as you would expect.
 
@@ -201,7 +200,7 @@ then render the `posts/new` template into its outlet.
 
 ### Multi-word Model Names
 
-For multi-word models all the names are camel cased except for the dynamic segment. For example, a model named `BigMac` would have a resource path of `/bigMacs/:big_mac_id`, route named `bigMac`, template named `bigMac`.
+For multi-word models all the names are camel cased except for the dynamic segment. For example, a model named `BigMac` would have a path of `/bigMacs/:big_mac_id`, route named `bigMac`, template named `bigMac`.
 
 ### Dynamic Segments
 
