@@ -78,6 +78,6 @@ a uniquely identifiable field. By default, Ember Data assumes this key
 is called `id`. Should you not provide an `id` field in your fixtures, or
 not override the primary key, the Fixture Adapter will throw an error.
 
-[1]: /guides/models/defining-models
-[2]: /guides/models/finding-records
-[3]: /guides/models/the-rest-adapter
+[1]: ../../models/defining-models
+[2]: ../../models/finding-records
+[3]: ../../models/the-rest-adapter
