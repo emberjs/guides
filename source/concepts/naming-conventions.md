@@ -203,7 +203,7 @@ You can nest routes:
 
 ```javascript
 export default Ember.Router.extend().map(function(){
-  this.route('posts', function() {    // the `posts` route
+  this.resource('posts', function() {    // the `posts` route
     this.route('favorites');          // the `posts.favorites` route
     this.route('post');               // the `posts.post` route
   });
