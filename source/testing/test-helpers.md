@@ -154,7 +154,7 @@ export default Ember.Test.registerAsyncHelper('dblclick',
   }
 );
 
-// dblclick("#person-1")
+// dblclick(assert, "#person-1")
 ```
 
 Async helpers also come in handy when you want to group interaction
