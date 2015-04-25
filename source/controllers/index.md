@@ -19,20 +19,20 @@ Your template would bind to these properties in the `blog-post`
 template:
 
 ```app/templates/blog-post.hbs
-<h1>{{title}}</h1>
-<h2>by {{author}}</h2>
+<h1>{{model.title}}</h1>
+<h2>by {{model.author}}</h2>
 
 <div class='intro'>
-  {{intro}}
+  {{model.intro}}
 </div>
 <hr>
 <div class='body'>
-  {{body}}
+  {{model.body}}
 </div>
 ```
 
 In this simple example, we don't have any display-specific properties
-or actions just yet. For now, our controller just acts as a
+or actions just yet. For now, our controller's `model` property just acts as a
 pass-through (or "proxy") for the model properties. (Remember that
 a controller gets the model it represents from its route handler.)
 
@@ -42,18 +42,18 @@ first modify our template to show the body only if the value of a
 new `isExpanded` property is true.
 
 ```app/templates/blog-post.hbs
-<h1>{{title}}</h1>
-<h2>by {{author}}</h2>
+<h1>{{model.title}}</h1>
+<h2>by {{model.author}}</h2>
 
 <div class='intro'>
-  {{intro}}
+  {{model.intro}}
 </div>
 <hr>
 
 {{#if isExpanded}}
   <button {{action 'toggleProperty' 'isExpanded'}}>Hide Body</button>
   <div class='body'>
-    {{body}}
+    {{model.body}}
   </div>
 {{else}}
   <button {{action 'toggleProperty' 'isExpanded'}}>Show Body</button>
@@ -112,7 +112,7 @@ user navigates around the page.
 
 For convenience, Ember.js provides an `Ember.ArrayController` that proxies
 properties from an Array. If your controller is an `ArrayController`, you can
-iterate directly over the controller using `{{#each controller as |item|}}`. This
+iterate over the model using `{{#each model as |item|}}`. This
 keeps the template from having to know about how the controller is implemented
 and makes isolation testing and refactoring easier.
 
