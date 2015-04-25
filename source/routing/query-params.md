@@ -99,6 +99,7 @@ accepts a final argument, which is an object with
 the key `queryParams`.
 
 ```javascript
+//assuming you are in a route
 this.transitionTo('post', object, {queryParams: {showDetails: true}});
 this.transitionTo('posts', {queryParams: {sort: 'title'}});
 
