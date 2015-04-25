@@ -95,8 +95,8 @@ export default Ember.ArrayController.extend({
 ```
 
 ```app/templates/songs.hbs
-{{#each controller as |item|}}
-  <li>{{item.fullName}}</li>
+{{#each model as |song|}}
+  <li>{{song.fullName}}</li>
 {{/each}}
 ```
 
@@ -108,7 +108,7 @@ export default Ember.ArrayController.extend({
 ```
 
 ```app/templates/songs.hbs
-{{#each controller itemController="song" as |item|}}
-  <li>{{item.fullName}}</li>
+{{#each model itemController="song" as |song|}}
+  <li>{{song.fullName}}</li>
 {{/each}}
 ```
