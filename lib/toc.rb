@@ -31,7 +31,11 @@ module TOC
           requested_guide_url = slugs[0]
           current = (guide.url == requested_guide_url)
 
-          middleman_url = "/#{guide.url}/#{guide.chapters[0].url}.html"
+          middleman_base_url = "/#{guide.url}/#{guide.chapters[0].url}"
+          middleman_url = middleman_base_url + ".html"
+
+          file = "source" + middleman_base_url + ".md"
+          raise file + " does not exist. Please fix guides.yml." unless File.exist?(file)
 
           buffer << "<li class='level-1 #{current ? 'selected' : ''}'>"
             buffer << link_to(guide.title, middleman_url)
