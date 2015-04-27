@@ -40,6 +40,14 @@ guides:
     before(:each) do
       building_page = double(path: "custom-extensions/building-custom-extensions.html")
       allow(helper).to receive(:request).and_return(building_page)
+      allow(File).to receive(:exist?).and_return(true)
+    end
+
+    it "raises an exception if a file doesn't exist" do
+      allow(File).to receive(:exist?).and_return(false)
+      expect {
+        helper.toc_for(helper.data.guides)
+      }.to raise_error(RuntimeError, "source/middleman-basics/index.md does not exist. Please fix guides.yml.")
     end
 
     it "includes guide titles except guides that are marked to skip sidbar" do
