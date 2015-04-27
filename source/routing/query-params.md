@@ -17,9 +17,9 @@ Query params are declared on route-driven controllers. For example, to
 configure query params that are active within the `articles` route,
 they must be declared on `controller:articles`.
 
-Let's say we'd like to add a `category`
+To add a `category`
 query parameter that will filter out all the articles that haven't
-been categorized as popular. To do this, we specify `'category'`
+been categorized as popular we'd specify `'category'`
 as one of `controller:article`'s `queryParams`:
 
 ```app/controllers/articles.js
@@ -94,12 +94,10 @@ active query params for this to be true.
 
 ### transitionTo
 
-`Route#transitionTo` (and `Controller#transitionToRoute`) now
-accepts a final argument, which is an object with
-the key `queryParams`.
+`Route#transitionTo` and `Controller#transitionToRoute`
+accept a final argument, which is an object with the key `queryParams`.
 
-```javascript
-//assuming you are in a route
+```app/routes/some-route.js
 this.transitionTo('post', object, {queryParams: {showDetails: true}});
 this.transitionTo('posts', {queryParams: {sort: 'title'}});
 
@@ -109,13 +107,13 @@ this.transitionTo({queryParams: {direction: 'asc'}});
 
 You can also add query params to URL transitions:
 
-```javascript
+```app/routes/some-route.js
 this.transitionTo("/posts/1?sort=date&showDetails=true");
 ```
 
 ### Opting into a full transition
 
-Keep in mind that if the arguments provided to `transitionTo`
+Arguments provided to `transitionTo`
 or `link-to` only correspond to a change in query param values,
 and not a change in the route hierarchy, it is not considered a
 full transition, which means that hooks like `model` and
