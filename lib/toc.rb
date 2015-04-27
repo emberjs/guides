@@ -35,7 +35,7 @@ module TOC
           middleman_url = middleman_base_url + ".html"
 
           file = "source" + middleman_base_url + ".md"
-          raise file + " does not exist. Please fix guides.yml." unless File.exist?(file)
+          raise "#{file} does not exist but is referenced in data/guides.yml. " unless File.exist?(file)
 
           buffer << "<li class='level-1 #{current ? 'selected' : ''}'>"
             buffer << link_to(guide.title, middleman_url)
