@@ -23,7 +23,7 @@ Router.map(function() {
 });
 ```
 
-```app/routes/foo/slow-model.s
+```app/routes/foo/slow-model.js
 export default Ember.Route.extend({
   model: function() {
     return somePromiseThatTakesAWhileToResolve();
