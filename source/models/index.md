@@ -5,7 +5,7 @@ implementing a route's `model` hook, by passing the model as an argument
 to `{{link-to}}`, or by calling a route's `transitionTo()` method.
 
 See [Specifying a Route's
-Model](../../routing/specifying-a-routes-model) for more information
+Model](../routing/specifying-a-routes-model) for more information
 on setting a route's model.
 
 For simple applications, you can get by using jQuery to load JSON data
@@ -45,7 +45,7 @@ $ npm rm ember-data --save-dev
 
 Learning to use Ember Data is easiest once you understand some of the
 concepts that underpin its design.
-
+sp
 #### Store
 
 The **store** is the central repository of records in your application.
