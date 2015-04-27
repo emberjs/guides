@@ -25,7 +25,7 @@ export default Ember.Route.extend({
 });
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/lihenu/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/mezoca/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ### Asynchronously Loading Models
 
