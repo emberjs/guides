@@ -24,7 +24,7 @@ export default Ember.Handlebars.makeBoundHelper(function() {
 Your template will look like:
 
 ```html
-Today's date: {{currentDate}}  // Today's date: August 30 2013
+Today's date: {{current-date}}  // Today's date: August 30 2013
 ```
 
 You can even enhance your code and pass in the date format to the helper:
@@ -41,7 +41,7 @@ export default Ember.Route.extend({
 Now you would need to pass an additional parameter to the helper:
 
 ```html
-Today's date: {{currentDate 'LL'}}  // Today's date: August 30 2013
+Today's date: {{current-date 'LL'}}  // Today's date: August 30 2013
 ```
 
 Let's look at another example. Say you need
@@ -79,7 +79,7 @@ Handlebars helpers are shorthand for cases where you want to format
 a value specifically for presentation. That value may be used 
 across different models and controllers.
 
-You can use `{{currentDate}}` across your application to format dates
+You can use `{{current-date}}` across your application to format dates
 without making any changes to controllers.
 
 Computed property in the example above does the same thing as the
