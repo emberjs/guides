@@ -28,7 +28,7 @@ ES stands for ECMAScript, which is the specification that JavaScript is based on
 Most browsers support at least ES5, and some even have ES6 (also known as ES2015) support. You can check each browser's support (including yours) here:
 
 * [ES5 support](http://kangax.github.io/compat-table/es5/)
-* [ES6 support](http://kangax.github.io/compat-table/es6/")
+* [ES6 support](http://kangax.github.io/compat-table/es6/)
 
 [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 
