@@ -6,9 +6,10 @@ objects. Making changes is as simple as setting the attribute you
 want to change:
 
 ```js
-var tyrion = this.store.find('person', 1);
-// ...after the record has loaded
-tyrion.set('firstName', "Yollo");
+this.store.find('post', 1).then(function(post) {
+    // ...after the record has loaded
+    post.set('title', 'A new post title');
+});
 ```
 
 All of the Ember.js conveniences are available for
@@ -16,7 +17,7 @@ modifying attributes. For example, you can use `Ember.Object`'s
 `incrementProperty` helper:
 
 ```js
-person.incrementProperty('age'); // Happy birthday!
+comment.incrementProperty('editCount'); // 2
 ```
 
 You can tell if a record has outstanding changes that have not yet been
