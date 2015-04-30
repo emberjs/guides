@@ -22,7 +22,7 @@ export default DS.FixtureAdapter.extend();
 
 #### Define Your Model
 
-You should refer to [Defining a Model][1] for a more in-depth guide on using
+You should refer to [Defining a Model](../../models/defining-models) for a more in-depth guide on using
 Ember Data Models, but for the purposes of demonstration we'll use an example
 modeling people who document Ember.js.
 
@@ -54,7 +54,7 @@ Documenter.reopenClass({
 export default Documenter
 ```
 
-That's it! You can now use all of methods for [Finding Records][2] in your
+That's it! You can now use all of methods for [Finding Records](../../models/finding-records) in your
 application. For example:
 
 ```app/routes/documenter.js
@@ -68,7 +68,7 @@ export default Ember.Route.extend({
 
 #### Naming Conventions
 
-Unlike the [REST Adapter][3], the Fixture Adapter does not make any assumptions
+Unlike the [REST Adapter](../../models/the-rest-adapter), the Fixture Adapter does not make any assumptions
 about the naming conventions of your model. As you saw in the example above,
 if you declare the attribute as `firstName` during `DS.Model.extend`, you use
 `firstName` to represent the same field in your fixture data.
@@ -77,7 +77,3 @@ Importantly, you should make sure that each record in your fixture data has
 a uniquely identifiable field. By default, Ember Data assumes this key
 is called `id`. Should you not provide an `id` field in your fixtures, or
 not override the primary key, the Fixture Adapter will throw an error.
-
-[1]: ../../models/defining-models
-[2]: ../../models/finding-records
-[3]: ../../models/the-rest-adapter
