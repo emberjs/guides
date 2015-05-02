@@ -2,7 +2,7 @@ To define a component, create a template whose name starts with
 `components/`. To define a new component, `{{blog-post}}` for example,
 create a `components/blog-post` template.
 
-**Note:** Components must have a dash in their name. So `blog-post` is an acceptable name,
+**Note:** Components must have at least one dash in their name. So `blog-post` is an acceptable name,
 but `post` is not. This prevents clashes with current or future HTML element names, and
 ensures Ember picks up the components automatically.
 
