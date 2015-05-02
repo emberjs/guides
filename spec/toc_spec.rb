@@ -79,30 +79,8 @@ guides:
       expect(toc).not_to include("secret")
     end
 
-    it "includes chapter urls except for chapter that are marked to skip sidbar" do
-      data_yml = %Q{
-guides:
-  - title: "Advanced Middleman"
-    url: "advanced-middleman"
-    chapters:
-      - title: "Advanced Concepts"
-        url: "index"
-      - title: "Middleman Architecture"
-        url: "middleman-architecture"
-        skip_sidebar_item: true
-      - title: "Contributing to Middleman"
-        url: "contributing-to-middleman"
-      }
-
-      data = Hashie::Mash.new(YAML.load(data_yml))
-      toc = helper.toc_for(data.guides)
-      advanced_index_page = double(path: "advanced-middleman/index.html")
-      allow(helper).to receive(:request).and_return(advanced_index_page)
-
-      expect(toc).to include(advanced_index_page.path)
-      expect(toc).to include("contributing-to-middleman")
-
-      expect(toc).not_to include("middleman-architecture")
+    it "does not include chapter urls that are marked to skip sidebar" do
+      expect(toc).not_to include("meh")
     end
 
     it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
