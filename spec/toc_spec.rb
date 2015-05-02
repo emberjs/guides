@@ -12,30 +12,7 @@ describe TOC::Helpers do
       include TOC::Helpers
     end
 
-    data_yml = %Q{
-guides:
-  - title: "Middleman Basics"
-    url: "middleman-basics"
-    chapters:
-      - title: "What even is middleman?"
-        url: "index"
-      - title: "Nobody really cares about this"
-        url: "meh"
-        skip_sidebar_item: true
-  - title: "Secret stuff"
-    url: "secret"
-    chapters:
-      - title: "Don't tell anybody"
-        url: ""
-        skip_sidebar: true
-  - title: "Extending Middleman"
-    url: "extending-middleman"
-    chapters:
-      - title: "What are extensions?"
-        url: "index"
-        skip_sidebar_item: true
-    }
-
+    data_yml = File.read('spec/fixtures/guides.yml')
     data = Hashie::Mash.new(YAML.load(data_yml))
 
     allow(helper).to receive(:data).and_return(data)
