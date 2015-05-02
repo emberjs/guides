@@ -71,6 +71,10 @@ guides:
       expect(toc).not_to include("Nobody really cares about this")
     end
 
+    it "includes guide urls" do
+      expect(toc).to include("middleman-basics")
+    end
+
     it "includes guide urls except guides that are marked to skip sidbar" do
       data_yml = %Q{
 guides:
