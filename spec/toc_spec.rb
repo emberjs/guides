@@ -37,10 +37,9 @@ guides:
     }
 
     data = Hashie::Mash.new(YAML.load(data_yml))
-    testing_page = double(path: "custom-extensions/testing-custom-extensions.html")
 
     allow(helper).to receive(:data).and_return(data)
-    allow(helper).to receive(:current_page).and_return(testing_page)
+    allow(helper).to receive(:current_page).and_return(basics_page)
     allow(helper).to receive(:link_to).and_wrap_original do |_, title, url|
       %Q{<a href="#{url}">#{title}</a>}
     end
@@ -168,7 +167,7 @@ guides:
 
   describe "#chapter_github_source_url" do
     it "is the github URL to the source file for current page" do
-      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/custom-extensions/testing-custom-extensions.md")
+      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/middleman-basics/index.md")
     end
   end
 
