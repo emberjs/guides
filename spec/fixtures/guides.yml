@@ -1,0 +1,21 @@
+guides:
+  - title: "Middleman Basics"
+    url: "middleman-basics"
+    chapters:
+      - title: "What even is middleman?"
+        url: "index"
+      - title: "Nobody really cares about this"
+        url: "meh"
+        skip_sidebar_item: true
+  - title: "Secret stuff"
+    url: "secret"
+    chapters:
+      - title: "Don't tell anybody"
+        url: ""
+        skip_sidebar: true
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+        skip_sidebar_item: true
