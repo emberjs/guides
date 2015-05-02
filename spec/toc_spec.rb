@@ -20,6 +20,9 @@ guides:
     chapters:
       - title: "What even is middleman?"
         url: "index"
+      - title: "Nobody really cares about this"
+        url: "meh"
+        skip_sidebar_item: true
   - title: "Secret stuff"
     url: "secret"
     chapters:
@@ -62,27 +65,8 @@ guides:
     end
 
     it "includes chapter titles except for chapter that are marked to skip sidbar" do
-      data_yml = %Q{
-guides:
-  - title: "Extending Middleman"
-    url: "extending-middleman"
-    chapters:
-      - title: "What are extensions?"
-        url: "index"
-        skip_sidebar_item: true
-      - title: "Building Middleman Extensions"
-        url: "building-middleman-extensions"
-      - title: "Testing Middleman Extensions"
-        url: "testing-middleman-extensions"
-      }
-
-      data = Hashie::Mash.new(YAML.load(data_yml))
-      toc = helper.toc_for(data.guides)
-
-      expect(toc).to include("Building Middleman Extensions")
-      expect(toc).to include("Testing Middleman Extensions")
-
-      expect(toc).not_to include("What are extensions?")
+      expect(toc).to include("What even is middleman?")
+      expect(toc).not_to include("Nobody really cares about this")
     end
 
     it "includes guide urls except guides that are marked to skip sidbar" do
