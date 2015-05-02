@@ -52,9 +52,8 @@ guides:
 
     it "raises an exception if a file doesn't exist" do
       allow(File).to receive(:exist?).and_return(false)
-      expect {
-        helper.toc_for(helper.data.guides)
-      }.to raise_error(RuntimeError, "source/middleman-basics/index.md does not exist. Please fix guides.yml.")
+      expect { toc }.to raise_error(RuntimeError,
+        "source/middleman-basics/index.md does not exist. Please fix guides.yml.")
     end
 
     it "includes guide titles except guides that are marked to skip sidbar" do
