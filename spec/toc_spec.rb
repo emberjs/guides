@@ -59,13 +59,15 @@ guides:
         "source/middleman-basics/index.md does not exist. Please fix guides.yml.")
     end
 
-    it "includes guide titles except guides that are marked to skip sidbar" do
+    it "includes guide titles" do
       expect(toc).to include("What even is middleman?")
+    end
+
+    it "does not includes guide titles that are marked to skip sidebar" do
       expect(toc).not_to include("Secret stuff")
     end
 
-    it "includes chapter titles except for chapter that are marked to skip sidbar" do
-      expect(toc).to include("What even is middleman?")
+    it "does not includes chapter titles that are marked to skip sidebar" do
       expect(toc).not_to include("Nobody really cares about this")
     end
 
