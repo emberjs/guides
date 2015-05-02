@@ -98,38 +98,6 @@ module TOC
       "https://github.com/emberjs/guides/edit/master/source/#{current_page.path.gsub('.html', '.md')}"
     end
 
-    def current_guide
-      return @current_guide if @current_guide
-
-      path = current_page.path.gsub('.html', '')
-      guide_path = path.split("/")[0]
-
-      @current_guide = data.guides.find do |guide|
-        guide.url == guide_path
-      end
-    end
-
-    def current_guide_index
-      data.guides.find_index(current_guide)
-    end
-
-    def current_chapter
-      return unless current_guide
-
-      return @current_chapter if @current_chapter
-      path = current_page.path.gsub('.html', '')
-      chapter_path = path.split('/')[1..-1].join('/')
-
-      @current_chapter = current_guide.chapters.find do |chapter|
-        chapter.url == chapter_path
-      end
-    end
-
-    def current_chapter_index
-      return unless current_guide
-      current_guide.chapters.find_index(current_chapter)
-   end
-
     def chapter_links
       %Q{
       <footer>
@@ -236,6 +204,40 @@ module TOC
       else
         nil
       end
+    end
+
+private
+
+    def current_guide
+      return @current_guide if @current_guide
+
+      path = current_page.path.gsub('.html', '')
+      guide_path = path.split("/")[0]
+
+      @current_guide = data.guides.find do |guide|
+        guide.url == guide_path
+      end
+    end
+
+    def current_guide_index
+      data.guides.find_index(current_guide)
+    end
+
+    def current_chapter
+      return unless current_guide
+
+      return @current_chapter if @current_chapter
+      path = current_page.path.gsub('.html', '')
+      chapter_path = path.split('/')[1..-1].join('/')
+
+      @current_chapter = current_guide.chapters.find do |chapter|
+        chapter.url == chapter_path
+      end
+    end
+
+    def current_chapter_index
+      return unless current_guide
+      current_guide.chapters.find_index(current_chapter)
     end
 
   end
