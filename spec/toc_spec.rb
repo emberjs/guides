@@ -6,6 +6,7 @@ describe TOC::Helpers do
   let(:basic_chapter_title)    { "What even is middleman?" }
   let(:basic_guide_title)      { "Middleman Basics" }
   let(:basics_page)            { double(path: "middleman-basics/index.html") }
+  let(:toc)                    { helper.toc_for(helper.data.guides) }
 
   before(:each) do
     class HelperTester
@@ -19,6 +20,12 @@ guides:
     chapters:
       - title: "What even is middleman?"
         url: "index"
+  - title: "Secret stuff"
+    url: "secret"
+    chapters:
+      - title: "Don't tell anybody"
+        url: ""
+        skip_sidebar: true
     }
 
     data = Hashie::Mash.new(YAML.load(data_yml))
@@ -51,33 +58,8 @@ guides:
     end
 
     it "includes guide titles except guides that are marked to skip sidbar" do
-      data_yml = %Q{
-guides:
-  - title: "Middleman Basics"
-    url: "middleman-basics"
-    chapters:
-      - title: "What even is middleman?"
-        url: ""
-        skip_sidebar: true
-
-  - title: "Advanced Middleman"
-    url: "advanced-middleman"
-    chapters:
-      - title: "Advanced Concepts"
-        url: "index"
-  - title: "Extending Middleman"
-    url: "extending-middleman"
-    chapters:
-      - title: "What are extensions?"
-        url: "index"
-      }
-
-      data = Hashie::Mash.new(YAML.load(data_yml))
-      toc = helper.toc_for(data.guides)
-      expect(toc).to include("Advanced Middleman")
-      expect(toc).to include("Extending Middleman")
-
-      expect(toc).not_to include("Middleman Basics")
+      expect(toc).to include("What even is middleman?")
+      expect(toc).not_to include("Secret stuff")
     end
 
     it "includes chapter titles except for chapter that are marked to skip sidbar" do
