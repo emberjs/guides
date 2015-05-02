@@ -95,10 +95,6 @@ guides:
   end
 
   describe "#page_title" do
-    before(:each) do
-      allow(helper).to receive(:current_page).and_return(basics_page)
-    end
-
     it "is generic when current guide is not specified" do
       allow(helper).to receive(:current_guide).and_return(nil)
 
@@ -117,10 +113,6 @@ guides:
   end
 
   describe "#guide_name" do
-    before(:each) do
-      allow(helper).to receive(:current_page).and_return(basics_page)
-    end
-
     it "is nil if current guide is not specified" do
       allow(helper).to receive(:current_guide).and_return(nil)
 
@@ -133,10 +125,6 @@ guides:
   end
 
   describe "#chapter_name" do
-    before(:each) do
-      allow(helper).to receive(:current_page).and_return(basics_page)
-    end
-
     it "is an empty string when current chapter is not specified" do
       allow(helper).to receive(:current_chapter).and_return(nil)
 
@@ -149,10 +137,6 @@ guides:
   end
 
   describe "#chapter_heading" do
-    before(:each) do
-      allow(helper).to receive(:current_page).and_return(basics_page)
-    end
-
     it "is nil if chapter name is blank" do
       allow(helper).to receive(:chapter_name).and_return("")
 
@@ -172,10 +156,6 @@ guides:
   end
 
   describe "#current_guide" do
-    before(:each) do
-      allow(helper).to receive(:current_page).and_return(basics_page)
-    end
-
     it "is the current value if present" do
       helper.instance_variable_set(:@current_guide, "some random value")
       expect(helper.current_guide).to eq("some random value")
