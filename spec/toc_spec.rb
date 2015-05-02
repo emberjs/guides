@@ -6,7 +6,6 @@ describe TOC::Helpers do
   let(:basic_chapter_title)    { "What even is middleman?" }
   let(:basic_guide_title)      { "Middleman Basics" }
   let(:basics_page)            { double(path: "middleman-basics/index.html") }
-  let(:toc)                    { helper.toc_for(helper.data.guides) }
 
   before(:each) do
     class HelperTester
@@ -29,6 +28,12 @@ guides:
       - title: "Don't tell anybody"
         url: ""
         skip_sidebar: true
+  - title: "Extending Middleman"
+    url: "extending-middleman"
+    chapters:
+      - title: "What are extensions?"
+        url: "index"
+        skip_sidebar_item: true
     }
 
     data = Hashie::Mash.new(YAML.load(data_yml))
@@ -47,6 +52,8 @@ guides:
   end
 
   describe "#toc_for" do
+    let(:toc) { helper.toc_for(helper.data.guides) }
+
     before(:each) do
       building_page = double(path: "custom-extensions/building-custom-extensions.html")
       allow(helper).to receive(:request).and_return(building_page)
@@ -84,20 +91,7 @@ guides:
     end
 
     it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
-      data_yml = %Q{
-guides:
-  - title: "Extending Middleman"
-    url: "extending-middleman"
-    chapters:
-      - title: "What are extensions?"
-        url: "index"
-        skip_sidebar_item: true
-      }
-
-      data = Hashie::Mash.new(YAML.load(data_yml))
-      toc = helper.toc_for(data.guides)
-      expectation = %Q{<li class='level-1 '><a href=\"/extending-middleman/index.html\">Extending Middleman</a>}
-      expect(toc).to include(expectation)
+      expect(toc).to include("extending-middleman")
     end
   end
 
