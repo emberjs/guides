@@ -75,35 +75,8 @@ guides:
       expect(toc).to include("middleman-basics")
     end
 
-    it "includes guide urls except guides that are marked to skip sidbar" do
-      data_yml = %Q{
-guides:
-  - title: "Middleman Basics"
-    url: "middleman-basics"
-    chapters:
-      - title: "What even is middleman?"
-        url: ""
-        skip_sidebar: true
-
-  - title: "Advanced Middleman"
-    url: "advanced-middleman"
-    chapters:
-      - title: "Advanced Concepts"
-        url: "index"
-  - title: "Extending Middleman"
-    url: "extending-middleman"
-    chapters:
-      - title: "What are extensions?"
-        url: "index"
-      }
-
-      data = Hashie::Mash.new(YAML.load(data_yml))
-      toc = helper.toc_for(data.guides)
-
-      expect(toc).to include("advanced-middleman")
-      expect(toc).to include("extending-middleman")
-
-      expect(toc).not_to include("middleman-basics")
+    it "does not include guide urls for guides that are marked to skip sidebar" do
+      expect(toc).not_to include("secret")
     end
 
     it "includes chapter urls except for chapter that are marked to skip sidbar" do
