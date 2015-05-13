@@ -40,7 +40,7 @@ In order to attach fixtures to your model, you have to use `reopenClass` method 
 fixtures:
 
 ```app/models/documenter.js
-let Documenter = DS.Model.extend({
+var Documenter = DS.Model.extend({
   firstName: DS.attr( 'string' ),
   lastName: DS.attr( 'string' )
 });
@@ -52,7 +52,7 @@ Documenter.reopenClass({
   ]
 });
 
-export default Documenter
+export default Documenter;
 ```
 
 That's it! You can now use all of methods for [Finding Records][2] in your
@@ -79,6 +79,6 @@ a uniquely identifiable field. By default, Ember Data assumes this key
 is called `id`. Should you not provide an `id` field in your fixtures, or
 not override the primary key, the Fixture Adapter will throw an error.
 
-[1]: /guides/models/defining-models
-[2]: /guides/models/finding-records
-[3]: /guides/models/the-rest-adapter
+[1]: ../defining-models
+[2]: ../finding-records
+[3]: ../the-rest-adapter
