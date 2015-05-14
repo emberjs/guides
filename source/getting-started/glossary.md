@@ -46,7 +46,7 @@ A validation tool which checks for common issues in your JavaScript. You'd usual
 
 
 ## Polyfill
-This is concept that typically means providing JavaScript which tests for features that are missing (prototypes not defined, etc) and "fills" them by providing an implementation.
+This is a concept that typically means providing JavaScript which tests for features that are missing (prototypes not defined, etc) and "fills" them by providing an implementation.
 
 
 ## Promise
