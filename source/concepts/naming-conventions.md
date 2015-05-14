@@ -64,7 +64,7 @@ them and providing them to your templates at runtime through the resolver.
 
 ## Simple Routes
 
-Each of your routes will have a controller, and a template with the
+Each of your routes will have a controller and a template with the
 same name as the route.
 
 Let's start with a simple router:
