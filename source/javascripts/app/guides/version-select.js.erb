@@ -5,7 +5,7 @@ $.ajax('/versions.json')
     var versionSelect = $(".version-select");
     versionSelect.select2({
         data: data
-    })
+    });
     versionSelect.select2('val', currentRevision);
 
     versionSelect.on('change', function() {
