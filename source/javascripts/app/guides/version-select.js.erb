@@ -11,6 +11,6 @@ $.ajax('/versions.json')
     versionSelect.on('change', function() {
       var version = this.value;
 
-      window.location = '/' + version + '/';
+      window.location = window.location.href.replace(currentRevision, version);
     });
   });
