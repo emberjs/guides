@@ -224,6 +224,6 @@ or
 
 ```app/models/folder.js
 export default DS.Model.extend({
-  parent: belongsTo('folder', { inverse: null })
+  parent: DS.belongsTo('folder', { inverse: null })
 });
 ```
