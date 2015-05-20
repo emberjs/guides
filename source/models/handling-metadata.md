@@ -40,7 +40,7 @@ var meta = this.store.metadataFor("post");
 Or you can access the metadata just for this query:
 
 ```js
-var meta = result.get("content.meta");
+var meta = result.get("meta");
 ```
 
 Now, `meta.total` can be used to calculate how many pages of posts you'll have.
