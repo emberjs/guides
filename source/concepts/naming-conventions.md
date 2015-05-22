@@ -213,7 +213,7 @@ export default Ember.Router.extend().map(function(){
 Here are the naming conventions for each of the routes defined in
 this router:
 
-<table>
+<table class="extensive">
   <thead>
   <tr>
     <th>Route Name</th>
