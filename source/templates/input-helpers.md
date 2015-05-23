@@ -56,10 +56,10 @@ current context.
 To dispatch an action on specific events, such as `enter` or `key-press`, use the following
 
 ```handlebars
-{{input value=firstName action="updateFirstName" on="key-press"}}
+{{input value=firstName key-press="updateFirstName"}}
 ```
 
-[Event Names](http://emberjs.com/api/classes/Ember.View.html#toc_event-names) must be dasherized when assigned to `on`.
+[Event Names](http://emberjs.com/api/classes/Ember.View.html#toc_event-names) must be dasherized.
 
 ### Checkboxes
 
