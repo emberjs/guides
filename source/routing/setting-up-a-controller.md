@@ -17,6 +17,7 @@ To tell one of these controllers which model to present, set its
 Router.map(function() {
   this.route('post', { path: '/posts/:post_id' });
 });
+```
 
 ``` app/routes/post.js
 export default Ember.Route.extend({
