@@ -11,11 +11,6 @@ Ember.js allows you to completely change the way your underlying data is
 stored without having to modify the other parts of your application that
 access it.
 
-For example, you might display a list of items from fixture data during
-development. If you switch the underlying data from synchronous fixtures
-to an array that fetches data from the server lazily, your view,
-template and controller code do not change at all.
-
 The Enumerable API follows ECMAScript specifications as much as
 possible. This minimizes incompatibility with other libraries, and
 allows Ember.js to use the native browser implementations in arrays

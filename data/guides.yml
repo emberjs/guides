@@ -166,8 +166,6 @@
       #url: "filtering-records"
     - title: "Working with Records"
       url: "working-with-records"
-    - title: "Using Fixtures"
-      url: "the-fixture-adapter"
     - title: "The Rest Adapter"
       url: "the-rest-adapter"
     - title: "Connecting to an HTTP Server"
