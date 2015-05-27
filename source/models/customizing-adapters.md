@@ -48,10 +48,6 @@ with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [DS.FixtureAdapter](http://emberjs.com/api/data/classes/DS.FixtureAdapter.html) is an
-adapter that loads records from memory. Its primarily used for
-development and testing.
-
 - [DS.RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html) is the most
 commonly extended adapter. The `RESTAdapter` allows your store to
 communicate with an HTTP server by transmitting JSON via XHR. Most
