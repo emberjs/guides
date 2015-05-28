@@ -125,7 +125,7 @@ The template can iterate over the elements of the controller:
 
 ```handlebars
 <ul>
-{{#each item in controller}}
+{{#each item in model}}
   <li>{{item.title}}</li>
 {{/each}}
 </ul>
