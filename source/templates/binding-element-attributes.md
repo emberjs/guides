@@ -53,7 +53,8 @@ renders the following HTML:
 ```html
 <a id="ember239" class="ember-view" href="#/photos">Photos</a>
 
-<input id="ember257" class="ember-view ember-text-field" type="text" title="Name">
+<input id="ember257" class="ember-view ember-text-field" type="text" 
+       title="Name">
 ```
 
 There are two ways to enable support for data attributes. One way would be to add an
