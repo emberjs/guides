@@ -62,7 +62,7 @@ some typing by registering a custom view helper.
 For example, let’s say you have a view called `Calendar`.
 You can register a helper like this:
 
-```javascript
+```app/helpers/calendar.js
 import Calendar from 'my-app/views/calendar';
 
 Ember.Handlebars.makeBoundHelper('calendar', Calendar);
