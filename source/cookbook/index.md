@@ -1,5 +1,5 @@
 Welcome to the Ember.js Cookbook! The Cookbook provides answers and solutions
-to common Ember questions and problems. Anyone is welcome to <a href="/guides/cookbook/contributing">contribute</a>.
+to common Ember questions and problems. Anyone is welcome to [contribute](./contributing/).
 
 Here are all of the available recipes:
 
@@ -38,4 +38,4 @@ Here are all of the available recipes:
 1. [Continuous Redrawing of Views](./working_with_objects/continuous_redrawing_of_views)
 
 
-If you would like to see more recipes, take a look at the <a href="./contributing/suggesting_a_recipe">Suggesting A Recipe</a> section.
+If you would like to see more recipes, take a look at the [Suggesting A Recipe](./contributing/suggesting_a_recipe) section.
