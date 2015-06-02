@@ -242,4 +242,4 @@ model for this route, so `model` wouldn't be called in these cases.
 ### More Resources
 
 - [Embercasts: Client-side Authentication Part 2](http://www.embercasts.com/episodes/client-side-authentication-part-2)
-- [RC6 Blog Post describing these new features](/blog/2013/06/23/ember-1-0-rc6.html)
+- [RC6 Blog Post describing these new features](http://emberjs.com/blog/2013/06/23/ember-1-0-rc6.html)
