@@ -26,15 +26,15 @@ you the ability to inspect the current rendering context:
 ```
 Just before the helper is invoked two useful variables are defined:
 
-* `templateContext` The current context that variables are fetched from. This
+* `context` The current context that variables are fetched from. This
   is likely a controller.
 * `typeOfTemplateContext` A string describing what the templateContext is.
 
 For example, if you are wondering why a specific variable isn't displaying in
 your template, you could use the `{{debugger}}` helper. When the breakpoint is
-hit, you can use the `templateContext` in your console to lookup properties:
+hit, you can use the `context` in your console to lookup properties:
 
 ```javascript
-> templateContext.get('name')
+> context.get('name')
 "Bruce Lee"
 ```
