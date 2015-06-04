@@ -27,7 +27,7 @@ you the ability to inspect the current rendering context:
 Just before the helper is invoked two useful variables and a helper are defined:
 
 * `view` The current view.
-* `context` The current context. This is likely a controller.
+* `context` The current context. This is likely a component.
 * 'get(<path>)` A helper to lookup properties.
 
 For example, if you are wondering why a specific variable isn't displaying in
