@@ -185,6 +185,9 @@ to specify which keys should not be ignored.
 This way the `{{action}}` will fire when clicking with the alt key
 pressed down.
 
+### Default Event
+By default, `event.preventDefault()` is called on all events handled by `{{action}}` helpers. To avoid this you can add `preventDefault=false` as a parameter. 
+
 ### Stopping Event Propagation
 
 By default, the `{{action}}` helper allows events it handles to bubble
