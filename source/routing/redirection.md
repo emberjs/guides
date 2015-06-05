@@ -44,7 +44,7 @@ Router.map(function() {
 });
 ```
 
-```app/routes/post.js
+```app/routes/posts.js
 export default Ember.Route.extend({
   afterModel: function(posts, transition) {
     if (posts.get('length') === 1) {
