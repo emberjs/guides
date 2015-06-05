@@ -1,1 +1,0 @@
-1. [Setting Ember Global Flags](./setting_ember_global_flags)
