@@ -117,7 +117,10 @@ module TOC
       elsif whats_before = previous_guide
         previous_chapter = whats_before.chapters.last
 
-        url = "/#{previous_guide.url}/#{previous_chapter.url}.html"
+        is_root = previous_chapter.url.empty?
+
+        url = is_root ? "/#{previous_guide.url}.html" : "/#{previous_guide.url}/#{previous_chapter.url}.html"
+
         title = " \u2190 #{previous_chapter.title}"
 
         link_to(title, url, options)
