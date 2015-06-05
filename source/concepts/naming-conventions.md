@@ -112,14 +112,9 @@ of `Ember.ArrayController`, which will present the backing Array as
 its model.
 
 You can treat the `Ember.ArrayController` as if it was the model itself.
-This has two major benefits:
-
-* You can replace the controller's model at any time without having
-  to directly notify the view of the change.
-* The controller can provide additional computed properties or
-  view-specific state that do not belong in the model layer. This
-  allows a clean separation of concerns between the view, the
-  controller and the model.
+The benefit of this is that you can replace the controller's model at
+any time without having to directly notify templates and components of
+the change.
 
 The template can iterate over the elements of the controller:
 

@@ -157,26 +157,6 @@
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
 
-- title: "Views"
-  url: 'views'
-  chapters:
-    - title: "Introduction"
-      url: "index"
-    - title: "Defining a View"
-      url: "defining-a-view"
-    - title: "Handling Events"
-      url: "handling-events"
-    - title: "Inserting Views in Templates"
-      url: "inserting-views-in-templates"
-    - title: "Adding Layouts to Views"
-      url: "adding-layouts-to-views"
-    - title: "Customizing a View's Element"
-      url: "customizing-a-views-element"
-    - title: "Built-in Views"
-      url: "built-in-views"
-    - title: "Manually Managing View Hierarchy"
-      url: "manually-managing-view-hierarchy"
-
 - title: "Enumerables"
   url: 'enumerables'
   chapters:
@@ -324,10 +304,6 @@
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
   chapters:
-    - title: "The View Layer"
-      url: "the-view-layer"
-    - title: "Managing Asynchrony"
-      url: "managing-asynchrony"
     - title: "Debugging"
       url: "debugging"
     - title: "The Run Loop"

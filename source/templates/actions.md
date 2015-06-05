@@ -209,41 +209,32 @@ to the link.
 With `bubbles=false`, Ember.js will stop the browser from propagating
 the event.
 
-### Specifying a Target
+### Handling an Action
 
-By default, the `{{action}}` helper will send the action to the view's
-target, which is generally the view's controller. (Note: in the case of
-an Ember.Component, the default target is the component itself.)
+The `{{action}}` helper sends the action from a component's template to
+the component.
 
-You can specify an alternative target by using the `target` option. This
-is most commonly used to send actions to a view instead of a controller.
+You can handle the action by adding an `actions` hash to your component
+that contains a method with the name of the action.
 
-```handlebars
-<p>
-  <button {{action "select" post target=view}}>✓</button>
-  {{post.title}}
-</p>
+For example, given this template that adds the `select` action to a
+button:
+
+```app/templates/component/show-posts.hbs
+<button {{action "selectPost" model}}>Select Post</button>
 ```
 
-You would handle this in an `actions` hash on your view.
+You can implement a function that responds to the button being clicked
+by adding an `actions` hash to your component with a method called
+`select`:
 
-```app/views/posts.js
-export default Ember.View.extend({
+
+```app/components/show-posts.js
+export default Ember.Component.extend({
   actions: {
-    select: function(post) {
+    select(post) {
       // do your business.
     }
   }
 });
-```
-
-Note that actions sent to views in this way do not bubble up the
-currently rendered view hierarchy. If you want to handle the action in
-a parent view, use the following:
-
-```handlebars
-<p>
-  <button {{action "select" post target=view.parentView}}>✓</button>
-  {{post.title}}
-</p>
 ```

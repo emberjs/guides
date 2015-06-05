@@ -76,8 +76,8 @@ decorate a model.
 
 This means that templates _know about_ controllers and controllers
 _know about_ models, but the reverse is not true. A model knows
-nothing about which (if any) controllers are decorating it, and
-controller does not know which views are presenting its properties.
+nothing about which (if any) controllers are decorating it, and a
+controller does not know which templates are presenting its properties.
 
 <figure>
 <img src="../images/controller-guide/objects.png">
@@ -90,7 +90,7 @@ about the model directly.
 In practice, Ember.js will create a template's controller once for
 the entire application, but the controller's model may change
 throughout the lifetime of the application without requiring that
-the view knows anything about those mechanics.
+the template know anything about those mechanics.
 
 For example, if the user navigates from `/posts/1` to `/posts/2`,
 the `PostController` will change its model from `Post.find(1)` to

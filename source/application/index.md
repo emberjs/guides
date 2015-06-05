@@ -5,9 +5,7 @@ This object is located at `./app/app.js` inside your project.
 What does creating an `Ember.Application` instance get you?
 
 1. It adds event listeners to the document and is responsible for
-   delegating events to your views. (See [The View
-   Layer](../understanding-ember/the-view-layer)
-  for a detailed description.)
+   delegating events to your components.
 1. It automatically renders the [application
    template](../templates/the-application-template).
 1. It automatically creates a router and begins routing, choosing which

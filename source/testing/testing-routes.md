@@ -10,7 +10,7 @@ That being said, sometimes it is important to unit test your routes. For example
 let's say we'd like to have an alert that can be triggered from anywhere within 
 our application. The alert function `displayAlert` should be put into the 
 `ApplicationRoute` because all actions and events bubble up to it from 
-sub-routes, controllers and views.
+sub-routes and controllers.
 
 ```app/routes/application.js
 export default Ember.Route.extend({
