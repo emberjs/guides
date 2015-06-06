@@ -20,14 +20,6 @@
       url: "core-concepts"
     - title: "Naming Conventions"
       url: "naming-conventions"
-    #- title: "What is Ember.js?"
-      #url: "what-is-ember-js"
-    #- title: "Getting Ember.js"
-      #url: "getting-ember-js"
-    #- title: "Build Tools"
-      #url: "build-tools"
-    #- title: "Understanding Web Apps"
-      #url: "understanding-web-apps"
 
 - title: "The Object Model"
   url: 'object-model'
@@ -78,8 +70,6 @@
       url: "development-helpers"
     - title: "Rendering with Helpers"
       url: "rendering-with-helpers"
-    #- title: "Keywords"
-      #url: "keywords"
     - title: "Writing Helpers"
       url: "writing-helpers"
 
@@ -110,14 +100,6 @@
       url: "loading-and-error-substates"
     - title: "Preventing and Retrying Transitions"
       url: "preventing-and-retrying-transitions"
-    #- title: "Dynamic Segments"
-      #url: "dynamic-segments"
-    #- title: "Changing the Route"
-      #url: "changing-the-route"
-    #- title: "Sending Events from Templates"
-      #url: "sending-events-from-templates"
-    #- title: "Nested Routes"
-      #url: "nested-routes"
 
 - title: "Components"
   url: 'components'
@@ -162,8 +144,6 @@
       url: "persisting-records"
     - title: "Finding Records"
       url: "finding-records"
-    #- title: "Filtering Records"
-      #url: "filtering-records"
     - title: "Working with Records"
       url: "working-with-records"
     - title: "The Rest Adapter"
@@ -220,18 +200,12 @@
       url: "unit-test-helpers"
     - title: "Testing Components"
       url: "testing-components"
-    # - title: "Testing Handlebars Helpers"
-    #   url: "testing-handlebars-helpers"
     - title: "Testing Controllers"
       url: "testing-controllers"
     - title: "Testing Routes"
       url: "testing-routes"
-    # - title: "Testing Views"
-    #   url: "testing-views"
     - title: "Testing Models"
       url: "testing-models"
-    # - title: "Testing XHR"
-    #   url: "testing-xhr"
 
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
@@ -316,46 +290,15 @@
     - title: "Resetting scroll on route changes"
       url: "user_interface_and_interaction/resetting_scroll_on_route_changes"
       skip_sidebar_item: true
-    # - title: "Converting Strings to Currency With Accounting.js"
-    #   url: "user_interface_and_interaction/converting_strings_to_currency_with_accounting_js"
-    #   skip_sidebar_item: true
     # events and bindings
     - title: "Event Handling & Data Binding"
       url: "event_handling_and_data_binding/index"
     - title: "Binding Properties of an Object to Its Own Properties"
       url: "event_handling_and_data_binding/binding_properties_of_an_object_to_its_own_properties"
       skip_sidebar_item: true
-    # - title: "Responding to User Events"
-    #   url: "event_handling_and_data_binding/responding_to_user_events"
-    #   skip_sidebar_item: true
-    # - title: "Toggling A Boolean Property"
-    #   url: "event_handling_and_data_binding/toggling_a_boolean_property"
-    #   skip_sidebar_item: true
-    # - title: "Using Computed Properties"
-    #   url: "event_handling_and_data_binding/using_computed_properties"
-    #   skip_sidebar_item: true
-    # - title: "Setting The Attributes of a View's Element"
-    # client/server
-    # - title: "Client/Server Interaction"
-    #   url: "client_server_interaction"
-    # - title: "Loading Data From A Server"
-    #   url: "client_server_interaction/loading_data_from_a_server"
-    #   skip_sidebar_item: true
-    # - title: "Sending Data To A Server"
-    #   url: "client_server_interaction/sending_data_to_a_server"
-    #   skip_sidebar_item: true
-    # - title: "Serving Compiled Handlebars Templates Using Node.js"
-    #   url: "client_server_interaction/serving_compiled_templates_using_nodejs"
-    #   skip_sidebar_item: true
     # helpers & components
     - title: "Helpers & Components"
       url: "helpers_and_components/index"
-    # - title: "Writing a Custom Handlebars Helper"
-    #   url: "helpers_and_components/writing_a_custom_handlebars_helper"
-    #   skip_sidebar_item: true
-    # - title: "Creating a Handlebars Helper to Truncate Text"
-    #   url: "helpers_and_components/creating_a_handlebars_helper_to_truncate_text"
-    #   skip_sidebar_item: true
     - title: "Creating Reusable Social Share Buttons"
       url: "helpers_and_components/creating_reusable_social_share_buttons"
       skip_sidebar_item: true
@@ -368,9 +311,6 @@
     # objects
     - title: "Working with Objects"
       url: "working_with_objects/index"
-    # - title: "Displaying Content Arrays in Reverse Order"
-    #   url: "working_with_objects/displaying_content_arrays_in_reverse_order"
-    #   skip_sidebar_item: true
     - title: "Incrementing Or Decrementing A Property"
       url: "working_with_objects/incrementing_or_decrementing_a_property"
       skip_sidebar_item: true
@@ -380,18 +320,6 @@
     - title: "Continuous Redrawing of Views"
       url: "working_with_objects/continuous_redrawing_of_views"
       skip_sidebar_item: true
-    # - title: "Continuous Redrawing of Views"
-    #   url: "working_with_objects/continuous_redrawing_of_views"
-    #   skip_sidebar_item: true
-    # - title: "Naming Your Child Views"
-    #   url: "working_with_objects/naming_your_child_views"
-    #   skip_sidebar_item: true
-    # debugging
-    # - title: "Debugging & Configuration"
-    #   url: "debugging_and_configuration"
-    # - title: "Setting Ember Global Flags"
-    #   url: "debugging_and_configuration/setting_ember_global_flags"
-    #   skip_sidebar_item: true
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
