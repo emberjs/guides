@@ -17,7 +17,7 @@ build tools with `npm`.
 npm install -g ember-cli
 ```
 
-Note that Ember's build tool has a few dependencies and of its own. In particular, you will need to install [Bower](http://bower.io/) to use Ember's build tool as described in these guides.
+Note that Ember's build tool has a few dependencies of its own. In particular, you will need to install [Bower](http://bower.io/) to use Ember's build tool as described in these guides.
 
 ```bash
 npm install bower
