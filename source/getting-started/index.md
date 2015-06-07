@@ -17,13 +17,14 @@ build tools with `npm`.
 npm install -g ember-cli
 ```
 
-Note that Ember's build tool has a few dependencies of its own. In particular, you will need to install [Bower](http://bower.io/) to use Ember's build tool as described in these guides.
+Note that the Ember CLI build tool has a few dependencies of its own. In particular, you will need to install [Bower](http://bower.io/) (if you don't have it already) in order to use Ember's build tool as described in these guides. You'll also want to install [PhantomJS](http://phantomjs.org/), which Ember CLI uses to run tests from the command line (without the need for a browser to be open).
 
 ```bash
 npm install -g bower
+npm install -g phantomjs
 ```
 
-Read the [Getting Started section](http://www.ember-cli.com/#getting-started) of the `ember-cli` project for more information about Ember CLI's dependencies.
+Read the [Getting Started section](http://www.ember-cli.com/#getting-started) of the `ember-cli` project for more information about Ember CLI's dependencies .
 
 ## Testing your installation
 
