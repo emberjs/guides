@@ -92,10 +92,10 @@ the entire application, but the controller's model may change
 throughout the lifetime of the application without requiring that
 the template know anything about those mechanics.
 
-For example, if the user navigates from `/posts/1` to `/posts/2`,
-the `PostController` will change its model from `Post.find(1)` to
-`Post.find(2)`. The template will update its representations of any
-properties on the model, as well as any computed properties on the
+For example, if the user navigates from `/posts/1` to `/posts/2`, the
+`PostController`'s model will change from `store.findRecord('post', 1)` to
+`store.findRecord('post', 2)`. The template will update its representations of
+any properties on the model, as well as any computed properties on the
 controller that depend on the model.
 
 This makes it easy to test a template in isolation by rendering it
