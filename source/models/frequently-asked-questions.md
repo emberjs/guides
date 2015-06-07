@@ -84,18 +84,18 @@ export default Ember.Route.extend({
 
 #### How do I inform Ember Data about new records created on the backend?
 
-When you request a record using Ember Data's `store.find` method, Ember
+When you request a record using Ember Data's `store.findRecord` method, Ember
 will automatically load the data into the store. This allows Ember to
 avoid the latency of making a round trip to the backend next time
 that record is requested. Additionally, loading a record into the
 store will update any `RecordArray`s (e.g. the result of
-`store.filter` or `store.all`) that should include that record. This
+`store.filter` or `store.findAll`) that should include that record. This
 means any data bindings or computed properties that depend on the
 `RecordArray` will automatically be synced to include the new or
 updated record values.
 
 Some applications may want to add or update records in the store
-without requesting the record via `store.find`. To accomplish this you
+without requesting the record via `store.findRecord`. To accomplish this you
 can use the `DS.Store`'s `push` or `pushPayload`
 methods. This is useful for web applications that have a channel
 (such as [SSE](http://dev.w3.org/html5/eventsource/) or
