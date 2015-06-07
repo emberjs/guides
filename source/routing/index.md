@@ -18,7 +18,7 @@ route handlers for the URLs, answering them is both simple and accurate.
 At any given time, your application has one or more _active route
 handlers_. The active handlers can change for one of two reasons:
 
-1. The user interacted with a view, which generated an event that caused
+1. The user interacted with a component, which generated an event that caused
    the URL to change.
 2. The user changed the URL manually (e.g., via the back button), or the
    page was loaded for the first time.

@@ -38,7 +38,7 @@ If `isAdministrator` is `false`, Handlebars will produce the following:
 <input type="checkbox">
 ```
 
-### Adding data attributes
+### Adding Data Attributes
 
 By default, view helpers do not accept *data attributes*. For example
 

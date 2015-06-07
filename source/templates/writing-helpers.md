@@ -52,31 +52,3 @@ _dependent keys_ change, the output will automatically update.
 
 Both the path passed to the `fullName` helper and its dependent keys may
 be full _property paths_ (e.g. `person.address.country`).
-
-### Custom View Helpers
-
-You may also find yourself rendering your view classes in multiple
-places using the `{{view}}` helper. In this case, you can save yourself
-some typing by registering a custom view helper.
-
-For example, let’s say you have a view called `Calendar`.
-You can register a helper like this:
-
-```javascript
-import Calendar from 'my-app/views/calendar';
-
-Ember.Handlebars.makeBoundHelper('calendar', Calendar);
-```
-
-Using `Calendar` in a template then becomes as simple as:
-
-```handlebars
-{{calendar}}
-```
-
-Which is functionally equivalent to, and accepts all the same
-arguments as:
-
-```handlebars
-{{view "calendar"}}
-```

@@ -138,9 +138,14 @@ For a more powerful way to connect Ember.js components, let's look at **dependen
 When an Ember application starts running, it will create and use a single instance of the
 `Ember.Container` object. This container object is responsible for managing factories and the dependencies between them. At the level of the container, a factory can be any framework component. The index template is a factory with the name `template:index`, and the application route is a factory with the name `route:application`. The container understands how to use these factories (are they singleton? Should they be instantiated?) and manages their dependencies.
 
-Factory names have two parts segmented by a `:`. The first segment is the framework component type, and the second is the name of the component requested. Hence, an application view would be named `view:application`.
+Factory names have two parts segmented by a `:`. The first segment is the framework component type, and the second is the name of the component requested. Hence, the `show-posts` component would be named `component:show-posts`.
 
-If the container does not already have a requested factory, it uses a resolver to discover that factory. The resolver is responsible for mapping the factory name of `view:application` to the global variable of `App.ApplicationView`. Tools like ember-cli may use alternative rules for resolving factories. After optionally adding dependencies to the requested factory, that factory is cached and returned.
+If the container does not already have a requested factory, it uses a
+resolver to discover that factory. The resolver is responsible for
+mapping the name of `component:show-posts` to the JavaScript module
+located in the filesystem at `app/components/show-posts.js`.  After
+optionally adding dependencies to the requested factory, that factory is
+cached and returned.
 
 Ember's container should be viewed as an implementation detail, and is not part of the supported public API.
 
