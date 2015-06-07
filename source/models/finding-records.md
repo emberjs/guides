@@ -1,9 +1,9 @@
 The Ember Data store provides a simple interface for finding records of a single
 type through the `store` object's `find` method. Internally, the `store`
-uses `find`, `findAll`, and `findQuery` based on the supplied arguments.
+uses either `findAll` or `findRecord` based on the supplied arguments.
 
 The first argument to `store.find()` is always the record type. The optional second
-argument determines if a request is made for all records, a single record, or a query.
+argument determines if a request is made for all records or just a single record.
 
 ### Finding All Records of a Type
 
@@ -40,15 +40,15 @@ var aSinglePost = this.store.find('post', 1); // => GET /posts/1
 
 ### Querying For Records
 
-If you provide a plain object as the second argument to `find`, Ember Data will
-make a `GET` request with the object serialized as query params. This method returns
-`DS.PromiseArray` in the same way as `find` with no second argument.
+Ember Data provides the ability to query for records that meet certain criteria. Calling `store.query()`
+will make a `GET` request with the passed object serialized as query params. This method returns
+`DS.PromiseArray` in the same way as `find`.
 
 For example, we could search for all `person` models who have the name of
 `Peter`:
 
 ```javascript
-var peters = this.store.find('person', { name: "Peter" }); // => GET to /persons?name=Peter
+var peters = this.store.query('person', { name: "Peter" }); // => GET to /persons?name=Peter
 ```
 
 ### Integrating with the Route's Model Hook

@@ -143,7 +143,7 @@ export default Ember.Route.extend({
 
     // params has format of { category: "someValueOrJustNull" },
     // which we can just forward to the server.
-    return this.store.findQuery('articles', params);
+    return this.store.query('articles', params);
   }
 });
 ```
