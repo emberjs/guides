@@ -84,7 +84,7 @@ function retry(callback, nTimes) {
     if (nTimes > 0) {
       // retry again with the result of calling the retry callback
       // and the new retry limit
-      return retry(callback, nTimes);
+      return retry(callback, nTimes - 1);
     }
  
     // otherwise, if we hit the retry limit, rethrow the error
