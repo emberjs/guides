@@ -46,6 +46,8 @@ the DOM will be updated without having to write any code.
       or numbers.
     * `@guid` - Generate a unique identifier for each object (uses `Ember.guidFor`).
 
+
+### Empty Lists
 The `{{#each}}` helper can have a matching `{{else}}`.
 The contents of this block will render if the collection is empty:
 
