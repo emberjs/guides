@@ -23,15 +23,29 @@ The above example will print a list like this:
 
 Like everything in Handlebars, the `{{#each}}` helper is bindings-aware.
 If your application adds a new item to the array, or removes an item,
-the DOM will be updated without having to write any code. Because
-Glimmer (Ember's rendering engine) will try to re-use DOM whenever
-possible, it needs a way to uniquely identify each loop item in order
-to prevent unexpected results. This is done by passing the `key`
-attribute to the `{{#each}}` helper. The value of the `key` attribute
-will be the property Ember looks up on the loop object, in this case
-`person`. So `{{#each people key="id" as |person|}}` means Ember will
-look up `person.id` to determine the unique identity of the current
-item in the loop. Make sure the value you pass to `key` is unique!
+the DOM will be updated without having to write any code.
+
+### Specifying Keys
+  The `key` option is used to tell Ember how to determine if the array being
+  iterated over with `{{#each}}` has changed between renders. By helping Ember
+  detect that some elements in the array are the same, DOM elements can be
+  re-used, significantly improving rendering speed and preventing unexpected
+  results. For example, here's the `{{#each}}` helper with its `key` set to
+  `id`:
+  ```handlebars
+  {{#each people key="id" as |person|}}
+  {{/each}}
+  ```
+  When this `{{#each}}` re-renders, Ember will match up the previously rendered
+  items (and reorder the generated DOM elements) based on each item's `id`
+  property.
+  There are a few special values for `key`:
+    * `@index` - The index of the item in the array.
+    * `@item` - The item in the array itself.  This can only be used for arrays of strings
+      or numbers.
+    * `@guid` - Generate a unique identifier for each object (uses `Ember.guidFor`).
+
+Make sure the value you pass to `key` is unique!
 
 The `{{#each}}` helper can have a matching `{{else}}`.
 The contents of this block will render if the collection is empty:
