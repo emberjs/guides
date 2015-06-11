@@ -38,14 +38,13 @@ the DOM will be updated without having to write any code.
   ```
   When this `{{#each}}` re-renders, Ember will match up the previously rendered
   items (and reorder the generated DOM elements) based on each item's `id`
-  property.
+  property. Make sure the value you pass to `key` is unique!
+  
   There are a few special values for `key`:
     * `@index` - The index of the item in the array.
     * `@item` - The item in the array itself.  This can only be used for arrays of strings
       or numbers.
     * `@guid` - Generate a unique identifier for each object (uses `Ember.guidFor`).
-
-Make sure the value you pass to `key` is unique!
 
 The `{{#each}}` helper can have a matching `{{else}}`.
 The contents of this block will render if the collection is empty:
