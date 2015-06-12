@@ -69,6 +69,22 @@ describe TOC::Helpers do
     it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
       expect(toc).to include("extending-middleman")
     end
+
+    it "adds the toc-level-0 class to the outermost <ol>" do
+      expect(toc).to include("<ol class='toc-level-0'><li class='toc-level-0 '>")
+    end
+
+    it "adds the toc-level-0 class to the outermost <li>s" do
+      expect(toc).to include("<li class='toc-level-0 '><a href=\"/middleman-basics/index.html\">")
+    end
+
+    it "adds the toc-level-1 class to the inner <ol>s" do
+      expect(toc).to include("<ol class='toc-level-1 '><li class='toc-level-1")
+    end
+
+    it "adds the toc-level-1 class to the inner <li>s" do
+      expect(toc).to include("<li class='toc-level-1  sub-selected'><a href=\"/middleman-basics/index.html\">")
+    end
   end
 
   describe "#page_title" do
