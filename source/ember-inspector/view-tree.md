@@ -11,7 +11,7 @@ Click on the `View Tree` menu on the left to see your views.
 You can click on any model, controller, view, or component
 to send them to the [object inspector][object-inspector-guide].
 
-[object-inspector-guide]: /guides/ember-inspector/object-inspector
+[object-inspector-guide]: ../object-inspector
 
 
 <img src="../../images/guides/ember-inspector/view-tree-object-inspector.png" width="680">

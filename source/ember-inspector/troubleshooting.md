@@ -15,7 +15,7 @@ Some of the reasons this happens:
 - This is not an Ember application
 - You are using an old Ember version ( < 1.0 ).
 - You are using a protocol other than http or https. For file:// protocol,
-follow [these steps](/guides/ember-inspector/installation#toc_file-protocol).
+follow [these steps](../installation/#toc_file-protocol).
 - The Ember application is inside a sandboxed iframe with no url (if you
   are using Jsbin, follow [these steps](#toc_using-the-inspector-with-jsbin).
 
@@ -48,7 +48,7 @@ It means that you are either not using a data persistence library
 (such as Ember Data), or the library you're using does not support the
 Ember Inspector.
 
-If you are the library's author, [see this section](/guides/ember-inspector/data#toc_building-a-data-custom-adapter) on how to add Ember Inspector support.
+If you are the library's author, [see this section](../data/#toc_building-a-data-custom-adapter) on how to add Ember Inspector support.
 
 ### Promises Not Detected
 
