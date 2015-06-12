@@ -22,7 +22,7 @@ When you are ready to submit your recipe, push your local branch to the remote b
 submit a pull request. Before submitting a pull request, make sure someone hasn't already submitted a similar
 recipe and that your recipe is a good fit for the Cookbook (see _Deciding If A Recipe Is A Good Fit_).
 
-[fork_repo]: https://github.com/emberjs/website
+[fork_repo]: https://github.com/emberjs/guides
 [feature_branch]: http://nvie.com/posts/a-successful-git-branching-model/
 [understanding]: ./understanding_the_cookbook_format
 [deciding]: ./deciding_if_a_recipe_is_a_good_fit
