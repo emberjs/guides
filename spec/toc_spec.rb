@@ -45,11 +45,11 @@ describe TOC::Helpers do
       expect(toc).to include("What even is middleman?")
     end
 
-    it "does not includes guide titles that are marked to skip sidebar" do
+    it "does not includes guide titles that are marked to skip" do
       expect(toc).not_to include("Secret stuff")
     end
 
-    it "does not includes chapter titles that are marked to skip sidebar" do
+    it "does not includes chapter titles that are marked to skip" do
       expect(toc).not_to include("Nobody really cares about this")
     end
 
@@ -57,15 +57,15 @@ describe TOC::Helpers do
       expect(toc).to include("middleman-basics")
     end
 
-    it "does not include guide urls for guides that are marked to skip sidebar" do
+    it "does not include guide urls for guides that are marked to skip" do
       expect(toc).not_to include("secret")
     end
 
-    it "does not include chapter urls that are marked to skip sidebar" do
+    it "does not include chapter urls that are marked to skip" do
       expect(toc).not_to include("meh")
     end
 
-    it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
+    it "contains a link to first chapter as a guide link even if a chapter is marked skip" do
       expect(toc).to include("extending-middleman")
     end
 
