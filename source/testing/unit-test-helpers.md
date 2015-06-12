@@ -39,21 +39,21 @@ By including [Ember-QUnit], you will have access to a number of test helpers.
  - **fullName**: The full name of the unit, (ie. `controller:application`,
     `route:index`, etc.)
  - **description**: the description of the module
- - **callbacks**: normal QUnit callbacks (setup and teardown), with addition to
+ - **callbacks**: normal QUnit callbacks (beforeEach and afterEach), with addition to
     needs, which allows you specify the other units the tests will need.
 
 * `moduleForComponent(name [, description [, callbacks]])`
  - **name**: the short name of the component that you'd use in a template, (ie.
     `x-foo`, `ic-tabs`, etc.)
  - **description**: the description of the module
- - **callbacks**: normal QUnit callbacks (setup and teardown), with addition to
+ - **callbacks**: normal QUnit callbacks (beforeEach and afterEach), with addition to
     needs, which allows you specify the other units the tests will need.
 
 * `moduleForModel(name [, description [, callbacks]])`
  - **name**: the short name of the model you'd use in store
     operations (ie. `user`, `assignmentGroup`, etc.)
  - **description**: the description of the module
- - **callbacks**: normal QUnit callbacks (setup and teardown), with addition to
+ - **callbacks**: normal QUnit callbacks (beforeEach and afterEach), with addition to
     needs, which allows you specify the other units the tests will need.
 
 * `test`
