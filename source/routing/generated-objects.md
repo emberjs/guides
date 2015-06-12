@@ -15,7 +15,7 @@ Router.map(function() {
 ```
 
 When you navigate to `/posts`, Ember.js looks for `route:posts`.
-If it doesn't find it, it will automatically generate an `route:posts` for you.
+If it doesn't find it, it will automatically generate `route:posts` for you.
 
 
 #### Generated Controllers
