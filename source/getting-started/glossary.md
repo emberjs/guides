@@ -11,7 +11,7 @@ Behind the scenes, the CDN will distribute your content geographically with the 
 
 
 ## CoffeeScript, TypeScript
-These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypesScript or CoffeeScript into JavaScript.
+These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypeScript or CoffeeScript into JavaScript.
 
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
