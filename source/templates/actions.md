@@ -177,9 +177,9 @@ pressed modifier keys. You can supply an `allowedKeys` option
 to specify which keys should not be ignored.
 
 ```handlebars
-<div {{action 'anActionName' allowedKeys="alt"}}>
+<button {{action 'anActionName' allowedKeys="alt"}}>
   click me
-</div>
+</button>
 ```
 
 This way the `{{action}}` will fire when clicking with the alt key
