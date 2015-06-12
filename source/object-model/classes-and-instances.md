@@ -53,8 +53,8 @@ yehuda.say("Yes"); // alerts "Yehuda Katz says: Yes, sir!"
 
 Once you have defined a class, you can create new _instances_ of that
 class by calling its `create()` method. Any methods, properties and
-computed properties you defined on the class will be available to
-instances:
+[computed properties](object-model/computed-properties)
+you defined on the class will be available to instances:
 
 ```javascript
 var person = Person.create();
