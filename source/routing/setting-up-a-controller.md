@@ -17,6 +17,7 @@ To tell one of these controllers which model to present, set its
 Router.map(function() {
   this.route('post', { path: '/posts/:post_id' });
 });
+```
 
 ``` app/routes/post.js
 export default Ember.Route.extend({
@@ -44,7 +45,7 @@ export default Ember.Route.extend({
 ```
 
 As a second argument, it receives the route handler's model. For more
-information, see [Specifying a Route's Model][../specifying-a-routes-model/].
+information, see [Specifying a Route's Model](../specifying-a-routes-model/).
 
 The default `setupController` hook sets the `model` property of the
 associated controller to the route handler's model.
