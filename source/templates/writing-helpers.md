@@ -2,7 +2,9 @@ Sometimes, you may use the same HTML in your application multiple times. In thos
 
 For example, imagine you are frequently wrapping certain values in a `<span>` tag with a custom class. You can register a helper from your JavaScript like this:
 
-```app/helpers/highlight.js
+```app/helpers/highlight-text.js
+import Ember from 'ember';
+
 export default Ember.Handlebars.makeBoundHelper( function(value, options) {
   var escaped = Ember.Handlebars.Utils.escapeExpression(value);
   return new Ember.Handlebars.SafeString('<span class="highlight">' + escaped + '</span>');
@@ -16,7 +18,7 @@ user data!
 Anywhere in your Handlebars templates, you can now invoke this helper:
 
 ```handlebars
-{{highlight name}}
+{{highlight-text name}}
 ```
 
 and it will output the following:
@@ -28,6 +30,23 @@ and it will output the following:
 If the `name` property on the current context changes, Ember.js will
 automatically execute the helper again and update the DOM with the new
 value.
+
+Notice in the previous example that the helper name contains a dash. Helper names with dashes will get automatically loaded by Ember. It helps disambiguate properties from helpers, and helps mitigate the performance hit of helper resolution for all bindings. If you want to use a non-hyphenated name for your helper, such as `highlight`, you must explicity load the helper.
+
+```app/helpers/highlight.js
+export default function(value, options) {
+  var escaped = Ember.Handlebars.Utils.escapeExpression(value);
+  return new Ember.Handlebars.SafeString('<span class="highlight">' + escaped + '</span>');
+};
+```
+
+```app/app.js
+    import Ember from "ember";
+    import highlightHelper from './helpers/highlight';
+    
+    Ember.Handlebars.registerBoundHelper('highlight', highlightHelper);
+```
+
 
 ### Dependencies
 
