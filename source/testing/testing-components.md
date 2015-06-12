@@ -201,6 +201,41 @@ test('trigger external action when button is clicked', function(assert) {
 });
 ```
 
+### Testing component blocks and defaults
+
+Often you might define a component which works in block form:
+
+```app/templates/components/my-component.hbs
+{{#if template}}
+  {{yield}}
+{{else}}
+  {{defaultContent}}
+{{/if}}
+```
+
+Now this shows `{{defaultContent}}` when using `{{my-component}}` otherwise it shows the content within `{{#my-component}}custom content{{/my-component}}`.
+
+To test this functionality, we can do the following:
+
+```tests/unit/components/my-component-test.js
+test('component with optional block', function(assert) {
+  assert.expect(1);
+ 
+  var component = this.subject();
+  
+  Ember.run(function() {
+    component.set('template', function() {
+      return 'Something else';
+    });
+    component.set('defaultContent', 'foo');
+  });
+  
+  assert.trimEq(this.$().text(), 'Something else');
+});
+```
+
+Notice that `template` is actually a function that returns a string.
+
 <!---
 ### Components Using Other Components
 
