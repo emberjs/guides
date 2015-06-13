@@ -219,7 +219,7 @@ p {
           display: block;
         }
 
-        li.sub-selected {
+        li.selected {
           background-color: #f2d1cb;
           > a {
             font-family: 'Maven Pro';
@@ -280,7 +280,7 @@ p {
             color: rgb(94, 94, 94);
           }
         }
-        &.sub-selected {
+        &.selected {
           // fancy me up.
         }
       }
