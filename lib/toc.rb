@@ -48,7 +48,7 @@ module TOC
 
                 middleman_url = "/" + url
 
-                buffer << "<li class='toc-level-1 #{sub_current ? ' sub-selected' : ''}'>"
+                buffer << "<li class='toc-level-1 #{sub_current ? 'selected' : ''}'>"
                   buffer << link_to(chapter.title, middleman_url)
                 buffer << "</li>"
               end
