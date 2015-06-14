@@ -21,11 +21,12 @@ The above example will print a list like this:
 </ul>
 ```
 
-Like everything in Handlebars, the `{{#each}}` helper is bindings-aware.
-If your application adds a new item to the array, or removes an item,
-the DOM will be updated without having to write any code.
+The `{{#each}}` helper is bindings-aware.  If your
+application adds a new item to the array, or removes an item, the DOM
+will be updated without having to write any code.
 
 ### Specifying Keys
+
   The `key` option is used to tell Ember how to determine if the array being
   iterated over with `{{#each}}` has changed between renders. By helping Ember
   detect that some elements in the array are the same, DOM elements can be

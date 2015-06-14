@@ -56,6 +56,8 @@
       url: "conditionals"
     - title: "Displaying a List of Items"
       url: "displaying-a-list-of-items"
+    - title: "Displaying the Keys in an Object"
+      url: "displaying-the-keys-in-an-object"
     - title: "Binding Element Attributes"
       url: "binding-element-attributes"
     - title: "Binding Element Class Names"
