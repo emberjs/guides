@@ -194,7 +194,7 @@ p {
     }
   }
 
-  ol#toc-list {
+  ol.toc-level-0 {
     background: #f9e7e4;
     li {
       font-size: 12px;
@@ -219,7 +219,7 @@ p {
           display: block;
         }
 
-        li.sub-selected {
+        li.selected {
           background-color: #f2d1cb;
           > a {
             font-family: 'Maven Pro';
@@ -230,7 +230,7 @@ p {
 
       }
 
-      &.level-1 {
+      &.toc-level-0 {
         text-transform: uppercase;
 
         > a {
@@ -246,7 +246,7 @@ p {
           }
         }
 
-        & + .level-1 > a {
+        & + .toc-level-0 > a {
           margin-top: -1px;
         }
 
@@ -265,7 +265,7 @@ p {
         }
       }
 
-      &.level-2, &.level-3 {
+      &.toc-level-1, &.toc-level-2 {
 
         a {
           padding: 6px 1em 6px 1em;
@@ -280,7 +280,7 @@ p {
             color: rgb(94, 94, 94);
           }
         }
-        &.sub-selected {
+        &.selected {
           // fancy me up.
         }
       }
@@ -1152,7 +1152,7 @@ a.edit-page {
     }
   }
 
-  ol#toc-list {
+  ol.toc-level-0 {
     li a {
       display: block;
       overflow: hidden;
@@ -1183,7 +1183,7 @@ a.edit-page {
     @include border-radius(3px);
   }
 
-  #sidebar ol#toc-list li > ol {
+  #sidebar ol.toc-level-0 li > ol {
     display: block;
   }
 }

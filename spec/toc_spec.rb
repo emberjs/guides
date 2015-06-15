@@ -31,8 +31,7 @@ describe TOC::Helpers do
     let(:toc) { helper.toc_for(helper.data.guides) }
 
     before(:each) do
-      building_page = double(path: "custom-extensions/building-custom-extensions.html")
-      allow(helper).to receive(:request).and_return(building_page)
+      allow(helper).to receive(:request).and_return(basics_page)
       allow(File).to receive(:exist?).and_return(true)
     end
 
@@ -68,6 +67,34 @@ describe TOC::Helpers do
 
     it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
       expect(toc).to include("extending-middleman")
+    end
+
+    it "adds the toc-level-0 class to the outermost <ol>" do
+      expect(toc).to include("<ol class='toc-level-0'><li class='toc-level-0 selected'>")
+    end
+
+    it "adds the toc-level-0 class to the outermost <li>s" do
+      expect(toc).to include("<li class='toc-level-0 selected'><a href=\"/middleman-basics/index.html\">")
+    end
+
+    it "adds the toc-level-1 class to the inner <ol>s" do
+      expect(toc).to include("<ol class='toc-level-1 selected'><li class='toc-level-1")
+    end
+
+    it "adds the toc-level-1 class to the inner <li>s" do
+      expect(toc).to include("<li class='toc-level-1 selected'><a href=\"/middleman-basics/index.html\">")
+    end
+
+    it "adds the selected class to the outermost <li> tag" do
+      expect(toc).to include("<li class='toc-level-0 selected'>")
+    end
+
+    it "adds the selected class to the <ol> tag of the current page" do
+      expect(toc).to include("<ol class='toc-level-1 selected'>")
+    end
+
+    it "adds the selected class to the <li> tag of the current page" do
+      expect(toc).to include("<li class='toc-level-1 selected'>")
     end
   end
 

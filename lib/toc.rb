@@ -19,7 +19,7 @@ module TOC
 
   module Helpers
     def toc_for(guides)
-      buffer = "<ol id='toc-list'>"
+      buffer = "<ol class='toc-level-0'>"
       # indentation below is to aid in understanding the HTML structure
         guides.each do |guide|
           next if guide.chapters.any? do |entry|
@@ -37,9 +37,9 @@ module TOC
           file = "source" + middleman_base_url + ".md"
           raise "#{file} does not exist but is referenced in data/guides.yml. " unless File.exist?(file)
 
-          buffer << "<li class='level-1 #{current ? 'selected' : ''}'>"
+          buffer << "<li class='toc-level-0 #{current ? 'selected' : ''}'>"
             buffer << link_to(guide.title, middleman_url)
-            buffer << "<ol class='#{(current ? 'selected' : '')}'>"
+            buffer << "<ol class='toc-level-1 #{(current ? 'selected' : '')}'>"
               guide.chapters.each do |chapter|
                 next if chapter[:skip_sidebar_item]
                 url = "#{guide.url}/#{chapter.url}.html"
@@ -48,7 +48,7 @@ module TOC
 
                 middleman_url = "/" + url
 
-                buffer << "<li class='level-3 #{sub_current ? ' sub-selected' : ''}'>"
+                buffer << "<li class='toc-level-1 #{sub_current ? 'selected' : ''}'>"
                   buffer << link_to(chapter.title, middleman_url)
                 buffer << "</li>"
               end
