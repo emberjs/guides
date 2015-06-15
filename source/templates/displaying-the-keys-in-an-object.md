@@ -57,10 +57,10 @@ The above example will print a list like this:
 </ul>
 ```
 
-### A Note About Automatic Updates
+### Re-rendering
 
-Note that the `{{#each-in}}` helper does **not** observe property
-changes to the object passed into it. In the above example, if you were
+The `{{#each-in}}` helper **does not observe property
+changes** to the object passed into it. In the above example, if you were
 to add a key to the component's `categories` property after the
 component had rendered, the template would **not** automatically update.
 
