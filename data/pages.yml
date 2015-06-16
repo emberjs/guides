@@ -1,17 +1,21 @@
 - title: "Guides and Tutorials"
   url: 'index'
   skip_toc: true
-  chapters:
+  pages:
     - title: "Ember.js Guides"
       url: ""
 
 - title: "Getting Started"
   url: 'getting-started'
-  chapters:
+  pages:
     - title: "Installing Ember"
       url: "index"
     - title: "Glossary"
       url: "glossary"
+
+- title: "Concepts"
+  url: 'concepts'
+  pages:
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
@@ -19,7 +23,7 @@
 
 - title: "The Object Model"
   url: 'object-model'
-  chapters:
+  pages:
     - title: "Classes and Instances"
       url: "classes-and-instances"
     - title: "Reopening Classes and Instances"
@@ -34,12 +38,16 @@
       url: "bindings"
     - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
       url: "what-do-i-use-when"
-    - title: "Enumerables"
-      url: 'enumerables'
+
+- title: "Application"
+  url: 'application'
+  pages:
+    - title: "Introduction"
+      url: "index"
 
 - title: "Templates"
   url: 'templates'
-  chapters:
+  pages:
     - title: "Handlebars Basics"
       url: "handlebars-basics"
     - title: "The Application Template"
@@ -69,7 +77,7 @@
 
 - title: "Routing"
   url: 'routing'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining Your Routes"
@@ -97,7 +105,7 @@
 
 - title: "Components"
   url: 'components'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining a Component"
@@ -115,7 +123,7 @@
 
 - title: "Controllers"
   url: 'controllers'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Representing Multiple Models with ArrayController"
@@ -125,7 +133,7 @@
 
 - title: "Models"
   url: 'models'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining Models"
@@ -151,9 +159,15 @@
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
 
+- title: "Enumerables"
+  url: 'enumerables'
+  pages:
+    - title: "Introduction"
+      url: "index"
+
 - title: "Testing"
   url: 'testing'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Acceptance Tests"
@@ -177,7 +191,7 @@
 
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
-  chapters:
+  pages:
     - title: "Disabling Prototype Extensions"
       url: "disabling-prototype-extensions"
     - title: "Embedding Applications"
@@ -187,7 +201,7 @@
 
 - title: "Ember Inspector"
   url: "ember-inspector"
-  chapters:
+  pages:
     - title: "Installing the Inspector"
       url: "installation"
     - title: "Object Inspector"
@@ -213,7 +227,7 @@
 
 - title: "Cookbook"
   url: 'cookbook'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     # contributing
@@ -291,7 +305,7 @@
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
-  chapters:
+  pages:
     - title: "Debugging"
       url: "debugging"
     - title: "The Run Loop"
@@ -301,7 +315,7 @@
 
 - title: "Contributing to Ember.js"
   url: 'contributing'
-  chapters:
+  pages:
     - title: "Adding New Features"
       url: "adding-new-features"
     - title: "Repositories"
