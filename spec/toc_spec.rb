@@ -28,7 +28,7 @@ describe TOC::Helpers do
   end
 
   describe "#toc_for" do
-    let(:toc) { helper.toc_for(helper.data.guides) }
+    let(:toc) { helper.toc_for(helper.data.pages) }
 
     before(:each) do
       allow(helper).to receive(:request).and_return(basics_page)
@@ -219,7 +219,7 @@ describe TOC::Helpers do
 
     it "is the previous chapter when current guide & current chapter are specified & there is a chapter before that" do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/meh"))
-      previous_chapter = helper.data.guides.first.chapters.first
+      previous_chapter = helper.data.pages.first.pages.first
 
       expect(helper.previous_chapter).to eq(previous_chapter)
     end
@@ -240,7 +240,7 @@ describe TOC::Helpers do
 
     it "is the next chapter when current guide has a next chapter" do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
-      next_chapter = helper.data.guides.first.chapters.last
+      next_chapter = helper.data.pages.first.pages.last
 
       expect(helper.next_chapter).to eq(next_chapter)
     end
@@ -261,7 +261,7 @@ describe TOC::Helpers do
 
     it "is the previous guide when current guide is specified & there is a guide before that" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
-      first_guide = helper.data.guides.first
+      first_guide = helper.data.pages.first
 
       expect(helper.previous_guide).to eq(first_guide)
     end
@@ -282,7 +282,7 @@ describe TOC::Helpers do
 
     it "is the next guide when current guide is specified & next guide exists" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
-      next_guide = helper.data.guides.last
+      next_guide = helper.data.pages.last
       expect(helper.next_guide).to eq(next_guide)
     end
   end
