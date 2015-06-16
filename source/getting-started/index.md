@@ -41,6 +41,7 @@ Once the generation process finishes, verify that you can run the newly created 
 
 ```bash
 cd my-app
+npm install && bower install
 ember server
 ```
 
