@@ -29,7 +29,7 @@ module TOC
           requested_guide_url = slugs[0]
           current = (guide.url == requested_guide_url)
 
-          middleman_base_url = "/#{guide.url}/#{guide.chapters[0].url}"
+          middleman_base_url = "/#{guide.url}/#{guide.pages[0].url}"
           middleman_url = middleman_base_url + ".html"
 
           file = "source" + middleman_base_url + ".md"
@@ -38,7 +38,7 @@ module TOC
           buffer << "<li class='toc-level-0 #{current ? 'selected' : ''}'>"
             buffer << link_to(guide.title, middleman_url)
             buffer << "<ol class='toc-level-1 #{(current ? 'selected' : '')}'>"
-              guide.chapters.each do |chapter|
+              guide.pages.each do |chapter|
                 next if chapter.skip_toc
                 url = "#{guide.url}/#{chapter.url}.html"
 
@@ -113,7 +113,7 @@ module TOC
 
         link_to(title, url, options)
       elsif whats_before = previous_guide
-        previous_chapter = whats_before.chapters.last
+        previous_chapter = whats_before.pages.last
 
         is_root = previous_chapter.url.empty?
 
@@ -136,7 +136,7 @@ module TOC
 
         link_to(title, url, options)
       elsif whats_next = next_guide
-        next_chapter = whats_next.chapters.first
+        next_chapter = whats_next.pages.first
         title = "We're done with #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title} \u2192"
         url = "/#{next_guide.url}/#{next_chapter.url}.html"
 
@@ -149,14 +149,14 @@ module TOC
     def previous_chapter
       return unless current_guide
 
-      current_chapter_index = current_guide.chapters.find_index(current_chapter)
+      current_chapter_index = current_guide.pages.find_index(current_chapter)
 
       return unless current_chapter_index
 
       previous_chapter_index = current_chapter_index - 1
 
       if current_chapter_index > 0
-        current_guide.chapters[previous_chapter_index]
+        current_guide.pages[previous_chapter_index]
       else
         nil
       end
@@ -165,13 +165,13 @@ module TOC
     def next_chapter
       return unless current_guide
 
-      current_chapter_index = current_guide.chapters.find_index(current_chapter)
+      current_chapter_index = current_guide.pages.find_index(current_chapter)
       return unless current_chapter_index
 
       next_chapter_index = current_chapter_index + 1
 
-      if current_chapter_index < current_guide.chapters.length
-        current_guide.chapters[next_chapter_index]
+      if current_chapter_index < current_guide.pages.length
+        current_guide.pages[next_chapter_index]
       else
         nil
       end
@@ -180,13 +180,13 @@ module TOC
     def previous_guide
       return unless current_guide
 
-      current_guide_index = data.guides.find_index(current_guide)
+      current_guide_index = data.pages.find_index(current_guide)
       return unless current_guide_index
 
       previous_guide_index = current_guide_index - 1
 
       if previous_guide_index >= 0
-        data.guides[previous_guide_index]
+        data.pages[previous_guide_index]
       else
         nil
       end
@@ -195,13 +195,13 @@ module TOC
     def next_guide
       return unless current_guide
 
-      current_guide_index = data.guides.find_index(current_guide)
+      current_guide_index = data.pages.find_index(current_guide)
       return unless current_guide_index
 
       next_guide_index = current_guide_index + 1
 
-      if current_guide_index < data.guides.length
-        data.guides[next_guide_index]
+      if current_guide_index < data.pages.length
+        data.pages[next_guide_index]
       else
         nil
       end
@@ -215,13 +215,13 @@ private
       path = current_page.path.gsub('.html', '')
       guide_path = path.split("/")[0]
 
-      @current_guide = data.guides.find do |guide|
+      @current_guide = data.pages.find do |guide|
         guide.url == guide_path
       end
     end
 
     def current_guide_index
-      data.guides.find_index(current_guide)
+      data.pages.find_index(current_guide)
     end
 
     def current_chapter
@@ -231,7 +231,7 @@ private
       path = current_page.path.gsub('.html', '')
       chapter_path = path.split('/')[1..-1].join('/')
 
-      @current_chapter = current_guide.chapters.find do |chapter|
+      @current_chapter = current_guide.pages.find do |chapter|
         chapter.url == chapter_path
       end
     end
