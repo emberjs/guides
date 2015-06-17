@@ -31,7 +31,6 @@ describe TOC::Helpers do
     let(:toc) { helper.toc_for(helper.data.pages) }
 
     before(:each) do
-      allow(helper).to receive(:request).and_return(basics_page)
       allow(File).to receive(:exist?).and_return(true)
     end
 
@@ -66,7 +65,15 @@ describe TOC::Helpers do
     end
 
     it "contains a link to first chapter as a guide link even if a chapter is marked skip" do
-      expect(toc).to include("extending-middleman")
+      expect(toc).to include("middleman-basics")
+    end
+
+    it "links to the innermost page" do
+      expect(toc).to include("<a href=\"/middleman-basics/index.html\">")
+    end
+
+    it "links to hashes for parents of nested pages" do
+      expect(toc).to include("<a href=\"#\">Middleman Basics</a>")
     end
 
     it "adds the toc-level-0 class to the outermost <ol>" do
@@ -74,7 +81,7 @@ describe TOC::Helpers do
     end
 
     it "adds the toc-level-0 class to the outermost <li>s" do
-      expect(toc).to include("<li class='toc-level-0 selected'><a href=\"/middleman-basics/index.html\">")
+      expect(toc).to include("<li class='toc-level-0 selected'>")
     end
 
     it "adds the toc-level-1 class to the inner <ol>s" do
