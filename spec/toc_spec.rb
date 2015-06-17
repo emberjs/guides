@@ -12,8 +12,8 @@ describe TOC::Helpers do
       include TOC::Helpers
     end
 
-    data_yml = File.read('spec/fixtures/guides.yml')
-    data = Hashie::Mash.new(YAML.load(data_yml))
+    data_yml = File.read('spec/fixtures/pages.yml')
+    data = Hashie::Mash.new(pages: YAML.load(data_yml))
 
     allow(helper).to receive(:data).and_return(data)
     allow(helper).to receive(:current_page).and_return(basics_page)
