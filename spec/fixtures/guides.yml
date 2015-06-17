@@ -3,7 +3,7 @@ pages:
     url: "middleman-basics"
     pages:
       - title: "What even is middleman?"
-        url: "index"
+        url: "intro"
       - title: "Nobody really cares about this"
         url: "meh"
         skip_toc: true
@@ -17,5 +17,5 @@ pages:
     url: "extending-middleman"
     pages:
       - title: "What are extensions?"
-        url: "index"
+        url: "extensions"
         skip_toc: true
