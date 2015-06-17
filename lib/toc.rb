@@ -18,39 +18,28 @@ module TOC
   end
 
   module Helpers
-    def toc_for(guides)
-      buffer = "<ol class='toc-level-0'>"
+    def toc_for(pages, level=0, base_path="", current=false)
+      buffer = "<ol class='toc-level-#{level}#{current ? ' selected' : ''}'>"
       # indentation below is to aid in understanding the HTML structure
-        guides.each do |guide|
-          next if guide.skip_toc
+        pages.each do |page|
+          next if page.skip_toc
 
-          slugs = request.path.split('/')
+          requested_page_url = current_page.path.gsub('.html', '').split('/')[level]
+          current = (page.url == requested_page_url)
 
-          requested_guide_url = slugs[0]
-          current = (guide.url == requested_guide_url)
+          page_path = base_path + "/" + page.url
 
-          middleman_base_url = "/#{guide.url}/#{guide.pages[0].url}"
-          middleman_url = middleman_base_url + ".html"
+          unless page.pages || File.exist?(file = "source" + page_path + ".md")
+            raise "#{file} does not exist but is referenced in data/guides.yml."
+          end
 
-          file = "source" + middleman_base_url + ".md"
-          raise "#{file} does not exist but is referenced in data/guides.yml. " unless File.exist?(file)
-
-          buffer << "<li class='toc-level-0 #{current ? 'selected' : ''}'>"
-            buffer << link_to(guide.title, middleman_url)
-            buffer << "<ol class='toc-level-1 #{(current ? 'selected' : '')}'>"
-              guide.pages.each do |chapter|
-                next if chapter.skip_toc
-                url = "#{guide.url}/#{chapter.url}.html"
-
-                sub_current = (url == current_page.path)
-
-                middleman_url = "/" + url
-
-                buffer << "<li class='toc-level-1 #{sub_current ? 'selected' : ''}'>"
-                  buffer << link_to(chapter.title, middleman_url)
-                buffer << "</li>"
-              end
-            buffer << "</ol>"
+          buffer << "<li class='toc-level-#{level} #{current ? 'selected' : ''}'>"
+            if page.pages
+              buffer << link_to(page.title, '#')
+              buffer << toc_for(page.pages, level + 1, page_path, current)
+            else
+              buffer << link_to(page.title, page_path + '.html')
+            end
           buffer << "</li>"
         end
 
