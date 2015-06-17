@@ -5,7 +5,7 @@ describe TOC::Helpers do
   let(:helper)                 { HelperTester.new }
   let(:basic_chapter_title)    { "What even is middleman?" }
   let(:basic_guide_title)      { "Middleman Basics" }
-  let(:basics_page)            { double(path: "middleman-basics/index.html") }
+  let(:basics_page)            { double(path: "middleman-basics/intro") }
 
   before(:each) do
     class HelperTester
@@ -38,7 +38,7 @@ describe TOC::Helpers do
     it "raises an exception if a file doesn't exist" do
       allow(File).to receive(:exist?).and_return(false)
       expect { toc }.to raise_error(RuntimeError,
-        /source\/middleman-basics\/index.md does not exist but is referenced in data\/guides.yml./)
+        /source\/middleman-basics\/intro.md does not exist but is referenced in data\/guides.yml./)
     end
 
     it "includes guide titles" do
@@ -74,7 +74,7 @@ describe TOC::Helpers do
     end
 
     it "adds the toc-level-0 class to the outermost <li>s" do
-      expect(toc).to include("<li class='toc-level-0 selected'><a href=\"/middleman-basics/index.html\">")
+      expect(toc).to include("<li class='toc-level-0 selected'><a href=\"/middleman-basics\">")
     end
 
     it "adds the toc-level-1 class to the inner <ol>s" do
@@ -82,7 +82,7 @@ describe TOC::Helpers do
     end
 
     it "adds the toc-level-1 class to the inner <li>s" do
-      expect(toc).to include("<li class='toc-level-1 selected'><a href=\"/middleman-basics/index.html\">")
+      expect(toc).to include("<li class='toc-level-1 selected'><a href=\"/middleman-basics/intro\">")
     end
 
     it "adds the selected class to the outermost <li> tag" do
@@ -155,7 +155,7 @@ describe TOC::Helpers do
 
   describe "#chapter_github_source_url" do
     it "is the github URL to the source file for current page" do
-      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/middleman-basics/index.md")
+      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/middleman-basics/intro.md")
     end
   end
 
@@ -173,7 +173,7 @@ describe TOC::Helpers do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/meh"))
 
       expect(helper.previous_chapter_link).to include("What even is middleman")
-      expect(helper.previous_chapter_link).to include("middleman-basics/index")
+      expect(helper.previous_chapter_link).to include("middleman-basics/intro")
     end
 
     it "is link to last chapter in previous guide if current chapter is first chapter in previous guide" do
@@ -185,7 +185,7 @@ describe TOC::Helpers do
 
   describe "#next_chapter_link" do
     it "is link to next chapter in current guide if next chapter is specified" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
 
       expect(helper.next_chapter_link).to include("Nobody really cares about this")
     end
@@ -212,7 +212,7 @@ describe TOC::Helpers do
     end
 
     it "is nil if current chapter is the first chapter in the guide" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
 
       expect(helper.previous_chapter).to be_nil
     end
@@ -239,7 +239,7 @@ describe TOC::Helpers do
     end
 
     it "is the next chapter when current guide has a next chapter" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
       next_chapter = helper.data.pages.first.pages.last
 
       expect(helper.next_chapter).to eq(next_chapter)
@@ -254,7 +254,7 @@ describe TOC::Helpers do
     end
 
     it "is nil if current guide is the first guide" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
 
       expect(helper.previous_guide).to be_nil
     end
@@ -275,7 +275,7 @@ describe TOC::Helpers do
     end
 
     it "is nil if current guide is the last guide" do
-      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/intro"))
 
       expect(helper.next_guide).to be_nil
     end
