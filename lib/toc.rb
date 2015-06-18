@@ -48,13 +48,10 @@ module TOC
     end
 
     def page_title
-      if current_guide && current_chapter
-        "#{current_guide.title}: #{current_chapter.title}"
-      elsif current_guide
-        current_guide.title
-      else
-        "Guides"
-      end
+      slugs = current_page.path.gsub(".html", "").split("/")
+      pages = pages_for_slugs(slugs)
+      titles = pages.map(&:title)
+      titles.join(": ")
     end
 
     def guide_name
@@ -197,6 +194,13 @@ module TOC
     end
 
 private
+
+    def pages_for_slugs(slugs, pages=data.pages)
+      current_slug = slugs.shift
+      page = pages.find { |page| page.url == current_slug }
+      remaining_pages = slugs.any? ? pages_for_slugs(slugs, page.pages) : []
+      [page] + remaining_pages
+    end
 
     def current_guide
       return @current_guide if @current_guide
