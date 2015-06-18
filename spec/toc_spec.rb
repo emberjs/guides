@@ -106,19 +106,13 @@ describe TOC::Helpers do
   end
 
   describe "#page_title" do
-    it "is generic when current guide is not specified" do
-      allow(helper).to receive(:current_guide).and_return(nil)
+    xit "is the current page's title" do
+      allow(helper).to receive(:current_page).and_return(double(path: "not-nested"))
 
-      expect(helper.page_title).to eq("Guides")
+      expect(helper.page_title).to eq("This isn't nested")
     end
 
-    it "is current guide's title when current chapter is not specified" do
-      allow(helper).to receive(:current_chapter).and_return(nil)
-
-      expect(helper.page_title).to eq("Middleman Basics")
-    end
-
-    it "is a combination of current guide & chapter titles when both are specified" do
+    it "combines the page titles separated by colons" do
       expect(helper.page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
     end
   end
