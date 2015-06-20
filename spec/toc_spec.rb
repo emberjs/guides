@@ -105,33 +105,33 @@ describe TOC::Helpers do
     end
   end
 
-  describe "#page_title" do
+  describe "#full_page_title" do
     xit "is the current page's title" do
       allow(helper).to receive(:current_page).and_return(double(path: "not-nested"))
 
-      expect(helper.page_title).to eq("This isn't nested")
+      expect(helper.full_page_title).to eq("This isn't nested")
     end
 
     it "combines the page titles separated by colons" do
-      expect(helper.page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
+      expect(helper.full_page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
     end
   end
 
-  describe "#chapter_name" do
+  describe "#page_title" do
     it "is an empty string when current chapter is not specified" do
       allow(helper).to receive(:current_chapter).and_return(nil)
 
-      expect(helper.chapter_name).to eq("")
+      expect(helper.page_title).to eq("")
     end
 
     it "is current chapter's title when current chapter is specified" do
-      expect(helper.chapter_name).to eq(basic_chapter_title)
+      expect(helper.page_title).to eq(basic_chapter_title)
     end
   end
 
   describe "#chapter_heading" do
     it "is nil if chapter name is blank" do
-      allow(helper).to receive(:chapter_name).and_return("")
+      allow(helper).to receive(:page_title).and_return("")
 
       expect(helper.chapter_heading).to be_nil
     end
