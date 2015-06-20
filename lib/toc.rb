@@ -48,18 +48,11 @@ module TOC
     end
 
     def full_page_title
-      slugs = current_page.path.gsub(".html", "").split("/")
-      pages = pages_for_slugs(slugs)
-      titles = pages.map(&:title)
-      titles.join(": ")
+      current_titles.join(": ")
     end
 
     def page_title
-      if current_chapter
-        current_chapter.title
-      else
-        ""
-      end
+      current_titles.last
     end
 
     def chapter_heading
@@ -190,6 +183,18 @@ module TOC
     end
 
 private
+
+    def current_titles
+      @current_titles ||= current_pages.map(&:title)
+    end
+
+    def current_pages
+      @current_pages ||= pages_for_slugs(current_slugs)
+    end
+
+    def current_slugs
+      @current_slugs ||= current_page.path.gsub(".html", "").split("/")
+    end
 
     def pages_for_slugs(slugs, pages=data.pages)
       current_slug = slugs.shift
