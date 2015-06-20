@@ -76,28 +76,8 @@ need a custom subclass if you wanted to change a component's element,
 respond to actions from the component's template, or manually make
 changes to the component's element using JavaScript.
 
-Ember knows which subclass powers a component based on its name. For
+Ember knows which subclass powers a component based on its filename. For
 example, if you have a component called `blog-post`, you would create a
 file at `app/components/blog-post.js`. If your component was called
 `audio-player-controls`, the file name would be at
-`app/components/audio-player-controls.js`
-
-In other words, Ember will look for a class with the camelized name of
-the component, followed by `Component`.
-
-<table>
-  <thead>
-  <tr>
-    <th>Component Name</th>
-    <th>Component Class</th>
-  </tr>
-  </thead>
-  <tr>
-    <td><code>blog-post</code></td>
-    <td><code>App.BlogPostComponent</code></td>
-  </tr>
-  <tr>
-    <td><code>audio-player-controls</code></td>
-    <td><code>App.AudioPlayerControlsComponent</code></td>
-  </tr>
-</table>
+`app/components/audio-player-controls.js`.
