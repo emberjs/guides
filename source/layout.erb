@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Ember.js - <%= current_page.data.title || page_title %></title>
-    <meta property="st:title" content="<%= current_page.data.title || page_title %>" />
+    <title>Ember.js - <%= current_page.data.title || full_page_title %></title>
+    <meta property="st:title" content="<%= current_page.data.title || full_page_title %>" />
     <%= favicon_tag 'images/favicon.png' %>
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
     <%= stylesheet_link_tag "site" %>

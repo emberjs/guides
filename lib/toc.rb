@@ -47,14 +47,14 @@ module TOC
       buffer
     end
 
-    def page_title
+    def full_page_title
       slugs = current_page.path.gsub(".html", "").split("/")
       pages = pages_for_slugs(slugs)
       titles = pages.map(&:title)
       titles.join(": ")
     end
 
-    def chapter_name
+    def page_title
       if current_chapter
         current_chapter.title
       else
@@ -63,7 +63,7 @@ module TOC
     end
 
     def chapter_heading
-      name = chapter_name.strip
+      name = page_title.strip
       return if name.blank?
 
       %Q{
