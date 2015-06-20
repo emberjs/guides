@@ -54,10 +54,6 @@ module TOC
       titles.join(": ")
     end
 
-    def guide_name
-      current_guide.title if current_guide
-    end
-
     def chapter_name
       if current_chapter
         current_chapter.title
