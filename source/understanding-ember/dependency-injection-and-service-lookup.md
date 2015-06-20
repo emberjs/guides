@@ -210,7 +210,7 @@ application.inject('route', 'logger', 'logger:main');
 This is an example of a *type injection*. Onto all factories of the type `route` the property, `logger` will be injected with the factory named `logger:main`. Routes in this example application can now access the logger:
 
 ```app/routes/index.js
-App.IndexRoute = Ember.Route.extend({
+export default Ember.Route.extend({
   activate: function(){
     // The logger property is injected into all routes
     this.logger.log('Entered the index route!');
