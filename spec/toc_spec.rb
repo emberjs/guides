@@ -117,18 +117,6 @@ describe TOC::Helpers do
     end
   end
 
-  describe "#guide_name" do
-    it "is nil if current guide is not specified" do
-      allow(helper).to receive(:current_guide).and_return(nil)
-
-      expect(helper.guide_name).to be_nil
-    end
-
-    it "is the current guide's title when current guide is specified" do
-      expect(helper.guide_name).to eq(basic_guide_title)
-    end
-  end
-
   describe "#chapter_name" do
     it "is an empty string when current chapter is not specified" do
       allow(helper).to receive(:current_chapter).and_return(nil)
