@@ -7,3 +7,4 @@ Here are some recipes that will help you provide a better user experience.
 1. [Specifying Data-Driven Areas of Templates That Do Not Need To Update](./specifying_data_driven_areas_of_templates_that_do_not_need_to_update)
 1. [Using Modal Dialogs](./using_modal_dialogs)
 1. [Resetting scroll on route changes](./resetting_scroll_on_route_changes)
+1. [Basic Form Validations](./basic_form_validations)

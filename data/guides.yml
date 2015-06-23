@@ -102,6 +102,8 @@
       url: "loading-and-error-substates"
     - title: "Preventing and Retrying Transitions"
       url: "preventing-and-retrying-transitions"
+    - title: "Link to Router Flow"
+      url: "link-to-router-flow"
 
 - title: "Components"
   url: 'components'
@@ -150,6 +152,8 @@
       url: "working-with-records"
     - title: "The Rest Adapter"
       url: "the-rest-adapter"
+    - title: "The Basic Adapter"
+      url: "the-basic-adapter"
     - title: "Connecting to an HTTP Server"
       url: "connecting-to-an-http-server"
     - title: "Handling Metadata"
@@ -272,6 +276,9 @@
     - title: "Resetting scroll on route changes"
       url: "user_interface_and_interaction/resetting_scroll_on_route_changes"
       skip_sidebar_item: true
+    - title: "Basic Form Validations"
+      url: "user_interface_and_interaction/basic_form_validations"
+      skip_sidebar_item: true
     # events and bindings
     - title: "Event Handling & Data Binding"
       url: "event_handling_and_data_binding/index"
@@ -302,6 +309,13 @@
     - title: "Continuous Redrawing of Views"
       url: "working_with_objects/continuous_redrawing_of_views"
       skip_sidebar_item: true
+    # Ember data
+    - title: "Ember Data"
+      url: "ember_data/index"
+    - title: "Displaying Only Committed DS.Model Records"
+      url: "ember_data/displaying_only_committed_records"
+    - title: "Linking To Slugs"
+      url: "ember_data/linking_to_slugs"
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
@@ -312,6 +326,12 @@
       url: "run-loop"
     - title: "Dependency Injection & Service Lookup"
       url: "dependency-injection-and-service-lookup"
+
+- title: "Understanding Ember Data"
+  url: 'understanding-ember-data'
+  chapters:
+    - title: "Record Lifecycle"
+      url: "record-lifecycle"
 
 - title: "Contributing to Ember.js"
   url: 'contributing'

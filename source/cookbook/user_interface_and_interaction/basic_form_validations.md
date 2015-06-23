@@ -33,7 +33,7 @@ into a div, which would have the class of `has-error` bound to
 
 ```app/templates/components/validated-input.hbs
 <div class="{{if hasError 'has-error'}} form-group">
-    {{input type=type value=value size=size pattern=pattern name=name placeholder=placeholder disaled=disabled maxlength=maxlength tabindex=tabindex class=input-class}}
+    {{input type=type value=value size=size pattern=pattern name=name placeholder=placeholder disabled=disabled maxlength=maxlength tabindex=tabindex class=input-class}}
   </div>
 ```
 

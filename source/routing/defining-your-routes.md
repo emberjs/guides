@@ -390,7 +390,7 @@ Router.map(function() {
 ```
 
 Like all routes with a dynamic segment, you must provide a context when using a `{{link-to}}`
-or `transitionTo` to programatically enter this route.
+or `transitionTo` to programmatically enter this route.
 
 ```app/routes/application.js
 export default Ember.Route.extend({
