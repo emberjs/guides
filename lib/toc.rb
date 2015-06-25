@@ -22,9 +22,7 @@ module TOC
       buffer = "<ol class='toc-level-0'>"
       # indentation below is to aid in understanding the HTML structure
         guides.each do |guide|
-          next if guide.chapters.any? do |entry|
-            entry[:skip_sidebar]
-          end
+          next if guide.skip_toc
 
           slugs = request.path.split('/')
 
@@ -41,7 +39,7 @@ module TOC
             buffer << link_to(guide.title, middleman_url)
             buffer << "<ol class='toc-level-1 #{(current ? 'selected' : '')}'>"
               guide.chapters.each do |chapter|
-                next if chapter[:skip_sidebar_item]
+                next if chapter.skip_toc
                 url = "#{guide.url}/#{chapter.url}.html"
 
                 sub_current = (url == current_page.path)
