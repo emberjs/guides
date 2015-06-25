@@ -783,7 +783,8 @@ a.toc-anchor {
 
   table {
     width: 100%;
-
+    display: block;
+    overflow-x: auto;
     margin: 1em 0;
     tbody tr{
       background: rgba(255, 249, 249, 0.56);
