@@ -65,7 +65,7 @@ export default DS.Model.extend({
 ```app/models/comment.js
 import DS from 'ember-data';
 
-App.Comment = DS.Model.extend({
+export default DS.Model.extend({
   body: DS.attr()
 });
 ```
