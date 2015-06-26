@@ -12,10 +12,6 @@
       url: "index"
     - title: "Glossary"
       url: "glossary"
-
-- title: "Concepts"
-  url: 'concepts'
-  chapters:
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
