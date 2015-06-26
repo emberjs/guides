@@ -38,6 +38,8 @@
       url: "bindings"
     - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
       url: "what-do-i-use-when"
+    - title: "Enumerables"
+      url: 'enumerables'
 
 - title: "Application"
   url: 'application'
@@ -158,12 +160,6 @@
       url: "customizing-adapters"
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
-
-- title: "Enumerables"
-  url: 'enumerables'
-  chapters:
-    - title: "Introduction"
-      url: "index"
 
 - title: "Testing"
   url: 'testing'
