@@ -299,7 +299,7 @@ expected to be an array:
 But once loaded on a model instance, it will behave as an object:
 
 ```js
-var cursor = App.Cursor.find(1);
+var cursor = this.store.find('cursor', 1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9
 ```
