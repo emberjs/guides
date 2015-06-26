@@ -23,8 +23,8 @@ husband = Husband.create({
 husband.get('householdIncome'); // 80000
 
 // Someone gets raise.
-husband.set('householdIncome', 90000);
-wife.get('householdIncome'); // 90000
+wife.set('householdIncome', 90000);
+husband.get('householdIncome'); // 90000
 ```
 
 Note that bindings don't update immediately. Ember waits until all of your
