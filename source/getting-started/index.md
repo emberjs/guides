@@ -10,7 +10,7 @@ through our [command line build tool ember-cli](http://www.ember-cli.com/). The 
 
 
 ## Installation
-Ember.js installs through the [npm](#toc_got-node-and-npm). Install the Ember.js
+Ember.js installs through the [npm](#toc_got-node-npm-and-git). Install the Ember.js
 build tools with `npm`.
 
 ```bash
