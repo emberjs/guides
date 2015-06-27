@@ -41,12 +41,6 @@
     - title: "Enumerables"
       url: 'enumerables'
 
-- title: "Application"
-  url: 'application'
-  chapters:
-    - title: "Introduction"
-      url: "index"
-
 - title: "Templates"
   url: 'templates'
   chapters:
