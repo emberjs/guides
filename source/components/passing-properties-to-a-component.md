@@ -82,3 +82,10 @@ create a component for each item and bind it to each model in the loop.
 ```
 <!---<a class="jsbin-embed" href="http://jsbin.com/kobakujejo/1//embed?live">JS Bin</a>
 <script src="http://static.jsbin.com/js/embed.js"></script>-->
+
+If you are using the `{{component}}` helper to render your component, you can
+pass properties to the chosen component the same manner:
+
+```handlebars
+{{component componentName title=title name=name}}
+```
