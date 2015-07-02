@@ -58,10 +58,10 @@ renders the following HTML:
 ```
 
 There are two ways to enable support for data attributes. One way would be to add an
-attribute binding on the view, e.g. `Ember.LinkView` or `Ember.TextField` for the specific attribute:
+attribute binding on the view, e.g. `Ember.LinkComponent` or `Ember.TextField` for the specific attribute:
 
 ```javascript
-export default Ember.LinkView.reopen({
+export default Ember.LinkComponent.reopen({
   attributeBindings: ['data-toggle']
 });
 
