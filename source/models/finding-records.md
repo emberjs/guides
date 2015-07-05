@@ -81,7 +81,7 @@ export default Router;
 ```app/routes/posts.js
 export default Ember.Route.extend({
   model: function() {
-    return this.store.find('post');
+    return this.store.findAll('post');
   }
 });
 ```
