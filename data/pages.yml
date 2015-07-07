@@ -1,15 +1,15 @@
 - title: "Guides and Tutorials"
   url: 'index'
   skip_toc: true
-  chapters:
+  pages:
     - title: "Ember.js Guides"
       url: ""
 
 - title: "Getting Started"
   url: 'getting-started'
-  chapters:
+  pages:
     - title: "Installing Ember"
-      url: "index"
+      url: "installing-ember"
     - title: "Glossary"
       url: "glossary"
     - title: "Core Concepts"
@@ -19,7 +19,7 @@
 
 - title: "The Object Model"
   url: 'object-model'
-  chapters:
+  pages:
     - title: "Classes and Instances"
       url: "classes-and-instances"
     - title: "Reopening Classes and Instances"
@@ -34,12 +34,16 @@
       url: "bindings"
     - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
       url: "what-do-i-use-when"
-    - title: "Enumerables"
-      url: 'enumerables'
+
+- title: "Application"
+  url: 'application'
+  pages:
+    - title: "Introduction"
+      url: "introduction"
 
 - title: "Templates"
   url: 'templates'
-  chapters:
+  pages:
     - title: "Handlebars Basics"
       url: "handlebars-basics"
     - title: "The Application Template"
@@ -69,9 +73,9 @@
 
 - title: "Routing"
   url: 'routing'
-  chapters:
+  pages:
     - title: "Introduction"
-      url: "index"
+      url: "introduction"
     - title: "Defining Your Routes"
       url: "defining-your-routes"
     - title: "Generated Objects"
@@ -97,9 +101,9 @@
 
 - title: "Components"
   url: 'components'
-  chapters:
+  pages:
     - title: "Introduction"
-      url: "index"
+      url: "introduction"
     - title: "Defining a Component"
       url: "defining-a-component"
     - title: "Passing Properties to a Component"
@@ -115,9 +119,9 @@
 
 - title: "Controllers"
   url: 'controllers'
-  chapters:
+  pages:
     - title: "Introduction"
-      url: "index"
+      url: "introduction"
     - title: "Representing Multiple Models with ArrayController"
       url: "representing-multiple-models-with-arraycontroller"
     - title: "Managing Dependencies Between Controllers"
@@ -125,9 +129,9 @@
 
 - title: "Models"
   url: 'models'
-  chapters:
+  pages:
     - title: "Introduction"
-      url: "index"
+      url: "introduction"
     - title: "Defining Models"
       url: "defining-models"
     - title: "Creating and Deleting Records"
@@ -151,11 +155,17 @@
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
 
+- title: "Enumerables"
+  url: 'enumerables'
+  pages:
+    - title: "Introduction"
+      url: "introduction"
+
 - title: "Testing"
   url: 'testing'
-  chapters:
+  pages:
     - title: "Introduction"
-      url: "index"
+      url: "introduction"
     - title: "Acceptance Tests"
       url: "acceptance"
     - title: "Test Helpers"
@@ -177,7 +187,7 @@
 
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
-  chapters:
+  pages:
     - title: "Disabling Prototype Extensions"
       url: "disabling-prototype-extensions"
     - title: "Embedding Applications"
@@ -187,7 +197,7 @@
 
 - title: "Ember Inspector"
   url: "ember-inspector"
-  chapters:
+  pages:
     - title: "Installing the Inspector"
       url: "installation"
     - title: "Object Inspector"
@@ -213,12 +223,12 @@
 
 - title: "Cookbook"
   url: 'cookbook'
-  chapters:
+  pages:
     - title: "Introduction"
-      url: "index"
+      url: "introduction"
     # contributing
     - title: "Contributing"
-      url: "contributing/index"
+      url: "contributing/introduction"
     - title: "Understanding the Cookbook Format"
       url: "contributing/understanding_the_cookbook_format"
       skip_toc: true
@@ -236,7 +246,7 @@
       skip_toc: true
     # ui and ux
     - title: "User Interface and Interaction"
-      url: "user_interface_and_interaction/index"
+      url: "user_interface_and_interaction/introduction"
     - title: "Adding CSS Classes to Your Components"
       url: "user_interface_and_interaction/adding_css_classes_to_your_components"
       skip_toc: true
@@ -260,13 +270,13 @@
       skip_toc: true
     # events and bindings
     - title: "Event Handling & Data Binding"
-      url: "event_handling_and_data_binding/index"
+      url: "event_handling_and_data_binding/introduction"
     - title: "Binding Properties of an Object to Its Own Properties"
       url: "event_handling_and_data_binding/binding_properties_of_an_object_to_its_own_properties"
       skip_toc: true
     # helpers & components
     - title: "Helpers & Components"
-      url: "helpers_and_components/index"
+      url: "helpers_and_components/introduction"
     - title: "Creating Reusable Social Share Buttons"
       url: "helpers_and_components/creating_reusable_social_share_buttons"
       skip_toc: true
@@ -278,7 +288,7 @@
       skip_toc: true
     # objects
     - title: "Working with Objects"
-      url: "working_with_objects/index"
+      url: "working_with_objects/introduction"
     - title: "Incrementing Or Decrementing A Property"
       url: "working_with_objects/incrementing_or_decrementing_a_property"
       skip_toc: true
@@ -291,7 +301,7 @@
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
-  chapters:
+  pages:
     - title: "Debugging"
       url: "debugging"
     - title: "The Run Loop"
@@ -301,7 +311,7 @@
 
 - title: "Contributing to Ember.js"
   url: 'contributing'
-  chapters:
+  pages:
     - title: "Adding New Features"
       url: "adding-new-features"
     - title: "Repositories"
