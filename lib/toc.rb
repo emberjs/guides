@@ -18,24 +18,39 @@ module TOC
   end
 
   module Helpers
-    def toc_for(pages, level=0, base_path="", parent_current=true)
-      buffer = "<ol class='toc-level-#{level}#{parent_current ? ' selected' : ''}'>"
+    def toc_for(guides)
+      buffer = "<ol class='toc-level-0'>"
       # indentation below is to aid in understanding the HTML structure
-        pages.each do |page|
-          next if page.skip_toc
+        guides.each do |guide|
+          next if guide.skip_toc
 
-          requested_page_url = request.path.split('/')[level]
-          current = (parent_current && page.url == requested_page_url)
+          slugs = request.path.split('/')
 
-          page_path = base_path + "/" + page.url
+          requested_guide_url = slugs[0]
+          current = (guide.url == requested_guide_url)
 
-          unless page.pages || File.exist?(file = "source" + page_path + ".md")
-            raise "#{file} does not exist but is referenced in data/guides.yml."
-          end
+          middleman_base_url = "/#{guide.url}/#{guide.chapters[0].url}"
+          middleman_url = middleman_base_url + ".html"
 
-          buffer << "<li class='toc-level-#{level} #{current ? 'selected' : ''}'>"
-            buffer << link_to(page.title, page_path)
-            buffer << toc_for(page.pages, level + 1, page_path, current) if page.pages
+          file = "source" + middleman_base_url + ".md"
+          raise "#{file} does not exist but is referenced in data/guides.yml. " unless File.exist?(file)
+
+          buffer << "<li class='toc-level-0 #{current ? 'selected' : ''}'>"
+            buffer << link_to(guide.title, middleman_url)
+            buffer << "<ol class='toc-level-1 #{(current ? 'selected' : '')}'>"
+              guide.chapters.each do |chapter|
+                next if chapter.skip_toc
+                url = "#{guide.url}/#{chapter.url}.html"
+
+                sub_current = (url == current_page.path)
+
+                middleman_url = "/" + url
+
+                buffer << "<li class='toc-level-1 #{sub_current ? 'selected' : ''}'>"
+                  buffer << link_to(chapter.title, middleman_url)
+                buffer << "</li>"
+              end
+            buffer << "</ol>"
           buffer << "</li>"
         end
 
@@ -78,7 +93,7 @@ module TOC
     end
 
     def chapter_github_source_url
-      "https://github.com/emberjs/guides/edit/master/source/#{current_page.path}.md"
+      "https://github.com/emberjs/guides/edit/master/source/#{current_page.path.gsub('.html', '.md')}"
     end
 
     def chapter_links
@@ -98,7 +113,7 @@ module TOC
 
         link_to(title, url, options)
       elsif whats_before = previous_guide
-        previous_chapter = whats_before.pages.last
+        previous_chapter = whats_before.chapters.last
 
         is_root = previous_chapter.url.empty?
 
@@ -121,7 +136,7 @@ module TOC
 
         link_to(title, url, options)
       elsif whats_next = next_guide
-        next_chapter = whats_next.pages.first
+        next_chapter = whats_next.chapters.first
         title = "We're done with #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title} \u2192"
         url = "/#{next_guide.url}/#{next_chapter.url}.html"
 
@@ -134,14 +149,14 @@ module TOC
     def previous_chapter
       return unless current_guide
 
-      current_chapter_index = current_guide.pages.find_index(current_chapter)
+      current_chapter_index = current_guide.chapters.find_index(current_chapter)
 
       return unless current_chapter_index
 
       previous_chapter_index = current_chapter_index - 1
 
       if current_chapter_index > 0
-        current_guide.pages[previous_chapter_index]
+        current_guide.chapters[previous_chapter_index]
       else
         nil
       end
@@ -150,13 +165,13 @@ module TOC
     def next_chapter
       return unless current_guide
 
-      current_chapter_index = current_guide.pages.find_index(current_chapter)
+      current_chapter_index = current_guide.chapters.find_index(current_chapter)
       return unless current_chapter_index
 
       next_chapter_index = current_chapter_index + 1
 
-      if current_chapter_index < current_guide.pages.length
-        current_guide.pages[next_chapter_index]
+      if current_chapter_index < current_guide.chapters.length
+        current_guide.chapters[next_chapter_index]
       else
         nil
       end
@@ -165,13 +180,13 @@ module TOC
     def previous_guide
       return unless current_guide
 
-      current_guide_index = data.pages.find_index(current_guide)
+      current_guide_index = data.guides.find_index(current_guide)
       return unless current_guide_index
 
       previous_guide_index = current_guide_index - 1
 
       if previous_guide_index >= 0
-        data.pages[previous_guide_index]
+        data.guides[previous_guide_index]
       else
         nil
       end
@@ -180,13 +195,13 @@ module TOC
     def next_guide
       return unless current_guide
 
-      current_guide_index = data.pages.find_index(current_guide)
+      current_guide_index = data.guides.find_index(current_guide)
       return unless current_guide_index
 
       next_guide_index = current_guide_index + 1
 
-      if current_guide_index < data.pages.length
-        data.pages[next_guide_index]
+      if current_guide_index < data.guides.length
+        data.guides[next_guide_index]
       else
         nil
       end
@@ -200,13 +215,13 @@ private
       path = current_page.path.gsub('.html', '')
       guide_path = path.split("/")[0]
 
-      @current_guide = data.pages.find do |guide|
+      @current_guide = data.guides.find do |guide|
         guide.url == guide_path
       end
     end
 
     def current_guide_index
-      data.pages.find_index(current_guide)
+      data.guides.find_index(current_guide)
     end
 
     def current_chapter
@@ -216,7 +231,7 @@ private
       path = current_page.path.gsub('.html', '')
       chapter_path = path.split('/')[1..-1].join('/')
 
-      @current_chapter = current_guide.pages.find do |chapter|
+      @current_chapter = current_guide.chapters.find do |chapter|
         chapter.url == chapter_path
       end
     end
