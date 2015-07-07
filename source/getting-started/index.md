@@ -3,70 +3,66 @@ through our [command line build tool ember-cli](http://www.ember-cli.com/). The 
 
 * Modern application asset management (including combining, minifying, and versioning).
 * Built-in generators to help you create components, routes, and more.
-* A conventional project layout so approaching another developer's Ember.js applications is easy.
+* A conventional project layout so approaching other developers' Ember.js applications is easy.
 * Official [JavaScript modules](http://jsmodules.io/) to keep your project organized.
 * A complete testing framework.
 * Access to a growing ecosystem of [Ember Addons](http://www.emberaddons.com/).
 
 
-## Installation
-Ember.js installs through the [npm](#toc_got-node-npm-and-git). Install the Ember.js
-build tools with `npm`.
+## Dependencies
 
-```bash
-npm install -g ember-cli
-```
+### Node.js and npm
 
-Note that the Ember CLI build tool has a few dependencies of its own. In particular, you will need to install [Bower](http://bower.io/) (if you don't have it already) in order to use Ember's build tool as described in these guides. You'll also want to install [PhantomJS](http://phantomjs.org/), which Ember CLI uses to run tests from the command line (without the need for a browser to be open).
-
-```bash
-npm install -g bower
-npm install -g phantomjs
-```
-
-Read the [Getting Started section](http://www.ember-cli.com/#getting-started) of the `ember-cli` project for more information about Ember CLI's dependencies .
-
-## Testing your installation
-
-When installation completes, test your install to ensure it worked by generating a
-new project:
-
-```bash
-ember new my-app
-```
-
-This will create a new `my-app` directory and generate an application structure for you.
-
-Once the generation process finishes, verify that you can run the newly created application:
-
-```bash
-cd my-app
-ember server
-```
-
-Navigate to `http://localhost:4200` to see your new app in action.
-
-## Troubleshooting
-
-### Got Node, npm, and Git?
-
-ember-cli requires Node.js 0.12 or higher, npm 2.7 or higher, and Git.
-
-Node Package Manager (npm) comes bundled with node.js.  If you're not sure if
-you have node.js installed, try running the following command in your terminal:
+Ember CLI is installed using npm (the Node Package Manager), which is bundled
+with Node.js. Ember requires Node.js 0.12 or higher and npm 2.7 or higher.
+If you're not sure whether you have Node.js, try running from your
+command line:
 
 ```bash
 node --version
 ```
 
-If you have node installed you'll see a message like `0.12.x` in your terminal.
+If you get back something like `0.12.x`, you're ready to go.
 
-If you don't have node 0.12 or higher installed:
+If you **don't**:
 
-* Windows or Mac users [can download and run the installer](http://nodejs.org/download/).
-* Linux users [should read through this guide](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) by Joyent for install instructions.
+* Windows or Mac users [can simply download and run the installer](http://nodejs.org/download/).
+* Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After
+installing Homebrew, run `brew install node` to install Node.js.
+* Linux users [can check out this great guide](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) by Joyent for install instructions.
 
-Once you've got node.js installed, run the `node --version` command again to verify your install.
+Once you've got Node.js installed, re-run `node --version` to verify your install.
 
+### Git
+
+Ember requires Git to manage many of its dependencies.
 Git comes with Mac OS X and most Linux distributions.
 Windows users can [download and run the installer](http://git-scm.com/download/win).
+
+### Watchman (optional)
+
+On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+
+
+## Installation
+
+Install Ember using npm:
+
+```bash
+npm install -g ember-cli
+```
+
+While you're at it we recommend you also install PhantomJS to run tests from
+the command line (without the need for a browser to be open):
+
+```bash
+npm install -g phantomjs
+```
+
+To verify that your installation was successful, run:
+
+```bash
+ember -v
+```
+
+If you get back something like `version: 1.13.0`, you're ready to go.
