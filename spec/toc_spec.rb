@@ -5,15 +5,15 @@ describe TOC::Helpers do
   let(:helper)                 { HelperTester.new }
   let(:basic_chapter_title)    { "What even is middleman?" }
   let(:basic_guide_title)      { "Middleman Basics" }
-  let(:basics_page)            { double(path: "middleman-basics/intro") }
+  let(:basics_page)            { double(path: "middleman-basics/index.html") }
 
   before(:each) do
     class HelperTester
       include TOC::Helpers
     end
 
-    data_yml = File.read('spec/fixtures/pages.yml')
-    data = Hashie::Mash.new(pages: YAML.load(data_yml))
+    data_yml = File.read('spec/fixtures/guides.yml')
+    data = Hashie::Mash.new(YAML.load(data_yml))
 
     allow(helper).to receive(:data).and_return(data)
     allow(helper).to receive(:current_page).and_return(basics_page)
@@ -28,7 +28,7 @@ describe TOC::Helpers do
   end
 
   describe "#toc_for" do
-    let(:toc) { helper.toc_for(helper.data.pages) }
+    let(:toc) { helper.toc_for(helper.data.guides) }
 
     before(:each) do
       allow(helper).to receive(:request).and_return(basics_page)
@@ -38,7 +38,7 @@ describe TOC::Helpers do
     it "raises an exception if a file doesn't exist" do
       allow(File).to receive(:exist?).and_return(false)
       expect { toc }.to raise_error(RuntimeError,
-        /source\/middleman-basics\/intro.md does not exist but is referenced in data\/guides.yml./)
+        /source\/middleman-basics\/index.md does not exist but is referenced in data\/guides.yml./)
     end
 
     it "includes guide titles" do
@@ -70,11 +70,11 @@ describe TOC::Helpers do
     end
 
     it "adds the toc-level-0 class to the outermost <ol>" do
-      expect(toc).to include("<ol class='toc-level-0 selected'><li class='toc-level-0 selected'>")
+      expect(toc).to include("<ol class='toc-level-0'><li class='toc-level-0 selected'>")
     end
 
     it "adds the toc-level-0 class to the outermost <li>s" do
-      expect(toc).to include("<li class='toc-level-0 selected'><a href=\"/middleman-basics\">")
+      expect(toc).to include("<li class='toc-level-0 selected'><a href=\"/middleman-basics/index.html\">")
     end
 
     it "adds the toc-level-1 class to the inner <ol>s" do
@@ -82,7 +82,7 @@ describe TOC::Helpers do
     end
 
     it "adds the toc-level-1 class to the inner <li>s" do
-      expect(toc).to include("<li class='toc-level-1 selected'><a href=\"/middleman-basics/intro\">")
+      expect(toc).to include("<li class='toc-level-1 selected'><a href=\"/middleman-basics/index.html\">")
     end
 
     it "adds the selected class to the outermost <li> tag" do
@@ -155,7 +155,7 @@ describe TOC::Helpers do
 
   describe "#chapter_github_source_url" do
     it "is the github URL to the source file for current page" do
-      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/middleman-basics/intro.md")
+      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/middleman-basics/index.md")
     end
   end
 
@@ -173,7 +173,7 @@ describe TOC::Helpers do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/meh"))
 
       expect(helper.previous_chapter_link).to include("What even is middleman")
-      expect(helper.previous_chapter_link).to include("middleman-basics/intro")
+      expect(helper.previous_chapter_link).to include("middleman-basics/index")
     end
 
     it "is link to last chapter in previous guide if current chapter is first chapter in previous guide" do
@@ -185,7 +185,7 @@ describe TOC::Helpers do
 
   describe "#next_chapter_link" do
     it "is link to next chapter in current guide if next chapter is specified" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
 
       expect(helper.next_chapter_link).to include("Nobody really cares about this")
     end
@@ -212,14 +212,14 @@ describe TOC::Helpers do
     end
 
     it "is nil if current chapter is the first chapter in the guide" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
 
       expect(helper.previous_chapter).to be_nil
     end
 
     it "is the previous chapter when current guide & current chapter are specified & there is a chapter before that" do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/meh"))
-      previous_chapter = helper.data.pages.first.pages.first
+      previous_chapter = helper.data.guides.first.chapters.first
 
       expect(helper.previous_chapter).to eq(previous_chapter)
     end
@@ -239,8 +239,8 @@ describe TOC::Helpers do
     end
 
     it "is the next chapter when current guide has a next chapter" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
-      next_chapter = helper.data.pages.first.pages.last
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
+      next_chapter = helper.data.guides.first.chapters.last
 
       expect(helper.next_chapter).to eq(next_chapter)
     end
@@ -254,14 +254,14 @@ describe TOC::Helpers do
     end
 
     it "is nil if current guide is the first guide" do
-      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/intro"))
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
 
       expect(helper.previous_guide).to be_nil
     end
 
     it "is the previous guide when current guide is specified & there is a guide before that" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
-      first_guide = helper.data.pages.first
+      first_guide = helper.data.guides.first
 
       expect(helper.previous_guide).to eq(first_guide)
     end
@@ -275,14 +275,14 @@ describe TOC::Helpers do
     end
 
     it "is nil if current guide is the last guide" do
-      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/intro"))
+      allow(helper).to receive(:current_page).and_return(double(path: "extending-middleman/index"))
 
       expect(helper.next_guide).to be_nil
     end
 
     it "is the next guide when current guide is specified & next guide exists" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
-      next_guide = helper.data.pages.last
+      next_guide = helper.data.guides.last
       expect(helper.next_guide).to eq(next_guide)
     end
   end
