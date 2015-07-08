@@ -18,14 +18,14 @@ module TOC
   end
 
   module Helpers
-    def toc_for(pages, level=0, base_path="", current=false)
-      buffer = "<ol class='toc-level-#{level}#{current ? ' selected' : ''}'>"
+    def toc_for(pages, level=0, base_path="", parent_current=true)
+      buffer = "<ol class='toc-level-#{level}#{parent_current ? ' selected' : ''}'>"
       # indentation below is to aid in understanding the HTML structure
         pages.each do |page|
           next if page.skip_toc
 
           requested_page_url = current_page.path.gsub('.html', '').split('/')[level]
-          current = (page.url == requested_page_url)
+          current = (parent_current && page.url == requested_page_url)
 
           page_path = base_path + "/" + page.url
 
