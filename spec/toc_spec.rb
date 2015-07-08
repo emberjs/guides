@@ -77,7 +77,7 @@ describe TOC::Helpers do
     end
 
     it "adds the toc-level-0 class to the outermost <ol>" do
-      expect(toc).to include("<ol class='toc-level-0'><li class='toc-level-0 selected'>")
+      expect(toc).to include("<ol class='toc-level-0 selected'><li class='toc-level-0 selected'>")
     end
 
     it "adds the toc-level-0 class to the outermost <li>s" do
