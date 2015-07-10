@@ -160,15 +160,13 @@ You can specify an alternative event by using the `on` option.
 
 ```handlebars
 <p>
-  <button {{action "select" post on="mouseUp"}}>✓</button>
+  <button {{action "select" post on="mouse-up"}}>✓</button>
   {{post.title}}
 </p>
 ```
 
-You should use the normalized event names [listed in the View guide][1].
-In general, two-word event names (like `keypress`) become `keyPress`.
-
-[1]: http://emberjs.com/api/classes/Ember.View.html#toc_event-names
+You should use the dasherized event names.
+In general, two-word event names (like `keypress`) become `key-press`.
 
 ### Specifying Whitelisted Modifier Keys
 
