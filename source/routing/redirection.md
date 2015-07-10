@@ -74,7 +74,7 @@ Router.map(function() {
 });
 ```
 
-```app/routes/top-charts-choose.js
+```app/routes/top-charts/choose.js
 export default Ember.Route.extend({
   beforeModel: function() {
     var lastFilter = this.controllerFor('application').get('lastFilter');
