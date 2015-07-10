@@ -23,9 +23,9 @@ The above example will print a list like this:
 
 The `{{#each}}` helper is bindings-aware.  If your
 application adds a new item to the array, or removes an item, the DOM
-will be updated without having to write any code. Note that a [].push()
-will not update the helper. Adding items need to be done with [].pushObject, 
-and related Ember Array mixins so Ember knows to update the resulting HTML.
+will be updated without having to write any code. Note that a `[].push()`
+will not update the helper. Adding items need to be done with `[].pushObject`, 
+and related [Ember Mutable Array methods](http://emberjs.com/api/classes/Ember.MutableArray.html) so that Ember can observe the change.
 
 ### Specifying Keys
 
