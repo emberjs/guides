@@ -232,3 +232,31 @@ Injections can be made onto all of Ember's major framework classes including com
  -->
 
 Dependency injection and service lookup are two powerful tools in your Ember.js toolset, and every mature Ember application will require their use.
+
+### Dependency Injection with `Ember.Service`
+
+```JavaScript
+import Registry from "container/registry";
+import Service from "ember-runtime/system/service";
+import EmberObject from "ember-runtime/system/object";
+import EmberRoute from "ember-routing/system/route";
+import inject from "ember-runtime/inject";
+
+var route = EmberRoute.create();
+var registry = new Registry();
+var container = registry.container();
+  
+registry.register('route:application', EmberRoute.extend({
+  authService: inject.service('auth')
+}));
+
+registry.register('service:auth', Service.extend());
+
+var appRoute = container.lookup('route:application');
+var authService = container.lookup('service:auth');
+
+appRoute.get('authService')
+```
+
+
+
