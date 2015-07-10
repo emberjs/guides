@@ -241,3 +241,19 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+### Allowing Default Browser Action
+
+By default, the `{{action}}` helper prevents the default browser action of the DOM event. If you want to allow the browser action, you can stop ember from preventing it.
+
+For example, if you have a normal link tag and want the link to bring the user to another page in addition to triggering an ember action when clicked.
+
+```handlebars
+<a href="newPage.htm" {{action 'logClick' preventDefault=false}}>Go</a>
+```
+
+Without `preventDefault=false`, if the user clicked on the link, Ember.js
+will trigger the action, but the user will remain on the current page.
+
+With `preventDefault=false`, if the user clicked on the link, Ember.js
+will trigger the action *and* the user will be directed to the new page.
