@@ -24,17 +24,34 @@ you the ability to inspect the current rendering context:
 ```handlebars
 {{debugger}}
 ```
-Just before the helper is invoked two useful variables and a helper are defined:
 
-* `view` The current view.
-* `context` The current context. This is likely a component.
-* 'get(<path>)` A helper to lookup properties.
+When using the debugger helper you will have access to a `get` function. This
+function retrieves values available in the context of the template.
+For example, if you're wondering why a value `{{foo}}` isn't rendering as
+expected within a template, you could place a `{{debugger}}` statement and,
+when the `debugger;` breakpoint is hit, you can attempt to retrieve this value:
 
-For example, if you are wondering why a specific variable isn't displaying in
-your template, you could use the `{{debugger}}` helper. When the breakpoint is
-hit, you can use the `get(<path>) in your console to lookup properties:
+```
+> get('foo')
+```
 
-```javascript
-> get('name')
-"Bruce Lee"
+`get` is also aware of keywords. So in this situation:
+
+```handlebars
+{{#each items as |item|}}
+  {{debugger}}
+{{/each}}
+```
+
+You'll be able to get values from the current item:
+
+```
+> get('item.name')
+```
+
+You can also access the context of the view to make sure it is the object that
+you expect:
+
+```
+> context
 ```
