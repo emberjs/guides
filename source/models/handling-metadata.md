@@ -3,7 +3,7 @@ Along with the records returned from your store, you'll likely need to handle so
 Pagination is a common example of using metadata. Imagine a blog with far more posts than you can display at once. You might query it like so:
 
 ```js
-var result = this.store.query("post", {
+let result = this.store.query("post", {
   limit: 10,
   offset: 0
 });
@@ -11,7 +11,7 @@ var result = this.store.query("post", {
 
 To get different *pages* of data, you'd simply change your offset in increments of 10. So far, so good. But how do you know how many pages of data you have? Your server would need to return the total number of records as a piece of metadata.
 
-By default, Ember Data's JSON deserializer looks for a `meta` key:
+Each serializer will expect the metadata to be returned differently. For example, Ember Data's JSON deserializer looks for a `meta` key:
 
 ```js
 {
@@ -31,40 +31,36 @@ By default, Ember Data's JSON deserializer looks for a `meta` key:
 }
 ```
 
-The metadata for a specific type is then set to the contents of `meta`. You can access it either with `store.metadataFor`, which is updated any time any query is made against the same type:
+Regardless of the serializer used, this metadata is extracted from the response. You can then read it with `.get('meta')`.
+
+This can be done on the result of a `store.query()` call:
 
 ```js
-var meta = this.store.metadataFor("post");
+store.query('post').then((result) => {
+  let meta = result.get('meta');
+})
 ```
 
-Or you can access the metadata just for this query:
+On a belongsTo relationship:
 
 ```js
-var meta = result.get("meta");
-```
+let post = store.peekRecord('post', 1);
 
-Now, `meta.total` can be used to calculate how many pages of posts you'll have.
-
-You can also customize metadata extraction by overriding the `extractMeta` method. For example, if instead of a `meta` object, your server simply returned:
-
-```js
-{
-  "post": [
-    // ...
-  ],
-  "total": 100
-}
-```
-
-You could extract it like so:
-
-```app/serializers/application.js
-export default DS.RESTSerializer.extend({
-  extractMeta: function(store, type, payload) {
-    if (payload && payload.total) {
-      store.setMetadataFor(type, { total: payload.total });  // sets the metadata for "post"
-      delete payload.total;  // keeps ember data from trying to parse "total" as a record
-    }
-  }
+post.get('author').then((author) => {
+  let meta = author.get('meta');
 });
 ```
+
+Or on a hasMany relationship:
+
+```js
+let post = store.peekRecord('post', 1);
+
+post.get('comments').then((comments) => {
+  let meta = comments.get('meta');
+});
+```
+
+After reading it, `meta.total` can be used to calculate how many pages of posts you'll have.
+
+To customize metadata extraction, check out the documentation for your serializer.
