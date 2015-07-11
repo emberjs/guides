@@ -54,9 +54,9 @@ Let's look at a similar example that is optimized in Ember, starting with a `Use
 var User = Ember.Object.extend({
   firstName: null,
   lastName: null,
-  fullName: function() {
+  fullName: Ember.computed('firstName', 'lastName', function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')
+  })
 });
 ```
 
@@ -175,9 +175,17 @@ You should begin a run loop when the callback fires.
 
 #### How do I tell Ember to start a run loop?
 
+The `Ember.run` method can be used to create a runloop. In this example, jQuery
+and `Ember.run` are used to handle a click event and run some Ember code.
+
+This example uses the `=>` function syntax, which is a [new ES2015 syntax for
+callback functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) that provides a lexical `this`. If this syntax is new,
+think of it as a function that has the same `this` as the context it is
+defined in.
+
 ```javascript
-$('a').click(function(){
-  Ember.run(function(){  // begin loop
+$('a').click(() => {
+  Ember.run(() => {  // begin loop
     // Code that results in jobs being scheduled goes here
   }); // end loop, jobs are flushed and executed
 });
@@ -190,13 +198,13 @@ As mentioned above, you should wrap any non-Ember async callbacks in
 Consider the following callback:
 
 ```javascript
-$('a').click(function(){
+$('a').click(() => {
   console.log('Doing things...');
 
-  Ember.run.schedule('actions', this, function() {
+  Ember.run.schedule('actions', () => {
     // Do more things
   });
-  Ember.run.scheduleOnce('afterRender', this, function() {
+  Ember.run.scheduleOnce('afterRender', () => {
     // Yet more things
   });
 });
@@ -210,26 +218,26 @@ runloops we call _autoruns_.
 Here is some pseudocode to describe what happens using the example above:
 
 ```javascript
-$('a').click(function(){
+$('a').click(() => {
   // 1. autoruns do not change the execution of arbitrary code in a callback.
   //    This code is still run when this callback is executed and will not be
   //    scheduled on an autorun.
   console.log('Doing things...');
 
-  Ember.run.schedule('actions', this, function() {
+  Ember.run.schedule('actions', () => {
     // 2. schedule notices that there is no currently available runloop so it
     //    creates one. It schedules it to close and flush queues on the next
     //    turn of the JS event loop.
     if (! Ember.run.hasOpenRunloop()) {
       Ember.run.start();
-      nextTick(function() {
-          Ember.run.end()
+      nextTick(() => {
+        Ember.run.end()
       }, 0);
     }
 
     // 3. There is now a runloop available so schedule adds its item to the
     //    given queue
-    Ember.run.schedule('actions', this, function() {
+    Ember.run.schedule('actions', () => {
       // Do more things
     });
 
@@ -237,7 +245,7 @@ $('a').click(function(){
 
   // 4. scheduleOnce sees the autorun created by schedule above as an available
   //    runloop and adds its item to the given queue.
-  Ember.run.scheduleOnce('afterRender', this, function() {
+  Ember.run.scheduleOnce('afterRender', () => {
     // Yet more things
   });
 
