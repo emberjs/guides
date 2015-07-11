@@ -110,10 +110,3 @@ Will bind the value of the text area to `name` on the current context.
 * `form`
 * `spellcheck`
 * `required`
-
-### Extending Built-In Controls
-
-See the [Built-in Views][4] section of these guides to learn how to further
-extend these views.
-
-[4]: ../../views/built-in-views
