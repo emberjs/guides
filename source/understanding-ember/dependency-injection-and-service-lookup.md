@@ -3,9 +3,9 @@
 ```app/routes/index.js
 export default Ember.Route.extend({
   actions: {
-    showPath: function(){
+    showPath() {
       // Dependency injection provides the router object to the route instance.
-      alert(this.router.get('currentPath'));
+      alert(this.get('router.currentPath'));
     }
   }
 });
@@ -16,11 +16,10 @@ Sometimes an Ember.js library will use dependency injection to expose its API to
 ```app/controllers/index.js
 export default Ember.Controller.extend({
   actions: {
-    findItems: function(){
-      var controller = this;
+    findItems() {
       // Dependency injection provides the store object to the controller instance.
-      this.store.find('item').then(function(items){
-        controller.set('items', items);
+      this.store.find('item').then((items) => {
+        this.set('items', items);
       });
     }
   }
@@ -35,37 +34,39 @@ The second tool, **service lookup**, describes when a dependency is created or f
 * Avoid the use of global variables and instances (important for testing)
 * Allow a single object instance to represent state, but share that state with other objects.
 
-### Lightweight Services with `needs`
+### Lightweight Services with `Ember.inject`
 
-A common use-case for service lookup is that of a singleton service. Often, these services will live near application state, and thus Ember provides an API that makes controller services easy to write.
+A common use-case for service lookup is that of a singleton service. Often, these services will live near application state, and thus Ember provides an API that makes services easy to write.
 
 For example, a session service can easily be made available to this index controller:
 
-```app/controllers/session.js
-export default Ember.Controller.extend({
+```app/services/session.js
+export default Ember.Service.extend({
   isAuthenticated: false
 });
 ```
 
 ```app/controllers/index.js
 export default Ember.Controller.extend({
-  needs: ['session'],
-  // The index controller may need access to that state:
-  // Using needs, the controller instance will be available on `controllers`
-  isLoggedIn: Ember.computed.alias('controllers.session.isAuthenticated')
+  session: Ember.inject.service(),
+  // Using inject, the service instance will be available:
+  isLoggedIn: Ember.computed.reads('session.isAuthenticated')
 });
 ```
 
-The `controllers` computed property returns a hash of the controllers listed in `needs`. Controllers in Ember.js are singletons, meaning the same instance is always returned when they are requested.
+`Ember.inject` bases the service it injects on the name of the property is is
+assigned to. If injecting a service with a different name than the property
+is required, that name can be passed as an argument to `service()`.
 
-A second controller can take advantage of this singleton nature to access the same session object:
+For example, this component can take advantage of reading state from the
+same singleton service instance:
 
-```app/controllers/sign-in.js
-export default Ember.Controller.extend({
-  needs: ['session'],
-  isLoggedIn: Ember.computed.alias('controllers.session.isAuthenticated'),
+```app/components/sign-in-button.js
+export default Ember.Component.extend({
+  sessionService: Ember.inject.service('session'),
+  isLoggedIn: Ember.computed.alias('serviceService.isAuthenticated'),
   actions: {
-    signIn: function(){
+    signIn() {
       // There is an alias to the session property, so this change propagates
       // to the session object then the IndexController.
       this.set('isLoggedIn', true);
@@ -74,62 +75,59 @@ export default Ember.Controller.extend({
 });
 ```
 
-The session object returned in both classes is the same. `needs` provides us an easy way to share state across controllers.
+The session object returned in both classes is the same.
 
-### Services with DOM via `needs`
+### Services with DOM via components
 
-The `needs` array can fetch any singleton controller in an Ember application. This can be combined with the `render` helper to create services that also have access to the DOM.
+Services can be combined with components to create a serivce backed with DOM.
 
-Let's build a controller that manages audio playback and makes it available to other controllers.
+Let's build a service that manages audio playback and makes it available to
+other components.
 
-First, we create `controller:audio` and attach it to the DOM by using the `render` helper. This helper renders a template, and backs that template with a controller of the same name.
+First, we create an `audio-player` component and attach it to the DOM by using
+it in the application template.
 
 ```handlebars
 {{! application.hbs }}
-{{render "audio"}}
+{{audio-player}}
 {{outlet}}
 ```
 
-And we must create an `app/templates/audio.hbs` template to render:
+And we must create an `app/templates/components/audio-player.hbs` template to render:
 
-```app/templates/audio.hbs
+```app/templates/components/audio-player.hbs
 <audio id="audio" controls loop>
-  <source src={{currentSrc}} type="audio/mpeg"></source>
+  <source src={{audioService.currentSrc}} type="audio/mpeg"></source>
 </audio>
-<div>{{currentSrc}}</div>
+<div>{{audioService.currentSrc}}</div>
 ```
 
-The `render` helper will back this template with a controller of the same name. We create that controller, and have it maintain the `currentSrc` property:
+The JavaScript of this component registers itself to the service to control
+play functionality.
 
-```app/controllers/audio.js
-export default Ember.Controller.extend({
+```app/components/audio-player.js
+export default Ember.Component.extend({
+  audioService: Ember.inject.service('audio')
+});
+```
+
+To allow other controllers to play audio, we author a service that can set
+`currentSrc` to play audio:
+
+```app/services/audio.js
+export default Ember.Service.extend({
   currentSrc: null,
-  play: function(src){
+  selectSrc(src) {
     this.set('currentSrc', src);
   }
 });
 ```
 
-To allow other controllers to play audio, we use the `needs` array to look up our new service:
+When another component injects the service `audio`, it has access to the same
+singleton as the `audio-player` component. Those other components can call
+`selectSrc` and pass a new URL to be played.
 
-```app/controllers/index.js
-export default Ember.Controller.extend({
-  needs: ['audio'],
-  actions: {
-    selectSrc: function(src){
-      this.get('controllers.audio').play(src);
-    }
-  }
-});
-```
-
-When the index controller calls `this.get('controllers.audio')`, the audio service is returned. Other controllers can also use `needs` to access the `audio` service.
-
-<!-- A functional version of this example is provided below:
-
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/depar/1/embed?js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
- -->
-Services are a simple way to share behavior between controllers and isolate responsibilities in an application. `needs` is an easy and quick way to create services and share them between an application's controllers.
+Services are a simple way to share behavior between controllers and isolate responsibilities in an application.
 
 For a more powerful way to connect Ember.js components, let's look at **dependency injection**.
 
@@ -156,7 +154,7 @@ Instead of accessing the container directly, Ember provides an API for registeri
 ```app/initializers/logger.js
 export function initialize(container, application) {
   var logger = {
-    log: function(message) {
+    log(message) {
       console.log(message);
     }
   };
@@ -177,7 +175,7 @@ Any dependency injection is comprised of two parts. The first is the **factory r
 
 ```app/initializers/logger.js
 var logger = {
-  log: function(m) {
+  log(m) {
     console.log(m);
   }
 };
@@ -191,7 +189,7 @@ Often, it is preferable to register a factory that can be instantiated:
 
 ```app/initializers/logger.js
 var Logger = Ember.Object.extend({
-  log: function(m) {
+  log(m) {
     console.log(m);
   }
 });
@@ -211,7 +209,7 @@ This is an example of a *type injection*. Onto all factories of the type `route`
 
 ```app/routes/index.js
 export default Ember.Route.extend({
-  activate: function(){
+  activate() {
     // The logger property is injected into all routes
     this.logger.log('Entered the index route!');
   }
@@ -225,10 +223,5 @@ application.inject('route:index', 'logger', 'logger:main');
 ```
 
 Injections can be made onto all of Ember's major framework classes including components, controllers, routes, and the router.
-
-<!-- What follows is a full implementation of the above logger service:
-
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/fajeriwu/1/embed?html,js,console,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
- -->
 
 Dependency injection and service lookup are two powerful tools in your Ember.js toolset, and every mature Ember application will require their use.
