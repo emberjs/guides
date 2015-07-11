@@ -19,24 +19,23 @@ loaded into a `PostController`'s model, which means it is not directly
 accessible in the `CommentsController`. We might however want to display
 some information about it in the `comments` template.
 
-To be able to do this we define our `CommentsController` to `need` the `PostController`
-which has our desired `Post` model.
+To be able to do this we inject the `PostController` into the
+`CommentsController` (which has the desired `Post` model).
 
 ```app/controllers/comments.js
-export default Ember.ArrayController.extend({
-  needs: "post"
+export default Ember.Controller.extend({
+  postController: Ember.inject.controller('post')
 });
 ```
 
-This tells Ember that our `CommentsController` should be able to access
-its parent `PostController`, which can be done via `controllers.post`
-(either in the template or in the controller itself). In order to get the
-actual `Post` model, we need to refer to `controllers.post.model`:
+Once comments has access to the `PostController`, a read-only alias can be
+used to read the model from that controller. In order to get the
+`Post` model, we refer to `postController.model`:
 
 ```app/controllers/comments.js
-export default Ember.ArrayController.extend({
-  needs: "post",
-  post: Ember.computed.alias("controllers.post.model")
+export default Ember.Controller.extend({
+  postController: Ember.inject.controller('post'),
+  post: Ember.computed.reads('postController.model')
 });
 ```
 
@@ -44,22 +43,13 @@ export default Ember.ArrayController.extend({
 <h1>Comments for {{post.title}}</h1>
 
 <ul>
-  {{#each comments as |comment|}}
+  {{#each model as |comment|}}
     <li>{{comment.text}}</li>
   {{/each}}
 </ul>
 ```
 
-If you want to connect multiple controllers together, you can specify an
-array of controller names:
-
-```app/controllers/overview.js
-export default Ember.Controller.extend({
-  needs: ['post', 'comments']
-});
-```
-
-For more information about dependency injection and `needs` in Ember.js,
+For more information about dependency injection in Ember.js,
 see the [dependency injection guide](../../understanding-ember/dependency-injection-and-service-lookup).
 For more information about aliases, see the API docs for
 [aliased properties](http://emberjs.com/api/#method_computed_alias).
