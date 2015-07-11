@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
 gem "redcarpet"
-gem "activesupport"
+gem "activesupport", '~> 4.1.11'
 gem "highline"
 gem "rake"
-gem "coderay", :git => "git://github.com/dgeb/coderay.git", :branch => "handlebars"
+gem "coderay", :git => "https://github.com/dgeb/coderay.git", :branch => "handlebars"
 gem "middleman", '~> 3.0'
 gem "thin"
 gem "rack"
 gem "listen"
 gem "builder"
 gem "middleman-alias"
-gem "middleman-swiftype", :git => "git://github.com/LeonB/middleman-swiftype.git"
+gem "middleman-swiftype", :git => "https://github.com/LeonB/middleman-swiftype.git"
 gem "underscore-rails"
 
 source 'https://rails-assets.org' do
