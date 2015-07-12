@@ -105,22 +105,17 @@ an object that provides its data.
 
 ### Representing Models
 
-Templates are always connected to controllers, not models. This
+Templates are always provided context by a controller or component,
+never a model. This
 makes it easy to separate display-specific properties from model
-specific properties, and to swap out the controller's model as the
+specific properties, and to swap out a controller's model as the
 user navigates around the page.
-
-For convenience, Ember.js provides an `Ember.ArrayController` that proxies
-properties from an Array. If your controller is an `ArrayController`, you can
-iterate over the model using `{{#each model as |item|}}`. This
-keeps the template from having to know about how the controller is implemented
-and makes isolation testing and refactoring easier.
 
 ### Storing Application Properties
 
 Not all properties in your application need to be saved to the
 server. Any time you need to store information only for the lifetime
-of this application run, you should store it on a controller.
+of this application run, you can store it on a controller.
 
 For example, imagine your application has a search field that
 is always present. You could store a `search` property on your
@@ -141,10 +136,10 @@ export default Ember.Controller.extend({
   search: '',
 
   actions: {
-    query: function() {
+    query() {
       // the current value of the text field
       var query = this.get('search');
-      this.transitionToRoute('search', { query: query });
+      this.transitionToRoute('search', { query });
     }
   }
 });
