@@ -18,6 +18,8 @@ store.find('post', 1).then(function(post) {
 
 The REST adapter will automatically send a `GET` request to `/posts/1`.
 
+For multiple word names, the REST adapter will use `lower_snake_case`.
+
 The actions you can take on a record map onto the following URLs in the
 REST adapter:
 
