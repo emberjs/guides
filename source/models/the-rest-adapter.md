@@ -26,11 +26,11 @@ REST adapter:
     <tr><th>Action</th><th>HTTP Verb</th><th>URL</th></tr>
   </thead>
   <tbody>
-    <tr><th>Find</th><td>GET</td><td>/people/123</td></tr>
-    <tr><th>Find All</th><td>GET</td><td>/people</td></tr>
-    <tr><th>Update</th><td>PUT</td><td>/people/123</td></tr>
-    <tr><th>Create</th><td>POST</td><td>/people</td></tr>
-    <tr><th>Delete</th><td>DELETE</td><td>/people/123</td></tr>
+    <tr><th>Find</th><td>GET</td><td>/posts/123</td></tr>
+    <tr><th>Find All</th><td>GET</td><td>/posts</td></tr>
+    <tr><th>Update</th><td>PUT</td><td>/posts/123</td></tr>
+    <tr><th>Create</th><td>POST</td><td>/posts</td></tr>
+    <tr><th>Delete</th><td>DELETE</td><td>/posts/123</td></tr>
   </tbody>
 </table>
 
@@ -41,12 +41,12 @@ Irregular or uncountable pluralizations can be specified via `Ember.Inflector.in
 ```js
 var inflector = Ember.Inflector.inflector;
 
-inflector.irregular('formula', 'formulae');
+inflector.irregular('person', 'people');
 inflector.uncountable('advice');
 ```
 
-This will tell the REST adapter that requests for `formula`
-should go to `/formulae/1` instead of `/formulas/1`.
+This will tell the REST adapter that requests for `person`
+should go to `/people/1` instead of `/persons/1`.
 
 #### Endpoint Path Customization
 
