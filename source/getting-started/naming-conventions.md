@@ -7,13 +7,7 @@ all of the naming conventions.
 
 ## The Application
 
-When your application boots, Ember will look for the objects exported
-by these modules in your project:
-
-* `app/app.js`
-* `app/controllers/application.js`
-* `app/templates/application.hbs`
-
+When your application boots,
 Ember.js will render the `application` template as the main template.
 If `controller:application` is provided, Ember.js will set an
 instance of `controller:application` as the controller for the
