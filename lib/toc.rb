@@ -55,22 +55,6 @@ module TOC
       current_titles.last
     end
 
-    def chapter_heading
-      name = page_title.strip
-      return if name.blank?
-
-      %Q{
-        <h1>
-          #{name}
-          <a href="#{chapter_github_source_url}" target="_blank" class="edit-page icon-pencil">Edit Page</a>
-        </h1>
-      }
-    end
-
-    def chapter_github_source_url
-      "https://github.com/emberjs/guides/edit/master/source/#{current_page.path.gsub('.html', '.md')}"
-    end
-
     def chapter_links
       %Q{
       <footer>
