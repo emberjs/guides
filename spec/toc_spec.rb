@@ -105,51 +105,27 @@ describe TOC::Helpers do
     end
   end
 
+  describe "#full_page_title" do
+    it "is the current page's title" do
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics"))
+
+      expect(helper.full_page_title).to eq("Middleman Basics")
+    end
+
+    it "combines the page titles separated by colons" do
+      expect(helper.full_page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
+    end
+  end
+
   describe "#page_title" do
-    it "is generic when current guide is not specified" do
-      allow(helper).to receive(:current_guide).and_return(nil)
-
-      expect(helper.page_title).to eq("Guides")
-    end
-
-    it "is current guide's title when current chapter is not specified" do
-      allow(helper).to receive(:current_chapter).and_return(nil)
-
-      expect(helper.page_title).to eq("Middleman Basics")
-    end
-
-    it "is a combination of current guide & chapter titles when both are specified" do
-      expect(helper.page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
-    end
-  end
-
-  describe "#guide_name" do
-    it "is nil if current guide is not specified" do
-      allow(helper).to receive(:current_guide).and_return(nil)
-
-      expect(helper.guide_name).to be_nil
-    end
-
-    it "is the current guide's title when current guide is specified" do
-      expect(helper.guide_name).to eq(basic_guide_title)
-    end
-  end
-
-  describe "#chapter_name" do
-    it "is an empty string when current chapter is not specified" do
-      allow(helper).to receive(:current_chapter).and_return(nil)
-
-      expect(helper.chapter_name).to eq("")
-    end
-
-    it "is current chapter's title when current chapter is specified" do
-      expect(helper.chapter_name).to eq(basic_chapter_title)
+    it "is just the current page's title without parent page's titles" do
+      expect(helper.page_title).to eq(basic_chapter_title)
     end
   end
 
   describe "#chapter_heading" do
     it "is nil if chapter name is blank" do
-      allow(helper).to receive(:chapter_name).and_return("")
+      allow(helper).to receive(:page_title).and_return("")
 
       expect(helper.chapter_heading).to be_nil
     end
