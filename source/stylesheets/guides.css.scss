@@ -25,6 +25,15 @@ body.guides, body.blog, body.api {
     @include border-radius(5px);
   }
 
+  pre.code {
+    font-family: Menlo, Courier, monospace;
+    font-size: 90%;
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 3px;
+    @include border-radius(5px);
+  }
+
   .highlight { // jsbin includes
     margin-bottom: 20px;
   }
