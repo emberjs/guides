@@ -48,8 +48,8 @@ export default Ember.Helper.helper(function(params) {
       cents = value % 100,
       sign = '$';
 
-  if (cents.toString().length === 1) { cents = '0'+cents; }
-  return sign+dollars+'.'+cents;
+  if (cents.toString().length === 1) { cents = '0' + cents; }
+  return `${sign}${dollars}.${cents}`;
 });
 ```
 
@@ -166,8 +166,8 @@ export default Ember.Helper.helper(function(params, namedArgs) {
       cents = value % 100,
       sign = namedArgs.sign === undefined ? '$' : namedArgs.sign;
 
-  if (cents.toString().length === 1) { cents = '0'+cents; }
-  return sign+dollars+'.'+cents;
+  if (cents.toString().length === 1) { cents = '0' + cents; }
+  return `${sign}${dollars}.${cents}`;
 });
 ```
 
@@ -263,8 +263,8 @@ export default Ember.Helper.extend({
         cents = value % 100,
         sign = hash.sign === undefined ? '$' : hash.sign;
 
-    if (cents.toString().length === 1) { cents = '0'+cents; }
-    return sign+dollars+'.'+cents;
+    if (cents.toString().length === 1) { cents = '0' + cents; }
+    return `${sign}${dollars}.${cents}`;
   }
 });
 ```
