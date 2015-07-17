@@ -1,14 +1,10 @@
 The model of a controller can represent several records as well as a single
-one. Here we will customize the default routing logic and set the `model`
-property in a route's `setupController` method.
-
-In our route, we setup our `SongsController` to represent the songs in a
-playlist:
+one. Here, our route's `model` hook returns an array of songs:
 
 ```app/routes/songs.js
 export default Ember.Route.extend({
-  setupController(controller, playlist) {
-    controller.set('model', playlist.get('songs'));
+  model() {
+    return this.store.findAll('song');
   }
 });
 ```
