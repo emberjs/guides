@@ -175,16 +175,6 @@
     - title: "Testing Models"
       url: "testing-models"
 
-- title: "Configuring Ember.js"
-  url: 'configuring-ember'
-  pages:
-    - title: "Disabling Prototype Extensions"
-      url: "disabling-prototype-extensions"
-    - title: "Embedding Applications"
-      url: "embedding-applications"
-    - title: "Feature Flags"
-      url: "feature-flags"
-
 - title: "Ember Inspector"
   url: "ember-inspector"
   pages:
@@ -210,6 +200,16 @@
       url: "render-performance"
     - title: "Troubleshooting"
       url: "troubleshooting"
+
+- title: "Configuring Ember.js"
+  url: 'configuring-ember'
+  pages:
+    - title: "Disabling Prototype Extensions"
+      url: "disabling-prototype-extensions"
+    - title: "Embedding Applications"
+      url: "embedding-applications"
+    - title: "Feature Flags"
+      url: "feature-flags"
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
