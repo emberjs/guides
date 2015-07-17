@@ -37,7 +37,7 @@ supported through third-party addons.
 
 ### How to Run Your Tests
 
-Run your tests with `ember test` on the command-line. You can re-run your tests on every file-change with `ember test --server`. For more details and options, see [Ember CLI – Testing](http://www.ember-cli.com/#testing) and `ember help test`.
+Run your tests with `ember test` on the command-line. You can re-run your tests on every file-change with `ember test --server`. For more details and options, see [Ember CLI – Testing](http://www.ember-cli.com/user-guide/#testing) and `ember help test`.
 
 ### Contributing
 
