@@ -202,33 +202,61 @@ export default Ember.Router.extend().map(function(){
 Here are the naming conventions for each of the routes defined in
 this router:
 
-<table class="extensive">
-  <thead>
-  <tr>
-    <th>Route Name</th>
-    <th>Controller</th>
-    <th>Route</th>
-    <th>Template</th>
-  </tr>
-  </thead>
-  <tr>
-    <td><code>posts</code></td>
-    <td><code>app/controllers/posts.js</code></td>
-    <td><code>app/routes/posts.js</code></td>
-    <td><code>app/templates/posts.hbs</code></td>
-  </tr>
-  <tr>
-    <td><code>posts.favorites</code></td>
-    <td><code>app/controllers/posts/favorites.js</code></td>
-    <td><code>app/routes/posts/favorites.js</code></td>
-    <td><code>app/templates/posts/favorites.hbs</code></td>
-  </tr>
-  <tr>
-    <td><code>posts.post</code></td>
-    <td><code>app/controllers/posts/post.js</code></td>
-    <td><code>app/routes/posts/post.js</code></td>
-    <td><code>app/templates/posts/post.hbs</code></td>
-  </tr>
+<table>
+    <thead>
+      <tr>
+          <th>Route Name</th>
+          <th>Convention</th>
+      </tr>
+    </thead>
+    <tr>
+        <td><code>posts</code></td>
+        <td>
+            <pre class="code">
+app
+ ├── controllers/
+ │   └── posts.js  
+ ├── routes/
+ │   └── posts.js  
+ └── templates/
+     └── posts.hbs
+            </pre>
+        </td>
+    </tr>
+    <tr>
+        <td><code>posts.favorites</code></td>
+        <td>
+            <pre class="code">
+app
+ ├── controllers/
+ │   └── posts/  
+ │       └── favorites.js  
+ ├── routes/
+ │   └── posts/
+ │       └── favorites.js  
+ └── templates/
+     └── posts/
+         └── favorites.hbs
+          </pre>
+        </td>
+    </tr>
+    <tr>
+        <td><code>posts.post</code></td>
+        <td>
+            <pre class="code">
+app
+ ├── controllers/
+ │   └── posts/  
+ │       └── post.js  
+ ├── routes/
+ │   └── posts/
+ │       └── post.js  
+ └── templates/
+     └── posts/
+         └── post.hbs
+            </pre>
+        </td>
+    </tr>
 </table>
 
 ## The Index Route
