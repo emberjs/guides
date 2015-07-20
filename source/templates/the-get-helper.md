@@ -33,6 +33,6 @@ The `{{get}}` helper can also be used with the `{{input}}` helper to allow you t
 ```handlebars
 <div>
   <label>{{fieldName}}</labe>
-  {{input value=(mut (get person fieldKey)) typ='text'}}
+  {{input value=(mut (get person fieldKey)) type='text'}}
 </div>
 ```
