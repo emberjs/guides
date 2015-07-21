@@ -5,7 +5,7 @@ everything there is to know about building awesome web applications.
 
 Most of these guides are designed to help you start building apps right
 away. If you'd like to know more about the thinking behind Ember.js,
-you'll find what you're looking for in the [Understanding Ember.js](understanding-ember/the-view-layer)
+you'll find what you're looking for in the [Understanding Ember.js](understanding-ember/debugging)
 section.
 
 These guides are written in Markdown and are
