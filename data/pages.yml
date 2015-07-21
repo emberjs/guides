@@ -17,6 +17,22 @@
     - title: "Naming Conventions"
       url: "naming-conventions"
 
+- title: "Developing your app"
+  url: 'developing-your-app'
+  chapters:
+    - title: "CLI Basics"
+      url: "index"
+    - title: "Configuration"
+      url: "configuration"
+    - title: "Running the development server"
+      url: "development-server"
+    - title: "Running tests"
+      url: "running-tests"
+    - title: "Managing dependencies"
+      url: "managing-dependencies"
+    - title: "Building for production"
+      url: "building-for-production"
+
 - title: "The Object Model"
   url: 'object-model'
   pages:
