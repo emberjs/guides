@@ -31,7 +31,7 @@ For example, if you're wondering why a value `{{foo}}` isn't rendering as
 expected within a template, you could place a `{{debugger}}` statement and,
 when the `debugger;` breakpoint is hit, you can attempt to retrieve this value:
 
-```
+```javascript
 > get('foo')
 ```
 
@@ -45,13 +45,13 @@ when the `debugger;` breakpoint is hit, you can attempt to retrieve this value:
 
 You'll be able to get values from the current item:
 
-```
+```javascript
 > get('item.name')
 ```
 
 You can also access the context of the view to make sure it is the object that
 you expect:
 
-```
+```javascript
 > context
 ```
