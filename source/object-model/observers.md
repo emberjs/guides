@@ -7,17 +7,17 @@ Person = Ember.Object.extend({
   // these will be supplied by `create`
   firstName: null,
   lastName: null,
-  
-  fullName: function() {
+
+  fullName: Ember.computed('firstName', 'lastName', function() {
     var firstName = this.get('firstName');
     var lastName = this.get('lastName');
 
     return firstName + ' ' + lastName;
-  }.property('firstName', 'lastName'),
+  }),
 
-  fullNameChanged: function() {
+  fullNameChanged: Ember.on(Ember.observer('fullName', function() {
     // deal with the change
-  }.observes('fullName').on('init')
+  }), 'init')
 });
 
 var person = Person.create({
@@ -31,7 +31,6 @@ person.set('firstName', 'Brohuda'); // observer will fire
 Because the `fullName` computed property depends on `firstName`,
 updating `firstName` will fire observers on `fullName` as well.
 
-
 ### Observers and asynchrony
 
 Observers in Ember are currently synchronous. This means that they will fire
@@ -40,23 +39,23 @@ is easy to introduce bugs where properties are not yet synchronized:
 
 ```javascript
 Person.reopen({
-  lastNameChanged: function() {
+  lastNameChanged: Ember.observer('lastName', function() {
     // The observer depends on lastName and so does fullName. Because observers
     // are synchronous, when this function is called the value of fullName is
     // not updated yet so this will log the old value of fullName
     console.log(this.get('fullName'));
-  }.observes('lastName')
+  })
 });
 ```
 
-This synchronous behaviour can also lead to observers being fired multiple
+This synchronous behavior can also lead to observers being fired multiple
 times when observing multiple properties:
 
 ```javascript
 Person.reopen({
-  partOfNameChanged: function() {
+  partOfNameChanged: Ember.observer('firstName', 'lastName', function() {
     // Because both firstName and lastName were set, this observer will fire twice.
-  }.observes('firstName', 'lastName')
+  })
 });
 
 person.set('firstName', 'John');
@@ -69,15 +68,15 @@ next run loop once all bindings are synchronized:
 
 ```javascript
 Person.reopen({
-  partOfNameChanged: function() {
+  partOfNameChanged: Ember.observer('firstName', 'lastName', function() {
     Ember.run.once(this, 'processFullName');
-  }.observes('firstName', 'lastName'),
+  }),
 
-  processFullName: function() {
+  processFullName: Ember.observer('fullName', function() {
     // This will only fire once if you set two properties at the same time, and
     // will also happen in the next run loop once all properties are synchronized
     console.log(this.get('fullName'));
-  }.observes('fullName')
+  })
 });
 
 person.set('firstName', 'John');
@@ -89,8 +88,8 @@ person.set('lastName', 'Smith');
 Observers never fire until after the initialization of an object is complete.
 
 If you need an observer to fire as part of the initialization process, you
-cannot rely on the side effect of set. Instead, specify that the observer
-should also run after init by using `.on('init')`:
+cannot rely on the side effect of `set`. Instead, specify that the observer
+should also run after `init` by using `Ember.on()`:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -98,9 +97,9 @@ Person = Ember.Object.extend({
     this.set('salutation', "Mr/Ms");
   },
 
-  salutationDidChange: function() {
+  salutationDidChange: Ember.on(Ember.observer('salutation', function() {
     // some side effect of salutation changing
-  }.observes('salutation').on('init')
+  }), 'init')
 });
 ```
 
@@ -118,19 +117,23 @@ observe it so you can update the DOM once the property changes.
 If you need to observe a computed property but aren't currently retrieving it,
 just get it in your init method.
 
-
 ### Without prototype extensions
 
-You can define inline observers by using the `Ember.observer` method if you
-are using Ember without prototype extensions:
+You may have also seen observes defined using the `.observes()` syntax:
 
 ```javascript
 Person.reopen({
-  fullNameChanged: Ember.observer('fullName', function() {
+  fullNameChanged: function() {
     // deal with the change
-  })
+  }.observes('fullName')
 });
 ```
+
+This is only possible because Ember extends the `function` prototype and is no
+longer the recommended syntax.
+
+More information about extending native prototypes is available in the
+[disabling prototype extensions guide](../../configuring-ember/disabling-prototype-extensions/).
 
 ### Outside of class definitions
 

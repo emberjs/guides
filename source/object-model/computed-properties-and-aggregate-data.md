@@ -12,10 +12,10 @@ export default Ember.Controller.extend({
     Ember.Object.create({ isDone: true })
   ],
 
-  remaining: function() {
+  remaining: Ember.computed('todos.@each.isDone', function() {
     var todos = this.get('todos');
     return todos.filterBy('isDone', false).get('length');
-  }.property('todos.@each.isDone')
+  })
 });
 ```
 
