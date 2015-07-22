@@ -18,9 +18,9 @@ based on a `foo` property.
 export default Ember.Object.extend({
   foo: 'bar',
 
-  computedFoo: function() {
+  computedFoo: Ember.computed('foo', function() {
     return 'computed ' + this.get('foo');
-  }.property('foo')
+  })
 });
 ```
 
@@ -60,8 +60,8 @@ export default Ember.Object.extend({
 });
 ```
 
-To test it, we create an instance of our class `SomeThing` as defined above, 
-call the `testMethod` method and assert that the internal state is correct as a 
+To test it, we create an instance of our class `SomeThing` as defined above,
+call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
 ```tests/unit/models/some-thing-test.js
@@ -114,9 +114,9 @@ Suppose we have an object that has a property and a method observing that proper
 export default Ember.Object.extend({
   foo: 'bar',
   other: 'no',
-  doSomething: function(){
+  doSomething: Ember.observer('foo', function(){
     this.set('other', 'yes');
-  }.observes('foo')
+  })
 });
 ```
 
@@ -134,4 +134,3 @@ test('doSomething observer sets other prop', function() {
   equal(someThing.get('other'), 'yes');
 });
 ```
-
