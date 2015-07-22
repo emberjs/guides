@@ -43,7 +43,7 @@ export default Ember.Controller.extend({
   queryParams: ['category'],
   category: null,
 
-  filteredArticles: function() {
+  filteredArticles: Ember.computed('category', 'model', function() {
     var category = this.get('category');
     var articles = this.get('model');
 
@@ -52,7 +52,7 @@ export default Ember.Controller.extend({
     } else {
       return articles;
     }
-  }.property('category', 'model')
+  })
 });
 ```
 
