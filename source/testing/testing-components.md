@@ -13,9 +13,9 @@ export default Ember.Component.extend({
   layout: layout,
   classNames: ['pretty-color'],
   attributeBindings: ['style'],
-  style: function() {
+  style: Ember.computed('name', function() {
     return 'color: ' + this.get('name') + ';';
-  }.property('name')
+  })
 });
 ```
 
@@ -214,9 +214,9 @@ export default Ember.Component.extend({
   layout: layout,
   tagName: 'img',
   attributeBindings: ['width', 'height', 'src'],
-  src: function() {
+  src: Ember.computed('width', 'height', function() {
     return 'http://placekitten.com/' + this.get('width') + '/' + this.get('height');
-  }.property('width', 'height')
+  })
 });
 ```
 
@@ -232,9 +232,9 @@ export default Ember.Component.extend({
   layout: layout,
   tagName: 'img',
   attributeBindings: ['width', 'height', 'src'],
-  src: function() {
+  src: Ember.computed('width', 'height', function() {
     return 'http://placekitten.com/' + this.get('width') + '/' + this.get('height');
-  }.property('width', 'height')
+  })
 });
 ```
 

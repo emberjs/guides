@@ -54,9 +54,9 @@ Total Posts: {{postCount}}
 
 ```app/controllers/author.js
 export default Ember.Controller.extend({
-  postCount: function() {
-    return this.get("model.posts.length");
-  }.property("model.posts.[]")
+  postCount: Ember.computed('model.posts.[]', function() {
+    return this.get('model.posts.length');
+  })
 })
 ```
 
