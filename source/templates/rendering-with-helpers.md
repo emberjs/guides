@@ -100,7 +100,6 @@ Note: `{{render}}` cannot be called multiple times for the same route when not s
     <td><code>{{render}}</code></td>
     <td>Template</td>
     <td>Specified Model</td>
-    <td>Specified View</td>
     <td>Specified Controller</td>
   </tr>
   </tbody>
@@ -128,7 +127,6 @@ Note: `{{render}}` cannot be called multiple times for the same route when not s
     <td><code>{{render "author" author}}</code></td>
     <td><code>templates/author.hbs</code></td>
     <td><code>models/author.js</code></td>
-    <td><code>views/author.js</code></td>
     <td><code>controllers/author.js</code></td>
   </tr>
   </tbody>

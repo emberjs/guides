@@ -12,8 +12,8 @@ describe TOC::Helpers do
       include TOC::Helpers
     end
 
-    data_yml = File.read('spec/fixtures/guides.yml')
-    data = Hashie::Mash.new(YAML.load(data_yml))
+    data_yml = File.read('spec/fixtures/pages.yml')
+    data = Hashie::Mash.new(pages: YAML.load(data_yml))
 
     allow(helper).to receive(:data).and_return(data)
     allow(helper).to receive(:current_page).and_return(basics_page)
@@ -28,29 +28,27 @@ describe TOC::Helpers do
   end
 
   describe "#toc_for" do
-    let(:toc) { helper.toc_for(helper.data.guides) }
+    let(:toc) { helper.toc_for(helper.data.pages) }
 
     before(:each) do
-      building_page = double(path: "custom-extensions/building-custom-extensions.html")
-      allow(helper).to receive(:request).and_return(building_page)
       allow(File).to receive(:exist?).and_return(true)
     end
 
     it "raises an exception if a file doesn't exist" do
       allow(File).to receive(:exist?).and_return(false)
       expect { toc }.to raise_error(RuntimeError,
-        "source/middleman-basics/index.md does not exist. Please fix guides.yml.")
+        /source\/middleman-basics\/index.md does not exist but is referenced in data\/guides.yml./)
     end
 
     it "includes guide titles" do
       expect(toc).to include("What even is middleman?")
     end
 
-    it "does not includes guide titles that are marked to skip sidebar" do
+    it "does not includes guide titles that are marked to skip" do
       expect(toc).not_to include("Secret stuff")
     end
 
-    it "does not includes chapter titles that are marked to skip sidebar" do
+    it "does not includes chapter titles that are marked to skip" do
       expect(toc).not_to include("Nobody really cares about this")
     end
 
@@ -58,64 +56,76 @@ describe TOC::Helpers do
       expect(toc).to include("middleman-basics")
     end
 
-    it "does not include guide urls for guides that are marked to skip sidebar" do
+    it "does not include guide urls for guides that are marked to skip" do
       expect(toc).not_to include("secret")
     end
 
-    it "does not include chapter urls that are marked to skip sidebar" do
+    it "does not include chapter urls that are marked to skip" do
       expect(toc).not_to include("meh")
     end
 
-    it "contains a link to first chapter as a guide link even if it is marked with :skip_sidebar_item" do
-      expect(toc).to include("extending-middleman")
+    it "contains a link to first chapter as a guide link even if a chapter is marked skip" do
+      expect(toc).to include("middleman-basics")
+    end
+
+    it "links to the innermost page" do
+      expect(toc).to include("<a href=\"/middleman-basics/index.html\">")
+    end
+
+    it "links to hashes for parents of nested pages" do
+      expect(toc).to include("<a href=\"#\">Middleman Basics</a>")
+    end
+
+    it "adds the toc-level-0 class to the outermost <ol>" do
+      expect(toc).to include("<ol class='toc-level-0 selected'><li class='toc-level-0 selected'>")
+    end
+
+    it "adds the toc-level-0 class to the outermost <li>s" do
+      expect(toc).to include("<li class='toc-level-0 selected'>")
+    end
+
+    it "adds the toc-level-1 class to the inner <ol>s" do
+      expect(toc).to include("<ol class='toc-level-1 selected'><li class='toc-level-1")
+    end
+
+    it "adds the toc-level-1 class to the inner <li>s" do
+      expect(toc).to include("<li class='toc-level-1 selected'><a href=\"/middleman-basics/index.html\">")
+    end
+
+    it "adds the selected class to the outermost <li> tag" do
+      expect(toc).to include("<li class='toc-level-0 selected'>")
+    end
+
+    it "adds the selected class to the <ol> tag of the current page" do
+      expect(toc).to include("<ol class='toc-level-1 selected'>")
+    end
+
+    it "adds the selected class to the <li> tag of the current page" do
+      expect(toc).to include("<li class='toc-level-1 selected'>")
+    end
+  end
+
+  describe "#full_page_title" do
+    it "is the current page's title" do
+      allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics"))
+
+      expect(helper.full_page_title).to eq("Middleman Basics")
+    end
+
+    it "combines the page titles separated by colons" do
+      expect(helper.full_page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
     end
   end
 
   describe "#page_title" do
-    it "is generic when current guide is not specified" do
-      allow(helper).to receive(:current_guide).and_return(nil)
-
-      expect(helper.page_title).to eq("Guides")
-    end
-
-    it "is current guide's title when current chapter is not specified" do
-      allow(helper).to receive(:current_chapter).and_return(nil)
-
-      expect(helper.page_title).to eq("Middleman Basics")
-    end
-
-    it "is a combination of current guide & chapter titles when both are specified" do
-      expect(helper.page_title).to eq("#{basic_guide_title}: #{basic_chapter_title}")
-    end
-  end
-
-  describe "#guide_name" do
-    it "is nil if current guide is not specified" do
-      allow(helper).to receive(:current_guide).and_return(nil)
-
-      expect(helper.guide_name).to be_nil
-    end
-
-    it "is the current guide's title when current guide is specified" do
-      expect(helper.guide_name).to eq(basic_guide_title)
-    end
-  end
-
-  describe "#chapter_name" do
-    it "is an empty string when current chapter is not specified" do
-      allow(helper).to receive(:current_chapter).and_return(nil)
-
-      expect(helper.chapter_name).to eq("")
-    end
-
-    it "is current chapter's title when current chapter is specified" do
-      expect(helper.chapter_name).to eq(basic_chapter_title)
+    it "is just the current page's title without parent page's titles" do
+      expect(helper.page_title).to eq(basic_chapter_title)
     end
   end
 
   describe "#chapter_heading" do
     it "is nil if chapter name is blank" do
-      allow(helper).to receive(:chapter_name).and_return("")
+      allow(helper).to receive(:page_title).and_return("")
 
       expect(helper.chapter_heading).to be_nil
     end
@@ -192,7 +202,7 @@ describe TOC::Helpers do
 
     it "is the previous chapter when current guide & current chapter are specified & there is a chapter before that" do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/meh"))
-      previous_chapter = helper.data.guides.first.chapters.first
+      previous_chapter = helper.data.pages.first.pages.first
 
       expect(helper.previous_chapter).to eq(previous_chapter)
     end
@@ -213,7 +223,7 @@ describe TOC::Helpers do
 
     it "is the next chapter when current guide has a next chapter" do
       allow(helper).to receive(:current_page).and_return(double(path: "middleman-basics/index"))
-      next_chapter = helper.data.guides.first.chapters.last
+      next_chapter = helper.data.pages.first.pages.last
 
       expect(helper.next_chapter).to eq(next_chapter)
     end
@@ -234,7 +244,7 @@ describe TOC::Helpers do
 
     it "is the previous guide when current guide is specified & there is a guide before that" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
-      first_guide = helper.data.guides.first
+      first_guide = helper.data.pages.first
 
       expect(helper.previous_guide).to eq(first_guide)
     end
@@ -255,7 +265,7 @@ describe TOC::Helpers do
 
     it "is the next guide when current guide is specified & next guide exists" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
-      next_guide = helper.data.guides.last
+      next_guide = helper.data.pages.last
       expect(helper.next_guide).to eq(next_guide)
     end
   end

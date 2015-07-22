@@ -25,7 +25,7 @@ For example, if you ask for a `photo` record by ID:
 ```app/routes/photo.js
 export default Ember.Route.extend({
   model: function(params) {
-    return this.store.find('photo', params.photo_id);
+    return this.store.findRecord('photo', params.photo_id);
   }
 });
 ```
@@ -65,7 +65,7 @@ export default DS.Model.extend({
 ```app/models/comment.js
 import DS from 'ember-data';
 
-App.Comment = DS.Model.extend({
+export default DS.Model.extend({
   body: DS.attr()
 });
 ```

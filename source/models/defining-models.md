@@ -23,7 +23,7 @@ specify a record's type using the model name. For example, the store's
 type of record to find:
 
 ```js
-store.find('person', 1);
+store.findRecord('person', 1);
 ```
 
 The table below shows how model names map to model file paths.
@@ -224,6 +224,6 @@ or
 
 ```app/models/folder.js
 export default DS.Model.extend({
-  parent: belongsTo('folder', { inverse: null })
+  parent: DS.belongsTo('folder', { inverse: null })
 });
 ```

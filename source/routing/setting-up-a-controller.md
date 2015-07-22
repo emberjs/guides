@@ -44,8 +44,9 @@ export default Ember.Route.extend({
 ```
 
 As a second argument, it receives the route handler's model. For more
-information, see [Specifying a Route's Model](../specifying-a-routes-model/).
+information, see [Specifying a Route's Model][1].
 
+[1]: ../specifying-a-routes-model/
 The default `setupController` hook sets the `model` property of the
 associated controller to the route handler's model.
 

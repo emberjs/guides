@@ -7,13 +7,7 @@ all of the naming conventions.
 
 ## The Application
 
-When your application boots, Ember will look for the objects exported
-by these modules in your project:
-
-* `app/app.js`
-* `app/controllers/application.js`
-* `app/templates/application.hbs`
-
+When your application boots,
 Ember.js will render the `application` template as the main template.
 If `controller:application` is provided, Ember.js will set an
 instance of `controller:application` as the controller for the
@@ -64,7 +58,7 @@ them and providing them to your templates at runtime through the resolver.
 
 ## Simple Routes
 
-Each of your routes will have a controller, and a template with the
+Each of your routes will have a controller and a template with the
 same name as the route.
 
 Let's start with a simple router:
@@ -209,32 +203,60 @@ Here are the naming conventions for each of the routes defined in
 this router:
 
 <table>
-  <thead>
-  <tr>
-    <th>Route Name</th>
-    <th>Controller</th>
-    <th>Route</th>
-    <th>Template</th>
-  </tr>
-  </thead>
-  <tr>
-    <td><code>posts</code></td>
-    <td><code>app/controllers/posts.js</code></td>
-    <td><code>app/routes/posts.js</code></td>
-    <td><code>app/templates/posts.hbs</code></td>
-  </tr>
-  <tr>
-    <td><code>posts.favorites</code></td>
-    <td><code>app/controllers/posts/favorites.js</code></td>
-    <td><code>app/routes/posts/favorites.js</code></td>
-    <td><code>app/templates/posts/favorites.hbs</code></td>
-  </tr>
-  <tr>
-    <td><code>posts.post</code></td>
-    <td><code>app/controllers/posts/post.js</code></td>
-    <td><code>app/routes/posts/post.js</code></td>
-    <td><code>app/templates/posts/post.hbs</code></td>
-  </tr>
+    <thead>
+      <tr>
+          <th>Route Name</th>
+          <th>Convention</th>
+      </tr>
+    </thead>
+    <tr>
+        <td><code>posts</code></td>
+        <td>
+            <pre class="code">
+app
+ ├── controllers/
+ │   └── posts.js  
+ ├── routes/
+ │   └── posts.js  
+ └── templates/
+     └── posts.hbs
+            </pre>
+        </td>
+    </tr>
+    <tr>
+        <td><code>posts.favorites</code></td>
+        <td>
+            <pre class="code">
+app
+ ├── controllers/
+ │   └── posts/  
+ │       └── favorites.js  
+ ├── routes/
+ │   └── posts/
+ │       └── favorites.js  
+ └── templates/
+     └── posts/
+         └── favorites.hbs
+          </pre>
+        </td>
+    </tr>
+    <tr>
+        <td><code>posts.post</code></td>
+        <td>
+            <pre class="code">
+app
+ ├── controllers/
+ │   └── posts/  
+ │       └── post.js  
+ ├── routes/
+ │   └── posts/
+ │       └── post.js  
+ └── templates/
+     └── posts/
+         └── post.hbs
+            </pre>
+        </td>
+    </tr>
 </table>
 
 ## The Index Route

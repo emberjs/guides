@@ -37,7 +37,7 @@ next one starts.
     is complete.
 * `fillIn(selector, text)`
   - Fills in the selected input with the given text and returns a promise that
-     fulfills when all resulting async behavior is complete.
+     fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements.
 * `keyEvent(selector, type, keyCode)`
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.

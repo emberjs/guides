@@ -160,15 +160,13 @@ You can specify an alternative event by using the `on` option.
 
 ```handlebars
 <p>
-  <button {{action "select" post on="mouseUp"}}>✓</button>
+  <button {{action "select" post on="mouse-up"}}>✓</button>
   {{post.title}}
 </p>
 ```
 
-You should use the normalized event names [listed in the View guide][1].
-In general, two-word event names (like `keypress`) become `keyPress`.
-
-[1]: http://emberjs.com/api/classes/Ember.View.html#toc_event-names
+You should use the dasherized event names.
+In general, two-word event names (like `keypress`) become `key-press`.
 
 ### Specifying Whitelisted Modifier Keys
 
@@ -177,13 +175,16 @@ pressed modifier keys. You can supply an `allowedKeys` option
 to specify which keys should not be ignored.
 
 ```handlebars
-<div {{action 'anActionName' allowedKeys="alt"}}>
+<button {{action 'anActionName' allowedKeys="alt"}}>
   click me
-</div>
+</button>
 ```
 
 This way the `{{action}}` will fire when clicking with the alt key
 pressed down.
+
+### Default Event
+By default, `event.preventDefault()` is called on all events handled by `{{action}}` helpers. To avoid this you can add `preventDefault=false` as a parameter. 
 
 ### Stopping Event Propagation
 
@@ -238,3 +239,19 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+### Allowing Default Browser Action
+
+By default, the `{{action}}` helper prevents the default browser action of the DOM event. If you want to allow the browser action, you can stop ember from preventing it.
+
+For example, if you have a normal link tag and want the link to bring the user to another page in addition to triggering an ember action when clicked.
+
+```handlebars
+<a href="newPage.htm" {{action 'logClick' preventDefault=false}}>Go</a>
+```
+
+Without `preventDefault=false`, if the user clicked on the link, Ember.js
+will trigger the action, but the user will remain on the current page.
+
+With `preventDefault=false`, if the user clicked on the link, Ember.js
+will trigger the action *and* the user will be directed to the new page.

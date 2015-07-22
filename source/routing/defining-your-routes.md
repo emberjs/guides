@@ -198,6 +198,96 @@ Visiting `/posts` is slightly different. It will first render the
 Finally, visiting `/posts/new` will first render the `posts` template,
 then render the `posts/new` template into its outlet.
 
+#### Resetting Nested Route Namespace
+
+When nesting routes, it may be beneficial for a child route to not inherit its ancestors name. This allows you to reference and reuse a given route in multiple route trees as well as keep the class name short. This is equivalent to the behavior of the now deprecated `this.resource()` function.
+
+You can reset the current "namespace" with the aptly named `resetNamespace: true` option.
+
+```app/router.js
+Router.map(function() {
+  this.route('post', { path: '/post/:post_id' }, function() {
+    this.route('edit');
+    this.route('comments', { resetNamespace: true }, function() {
+      this.route('new');
+    });
+  });
+});
+```
+
+This router creates five routes:
+
+<div style="overflow: auto">
+  <table>
+    <thead>
+    <tr>
+      <th>URL</th>
+      <th>Route Name</th>
+      <th>Controller</th>
+      <th>Route</th>
+      <th>Template</th>
+    </tr>
+    </thead>
+    <tr>
+      <td><code>/</code></td>
+      <td><code>index</code></td>
+      <td><code>app/controllers/index</code></td>
+      <td><code>app/routes/index</code></td>
+      <td><code>app/templates/index</code></td>
+    </tr>
+    <tr>
+      <td>N/A</td>
+      <td><code>post</code></td>
+      <td><code>app/controllers/post</code></td>
+      <td><code>app/routes/post</code></td>
+      <td><code>app/templates/post</code></td>
+    </tr>
+    <tr>
+      <td><code>/post/:post_id<sup>2</sup></code></td>
+      <td><code>post.index</code></td>
+      <td><code>app/controllers/post/index</code></td>
+      <td><code>app/routes/post/index</code></td>
+      <td><code>app/templates/post/index</code></td>
+    </tr>
+    <tr>
+      <td><code>/post/:post_id/edit</code></td>
+      <td><code>post.edit</code></td>
+      <td><code>app/controllers/post/edit</code></td>
+      <td><code>app/routes/post/edit</code></td>
+      <td><code>app/templates/post/edit</code></td>
+    </tr>
+    <tr>
+      <td>N/A</td>
+      <td><code>comments</code></td>
+      <td><code>app/controllers/comments</code></td>
+      <td><code>app/routes/comments</code></td>
+      <td><code>app/templates/comments</code></td>
+    </tr>
+    <tr>
+      <td><code>/post/:post_id/comments</code></td>
+      <td><code>comments.index</code></td>
+      <td><code>app/controllers/comments/index</code></td>
+      <td><code>app/routes/comments/index</code></td>
+      <td><code>app/templates/comments/index</code></td>
+    </tr>
+    <tr>
+      <td><code>/post/:post_id/comments/new</code></td>
+      <td><code>comments.new</code></td>
+      <td><code>app/controllers/comments/new</code></td>
+      <td><code>app/routes/comments/new</code></td>
+      <td><code>app/templates/comments/new</code></td>
+    </tr>
+  </table>
+</div>
+
+<small><sup>2</sup> `:post_id` is the post's id.  For a post with id = 1, the route will be:
+`/post/1`</small>
+
+The `comments` template will be rendered in the `post` outlet.
+All templates under `comments` (`comments/index` and `comments/new`) will be rendered in the `comments` outlet.
+
+The route, controller, and view class names for the comments resource are not prefixed with `Post`.
+
 ### Multi-word Model Names
 
 For multi-word models all the names are camel cased except for the dynamic segment. For example, a model named `BigMac` would have a path of `/bigMacs/:big_mac_id`, route named `bigMac`, template named `bigMac`.

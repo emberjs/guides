@@ -77,7 +77,7 @@ Person.reopen({
     // This will only fire once if you set two properties at the same time, and
     // will also happen in the next run loop once all properties are synchronized
     console.log(this.get('fullName'));
-  }
+  }.observes('fullName')
 });
 
 person.set('firstName', 'John');

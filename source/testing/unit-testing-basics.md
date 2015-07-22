@@ -129,7 +129,7 @@ import SomeThing from '<your-app-name>/models/some-thing';
 moduleFor('model:some-thing', 'Unit: some-thing');
 
 test('doSomething observer sets other prop', function() {
-  var someThing = App.SomeThing.create();
+  var someThing = SomeThing.create();
   someThing.set('foo', 'baz');
   equal(someThing.get('other'), 'yes');
 });

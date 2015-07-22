@@ -14,3 +14,8 @@ behavior after a binding has finished synchronizing.
 3. *Bindings* are most often used to ensure objects in two different layers
 are always in sync. For example, you bind your views to your controller using
 Handlebars.
+
+### More Resources
+Stefan Penner at Yahoo discusses when to use observers and when to use computed properties:
+- [The observer tip-jar - Stefan Penner Silicon Valley Ember.js meetup Jun 15, 2015](https://www.youtube.com/watch?v=7PUX27RKCq0)
+

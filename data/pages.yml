@@ -1,21 +1,17 @@
 - title: "Guides and Tutorials"
   url: 'index'
-  chapters:
+  skip_toc: true
+  pages:
     - title: "Ember.js Guides"
       url: ""
-      skip_sidebar: true
 
 - title: "Getting Started"
   url: 'getting-started'
-  chapters:
+  pages:
     - title: "Installing Ember"
       url: "index"
     - title: "Glossary"
       url: "glossary"
-
-- title: "Concepts"
-  url: 'concepts'
-  chapters:
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
@@ -23,7 +19,7 @@
 
 - title: "The Object Model"
   url: 'object-model'
-  chapters:
+  pages:
     - title: "Classes and Instances"
       url: "classes-and-instances"
     - title: "Reopening Classes and Instances"
@@ -38,16 +34,12 @@
       url: "bindings"
     - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
       url: "what-do-i-use-when"
-
-- title: "Application"
-  url: 'application'
-  chapters:
-    - title: "Introduction"
-      url: "index"
+    - title: "Enumerables"
+      url: 'enumerables'
 
 - title: "Templates"
   url: 'templates'
-  chapters:
+  pages:
     - title: "Handlebars Basics"
       url: "handlebars-basics"
     - title: "The Application Template"
@@ -56,6 +48,8 @@
       url: "conditionals"
     - title: "Displaying a List of Items"
       url: "displaying-a-list-of-items"
+    - title: "Displaying the Keys in an Object"
+      url: "displaying-the-keys-in-an-object"
     - title: "Binding Element Attributes"
       url: "binding-element-attributes"
     - title: "Binding Element Class Names"
@@ -75,7 +69,7 @@
 
 - title: "Routing"
   url: 'routing'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining Your Routes"
@@ -103,7 +97,7 @@
 
 - title: "Components"
   url: 'components'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining a Component"
@@ -121,17 +115,17 @@
 
 - title: "Controllers"
   url: 'controllers'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
-    - title: "Representing Multiple Models with ArrayController"
-      url: "representing-multiple-models-with-arraycontroller"
+    - title: "Representing Multiple Models"
+      url: "representing-multiple-models"
     - title: "Managing Dependencies Between Controllers"
       url: "dependencies-between-controllers"
 
 - title: "Models"
   url: 'models'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining Models"
@@ -157,15 +151,9 @@
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
 
-- title: "Enumerables"
-  url: 'enumerables'
-  chapters:
-    - title: "Introduction"
-      url: "index"
-
 - title: "Testing"
   url: 'testing'
-  chapters:
+  pages:
     - title: "Introduction"
       url: "index"
     - title: "Acceptance Tests"
@@ -187,19 +175,9 @@
     - title: "Testing Models"
       url: "testing-models"
 
-- title: "Configuring Ember.js"
-  url: 'configuring-ember'
-  chapters:
-    - title: "Disabling Prototype Extensions"
-      url: "disabling-prototype-extensions"
-    - title: "Embedding Applications"
-      url: "embedding-applications"
-    - title: "Feature Flags"
-      url: "feature-flags"
-
 - title: "Ember Inspector"
   url: "ember-inspector"
-  chapters:
+  pages:
     - title: "Installing the Inspector"
       url: "installation"
     - title: "Object Inspector"
@@ -223,87 +201,19 @@
     - title: "Troubleshooting"
       url: "troubleshooting"
 
-- title: "Cookbook"
-  url: 'cookbook'
-  chapters:
-    - title: "Introduction"
-      url: "index"
-    # contributing
-    - title: "Contributing"
-      url: "contributing/index"
-    - title: "Understanding the Cookbook Format"
-      url: "contributing/understanding_the_cookbook_format"
-      skip_sidebar_item: true
-    - title: "Participating If You Know Ember"
-      url: "contributing/participating_if_you_know_ember"
-      skip_sidebar_item: true
-    - title: "Participating If You Don't Know Ember"
-      url: "contributing/participating_if_you_dont_know_ember"
-      skip_sidebar_item: true
-    - title: "Deciding If A Recipe is a Good Fit"
-      url: "contributing/deciding_if_a_recipe_is_a_good_fit"
-      skip_sidebar_item: true
-    - title: "Suggesting A Recipe"
-      url: "contributing/suggesting_a_recipe"
-      skip_sidebar_item: true
-    # ui and ux
-    - title: "User Interface and Interaction"
-      url: "user_interface_and_interaction/index"
-    - title: "Adding CSS Classes to Your Components"
-      url: "user_interface_and_interaction/adding_css_classes_to_your_components"
-      skip_sidebar_item: true
-    - title: "Adding CSS Classes to Your Components Based on Properties"
-      url: "user_interface_and_interaction/adding_css_classes_to_your_components_based_on_properties"
-      skip_sidebar_item: true
-    - title: "Focusing a Textfield after It's Been Inserted"
-      url: "user_interface_and_interaction/focusing_a_textfield_after_its_been_inserted"
-      skip_sidebar_item: true
-    - title: "Displaying Formatted Dates With Moment.js"
-      url: "user_interface_and_interaction/displaying_formatted_dates_with_moment_js"
-      skip_sidebar_item: true
-    - title: "Specifying Data-Driven Areas of Templates That Do Not Need To Update"
-      url: "user_interface_and_interaction/specifying_data_driven_areas_of_templates_that_do_not_need_to_update"
-      skip_sidebar_item: true
-    - title: "Using Modal Dialogs"
-      url: "user_interface_and_interaction/using_modal_dialogs"
-      skip_sidebar_item: true
-    - title: "Resetting scroll on route changes"
-      url: "user_interface_and_interaction/resetting_scroll_on_route_changes"
-      skip_sidebar_item: true
-    # events and bindings
-    - title: "Event Handling & Data Binding"
-      url: "event_handling_and_data_binding/index"
-    - title: "Binding Properties of an Object to Its Own Properties"
-      url: "event_handling_and_data_binding/binding_properties_of_an_object_to_its_own_properties"
-      skip_sidebar_item: true
-    # helpers & components
-    - title: "Helpers & Components"
-      url: "helpers_and_components/index"
-    - title: "Creating Reusable Social Share Buttons"
-      url: "helpers_and_components/creating_reusable_social_share_buttons"
-      skip_sidebar_item: true
-    - title: "A Spinning Button for Asynchronous Actions"
-      url: "helpers_and_components/spin_button_for_asynchronous_actions"
-      skip_sidebar_item: true
-    - title: "Adding Google Analytics Tracking"
-      url: "helpers_and_components/adding_google_analytics_tracking"
-      skip_sidebar_item: true
-    # objects
-    - title: "Working with Objects"
-      url: "working_with_objects/index"
-    - title: "Incrementing Or Decrementing A Property"
-      url: "working_with_objects/incrementing_or_decrementing_a_property"
-      skip_sidebar_item: true
-    - title: "Setting Multiple Properties At Once"
-      url: "working_with_objects/setting_multiple_properties_at_once"
-      skip_sidebar_item: true
-    - title: "Continuous Redrawing of Views"
-      url: "working_with_objects/continuous_redrawing_of_views"
-      skip_sidebar_item: true
+- title: "Configuring Ember.js"
+  url: 'configuring-ember'
+  pages:
+    - title: "Disabling Prototype Extensions"
+      url: "disabling-prototype-extensions"
+    - title: "Embedding Applications"
+      url: "embedding-applications"
+    - title: "Feature Flags"
+      url: "feature-flags"
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
-  chapters:
+  pages:
     - title: "Debugging"
       url: "debugging"
     - title: "The Run Loop"
@@ -313,7 +223,7 @@
 
 - title: "Contributing to Ember.js"
   url: 'contributing'
-  chapters:
+  pages:
     - title: "Adding New Features"
       url: "adding-new-features"
     - title: "Repositories"

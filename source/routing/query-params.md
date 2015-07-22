@@ -143,7 +143,7 @@ export default Ember.Route.extend({
 
     // params has format of { category: "someValueOrJustNull" },
     // which we can just forward to the server.
-    return this.store.findQuery('articles', params);
+    return this.store.query('articles', params);
   }
 });
 ```
@@ -251,7 +251,7 @@ to `/bears` and filter by `"best"`, and then navigate to `/potatoes` and
 filter by `"lamest"`, then given the following nav bar links,
 
 ```handlebars
-{{#link-to 'team' 'badgers '}}Badgers{{/link-to}}
+{{#link-to 'team' 'badgers'}}Badgers{{/link-to}}
 {{#link-to 'team' 'bears'   }}Bears{{/link-to}}
 {{#link-to 'team' 'potatoes'}}Potatoes{{/link-to}}
 ```

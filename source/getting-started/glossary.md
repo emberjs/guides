@@ -5,13 +5,13 @@ Our goal is to help you avoid that mess and come up to speed as fast as possible
 ## CDN
 Content Delivery Network
 
-This is typically a paid service you can use to get great performance for your app. You start by uploading a resource (image, JavaScript file, etc) to a company like Akamai or CloudFlare. That uploaded resource will have an absolute URL which you can reference anywhere in your app. This URL will resolve differently for folks depending on where they're browsing.
+This is typically a paid service you can use to get great performance for your app. Many CDNs act as caching proxies to your origin server; some require you to upload your assets to them. They give you a URL for each resource in your app. This URL will resolve differently for folks depending on where they're browsing.
 
 Behind the scenes, the CDN will distribute your content geographically with the goal of end-users being able to fetch your content with the lowest latency possible. For example, if a user is in India, they'd likely get content served from India faster than from the United States.
 
 
 ## CoffeeScript, TypeScript
-These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypesScript or CoffeeScript into JavaScript.
+These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypeScript or CoffeeScript into JavaScript.
 
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
@@ -46,7 +46,7 @@ A validation tool which checks for common issues in your JavaScript. You'd usual
 
 
 ## Polyfill
-This is concept that typically means providing JavaScript which tests for features that are missing (prototypes not defined, etc) and "fills" them by providing an implementation.
+This is a concept that typically means providing JavaScript which tests for features that are missing (prototypes not defined, etc) and "fills" them by providing an implementation.
 
 
 ## Promise

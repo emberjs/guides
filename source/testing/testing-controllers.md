@@ -124,4 +124,4 @@ test('modify the post', function(assert) {
 ```
 
 [Unit Testing Basics]: ../unit-testing-basics
-[needs]: /guides/controllers/dependencies-between-controllers
+[needs]: ../../controllers/dependencies-between-controllers

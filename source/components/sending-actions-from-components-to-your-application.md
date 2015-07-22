@@ -94,7 +94,7 @@ export default Ember.Route.extend({
 ```
 
 ```app/templates/index.hbs
-{{#each todos as |todo|}}
+{{#each model.todos as |todo|}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
 {{/each}}
 ```
@@ -134,7 +134,7 @@ Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
 ```app/templates/index.hbs
-{{#each todos as |todo|}}
+{{#each model.todos as |todo|}}
   <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
 {{/each}}
 ```

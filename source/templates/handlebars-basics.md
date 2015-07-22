@@ -3,7 +3,7 @@ to power your app's user interface. Handlebars templates are just like
 regular HTML, but also give you the ability to embed expressions that
 change what is displayed.
 
-We take Handlebars and extend it with many powerful features. It may
+Ember takes Handlebars and extends it with many powerful features. It may
 help to think of your Handlebars templates as an HTML-like DSL for
 describing the user interface of your app. And, once you've told
 Ember.js to render a given template on the screen, you don't need to
@@ -11,9 +11,19 @@ write any additional code to make sure it keeps up-to-date.
 
 ### Defining Templates
 
-By default, adjust your [application template](../the-application-template), that is created automatically for you and will be displayed on the page when your app loads.
+The first thing you should change is your [application template](../the-application-template) that is created
+automatically for you and is displayed when your app loads.
 
-You can also define templates by name that can be used later. If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/). The components section contains information on creating re-usable templates.
+Next, you can define templates in the `app/templates` folder. Remember from
+[Naming Convetions](../../concepts/naming-conventions/#toc_route-controller-and-template-defaults) that by default,
+a route will render a template with the same name as the route.
+
+```app/templates/kittens.hbs
+<h1>Kittens</h1>
+<p>Kittens are the cutest!</p>
+```
+
+If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/).
 
 ### Handlebars Expressions
 

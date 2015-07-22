@@ -1,5 +1,5 @@
 Getting started with Ember.js is easy. Ember.js projects are created and managed
-through our command line build tool ember-cli. The command line tool brings:
+through our [command line build tool ember-cli](http://www.ember-cli.com/). The command line tool brings:
 
 * Modern application asset management (including combining, minifying, and versioning).
 * Built-in generators to help you create components, routes, and more.
@@ -10,12 +10,21 @@ through our command line build tool ember-cli. The command line tool brings:
 
 
 ## Installation
-Ember.js installs through the [npm](#toc_got-node-and-npm). Install the Ember.js
+Ember.js installs through the [npm](#toc_got-node-npm-and-git). Install the Ember.js
 build tools with `npm`.
 
 ```bash
 npm install -g ember-cli
 ```
+
+Note that the Ember CLI build tool has a few dependencies of its own. In particular, you will need to install [Bower](http://bower.io/) (if you don't have it already) in order to use Ember's build tool as described in these guides. You'll also want to install [PhantomJS](http://phantomjs.org/), which Ember CLI uses to run tests from the command line (without the need for a browser to be open).
+
+```bash
+npm install -g bower
+npm install -g phantomjs
+```
+
+Read the [Getting Started section](http://www.ember-cli.com/#getting-started) of the `ember-cli` project for more information about Ember CLI's dependencies .
 
 ## Testing your installation
 

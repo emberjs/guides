@@ -2,9 +2,8 @@ To define a component, create a template whose name starts with
 `components/`. To define a new component, `{{blog-post}}` for example,
 create a `components/blog-post` template.
 
-**Note:** Components must have a dash in their name. So `blog-post` is an acceptable name,
-but `post` is not. This prevents clashes with current or future HTML element names, and
-ensures Ember picks up the components automatically.
+**Note:** Components must have at least one dash in their name. So `blog-post` is an acceptable name, so is `audio-player-controls`, but `post` is not. This prevents clashes with current or future HTML element names, and
+ensures Ember detects the components automatically.
 
 A sample component template would look like this:
 
@@ -77,28 +76,68 @@ need a custom subclass if you wanted to change a component's element,
 respond to actions from the component's template, or manually make
 changes to the component's element using JavaScript.
 
-Ember knows which subclass powers a component based on its name. For
+Ember knows which subclass powers a component based on its filename. For
 example, if you have a component called `blog-post`, you would create a
 file at `app/components/blog-post.js`. If your component was called
 `audio-player-controls`, the file name would be at
-`app/components/audio-player-controls.js`
+`app/components/audio-player-controls.js`.
 
-In other words, Ember will look for a class with the camelized name of
-the component, followed by `Component`.
+### Dynamically rendering a component
 
-<table>
-  <thead>
-  <tr>
-    <th>Component Name</th>
-    <th>Component Class</th>
-  </tr>
-  </thead>
-  <tr>
-    <td><code>blog-post</code></td>
-    <td><code>App.BlogPostComponent</code></td>
-  </tr>
-  <tr>
-    <td><code>audio-player-controls</code></td>
-    <td><code>App.AudioPlayerControlsComponent</code></td>
-  </tr>
-</table>
+The `{{component}}` helper can be used to defer the selection of a component to
+run time. The `{{my-component}}` syntax would always render the same component,
+whereas using the `{{component}}` helper allows swapping the component rendered
+on the fly. This is useful in cases where, for example, you want to interact
+with different external libraries depending on the data. Using the `{{component}}`
+helper would allow you to keep those different logic well-separated.
+
+The first parameter of the helper is the name of a component to render, as a string. So if you have `{{component 'blog-post'}}`, that is just the same as just `{{blog-post}}`.
+
+The real value of `{{component}}` comes from being able to dynamically pick
+the component being rendered. Below is an example of using the helper as a
+mean to dispatch to different components for displaying different kinds of posts:
+
+
+```app/templates/components/foo-component.hbs
+<h3>Hello from foo!</h3>
+<p>{{post.body}}</p>
+```
+
+```app/templates/components/bar-component.hbs
+<h3>Hello from bar!</h3>
+<div>{{post.author}}</div>
+```
+
+```app/routes/index.js
+var posts = [{
+    componentName: 'foo-component',  // key used to determine the rendered component
+    body: "There are lots of à la carte software environments in this world."
+  }, {
+    componentName: 'bar-component',
+    author: "Drew Crawford"
+}];
+
+export default Ember.Route.extend({
+  model() {
+    return posts;
+  }
+});
+```
+
+```app/templates/index.hbs
+{{#each model as |post|}}
+  {{!-- either foo-component or bar-component --}}
+  {{component post.componentName post=post}}
+{{/each}}
+```
+
+For brevity, `componentName` is hardcoded inside each post, but it can very
+well be a computed property that deduces the target component based on the data.
+
+When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
+the helper renders nothing. When the parameter changes, the currently rendered
+component is destroyed and the new component is created and brought in.
+
+Picking different components to render in response to the data allows you to
+have different template and behavior for each case. The `{{component}}` helper
+is a powerful tool for improving code modularity.

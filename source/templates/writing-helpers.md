@@ -29,6 +29,14 @@ If the `name` property on the current context changes, Ember.js will
 automatically execute the helper again and update the DOM with the new
 value.
 
+### Undasherized helpers
+
+Helpers without a dash in their name won't be autoloaded by Ember. You can still use them, but you'll need to register them in an initializer, or in `app/app.js`.
+
+```app/app.js
+Ember.Handlerbars.registerHelper('highlight', highlight);
+```
+
 ### Dependencies
 
 Imagine you want to render the full name of a `Person`. In this

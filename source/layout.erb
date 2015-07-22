@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Ember.js - <%= current_page.data.title || page_title %></title>
-    <meta property="st:title" content="<%= current_page.data.title || page_title %>" />
+    <title>Ember.js - <%= current_page.data.title || full_page_title %></title>
+    <meta property="st:title" content="<%= current_page.data.title || full_page_title %>" />
     <%= favicon_tag 'images/favicon.png' %>
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
     <%= stylesheet_link_tag "site" %>
@@ -65,7 +65,7 @@
         <select class="version-select" style="width: 100%"></select>
         <div id="sidebar">
 
-          <%= toc_for(data.guides) %>
+          <%= toc_for(data.pages) %>
           <div id="back-to-top"><a id="back-top-top" href="#">&#11014; Back to Top</a></div>
         </div>
       </div>
