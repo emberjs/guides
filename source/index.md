@@ -3,11 +3,6 @@ total beginner to Ember expert. It is designed to start from the basics,
 and slowly increase to more sophisticated concepts until you know
 everything there is to know about building awesome web applications.
 
-Most of these guides are designed to help you start building apps right
-away. If you'd like to know more about the thinking behind Ember.js,
-you'll find what you're looking for in the [Understanding Ember.js](understanding-ember/the-view-layer)
-section.
-
 These guides are written in Markdown and are
 [available on GitHub](https://github.com/emberjs/guides/).
 If there is something missing, or you find a typo or
