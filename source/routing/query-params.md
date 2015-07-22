@@ -149,7 +149,7 @@ export default Ember.Route.extend({
 ```
 
 ```app/controllers/articles.js
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
   queryParams: ['category'],
   category: null
 });
@@ -186,7 +186,7 @@ a controller property to a different query param key using the
 following configuration syntax:
 
 ```app/controllers/articles.js
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
   queryParams: {
     category: "articles_category"
   },
@@ -217,7 +217,7 @@ In the following example, the controller query param property `page` is
 considered to have a default value of `1`.
 
 ```app/controllers/articles.js
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
   queryParams: 'page',
   page: 1
 });
@@ -298,7 +298,7 @@ even as a route's model changes. This can be accomplished by setting the
 config hash:
 
 ```app/controllers/articles.js
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
   queryParams: [{
     showMagnifyingGlass: {
       scope: "controller"
