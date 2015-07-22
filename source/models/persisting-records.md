@@ -13,7 +13,7 @@ post.save(); // => POST to '/posts'
 ```
 
 ```javascript
-store.find('post', 1).then(function (post) {
+store.findRecord('post', 1).then(function(post) {
   post.get('title'); // => "Rails is Omakase"
 
   post.set('title', 'A new post');
@@ -86,12 +86,12 @@ function retry(callback, nTimes) {
       // and the new retry limit
       return retry(callback, nTimes - 1);
     }
- 
+
     // otherwise, if we hit the retry limit, rethrow the error
     throw reason;
   });
 }
- 
+
 // try to save the post up to 5 times
 retry(function() {
   return post.save();
