@@ -12,7 +12,7 @@ with based on the name of the model. For example, if you ask for a
 `Post` by ID:
 
 ```js
-store.find('post', 1).then(function(post) {
+store.findRecord('post', 1).then(function(post) {
 });
 ```
 
@@ -28,7 +28,7 @@ REST adapter:
     <tr><th>Action</th><th>HTTP Verb</th><th>URL</th></tr>
   </thead>
   <tbody>
-    <tr><th>Find</th><td>GET</td><td>/posts/123</td></tr>
+    <tr><th>Find Record</th><td>GET</td><td>/posts/123</td></tr>
     <tr><th>Find All</th><td>GET</td><td>/posts</td></tr>
     <tr><th>Update</th><td>PUT</td><td>/posts/123</td></tr>
     <tr><th>Create</th><td>POST</td><td>/posts</td></tr>
@@ -98,7 +98,7 @@ be nested inside a property called `person`:
 
 After `destroyRecord` or after `deleteRecord` and `save`, the adapter expects the server to return an empty object (`{}`).
 
-If you don't have the option to change the data that the server responds with, you can override the 
+If you don't have the option to change the data that the server responds with, you can override the
 [DS.JSONSerializer#extractDeleteRecord](http://emberjs.com/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
 
 ```js
@@ -301,7 +301,7 @@ expected to be an array:
 But once loaded on a model instance, it will behave as an object:
 
 ```js
-var cursor = this.store.find('cursor', 1);
+var cursor = this.store.findRecord('cursor', 1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9
 ```

@@ -21,7 +21,7 @@ var store = this.store;
 store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
-  author: store.find('user', 1)
+  author: store.findRecord('user', 1)
 });
 ```
 
@@ -35,7 +35,7 @@ var post = store.createRecord('post', {
   body: 'Lorem ipsum'
 });
 
-store.find('user', 1).then(function(user) {
+store.findRecord('user', 1).then(function(user) {
   post.set('author', user);
 });
 ```
@@ -48,14 +48,14 @@ it from `all()` queries on the `store`. The deletion can then be persisted using
 Alternatively, you can use the `destroyRecord` method to delete and persist at the same time.
 
 ```js
-store.find('post', 1).then(function (post) {
+store.findRecord('post', 1).then(function(post) {
   post.deleteRecord();
   post.get('isDeleted'); // => true
   post.save(); // => DELETE to /posts/1
 });
 
 // OR
-store.find('post', 2).then(function (post) {
+store.findRecord('post', 2).then(function(post) {
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```

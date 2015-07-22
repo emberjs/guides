@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
   actions: {
     findItems() {
       // Dependency injection provides the store object to the controller instance.
-      this.store.find('item').then((items) => {
+      this.store.findAll('item').then((items) => {
         this.set('items', items);
       });
     }

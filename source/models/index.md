@@ -146,7 +146,7 @@ the ID of `1` from our route's `model` hook:
 ```app/routes/index.js
 export default Ember.Route.extend({
   model: function() {
-    return this.store.find('person', 1);
+    return this.store.findRecord('person', 1);
   }
 });
 ```
@@ -240,7 +240,7 @@ have a `Person` model. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
 ```js
-this.store.find('person', 1); // => { id: 1, name: 'steve-buscemi' }
+this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 
 An ID is usually assigned to a record by the server when you save it for

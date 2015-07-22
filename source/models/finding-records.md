@@ -1,44 +1,49 @@
-The Ember Data store provides a simple interface for finding records of a single
-type through the `store` object's `find` method. Internally, the `store`
-uses either `findAll` or `findRecord` based on the supplied arguments.
+The Ember Data store provides an interface for retrieving records of a single
+type.
 
-The first argument to `store.find()` is always the record type. The optional second
-argument determines if a request is made for all records or just a single record.
+### Retrieving a Single Record
 
-### Finding All Records of a Type
-
-```javascript
-var posts = this.store.find('post'); // => GET /posts
-```
-
-To get a list of records already loaded into the store, without making
-another network request, use `all` instead.
-
-```javascript
-var posts = this.store.all('post'); // => no network request
-```
-
-`find` returns a `DS.PromiseArray` that fulfills to a `DS.RecordArray` and `all`
-directly returns a `DS.RecordArray`.
-
-It's important to note that `DS.RecordArray` is not a JavaScript array.
-It is an object that implements [`Ember.Enumerable`][1]. This is important
-because, for example, if you want to retrieve records by index, the `[]` notation
-will not work--you'll have to use `objectAt(index)` instead.
-
-[1]: http://emberjs.com/api/classes/Ember.Enumerable.html
-
-### Finding a Single Record
-
-If you provide a number or string as the second argument to `store.find()`,
-Ember Data will assume that you are passing in an ID and attempt to retrieve a record of the type passed in as the first argument with that ID. This will
+Use `store.findRecord()` to retrieve a record by its type and ID. This will
 return a promise that fulfills with the requested record:
 
 ```javascript
-var aSinglePost = this.store.find('post', 1); // => GET /posts/1
+var post = this.store.findRecord('post', 1); // => GET /posts/1
 ```
 
-### Querying For Records
+Use `store.peekRecord()` to retrieve a record by its type and ID, without making
+a network request. This will return the record only if it is already present in
+the store:
+
+```javascript
+var post = this.store.peekRecord('post', 1); // => no network request
+```
+
+### Retrieving Multiple Records
+
+Use `store.findAll()` to retrieve all of the records for a given type:
+
+```javascript
+var posts = this.store.findAll('post'); // => GET /posts
+```
+
+Use `store.peekAll()` to retrieve all of the records for a given type that are
+already loaded into the store, without making a network request:
+
+```javascript
+var posts = this.store.peekAll('post'); // => no network request
+```
+
+`store.findAll()` returns a `DS.PromiseArray` that fulfills to a
+`DS.RecordArray` and `store.peekAll` directly returns a `DS.RecordArray`.
+
+It's important to note that `DS.RecordArray` is not a JavaScript array.  It is
+an object that implements [`Ember.Enumerable`][1]. This is important because,
+for example, if you want to retrieve records by index, the `[]` notation will
+not work--you'll have to use `objectAt(index)` instead.
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html
+
+### Querying for Multiple Records
 
 Ember Data provides the ability to query for records that meet certain criteria. Calling `store.query()`
 will make a `GET` request with the passed object serialized as query params. This method returns
@@ -48,7 +53,7 @@ For example, we could search for all `person` models who have the name of
 `Peter`:
 
 ```javascript
-var peters = this.store.query('person', { name: "Peter" }); // => GET to /persons?name=Peter
+var peters = this.store.query('person', { name: 'Peter' }); // => GET to /persons?name=Peter
 ```
 
 ### Integrating with the Route's Model Hook
@@ -89,7 +94,7 @@ export default Ember.Route.extend({
 ```app/routes/post.js
 export default Ember.Route.extend({
   model: function(params) {
-    return this.store.find('post', params.post_id);
+    return this.store.findRecord('post', params.post_id);
   }
 })
 ```

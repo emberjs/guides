@@ -28,7 +28,7 @@ def current_guide(mm_instance, current_page)
   path = current_page.path.gsub('.html', '')
   guide_path = path.split("/")[0]
 
-  current_guide = mm_instance.data.guides.find do |guide|
+  current_guide = mm_instance.data.pages.find do |guide|
     guide.url == guide_path
   end
 
@@ -42,7 +42,7 @@ def current_chapter(mm_instance, current_page)
   path = current_page.path.gsub('.html', '')
   chapter_path = path.split('/')[1..-1].join('/')
 
-  current_chapter = guide.chapters.find do |chapter|
+  current_chapter = guide.pages.find do |chapter|
     chapter.url == chapter_path
   end
 
