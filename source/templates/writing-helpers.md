@@ -1,4 +1,4 @@
-Handlebars helpers allow you to add additional functionality to your
+Helpers allow you to add additional functionality to your
 templates beyond what is included out-of-the-box in Ember. Helpers are
 most useful for transforming raw values from models and components into
 a format more appropriate for your users.
@@ -12,8 +12,8 @@ instead of a floating point dollar value][currency-stackoverflow].
 [currency-stackoverflow]: http://stackoverflow.com/a/3730040
 
 However, if we display dollar values to our users as "100¢" instead of
-"$1.00", they may be very confused. We can write a Handlebars helper to
-help us format these values into the appropriate human-readable form.
+"$1.00", they may be very confused. We can write a helper to
+format these values into the appropriate human-readable form.
 
 Let's create a `format-currency` helper that takes an integer count of
 cents and turns it into formatted dollars.
@@ -85,7 +85,7 @@ their name.
 
 ### Helper Arguments
 
-You can pass one or more arguments to Handlebars helpers which can be used
+You can pass one or more arguments to  which can be used
 inside the function. In the above example, we passed the amount in cents
 as the first and only argument.
 
@@ -135,7 +135,7 @@ example, let's abandon our American-centric ways and update our
 `format-currency` helper to take an optional configuration for which
 currency symbol to display.
 
-Handlebars helpers allow you to pass named arguments as a JavaScript
+Helpers allow you to pass named arguments as a JavaScript
 object that contains the name of the argument along with an associated
 value.  The order in which named arguments are supplied does not affect
 functionality.
@@ -147,7 +147,7 @@ helper:
 {{format-currency 350 sign="£"}}
 ```
 
-Now our helper will print pounds sterling rather than US dollars:
+We'd like our helper to print pounds sterling rather than US dollars:
 
 ```handlebars
 £3.50
@@ -182,13 +182,9 @@ world"}}
 ```app/helpers/my-helper.js
 import Ember from "ember";
 export default Ember.Helper.helper(function(params, namedArgs) {
-  let option1 = namedArgs.option1;
-  let option2 = namedArgs.option2;
-  let option3 = namedArgs.option3;
-
-  console.log(option1); // => "hello"
-  console.log(option2); // => "world"
-  console.log(option3); // => "goodbye cruel world"
+  console.log(namedArgs.option1); // => "hello"
+  console.log(namedArgs.option2); // => "world"
+  console.log(namedArgs.option3); // => "goodbye cruel world"
 });
 ```
 
@@ -380,4 +376,3 @@ would just see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
-
