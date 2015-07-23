@@ -23,7 +23,7 @@ Router.map(function() {
 
 ```app/routes/index.js
 export default Ember.Route.extend({
-  beforeModel: function() {
+  beforeModel() {
     this.transitionTo('posts');
   }
 });
@@ -46,7 +46,7 @@ Router.map(function() {
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  afterModel: function(posts, transition) {
+  afterModel(posts, transition) {
     if (posts.get('length') === 1) {
       this.transitionTo('post', posts.get('firstObject'));
     }
@@ -76,7 +76,7 @@ Router.map(function() {
 
 ```app/routes/top-charts/choose.js
 export default Ember.Route.extend({
-  beforeModel: function() {
+  beforeModel() {
     var lastFilter = this.controllerFor('application').get('lastFilter');
     this.transitionTo('topCharts.' + (lastFilter || 'songs'));
   }
@@ -86,7 +86,7 @@ export default Ember.Route.extend({
 ```app/routes/filter.js
 // Superclass to be used by all of the filter routes: albums, songs, artists, playlists
 export default Ember.Route.extend({
-  activate: function() {
+  activate() {
     var controller = this.controllerFor('application');
     controller.set('lastFilter', this.templateName);
   }

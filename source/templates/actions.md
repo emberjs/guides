@@ -31,11 +31,11 @@ export default Ember.Controller.extend({
   isExpanded: false,
 
   actions: {
-    expand: function() {
+    expand() {
       this.set('isExpanded', true);
     },
 
-    contract: function() {
+    contract() {
       this.set('isExpanded', false);
     }
   }
@@ -76,11 +76,11 @@ compatibility.
 ```app/routes/post.js
 export default Ember.Route.extend({
   actions: {
-    expand: function() {
+    expand() {
       this.controller.set('isExpanded', true);
     },
 
-    contract: function() {
+    contract() {
       this.controller.set('isExpanded', false);
     }
   }
@@ -95,11 +95,11 @@ To continue bubbling the action, you must return true from the handler:
 ```app/routes/post.js
 export default Ember.Route.extend({
   actions: {
-    expand: function() {
+    expand() {
       this.controller.set('isExpanded', true);
     },
 
-    contract: function() {
+    contract() {
       // ...
       if (actionShouldAlsoBeTriggeredOnParentRoute) {
         return true;
@@ -144,7 +144,7 @@ containing the post model:
 ```app/controllers/post.js
 export default Ember.Controller.extend({
   actions: {
-    select: function(post) {
+    select(post) {
       console.log(post.get('title'));
     }
   }

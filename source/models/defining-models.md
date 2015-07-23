@@ -114,7 +114,7 @@ attribute types, and new types can be registered as transforms. See the
       email: DS.attr('string'),
       verified: DS.attr('boolean', {defaultValue: false}),
       createdAt: DS.attr('string', {
-          defaultValue: function() { return new Date(); }
+          defaultValue() { return new Date(); }
       })
   });
   ```

@@ -80,7 +80,7 @@ A basic example:
 
 ```app/routes/tardy.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return new Ember.RSVP.Promise(function(resolve) {
       Ember.run.later(function() {
         resolve({ msg: "Hold Your Horses" });
@@ -88,7 +88,7 @@ export default Ember.Route.extend({
     });
   },
 
-  setupController: function(controller, model) {
+  setupController(controller, model) {
     console.log(model.msg); // "Hold Your Horses"
   }
 });
@@ -120,12 +120,12 @@ along the way, e.g.:
 
 ```app/routes/good-for-nothing.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return Ember.RSVP.reject("FAIL");
   },
 
   actions: {
-    error: function(reason) {
+    error(reason) {
       alert(reason); // "FAIL"
 
       // Can transition to another route here, e.g.
@@ -151,7 +151,7 @@ them into fulfills that won't halt the transition.
 
 ```app/routes/funky.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return iHopeThisWorks().then(null, function() {
       // Promise rejected, fulfill with some default value to
       // use as the route's model and continue on with the transition
@@ -198,7 +198,7 @@ The following is a far-from-exhaustive list of use cases in which
 
 ```app/routes/secret-articles.js
 export default Ember.Route.extend({
-  beforeModel: function() {
+  beforeModel() {
     if (!this.controllerFor('auth').get('isLoggedIn')) {
       this.transitionTo('login');
     }
@@ -218,12 +218,12 @@ depends on the fully resolved value of a model.
 
 ```app/routes/articles.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     // `this.store.findAll('article')` returns a promise-like object
     // (it has a `then` method that can be used like a promise)
     return this.store.findAll('article');
   },
-  afterModel: function(articles) {
+  afterModel(articles) {
     if (articles.get('length') === 1) {
       this.transitionTo('article.show', articles.get('firstObject'));
     }

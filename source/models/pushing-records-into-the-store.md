@@ -38,7 +38,7 @@ export default DS.Model.extend({
 
 ```app/routes/application.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     this.store.push('album', {
       id: 1,
       title: "Fewer Moving Parts",
