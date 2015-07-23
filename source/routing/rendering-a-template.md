@@ -6,11 +6,11 @@ parent with a template.
 
 ```app/router.js
 Router.map(function() {
-  this.route('posts');
+  this.route('post');
 });
 ```
 
-```app/routes/posts.js
+```app/routes/post.js
 export default Ember.Route.extend();
 ```
 
@@ -28,7 +28,7 @@ export default Ember.Route.extend({
 If you want to use a different controller than the route handler's
 controller, pass the controller's name in the `controller` option:
 
-```app/routes/posts.js
+```app/routes/post.js
 export default Ember.Route.extend({
   renderTemplate() {
     this.render({ controller: 'favoritePost' });
@@ -47,7 +47,7 @@ you to specify two outlets with distinct names:
 So, if you want to render your posts into the `sidebar` outlet, use code
 like this:
 
-```app/routes/posts.js
+```app/routes/post.js
 export default Ember.Route.extend({
   renderTemplate() {
     this.render({ outlet: 'sidebar' });
@@ -58,16 +58,16 @@ export default Ember.Route.extend({
 All of the options described above can be used together in whatever
 combination you'd like:
 
-```app/routes/posts.js
+```app/routes/post.js
 export default Ember.Route.extend({
   renderTemplate() {
     var controller = this.controllerFor('favoritePost');
 
     // Render the `favoritePost` template into
-    // the outlet `posts`, and use the `favoritePost`
+    // the outlet `post`, and use the `favoritePost`
     // controller.
     this.render('favoritePost', {
-      outlet: 'posts',
+      outlet: 'post',
       controller: controller
     });
   }
@@ -81,7 +81,7 @@ export default Ember.Route.extend({
   renderTemplate() {
     this.render('favoritePost', {   // the template to render
       into: 'posts',                // the template to render into
-      outlet: 'posts',              // the name of the outlet in that template
+      outlet: 'post',              // the name of the outlet in that template
       controller: 'blogPost'        // the controller to use for the template
     });
     this.render('comments', {
