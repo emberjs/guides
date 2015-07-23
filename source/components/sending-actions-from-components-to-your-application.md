@@ -46,7 +46,7 @@ without arguments:
 
 ```app/components/my-button.js
 export default Ember.Component.extend({
-  click: function() {
+  click() {
     this.sendAction();
   }
 });
@@ -74,7 +74,7 @@ delete a todo:
 
 ```app/routes/index.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return {
       todos: [{
         title: "Learn Ember.js"
@@ -85,7 +85,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    deleteTodo: function(todo) {
+    deleteTodo(todo) {
       var todos = this.modelFor('index').todos;
       todos.removeObject(todo);
     }
@@ -110,11 +110,11 @@ additional argument that the component user can specify:
 ```app/components/confirm-button.js
 export default Ember.Component.extend({
   actions: {
-    showConfirmation: function() {
+    showConfirmation() {
       this.toggleProperty('isShowingConfirmation');
     },
 
-    confirm: function() {
+    confirm() {
       this.toggleProperty('isShowingConfirmation');
       this.sendAction('action', this.get('param'));
     }
@@ -179,7 +179,7 @@ on click:
 
 ```app/components/my-button.js
 export default Ember.Component.extend({
-  click: function() {
+  click() {
     this.sendAction();
   }
 });

@@ -145,7 +145,7 @@ the ID of `1` from our route's `model` hook:
 
 ```app/routes/index.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return this.store.findRecord('person', 1);
   }
 });

@@ -136,7 +136,7 @@ export default Ember.Route.extend({
       refreshModel: true
     }
   },
-  model: function(params) {
+  model(params) {
     // This gets called upon entering 'articles' route
     // for the first time, and we opt into refiring it upon
     // query param changes by setting `refreshModel:true` above.
@@ -282,7 +282,7 @@ param.
 
 ```app/routes/articles.js
 export default Ember.Route.extend({
-  resetController: function (controller, isExiting, transition) {
+  resetController (controller, isExiting, transition) {
     if (isExiting) {
       // isExiting would be false if only the route's model was changing
       controller.set('page', 1);

@@ -84,7 +84,7 @@ following:
 
 ```javascript
 export default Ember.View.reopen({
-  init: function() {
+  init() {
     this._super();
     var self = this;
 

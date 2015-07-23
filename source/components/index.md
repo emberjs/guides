@@ -59,7 +59,7 @@ var posts = [{
 }];
 
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return posts;
   }
 });

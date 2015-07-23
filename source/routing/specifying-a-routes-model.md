@@ -13,7 +13,7 @@ would define an `route:photos` object:
 
 ```app/routes/photos.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return [{
       title: "Tomster",
       url: "http://emberjs.com/images/about/ember-productivity-sm.png"
@@ -58,7 +58,7 @@ recent pull requests sent to Ember.js on GitHub:
 
 ```app/routes/pull-requests.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return Ember.$.getJSON('https://api.github.com/repos/emberjs/ember.js/pulls');
   }
 });
@@ -85,7 +85,7 @@ request before it gets passed to the template:
 
 ```app/routes/pull-requests.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     var url = 'https://api.github.com/repos/emberjs/ember.js/pulls';
     return Ember.$.getJSON(url).then(function(data) {
       return data.splice(0, 3);
@@ -180,7 +180,7 @@ Router.map(function() {
 
 ```app/routes/photo.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return Ember.$.getJSON('/photos/'+params.photo_id);
   }
 });

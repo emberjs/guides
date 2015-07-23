@@ -5,7 +5,7 @@ To define a new Ember _class_, call the `extend()` method on
 
 ```javascript
 Person = Ember.Object.extend({
-  say: function(thing) {
+  say(thing) {
     alert(thing);
   }
 });
@@ -30,14 +30,14 @@ method:
 
 ```javascript
 Person = Ember.Object.extend({
-  say: function(thing) {
+  say(thing) {
     var name = this.get('name');
     alert(name + " says: " + thing);
   }
 });
 
 Soldier = Person.extend({
-  say: function(thing) {
+  say(thing) {
     // this will call the method in the parent class (Person#say), appending
     // the string ", sir!" to the variable `thing` passed in
     this._super(thing + ", sir!");
@@ -68,7 +68,7 @@ by passing an optional hash to the `create()` method:
 
 ```javascript
 Person = Ember.Object.extend({
-  helloWorld: function() {
+  helloWorld() {
     alert("Hi, my name is " + this.get('name'));
   }
 });
@@ -100,7 +100,7 @@ instances:
 
 ```js
 Person = Ember.Object.extend({
-  init: function() {
+  init() {
     var name = this.get('name');
     alert(name + ", reporting for duty!");
   }
