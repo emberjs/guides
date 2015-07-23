@@ -66,7 +66,7 @@ and modified on the client.
 
 ```app/routes/posts/favourited.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     var store = this.store;
 
     // Create a filter for all favorited posts that will be displayed in

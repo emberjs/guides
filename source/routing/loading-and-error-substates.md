@@ -25,7 +25,7 @@ Router.map(function() {
 
 ```app/routes/foo/slow-model.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return somePromiseThatTakesAWhileToResolve();
   }
 });
@@ -128,11 +128,11 @@ route, providing the `route:application` the opportunity to manage it.
 
 ```app/routes/foo-slow-model.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return somePromiseThatTakesAWhileToResolve();
   },
   actions: {
-    loading: function(transition, originRoute) {
+    loading(transition, originRoute) {
       //displayLoadingSpinner();
       this.router.one('didTransition', function () {
         // hideLoadingSpinner();
@@ -153,7 +153,7 @@ or returns `true`, Ember will perform the loading substate behavior.
 ```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
-    loading: function(transition, originRoute) {
+    loading(transition, originRoute) {
       displayLoadingSpinner();
 
       // substate implementation when returning `true`
@@ -211,7 +211,7 @@ Router.map(function() {
 
 ```app/routes/foo.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
        reject("Error");
     });
@@ -251,13 +251,13 @@ redirect to a login page, etc.
 
 ```app/routes/articles-overview.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
        reject("Error");
     });
   },
   actions: {
-    error: function(error, transition) {
+    error(error, transition) {
 
       if (error && error.status === 400) {
         // error substate and parent routes do not handle this error
@@ -279,7 +279,7 @@ must be performed or not.
 ```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
-    error: function(error, transition) {
+    error(error, transition) {
 
       // Manage your errors
       Ember.onerror(error);

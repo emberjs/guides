@@ -22,7 +22,7 @@ Here's one way this situation could be handled:
 ```app/routes/form.js
 export default Ember.Route.extend({
   actions: {
-    willTransition: function(transition) {
+    willTransition(transition) {
       if (this.controller.get('userHasEnteredData') &&
           !confirm("Are you sure you want to abandon progress?")) {
         transition.abort();
@@ -53,7 +53,7 @@ destination routes to abort attempted transitions.
 
 ```app/routes/disco.js
 export default Ember.Route.extend({
-  beforeModel: function(transition) {
+  beforeModel(transition) {
     if (new Date() > new Date("January 1, 1980")) {
       alert("Sorry, you need a time machine to enter this route.");
       transition.abort();
@@ -71,7 +71,7 @@ they've logged in.
 
 ```app/routes/some-authenticated.js
 export default Ember.Route.extend({
-  beforeModel: function(transition) {
+  beforeModel(transition) {
     if (!this.controllerFor('auth').get('userIsLoggedIn')) {
       var loginController = this.controllerFor('login');
       loginController.set('previousTransition', transition);
@@ -84,7 +84,7 @@ export default Ember.Route.extend({
 ```app/controllers/login.js
 export default Ember.Controller.extend({
   actions: {
-    login: function() {
+    login() {
       // Log the user in, then reattempt previous transition if it exists.
       var previousTransition = this.get('previousTransition');
       if (previousTransition) {

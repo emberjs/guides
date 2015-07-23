@@ -32,7 +32,7 @@ Here's a simple example that uses a route, controller, and template:
 
 ```app/routes/application.js
 export default Ember.Route.extend({
-  setupController: function(controller) {
+  setupController(controller) {
     // `controller` is the instance of ApplicationController
     controller.set('title', "Hello world!");
   }
@@ -91,11 +91,13 @@ to the template.
 Here's an example:
 
 ```app/routes/favorites.js
+import ajax from 'ic-ajax';
+
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     // the model is an Array of all of the posts
     // fetched from this url
-    return $.ajax('/a/service/url/where/posts/live');
+    return ajax('/a/service/url/where/posts/live');
   }
 });
 ```
@@ -146,12 +148,14 @@ back into the URL parameters for this route (for example, when
 generating a link for a model object).
 
 ```app/routes/post.js
+import ajax from 'ic-ajax';
+
 export default Ember.Route.extend({
-  model: function(params) {
-    return $.ajax('/my-service/posts/' + params.post_id);
+  model(params) {
+    return ajax('/my-service/posts/' + params.post_id);
   },
 
-  serialize: function(post) {
+  serialize(post) {
     return { post_id: Ember.get(post, 'id') };
   }
 });
