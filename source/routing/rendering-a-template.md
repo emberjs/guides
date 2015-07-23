@@ -19,7 +19,7 @@ route handler, implement the `renderTemplate` hook:
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  renderTemplate: function() {
+  renderTemplate() {
     this.render('favoritePost');
   }
 });
@@ -30,7 +30,7 @@ controller, pass the controller's name in the `controller` option:
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
-  renderTemplate: function() {
+  renderTemplate() {
     this.render({ controller: 'favoritePost' });
   }
 });
@@ -49,7 +49,7 @@ like this:
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
-  renderTemplate: function() {
+  renderTemplate() {
     this.render({ outlet: 'sidebar' });
   }
 });
@@ -60,7 +60,7 @@ combination you'd like:
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
-  renderTemplate: function() {
+  renderTemplate() {
     var controller = this.controllerFor('favoritePost');
 
     // Render the `favoritePost` template into
@@ -78,7 +78,7 @@ If you want to render two different templates into outlets of two different rend
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  renderTemplate: function() {
+  renderTemplate() {
     this.render('favoritePost', {   // the template to render
       into: 'posts',                // the template to render into
       outlet: 'posts',              // the name of the outlet in that template

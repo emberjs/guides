@@ -85,7 +85,7 @@ export default Router;
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return this.store.findAll('post');
   }
 });
@@ -93,7 +93,7 @@ export default Ember.Route.extend({
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return this.store.findRecord('post', params.post_id);
   }
 })

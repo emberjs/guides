@@ -55,7 +55,7 @@ subclass. For example, to customize what happens when your user visits
 
 ```app/routes/index.js
 export default Ember.Route.extend({
-  setupController: function(controller) {
+  setupController(controller) {
     // Set the IndexController's `title`
     controller.set('title', 'My App');
   }
@@ -302,7 +302,7 @@ route handler might look like this:
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
-  model: function() {
+  model() {
     return $.getJSON("/url/to/some/posts.json");
   }
 });
@@ -330,7 +330,7 @@ Router.map(function() {
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return $.getJSON("/url/to/some/posts/" + params.post_id + ".json");
   }
 });
@@ -348,12 +348,12 @@ Router.map(function() {
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     // the server returns `{ slug: 'foo-post' }`
     return Ember.$.getJSON('/posts/' + params.post_slug);
   },
 
-  serialize: function(model) {
+  serialize(model) {
     // this will make the URL `/posts/foo-post`
     return { post_slug: model.get('slug') };
   }
@@ -395,7 +395,7 @@ or `transitionTo` to programatically enter this route.
 ```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
-    error: function() {
+    error() {
       this.transitionTo('catchall', 'application-error');
     }
   }
