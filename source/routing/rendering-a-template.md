@@ -28,7 +28,7 @@ export default Ember.Route.extend({
 If you want to use a different controller than the route handler's
 controller, pass the controller's name in the `controller` option:
 
-```app/routes/posts.js
+```app/routes/post.js
 export default Ember.Route.extend({
   renderTemplate() {
     this.render({ controller: 'favoritePost' });
