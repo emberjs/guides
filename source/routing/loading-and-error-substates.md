@@ -190,11 +190,81 @@ will look for:
 If one of the above is found, the router will immediately transition into
 that substate (without updating the URL). The "reason" for the error
 (i.e. the exception thrown or the promise reject value) will be passed
-to that error state as its `model`.
+to that error state as its `model`. For example, here we are rejecting a
+promise with the HTTP response code as the error message:
+
+```js
+  reject({"message": response.status})
+```
+
+This will generally be in the promise `failure` hook inside the code which finds your data.
+For example, here we fetch some data with a promise and either `resolve` it if successful or `reject` if it fails.
+
+```js
+var promise = fetchSomeData(); \\ an Ember.RSVP.Promise
+
+promise.then(success, fail);
+
+function success(response) {
+  resolve(response);
+}
+
+function fail(response) {
+  reject({"message": response.status)};
+}
+```
+
+`message` is an arbitrary key and you can use whatever is appropriate for your application.
+It is important that the reject contains an `object`. If you only reject with a textual value
+or number, for example a response code, then the reason will not bubble up to the route and 
+the model will be `null`. The following would result in a `null` model:
+
+```js
+  reject(404) // don't do this
+```
+
+This error "reason" will be passed to the `ErrorRoute` available to the app. By default Ember will
+set this error object as the model in the `ErrorController`. You can then display specific error messages in the error 
+template based on this error "reason". You can use the appropriate error controller eg. the apps general `ErrorController`
+to display a message based on the error message properties. For example,
+
+```app/controllers/error.js
+export default Ember.ObjectController.extend({
+  
+  is404: Ember.computed('model.message', function() {
+    return this.get('model.message') === 404;
+  }),
+
+  is500: Ember.computed('model.message', function() {
+    return this.get('model.message') === 500;
+  }),
+
+  isGeneralError: Ember.computed('model.message', function() {
+    return this.get('model.message') !== 404 && this.get('model.message') !== 500;
+  })
+
+});
+```
+```app/templates/error.hbs
+{{#if is404}}
+  <div>
+    Sorry, couldn't find what you were looking for.
+  </div>
+{{/if}}
+{{#if is500}}
+  <div>
+    Something went wrong, please try again.
+  </div>
+{{/if}}
+{{#if isGeneralError}}
+  <div>
+    The application encountered an error.
+  </div>
+{{/if}}
+```
 
 If no viable error substates can be found, an error message will be
 logged.
-
 
 ### `error` substates with dynamic segments
 
