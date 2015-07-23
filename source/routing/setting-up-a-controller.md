@@ -5,10 +5,6 @@ source of information to display.
 In Ember.js, a template retrieves information to display from a
 controller.
 
-There is a special built-in controller— `Ember.ArrayController` —to make it easy to
-present some collections properties to a template, along with any additional
-display-specific properties.
-
 To tell the controller which model to present, set its
 `model` property in the route handler's `setupController` hook.
 
