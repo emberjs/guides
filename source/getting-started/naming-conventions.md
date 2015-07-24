@@ -32,9 +32,8 @@ Here's a simple example that uses a route, controller, and template:
 
 ```app/routes/application.js
 export default Ember.Route.extend({
-  setupController(controller) {
-    // `controller` is the instance of ApplicationController
-    controller.set('title', "Hello world!");
+  model() {
+    return { title: "Hello World" };
   }
 });
 ```
@@ -47,7 +46,7 @@ export default Ember.Controller.extend({
 
 ```app/templates/application.hbs
 <h1>{{appName}}</h1>
-<h2>{{title}}</h2>
+<h2>{{model.title}}</h2>
 ```
 
 In Ember.js applications, you will always provide your objects
