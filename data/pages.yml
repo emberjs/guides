@@ -10,8 +10,6 @@
   pages:
     - title: "Installing Ember"
       url: "index"
-    - title: "Glossary"
-      url: "glossary"
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Naming Conventions"
