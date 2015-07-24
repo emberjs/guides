@@ -64,9 +64,13 @@ same name as the route.
 Let's start with a simple router:
 
 ```app/router.js
-export default Ember.Router.extend().map(function(){
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('favorites');
 });
+
+export default Router;
 ```
 
 If your user navigates to `/favorites`, Ember.js will look for these
@@ -129,10 +133,14 @@ on the value of that segment provided by the user.
 
 Consider this router definition:
 
-```javascript
-export default Ember.Router.extend().map(function(){
+```app/router.js
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('post', { path: '/posts/:post_id' });
 });
+
+export default Router
 ```
 
 In this case, the route's name is `post`, so Ember.js will look for
@@ -194,13 +202,17 @@ anything!
 
 You can nest routes:
 
-```javascript
-export default Ember.Router.extend().map(function(){
+```app/router.js
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('posts', function() {    // the `posts` route
     this.route('favorites');          // the `posts.favorites` route
     this.route('post');               // the `posts.post` route
   });
 });
+
+export default Router
 ```
 
 Here are the naming conventions for each of the routes defined in
@@ -271,18 +283,26 @@ automatically provides a route for the `/` path named `index`.
 For example, if you write a simple router like this:
 
 ```app/router.js
-export default Ember.Router.extend().map(function(){
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('favorites');
 });
+
+export default Router;
 ```
 
 It is the equivalent of:
 
 ```app/router.js
-export default Ember.Router.extend().map(function(){
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('index', { path: '/' });
   this.route('favorites');
 });
+
+export default Router;
 ```
 
 If the user visits `/`, Ember.js will look for these objects:
@@ -299,23 +319,31 @@ template.
 A nested router like this:
 
 ```app/router.js
-export default Ember.Router.extend().map(function(){
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('posts', function() {
     this.route('favorites');
   });
 });
+
+export default Router;
 ```
 
 Is the equivalent of:
 
 ```app/router.js
-export default Ember.Router.extend().map(function(){
+var Router = Ember.Router.extend();
+
+Router.map(function(){
   this.route('index', { path: '/' });
   this.route('posts', function() {
     this.route('index', { path: '/' });
     this.route('favorites');
   });
 });
+
+export default Router;
 ```
 
 If the user navigates to `/posts`, the current route will be
