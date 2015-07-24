@@ -123,25 +123,6 @@ describe TOC::Helpers do
     end
   end
 
-  describe "#chapter_heading" do
-    it "is nil if chapter name is blank" do
-      allow(helper).to receive(:page_title).and_return("")
-
-      expect(helper.chapter_heading).to be_nil
-    end
-
-    it "is header markup with name & source URL when chapter name is specified" do
-      expect(helper.chapter_heading).to include(basic_chapter_title)
-      expect(helper.chapter_heading).to include("https://github.com/emberjs/guides/edit")
-    end
-  end
-
-  describe "#chapter_github_source_url" do
-    it "is the github URL to the source file for current page" do
-      expect(helper.chapter_github_source_url).to eq("https://github.com/emberjs/guides/edit/master/source/middleman-basics/index.md")
-    end
-  end
-
   describe "#chapter_links" do
     it "is markup that consists of previous & next chapter links" do
       allow(helper).to receive(:current_page).and_return(double(path: "secret"))
