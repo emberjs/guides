@@ -64,9 +64,13 @@ same name as the route.
 Let's start with a simple router:
 
 ```app/router.js
-export default Ember.Router.extend().map(function(){
+var Router = Ember.Router.extend({});
+
+Router.map(function(){
   this.route('favorites');
 });
+
+export default Router;
 ```
 
 If your user navigates to `/favorites`, Ember.js will look for these
