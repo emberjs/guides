@@ -92,10 +92,12 @@ However, if we have the run loop in the above code, the browser will only rerend
 
 ```javascript
 var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
-user.set('firstName', 'Yehuda');
-user.set('lastName', 'Katz');
-user.set('firstName', 'Tom');
-user.set('lastName', 'Huda');
+Ember.run(function() {
+  user.set('firstName', 'Yehuda');
+  user.set('lastName', 'Katz');
+  user.set('firstName', 'Tom');
+  user.set('lastName', 'Huda');
+});
 ```
 
 In the above example with the run loop, since the user's attributes end up at the same values as before execution, the template will not even rerender!
