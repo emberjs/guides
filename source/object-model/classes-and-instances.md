@@ -113,10 +113,10 @@ Person.create({
 // alerts "Stefan Penner, reporting for duty!"
 ```
 
-If you are subclassing a framework class, like `Ember.View`, and you override
-the `init` method, make sure you call `this._super()`! If you don't, the system
-may not have an opportunity to do important setup work, and you'll see strange
-behavior in your application.
+If you are subclassing a framework class, like `Ember.Component`, and you
+override the `init` method, make sure you call `this._super()`! If you don't,
+the system may not have an opportunity to do important setup work, and you'll
+see strange behavior in your application.
 
 ### Accessing Object Properties
 
