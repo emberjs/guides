@@ -20,40 +20,7 @@ When a new version of Ember.js is released we use this repo to generate a guides
 
 No attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable.
 
-To publish a new Guide version, you'll also need a copy of the Guides site repo: https://github.com/emberjs/guides.emberjs.com
-
-First, tag a copy of the repo:
-
-```shell
-git tag <revision number>
-git push --tags
-```
-
-Next, build a new artifact and move it to the guides site repo, committing it to GitHub:
-
-```shell
-middleman build
-mv ./build <path to guides site repo>/artifacts/<revision number>
-cd <path to guides site repo>
-git add --all
-gc -m "Adding artifact for Ember.js revision <revision number>"
-git push
-```
-
-Finally, publish this to Divshot's staging environment (our site host):
-
-```
-cd <path to guides site repo>
-npm stage # runs `divshot push staging`
-```
-
-Visit the site to ensure that everything looks good. Assuming there are no issues, you're ready to publish the site content and search content:
-
-```shell
-cd <path to guides site repo>
-npm publish # runs `divshot promote staging production` && `npm swiftype`
-```
-
+To publish a new Guides version, see https://github.com/emberjs/guides.emberjs.com.
 
 ### Requirements
 
