@@ -222,7 +222,7 @@ For example, given this template that adds the `select` action to a
 button:
 
 ```app/templates/component/show-posts.hbs
-<button {{action "selectPost" model}}>Select Post</button>
+<button {{action "select" model}}>Select Post</button>
 ```
 
 You can implement a function that responds to the button being clicked
