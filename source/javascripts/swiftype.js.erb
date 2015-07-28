@@ -1,4 +1,9 @@
 var Swiftype = window.Swiftype || {};
+
+var slugs = window.location.href.split('/');
+var currentRevision = slugs[slugs.length - 2];
+var documentType = 'guides-' + currentRevision.replace(/\./g,'-');
+
 (function() {
   Swiftype.key = '<%= data.search.engine_key %>';
   Swiftype.inputElement = '#st-search-input';
@@ -7,9 +12,11 @@ var Swiftype = window.Swiftype || {};
   Swiftype.renderStyle = 'overlay';
   Swiftype.disableAutocomplete = true;
 
-  Swiftype.searchSearchFields = {'<%= data.search.document_type %>': ['body', 'title', 'url']};
-  Swiftype.searchFetchFields = {'<%= data.search.document_type %>': ['title','body',  'url']};
-  Swiftype.searchDocumentTypes = ['<%= data.search.document_type %>'];
+  Swiftype.searchSearchFields = {};
+  Swiftype.searchSearchFields[documentType] = ['body', 'title', 'url'];
+  Swiftype.searchFetchFields = {};
+  Swiftype.searchFetchFields[documentType] = ['title','body',  'url']
+  Swiftype.searchDocumentTypes = [documentType];
 
   var script = document.createElement('script');
   script.type = 'text/javascript';
@@ -21,14 +28,14 @@ var Swiftype = window.Swiftype || {};
 
 $(function() {
   var onComplete = function(item, prefix) {
-    window.location = '/<%= data.search.revision %>' + item['url'];
+    window.location = '/' + currentRevision + item['url'];
   };
 
   $('#st-search-input').swiftype({
     engineKey:  '<%= data.search.engine_key %>',
-    searchFields: {'<%= data.search.document_type %>': ['body', 'title', 'url']},
-    fetchFields:  {'<%= data.search.document_type %>': ['title','body',  'url']},
-    documentTypes: ['<%= data.search.document_type %>'],
+    searchFields: Swiftype.searchSearchFields,
+    fetchFields: Swiftype.searchFetchFields,
+    documentTypes: Swiftype.searchDocumentTypes,
     onComplete: onComplete
   });
 });
