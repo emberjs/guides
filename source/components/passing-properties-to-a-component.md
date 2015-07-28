@@ -84,8 +84,33 @@ create a component for each item and bind it to each model in the loop.
 <script src="http://static.jsbin.com/js/embed.js"></script>-->
 
 If you are using the `{{component}}` helper to render your component, you can
-pass properties to the chosen component the same manner:
+pass properties to the chosen component in the same manner:
 
 ```handlebars
 {{component componentName title=title name=name}}
+```
+
+### Positional Params
+
+Apart from passing attributes to a component, you can also pass in positional parameters, like we've seen with the `{{link-to}}`, e.g. `{{link-to "user" userModel}}`.
+
+You can access these parameters by setting the `positionalParams` attribute in your component.
+
+```app/components/x-visit.js
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  positionalParams: ['name', 'model']
+});
+```
+
+This will expose the first parameter in your template as the `{{name}}` attribute and the second as `{{model}}`. They will also be available as regular attributes in your component via `this.get('name')` and `this.get('model')`.
+
+In addition to mapping the parameters to attributes, you can also have an arbitrary number of parameters by setting `positionalParams`
+to a string, e.g. `positionalParams: 'params'`. This will allow you to access those params as an array like so:
+
+```app/templates/components/x-visit.hbs
+{{#each params as |param|}}
+  {{param}}
+{{/each}}
 ```
