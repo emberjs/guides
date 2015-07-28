@@ -31,6 +31,8 @@ the `setupController` hook.
 Here's a simple example that uses a route, controller, and template:
 
 ```app/routes/application.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return { title: "Hello World" };
@@ -39,6 +41,8 @@ export default Ember.Route.extend({
 ```
 
 ```app/controllers/application.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   appName: 'My First Example'
 });
@@ -63,6 +67,8 @@ same name as the route.
 Let's start with a simple router:
 
 ```app/router.js
+import Ember from 'ember';
+
 var Router = Ember.Router.extend();
 
 Router.map(function(){
@@ -94,6 +100,7 @@ to the template.
 Here's an example:
 
 ```app/routes/favorites.js
+import Ember from 'ember';
 import ajax from 'ic-ajax';
 
 export default Ember.Route.extend({
@@ -117,9 +124,9 @@ the change.
 
 The template can iterate over the elements of the controller:
 
-```handlebars
+```app/templates/favorites.hbs
 <ul>
-{{#each controller as |item|}}
+{{#each model as |item|}}
   <li>{{item.title}}</li>
 {{/each}}
 </ul>
