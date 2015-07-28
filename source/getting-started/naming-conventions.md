@@ -126,7 +126,7 @@ The template can iterate over the elements of the controller:
 
 ```app/templates/favorites.hbs
 <ul>
-{{#each controller as |item|}}
+{{#each model as |item|}}
   <li>{{item.title}}</li>
 {{/each}}
 </ul>
