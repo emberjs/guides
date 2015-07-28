@@ -6,7 +6,7 @@ $.ajax('/versions.json')
     });
     var slugs = window.location.href.split('/');
     var currentRevision = slugs[slugs.length - 2];
-    versionSelectBox.select2('val', currentRevision);
+    versionSelectBox.val(currentRevision).change();
 
     versionSelectBox.on('change', function() {
       var version = this.value;
