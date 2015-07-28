@@ -1,12 +1,12 @@
-var currentRevision = '<%= data.search.revision %>';
-
 $.ajax('/versions.json')
   .done(function(data) {
     var versionSelectBox = $(".version-select");
     versionSelectBox.select2({
       data: data
     });
-    versionSelectBox.select2('val', currentRevision);
+    var slugs = window.location.href.split('/');
+    var currentRevision = slugs[slugs.length - 2];
+    versionSelectBox.val(currentRevision).change();
 
     versionSelectBox.on('change', function() {
       var version = this.value;
