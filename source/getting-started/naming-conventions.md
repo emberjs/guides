@@ -31,6 +31,8 @@ the `setupController` hook.
 Here's a simple example that uses a route, controller, and template:
 
 ```app/routes/application.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return { title: "Hello World" };
@@ -39,6 +41,8 @@ export default Ember.Route.extend({
 ```
 
 ```app/controllers/application.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   appName: 'My First Example'
 });
