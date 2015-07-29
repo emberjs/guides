@@ -2,7 +2,31 @@
 
 The source for the Ember.js guides.
 
+
 ### Contributing
+
+The Ember Guides are maintained and updated by an all-volunteer group of Ember community members. We'd love to have you join our efforts!
+
+Please note that no attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable, as it is too difficult to maintain content for every version ever released. Issues will only be fixed for future releases.
+
+## Fixing problems
+
+If you find a problem on a particular page in the Guides, the most helpful thing you can do is open a pull request. If you're not sure how to fix it, open an issue.
+
+## Contributing solicited content
+
+We try to make it easy for people to contribute to the Guides by tagging issues with [help wanted](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) when appropriate. The best way to get started contributing content is to pick up one of these issues.
+
+## Contributing unsolicited content
+
+If you'd like to contribute content that you think is missing, please start by checking the issues page. There may already be a plan to add this content! If not, open an issue yourself so that you can get feedback before you start writing. Our core contributors may ask you to start off by writing a blog post on your topic instead of or before opening a pull request on the Guides. This helps us keep the Guides consistent and streamlined.
+
+## Writing code
+
+You can also help out with the Guides by improving the code for the app that is used to build the content. Issues related to writing code have the label [code](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22code%22).
+
+
+## Developing with the Guides
 
 To get started:
 
@@ -14,13 +38,6 @@ bundle exec middleman
 ```
 
 Then visit [http://localhost:4567/](http://localhost:4567/)
-
-### Publishing
-When a new version of Ember.js is released we use this repo to generate a guides snapshot. This represents the state of the Guides at the moment of Ember.js release. This allows us to continually update the guides for current best practices in the Ember.js ecosystem while still providing stable documentation for users on early versions of the framework.
-
-No attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable.
-
-To publish a new Guides version, see https://github.com/emberjs/guides.emberjs.com.
 
 ### Requirements
 
