@@ -25,8 +25,6 @@ export default Ember.Route.extend({
 });
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/mezoca/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
-
 ### Asynchronously Loading Models
 
 In the above example, the model data was returned synchronously from the
