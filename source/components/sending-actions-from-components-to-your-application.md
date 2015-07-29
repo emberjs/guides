@@ -143,8 +143,6 @@ Note that we've specified the action to send by setting the component's
 `action` attribute, and we've specified which argument should be sent as
 a parameter by setting the component's `param` attribute.
 
-<!---<a class="jsbin-embed" href="http://jsbin.com/tihavobiki/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
-
 ### Sending Multiple Actions
 
 Depending on the complexity of your component, you may need to let users
@@ -159,15 +157,51 @@ You can specify _which_ action to send by passing the name of the event
 as the first argument to `sendAction()`. For example, you can specify two
 actions when using the form component:
 
-```handlebars
+```app/templates/index.hbs
 {{user-form submit="createUser" cancel="cancelUserCreation"}}
+```
+
+```app/controllers/index.js
+export default Ember.Controller.extend({
+ actions: {
+    createUser(user) {
+      alert(`Created user ${user.name} with bio ${user.bio}.`);
+    },
+    cancelUserCreation() {
+      alert("Canceled user creation.");
+    }
+  }
+});
 ```
 
 In this case, you can send the `createUser` action by calling
 `this.sendAction('submit')`, or send the `cancelUserCreation` action by
-calling `this.sendAction('cancel')`.
+calling `this.sendAction('cancel')`:
 
-<!---<a class="jsbin-embed" href="http://jsbin.com/fimevowehe/2/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
+```app/components/user-form.js
+export default Ember.Component.extend({
+  actions: {
+    submit() {
+      this.sendAction('submit', {
+        name: this.get('name'),
+        bio: this.get('bio')
+      });
+    },
+    cancel() {
+      this.sendAction('cancel');
+    }
+  }
+});
+```
+
+```app/templates/components/user-form.hbs
+<form {{action "submit" on="submit"}}>
+  <p><label>Name {{input type="text" value=name}}</label></p>
+  <p>label>Bio {{textarea value=bio}}</label></p>
+  <button {{action "cancel"}}>Cancel</button>
+  <input type="submit">
+</form>
+```
 
 ### Actions That Aren't Specified
 
