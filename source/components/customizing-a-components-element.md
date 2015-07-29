@@ -152,13 +152,3 @@ export default Ember.Component.extend({
   customHref: "http://emberjs.com"
 });
 ```
-
-<!-- ### Example
-
-Here is an example todo application that shows completed todos with a
-red background:
-
-<a class="jsbin-embed" href="http://jsbin.com/duzala/1/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
-
-**Note:** The binding functionality in this very simple example could also be implemented without
-the use of `Ember.Component` but by simply [binding element attributes](../../templates/binding-element-attributes) or [binding element class names](../../templates/binding-element-class-names). -->
