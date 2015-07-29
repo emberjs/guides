@@ -16,8 +16,6 @@ Having a template whose name starts with `components/` creates a
 component of the same name. Given the above template, you can now use the
 `{{blog-post}}` custom element:
 
-<!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> -->
-<!--- The example above uses `<script>` tags to work inside of JSBin.-->
 ```app/templates/index.hbs
 {{#each model as |post|}}
   {{#blog-post title=post.title}}
