@@ -2,4 +2,4 @@ language: ruby
 sudo: false
 rvm:
   - "1.9.3"
-script: bundle exec rspec spec && bundle exec middleman build
+script: bundle exec rspec spec && bundle exec middleman build --verbose
