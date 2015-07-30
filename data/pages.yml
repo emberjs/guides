@@ -12,8 +12,6 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-    - title: "Naming Conventions"
-      url: "naming-conventions"
 
 - title: "The Object Model"
   url: 'object-model'
