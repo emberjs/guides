@@ -334,7 +334,6 @@ export default Ember.Controller.extend({
 - [Opt-in to full transition via refresh()](http://jsbin.com/yanigu)
 - [update query params by changing controller QP property](http://jsbin.com/zerojo)
 - [update query params with replaceState by changing controller QP property](http://emberjs.jsbin.com/birugi)
-- [w/ {{partial}} helper for easy tabbing](http://jsbin.com/baguc)
 - [link-to with no route name, only QP change](http://jsbin.com/rujawi)
 - [Complex: serializing textarea content into URL (and subexpressions))](http://emberjs.jsbin.com/tudiz)
 - [Arrays](http://jsbin.com/gacihe)

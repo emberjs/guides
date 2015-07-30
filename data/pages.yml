@@ -58,8 +58,6 @@
       url: "input-helpers"
     - title: "Development Helpers"
       url: "development-helpers"
-    - title: "Rendering with Helpers"
-      url: "rendering-with-helpers"
     - title: "Writing Helpers"
       url: "writing-helpers"
 
