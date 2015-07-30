@@ -25,8 +25,6 @@ export default Ember.Route.extend({
 });
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/mezoca/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
-
 ### Asynchronously Loading Models
 
 In the above example, the model data was returned synchronously from the
@@ -204,7 +202,33 @@ will always execute the model hook.
 If your data represented by your model is being updated frequently, you may
 want to refresh it periodically:
 
-<a class="jsbin-embed" href="http://jsbin.com/sefuv/2/embed?js">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+```app/routes/index.js
+export default Ember.Route.extend({
+  model: function() {
+    var url = 'https://api.github.com/repos/emberjs/ember.js/pulls';
+    return Ember.$.getJSON(url).then(function(data) {
+      return data.splice(0, 3);
+    });
+  },
+  actions: {
+    invalidateModel: function() {
+      Ember.Logger.log('Route is now refreshing...');
+      this.refresh();
+    }
+  }
+});
+```
+
+```app/controllers/index.js
+export default Ember.Controller.extend({
+  actions: {
+    getLatest: function() {
+      Ember.Logger.log('Controller requesting route to refresh...');
+      this.send('invalidateModel');
+    }
+  }
+});
+```
 
 The controller can send an action to the Route; in this example above, the
 IndexController exposes an action `getLatest` which sends the route an
