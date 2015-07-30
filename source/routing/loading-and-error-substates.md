@@ -237,7 +237,15 @@ Router.map(function() {
 });
 ```
 
-[Example JSBin](http://jsbin.com/tujepi)
+```app/routes/foo-elem.js
+export default Ember.Route.extend({
+  model: function(params) {
+    return new Ember.RSVP.Promise(function(x, reject) {
+       reject("Foo Error");
+    });
+  }
+});
+```
 
 
 ### The `error` event
