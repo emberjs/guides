@@ -19,10 +19,6 @@ Router.map(function() {
 Now, when the user visits `/about`, Ember.js will render the `about`
 template. Visiting `/favs` will render the `favorites` template.
 
-**Heads up!** You get a few routes for free: the `route:application` and
-`route:index` (corresponding to the `/` path).
-[See below](#toc_initial-routes) for more details.
-
 You can leave off the path if it is the same as the route
 name. In this case, the following is equivalent to the above example:
 
@@ -363,19 +359,102 @@ export default Ember.Route.extend({
 The default `serialize` method inserts the model's `id` into the route's
 dynamic segment (in this case, `:post_id`).
 
-### Initial routes
+### The application route
 
-A few routes are immediately available within your application:
+`route:application` is entered when your app first boots up. Just like any
+other route, it will load an `application` template by default, and you can
+provide an `application` controller and route. All other routes will render
+their templates into the `application.hbs` templates's `{{outlet}}`.
 
-  - `route:application` is entered when your app first boots up. It renders
-    the `application` template.
+This routes is part of every application, so you don't need to
+specify it in your `app/router.js`.
 
-  - `route:index` is the default route, and will render the `index` template
-    when the user visits `/` (unless `/` has been overridden by your own
-    custom route).
+### The Index Route
 
-These routes are part of every application, so you don't need to
-specify them in your `app/router.js`.
+At every level of nesting (including the top level), Ember.js
+automatically provides a route for the `/` path named `index`.
+
+For example, if you write a simple router like this:
+
+```app/router.js
+var Router = Ember.Router.extend();
+
+Router.map(function(){
+  this.route('favorites');
+});
+
+export default Router;
+```
+
+It is the equivalent of:
+
+```app/router.js
+var Router = Ember.Router.extend();
+
+Router.map(function(){
+  this.route('index', { path: '/' });
+  this.route('favorites');
+});
+
+export default Router;
+```
+
+If the user visits `/`, Ember.js will look for these objects:
+
+* `app/routes/index.js`
+* `app/controllers/index.js`
+* `app/templates/index.hbs`
+
+The `index` template will be rendered into the `{{outlet}}` in the
+`application` template. If the user navigates to `/favorites`,
+Ember.js will replace the `index` template with the `favorites`
+template.
+
+A nested router like this:
+
+```app/router.js
+var Router = Ember.Router.extend();
+
+Router.map(function(){
+  this.route('posts', function() {
+    this.route('favorites');
+  });
+});
+
+export default Router;
+```
+
+Is the equivalent of:
+
+```app/router.js
+var Router = Ember.Router.extend();
+
+Router.map(function(){
+  this.route('index', { path: '/' });
+  this.route('posts', function() {
+    this.route('index', { path: '/' });
+    this.route('favorites');
+  });
+});
+
+export default Router;
+```
+
+If the user navigates to `/posts`, the current route will be
+`posts.index`. Ember.js will look for objects named:
+
+* `app/routes/posts/index.js`
+* `app/controllers/posts/index.js`
+* `app/templates/posts/index.hbs`
+
+First, the `posts` template will be rendered into the `{{outlet}}`
+in the `application` template. Then, the `posts/index` template
+will be rendered into the `{{outlet}}` in the `posts` template.
+
+If the user then navigates to `/posts/favorites`, Ember.js will
+replace the `{{outlet}}` in the `posts` template with the
+`posts/favorites` template.
+
 
 ### Wildcard / globbing routes
 
