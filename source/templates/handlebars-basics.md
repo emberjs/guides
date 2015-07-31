@@ -15,7 +15,7 @@ The first thing you should change is your [application template](../the-applicat
 automatically for you and is displayed when your app loads.
 
 Next, you can define templates in the `app/templates` folder. Remember from
-[Naming Convetions](../../concepts/naming-conventions/#toc_route-controller-and-template-defaults) that by default,
+[Naming Convetions](../../naming-conventions/#toc_route-controller-and-template-defaults) that by default,
 a route will render a template with the same name as the route.
 
 ```app/templates/kittens.hbs
