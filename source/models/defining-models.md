@@ -12,6 +12,10 @@ Make sure to include `ember-data.js` after `ember.js`
 
 For every model in your application, create a subclass of `DS.Model`:
 
+```bash
+ember generate model person
+```
+
 ```app/models/person.js
 export default DS.Model.extend();
 ```
