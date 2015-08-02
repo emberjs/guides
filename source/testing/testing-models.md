@@ -1,10 +1,10 @@
-_Unit testing methods and computed properties follows previous patterns shown 
+_Unit testing methods and computed properties follows previous patterns shown
 in [Unit Testing Basics] because DS.Model extends Ember.Object._
 
 [Ember Data] Models can be tested using the `moduleForModel` helper.
 
-Let's assume we have a `Player` model that has `level` and `levelName` 
-attributes. We want to call `levelUp()` to increment the `level` and assign a 
+Let's assume we have a `Player` model that has `level` and `levelName`
+attributes. We want to call `levelUp()` to increment the `level` and assign a
 new `levelName` when the player reaches level 5.
 
 ```app/models/player.js
@@ -50,7 +50,7 @@ Assume that a `User` can own a `Profile`.
 
 ```app/models/profile.js
 export default DS.Model.extend({
-  
+
 });
 ```
 
