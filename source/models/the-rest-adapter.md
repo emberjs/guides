@@ -5,6 +5,13 @@ associated with each model are conventional; this means that, if you
 follow the rules, you will not need to configure the adapter or write
 any code in order to get started.
 
+If you do need to customize the adapter for your application, you can create
+an Application Adapter which subclasses [DS.RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html) by running:
+
+```bash
+ember generate adapter application
+```
+
 ### URL Conventions
 
 The REST adapter is smart enough to determine the URLs it communicates
