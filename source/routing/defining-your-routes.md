@@ -49,6 +49,10 @@ You can customize the behavior of a route by creating an `Ember.Route`
 subclass. For example, to customize what happens when your user visits
 `/`, create an `route:index`:
 
+```bash
+ember generate route index
+```
+
 ```app/routes/index.js
 export default Ember.Route.extend({
   setupController(controller) {
