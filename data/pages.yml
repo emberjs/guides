@@ -14,6 +14,8 @@
       url: "first-app"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "Managing Dependencies"
+      url: "managing-dependencies"
 
 - title: "The Object Model"
   url: 'object-model'
