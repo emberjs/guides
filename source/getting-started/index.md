@@ -56,7 +56,7 @@ While you're at it we recommend you also install PhantomJS to run tests from
 the command line (without the need for a browser to be open):
 
 ```bash
-npm install -g phantomjs
+npm install -g phantomjs2
 ```
 
 To verify that your installation was successful, run:
