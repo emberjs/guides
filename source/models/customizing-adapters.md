@@ -21,6 +21,10 @@ If your backend has some consistent rules you can define an
 the default Adapter, however it will still be superseded by model
 specific Adapters.
 
+```bash
+ember generate adapter application
+```
+
 ```app/adapters/application.js
 export default DS.RESTAdapter.extend({
   // Application specific overrides go here
@@ -29,7 +33,7 @@ export default DS.RESTAdapter.extend({
 
 If you have one model that has exceptional rules for communicating
 with its backend than the others you can create a Model specific
-Adapter by running the command `ember generate adapter adapter-name`".
+Adapter by running the command `ember generate adapter <adapter-name>`.
 For example, running `ember generate adapter post` will create the
 following file:
 
