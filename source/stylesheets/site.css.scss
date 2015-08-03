@@ -824,10 +824,12 @@ a.toc-anchor {
 
 .previous-guide {
   float: left;
+  border-bottom: 1px solid transparent;
 }
 
 .next-guide {
   float: right;
+  border-bottom: 1px solid transparent;
 }
 
 /**
