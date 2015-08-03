@@ -90,7 +90,7 @@ export default Ember.View.reopen({
 
     // bind attributes beginning with 'data-'
     Ember.keys(this).forEach(function(key) {
-      if (key.substr(0, 5) === 'data-') {
+      if (key.substr(0, 5) === 'data-' && key.substr(key.length - 7) !== 'Binding') {
         self.get('attributeBindings').pushObject(key);
       }
     });
