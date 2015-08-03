@@ -147,6 +147,12 @@
     - title: "Frequently Asked Questions"
       url: "frequently-asked-questions"
 
+- title: "Services"
+  url: 'services'
+  pages:
+    - title: "Using Services"
+      url: "index"
+
 - title: "Testing"
   url: 'testing'
   pages:
@@ -214,8 +220,6 @@
       url: "debugging"
     - title: "The Run Loop"
       url: "run-loop"
-    - title: "Dependency Injection & Service Lookup"
-      url: "dependency-injection-and-service-lookup"
 
 - title: "Contributing to Ember.js"
   url: 'contributing'
