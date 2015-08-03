@@ -84,7 +84,7 @@ You can also automatically bind data and aria attributes on the base component w
 ```javascript
 export default Ember.Component.reopen({
   bindAttributes: Ember.on('init', function() {
-    Object.keys(this).forEach((key) => {
+    Ember.keys(this).forEach((key) => {
       if (key.substr(0, 5) === 'data-' || key.substr(0, 5) === 'aria-') {
         this.get('attributeBindings').pushObject(key);
       }
