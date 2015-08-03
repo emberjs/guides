@@ -79,23 +79,19 @@ Now the same handlebars code above renders the following HTML:
        type="text" data-toggle="tooltip" data-placement="bottom" title="Name">
 ```
 
-You can also automatically bind data attributes on the base view with the
-following:
+You can also automatically bind data and aria attributes on the base component with the following:
 
 ```javascript
-export default Ember.View.reopen({
-  init() {
-    this._super();
-    var self = this;
-
-    // bind attributes beginning with 'data-'
-    Ember.keys(this).forEach(function(key) {
-      if (key.substr(0, 5) === 'data-') {
-        self.get('attributeBindings').pushObject(key);
+export default Ember.Component.reopen({
+  bindAttributes: Ember.on('init', function() {
+    Object.keys(this).forEach((key) => {
+      if (key.substr(0, 5) === 'data-' || key.substr(0, 5) === 'aria-') {
+        this.get('attributeBindings').pushObject(key);
       }
     });
-  }
+  })
 });
+
 ```
 
 Now you can add as many data-attributes as you want without having to specify them by name.
