@@ -156,7 +156,7 @@ This router creates these routes:
     <td><code>index</code></td>
     <td>↳<code>index.js</code></td>
     <td>↳<code>index.js</code></td>
-    <td>↳<code>index.js</code></td>
+    <td>↳<code>index.hbs</code></td>
   </tr>
   <tr>
     <td>N/A</td>
