@@ -61,11 +61,11 @@ There are two ways to enable support for data attributes. One way would be to ad
 attribute binding on the view, e.g. `Ember.LinkComponent` or `Ember.TextField` for the specific attribute:
 
 ```javascript
-export default Ember.LinkComponent.reopen({
+Ember.LinkComponent.reopen({
   attributeBindings: ['data-toggle']
 });
 
-export default Ember.TextField.reopen({
+Ember.TextField.reopen({
   attributeBindings: ['data-toggle', 'data-placement']
 });
 ```
@@ -78,24 +78,3 @@ Now the same handlebars code above renders the following HTML:
 <input id="ember259" class="ember-view ember-text-field"
        type="text" data-toggle="tooltip" data-placement="bottom" title="Name">
 ```
-
-You can also automatically bind data attributes on the base view with the
-following:
-
-```javascript
-export default Ember.View.reopen({
-  init() {
-    this._super();
-    var self = this;
-
-    // bind attributes beginning with 'data-'
-    Ember.keys(this).forEach(function(key) {
-      if (key.substr(0, 5) === 'data-') {
-        self.get('attributeBindings').pushObject(key);
-      }
-    });
-  }
-});
-```
-
-Now you can add as many data-attributes as you want without having to specify them by name.
