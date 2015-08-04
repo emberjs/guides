@@ -3,15 +3,11 @@ to have some kind of connection between two controllers. Let's take this
 router as an example:
 
 ```app/router.js
-var Router = Ember.Router.extend({});
-
 Router.map(function() {
   this.route("post", { path: "/posts/:post_id" }, function() {
     this.route("comments", { path: "/comments" });
   });
 });
-
-export default Router;
 ```
 
 If we visit a `/posts/1/comments` URL, our `Post` model will get

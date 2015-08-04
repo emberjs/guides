@@ -73,14 +73,10 @@ Data. Just return the requested record from the `model` hook, and let
 Ember deal with figuring out whether a network request is needed or not.
 
 ```app/router.js
-var Router = Ember.Router.extend({});
-
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: ':post_id' });
 });
-
-export default Router;
 ```
 
 ```app/routes/posts.js

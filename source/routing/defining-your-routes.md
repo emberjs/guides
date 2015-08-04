@@ -54,7 +54,7 @@ ember generate route index
 ```
 
 ```app/routes/index.js
-export default Ember.Route.extend({
+Ember.Route.extend({
   setupController(controller) {
     // Set the IndexController's `title`
     controller.set('title', 'My App');
@@ -301,7 +301,7 @@ For example, if we have the route `this.route('posts');`, our
 route handler might look like this:
 
 ```app/routes/posts.js
-export default Ember.Route.extend({
+Ember.Route.extend({
   model() {
     return $.getJSON("/url/to/some/posts.json");
   }
@@ -329,7 +329,7 @@ Router.map(function() {
 ```
 
 ```app/routes/post.js
-export default Ember.Route.extend({
+Ember.Route.extend({
   model(params) {
     return $.getJSON("/url/to/some/posts/" + params.post_id + ".json");
   }
@@ -347,7 +347,7 @@ Router.map(function() {
 ```
 
 ```app/routes/post.js
-export default Ember.Route.extend({
+Ember.Route.extend({
   model(params) {
     // the server returns `{ slug: 'foo-post' }`
     return Ember.$.getJSON('/posts/' + params.post_slug);
@@ -381,26 +381,18 @@ automatically provides a route for the `/` path named `index`.
 For example, if you write a simple router like this:
 
 ```app/router.js
-var Router = Ember.Router.extend();
-
 Router.map(function(){
   this.route('favorites');
 });
-
-export default Router;
 ```
 
 It is the equivalent of:
 
 ```app/router.js
-var Router = Ember.Router.extend();
-
 Router.map(function(){
   this.route('index', { path: '/' });
   this.route('favorites');
 });
-
-export default Router;
 ```
 
 If the user visits `/`, Ember.js will look for these objects:
@@ -417,22 +409,16 @@ template.
 A nested router like this:
 
 ```app/router.js
-var Router = Ember.Router.extend();
-
 Router.map(function(){
   this.route('posts', function() {
     this.route('favorites');
   });
 });
-
-export default Router;
 ```
 
 Is the equivalent of:
 
 ```app/router.js
-var Router = Ember.Router.extend();
-
 Router.map(function(){
   this.route('index', { path: '/' });
   this.route('posts', function() {
@@ -440,8 +426,6 @@ Router.map(function(){
     this.route('favorites');
   });
 });
-
-export default Router;
 ```
 
 If the user navigates to `/posts`, the current route will be
@@ -476,7 +460,7 @@ Like all routes with a dynamic segment, you must provide a context when using a 
 or `transitionTo` to programatically enter this route.
 
 ```app/routes/application.js
-export default Ember.Route.extend({
+Ember.Route.extend({
   actions: {
     error() {
       this.transitionTo('catchall', 'application-error');
