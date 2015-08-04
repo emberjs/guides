@@ -1,82 +1,58 @@
 To get started with Ember.js, there are a few core concepts you
 should understand.
 
-Ember.js is designed to help developers build ambitiously large web
-applications that are competitive with native apps. Doing so requires
-both new tools and a new vocabulary of concepts. We've spent a lot of
-time borrowing ideas pioneered by native application frameworks like
-Cocoa and Smalltalk.
+## Templates
 
-However, it's important to remember what makes the web special. Many
-people think that something is a web application because it uses
-technologies like HTML, CSS and JavaScript. In reality, these are just
-implementation details.
+Templates, written in the Handlebars language, describe the user interface of
+your application. In addition to plain HTML, templates can contain expressions,
+like `{{title}}` or `{{author}}`, which take information from a component or
+controller and put it into HTML. They can also contain helpers, like
+`{{if isAdmin}}30 people have viewed your blog today.{{/if}}.` Finally, they can
+contain components, such as if a template listing out all the blog posts in an
+app rendered a component for each post.
 
-Instead, **the web derives its power from the ability to bookmark and
-share URLs.** URLs are the key feature that give web applications
-superior shareability and collaboration. Today, most JavaScript
-frameworks treat the URL as an afterthought, instead of the primary
-reason for the web's success.
+## Components
 
-Ember.js, therefore, marries the tools and concepts of native
-GUI frameworks with support for the feature that makes the web so
-powerful: the URL.
+Components are the primary way user interfaces are organized in Ember. They
+consist of two parts: a template, and a source file written in JavaScript that
+defines the component's behavior. For example, a blog application might have a
+component for displaying a list of blog posts called `all-posts`, and another
+component for displaying an individual post called `view-post`. If users can
+upvote a post, the `view-post` component might define a behavior like _when the
+user clicks the upvote button, increase the `vote` property's value by 1_.
 
-### Concepts
+## Controllers
 
-#### Templates
+Controllers are very much like components, so much so that in future versions of
+Ember, controllers will be replaced entirely with components. At the moment,
+components cannot be routed to (see below), but when this changes, it will be
+recommended to replace all controllers with components.
 
-A **template**, written in the Handlebars templating language, describes
-the user interface of your application. Each template is backed by a
-model, and the template automatically updates itself if the model changes.
+## Models
 
-In addition to plain HTML, templates can contain:
+Models represent _persistent state_. For example, a blog application would want
+to save the content of a blog post when a user publishes it, and so the blog
+post would have a model defining it, perhaps called the `Post` model. A model
+typically persists information to a server, although models can be configured to
+save to anywhere else, such as the browser's Local Storage.
 
-* **Expressions**, like `{{firstName}}`, which take information from
-  the template's model and put it into HTML.
-* **Outlets**, which are placeholders for other templates. As users
-  move around your app, different templates can be plugged into the
-  outlet by the router. You can put outlets into your template using the
-  `{{outlet}}` helper.
-* **Components**, custom HTML elements that you can use to clean up
-  repetitive templates or create reusable controls.
+## Routes
 
-#### Router
+Routes load a controller and a template. They can also load one or more models
+to provide data to the controller that can then be displayed by the template.
+For example, an `all-posts` route might load all the blog posts from the `Post`
+model, load the `all-posts` controller, and render the `all-posts` template.
+Similarly, a `view-post` route might load the model for the blog post to be
+shown, load the `view-post` controller, and render the `view-post` template.
 
-The **router** translates a URL into a series of nested templates, each
-backed by a model. As the templates or models being shown to the user
-change, Ember automatically keeps the URL in the browser's address bar
-up-to-date.
+## The Router
 
-This means that, at any point, users are able to share the URL of your
-app. When someone clicks the link, they reliably see the same content as
-the original user.
+The router maps a URL to a route. For example, when a user visits the `/posts`
+URL, the router might load the `all-posts` route. The router can also load
+nested routes. For example, if our blogging app had a list of blog posts on the
+left of the screen and then showed the current blog post on the right, we'd say
+that the `view-post` route was nested inside the `all-posts` route.
 
-#### Components
-
-A **component** is a custom HTML tag whose behavior you implement using
-JavaScript and whose appearance you describe using Handlebars templates.
-They allow you to create reusable controls that can simplify your
-application's templates.
-
-#### Models
-
-A **model** is an object that stores _persistent state_. Templates are
-responsible for displaying the model to the user by turning it into
-HTML. In many applications, models are loaded via an HTTP JSON API,
-although Ember is agnostic to the backend that you choose.
-
-
-#### Routes
-
-A **route** is an object that tells the template which model it should
-display.
-
-These are the core concepts you'll need to understand as you develop
-your Ember.js app. They are designed to scale up in complexity, so that
-adding new functionality doesn't force you to go back and refactor major
-parts of your app.
-
-Now that you understand the roles of these objects, you're equipped to
-dive deep into Ember.js and learn the details of how each of these
-individual pieces work.
+Perhaps the most important thing to remember about Ember is that the URL drives
+the state of the application. The URL determines what route to load, which in
+turn determines what model, controller, and template to load.
