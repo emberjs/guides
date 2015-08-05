@@ -50,7 +50,7 @@ Usually, objects that represent lists implement the Enumerable interface. Some e
 
  * **Array** - Ember extends the native JavaScript `Array` with the
    Enumerable interface (unless you [disable prototype
-   extensions.](../configuring-ember/disabling-prototype-extensions/))
+   extensions.](../../configuring-ember/disabling-prototype-extensions))
  * **Ember.Set** - A data structure that can efficiently answer whether it
    includes an object.
 
