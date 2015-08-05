@@ -322,18 +322,3 @@ export default Ember.Controller.extend({
   ]
 });
 ```
-
-## Examples
-
-- [Search queries](http://jsbin.com/tukoye)
-- [Sort: client-side, no refiring of model hook](http://jsbin.com/joboje)
-- [Sort: server-side, refire model hook](http://jsbin.com/hiyalu)
-- [Pagination + Sorting](http://jsbin.com/fayug)
-- [Boolean values. False value removes QP from URL](http://jsbin.com/sisebi)
-- [Global query params on app route](http://jsbin.com/duhof)
-- [Opt-in to full transition via refresh()](http://jsbin.com/yanigu)
-- [update query params by changing controller QP property](http://jsbin.com/zerojo)
-- [update query params with replaceState by changing controller QP property](http://emberjs.jsbin.com/birugi)
-- [link-to with no route name, only QP change](http://jsbin.com/rujawi)
-- [Complex: serializing textarea content into URL (and subexpressions))](http://emberjs.jsbin.com/tudiz)
-- [Arrays](http://jsbin.com/gacihe)
