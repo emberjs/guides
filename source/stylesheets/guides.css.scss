@@ -34,10 +34,6 @@ body.guides, body.blog, body.api {
     @include border-radius(5px);
   }
 
-  .highlight { // jsbin includes
-    margin-bottom: 20px;
-  }
-
   h1 {
     font-size: 22px;
     color: $orange-color;
