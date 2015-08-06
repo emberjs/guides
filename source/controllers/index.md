@@ -124,7 +124,7 @@ application` template to that property, like this:
 
 ```app/templates/application.hbs
 <header>
-  {{input type="text" value=search action="query"}}
+  {{input type="text" name=search action="query"}}
 </header>
 
 {{outlet}}
