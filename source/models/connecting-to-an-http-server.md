@@ -188,3 +188,18 @@ Requests for any resource will include the following HTTP headers.
 ANOTHER_HEADER: Some header value
 API_KEY: secret key
 ```
+
+### Proxy API Requests
+
+Ember CLI also allows you to forward requests to a proxy server. Set the following
+properties in your `package.json`:
+
+```package.json
+{
+  "APIMethod": "proxy",
+  "proxyURL": "http://apiserver.dev:3000",
+  "proxyPath": "/api"
+}
+```
+
+This proxies all requests for a URL starting with `/api` to the proxy server.
