@@ -48,3 +48,8 @@ improved, please feel free to [contribute].
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
 [contribute]: https://github.com/emberjs/guides
+
+### Additional Resources
+Mike North at Yahoo discusses testing strategies, Qunit, and simulating an API with trek/fakehr and trek/pretender libraries and continous integration of emberjs projects with Travis
+[Test like a pro with Ember.js - Mike North Silicon Valley Ember.js meetup - Jun 15, 2015](https://www.youtube.com/watch?v=2E0vC_Vk3dU)
+
