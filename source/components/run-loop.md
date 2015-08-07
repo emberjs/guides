@@ -1,10 +1,24 @@
-Ember's internals and most of the code you will write in your applications takes place in a run loop. The run loop is used to
+Ember's internals and most of the code you will write in your applications takes
+place in a run loop. The run loop is used to
 batch, and order (or reorder) work in a way that is most effective and efficient.
 
 It does so by scheduling work on specific queues. These queues have a priority,
 and are processed to completion in priority order.
 
-## Why is this useful?
+For basic Ember app development scenarios, you don't need to understand the run
+loop or use it directly. All common paths are paved nicely
+for you and don't require working with the run loop directly.
+
+The most common case for using the run loop is integrating with a non-Ember API
+that includes some sort of asynchronous callback. For example:
+
+- DOM update and event callbacks
+- `setTimeout` and `setInterval` callbacks
+- `postMessage` and `messageChannel` event handlers
+- AJAX callbacks
+- Websocket callbacks
+
+## Why is the run loop useful?
 
 Very often, batching similar work has benefits. Web browsers do something quite similar
 by batching changes to the DOM.
@@ -147,33 +161,9 @@ help you to understand the run-loops algorithm, which will make you a better Emb
 
 <iframe src="http://emberjs.com.s3.amazonaws.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe>
 
-## FAQs
-
-
-#### What do I need to know to get started with Ember?
-
-For basic Ember app development scenarios, nothing. All common paths are paved nicely
-for you and don't require working with the run loop directly.
-
-#### What do I need to know to actually build an app?
-
-It is possible to build good apps without working with the run loop directly, so if
-you don't feel the need to do so, don't.
-
-#### What scenarios will require me to understand the run loop?
-
-The most common case you will run into is integrating with a non-Ember API
-that includes some sort of asynchronous callback. For example:
-
-- AJAX callbacks
-- DOM update and event callbacks
-- Websocket callbacks
-- `setTimeout` and `setInterval` callbacks
-- `postMessage` and `messageChannel` event handlers
+## How do I tell Ember to start a run loop?
 
 You should begin a run loop when the callback fires.
-
-#### How do I tell Ember to start a run loop?
 
 The `Ember.run` method can be used to create a runloop. In this example, jQuery
 and `Ember.run` are used to handle a click event and run some Ember code.
@@ -191,7 +181,7 @@ $('a').click(() => {
 });
 ```
 
-#### What happens if I forget to start a run loop in an async handler?
+## What happens if I forget to start a run loop in an async handler?
 
 As mentioned above, you should wrap any non-Ember async callbacks in
 `Ember.run`. If you don't, Ember will try to approximate a beginning and end for you.
@@ -261,7 +251,7 @@ should be minimized.
 Relying on autoruns is not a rigorous or efficient way to use the runloop.
 Wrapping event handlers manually is preferred.
 
-#### How is runloop behaviour different when testing?
+## How is runloop behaviour different when testing?
 
 When your application is in _testing mode_ then
 Ember will throw an error if you try to schedule work without an available
@@ -278,4 +268,3 @@ before resolving. If your application has code that runs _outside_ a runloop,
 these will resolve too early and give erroneous test failures which are
 difficult to find. Disabling autoruns help you identify these scenarios and
 helps both your testing and your application!
-
