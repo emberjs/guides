@@ -216,12 +216,12 @@
       url: "embedding-applications"
     - title: "Feature Flags"
       url: "feature-flags"
+    - title: "Debugging"
+      url: "debugging"
 
 - title: "Understanding Ember.js"
   url: 'understanding-ember'
   pages:
-    - title: "Debugging"
-      url: "debugging"
     - title: "The Run Loop"
       url: "run-loop"
 

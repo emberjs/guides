@@ -1,10 +1,5 @@
-### Debugging Ember
-All Ember developers should install the
-[Ember Inspector](https://github.com/emberjs/ember-inspector)
-which provides debugging and development tools for the browser.
-
-You should also become comfortable with the browser debugging
-tooling for Chrome, Firefox, Safari, and Internet Explorer.
+Ember provides several configuration options that can help you debug problems
+with your application.
 
 ## Routing
 
@@ -32,13 +27,6 @@ ENV.APP.LOG_VIEW_LOOKUPS = true;
 
 ```javascript
 Ember.keys(Ember.TEMPLATES)
-```
-
-#### Handlebars Debugging Helpers
-
-```handlebars
-{{debugger}}
-{{log model}}
 ```
 
 ## Controllers
