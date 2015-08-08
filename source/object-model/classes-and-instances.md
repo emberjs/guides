@@ -17,10 +17,10 @@ You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
 of Ember's built-in `Ember.Component` class:
 
-```app/views/person.js
-PersonView = Ember.Component.extend({
-  tagName: 'li',
-  classNameBindings: ['isAdministrator']
+```app/components/todo-item.js
+export default Ember.Component.extend({
+  classNameBindings: ['isUrgent'],
+  isUrgent: true
 });
 ```
 
