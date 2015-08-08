@@ -18,6 +18,8 @@
 - title: "The Object Model"
   url: 'object-model'
   pages:
+    - title: "Objects in Ember"
+      url: "index"
     - title: "Classes and Instances"
       url: "classes-and-instances"
     - title: "Reopening Classes and Instances"
