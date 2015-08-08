@@ -16,6 +16,30 @@ possible. This minimizes incompatibility with other libraries, and
 allows Ember.js to use the native browser implementations in arrays
 where available.
 
+## Use of Observable Methods
+
+In order for Ember to observe when you make a change to an enumerable, you need
+to use special methods that Ember.Enumerable provides. For example, if you add
+an element to an array using the standard JavaScript method `push`, Ember will
+not be able to observe the change, but if you use the Enumerable method
+`pushObject`, the change will propagate throughout your application.
+
+Here is a list of standard JavaScript array methods and their observable
+Enumerable equivalents:
+
+<table>
+  <thead>
+    <tr><th>Standard Method</th><th>Observable Equivalent</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>pop</td><td>popObject</td></tr>
+    <tr><td>push</td><td>pushObject</td></tr>
+    <tr><td>reverse</td><td>reverseObjects</td></tr>
+    <tr><td>shift</td><td>shiftObject</td></tr>
+    <tr><td>unshift</td><td>unshiftObject</td></tr>
+  </tbody>
+</table>
+
 ## API Overview
 
 In the rest of this guide, we'll explore some of the most common Enumerable
