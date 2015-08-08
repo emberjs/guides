@@ -1,6 +1,7 @@
-A binding creates a link between two properties such that when one changes, the
-other one is updated to the new value automatically. Bindings can connect
-properties on the same object, or across two different objects.
+Unlike most other frameworks that include some sort of binding implementation,
+bindings in Ember.js can be used with any object. That said, bindings are most
+often used within the Ember framework itself, and for most problems Ember app
+developers face, computed properties are the appropriate solution.
 
 The easiest way to create a two-way binding is to use a computed alias, that
 specifies the path to another object.

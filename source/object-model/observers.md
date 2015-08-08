@@ -1,4 +1,13 @@
 Ember supports observing any property, including computed properties.
+
+Observers should contain behavior that reacts to changes in another property.
+Observers are especially useful when you need to perform some behavior after a
+binding has finished synchronizing.
+
+Observers are often over-used by new Ember developers. Observers are used
+heavily within the Ember framework itself, but for most problems Ember app
+developers face, computed properties are the appropriate solution.
+
 You can set up an observer on an object by using `Ember.observer`:
 
 ```javascript

@@ -32,8 +32,6 @@
       url: "observers"
     - title: "Bindings"
       url: "bindings"
-    - title: "Bindings, Observers, Computed Properties: What Do I Use When?"
-      url: "what-do-i-use-when"
     - title: "Enumerables"
       url: 'enumerables'
 
