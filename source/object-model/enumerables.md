@@ -2,9 +2,7 @@ In Ember.js, an Enumerable is any object that contains a number of child
 objects, and which allows you to work with those children using the
 [Ember.Enumerable](http://emberjs.com/api/classes/Ember.Enumerable.html) API. The most common
 Enumerable in the majority of apps is the native JavaScript array, which
-Ember.js extends to conform to the Enumerable interface. Ember also provides
-Ember.Set, a data structure that can efficiently answer whether it includes an
-object.
+Ember.js extends to conform to the Enumerable interface.
 
 By providing a standardized interface for dealing with enumerables,
 Ember.js allows you to completely change the way your underlying data is
@@ -61,24 +59,6 @@ food.forEach(function(item, index) {
 // Menu Item 2: Ono
 // Menu Item 3: Adobo Chicken
 ```
-
-### Making an Array Copy
-
-You can make a native array copy of any object that implements
-`Ember.Enumerable` by calling the `toArray()` method:
-
-```javascript
-var states = Ember.Set.create();
-
-states.add("Hawaii");
-states.add("California")
-
-states.toArray()
-//=> ["Hawaii", "California"]
-```
-
-Note that in many enumerables, such as the `Ember.Set` used in this
-example, the order of the resulting array is not guaranteed.
 
 ### First and Last Objects
 
