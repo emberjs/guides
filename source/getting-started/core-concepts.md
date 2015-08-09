@@ -27,7 +27,7 @@ Besides properties, you can also use helpers and components inside a mustache.
 ## Helpers
 
 Ember Helpers are another way to generate a value in templates. A helper
-is a peice of logic that returns a single value (much like a property
+is a piece of logic that returns a single value (much like a property
 has only a single value).
 
 For example, this helper and accompanying usage create a full name:
@@ -107,20 +107,6 @@ save to anywhere. For example to the localStorage API, or IndexedDB.
 When visiting a URL, Ember attempts to be smart about what models should be
 loaded. For example, if you visit the `/posts` URL an index of all existing
 `Post` models will be fetched.
-
-## Controllers
-
-Modern Ember applications don't often use controllers. When they do, their
-responsibility is strictly limited to two avenues:
-
-* Controllers maintain state based on the current route.
-* User actions pass through the controller layer when moving from
-  a component to a route.
-
-The context of templates rendered by the router is a corresponding
-controller. Ember's following of "convention over configuration" means
-you should only create a controller if you need one. If not, everything
-continues to "Just Work".
 
 ## Routes
 
