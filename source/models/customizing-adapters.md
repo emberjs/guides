@@ -7,8 +7,7 @@ the default Adapter.
 
 Some reasons for customizing an Adapter include using
 `underscores_case` in your urls, using a medium other than REST to
-communicate with your backend API or even using a
-[local backend](https://github.com/rpflorence/ember-localstorage-adapter).
+communicate with your backend API or even using a local backend.
 
 Extending Adapters is a natural process in Ember Data. Ember takes the
 position that you should extend an adapter to add different
