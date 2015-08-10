@@ -24,7 +24,7 @@
       url: "reopening-classes-and-instances"
     - title: "Computed Properties"
       url: "computed-properties"
-    - title: "Computed Properties and Aggregate Data with @each"
+    - title: "Computed Properties and Aggregate Data"
       url: "computed-properties-and-aggregate-data"
     - title: "Observers"
       url: "observers"
