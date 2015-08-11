@@ -50,8 +50,6 @@
       url: "displaying-the-keys-in-an-object"
     - title: "Binding Element Attributes"
       url: "binding-element-attributes"
-    - title: "Binding Element Class Names"
-      url: "binding-element-class-names"
     - title: "Links"
       url: "links"
     - title: "Actions"
