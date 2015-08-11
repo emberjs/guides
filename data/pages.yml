@@ -48,8 +48,6 @@
       url: "displaying-a-list-of-items"
     - title: "Binding Element Attributes"
       url: "binding-element-attributes"
-    - title: "Binding Element Class Names"
-      url: "binding-element-class-names"
     - title: "Links"
       url: "links"
     - title: "Actions"
