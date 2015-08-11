@@ -65,4 +65,10 @@ body.guides, body.blog, body.api {
     padding-left: 10px;
     margin-bottom: 15px;
   }
+  
+  .old-version-warning {
+    background-color: $orange-color;
+    color: white;
+    padding: .5em;
+  }
 }

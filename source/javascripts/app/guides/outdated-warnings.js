@@ -32,7 +32,7 @@ GUIDE_VERSIONS.onReady(function(versions) {
 
   if (versions.current !== releaseVersions[0]) {
     // Older version
-    $('.chapter').prepend('<div class="old-version-warning">This is an old version of the guides.</div>');
+    $('.chapter').prepend('<div class="old-version-warning"><i class="icon-attention-circled"></i><strong>Please note - </strong> This is an old version of the guides.</div>');
   }
 
 });
