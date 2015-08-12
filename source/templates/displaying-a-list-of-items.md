@@ -2,7 +2,7 @@ If you need to enumerate over a list of objects, use Handlebars' `{{#each}}` hel
 
 ```handlebars
 <ul>
-  {{#each people key="id" as |person|}}
+  {{#each people as |person|}}
     <li>Hello, {{person.name}}!</li>
   {{/each}}
 </ul>
@@ -24,38 +24,47 @@ The above example will print a list like this:
 The `{{#each}}` helper is bindings-aware.  If your
 application adds a new item to the array, or removes an item, the DOM
 will be updated without having to write any code. Note that a `[].push()`
-will not update the helper. Adding items need to be done with `[].pushObject`, 
+will not update the helper. Adding items need to be done with `[].pushObject`,
 and related [Ember Mutable Array methods](http://emberjs.com/api/classes/Ember.MutableArray.html) so that Ember can observe the change.
+
+### Accessing the list item's `index`
+
+If you would like to have access to the list item's index in your template, simply add it to the params list:
+
+```handlebars
+<ul>
+  {{#each people as |person index|}}
+    <li>Hello, {{person.name}}! You're number {{index}} in line</li>
+  {{/each}}
+</ul>
+```
 
 ### Specifying Keys
 
-  The `key` option is used to tell Ember how to determine if the array being
-  iterated over with `{{#each}}` has changed between renders. By helping Ember
-  detect that some elements in the array are the same, DOM elements can be
-  re-used, significantly improving rendering speed and preventing unexpected
-  results. For example, here's the `{{#each}}` helper with its `key` set to
-  `id`:
-  ```handlebars
-  {{#each people key="id" as |person|}}
-  {{/each}}
-  ```
-  When this `{{#each}}` re-renders, Ember will match up the previously rendered
-  items (and reorder the generated DOM elements) based on each item's `id`
-  property. Make sure the value you pass to `key` is unique!
-  
-  There are a few special values for `key`:
-    * `@index` - The index of the item in the array.
-    * `@item` - The item in the array itself.  This can only be used for arrays of strings
-      or numbers.
-    * `@guid` - Generate a unique identifier for each object (uses `Ember.guidFor`).
+Ember is able to determine if the array being iterated over with `{{#each}}` has
+changed between renders and only touch the affected DOM elements. This
+significantly improves rendering speeds by reducing unnecessary DOM
+manipulation. It does so by keying the array to each item's `@identity`, which
+for Numbers or Strings is the item itself or a generated guid for an object. For
+most scenarios, there should be no need to change this.
 
+The `{{#each}}` helper does provide the ability to override the `key` to use the
+array's `@index` for situations where you would need this.
+
+```handlebars
+{{#each people key="@index" as |person|}}
+{{/each}}
+```
+
+Remember: the `key` is only used in helping Ember determine how to re-render. It
+is different from accessing the index as specified in the previous section.
 
 ### Empty Lists
 The `{{#each}}` helper can have a matching `{{else}}`.
 The contents of this block will render if the collection is empty:
 
 ```handlebars
-{{#each people key="id" as |person|}}
+{{#each people as |person|}}
   Hello, {{person.name}}!
 {{else}}
   Sorry, nobody is here.
