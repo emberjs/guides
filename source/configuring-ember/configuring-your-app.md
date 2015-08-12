@@ -28,3 +28,84 @@ For example, a common desire is to [change the port](http://stackoverflow.com/qu
   "port": 8080
 }
 ```
+
+The following options can be configured in your project's `.ember-cli` file:
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>port</code></td>
+      <td>Number</td>
+      <td>4200</td>
+    </tr>
+    <tr>
+      <td><code>host</code></td>
+      <td>String</td>
+      <td><code>'0.0.0.0'</code></td>
+    </tr>
+    <tr>
+      <td><code>proxy</code></td>
+      <td>String</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>insecureProxy</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>watcher</code></td>
+      <td>String</td>
+      <td><code>events</code></td>
+    </tr>
+    <tr>
+      <td><code>liveReload</code></td>
+      <td>Boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>liveReloadHost</code></td>
+      <td>String</td>
+      <td>Defaults to <code>host</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>liveReloadPort</code>
+      </td>
+      <td>Number</td>
+      <td>Defaults to port number within [<code>49152...65535</code>]</td>
+    </tr>
+    <tr>
+      <td><code>environment</code></td>
+      <td>String</td>
+      <td><code>development</code></td>
+    </tr>
+    <tr>
+      <td><code>outputPath</code></td>
+      <td>String</td>
+      <td><code>dist/</code></td>
+    </tr>
+    <tr>
+      <td><code>ssl</code></td>
+      <td>Boolean</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>sslKey</code></td>
+      <td>String</td>
+      <td><code>ssl/server.key</code></td>
+    </tr>
+    <tr>
+      <td><code>sslCert</code></td>
+      <td>String</td>
+      <td><code>ssl/server.crt</code></td>
+    </tr>
+  </tbody>
+</table>
