@@ -114,7 +114,7 @@ export default Ember.Component.extend({
   title: 'Hello World',
 
   actions: {
-    updateTitle: function() {
+    updateTitle() {
       this.set('title', 'This is Magic');
     }
   }
@@ -170,7 +170,7 @@ export default Ember.Component.extend({
   body: null,
 
   actions: {
-    submit: function() {
+    submit() {
       var body = this.get('body');
 
       this.sendAction('submit', { body: body });
@@ -206,7 +206,7 @@ test('external action is triggered when form is submitted', function(assert) {
 
   // Create our test double
   var targetObject = {
-    externalAction: function(attributes) {
+    externalAction(attributes) {
       // This assertion will be called when the action is triggered
       assert.deepEqual(attributes, { body: 'You are not a wizard!' });
     }

@@ -19,7 +19,7 @@ export default Ember.Route.extend({
   // The code below is the default behavior, so if this is all you
   // need, you do not need to provide a setupController implementation
   // at all.
-  setupController: function(controller, model) {
+  setupController(controller, model) {
     controller.set('model', model);
   }
 });
@@ -51,7 +51,7 @@ associated with the route handler, use the `controllerFor` method:
 
 ```app/routes/post.js
 export default Ember.Route.extend({
-  setupController: function(controller, model) {
+  setupController(controller, model) {
     this.controllerFor('topPost').set('model', model);
   }
 });

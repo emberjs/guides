@@ -24,7 +24,7 @@ For example, if you ask for a `photo` record by ID:
 
 ```app/routes/photo.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return this.store.findRecord('photo', params.photo_id);
   }
 });

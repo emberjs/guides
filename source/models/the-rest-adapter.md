@@ -109,7 +109,7 @@ If you don't have the option to change the data that the server responds with, y
 [DS.JSONSerializer#extractDeleteRecord](http://emberjs.com/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
 
 ```js
-extractDeleteRecord: function(store, type, payload) {
+extractDeleteRecord(store, type, payload) {
   // If the payload is {delete: true}, Ember Data will try to set
   // the new properties. Return null so it doesn't try to do that.
   return null;
@@ -155,7 +155,7 @@ export default DS.Model.extend({
 ```app/serializers/person.js
 export default DS.RESTSerializer.extend({
   normalizeHash: {
-    lastNameOfPerson: function(hash) {
+    lastNameOfPerson(hash) {
       hash.lastName = hash.lastNameOfPerson;
       delete hash.lastNameOfPerson;
 
@@ -233,7 +233,7 @@ the `keyForRelationship` method.
 
 ```app/serializers/application.js
 export default DS.RESTSerializer.extend({
-  keyForRelationship: function(key, relationship) {
+  keyForRelationship(key, relationship) {
     return key + 'Ids';
   }
 });
@@ -279,10 +279,10 @@ registered for use as attributes:
 
 ```app/transforms/coordinate-point.js
 export default DS.Transform.extend({
-  serialize: function(value) {
+  serialize(value) {
     return [value.get('x'), value.get('y')];
   },
-  deserialize: function(value) {
+  deserialize(value) {
     return Ember.create({ x: value[0], y: value[1] });
   }
 });

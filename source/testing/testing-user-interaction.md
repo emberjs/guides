@@ -19,10 +19,10 @@ without worrying about async behaviour your helper might trigger.
 ```tests/acceptance/new-post-appears-first-test.js
 var application;
 module('Acceptance: New Post Appears First', {
-  beforeEach: function() {
+  beforeEach() {
     application = startApp();
   },
-  afterEach: function() {
+  afterEach() {
     Ember.run(application, 'destroy');
   }
 });
@@ -46,7 +46,7 @@ to a login page.
 
 ```app/routes/profile.js
 export default Ember.Route.extend({
-  beforeModel: function() {
+  beforeModel() {
     var user = this.modelFor('application');
     if (Ember.isEmpty(user)) {
       this.transitionTo('login');
@@ -62,11 +62,11 @@ when the restricted URL is visited.
 var application;
 
 module('Acceptance: Transitions', {
-  beforeEach: function() {
+  beforeEach() {
     application = startApp();
   },
 
-  afterEach: function() {
+  afterEach() {
     Ember.run(application, 'destroy');
   }
 });

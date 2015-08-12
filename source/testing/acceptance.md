@@ -18,11 +18,11 @@ tests are run in isolation.
 var application;
 
 module('Acceptance: UserCanLoginViaForm', {
-  beforeEach: function() {
+  beforeEach() {
     application = startApp();
   },
 
-  afterEach: function() {
+  afterEach() {
     Ember.run(application, 'destroy');
   }
 });
