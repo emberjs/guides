@@ -239,7 +239,7 @@ Router.map(function() {
 
 ```app/routes/foo-elem.js
 export default Ember.Route.extend({
-  model: function(params) {
+  model(params) {
     return new Ember.RSVP.Promise(function(x, reject) {
        reject("Foo Error");
     });

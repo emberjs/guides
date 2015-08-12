@@ -101,7 +101,7 @@ should also run after `init` by using `Ember.on()`:
 
 ```javascript
 Person = Ember.Object.extend({
-  init: function() {
+  init() {
     this.set('salutation', 'Mr/Ms');
   },
 
