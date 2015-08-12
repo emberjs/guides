@@ -15,12 +15,12 @@ sub-routes and controllers.
 ```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
-    displayAlert: function(text) {
+    displayAlert(text) {
       this._displayAlert(text);
     }
   },
 
-  _displayAlert: function(text) {
+  _displayAlert(text) {
     alert(text);
   }
 });
@@ -41,11 +41,11 @@ Here is an example of how to unit test this route:
 let originalAlert;
 
 moduleFor('route:application', {
-  beforeEach: function() {
+  beforeEach() {
     originalAlert = window.alert; // store a reference to window.alert
   },
 
-  afterEach: function() {
+  afterEach() {
     window.alert = originalAlert; // restore window.alert
   }
 });

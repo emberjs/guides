@@ -54,7 +54,7 @@ the `foo` property).
 ```app/models/some-thing.js
 export default Ember.Object.extend({
   foo: 'bar',
-  testMethod: function() {
+  testMethod() {
     this.set('foo', 'baz');
   }
 });
@@ -85,7 +85,7 @@ that returns a value based on some internal state.
 ```app/models/some-thing.js
 export default Ember.Object.extend({
   count: 0,
-  calc: function() {
+  calc() {
     this.incrementProperty('count');
     return 'count: ' + this.get('count');
   }

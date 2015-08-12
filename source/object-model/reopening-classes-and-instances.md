@@ -16,7 +16,7 @@ call `this._super`.
 ```javascript
 Person.reopen({
   // override `say` to add an ! at the end
-  say: function(thing) {
+  say(thing) {
     this._super(thing + "!");
   }
 });

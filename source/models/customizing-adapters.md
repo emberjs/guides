@@ -110,7 +110,7 @@ underscore_case instead of camelCase you could override the
 
 ```app/adapters/application.js
 export default DS.RESTAdapter.extend({
-  pathForType: function(type) {
+  pathForType(type) {
     return Ember.String.underscore(type);
   }
 });
