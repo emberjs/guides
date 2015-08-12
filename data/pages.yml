@@ -110,6 +110,8 @@
       url: "sending-actions-from-components-to-your-application"
     - title: "Composing Components"
       url: "composing-components"
+    - title: "The Run Loop"
+      url: "run-loop"
 
 - title: "Controllers"
   url: 'controllers'
@@ -218,12 +220,6 @@
       url: "feature-flags"
     - title: "Debugging"
       url: "debugging"
-
-- title: "Understanding Ember.js"
-  url: 'understanding-ember'
-  pages:
-    - title: "The Run Loop"
-      url: "run-loop"
 
 - title: "Contributing to Ember.js"
   url: 'contributing'
