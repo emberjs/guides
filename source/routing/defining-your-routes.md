@@ -79,7 +79,9 @@ name (`posts.new`, not `new`).
 ## The application route
 
 The `application` is entered when your app first boots up. Just like any
-other route, it will load an `application` template by default. All other routes will render
+other route, it will load an `application` template by default.
+You should put your header, footer, and any other decorative content
+here. All other routes will render
 their templates into the `application.hbs` templates's `{{outlet}}`.
 
 This route is part of every application, so you don't need to
