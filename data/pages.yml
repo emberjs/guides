@@ -208,6 +208,8 @@
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
   pages:
+    - title: "Configuring your App"
+      url: "configuring-your-app"
     - title: "Disabling Prototype Extensions"
       url: "disabling-prototype-extensions"
     - title: "Embedding Applications"
