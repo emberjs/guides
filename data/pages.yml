@@ -70,8 +70,6 @@
       url: "index"
     - title: "Defining Your Routes"
       url: "defining-your-routes"
-    - title: "Generated Objects"
-      url: "generated-objects"
     - title: "Specifying a Route's Model"
       url: "specifying-a-routes-model"
     - title: "Setting Up a Controller"
