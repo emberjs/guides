@@ -207,6 +207,12 @@
     - title: "Troubleshooting"
       url: "troubleshooting"
 
+- title: "Addons and Dependencies"
+  url: "addons-and-dependencies"
+  pages:
+    - title: "Managing Dependencies"
+      url: "managing-dependencies"
+
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
   pages:
