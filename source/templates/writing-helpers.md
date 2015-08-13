@@ -40,8 +40,6 @@ ember generate helper format-currency
 That file should export a function wrapped with `Ember.Helper.helper()`:
 
 ```app/helpers/format-currency.js
-import Ember from "ember";
-
 export default Ember.Helper.helper(function(params) {
   let value = params[0],
       dollars = Math.floor(value / 100),
@@ -99,8 +97,6 @@ list after the helper name:
 An array of these arguments is passed to the helper function:
 
 ```app/helpers/my-helper.js
-import Ember from "ember";
-
 export default Ember.Helper.helper(function(params) {
   let arg1 = params[0];
   let arg2 = params[1];
@@ -114,8 +110,6 @@ You can use JavaScript's destructuring assignment shorthand to clean up
 the code. This example is equivalent to the above example (note the function signature):
 
 ```app/helpers/my-helper.js
-import Ember from "ember";
-
 export default Ember.Helper.helper(function([arg1, arg2]) {
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
@@ -158,8 +152,6 @@ to the helper function.  Here is our example from above, updated to
 support the optional `sign` option:
 
 ```app/helpers/format-currency.js
-import Ember from "ember";
-
 export default Ember.Helper.helper(function(params, namedArgs) {
   let value = params[0],
       dollars = Math.floor(value / 100),
@@ -180,7 +172,6 @@ world"}}
 ```
 
 ```app/helpers/my-helper.js
-import Ember from "ember";
 export default Ember.Helper.helper(function(params, namedArgs) {
   console.log(namedArgs.option1); // => "hello"
   console.log(namedArgs.option2); // => "world"
@@ -192,7 +183,6 @@ You can use JavaScript's destructuring assignment shorthand in this case
 as well to clean up the above code:
 
 ```app/helpers/my-helper.js
-import Ember from "ember";
 export default Ember.Helper.helper(function(params, { option1, option2, option3 }) {
   console.log(option1); // => "hello"
   console.log(option2); // => "world"
@@ -250,8 +240,6 @@ In fact, we can refactor the above stateless helper into a stateful
 helper just by making the function into a `compute` method on the class:
 
 ```app/helpers/format-currency.js
-import Ember from "ember";
-
 export default Ember.Helper.extend({
   compute(params, hash) {
     let value = params[0],
@@ -277,8 +265,6 @@ Once added, you can call the service's methods or access its properties
 from within the `compute()` method.
 
 ```app/helpers/is-authenticated.js
-import Ember from "ember";
-
 export default Ember.Helper.extend({
   authentication: Ember.inject.service()
   compute() {
@@ -302,7 +288,6 @@ the browser will not interpret it as HTML.
 For example, here's a `make-bold` helper that returns a string containing HTML:
 
 ```app/helpers/make-bold.js
-import Ember from "ember";
 export default Ember.Helper.helper(function(params) {
   return `<b>${params[0]}</b>`;
 });
@@ -326,7 +311,6 @@ escape the return value (that is, that it is _safe_) by using the
 `htmlSafe` string utility:
 
 ```app/helpers/make-bold.js
-import Ember from "ember";
 export default Ember.Helper.helper(function(params) {
   return Ember.String.htmlSafe(`<b>${params[0]}</b>`);
 });
@@ -360,7 +344,6 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```app/helpers/make-bold.js
-import Ember from "ember";
 export default Ember.Helper.helper(function(params) {
   let value = Handlebars.Utils.escapeExpression(params[0]);
   return Ember.String.htmlSafe(`<b>${value}</b>`);
