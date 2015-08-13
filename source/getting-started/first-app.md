@@ -1,4 +1,4 @@
-Now that you have Ember installed, you can create your first Ember app by
+Now that you have Ember CLI installed, you can create your first Ember app by
 running:
 
 ```shell
