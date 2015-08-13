@@ -78,9 +78,7 @@ You might be tempted to make the component responsible for fetching that
 data and storing it:
 
 ```app/components/list-of-drafts.js
-import Component from "ember-component";
-
-export default Component.extend({
+export default Ember.Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
       this.set('drafts', data);
@@ -195,11 +193,9 @@ example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```app/models/person.js
-import Model, { attr } from "ember-data/model";
-
-export default Model.extend({
-  firstName: attr('string'),
-  birthday:  attr('date')
+export default DS.Model.extend({
+  firstName: DS.attr('string'),
+  birthday:  DS.attr('date')
 });
 ```
 
@@ -208,18 +204,14 @@ example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
 ```app/models/order.js
-import Model, { hasMany } from "ember-data/model";
-
-export default Model.extend({
-  lineItems: hasMany('line-item')
+export default DS.Model.extend({
+  lineItems: DS.hasMany('line-item')
 });
 ```
 
 ```app/models/line-item.js
-import Model, { belongsTo } from "ember-data/model";
-
-export default Model.extend({
-  order: belongsTo('order')
+export default DS.Model.extend({
+  order: DS.belongsTo('order')
 });
 ```
 
