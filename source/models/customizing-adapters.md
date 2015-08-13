@@ -140,8 +140,5 @@ export default DS.RESTAdapter.extend({
 ## Community Adapters
 
 If none of the builtin Ember Data Adapters work for your backend,
-be sure to check out some of the community maintained Ember Data
-Adapters. Some good places to look for Ember Data Adapters include:
-
-- [GitHub](https://github.com/search?q=ember+data+adapter&ref=cmdform)
-- [Bower](http://bower.io/search/?q=ember-data-)
+be sure to check out some of the [community maintained Ember Data
+Adapters](http://emberobserver.com/categories/ember-data-adapters).
