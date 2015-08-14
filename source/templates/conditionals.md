@@ -10,7 +10,7 @@ We can use the `{{#if}}` helper to conditionally render a block:
 ```
 
 Handlebars will not render the block if the argument passed evaluates to
-`false`, `undefined`, `null` or `[]` (i.e., any "falsy" value).
+`false`, `undefined`, `null` or `[]` (i.e., any "falsy" value or an empty array).
 
 If the expression evaluates to falsy, we can also display an alternate template
 using `{{else}}`:
