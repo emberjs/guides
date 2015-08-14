@@ -3,9 +3,7 @@ JavaScript object in your template, you can use the `{{#each-in}}`
 helper:
 
 ```/app/components/store-categories.js
-import Component from "ember-component";
-
-export Component.extend({
+export Ember.Component.extend({
   willRender() {
     // Set the "categories" property to a JavaScript object
     // with the category name as the key and the value a list

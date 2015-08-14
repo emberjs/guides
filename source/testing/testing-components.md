@@ -11,8 +11,6 @@ component is bound to its `style` property.
 > component pretty-color`.
 
 ```app/components/pretty-color.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   attributeBindings: ['style'],
 
@@ -108,8 +106,6 @@ clicked on:
 > component magic-title`.
 
 ```app/components/magic-title.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   title: 'Hello World',
 
@@ -164,8 +160,6 @@ For example, imagine you have a comment form component that sends a specified
 > component comment-form`.
 
 ```app/components/comment-form.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   body: null,
 
