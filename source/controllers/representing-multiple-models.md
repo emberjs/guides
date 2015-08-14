@@ -53,7 +53,7 @@ Now we can use this property in our template:
 
 ### Representing Several Models
 
-Multiple models can be returned through `Ember.RSVP.hash`. We can return a hash from the `model` hook, but `Ember.RSVP.hash` takes parameters that return promises and when all paramter promises resolve then the `Ember.RSVP.hash` promise resolves. To continue with the above example, if we also wanted to return the `model:album` records then our `model` hook would look like:
+Multiple models can be returned through `Ember.RSVP.hash`. We can return a hash from the `model` hook, but `Ember.RSVP.hash` takes parameters that return promises and when all parameter promises resolve then the `Ember.RSVP.hash` promise resolves. To continue with the above example, if we also wanted to return the `model:album` records then our `model` hook would look like:
 
 ```app/routes/songs.js
 export default Ember.Route.extend({
