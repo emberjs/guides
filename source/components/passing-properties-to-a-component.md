@@ -80,12 +80,17 @@ pass properties to the chosen component in the same manner:
 
 Apart from passing attributes to a component, you can also pass in positional parameters, like we've seen with the `{{link-to}}`, e.g. `{{link-to "user" userModel}}`.
 
-You can access these parameters by setting the `positionalParams` attribute in your component.
+You can access these parameters by setting the `positionalParams` attribute in your component class.
 
 ```app/components/x-visit.js
-export default Ember.Component.extend({
+const MyComponent = Ember.Component.extend();
+
+MyComponent.reopenClass({
+>>>>>>> Documenting usage of positional params in reopenClass
   positionalParams: ['name', 'model']
 });
+
+export default MyComponent;
 ```
 
 This will expose the first parameter in your template as the `{{name}}` attribute and the second as `{{model}}`. They will also be available as regular attributes in your component via `this.get('name')` and `this.get('model')`.
