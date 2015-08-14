@@ -77,7 +77,7 @@ Setting any dependent property will propagate changes through any computed prope
 
 ### Setting Computed Properties
 
-You can also define what Ember should do when setting a computed property. If you try to set a computed property, it will be invoked with the key (property name), the value you want to set it to, and the previous value.
+You can also define what Ember should do when setting a computed property. If you try to set a computed property, it will be invoked with the key (property name), and the value you want to set it to.
 
 ```javascript
 Person = Ember.Object.extend({
@@ -102,5 +102,3 @@ captainAmerica.set('fullName', "William Burnside");
 captainAmerica.get('firstName'); // William
 captainAmerica.get('lastName'); // Burnside
 ```
-
-Ember will call the computed property for both setters and getters, so if you want to use a computed property as a setter, you'll need to check the number of arguments to determine whether it is being called as a getter or a setter. Note that if a value is returned from the setter, it will be cached as the property's value.
