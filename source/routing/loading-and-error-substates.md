@@ -134,7 +134,7 @@ export default Ember.Route.extend({
   actions: {
     loading(transition, originRoute) {
       //displayLoadingSpinner();
-      this.router.one('didTransition', function () {
+      this.router.one('didTransition', function() {
         // hideLoadingSpinner();
       });
 

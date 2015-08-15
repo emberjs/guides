@@ -8,7 +8,8 @@ objects in the following ways:
   built-in arrays, and makes array mutations observable.
 
 * `String` is extended to add convenience methods, such as
-  `camelize()` and `fmt()`.
+  `camelize()` and `w()`. You can find a list of these methods with the
+  [Ember.String documentation](http://emberjs.com/api/classes/Ember.String.html).
 
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
