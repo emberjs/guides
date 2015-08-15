@@ -1,16 +1,18 @@
-You'll soon notice that standard JavaScript objects aren't used widely in Ember,
-except as key-value pairs (often referred to as _hashes_). This is because
-JavaScript objects don't support the ability to observe when an object changes,
-which Ember needs to update data throughout an application.
-Ember's object model builds on standard JavaScript objects to enable this
-functionality, as well as bring several features like mixins and initialization
-to make working with them a more pleasant experience. Although these features
-aren't available in standard JavaScript, many of them are designed to align with
-proposed additions to the ECMAScript standard.
+You'll notice that standard JavaScript class patterns, and the new ES2015
+classes, aren't used widely in Ember. Plain objects can still be found,
+and sometimes they are referred to as "hashes".
 
-In addition to bringing its own object model, Ember also extends the built-in
-JavaScript `Array` prototype with its Enumerable interface to enable it to
-observe changes and provide more features.
+JavaScript objects don't support the observation of property value changes.
+Consequently, if an object is going to participate in Ember's binding
+system you may see an `Ember.Object` instead of a plan object.
+
+`Ember.Object` also provides a class system, supporting features like mixins
+and constructor methods. Some features in Ember's object model are not present in
+JavaScript classes or common patterns, but all are aligned as much as possible
+with the language and proposed additions.
+
+Ember also extends the JavaScript `Array` prototype with its
+`Ember.Enumerable` interface to provide change observation for arrays.
 
 Finally, Ember extends the `String` prototype with a few [formatting and
 localization methods](http://emberjs.com/api/classes/Ember.String.html).

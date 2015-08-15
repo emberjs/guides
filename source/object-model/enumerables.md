@@ -1,15 +1,15 @@
-In Ember.js, an Enumerable is any object that contains a number of child
+In Ember.js, an enumerable is any object that contains a number of child
 objects, and which allows you to work with those children using the
 [Ember.Enumerable](http://emberjs.com/api/classes/Ember.Enumerable.html) API. The most common
-Enumerable in the majority of apps is the native JavaScript array, which
-Ember.js extends to conform to the Enumerable interface.
+enumerable in the majority of apps is the native JavaScript array, which
+Ember.js extends to conform to the enumerable interface.
 
 By providing a standardized interface for dealing with enumerables,
 Ember.js allows you to completely change the way your underlying data is
 stored without having to modify the other parts of your application that
 access it.
 
-The Enumerable API follows ECMAScript specifications as much as
+The enumerable API follows ECMAScript specifications as much as
 possible. This minimizes incompatibility with other libraries, and
 allows Ember.js to use the native browser implementations in arrays
 where available.
@@ -17,13 +17,13 @@ where available.
 ## Use of Observable Methods
 
 In order for Ember to observe when you make a change to an enumerable, you need
-to use special methods that Ember.Enumerable provides. For example, if you add
+to use special methods that `Ember.Enumerable` provides. For example, if you add
 an element to an array using the standard JavaScript method `push`, Ember will
-not be able to observe the change, but if you use the Enumerable method
+not be able to observe the change, but if you use the enumerable method
 `pushObject`, the change will propagate throughout your application.
 
 Here is a list of standard JavaScript array methods and their observable
-Enumerable equivalents:
+enumerable equivalents:
 
 <table>
   <thead>
@@ -40,7 +40,7 @@ Enumerable equivalents:
 
 ## API Overview
 
-In the rest of this guide, we'll explore some of the most common Enumerable
+In the rest of this guide, we'll explore some of the most common enumerable
 conveniences. For the full list, please see the [Ember.Enumerable API
 reference documentation.](http://emberjs.com/api/classes/Ember.Enumerable.html)
 
@@ -52,7 +52,7 @@ To enumerate all the values of an enumerable object, use the `forEach` method:
 var food = ["Poi", "Ono", "Adobo Chicken"];
 
 food.forEach(function(item, index) {
-  console.log('Menu Item %@: %@'.fmt(index+1, item));
+  console.log(`Menu Item ${index+1}: ${item}`);
 });
 
 // Menu Item 1: Poi
@@ -62,7 +62,7 @@ food.forEach(function(item, index) {
 
 ### First and Last Objects
 
-All Enumerables expose `firstObject` and `lastObject` properties
+All enumerables expose `firstObject` and `lastObject` properties
 that you can bind to.
 
 ```javascript
@@ -113,8 +113,8 @@ states.mapBy('capital');
 
 ### Filtering
 
-Another common task to perform on an Enumerable is to take the
-Enumerable as input, and return an Array after filtering it based on
+Another common task to perform on an enumerable is to take the
+enumerable as input, and return an Array after filtering it based on
 some criteria.
 
 For arbitrary filtering, use the `filter` method.  The filter method
@@ -153,7 +153,7 @@ If you want to return just the first matched value, rather than an Array contain
 
 ### Aggregate Information (All or Any)
 
-If you want to find out whether every item in an Enumerable matches some condition, you can use the `every` method:
+If you want to find out whether every item in an enumerable matches some condition, you can use the `every` method:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -167,17 +167,17 @@ var people = [
 ];
 
 people.every(function(person, index, self) {
-  if(person.get('isHappy')) { return true; }
+  return person.get('isHappy');
 });
 
 // returns false
 ```
 
-If you want to find out whether at least one item in an Enumerable matches some conditions, you can use the `some` method:
+If you want to find out whether at least one item in an enumerable matches some conditions, you can use the `some` method:
 
 ```javascript
 people.some(function(person, index, self) {
-  if(person.get('isHappy')) { return true; }
+  return person.get('isHappy');
 });
 
 // returns true
