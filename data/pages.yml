@@ -56,8 +56,6 @@
       url: "actions"
     - title: "Input Helpers"
       url: "input-helpers"
-    - title: "The Get Helper"
-      url: "the-get-helper"
     - title: "Development Helpers"
       url: "development-helpers"
     - title: "Writing Helpers"
