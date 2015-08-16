@@ -72,7 +72,7 @@ export default Ember.Controller.extend({
   ],
 
   selectedTodo: null,
-  indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[]', function () {
+  indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[]', function() {
     return this.get('todos').indexOf(this.get('selectedTodo'));
   })
 });
@@ -90,8 +90,8 @@ or build the computed yourself:
 
 ```javascript
 const Hamster = Ember.Object.extend({
-  excitingChores: Ember.computed('chores.[]', function () {
-    return this.get('chores').map(function (chore, index) {
+  excitingChores: Ember.computed('chores.[]', function() {
+    return this.get('chores').map(function(chore, index) {
       return `CHORE ${index}: ${chore.toUpperCase()}!`;
     }
   })
@@ -110,12 +110,13 @@ By comparison, using the computed macro abstracts some of this away:
 
 ```javascript
 const Hamster = Ember.Object.extend({
-  excitingChores: Ember.computed.map('chores', function (chore, index) {
+  excitingChores: Ember.computed.map('chores', function(chore, index) {
     return `CHORE ${index}: ${chore.toUpperCase()}!`;
   })
 });
 ```
 
-The computed macros expect you to use an array, so there is no need to use the '[]' key in these cases. 
-However, building your own custom computed property requires you to tell Ember.js that it is watching 
-for array changes, which is where the `[]` key comes in handy.
+The computed macros expect you to use an array, so there is no need to use the
+`[]` key in these cases. However, building your own custom computed property
+requires you to tell Ember.js that it is watching for array changes, which is
+where the `[]` key comes in handy.

@@ -92,6 +92,7 @@ Person = Ember.Object.extend({
       var [ firstName, lastName ] = value.split(/\s+/);
       this.set('firstName', firstName);
       this.set('lastName',  lastName);
+      return value;
     }
   })
 });
