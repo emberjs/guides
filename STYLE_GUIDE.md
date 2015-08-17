@@ -6,7 +6,7 @@ Thanks for contributing to the Ember Guides! Please familiarize yourself with th
 - A **guide** is one page of the Guides, for example "Defining Your Routes". Here, _guide_ is lowercase.
 - A **section** is one of the top-level grouping of several guides, for example "Routing".
 
-Write in complete sentences. Use a friendly tone of voice. Use American English. User gender-neutral pronouns - for example, "Is the user logged in? Are _they_ an admin user?" Use title case for all titles and headers. If English is not your native language and you aren't sure about any of these, don't hesitate to ask for help in your pull request!
+Write in complete sentences. Use a friendly tone of voice. Use American English. Use gender-neutral pronouns - for example, "Is the user logged in? Are _they_ an admin user?" Use title case for all titles and headers. If English is not your native language and you aren't sure about any of these, don't hesitate to ask for help in your pull request!
 
 Be as brief as possible, but don't sacrifice clarity for brevity. If a guide is more than a couple screens of scrolling, consider breaking it into multiple pages.
 
