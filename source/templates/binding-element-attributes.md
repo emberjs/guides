@@ -53,12 +53,13 @@ renders the following HTML:
 ```html
 <a id="ember239" class="ember-view" href="#/photos">Photos</a>
 
-<input id="ember257" class="ember-view ember-text-field" type="text" 
+<input id="ember257" class="ember-view ember-text-field" type="text"
        title="Name">
 ```
 
-There are two ways to enable support for data attributes. One way would be to add an
-attribute binding on the view, e.g. `Ember.LinkComponent` or `Ember.TextField` for the specific attribute:
+To enable support for data attributes an attribute binding must be
+added to the component, e.g. `Ember.LinkComponent` or `Ember.TextField`
+for the specific attribute:
 
 ```javascript
 Ember.LinkComponent.reopen({
