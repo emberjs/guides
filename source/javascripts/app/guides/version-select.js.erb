@@ -4,8 +4,7 @@ $.ajax('/versions.json')
     versionSelectBox.select2({
       data: data
     });
-    var slugs = window.location.href.split('/');
-    var currentRevision = slugs[slugs.length - 2];
+    var currentRevision = 'CURRENT_REVISION_WILL_APPEAR_HERE_WHEN_DEPLOYED';
     versionSelectBox.val(currentRevision).change();
 
     versionSelectBox.on('change', function() {
