@@ -1,0 +1,29 @@
+window.GUIDE_VERSIONS = {
+  current: '<%= data.search.revision %>',
+  available: [],
+
+  onReady: function(callback) {
+    if (this._ready) {
+      callback(this);
+    } else {
+      this._callbacks.push(callback);
+    }
+  },
+
+  _callbacks: [],
+
+  _setData: function(available) {
+    this.available = available;
+    this._ready = true;
+
+    var self = this;
+    $.each(this._callbacks, function(idx, callback) {
+      callback(self);
+    });
+  }
+};
+
+$.ajax('/versions.json')
+  .done(function(data) {
+    GUIDE_VERSIONS._setData(data);
+  });
