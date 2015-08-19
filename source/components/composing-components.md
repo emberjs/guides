@@ -101,7 +101,7 @@ For the consumer to get access to the data, she needs to know what data a compon
 this is where documentation is so crucial, and from there the yielded data can be accessed
 with the `as` operator. Let's take the following template as an example:
 
-```app/components/user-list/template.hbs
+```app/templates/components/user-list.hbs
 {{#each users as |user|}}
   {{yield user}}
 {{/each}}
@@ -110,7 +110,7 @@ with the `as` operator. Let's take the following template as an example:
 This `{{user-list}}` component will yield as many times as there are users.
 We can consume it in the following way:
 
-```app/users/template.hbs
+```app/templates/application.hbs
 {{#user-list users=users as |user|}}
   {{user-card user=user}}
 {{/user-list}}
@@ -121,7 +121,7 @@ since the `{{yield user}}` is inside the `{{each}}` block. Although this is nice
 without a block, i.e. `{{user-list users=users}}`? This would make the component pretty useless since nothing is yielding,
 but the users are still being iterated. Let's mix in the `hasBlock` attribute and see if we can make it more useful.
 
-```app/components/user-list/template.hbs
+```app/templates/components/user-list.hbs
 {{#if hasBlock}}
   {{#each users as |user|}}
     {{yield user}}
@@ -166,7 +166,7 @@ We can create these names by using the `{{concat}}` helper in nested form.
 
 Now that our component names are valid due to the use of dashed, we can put together the full template with the two modes.
 
-```app/users/template.hbs
+```app/templates/application.hbs
 {{#user-list users=users as |user basicMode|}}
   {{#if basicMode}}
     {{component (concat 'basic-card-' user.type) user=user}}
@@ -186,7 +186,7 @@ which we've added to our yield, i.e. `{{yield user basic}}`.
 
 The consumer can decide how to name the yielded values. We could have named our yields like so:
 
-```app/users/template.hbs
+```app/templates/application.hbs
 {{#user-list users=users as |userModel isBasic|}}
   {{! something creative here }}
 {{/user-list}}
@@ -201,7 +201,7 @@ We'll be looking at a `{{user-profile}}` component that implements a save action
 
 Here's our component's definition:
 
-```app/components/user-profile/component.js
+```app/components/user-profile.js
 export default Ember.Component.extend({
   actions: {
     saveUser() {
@@ -219,7 +219,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/components/user-profile/template.hbs
+```app/templates/components/user-profile.hbs
 {{! most likely we have some markup here }}
 {{yield profile (action "saveUser")}}
 ```
