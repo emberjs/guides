@@ -32,5 +32,4 @@ router's `location`](../../routing/specifying-the-location-api) to
 var ENV = {
   locationType: 'none'
 };
-export default ENV;
 ```

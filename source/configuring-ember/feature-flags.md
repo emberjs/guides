@@ -56,8 +56,6 @@ var ENV = {
     }
   }
 };
-
-export default ENV;
 ```
 
 For the truly ambitious developer, setting `ENV.EmberENV.ENABLE_ALL_FEATURES` to `true` will enable all
