@@ -25,17 +25,6 @@ export default Ember.Route.extend({
 });
 ```
 
-If you want to use a different controller than the route handler's
-controller, pass the controller's name in the `controller` option:
-
-```app/routes/post.js
-export default Ember.Route.extend({
-  renderTemplate() {
-    this.render({ controller: 'favoritePost' });
-  }
-});
-```
-
 Ember allows you to name your outlets. For instance, this code allows
 you to specify two outlets with distinct names:
 
@@ -55,25 +44,6 @@ export default Ember.Route.extend({
 });
 ```
 
-All of the options described above can be used together in whatever
-combination you'd like:
-
-```app/routes/post.js
-export default Ember.Route.extend({
-  renderTemplate() {
-    var controller = this.controllerFor('favoritePost');
-
-    // Render the `favoritePost` template into
-    // the outlet `post`, and use the `favoritePost`
-    // controller.
-    this.render('favoritePost', {
-      outlet: 'post',
-      controller: controller
-    });
-  }
-});
-```
-
 If you want to render two different templates into outlets of two different rendered templates of a route:
 
 ```app/routes/post.js
@@ -82,12 +52,10 @@ export default Ember.Route.extend({
     this.render('favoritePost', {   // the template to render
       into: 'posts',                // the template to render into
       outlet: 'post',              // the name of the outlet in that template
-      controller: 'blogPost'        // the controller to use for the template
     });
     this.render('comments', {
       into: 'favoritePost',
       outlet: 'comment',
-      controller: 'blogPost'
     });
   }
 });
