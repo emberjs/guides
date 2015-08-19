@@ -132,42 +132,11 @@ to display the `photo` template again, this time with a different model.
 In cases like this, it's important that we include some information in
 the URL about not only which template to display, but also which model.
 
-In Ember, this is accomplished by defining routes with _dynamic segments_.
+In Ember, this is accomplished by defining routes with [dynamic
+segments](../defining-your-routes/#toc_dynamic-segments).
 
-A dynamic segment is a part of the URL that is filled in by the current
-model's ID. Dynamic segments always start with a colon (`:`). Our photo
-example might have its `photo` route defined like this:
-
-```app/router.js
-Router.map(function() {
-  this.route('photo', { path: '/photos/:photo_id' });
-});
-```
-
-In this example, the `photo` route has a dynamic segment `:photo_id`.
-When the user goes to the `photo` route to display a particular photo
-model (usually via the `{{link-to}}` helper), that model's ID will be
-placed into the URL automatically.
-
-See [Links](../../templates/links) for more information about linking
-to a route with a model using the `{{link-to}}` helper.
-
-For example, if you transitioned to the `photo` route with a model whose
-`id` property was `47`, the URL in the user's browser would be updated
-to:
-
-```shell
-/photos/47
-```
-
-What happens if the user visits your application directly with a URL
-that contains a dynamic segment? For example, they might reload the
-page, or send the link to a friend, who clicks on it. At that point,
-because we are starting the application up from scratch, the actual
-JavaScript model object to display has been lost; all we have is the ID
-from the URL.
-
-Luckily, Ember will extract any dynamic segments from the URL for
+Once you have defined a route with a dynamic segment,
+Ember will extract the value of the dynamic segment from the URL for
 you and pass them as a hash to the `model` hook as the first argument:
 
 ```app/router.js
