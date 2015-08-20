@@ -65,6 +65,15 @@ Router.map(function() {
 });
 ```
 
+And then add the `{{outlet}}` helper to your template where you want the nested
+template to display:
+
+```templates/posts.hbs
+<h1>Posts</h1>
+<!-- Display posts and other content -->
+{{outlet}}
+```
+
 This router creates a route for `/posts` and for `/posts/new`. When a user
 visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index
 routes](#toc_index-routes) explains an important addition to this.) When the
