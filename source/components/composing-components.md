@@ -241,7 +241,7 @@ with the `(action "saveUser")` nested helper.  This helper reads a property off 
 We could also leverage this format to place actions on native HTML elements
 like an input button:
 
-```hbs
+```app/templates/user/profile.hbs
 {{#user-profile user=user as |profile saveUser|}}
   <button type="button" onclick={{action saveUser}}>Save</button>
 {{/user-profile}}
