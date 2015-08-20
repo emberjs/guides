@@ -1,64 +1,73 @@
 Ember.js uses the [Handlebars templating library](http://www.handlebarsjs.com)
-to power your app's user interface. Handlebars templates are just like
-regular HTML, but also give you the ability to embed expressions that
-change what is displayed.
+to power your app's user interface. Handlebars templates contain static HTML and
+dynamic content inside Handlebars expressions, which are invoked with double
+curly braces: `{{}}`.
 
-Ember takes Handlebars and extends it with many powerful features. It may
-help to think of your Handlebars templates as an HTML-like DSL for
-describing the user interface of your app. And, once you've told
-Ember.js to render a given template on the screen, you don't need to
-write any additional code to make sure it keeps up-to-date.
+Dynamic content inside a Handlebars expression is rendered with data-binding. This means if
+you update a property, your usage of that property in a template will be
+automatically updated to the latest value.
 
 ### Defining Templates
 
-The first thing you should change is your [application template](../the-application-template) that is created
-automatically for you and is displayed when your app loads.
-
-Next, you can define templates in the `app/templates` folder. By default,
-a route will render a template with the same name as the route.
+Templates in an Ember CLI app are stored in the `app/templates` folder.
+By default, a route will render a template with the same name as the route. For
+example this template would render for the `kittens` route:
 
 ```app/templates/kittens.hbs
 <h1>Kittens</h1>
 <p>Kittens are the cutest!</p>
 ```
 
-If you would like to create a template that is shared across many areas of your site, you should investigate [components](../../components/defining-a-component/).
+The `app/templates/application.hbs` file is the main template for your
+application. If you have a new Ember app, you can change the contents of that
+file and that content should appear in the browser. As a new user, you
+may want to experiment with content in the application template before diving
+in to routing.
 
-### Handlebars Expressions
+If you want to learn more about how routes and templates work together in
+Ember, jump to
+[The Application Route](../../routing/defining-your-routes/#toc_the-application-route)
+section of the guides.
 
-Each template has an associated _controller_: this is where the template
-finds the properties that it displays.
+### Displaying Properties
 
-You can display a property from your controller by wrapping the property
-name in curly braces, like this:
+Templates are backed with a context. A context is an object from which
+Handlebars expressions read their properties. In Ember this is often a component. For
+templates rendered by a route (like `application.hbs`), the context is a
+controller.
 
-```handlebars
+For example, this `application.hbs` template will render a first and last name:
+
+```app/templates/application.hbs
 Hello, <strong>{{firstName}} {{lastName}}</strong>!
 ```
 
-This would look up the `firstName` and `lastName` properties from the
-controller, insert them into the HTML described in the template, then
-put them into the DOM.
+The `firstName` and `lastName` properties are read from the
+context (the application controller in this case), and rendered inside the
+`<strong>` HTML tag.
 
-By default, your top-most application template is bound to your application controller. Note that this file is not shown by default because it is created behind the scenes by Ember CLI. To customize the controller, create the following file:
+To provide a `firstName` and `lastName` to the above template, properties
+must be added to the application controller. If you are following along with
+an Ember CLI application, you may need to create this file:
 
 ```app/controllers/application.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   firstName: 'Trek',
   lastName: 'Glowacki'
 });
 ```
 
-The above template and controller would combine to display the following
-rendered HTML:
+The above template and controller render as the following HTML:
 
 ```html
 Hello, <strong>Trek Glowacki</strong>!
 ```
 
-These expressions (and the other Handlebars features you will learn
-about next) are _bindings aware_. That means that if the values used
-by your templates ever change, your HTML will be updated automatically.
+Remember that `{{firstName}}` and `{{lastName}}` are bound data. That means
+if the value of one of those properties changes, the DOM will be updated
+automatically.
 
-As your application grows in size, it will have many templates, each
-bound to different controllers.
+As an application grows in size, it will have many templates backed by
+controllers and components.
