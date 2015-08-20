@@ -40,8 +40,8 @@ ENV = {
 }
 ```
 
-Or you can choose class which you want to disable prototype extension
-by added a property to your application's configuration:
+You can configure which classes to include prototype extensions
+for in your application's configuration like so:
 
 ```config/environment.js
 ENV = {
