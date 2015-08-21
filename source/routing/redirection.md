@@ -1,27 +1,23 @@
-### Transitioning and Redirecting
-
 Calling `transitionTo` from a route or `transitionToRoute` from a controller
 will stop any transition currently in progress and start a new one, functioning
-as a redirect. `transitionTo` takes parameters and behaves exactly like the [link-to](../../templates/links) helper:
+as a redirect. `transitionTo` behaves exactly like the [link-to](../../templates/links) helper.
 
-* If you transition into a route without dynamic segments that route's `model` hook
-will always run.
+If the new route has dynamic segments, you need to pass either a _model_ or an _identifier_ for each segment.
+Passing a model will skip that segment's `model` hook (since the model is
+already loaded).
 
-* If the new route has dynamic segments, you need to pass either a _model_ or an _identifier_ for each segment.
-Passing a model will skip that segment's `model` hook.  Passing an identifier will run the `model` hook and you'll be able to access the identifier in the params. See [Links](../../templates/links) for more detail.
-
-### Before the model is known
+## Transitioning Before the Model is Known
 
 If you want to redirect from one route to another, you can do the transition in
 the `beforeModel` hook of your route handler.
 
-```app/router.js
+```router.js
 Router.map(function() {
   this.route('posts');
 });
 ```
 
-```app/routes/index.js
+```routes/index.js
 export default Ember.Route.extend({
   beforeModel() {
     this.transitionTo('posts');
@@ -29,26 +25,28 @@ export default Ember.Route.extend({
 });
 ```
 
-### After the model is known
+If you need to examine some application state to figure out where to redirect,
+you might use a [service](../../services/).
+
+## Transitioning After the Model is Known
 
 If you need information about the current model in order to decide about
-redirection, you should either use the `afterModel` or the `redirect` hook.
-They receive the resolved model as the first parameter and the transition as
-the second one, and thus function as aliases. (In fact, the default
-implementation of `afterModel` just calls `redirect`.)
+redirection, you can use the `afterModel` hook.
+It receives the resolved model as the first parameter and the transition as
+the second one. For example:
 
-```app/router.js
+```router.js
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```app/routes/post.js
+```routes/posts.js
 export default Ember.Route.extend({
-  afterModel(posts, transition) {
-    if (posts.get('length') === 1) {
-      this.transitionTo('post', posts.get('firstObject'));
+  afterModel(model, transition) {
+    if (model.get('length') === 1) {
+      this.transitionTo('post', model.get('firstObject'));
     }
   }
 });
@@ -58,46 +56,33 @@ When transitioning to the `posts` route if it turns out that there is only one p
 the current transition will be aborted in favor of redirecting to the `PostRoute`
 with the single post object being its model.
 
-### Based on other application state
+### Child Routes
 
-You can conditionally transition based on some other application state.
+Let's change the router above to used a nested route, like this:
 
-```app/router.js
+```router.js
 Router.map(function() {
-  this.route('topCharts', function() {
-    this.route('choose', { path: '/' });
-    this.route('albums');
-    this.route('songs');
-    this.route('artists');
-    this.route('playlists');
+  this.route('posts', function() {
+    this.route('post', { path: ':post_id' });
   });
 });
 ```
 
-```app/routes/top-charts/choose.js
+If we redirect to `posts.post` in the `afterModel` hook, `afterModel`
+essentially invalidates the current attempt to enter this route. So the `posts`
+route's `beforeModel`, `model`, and `afterModel` hooks will fire again within
+the new, redirected transition. This is inefficient, since they just fired
+before the redirect.
+
+Instead, we can use the `redirect` hook, which will leave the original
+transition validated, and not cause the parent route's hooks to fire again:
+
+```routes/posts.js
 export default Ember.Route.extend({
-  beforeModel() {
-    var lastFilter = this.controllerFor('application').get('lastFilter');
-    this.transitionTo('topCharts.' + (lastFilter || 'songs'));
+  redirect(model, transition) {
+    if (model.get('length') === 1) {
+      this.transitionTo('posts.post', model.get('firstObject'));
+    }
   }
 });
 ```
-
-```app/routes/filter.js
-// Superclass to be used by all of the filter routes: albums, songs, artists, playlists
-export default Ember.Route.extend({
-  activate() {
-    var controller = this.controllerFor('application');
-    controller.set('lastFilter', this.templateName);
-  }
-});
-```
-
-In this example, navigating to the `/` URL immediately transitions into
-the last filter URL that the user was at. The first time, it transitions
-to the `/songs` URL.
-
-Your route can also choose to transition only in some cases. If the
-`beforeModel` hook does not abort or transition to a new route, the remaining
-hooks (`model`, `afterModel`, `setupController`, `renderTemplate`) will execute
-as usual.
