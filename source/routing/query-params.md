@@ -75,10 +75,10 @@ The `link-to` helper supports specifying query params using the
 
 ```handlebars
 // Explicitly set target query params
-{{#link-to 'posts' (query-params direction="asc")}}Sort{{/link-to}}
+{{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
 
 // Binding is also supported
-{{#link-to 'posts' (query-params direction=otherDirection)}}Sort{{/link-to}}
+{{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
 ```
 
 In the above examples, `direction` is presumably a query param property
@@ -98,17 +98,17 @@ active query params for this to be true.
 accept a final argument, which is an object with the key `queryParams`.
 
 ```app/routes/some-route.js
-this.transitionTo('post', object, {queryParams: {showDetails: true}});
-this.transitionTo('posts', {queryParams: {sort: 'title'}});
+this.transitionTo('post', object, { queryParams: { showDetails: true }});
+this.transitionTo('posts', { queryParams: { sort: 'title' }});
 
 // if you just want to transition the query parameters without changing the route
-this.transitionTo({queryParams: {direction: 'asc'}});
+this.transitionTo({ queryParams: { direction: 'asc' }});
 ```
 
 You can also add query params to URL transitions:
 
 ```app/routes/some-route.js
-this.transitionTo("/posts/1?sort=date&showDetails=true");
+this.transitionTo('/posts/1?sort=date&showDetails=true');
 ```
 
 ### Opting into a full transition
@@ -188,7 +188,7 @@ following configuration syntax:
 ```app/controllers/articles.js
 export default Ember.Controller.extend({
   queryParams: {
-    category: "articles_category"
+    category: 'articles_category'
   },
   category: null
 });
@@ -202,12 +202,12 @@ be provided along with strings in the `queryParams` array.
 
 ```app/controllers/articles.js
 export default Ember.Controller.extend({
-  queryParams: [ "page", "filter", {
-    category: "articles_category"
+  queryParams: ['page', 'filter', {
+    category: 'articles_category'
   }],
   category: null,
   page: 1,
-  filter: "recent"
+  filter: 'recent'
 });
 ```
 
@@ -251,9 +251,9 @@ to `/bears` and filter by `"best"`, and then navigate to `/potatoes` and
 filter by `"lamest"`, then given the following nav bar links,
 
 ```handlebars
-{{#link-to 'team' 'badgers'}}Badgers{{/link-to}}
-{{#link-to 'team' 'bears'   }}Bears{{/link-to}}
-{{#link-to 'team' 'potatoes'}}Potatoes{{/link-to}}
+{{#link-to "team" "badgers"}}Badgers{{/link-to}}
+{{#link-to "team" "bears"}}Bears{{/link-to}}
+{{#link-to "team" "potatoes"}}Potatoes{{/link-to}}
 ```
 
 the generated links would be
@@ -282,7 +282,7 @@ param.
 
 ```app/routes/articles.js
 export default Ember.Route.extend({
-  resetController (controller, isExiting, transition) {
+  resetController(controller, isExiting, transition) {
     if (isExiting) {
       // isExiting would be false if only the route's model was changing
       controller.set('page', 1);
@@ -301,7 +301,7 @@ config hash:
 export default Ember.Controller.extend({
   queryParams: [{
     showMagnifyingGlass: {
-      scope: "controller"
+      scope: 'controller'
     }
   }]
 });
@@ -312,11 +312,11 @@ query param URL key of a single controller query param property:
 
 ```app/controllers/articles.js
 export default Ember.Controller.extend({
-  queryParams: [ "page", "filter",
+  queryParams: ['page', 'filter',
     {
       showMagnifyingGlass: {
-        scope: "controller",
-        as: "glass",
+        scope: 'controller',
+        as: 'glass'
       }
     }
   ]

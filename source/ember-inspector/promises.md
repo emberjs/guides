@@ -86,6 +86,3 @@ promise.catch(callback, label);
 promise.finally(callback, label);
 
 ```
-
-
-

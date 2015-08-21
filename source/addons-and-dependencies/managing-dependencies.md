@@ -54,7 +54,7 @@ app.import('bower_components/ic-ajax/dist/named-amd/main.js', {
       'defineFixture',
       'lookupFixture',
       'raw',
-      'request',
+      'request'
     ]
   }
 });
@@ -84,8 +84,8 @@ if (app.env === 'development') {
 }
 if (app.env === 'test') {
   // Only import in test mode and place in test-supoprt.js
-  app.import( app.bowerDirectory + '/sinonjs/sinon.js', { type: 'test' } );
-  app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', { type: 'test' } );
+  app.import(app.bowerDirectory + '/sinonjs/sinon.js', { type: 'test' });
+  app.import(app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', { type: 'test' });
 }
 ```
 

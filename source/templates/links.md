@@ -4,8 +4,8 @@ You create a link to a route using the `{{link-to}}` helper.
 
 ```app/router.js
 Router.map(function() {
-  this.route("photos", function(){
-    this.route("edit", { path: "/:photo_id" });
+  this.route('photos', function(){
+    this.route('edit', { path: '/:photo_id' });
   });
 });
 ```
@@ -13,7 +13,7 @@ Router.map(function() {
 ```app/templates/photos.hbs
 <ul>
   {{#each photos as |photo|}}
-    <li>{{#link-to 'photos.edit' photo}}{{photo.title}}{{/link-to}}</li>
+    <li>{{#link-to "photos.edit" photo}}{{photo.title}}{{/link-to}}</li>
   {{/each}}
 </ul>
 ```
@@ -40,7 +40,7 @@ The `{{link-to}}` helper takes one or two arguments:
   an explicit value instead:
 
 ```app/templates/photos.hbs
-{{#link-to 'photos.photo.edit' 1}}
+{{#link-to "photos.photo.edit" 1}}
   First Photo Ever
 {{/link-to}}
 ```
@@ -65,10 +65,10 @@ segment.
 
 ```app/router.js
 Router.map(function() {
-  this.route("photos", function(){
-    this.route("photo", { path: "/:photo_id" }, function(){
-      this.route("comments");
-      this.route("comment", { path: "/comments/:comment_id" });
+  this.route('photos', function(){
+    this.route('photo', { path: '/:photo_id' }, function(){
+      this.route('comments');
+      this.route('comment', { path: '/comments/:comment_id' });
     });
   });
 });
@@ -79,7 +79,7 @@ Router.map(function() {
   {{body}}
 </div>
 
-<p>{{#link-to 'photos.photo.comment' primaryComment}}Main Comment{{/link-to}}</p>
+<p>{{#link-to "photos.photo.comment" primaryComment}}Main Comment{{/link-to}}</p>
 ```
 
 If you specify only one model, it will represent the innermost dynamic segment `:comment_id`.
@@ -106,15 +106,15 @@ can also be used in inline form by specifying the link text as the first
 argument to the helper:
 
 ```handlebars
-A link in {{#link-to 'index'}}Block Expression Form{{/link-to}},
-and a link in {{link-to 'Inline Form' 'index'}}.
+A link in {{#link-to "index"}}Block Expression Form{{/link-to}},
+and a link in {{link-to "Inline Form" "index"}}.
 ```
 
 The output of the above would be:
 
 ```html
-A link in <a href='/'>Block Expression Form</a>,
-and a link in <a href='/'>Inline Form</a>.
+A link in <a href="/">Block Expression Form</a>,
+and a link in <a href="/">Inline Form</a>.
 ```
 
 ### Adding additional attributes on a link
@@ -124,7 +124,7 @@ arguments to the `link-to` helper:
 
 ```handlebars
 <p>
-  {{link-to 'Edit this photo' 'photo.edit' photo class="btn btn-primary"}}
+  {{link-to "Edit this photo" "photo.edit" photo class="btn btn-primary"}}
 </p>
 ```
 
@@ -139,7 +139,7 @@ the browser's history you can use the `replace=true` option:
 
 ```handlebars
 <p>
-  {{#link-to 'photo.comment' 5 primaryComment replace=true}}
+  {{#link-to "photo.comment" 5 primaryComment replace=true}}
     Main Comment for the Next Photo
   {{/link-to}}
 </p>

@@ -18,7 +18,7 @@ Now imagine we have the following template and route:
 export default Ember.Route.extend({
   model() {
     return {
-      title: "Rails is omakase"
+      title: 'Rails is omakase'
     };
   }
 });
@@ -86,7 +86,6 @@ You can access these parameters by setting the `positionalParams` attribute in y
 const MyComponent = Ember.Component.extend();
 
 MyComponent.reopenClass({
->>>>>>> Documenting usage of positional params in reopenClass
   positionalParams: ['name', 'model']
 });
 

@@ -20,8 +20,8 @@ Person = Ember.Object.extend({
 });
 
 var ironMan = Person.create({
-  firstName: "Tony",
-  lastName:  "Stark"
+  firstName: 'Tony',
+  lastName:  'Stark'
 });
 
 ironMan.get('fullName'); // "Tony Stark"
@@ -89,7 +89,7 @@ Person = Ember.Object.extend({
       return this.get('firstName') + ' ' + this.get('lastName');
     },
     set(key, value) {
-      var [ firstName, lastName ] = value.split(/\s+/);
+      var [firstName, lastName] = value.split(/\s+/);
       this.set('firstName', firstName);
       this.set('lastName',  lastName);
       return value;
@@ -99,7 +99,7 @@ Person = Ember.Object.extend({
 
 
 var captainAmerica = Person.create();
-captainAmerica.set('fullName', "William Burnside");
+captainAmerica.set('fullName', 'William Burnside');
 captainAmerica.get('firstName'); // William
 captainAmerica.get('lastName'); // Burnside
 ```

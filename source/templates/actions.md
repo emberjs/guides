@@ -10,15 +10,15 @@ When a user clicks the element, the named event will be sent to your
 application.
 
 ```app/templates/post.hbs
-<div class='intro'>
+<div class="intro">
   {{intro}}
 </div>
 
 {{#if isExpanded}}
-  <div class='body'>{{body}}</div>
-  <button {{action 'contract'}}>Contract</button>
+  <div class="body">{{body}}</div>
+  <button {{action "contract"}}>Contract</button>
 {{else}}
-  <button {{action 'expand'}}>Show More...</button>
+  <button {{action "expand"}}>Show More...</button>
 {{/if}}
 ```
 
@@ -175,7 +175,7 @@ pressed modifier keys. You can supply an `allowedKeys` option
 to specify which keys should not be ignored.
 
 ```handlebars
-<button {{action 'anActionName' allowedKeys="alt"}}>
+<button {{action "anActionName" allowedKeys="alt"}}>
   click me
 </button>
 ```
@@ -247,7 +247,7 @@ By default, the `{{action}}` helper prevents the default browser action of the D
 For example, if you have a normal link tag and want the link to bring the user to another page in addition to triggering an ember action when clicked.
 
 ```handlebars
-<a href="newPage.htm" {{action 'logClick' preventDefault=false}}>Go</a>
+<a href="newPage.htm" {{action "logClick" preventDefault=false}}>Go</a>
 ```
 
 Without `preventDefault=false`, if the user clicked on the link, Ember.js

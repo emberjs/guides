@@ -49,7 +49,7 @@ and require a closing expression.
 You can also use the inline `{{if}}` helper:
 
 ```handlebars
-<span class={{if isEnabled 'enabled' 'disabled'}}>Warning!</span>
+<span class={{if isEnabled "enabled" "disabled"}}>Warning!</span>
 ```
 
 In this case, if the `isEnabled` property is `true`, the `enabled` class will be

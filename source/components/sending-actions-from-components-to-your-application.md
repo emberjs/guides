@@ -77,9 +77,9 @@ export default Ember.Route.extend({
   model() {
     return {
       todos: [{
-        title: "Learn Ember.js"
+        title: 'Learn Ember.js'
       }, {
-        title: "Walk the dog"
+        title: 'Walk the dog'
       }]
     };
   },

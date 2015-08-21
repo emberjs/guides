@@ -65,9 +65,9 @@ described above.
 #### Feature Naming Conventions
 
 ```config/environment.js
-Ember.FEATURES["<packageName>-<feature>"] // if package specific
-Ember.FEATURES["container-factory-injections"]
-Ember.FEATURES["htmlbars"]
+Ember.FEATURES['<packageName>-<feature>'] // if package specific
+Ember.FEATURES['container-factory-injections']
+Ember.FEATURES['htmlbars']
 ```
 
 ### Builds
