@@ -23,7 +23,7 @@ In code samples:
 * Follow the [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md).
 * Omit the boilerplate that Ember CLI generates, especially the `import Ember from 'ember'` at the top of every file.
 * In fenced code blocks, include the filename or language after the triple-backticks, like <code>&#96;&#96;&#96;routes/kittens.js</code> or <code>&#96;&#96;&#96;hbs</code>.
-* Write paths relative to the `app` folder, except when talking about any other folder (like `config`), in which case make them relative to the project root.
+* Write paths relative to the project root.
 
 Write once, edit twice (at least!) before opening a PR. When you edit your own writing, ask yourself:
 
