@@ -167,8 +167,7 @@ You can pass as many named arguments as you'd like. They get added to the
 `namedArgs` argument passed to the function:
 
 ```handlebars
-{{my-helper option1="hello" option2="world" option3="goodbye cruel
-world"}}
+{{my-helper option1="hello" option2="world" option3="goodbye cruel world"}}
 ```
 
 ```app/helpers/my-helper.js
@@ -271,9 +270,9 @@ export default Ember.Helper.extend({
     let authentication = this.get('authentication');
 
     if (authentication.get('isAuthenticated')) {
-      return "Welcome back, " + authentication.get('username');
+      return 'Welcome back, ' + authentication.get('username');
     } else {
-      return "Not logged in";
+      return 'Not logged in';
     }
   }
 });

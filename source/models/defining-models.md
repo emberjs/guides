@@ -114,12 +114,12 @@ attribute types, and new types can be registered as transforms. See the
 
   ```app/models/user.js
   export default DS.Model.extend({
-      username: DS.attr('string'),
-      email: DS.attr('string'),
-      verified: DS.attr('boolean', {defaultValue: false}),
-      createdAt: DS.attr('string', {
-          defaultValue() { return new Date(); }
-      })
+    username: DS.attr('string'),
+    email: DS.attr('string'),
+    verified: DS.attr('boolean', { defaultValue: false }),
+    createdAt: DS.attr('string', {
+      defaultValue() { return new Date(); }
+    })
   });
   ```
 

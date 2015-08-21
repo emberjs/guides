@@ -5,7 +5,7 @@ If we want the same type of behavior, then we have to compose our components.
 Just like we compose regular HTML elements, we can do the same with components.
 
 ```app/templates/application.hbs
-{{#user-list users=activeUsers sortBy='name' as |user|}}
+{{#user-list users=activeUsers sortBy="name" as |user|}}
   {{user-card user=user}}
 {{/user-list}}
 ```
@@ -161,7 +161,7 @@ a component for each type plus for the simple and detailed modes. We want to hav
 We can create these names by using the `{{concat}}` helper in nested form.
 
 ```hbs
-{{component (concat 'basic-card-' user.type)}}
+{{component (concat "basic-card-" user.type)}}
 ```
 
 Now that our component names are valid due to the use of dashed, we can put together the full template with the two modes.
@@ -169,9 +169,9 @@ Now that our component names are valid due to the use of dashed, we can put toge
 ```app/templates/application.hbs
 {{#user-list users=users as |user basicMode|}}
   {{#if basicMode}}
-    {{component (concat 'basic-card-' user.type) user=user}}
+    {{component (concat "basic-card-" user.type) user=user}}
   {{else}}
-    {{component (concat 'detailed-card-' user.type) user=user}}
+    {{component (concat "detailed-card-" user.type) user=user}}
   {{/if}}
 {{/user-list}}
 ```

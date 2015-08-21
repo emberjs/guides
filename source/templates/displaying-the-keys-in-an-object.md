@@ -9,8 +9,8 @@ export Ember.Component.extend({
     // with the category name as the key and the value a list
     // of products.
     this.set('categories', {
-      "Bourbons": ["Bulleit", "Four Roses", "Woodford Reserve"],
-      "Ryes": ["WhistlePig", "High West"]
+      'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
+      'Ryes': ['WhistlePig', 'High West']
     });
   }
 });
@@ -66,8 +66,8 @@ component had rendered, the template would **not** automatically update.
 export Component.extend({
   willRender() {
     this.set('categories', {
-      "Bourbons": ["Bulleit", "Four Roses", "Woodford Reserve"],
-      "Ryes": ["WhistlePig", "High West"]
+      'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
+      'Ryes': ['WhistlePig', 'High West']
     });
   },
 
@@ -90,8 +90,8 @@ component via `rerender()`:
 export Component.extend({
   willRender() {
     this.set('categories', {
-      "Bourbons": ["Bulleit", "Four Roses", "Woodford Reserve"],
-      "Ryes": ["WhistlePig", "High West"]
+      'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
+      'Ryes': ['WhistlePig', 'High West']
     });
   },
 

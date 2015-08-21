@@ -21,11 +21,11 @@ var promise = fetchTheAnswer();
 promise.then(fulfill, reject);
 
 function fulfill(answer) {
-  console.log("The answer is " + answer);
+  console.log('The answer is ' + answer);
 }
 
 function reject(reason) {
-  console.log("Couldn't get the answer! Reason: " + reason);
+  console.log(`Couldn't get the answer! Reason: ${reason}`);
 }
 ```
 
@@ -83,7 +83,7 @@ export default Ember.Route.extend({
   model() {
     return new Ember.RSVP.Promise(function(resolve) {
       Ember.run.later(function() {
-        resolve({ msg: "Hold Your Horses" });
+        resolve({ msg: 'Hold Your Horses' });
       }, 3000);
     });
   },
@@ -155,7 +155,7 @@ export default Ember.Route.extend({
     return iHopeThisWorks().then(null, function() {
       // Promise rejected, fulfill with some default value to
       // use as the route's model and continue on with the transition
-      return { msg: "Recovered from rejected promise" };
+      return { msg: 'Recovered from rejected promise' };
     });
   }
 });

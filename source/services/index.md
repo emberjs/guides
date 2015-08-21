@@ -45,7 +45,7 @@ To access a service, inject it with `Ember.inject`:
 
 ```app/components/cart-contents.js
 export default Ember.Component.extend({
-  cart: Ember.inject.service('shopping-cart'),
+  cart: Ember.inject.service('shopping-cart')
 });
 ```
 
@@ -70,7 +70,7 @@ export default Ember.Component.extend({
   {{#each cart.items as |item|}}
     <li>
       {{item.name}}
-      <button {{action 'remove' item}}>Remove</button>
+      <button {{action "remove" item}}>Remove</button>
     </li>
   {{/each}}
 </ul>

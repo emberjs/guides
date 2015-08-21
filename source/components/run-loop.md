@@ -34,13 +34,13 @@ Consider the following HTML snippet:
 and executing the following code:
 
 ```javascript
-foo.style.height = "500px" // write
+foo.style.height = '500px' // write
 foo.offsetHeight // read (recalculate style, layout, expensive!)
 
-bar.style.height = "400px" // write
+bar.style.height = '400px' // write
 bar.offsetHeight // read (recalculate style, layout, expensive!)
 
-baz.style.height = "200px" // write
+baz.style.height = '200px' // write
 baz.offsetHeight // read (recalculate style, layout, expensive!)
 ```
 
@@ -50,9 +50,9 @@ the browser would have only needed to recalculate the style and layout once.
 
 
 ```javascript
-foo.style.height = "500px" // write
-bar.style.height = "400px" // write
-baz.style.height = "200px" // write
+foo.style.height = '500px' // write
+bar.style.height = '400px' // write
+baz.style.height = '200px' // write
 
 foo.offsetHeight // read (recalculate style, layout, expensive!)
 bar.offsetHeight // read (fast since style and layout is already known)
@@ -95,7 +95,7 @@ user.set('lastName', 'Katz');
 We see that the browser will rerender the template twice.
 
 ```javascript
-var user = User.create({firstName:'Tom', lastName:'Huda'});
+var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
 user.set('firstName', 'Yehuda');
 user.set('lastName', 'Katz');
 

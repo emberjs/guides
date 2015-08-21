@@ -11,7 +11,6 @@ action `setProps`.
 
 ```app/controllers/posts.js
 export default Ember.Controller.extend({
-
   propA: 'You need to write tests',
   propB: 'And write one for me too',
 

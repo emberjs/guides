@@ -36,23 +36,23 @@ method:
 Person = Ember.Object.extend({
   say(thing) {
     var name = this.get('name');
-    alert(name + " says: " + thing);
+    alert(`${name} says: ${thing}`);
   }
 });
 
 Soldier = Person.extend({
   say(thing) {
     // this will call the method in the parent class (Person#say), appending
-    // the string ", sir!" to the variable `thing` passed in
-    this._super(thing + ", sir!");
+    // the string ', sir!' to the variable `thing` passed in
+    this._super(thing + ', sir!');
   }
 });
 
 var yehuda = Soldier.create({
-  name: "Yehuda Katz"
+  name: 'Yehuda Katz'
 });
 
-yehuda.say("Yes"); // alerts "Yehuda Katz says: Yes, sir!"
+yehuda.say('Yes'); // alerts "Yehuda Katz says: Yes, sir!"
 ```
 
 ### Creating Instances
@@ -64,7 +64,7 @@ instances:
 
 ```javascript
 var person = Person.create();
-person.say("Hello"); // alerts " says: Hello"
+person.say('Hello'); // alerts " says: Hello"
 ```
 
 When creating an instance, you can initialize the values of its properties
@@ -73,12 +73,12 @@ by passing an optional hash to the `create()` method:
 ```javascript
 Person = Ember.Object.extend({
   helloWorld() {
-    alert("Hi, my name is " + this.get('name'));
+    alert('Hi, my name is ' + this.get('name'));
   }
 });
 
 var tom = Person.create({
-  name: "Tom Dale"
+  name: 'Tom Dale'
 });
 
 tom.helloWorld(); // alerts "Hi, my name is Tom Dale"
@@ -106,12 +106,12 @@ instances:
 Person = Ember.Object.extend({
   init() {
     var name = this.get('name');
-    alert(name + ", reporting for duty!");
+    alert(name + ', reporting for duty!');
   }
 });
 
 Person.create({
-  name: "Stefan Penner"
+  name: 'Stefan Penner'
 });
 
 // alerts "Stefan Penner, reporting for duty!"
@@ -131,7 +131,7 @@ and `set` accessor methods:
 var person = Person.create();
 
 var name = person.get('name');
-person.set('name', "Tobias Fünke");
+person.set('name', 'Tobias Fünke');
 ```
 
 Make sure to use these accessor methods; otherwise, computed properties won't

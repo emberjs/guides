@@ -17,7 +17,7 @@ call `this._super`.
 Person.reopen({
   // override `say` to add an ! at the end
   say(thing) {
-    this._super(thing + "!");
+    this._super(thing + '!');
   }
 });
 ```
@@ -38,5 +38,5 @@ Person.reopen({
 });
 
 Person.isPerson; // false - because it is static property created by `reopenClass`
-Person.create().get("isPerson"); // true
+Person.create().get('isPerson'); // true
 ```

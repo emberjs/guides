@@ -110,7 +110,6 @@ shouldHaveElementWithCount`:
 ```tests/helpers/should-have-element-with-count.js
 export default Ember.Test.registerAsyncHelper(
     'shouldHaveElementWithCount', function(app) {
-
 });
 ```
 
@@ -138,7 +137,7 @@ export default Ember.Test.registerHelper(
   }
 );
 
-// shouldHaveElementWithCount(assert, "ul li", 3);
+// shouldHaveElementWithCount(assert, 'ul li', 3);
 ```
 
 Here is an example of an async helper:
@@ -153,7 +152,7 @@ export default Ember.Test.registerAsyncHelper('dblclick',
   }
 );
 
-// dblclick("#person-1")
+// dblclick('#person-1')
 ```
 
 Async helpers also come in handy when you want to group interaction
@@ -167,8 +166,8 @@ export default Ember.Test.registerAsyncHelper('addContact',
   }
 );
 
-// addContact("Bob");
-// addContact("Dan");
+// addContact('Bob');
+// addContact('Dan');
 ```
 
 Finally, don't forget to add your helpers in `tests/.jshintrc` and in
@@ -198,8 +197,8 @@ import Ember from 'ember';
 import Application from '../../app';
 import Router from '../../router';
 import config from '../../config/environment';
-import "./should-have-element-with-count";
-import "./dblclick";
-import "./add-contact";
+import './should-have-element-with-count';
+import './dblclick';
+import './add-contact';
 ```
 

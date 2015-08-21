@@ -24,7 +24,7 @@ export default Ember.Route.extend({
   actions: {
     willTransition(transition) {
       if (this.controller.get('userHasEnteredData') &&
-          !confirm("Are you sure you want to abandon progress?")) {
+          !confirm('Are you sure you want to abandon progress?')) {
         transition.abort();
       } else {
         // Bubble the `willTransition` action so that
@@ -54,8 +54,8 @@ destination routes to abort attempted transitions.
 ```app/routes/disco.js
 export default Ember.Route.extend({
   beforeModel(transition) {
-    if (new Date() > new Date("January 1, 1980")) {
-      alert("Sorry, you need a time machine to enter this route.");
+    if (new Date() > new Date('January 1, 1980')) {
+      alert('Sorry, you need a time machine to enter this route.');
       transition.abort();
     }
   }

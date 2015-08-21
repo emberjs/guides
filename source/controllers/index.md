@@ -22,11 +22,11 @@ template:
 <h1>{{model.title}}</h1>
 <h2>by {{model.author}}</h2>
 
-<div class='intro'>
+<div class="intro">
   {{model.intro}}
 </div>
 <hr>
-<div class='body'>
+<div class="body">
   {{model.body}}
 </div>
 ```
@@ -51,12 +51,12 @@ new `isExpanded` property is true.
 <hr>
 
 {{#if isExpanded}}
-  <button {{action 'toggleProperty' 'isExpanded'}}>Hide Body</button>
-  <div class='body'>
+  <button {{action "toggleProperty" "isExpanded"}}>Hide Body</button>
+  <div class="body">
     {{model.body}}
   </div>
 {{else}}
-  <button {{action 'toggleProperty' 'isExpanded'}}>Show Body</button>
+  <button {{action "toggleProperty" "isExpanded"}}>Show Body</button>
 {{/if}}
 ```
 

@@ -49,7 +49,7 @@ reference documentation.](http://emberjs.com/api/classes/Ember.Enumerable.html)
 To enumerate all the values of an enumerable object, use the `forEach` method:
 
 ```javascript
-var food = ["Poi", "Ono", "Adobo Chicken"];
+var food = ['Poi', 'Ono', 'Adobo Chicken'];
 
 food.forEach(function(item, index) {
   console.log(`Menu Item ${index+1}: ${item}`);
@@ -66,12 +66,12 @@ All enumerables expose `firstObject` and `lastObject` properties
 that you can bind to.
 
 ```javascript
-var animals = ["rooster", "pig"];
+var animals = ['rooster', 'pig'];
 
 animals.get('lastObject');
 //=> "pig"
 
-animals.pushObject("peacock");
+animals.pushObject('peacock');
 
 animals.get('lastObject');
 //=> "peacock"
@@ -84,10 +84,10 @@ You can easily transform each item in an enumerable using the
 function on each item in the enumerable.
 
 ```javascript
-var words = ["goodbye", "cruel", "world"];
+var words = ['goodbye', 'cruel', 'world'];
 
 var emphaticWords = words.map(function(item) {
-  return item + "!";
+  return item + '!';
 });
 // ["goodbye!", "cruel!", "world!"]
 ```
@@ -98,11 +98,11 @@ in turn and return a new array:
 
 ```javascript
 var hawaii = Ember.Object.create({
-  capital: "Honolulu"
+  capital: 'Honolulu'
 });
 
 var california = Ember.Object.create({
-  capital: "Sacramento"
+  capital: 'Sacramento'
 });
 
 var states = [hawaii, california];
