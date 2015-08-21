@@ -1,94 +1,32 @@
-One of the most important jobs of a route handler is rendering the
+One job of a route handler is rendering the
 appropriate template to the screen.
 
-By default, a route handler will render the template into the closest
-parent with a template.
+By default, a route handler will render the template with the same name as the
+route. Take this router:
 
 ```app/router.js
 Router.map(function() {
-  this.route('post');
+  this.route('posts', function() {
+    this.route('new');
+  });
 });
 ```
 
-```app/routes/post.js
-export default Ember.Route.extend();
-```
+Here, the `posts` route will render the `posts.hbs` template, and
+the `posts.new` route will render `posts/new.hbs`.
 
-If you want to render a template other than the one associated with the
-route handler, implement the `renderTemplate` hook:
+Each template will be rendered into the `{{outlet}}` of its parent route's
+template. For example, the `posts.new` route will render its template into the
+`post.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
+the `application.hbs`'s `{{outlet}}`.
 
-```app/routes/post.js
+If you want to render a template other than the default one, implement the
+`renderTemplate` hook:
+
+```app/routes/posts.js
 export default Ember.Route.extend({
   renderTemplate() {
-    this.render('favoritePost');
-  }
-});
-```
-
-If you want to use a different controller than the route handler's
-controller, pass the controller's name in the `controller` option:
-
-```app/routes/post.js
-export default Ember.Route.extend({
-  renderTemplate() {
-    this.render({ controller: 'favoritePost' });
-  }
-});
-```
-
-Ember allows you to name your outlets. For instance, this code allows
-you to specify two outlets with distinct names:
-
-```app/templates/application.hbs
-<div class="toolbar">{{outlet "toolbar"}}</div>
-<div class="sidebar">{{outlet "sidebar"}}</div>
-```
-
-So, if you want to render your posts into the `sidebar` outlet, use code
-like this:
-
-```app/routes/post.js
-export default Ember.Route.extend({
-  renderTemplate() {
-    this.render({ outlet: 'sidebar' });
-  }
-});
-```
-
-All of the options described above can be used together in whatever
-combination you'd like:
-
-```app/routes/post.js
-export default Ember.Route.extend({
-  renderTemplate() {
-    var controller = this.controllerFor('favoritePost');
-
-    // Render the `favoritePost` template into
-    // the outlet `post`, and use the `favoritePost`
-    // controller.
-    this.render('favoritePost', {
-      outlet: 'post',
-      controller: controller
-    });
-  }
-});
-```
-
-If you want to render two different templates into outlets of two different rendered templates of a route:
-
-```app/routes/post.js
-export default Ember.Route.extend({
-  renderTemplate() {
-    this.render('favoritePost', {   // the template to render
-      into: 'posts',                // the template to render into
-      outlet: 'post',              // the name of the outlet in that template
-      controller: 'blogPost'        // the controller to use for the template
-    });
-    this.render('comments', {
-      into: 'favoritePost',
-      outlet: 'comment',
-      controller: 'blogPost'
-    });
+    this.render('favoritePosts');
   }
 });
 ```
