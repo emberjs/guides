@@ -29,18 +29,18 @@ have to instruct Ember CLI to include your assets in the build. This is done usi
 the asset manifest file `ember-cli-build.js`. You should only try to import assets
 located in the `bower_components` and `vendor` folders.
 
-### Javascript assets exporting a globals
+### Globals provided by Javascript assets
 
-Provide the asset path as the first and only argument.
+The globals provided by some assets (like `moment` in the below example) can be
+used in your application without the need to `import` them.  Provide the asset
+path as the first and only argument.
 
 ```ember-cli-build.js
 app.import('bower_components/moment/moment.js');
 ```
 
-The globals provided by the asset (`moment` in this example) can now
-be used in your application without the need to `import` them. You will need to add
-`"moment": true` to the `prefef` section in `.jshintrc` to prevent JSHint errors about using
-an undefined variable.
+You will need to add `"moment": true` to the `predef` section in `.jshintrc` to
+prevent JSHint errors about using an undefined variable.
 
 ### AMD Javascript modules
 
