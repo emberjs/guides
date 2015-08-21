@@ -11,13 +11,13 @@ already loaded).
 If you want to redirect from one route to another, you can do the transition in
 the `beforeModel` hook of your route handler.
 
-```router.js
+```app/router.js
 Router.map(function() {
   this.route('posts');
 });
 ```
 
-```routes/index.js
+```app/routes/index.js
 export default Ember.Route.extend({
   beforeModel() {
     this.transitionTo('posts');
@@ -35,14 +35,14 @@ redirection, you can use the `afterModel` hook.
 It receives the resolved model as the first parameter and the transition as
 the second one. For example:
 
-```router.js
+```app/router.js
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```routes/posts.js
+```app/routes/posts.js
 export default Ember.Route.extend({
   afterModel(model, transition) {
     if (model.get('length') === 1) {
@@ -60,7 +60,7 @@ with the single post object being its model.
 
 Let's change the router above to used a nested route, like this:
 
-```router.js
+```app/router.js
 Router.map(function() {
   this.route('posts', function() {
     this.route('post', { path: ':post_id' });
@@ -77,7 +77,7 @@ before the redirect.
 Instead, we can use the `redirect` hook, which will leave the original
 transition validated, and not cause the parent route's hooks to fire again:
 
-```routes/posts.js
+```app/routes/posts.js
 export default Ember.Route.extend({
   redirect(model, transition) {
     if (model.get('length') === 1) {
