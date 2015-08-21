@@ -26,8 +26,8 @@ export default Ember.Component.extend({
 
 ```app/templates/components/navigation-bar.hbs
 <ul>
-  <li>{{#link-to 'home'}}Home{{/link-to}}</li>
-  <li>{{#link-to 'about'}}About{{/link-to}}</li>
+  <li>{{#link-to "home"}}Home{{/link-to}}</li>
+  <li>{{#link-to "about"}}About{{/link-to}}</li>
 </ul>
 ```
 
@@ -149,6 +149,6 @@ You can also bind these attributes to differently named properties:
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['customHref:href'],
-  customHref: "http://emberjs.com"
+  customHref: 'http://emberjs.com'
 });
 ```

@@ -10,7 +10,6 @@ are not an accurate representation of your production apps. Use these
 numbers to compare durations and debug rendering bottlenecks, but not as
 a way to accurately measure rendering times.
 
-
 ### Toolbar
 
 Click on the "clear" icon to remove existing render logs.
@@ -20,6 +19,3 @@ need to click on the "Reload" button at the top. This button ensures
 that the inspector starts measuring render times immediately when your app boots.
 
 To filter the render logs, type a query in the search box.
-
-
-

@@ -34,11 +34,11 @@ Inside your templates, you can use `{{link-to}}` to navigate between
 routes, using the name that you provided to the `route` method.
 
 ```handlebars
-{{#link-to 'index'}}<img class="logo">{{/link-to}}
+{{#link-to "index"}}<img class="logo">{{/link-to}}
 
 <nav>
-  {{#link-to 'about'}}About{{/link-to}}
-  {{#link-to 'favorites'}}Favorites{{/link-to}}
+  {{#link-to "about"}}About{{/link-to}}
+  {{#link-to "favorites"}}Favorites{{/link-to}}
 </nav>
 ```
 

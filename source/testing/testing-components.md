@@ -216,7 +216,7 @@ test('external action is triggered when form is submitted', function(assert) {
     targetObject: targetObject,
 
     // Specifies which action to send to targetObject on submit
-    submit: 'externalAction',
+    submit: 'externalAction'
   });
 
   // Renders the component to the page

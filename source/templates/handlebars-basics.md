@@ -44,8 +44,8 @@ By default, your top-most application template is bound to your application cont
 
 ```app/controllers/application.js
 export default Ember.Controller.extend({
-  firstName: "Trek",
-  lastName: "Glowacki"
+  firstName: 'Trek',
+  lastName: 'Glowacki'
 });
 ```
 

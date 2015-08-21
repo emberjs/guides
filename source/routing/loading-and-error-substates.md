@@ -207,7 +207,7 @@ Router.map(function() {
 export default Ember.Route.extend({
   model(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
-       reject("Error");
+       reject('Error');
     });
   }
 });
@@ -223,8 +223,8 @@ into `foo`'s `outlet` you would need to split the dynamic segment:
 
 ```app/router.js
 Router.map(function() {
-  this.route('foo', {path: '/foo'}, function() {
-    this.route('elem', {path: ':id'}, function() {
+  this.route('foo', { path: '/foo' }, function() {
+    this.route('elem', { path: ':id' }, function() {
       this.route('baz');
     });
   });
@@ -235,7 +235,7 @@ Router.map(function() {
 export default Ember.Route.extend({
   model(params) {
     return new Ember.RSVP.Promise(function(x, reject) {
-       reject("Foo Error");
+       reject('Foo Error');
     });
   }
 });
@@ -255,12 +255,11 @@ redirect to a login page, etc.
 export default Ember.Route.extend({
   model(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
-       reject("Error");
+      reject('Error');
     });
   },
   actions: {
     error(error, transition) {
-
       if (error && error.status === 400) {
         // error substate and parent routes do not handle this error
         return this.transitionTo('modelNotFound');
@@ -282,13 +281,11 @@ must be performed or not.
 export default Ember.Route.extend({
   actions: {
     error(error, transition) {
-
       // Manage your errors
       Ember.onerror(error);
 
       // substate implementation when returning `true`
       return true;
-
     }
   }
 });

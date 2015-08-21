@@ -4,8 +4,8 @@ router as an example:
 
 ```app/router.js
 Router.map(function() {
-  this.route("post", { path: "/posts/:post_id" }, function() {
-    this.route("comments", { path: "/comments" });
+  this.route('post', { path: '/posts/:post_id' }, function() {
+    this.route('comments', { path: '/comments' });
   });
 });
 ```

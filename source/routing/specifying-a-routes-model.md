@@ -15,11 +15,11 @@ would define an `route:photos` object:
 export default Ember.Route.extend({
   model() {
     return [{
-      title: "Tomster",
-      url: "http://emberjs.com/images/about/ember-productivity-sm.png"
+      title: 'Tomster',
+      url: 'http://emberjs.com/images/about/ember-productivity-sm.png'
     }, {
-      title: "Eiffel Tower",
-      url: "http://emberjs.com/images/about/ember-structure-sm.png"
+      title: 'Eiffel Tower',
+      url: 'http://emberjs.com/images/about/ember-structure-sm.png'
     }];
   }
 });
@@ -148,7 +148,7 @@ Router.map(function() {
 ```app/routes/photo.js
 export default Ember.Route.extend({
   model(params) {
-    return Ember.$.getJSON('/photos/'+params.photo_id);
+    return Ember.$.getJSON('/photos/' + params.photo_id);
   }
 });
 ```
@@ -179,6 +179,7 @@ export default Ember.Route.extend({
       return data.splice(0, 3);
     });
   },
+
   actions: {
     invalidateModel() {
       this.refresh();
