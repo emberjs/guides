@@ -129,7 +129,7 @@ final Array, and `false` or `undefined` if Ember should not.
 var arr = [1,2,3,4,5];
 
 arr.filter(function(item, index, self) {
-  if (item < 4) { return true; }
+  return item < 4;
 })
 
 // returns [1,2,3]
@@ -155,9 +155,9 @@ todos.filterBy('isDone', true);
 
 If you want to return just the first matched value, rather than an Array containing all of the matched values, you can use `find` and `findBy`, which work just like `filter` and `filterBy`, but return only one item.
 
-### Aggregate Information (All or Any)
+### Aggregate Information (Every or Any)
 
-If you want to find out whether every item in an enumerable matches some condition, you can use the `every` method:
+To find out whether every item in an enumerable matches some condition, you can use the `every` method:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -177,17 +177,17 @@ people.every(function(person, index, self) {
 // returns false
 ```
 
-If you want to find out whether at least one item in an enumerable matches some conditions, you can use the `some` method:
+To find out whether at least one item in an enumerable matches some condition, you can use the `any` method:
 
 ```javascript
-people.some(function(person, index, self) {
+people.any(function(person, index, self) {
   return person.get('isHappy');
 });
 
 // returns true
 ```
 
-Just like the filtering methods, the `every` and `some` methods have analogous `isEvery` and `isAny` methods.
+Just like the filtering methods, the `every` and `any` methods have analogous `isEvery` and `isAny` methods.
 
 ```javascript
 people.isEvery('isHappy', true) // false
