@@ -75,19 +75,12 @@ delete a todo:
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
-    return {
-      todos: [{
-        title: 'Learn Ember.js'
-      }, {
-        title: 'Walk the dog'
-      }]
-    };
+    return this.store.findAll('todo');
   },
 
   actions: {
     deleteTodo(todo) {
-      var todos = this.modelFor('index').todos;
-      todos.removeObject(todo);
+      todo.destroyRecord();
     }
   }
 });
