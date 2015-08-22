@@ -37,17 +37,9 @@ component of the same name. Given the above template, you can now use the
 ```
 
 ```app/routes/index.js
-var posts = [{
-    title: 'Rails is omakase',
-    body: 'There are lots of à la carte software environments in this world.'
-  }, {
-    title: 'Broken Promises',
-    body: 'James Coglan wrote a lengthy article about Promises in node.js.'
-}];
-
 export default Ember.Route.extend({
   model() {
-    return posts;
+    return this.store.findAll('post');
   }
 });
 ```
@@ -111,17 +103,9 @@ mean to dispatch to different components for displaying different kinds of posts
 ```
 
 ```app/routes/index.js
-var posts = [{
-    componentName: 'foo-component',  // key used to determine the rendered component
-    body: 'There are lots of à la carte software environments in this world.'
-  }, {
-    componentName: 'bar-component',
-    author: 'Drew Crawford'
-}];
-
 export default Ember.Route.extend({
   model() {
-    return posts;
+    return this.store.findAll('post');
   }
 });
 ```
