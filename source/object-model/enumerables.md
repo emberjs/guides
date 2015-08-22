@@ -14,7 +14,7 @@ possible. This minimizes incompatibility with other libraries, and
 allows Ember.js to use the native browser implementations in arrays
 where available.
 
-## Use of Observable Methods
+## Use of Observable Methods and Properties
 
 In order for Ember to observe when you make a change to an enumerable, you need
 to use special methods that `Ember.Enumerable` provides. For example, if you add
@@ -37,6 +37,10 @@ enumerable equivalents:
     <tr><td>unshift</td><td>unshiftObject</td></tr>
   </tbody>
 </table>
+
+Additionally, to retrieve the first and last objects in an array
+in an observable fashion, you should use `myArray.get('firstObject')` and
+`myArray.get('lastObject')`, respectively.
 
 ## API Overview
 
