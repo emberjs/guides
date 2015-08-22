@@ -17,9 +17,7 @@ Now imagine we have the following template and route:
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
-    return {
-      title: 'Rails is omakase'
-    };
+    return this.store.findAll('post').get('firstObject');
   }
 });
 ```
