@@ -68,8 +68,8 @@ test('calling the action setProps updates props A and B', function(assert) {
 ### Testing Controller Needs
 
 Sometimes controllers have dependencies on other controllers. This is
-accomplished by using [needs]. For example, here are two simple controllers. The
-`PostController` is a dependency of the `CommentsController`:
+accomplished by injecting one controller into another. For example, here are two simple controllers. The
+`CommentsController` uses the `PostController` via `inject`:
 
 ```app/controllers/post.js
 export default Ember.Controller.extend({
@@ -79,8 +79,8 @@ export default Ember.Controller.extend({
 
 ```app/controllers/comments.js
 export default Ember.Controller.extend({
-  needs: 'post',
-  title: Ember.computed.alias('controllers.post.title'),
+  post: Ember.inject.controller(),
+  title: Ember.computed.alias('post.title'),
 });
 ```
 
