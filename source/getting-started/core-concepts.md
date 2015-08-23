@@ -7,9 +7,9 @@ Templates, written in the Handlebars language, describe the user interface of
 your application. In addition to plain HTML, templates can contain expressions,
 like `{{title}}` or `{{author}}`, which take information from a component or
 controller and put it into HTML. They can also contain helpers, like
-`{{#if isAdmin}}30 people have viewed your blog today.{{/if}}.` Finally, they can
-contain components, such as if a template listing out all the blog posts in an
-app rendered a component for each post.
+`{{#if isAdmin}}30 people have viewed your blog today.{{/if}}.` Finally, they
+can contain components such as a template listing blog posts rendering a
+component for each post.
 
 ## Components
 
