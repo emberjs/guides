@@ -1,0 +1,85 @@
+article {
+  padding: $large-spacing 0;
+
+  @include media($large-screen) {
+    @include span-columns(8.5);
+  }
+
+  .edit-page {
+    @include size(24px 18px);
+    color: $brown;
+    display: inline-block;
+    float: right;
+    font-size: 1rem;
+    margin: 0.5em 0 0 0;
+    opacity: 0.4;
+    overflow: hidden;
+
+    &:hover {
+      opacity: 1;
+      border-bottom: 0;
+    }
+  }
+
+  ul {
+    @extend %default-ul;
+  }
+
+  ol {
+    @extend %default-ol;
+  }
+
+  footer {
+    @include clearfix;
+    border-top: $base-border;
+    margin-top: 5em;
+    padding: $base-spacing 0;
+
+    .previous-guide {
+      float: left;
+
+      &::before {
+        content: "\2039";
+        display: inline-block;
+        font-weight: 700;
+        margin: 0 0.5em;
+        transition: transform $duration;
+      }
+
+      &:hover::before {
+        transform: translateX(-0.5em);
+      }
+    }
+
+    .next-guide {
+      float: right;
+
+      &::after {
+        content: "\203A";
+        display: inline-block;
+        font-weight: 700;
+        margin: 0 0.5em;
+        transition: transform $duration;
+      }
+
+      &:hover::after {
+        transform: translateX(0.5em);
+      }
+    }
+  }
+}
+
+.anchorable-tock {
+  h2#{&},
+  h3#{&} {
+    margin-top: $large-spacing;
+  }
+
+  h4#{&} {
+    margin-top: $base-spacing;
+  }
+
+  hr + & {
+    margin-top: 0;
+  }
+}
