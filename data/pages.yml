@@ -132,16 +132,8 @@
       url: "finding-records"
     - title: "Working with Records"
       url: "working-with-records"
-    - title: "The Rest Adapter"
-      url: "the-rest-adapter"
-    - title: "Connecting to an HTTP Server"
-      url: "connecting-to-an-http-server"
     - title: "Handling Metadata"
       url: "handling-metadata"
-    - title: "Customizing Adapters"
-      url: "customizing-adapters"
-    - title: "Frequently Asked Questions"
-      url: "frequently-asked-questions"
 
 - title: "Services"
   url: 'services'
