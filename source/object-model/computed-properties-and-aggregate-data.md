@@ -58,10 +58,10 @@ todosController.get('remaining');
 Note that `@each` only works one level deep. You cannot use nested forms like
 `todos.@each.owner.name` or `todos.@each.owner.@each.name`.
 
-Sometimes, you may only care if the items of an array have been added, removed, or replaced, 
-rather than changes to properties on the items themselves. For example, items may have been 
-added to or removed from the array. In this case, you can create a computed property as follows:
-
+Sometimes you don't care if properties of individual array items change. In this
+case use the `[]` key instead of `@each`. Computed properties dependent on an array
+using the `[] key will only update if items are added to or removed from the array,
+or if the array property is set to a different array. For example:
 
 ```app/controllers/todos.js
 export default Ember.Controller.extend({
@@ -78,12 +78,11 @@ export default Ember.Controller.extend({
 });
 ```
 
-Note here that we use the special key `[]` instead of `@each.foo` (which is used for observing 
-a specific dependent key, such as `foo`, on each item). This instructs Ember.js to only care about 
-the array itself changing (such as adding/removing items), rather than changes to the items themselves.
+Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
+to `todos`, but won't update if the value of `isDone` on a `todo` changes.
 
 Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.html) macros 
-utilize the `[]` key to implement common use-cases as well. For example, if you wanted to 
+utilize the `[]` key to implement common use-cases. For instance, to
 create a computed property that mapped properties from an array, you could use 
 [Ember.computed.map](http://emberjs.com/api/classes/Ember.computed.html#method_map)
 or build the computed yourself:
