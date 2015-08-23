@@ -122,8 +122,6 @@
       url: "defining-models"
     - title: "Creating and Deleting Records"
       url: "creating-and-deleting-records"
-    - title: "Pushing Records into the Store"
-      url: "pushing-records-into-the-store"
     - title: "Persisting Records"
       url: "persisting-records"
     - title: "Finding Records"
@@ -132,6 +130,8 @@
       url: "working-with-records"
     - title: "Handling Metadata"
       url: "handling-metadata"
+    - title: "Pushing Records into the Store"
+      url: "pushing-records-into-the-store"
 
 - title: "Services"
   url: 'services'
