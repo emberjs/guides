@@ -9,7 +9,7 @@ which model it should render by defining a route with the same name as
 the template, and implementing its `model` hook.
 
 For example, to provide some model data to the `photos` template, we
-would define an `route:photos` object:
+would define a `route:photos` object:
 
 ```app/routes/photos.js
 export default Ember.Route.extend({
