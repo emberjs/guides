@@ -12,10 +12,10 @@ Router.map(function() {
 
 If we visit a `/posts/1/comments` URL, our `Post` model will get
 loaded into a `PostController`'s model, which means it is not directly
-accessible in the `CommentsController`. We might however want to display
+accessible in the `CommentsController`. However, we might want to display
 some information about it in the `comments` template.
 
-To be able to do this we inject the `PostController` into the
+To do this, we inject the `PostController` into the
 `CommentsController` (which has the desired `Post` model).
 
 ```app/controllers/comments.js
