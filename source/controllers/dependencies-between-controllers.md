@@ -46,4 +46,4 @@ export default Ember.Controller.extend({
 ```
 
 For more information about aliases, see the API docs for
-[aliased properties](http://emberjs.com/api/#method_computed_alias).
+[aliased properties](http://emberjs.com/api/#method_computed_alias). If you need have more extensive "data sharing" needs across your app, see the [services page](../../services/), which largely replaces injected controllers.
