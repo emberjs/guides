@@ -4,7 +4,7 @@ provided by other templates.
 For example, imagine we are building a `blog-post` component that we can
 use in our application to display a blog post:
 
-```app/components/blog-post.hbs
+```app/templates/components/blog-post.hbs
 <h1>{{title}}</h1>
 <div class="body">{{body}}</div>
 ```
