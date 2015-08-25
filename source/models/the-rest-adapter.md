@@ -283,7 +283,7 @@ export default DS.Transform.extend({
     return [value.get('x'), value.get('y')];
   },
   deserialize(value) {
-    return Ember.create({ x: value[0], y: value[1] });
+    return Object.create({ x: value[0], y: value[1] });
   }
 });
 ```
