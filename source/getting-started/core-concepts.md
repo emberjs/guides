@@ -105,8 +105,8 @@ typically persists information to a server, although models can be configured to
 save to anywhere. For example to the localStorage API, or IndexedDB.
 
 When visiting a URL, Ember attempts to be smart about what models should be
-loaded. For example, if you visit the `/posts` URL an index of all existing
-`Post` models will be fetched.
+loaded. For example, if you visit the `/posts/the-viral-one` URL Ember will
+fetch a `Post` with the id `the-viral-one`.
 
 ## Routes
 
