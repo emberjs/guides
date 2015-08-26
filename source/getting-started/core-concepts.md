@@ -79,7 +79,7 @@ In this example, a component's template adds a div around some other DOM:
 
 Because components deal with DOM, they are also responsible for maintaining
 the bulk of an application's state. Additionally they handle events like
-clicks, keyUp, and other more semtantic actions.
+clicks, keyUp, and other more semantic actions.
 
 ## The Router
 
