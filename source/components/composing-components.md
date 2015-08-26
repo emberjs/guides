@@ -136,7 +136,7 @@ but the users are still being iterated. Let's mix in the `hasBlock` attribute an
 {{/if}}
 ```
 
-This makes our component more useful due too it having sane defaults, but it also allows us to override those defaults. By using the `{{yield}}` helper we can pass
+This makes our component more useful due to it having sane defaults, but it also allows us to override those defaults. By using the `{{yield}}` helper we can pass
 down our params for the consumer to utilize. This makes the concept of passing
 data down very useful.
 
