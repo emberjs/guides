@@ -30,24 +30,3 @@ or more of the following:
 2. Update a controller so that it represents a particular model.
 3. Change the template on screen, or place a new template into an
    existing outlet.
-
-###Logging Route Changes
-
-As your application increases in complexity, it can be helpful to see exactly what is going on with the router. To have Ember write out transition events to the log modify your project configuration:
-
-```config/environment.js
-ENV.APP.LOG_TRANSITIONS = true;
-```
-
-###Specifying a Root URL
-If your Ember application is one of multiple web applications served from the same domain, it may be necessary to indicate to the router what the root URL for your Ember application is. By default, Ember will assume it is served from the root of your domain.
-
-For example, if you wanted to serve your blogging application from `http://emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
-
-This can be achieved by setting the `rootURL` on the router:
-
-```app/router.js
-Ember.Router.extend({
-  rootURL: '/blog/'
-});
-```
