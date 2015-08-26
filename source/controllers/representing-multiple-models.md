@@ -24,10 +24,9 @@ each song:
 </ul>
 ```
 
-You can use the controller to collect aggregate information about
-the model it hosts. For example, imagine we want to display the
-number of songs that are over 30 seconds long. We can add a new computed
-property called `longSongCount` to the controller:
+You can use the controller to collect aggregate information about its `model`.
+Imagine we want to display the number of songs that are over 30 seconds long.
+We can add a new computed property called `longSongCount` to the controller:
 
 ```app/controllers/songs.js
 export default Ember.Controller.extend({
@@ -53,7 +52,13 @@ Now we can use this property in our template:
 
 ### Representing Several Models
 
-Multiple models can be returned through `Ember.RSVP.hash`. We can return a hash from the `model` hook, but `Ember.RSVP.hash` takes parameters that return promises and when all parameter promises resolve then the `Ember.RSVP.hash` promise resolves. To continue with the above example, if we also wanted to return the `model:album` records then our `model` hook would look like:
+Multiple models can be returned through
+[Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+We can return a hash from the `model` hook, but `Ember.RSVP.hash` takes
+parameters that return promises and when all parameter promises resolve then
+the `Ember.RSVP.hash` promise resolves. To continue with the example above, if
+we also wanted to return the `model:album` records then our `model` hook would
+look like:
 
 ```app/routes/songs.js
 export default Ember.Route.extend({
