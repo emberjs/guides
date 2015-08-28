@@ -6,7 +6,7 @@ are saved to the server, while controllers will have properties
 that your app does not need to save to the server.
 
 For example, if you were building a blog, you would have a
-`BlogPost` model that you would present in a `blog_post` template.
+`BlogPost` model that you would present in a `blog-post` template.
 
 Your `BlogPost` model would have properties like:
 
