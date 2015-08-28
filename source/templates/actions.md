@@ -184,7 +184,7 @@ This way the `{{action}}` will fire when clicking with the alt key
 pressed down.
 
 ### Default Event
-By default, `event.preventDefault()` is called on all events handled by `{{action}}` helpers. To avoid this you can add `preventDefault=false` as a parameter. 
+By default, `event.preventDefault()` is called on all events handled by `{{action}}` helpers. To avoid this you can add `preventDefault=false` as a parameter.
 
 ### Stopping Event Propagation
 
@@ -255,3 +255,41 @@ will trigger the action, but the user will remain on the current page.
 
 With `preventDefault=false`, if the user clicked on the link, Ember.js
 will trigger the action *and* the user will be directed to the new page.
+
+### Modifying the action's first parameter
+
+If a `value` option for the `{{action}}` helper is specified, its value will be
+considered a property path that will be read off of the first parameter of the
+action. This comes very handy with event listeners and enables to work with
+one-way bindings.
+
+```handlebars
+<label>What's your favorite band?</label>
+<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange"}}/>
+```
+
+Let's assume we have an action handler that just prints its first parameter:
+
+```js
+actions: {
+  bandDidChange(newValue) {
+    console.log(newValue);
+  }
+}
+```
+
+By default, the action handler receives the first parameter of the event
+listener, the event object the browser passes to the handler, so
+`bandDidChange` prints `Event {}`.
+
+Using the `value` option modifies that behavior by extracting that property from
+the event object:
+
+```handlebars
+<label>What's your favorite band?</label>
+<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange" value="target.value"}}/>
+```
+
+The `newValue` parameter thus becomes the `target.value` property of the event
+object, which is the value of the input field the user typed. (e.g 'Foo Fighters')
+
