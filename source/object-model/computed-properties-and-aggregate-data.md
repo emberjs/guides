@@ -85,7 +85,7 @@ Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.ht
 utilize the `[]` key to implement common use-cases. For instance, to
 create a computed property that mapped properties from an array, you could use 
 [Ember.computed.map](http://emberjs.com/api/classes/Ember.computed.html#method_map)
-or build the computed yourself:
+or build the computed property yourself:
 
 ```javascript
 const Hamster = Ember.Object.extend({
