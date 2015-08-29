@@ -63,7 +63,7 @@ to add a key to the component's `categories` property after the
 component had rendered, the template would **not** automatically update.
 
 ```/app/components/store-categories.js
-export Component.extend({
+export default Ember.Component.extend({
   willRender() {
     this.set('categories', {
       'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
@@ -87,7 +87,7 @@ property on the component again, or manually trigger a re-render of the
 component via `rerender()`:
 
 ```/app/components/store-categories.js
-export Component.extend({
+export default Ember.Component.extend({
   willRender() {
     this.set('categories', {
       'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
