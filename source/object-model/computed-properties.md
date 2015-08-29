@@ -15,7 +15,7 @@ Person = Ember.Object.extend({
   lastName: null,
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return this.get('firstName') + ' ' + this.get('lastName');
+    return `${this.get('firstName')} ${this.get('lastName')}`;
   })
 });
 
@@ -43,11 +43,11 @@ Person = Ember.Object.extend({
   country: null,
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return this.get('firstName') + ' ' + this.get('lastName');
+    return `${this.get('firstName')} ${this.get('lastName')}`;
   }),
 
   description: Ember.computed('fullName', 'age', 'country', function() {
-    return this.get('fullName') + '; Age: ' + this.get('age') + '; Country: ' + this.get('country');
+    return `${this.get('fullName')}; Age: ${this.get('age')}; Country: ${this.get('country')}`;
   })
 });
 
@@ -86,7 +86,7 @@ Person = Ember.Object.extend({
 
   fullName: Ember.computed('firstName', 'lastName', {
     get(key) {
-      return this.get('firstName') + ' ' + this.get('lastName');
+      return `${this.get('firstName')} ${this.get('lastName')}`;
     },
     set(key, value) {
       var [firstName, lastName] = value.split(/\s+/);
