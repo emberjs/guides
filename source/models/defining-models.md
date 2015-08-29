@@ -75,7 +75,7 @@ export default DS.Model.extend({
   lastName: DS.attr(),
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return this.get('firstName') + ' ' + this.get('lastName');
+    return `${this.get('firstName')} ${this.get('lastName')}`;
   })
 });
 ```

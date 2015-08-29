@@ -17,7 +17,7 @@ Person = Ember.Object.extend({
   lastName: null,
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return this.get('firstName') + ' ' + this.get('lastName');
+    return `${this.get('firstName')} ${this.get('lastName')}`;
   }),
 
   fullNameChanged: Ember.observer('fullName', function() {
