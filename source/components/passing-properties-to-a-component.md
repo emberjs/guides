@@ -15,6 +15,7 @@ value of the `title` property inside the `<h1>`.
 Now imagine we have the following template and route:
 
 ```app/routes/index.js
+import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('post').get('firstObject');

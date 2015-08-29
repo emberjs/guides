@@ -26,6 +26,7 @@ When the title is clicked, the entire post body is shown:
 ```
 
 ```app/components/post-summary.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     toggleBody() {

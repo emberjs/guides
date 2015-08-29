@@ -37,6 +37,7 @@ component of the same name. Given the above template, you can now use the
 ```
 
 ```app/routes/index.js
+import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('post');
@@ -45,6 +46,7 @@ export default Ember.Route.extend({
 ```
 
 ```app/components/blog-post.js
+import Ember from 'ember';
 export default Ember.Component.extend({
 });
 ```
@@ -103,6 +105,7 @@ mean to dispatch to different components for displaying different kinds of posts
 ```
 
 ```app/routes/index.js
+import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('post');

@@ -202,6 +202,7 @@ We'll be looking at a `{{user-profile}}` component that implements a save action
 Here's our component's definition:
 
 ```app/components/user-profile.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     saveUser() {

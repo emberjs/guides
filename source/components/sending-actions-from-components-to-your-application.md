@@ -45,6 +45,7 @@ the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
 ```app/components/my-button.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   click() {
     this.sendAction();
@@ -73,6 +74,7 @@ For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
 ```app/routes/index.js
+import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('todo');
@@ -101,6 +103,7 @@ In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
 ```app/components/confirm-button.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     showConfirmation() {
@@ -155,6 +158,7 @@ actions when using the form component:
 ```
 
 ```app/controllers/index.js
+import Ember from 'ember';
 export default Ember.Controller.extend({
  actions: {
     createUser(user) {
@@ -172,6 +176,7 @@ In this case, you can send the `createUser` action by calling
 calling `this.sendAction('cancel')`:
 
 ```app/components/user-form.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     submit() {
@@ -205,6 +210,7 @@ For example, if you define a component that triggers the primary action
 on click:
 
 ```app/components/my-button.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   click() {
     this.sendAction();

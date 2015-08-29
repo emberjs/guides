@@ -19,6 +19,7 @@ a `tagName` property. This property can be any valid HTML5 tag name as a
 string.
 
 ```app/components/navigation-bar.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'nav'
 });
@@ -37,6 +38,7 @@ You can also specify which class names are applied to the component's
 element by setting its `classNames` property to an array of strings:
 
 ```app/components/navigation-bar.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['primary']
 });
@@ -47,6 +49,7 @@ you can use class name bindings. If you bind to a Boolean property, the
 class name will be added or removed depending on the value:
 
 ```app/components/todo-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   classNameBindings: ['isUrgent'],
   isUrgent: true
@@ -65,6 +68,7 @@ By default, the name of the Boolean property is dasherized. You can customize th
 applied by delimiting it with a colon:
 
 ```app/components/todo-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   classNameBindings: ['isUrgent:urgent'],
   isUrgent: true
@@ -80,6 +84,7 @@ This would render this HTML:
 Besides the custom class name for the value being `true`, you can also specify a class name which is used when the value is `false`:
 
 ```app/components/todo-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   classNameBindings: ['isEnabled:enabled:disabled'],
   isEnabled: false
@@ -96,6 +101,7 @@ You can also specify a class which should only be added when the property is
 `false` by declaring `classNameBindings` like this:
 
 ```app/components/todo-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   classNameBindings: ['isEnabled::disabled'],
   isEnabled: false
@@ -118,6 +124,7 @@ If the bound property's value is a string, that value will be added as a class n
 modification:
 
 ```app/components/todo-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   classNameBindings: ['priority'],
   priority: 'highestPriority'
@@ -136,6 +143,7 @@ You can bind attributes to the DOM element that represents a component
 by using `attributeBindings`:
 
 ```app/components/link-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['href'],
@@ -146,6 +154,7 @@ export default Ember.Component.extend({
 You can also bind these attributes to differently named properties:
 
 ```app/components/link-item.js
+import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['customHref:href'],
