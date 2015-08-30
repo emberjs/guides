@@ -35,9 +35,9 @@ next one starts.
   - Clicks an element and triggers any actions triggered by the element's `click`
     event and returns a promise that fulfills when all resulting async behavior
     is complete.
-* `fillIn(selector, text)`
-  - Fills in the selected input with the given text and returns a promise that
-     fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements.
+* `fillIn(selector, value)`
+  - Fills in the selected input with the given value and returns a promise that
+     fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
 * `keyEvent(selector, type, keyCode)`
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
