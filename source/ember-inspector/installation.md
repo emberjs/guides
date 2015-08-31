@@ -1,7 +1,7 @@
 The Ember Inspector is a browser add-on designed to help you understand and debug your Ember applications.
 
 You can install the Inspector on Google Chrome, Firefox, other
-browsers (via a bookmarklet), and on mobile devices. Simply follow the steps below.
+browsers (via a bookmarklet), and on mobile devices by following the steps below.
 
 ### Google Chrome
 
@@ -78,9 +78,7 @@ Add the following bookmark:
 
 <a href="javascript: (function() { var s = document.createElement('script'); s.src = '//ember-extension.s3.amazonaws.com/dist_bookmarklet/load_inspector.js'; document.body.appendChild(s); }());">Bookmark Me</a>
 
-To open the Inspector, just click on the new bookmark.
-
-Because it lacks support for cross-origin messaging, Internet Explorer will open an iFrame, not a popup. Safari blocks popups by default, so you'll need to enable popups before using the bookmarklet.
+To open the Inspector, just click on the new bookmark. Safari blocks popups by default, so you'll need to enable popups before using the bookmarklet.
 
 ### Mobile Devices
 
