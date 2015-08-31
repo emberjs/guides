@@ -35,28 +35,6 @@
     - title: "Enumerables"
       url: 'enumerables'
 
-- title: "Templates"
-  url: 'templates'
-  pages:
-    - title: "Handlebars Basics"
-      url: "handlebars-basics"
-    - title: "Conditionals"
-      url: "conditionals"
-    - title: "Displaying a List of Items"
-      url: "displaying-a-list-of-items"
-    - title: "Binding Element Attributes"
-      url: "binding-element-attributes"
-    - title: "Links"
-      url: "links"
-    - title: "Actions"
-      url: "actions"
-    - title: "Input Helpers"
-      url: "input-helpers"
-    - title: "Development Helpers"
-      url: "development-helpers"
-    - title: "Writing Helpers"
-      url: "writing-helpers"
-
 - title: "Routing"
   url: 'routing'
   pages:
@@ -78,6 +56,28 @@
       url: "loading-and-error-substates"
     - title: "Preventing and Retrying Transitions"
       url: "preventing-and-retrying-transitions"
+
+- title: "Templates"
+  url: 'templates'
+  pages:
+    - title: "Handlebars Basics"
+      url: "handlebars-basics"
+    - title: "Conditionals"
+      url: "conditionals"
+    - title: "Displaying a List of Items"
+      url: "displaying-a-list-of-items"
+    - title: "Binding Element Attributes"
+      url: "binding-element-attributes"
+    - title: "Links"
+      url: "links"
+    - title: "Actions"
+      url: "actions"
+    - title: "Input Helpers"
+      url: "input-helpers"
+    - title: "Development Helpers"
+      url: "development-helpers"
+    - title: "Writing Helpers"
+      url: "writing-helpers"
 
 - title: "Components"
   url: 'components'
