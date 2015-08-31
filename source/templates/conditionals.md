@@ -1,6 +1,5 @@
-Conditional statements bring a minimum of logic into Ember templating.
 Statements like `if` and `unless` are implemented as built-in helpers. Helpers
-can be invoked three ways.
+can be invoked three ways, each of which is illustrated below with conditionals.
 
 The first style of invocation is **inline invocation**. This looks similar to
 displaying a property, but helpers accept arguments. For example:

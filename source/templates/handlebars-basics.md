@@ -71,3 +71,9 @@ automatically.
 
 As an application grows in size, it will have many templates backed by
 controllers and components.
+
+### Helpers
+
+Helpers bring a minimum of logic into Ember templating. Ember ships with several
+built-in helpers, which are explained in the following guides, and also allows
+you to [write your own helpers](../writing-helpers/).
