@@ -7,28 +7,6 @@ Dynamic content inside a Handlebars expression is rendered with data-binding. Th
 you update a property, your usage of that property in a template will be
 automatically updated to the latest value.
 
-### Defining Templates
-
-Templates in an Ember CLI app are stored in the `app/templates` folder.
-By default, a route will render a template with the same name as the route. For
-example this template would render for the `kittens` route:
-
-```app/templates/kittens.hbs
-<h1>Kittens</h1>
-<p>Kittens are the cutest!</p>
-```
-
-The `app/templates/application.hbs` file is the main template for your
-application. If you have a new Ember app, you can change the contents of that
-file and that content should appear in the browser. As a new user, you
-may want to experiment with content in the application template before diving
-in to routing.
-
-If you want to learn more about how routes and templates work together in
-Ember, jump to
-[The Application Route](../../routing/defining-your-routes/#toc_the-application-route)
-section of the guides.
-
 ### Displaying Properties
 
 Templates are backed with a context. A context is an object from which
@@ -71,3 +49,9 @@ automatically.
 
 As an application grows in size, it will have many templates backed by
 controllers and components.
+
+### Helpers
+
+Helpers bring a minimum of logic into Ember templating. Ember ships with several
+built-in helpers, which are explained in the following guides, and also allows
+you to [write your own helpers](../writing-helpers/).
