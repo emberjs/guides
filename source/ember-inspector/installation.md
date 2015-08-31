@@ -1,22 +1,19 @@
-The Ember Inspector extends browsers' developer tools to make understanding and debugging your Ember.js applications easier.
+The Ember Inspector is a browser add-on designed to help you understand and debug your Ember applications.
 
-Steps to install the inspector for Google Chrome, Firefox, other
-browsers (Bookmarklet), and apps running on mobile devices are explained
-below.
+You can install the Inspector on Google Chrome, Firefox, other
+browsers (via a bookmarklet), and on mobile devices by following the steps below.
 
 ### Google Chrome
 
-You can install the Ember Inspector on Google Chrome as a new developer
-tool panel.
-
-Visit the extension page on the [Chrome Web Store][ember-inspector-chrome].
+You can install the Inspector on Google Chrome as a new Developer
+Tool. To begin, visit the Extension page on the [Chrome Web Store][ember-inspector-chrome].
 
 Click on "Add To Chrome":
 
 <img src="../../images/guides/ember-inspector/installation-chrome-store.png" width="680" />
 
-Once installed, go to an Ember.js application, open the developer tools,
-and click on the `Ember` tab next to the rest of the devtools panels.
+Once installed, go to an Ember application, open the Developer Tools,
+and click on the `Ember` tab at the far right.
 
 <img src="../../images/guides/ember-inspector/installation-chrome-panel.png" width="680">
 
@@ -24,19 +21,15 @@ and click on the `Ember` tab next to the rest of the devtools panels.
 
 #### File:// protocol
 
-If you need to use the inspector with the `file://` protocol.
-
-Visit the URL: `chrome://extensions` and check the "Allow access to file URLs" checkbox:
+To use the Inspector with the `file://` protocol, visit `chrome://extensions` in Chrome and check the "Allow access to file URLs" checkbox:
 
 <img src="../../images/guides/ember-inspector/installation-chrome-file-urls.png" width="400">
 
 #### Enable Tomster
 
-You can configure a tomster icon to show up in Chrome's url bar whenever you are visiting a site that uses Ember.js.
+You can configure a Tomster icon to show up in Chrome's URL bar whenever you are visiting a site that uses Ember.
 
-Visit `chrome://extensions`.
-
-Click on `Options`.
+Visit `chrome://extensions`, then click on `Options`.
 
 <img src="../../images/guides/ember-inspector/installation-chrome-tomster.png" width="400">
 
@@ -47,14 +40,14 @@ Make sure the "Display the Tomster" checkbox is checked.
 
 ### Firefox
 
-Visit the addon page on the [Mozilla Addons
+Visit the Add-on page on the [Mozilla Add-ons
 site][ember-inspector-mozilla].
 
 Click on "Add to Firefox".
 
 <img src="../../images/guides/ember-inspector/installation-firefox-store.png" width="680">
 
-Once installed, go to an Ember.js application, open the developer tools,
+Once installed, go to an Ember application, open the Developer Tools,
 and click on the `Ember` tab.
 
 <img src="../../images/guides/ember-inspector/installation-firefox-panel.png" width="680">
@@ -64,38 +57,32 @@ and click on the `Ember` tab.
 
 #### Enable Tomster
 
-To enable the tomster to show up in the url bar whenever you are
-visiting a site that uses Ember.js Ember.js visit `about:addons`.
+To enable the Tomster icon to show up in the URL bar whenever you are
+visiting a site that uses Ember visit `about:addons`.
 
 Click on `Extensions` -> `Preferences`.
 
 <img src="../../images/guides/ember-inspector/installation-firefox-preferences.png" width="600">
 
-Make sure the "Display the Tomster icon when a site runs Ember.js" checkbox is checked.
+Then make sure the "Display the Tomster icon when a site runs Ember.js" checkbox is checked.
 
 <img src="../../images/guides/ember-inspector/installation-firefox-tomster-checkbox.png" width="400">
 
 
-### Bookmarklet
+### Via Bookmarklet
 
-If you are using any browser other than Chrome or Firefox, you can use the
-bookmarklet option to use the inspector.
+If you are using a browser other than Chrome or Firefox, you can use the
+bookmarklet option to use the Inspector.
 
 Add the following bookmark:
 
 <a href="javascript: (function() { var s = document.createElement('script'); s.src = '//ember-extension.s3.amazonaws.com/dist_bookmarklet/load_inspector.js'; document.body.appendChild(s); }());">Bookmark Me</a>
 
-To open the inspector, just click on the bookmark.
+To open the Inspector, just click on the new bookmark. Safari blocks popups by default, so you'll need to enable popups before using the bookmarklet.
 
-Internet Explorer will open an iframe instead of a popup due to the lack of support for cross-origin messaging.
+### Mobile Devices
 
-Safari blocks popups by default, so you'll need to enable popups before
-using this option.
-
-
-### Mobile Development
-
-If you want to run the inspector with apps running on mobile devices,
-you can use the [Ember Cli Remote Inspector][ember-cli-remote-inspector] addon.
+If you want to run the Inspector on a mobile device,
+you can use the [Ember CLI Remote Inspector][ember-cli-remote-inspector] addon.
 
 [ember-cli-remote-inspector]: https://github.com/joostdevries/ember-cli-remote-inspector
