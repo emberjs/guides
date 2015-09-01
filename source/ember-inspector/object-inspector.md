@@ -15,9 +15,9 @@ The Inspector displays the parent objects and mixins that are composed into the 
 Each property value in this view is bound to your application, so if the value of a 
 property updates in your app, it will be reflected in the Inspector.
 
-If a property name is preceded by a calculator icon, that means it is a computed property. If the value of a computed property hasn't yet been computed, you can
+If a property name is preceded by a calculator icon, that means it is a [computed property][computed-property]. If the value of a computed property hasn't yet been computed, you can
 click on the calculator to compute it.
-
+[computed-property]:../../object-model/computed-properties
 
 ### Exposing Objects to the Console
 
