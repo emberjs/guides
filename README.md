@@ -1,14 +1,21 @@
 ## Ember Guides Source
 
-The source for the Ember.js guides.
+The source for the Ember.js Guides.
 
 ## Contributing
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Project layout
+
+The Guides' content is in the `source` folder. The left nav bar is produced from
+`data/pages.yml`. `lib` contains Middleman plugins, and `spec` contains tests
+for those plugins.
+
 ## Developing with the Guides
 
-The Guides are built with Middleman, which runs on Ruby 1.9.3 or newer (2.0.0 recommended).
+The Guides are built with Middleman, which runs on Ruby 1.9.3 or newer
+(2.0.0 recommended).
 
 To get started:
 
