@@ -48,14 +48,14 @@
       url: "rendering-a-template"
     - title: "Redirecting"
       url: "redirection"
-    - title: "Query Parameters"
-      url: "query-params"
-    - title: "Asynchronous Routing"
-      url: "asynchronous-routing"
     - title: "Loading / Error Substates"
       url: "loading-and-error-substates"
     - title: "Preventing and Retrying Transitions"
       url: "preventing-and-retrying-transitions"
+    - title: "Query Parameters"
+      url: "query-params"
+    - title: "Asynchronous Routing"
+      url: "asynchronous-routing"
 
 - title: "Templates"
   url: 'templates'
