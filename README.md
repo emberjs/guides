@@ -1,32 +1,21 @@
 ## Ember Guides Source
 
-The source for the Ember.js guides.
-
+The source for the Ember.js Guides.
 
 ## Contributing
 
-The Ember Guides are maintained and updated by an all-volunteer group of Ember community members. We'd love to have you join our efforts!
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Please note that no attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable, as it is too difficult to maintain content for every version ever released. Issues will only be fixed for future releases.
+## Project layout
 
-### Fixing problems
-
-If you find a problem on a particular page in the Guides, the most helpful thing you can do is open a pull request. If you're not sure how to fix it, open an issue.
-
-### Contributing solicited content
-
-We try to make it easy for people to contribute to the Guides by tagging issues with [help wanted](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) when appropriate. The best way to get started contributing content is to pick up one of these issues.
-
-### Contributing unsolicited content
-
-If you'd like to contribute content that you think is missing, please start by checking the issues page. There may already be a plan to add this content! If not, open an issue yourself so that you can get feedback before you start writing. Our core contributors may ask you to start off by writing a blog post on your topic instead of or before opening a pull request on the Guides. This helps us keep the Guides consistent and streamlined.
-
-### Writing code
-
-You can also help out with the Guides by improving the code for the app that is used to build the content. Issues related to writing code have the label [code](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22code%22).
-
+The Guides' content is in the `source` folder. The left nav bar is produced from
+`data/pages.yml`. `lib` contains Middleman plugins, and `spec` contains tests
+for those plugins.
 
 ## Developing with the Guides
+
+The Guides are built with Middleman, which runs on Ruby 1.9.3 or newer
+(2.0.0 recommended).
 
 To get started:
 
@@ -37,17 +26,7 @@ bundle
 bundle exec middleman
 ```
 
-Then visit [http://localhost:4567/](http://localhost:4567/)
-
-### Requirements
-
-If the `bundle` command fails to run, you may need to upgrade your Ruby version. The Ember.js website build requires 1.9.3 or newer (2.0.0 recommended). You can use [RVM](https://rvm.io/) to install it:
-
-``` sh
-curl -L https://get.rvm.io | bash -s stable
-rvm install 2.0.0
-rvm use 2.0.0
-```
+Then visit [http://localhost:4567/](http://localhost:4567/).
 
 ### Troubleshooting tips for Windows devs
 

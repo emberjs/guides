@@ -1,7 +1,48 @@
-Sometimes you may only want to display part of your template if a property
-exists.
+Statements like `if` and `unless` are implemented as built-in helpers. Helpers
+can be invoked three ways, each of which is illustrated below with conditionals.
 
-We can use the `{{#if}}` helper to conditionally render a block:
+The first style of invocation is **inline invocation**. This looks similar to
+displaying a property, but helpers accept arguments. For example:
+
+```handlebars
+<div>
+  {{if isFast "zoooom" "putt-putt-putt"}}
+</div>
+```
+
+`{{if}}` in this case returns `"zoooom"` when `isFast` is true and
+`"putt-putt-putt"` when `isFast` is false. Helpers invoked as inline expressions
+render a single value, the same way that properties are a single value.
+
+Inline helpers don't need to be used inside HTML tags. They can also be used
+inside attribute values:
+
+```handlebars
+<div class="is-car {{if isFast "zoooom" "putt-putt-putt"}}">
+</div>
+```
+
+**Nested invocation** is another way to use a helper. Just like inline helpers,
+nested helpers generate and return a single value. For example, this template
+only renders `"zoooom"` if both `isFast` and `isFueled` are true:
+
+```handlebars
+<div>
+  {{if isFast (if isFueled "zoooom")}}
+</div>
+```
+
+The nested helper is called first returning `"zoooom"` only if `isFueled` is
+true. Then the inline expression is called, rendering the nested helper's
+value (`"zoooom"`) only if `isFast` is true.
+
+The third form of helper usage is **block invocation**. Use block helpers
+to render only part of a template. Block invocation of a helper can be
+recognized by the `#` before the helper name, and the closing `{{/` double
+curly brace at the end of the invocation.
+
+For example, this template conditionally shows
+properties on `person` only if that it is present:
 
 ```handlebars
 {{#if person}}
@@ -9,11 +50,12 @@ We can use the `{{#if}}` helper to conditionally render a block:
 {{/if}}
 ```
 
-Handlebars will not render the block if the argument passed evaluates to
-`false`, `undefined`, `null` or `[]` (i.e., any "falsy" value or an empty array).
+`{{if}}` checks for truthiness, which means all values except `false`,
+`undefined`, `null`, `''`  or `[]` (i.e., any JavaScript falsy value or an
+empty array).
 
-If the expression evaluates to falsy, we can also display an alternate template
-using `{{else}}`:
+If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
+of that invocation is rendered:
 
 ```handlebars
 {{#if person}}
@@ -23,7 +65,8 @@ using `{{else}}`:
 {{/if}}
 ```
 
-Handlebars also supports chained else helpers, the most common use being else if. An example:
+`{{else}}` can chain helper invocation, the most common usecase for this being
+`{{else if}}`:
 
 ```handlebars
 {{#if isAtWork}}
@@ -33,26 +76,12 @@ Handlebars also supports chained else helpers, the most common use being else if
 {{/if}}
 ```
 
-To only render a block if a value is falsy, use `{{#unless}}`:
+The inverse of `{{if}}` is `{{unless}}`, which can be used in the same three
+styles of invocation. For example, this template only shows an amount due when the
+user has not paid:
 
 ```handlebars
 {{#unless hasPaid}}
   You owe: ${{total}}
 {{/unless}}
 ```
-
-`{{#if}}` and `{{#unless}}` are examples of block expressions. These allow you
-to invoke a helper with a portion of your template. Block expressions look like
-normal expressions except that they contain a hash (#) before the helper name,
-and require a closing expression.
-
-You can also use the inline `{{if}}` helper:
-
-```handlebars
-<span class={{if isEnabled "enabled" "disabled"}}>Warning!</span>
-```
-
-In this case, if the `isEnabled` property is `true`, the `enabled` class will be
-added. The second argument is optional and only necessary if you want to handle
-the `false` case. Here, if the property is `false`, the class `disabled` will be
-added.

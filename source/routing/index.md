@@ -1,32 +1,22 @@
-## Routing
+Imagine we are writing a web app for managing a blog. At any given time, we
+should be able to answer questions like _What post are they looking at?_ and
+_Are they editing it?_ In Ember.js, the answer to these questions is determined
+by the URL.
 
-As users interact with your application, it moves through many
-different states. Ember.js gives you helpful tools for managing
-that state in a way that scales with your application.
+The URL can be set in a few ways:
 
-To understand why this is important, imagine we are writing a web app
-for managing a blog. At any given time, we should be able to answer
-questions like: _Is the user currently logged in? Are they an admin
-user? What post are they looking at? Is the settings screen open?  Are
-they editing the current post?_
+* The user loads the app for the first time.
+* The user changes the URL manually, such as by clicking the back button or by
+editing the address bar.
+* The user clicks a link within the app.
+* Some other event in the app causes the URL to change.
 
-In Ember.js, each of the possible states in your application is
-represented by a URL. Because all of the questions we asked above—
-_Are we logged in?  What post are we looking at?_ —are encapsulated by
-route handlers for the URLs, answering them is both simple and accurate.
+Regardless of how the URL becomes set, the Ember router then maps the current
+URL to one or more route handlers. A route handler can do several things:
 
-At any given time, your application has one or more _active route
-handlers_. The active handlers can change for one of two reasons:
-
-1. The user interacted with a component, which generated an event that caused
-   the URL to change.
-2. The user changed the URL manually (e.g., via the back button), or the
-   page was loaded for the first time.
-
-When the current URL changes, the newly active route handlers may do one
-or more of the following:
-
-1. Conditionally redirect to a new URL.
-2. Update a controller so that it represents a particular model.
-3. Change the template on screen, or place a new template into an
-   existing outlet.
+* It can render a template.
+* It can load a model that is then available to the template.
+* It can redirect to a new route, such as if the user isn't allowed to visit
+that part of the app.
+* It can handle actions that involve changing a model or transitioning to a new
+route.

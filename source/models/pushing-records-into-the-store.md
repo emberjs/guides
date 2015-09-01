@@ -39,18 +39,22 @@ export default DS.Model.extend({
 ```app/routes/application.js
 export default Ember.Route.extend({
   model() {
-    this.store.push('album', {
-      id: 1,
-      title: 'Fewer Moving Parts',
-      artist: 'David Bazan',
-      songCount: 10
+    this.store.pushPayload({
+      album: {
+        id: 1,
+        title: 'Fewer Moving Parts',
+        artist: 'David Bazan',
+        songCount: 10
+      }
     });
 
-    this.store.push('album', {
-      id: 2,
-      title: 'Calgary b/w I Can\'t Make You Love Me/Nick Of Time',
-      artist: 'Bon Iver',
-      songCount: 2
+    this.store.push({
+      album: {
+        id: 2,
+        title: 'Calgary b/w I Can\'t Make You Love Me/Nick Of Time',
+        artist: 'Bon Iver',
+        songCount: 2
+      }
     });
   }
 });

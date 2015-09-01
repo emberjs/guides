@@ -1,4 +1,10 @@
-If you need to enumerate over a list of objects, use Handlebars' `{{#each}}` helper:
+To iterate over a list of items, use the `{{#each}}` helper. The first
+argument to this helper is the array to be iterated, and the value being
+iterated is yielded as a block param. Block params are only available inside
+the block of their helper.
+
+For example, this template iterates an array named `people` that contains
+objects. Each item in the array is provided as the block param `person`.
 
 ```handlebars
 <ul>
@@ -8,10 +14,22 @@ If you need to enumerate over a list of objects, use Handlebars' `{{#each}}` hel
 </ul>
 ```
 
-The template inside of the `{{#each}}` block will be repeated once for
-each item in the array, with the each item set to the `person` keyword.
+Block params, like function arguments in JavaScript, are positional. `person`
+is what each item is named in the above template, but `human` would work just
+as well.
 
-The above example will print a list like this:
+The template inside of the `{{#each}}` block will be repeated once for
+each item in the array, with the each item set to the `person` block param.
+
+Given an input array like:
+
+```js
+[ {name: 'Yehuda'},
+  {name: 'Tom'   },
+  {name: 'Trek'  } ]
+```
+
+The above template will render HTML like this:
 
 ```html
 <ul>
@@ -21,15 +39,19 @@ The above example will print a list like this:
 </ul>
 ```
 
-The `{{#each}}` helper is bindings-aware.  If your
-application adds a new item to the array, or removes an item, the DOM
-will be updated without having to write any code. Note that a `[].push()`
-will not update the helper. Adding items need to be done with `[].pushObject`,
-and related [Ember Mutable Array methods](http://emberjs.com/api/classes/Ember.MutableArray.html) so that Ember can observe the change.
+Like other helpers, the `{{#each}}` helper is bound.  If a new item is added to
+or removed from the iterated array, the DOM will be updated without having to
+write any additional code.
 
-### Accessing the list item's `index`
+Ember requires that you use special methods to update bound arrays, for example
+`[].pushObject` instead of `[].push`. See the
+[Ember.MutableArray documentation](http://emberjs.com/api/classes/Ember.MutableArray.html)
+for more details on these methods.
 
-If you would like to have access to the list item's index in your template, simply add it to the params list:
+### Accessing an item's `index`
+
+During iteration, the index of each item in an the array is provided as a second
+block param. Block params are space-seperated, without commas. For example:
 
 ```handlebars
 <ul>
@@ -39,29 +61,11 @@ If you would like to have access to the list item's index in your template, simp
 </ul>
 ```
 
-### Specifying Keys
-
-Ember is able to determine if the array being iterated over with `{{#each}}` has
-changed between renders and only touch the affected DOM elements. This
-significantly improves rendering speeds by reducing unnecessary DOM
-manipulation. It does so by keying the array to each item's `@identity`, which
-for Numbers or Strings is the item itself or a generated guid for an object. For
-most scenarios, there should be no need to change this.
-
-The `{{#each}}` helper does provide the ability to override the `key` to use the
-array's `@index` for situations where you would need this.
-
-```handlebars
-{{#each people key="@index" as |person|}}
-{{/each}}
-```
-
-Remember: the `key` is only used in helping Ember determine how to re-render. It
-is different from accessing the index as specified in the previous section.
-
 ### Empty Lists
-The `{{#each}}` helper can have a matching `{{else}}`.
-The contents of this block will render if the collection is empty:
+
+The `{{#each}}` helper can have a corresponding `{{else}}`.
+The contents of this block will render if the array passed to `{{#each}}` is
+is empty:
 
 ```handlebars
 {{#each people as |person|}}
