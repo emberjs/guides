@@ -1,6 +1,17 @@
-# Style Guide
+# Contributing
 
-Thanks for contributing to the Ember Guides! Please familiarize yourself with this style guide so that we can ensure a high quality, consistent style of writing throughout the documentation.
+The Ember Guides are maintained and updated by an all-volunteer group of Ember community members. We'd love to have you join our efforts! Here are a few ways you can help:
+
+* _Fixing problems_: If you find a problem on a particular page in the Guides, the most helpful thing you can do is open a pull request. If you're not sure how to fix it, open an issue.
+* _Contributing solicited content_: We try to make it easy for people to contribute to the Guides by tagging issues with [help wanted](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) when appropriate. The best way to get started contributing content is to pick up one of these issues.
+* _Contributing unsolicited content_: If you'd like to contribute content that you think is missing, please start by checking the issues page. There may already be a plan to add this content! If not, open an issue yourself so that you can get feedback before you start writing. Our core contributors may ask you to start off by writing a blog post on your topic instead of or before opening a pull request on the Guides. This helps us keep the Guides consistent and streamlined.
+* _Writing code_: You can also help out with the Guides by improving the code for the app that is used to build the content. Issues related to writing code have the label [code](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22code%22).
+
+Please note that no attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable, as it is too difficult to maintain content for every version ever released. Issues will only be fixed for future releases.
+
+## Style Guide
+
+Before you a PR with anything but a minor fix, please familiarize yourself with this style guide so that we can ensure a high quality, consistent style of writing throughout the documentation.
 
 - The **Guides** refers to the entire Ember Guides project. Here, _Guides_ is capitalized.
 - A **guide** is one page of the Guides, for example "Defining Your Routes". Here, _guide_ is lowercase.
