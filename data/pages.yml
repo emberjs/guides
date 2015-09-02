@@ -94,8 +94,6 @@
       url: "wrapping-content-in-a-component"
     - title: "Customizing a Component's Element"
       url: "customizing-a-components-element"
-    - title: "Handling User Interaction with Actions"
-      url: "handling-user-interaction-with-actions"
     - title: "Sending Actions from Components to Your Application"
       url: "sending-actions-from-components-to-your-application"
     - title: "Composing Components"
