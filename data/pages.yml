@@ -108,8 +108,6 @@
   pages:
     - title: "Introduction"
       url: "index"
-    - title: "Representing Multiple Models"
-      url: "representing-multiple-models"
     - title: "Managing Dependencies Between Controllers"
       url: "dependencies-between-controllers"
 
