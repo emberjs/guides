@@ -41,12 +41,9 @@ The above template will render HTML like this:
 
 Like other helpers, the `{{#each}}` helper is bound.  If a new item is added to
 or removed from the iterated array, the DOM will be updated without having to
-write any additional code.
-
-Ember requires that you use special methods to update bound arrays, for example
-`[].pushObject` instead of `[].push`. See the
-[Ember.MutableArray documentation](http://emberjs.com/api/classes/Ember.MutableArray.html)
-for more details on these methods.
+write any additional code. That said, Ember requires that you use [special
+methods](../../object-model/enumerables/#toc_use-of-observable-methods-and-properties)
+to update bound arrays.
 
 ### Accessing an item's `index`
 
