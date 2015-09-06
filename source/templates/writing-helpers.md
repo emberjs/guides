@@ -344,7 +344,7 @@ escape anything that may have come from an untrusted user with the
 
 ```app/helpers/make-bold.js
 export default Ember.Helper.helper(function(params) {
-  let value = Handlebars.Utils.escapeExpression(params[0]);
+  let value = Ember.Handlebars.Utils.escapeExpression(params[0]);
   return Ember.String.htmlSafe(`<b>${value}</b>`);
 });
 ```
