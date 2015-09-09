@@ -1,8 +1,8 @@
-Often, you may have a computed property that relies on all of the items in an
-array to determine its value. For example, you may want to count all of the
-todo items in a controller to determine how many of them are completed.
+Sometimes you have a computed property whose value depends on the properties of 
+items in an array. For example, you may have an array of todo items, and want
+to calculate how many remain incomplete based on their `isDone` property.
 
-Here's what that computed property might look like:
+To facilitate this, Ember provides the `@each` key illustrated below:
 
 ```app/controllers/todos.js
 export default Ember.Controller.extend({
@@ -19,9 +19,8 @@ export default Ember.Controller.extend({
 });
 ```
 
-Note here that the dependent key (`todos.@each.isDone`) contains the special
-key `@each`. This instructs Ember.js to update bindings and fire observers for
-this computed property when one of the following four events occurs:
+Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings 
+and fire observers when any of the following events occurs: 
 
 1. The `isDone` property of any of the objects in the `todos` array changes.
 2. An item is added to the `todos` array.
