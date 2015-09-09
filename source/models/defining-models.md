@@ -26,13 +26,15 @@ and [creating records](../creating-and-deleting-records) of that type.
 ### Defining Attributes
 
 The `person` model we generated earlier didn't have any attributes. Let's
-add first and last name, as well as the birthday, using `DS.attr`:
+add first and last name, as well as the birthday, using `attr`:
 
 ```app/models/person.js
-export default DS.Model.extend({
-  firstName: DS.attr(),
-  lastName: DS.attr(),
-  birthday: DS.attr()
+import Model, { attr } from "ember-data/model";
+
+export default Model.extend({
+  firstName: attr(),
+  lastName: attr(),
+  birthday: attr()
 });
 ```
 
@@ -45,9 +47,11 @@ computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
 ```app/models/person.js
-export default DS.Model.extend({
-  firstName: DS.attr(),
-  lastName: DS.attr(),
+import Model, { attr } from "ember-data/model";
+
+export default Model.extend({
+  firstName: attr(),
+  lastName: attr(),
 
   fullName: Ember.computed('firstName', 'lastName', function() {
     return `${this.get('firstName')} ${this.get('lastName')}`;
@@ -63,8 +67,10 @@ provided by the server. You can make sure that an attribute is always
 coerced into a particular type by passing a `type` to `attr`:
 
 ```app/models/person.js
-export default DS.Model.extend({
-  birthday: DS.attr('date')
+import Model, { attr } from "ember-data/model";
+
+export default Model.extend({
+  birthday: attr('date')
 });
 ```
 
@@ -89,11 +95,13 @@ In the following example we define that `verified` has a default value of
 creation:
 
 ```app/models/user.js
-export default DS.Model.extend({
-  username: DS.attr('string'),
-  email: DS.attr('string'),
-  verified: DS.attr('boolean', { defaultValue: false }),
-  createdAt: DS.attr('string', {
+import Model, { attr } from "ember-data/model";
+
+export default Model.extend({
+  username: attr('string'),
+  email: attr('string'),
+  verified: attr('boolean', { defaultValue: false }),
+  createdAt: attr('string', {
     defaultValue() { return new Date(); }
   })
 });
@@ -108,32 +116,40 @@ define how your models relate to each other.
 #### One-to-One
 
 To declare a one-to-one relationship between two models, use
-`DS.belongsTo`:
+`belongsTo`:
 
 ```app/models/user.js
-export default DS.Model.extend({
-  profile: DS.belongsTo('profile')
+import Model, { belongsTo } from "ember-data/model";
+
+export default Model.extend({
+  profile: belongsTo('profile')
 });
 ```
 
 ```app/models/profile.js
-export default DS.Model.extend({
-  user: DS.belongsTo('user')
+import Model, { belongsTo } from "ember-data/model";
+
+export default Model.extend({
+  user: belongsTo('user')
 });
 ```
 
 #### One-to-Many
 
 To declare a one-to-many relationship between two models, use
-`DS.belongsTo` in combination with `DS.hasMany`, like this:
+`belongsTo` in combination with `hasMany`, like this:
 
 ```app/models/post.js
-export default DS.Model.extend({
-  comments: DS.hasMany('comment')
+import Model, { hasMany } from "ember-data/model";
+
+export default Model.extend({
+  comments: hasMany('comment')
 });
 ```
 
 ```app/models/comment.js
+import Model, { belongsTo } from "ember-data/model";
+
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -142,17 +158,21 @@ export default DS.Model.extend({
 #### Many-to-Many
 
 To declare a many-to-many relationship between two models, use
-`DS.hasMany`:
+`hasMany`:
 
 ```app/models/post.js
-export default DS.Model.extend({
-  tags: DS.hasMany('tag')
+import Model, { hasMany } from "ember-data/model";
+
+export default Model.extend({
+  tags: hasMany('tag')
 });
 ```
 
 ```app/models/tag.js
-export default DS.Model.extend({
-  posts: DS.hasMany('post')
+import Model, { hasMany } from "ember-data/model";
+
+export default Model.extend({
+  posts: hasMany('post')
 });
 ```
 
@@ -169,17 +189,21 @@ same type. You can specify which property on the related model is the
 inverse using `DS.hasMany`'s `inverse` option:
 
 ```app/models/comment.js
-export default DS.Model.extend({
-  onePost: DS.belongsTo('post'),
-  twoPost: DS.belongsTo('post'),
-  redPost: DS.belongsTo('post'),
-  bluePost: DS.belongsTo('post')
+import Model, { belongsTo } from "ember-data/model";
+
+export default Model.extend({
+  onePost: belongsTo('post'),
+  twoPost: belongsTo('post'),
+  redPost: belongsTo('post'),
+  bluePost: belongsTo('post')
 });
 ```
 
 ```app/models/post.js
-export default DS.Model.extend({
-  comments: DS.hasMany('comment', {
+import Model, { hasMany } from "ember-data/model";
+
+export default Model.extend({
+  comments: hasMany('comment', {
     inverse: 'redPost'
   })
 });
@@ -194,16 +218,19 @@ the other side, and set the explicit inverse accordingly, and if you don't need 
 other side, set the inverse to null.
 
 ```app/models/folder.js
-export default DS.Model.extend({
-  children: DS.hasMany('folder', { inverse: 'parent' }),
-  parent: DS.belongsTo('folder', { inverse: 'children' })
+import Model, { hasMany, belongsTo } from "ember-data/model";
+export default Model.extend({
+  children: hasMany('folder', { inverse: 'parent' }),
+  parent: belongsTo('folder', { inverse: 'children' })
 });
 ```
 
 or
 
 ```app/models/folder.js
-export default DS.Model.extend({
-  parent: DS.belongsTo('folder', { inverse: null })
+import Model, { belongsTo } from "ember-data/model";
+
+export default Model.extend({
+  parent: belongsTo('folder', { inverse: null })
 });
 ```
