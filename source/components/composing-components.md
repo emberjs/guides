@@ -1,14 +1,19 @@
-Components really shine when you use them to their full potential, that is, by composing them with one another.
-Take for example the `<ul>` element, and the fact that only `<li>` elements are appropriate as children.
-If we want the same type of behavior, then we have to compose our components.
+Components organize applications best when leveraged with composition.
+The phrase "data-down", which is used often when discussing Ember's
+rendering layer, means to treat a user interface as if it were built from
+pure functions. By pure function, we mean a function that given the same input
+will always result in the same behavior.
 
-Just like we compose regular HTML elements, we can do the same with components.
+The tools to compose components in Ember are the `yield` method and
+block params. Here is a preview of what this guide goes over:
 
 ```app/templates/application.hbs
 {{#user-list users=activeUsers sortBy="name" as |user|}}
   {{user-card user=user}}
 {{/user-list}}
 ```
+
+First, a review of how to use components.
 
 ### Component Blocks
 
@@ -164,7 +169,8 @@ We can create these names by using the `{{concat}}` helper in nested form.
 {{component (concat "basic-card-" user.type)}}
 ```
 
-Now that our component names are valid due to the use of dashed, we can put together the full template with the two modes.
+Now that our component names are valid due to the inclusion of a dash in their
+names, we can put together a full template with the two modes.
 
 ```app/templates/application.hbs
 {{#user-list users=users as |user basicMode|}}
