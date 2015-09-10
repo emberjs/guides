@@ -1,8 +1,7 @@
-Components organize applications best when leveraged with composition.
-The phrase "data-down", which is used often when discussing Ember's
-rendering layer, means to treat a user interface as if it were built from
-pure functions. By pure function, we mean a function that given the same input
-will always result in the same behavior.
+Components organize applications best when the same input will
+always result in the same behavior. This approach is often called
+"data down, actions up" - components receive data and emit actions,
+but themselves never change.
 
 The tools to compose components in Ember are the `yield` method and
 block params. Here is a preview of what this guide goes over:
