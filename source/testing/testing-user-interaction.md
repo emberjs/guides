@@ -40,9 +40,9 @@ test('add new post', function(assert) {
 
 ### Testing Transitions
 
-Suppose we have an application which requires authentication. When a visitor
-visits a certain URL as an unauthenticated user, we expect them to be transitioned
-to a login page.
+Suppose we have an application which requires authentication. If an unauthenticated user
+tries to visit a restricted URL, we generally want to transition them to a login page.  For
+example:
 
 ```app/routes/profile.js
 export default Ember.Route.extend({
@@ -55,8 +55,8 @@ export default Ember.Route.extend({
 });
 ```
 
-We could use the route helpers to ensure that the user would be redirected to the login page
-when the restricted URL is visited.
+To test this transition, we can use the `visit` helper with a restricted URL, and verify
+that the user gets redirected to the login page:
 
 ```tests/acceptance/transitions-test.js
 var application;

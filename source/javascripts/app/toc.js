@@ -1,8 +1,6 @@
 $(function(){
   $(".toc-level-0 .toc-level-0 > a").click(function() {
-    $(this).parent().find('> ol').slideToggle(function() {
-      positionBackToTop(true);
-    });
+    $(this).parent().find('> ol').slideToggle();
 
     return false;
   });

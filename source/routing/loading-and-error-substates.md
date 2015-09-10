@@ -1,7 +1,5 @@
-In addition to the techniques described in the
-[Asynchronous Routing Guide](../asynchronous-routing/),
-the Ember Router provides powerful yet overridable
-conventions for customizing asynchronous transitions
+The Ember Router provides powerful yet overridable
+conventions for customizing transitions
 between routes by making use of `error` and `loading`
 substates.
 

@@ -35,6 +35,28 @@
     - title: "Enumerables"
       url: 'enumerables'
 
+- title: "Routing"
+  url: 'routing'
+  pages:
+    - title: "Introduction"
+      url: "index"
+    - title: "Defining Your Routes"
+      url: "defining-your-routes"
+    - title: "Specifying a Route's Model"
+      url: "specifying-a-routes-model"
+    - title: "Rendering a Template"
+      url: "rendering-a-template"
+    - title: "Redirecting"
+      url: "redirection"
+    - title: "Loading / Error Substates"
+      url: "loading-and-error-substates"
+    - title: "Preventing and Retrying Transitions"
+      url: "preventing-and-retrying-transitions"
+    - title: "Query Parameters"
+      url: "query-params"
+    - title: "Asynchronous Routing"
+      url: "asynchronous-routing"
+
 - title: "Templates"
   url: 'templates'
   pages:
@@ -58,30 +80,6 @@
       url: "development-helpers"
     - title: "Writing Helpers"
       url: "writing-helpers"
-
-- title: "Routing"
-  url: 'routing'
-  pages:
-    - title: "Introduction"
-      url: "index"
-    - title: "Defining Your Routes"
-      url: "defining-your-routes"
-    - title: "Rendering a Template"
-      url: "rendering-a-template"
-    - title: "Specifying a Route's Model"
-      url: "specifying-a-routes-model"
-    - title: "Setting Up a Controller"
-      url: "setting-up-a-controller"
-    - title: "Redirecting"
-      url: "redirection"
-    - title: "Query Parameters"
-      url: "query-params"
-    - title: "Asynchronous Routing"
-      url: "asynchronous-routing"
-    - title: "Loading / Error Substates"
-      url: "loading-and-error-substates"
-    - title: "Preventing and Retrying Transitions"
-      url: "preventing-and-retrying-transitions"
 
 - title: "Components"
   url: 'components'
@@ -124,24 +122,16 @@
       url: "defining-models"
     - title: "Creating and Deleting Records"
       url: "creating-and-deleting-records"
-    - title: "Pushing Records into the Store"
-      url: "pushing-records-into-the-store"
     - title: "Persisting Records"
       url: "persisting-records"
     - title: "Finding Records"
       url: "finding-records"
     - title: "Working with Records"
       url: "working-with-records"
-    - title: "The Rest Adapter"
-      url: "the-rest-adapter"
-    - title: "Connecting to an HTTP Server"
-      url: "connecting-to-an-http-server"
     - title: "Handling Metadata"
       url: "handling-metadata"
-    - title: "Customizing Adapters"
-      url: "customizing-adapters"
-    - title: "Frequently Asked Questions"
-      url: "frequently-asked-questions"
+    - title: "Pushing Records into the Store"
+      url: "pushing-records-into-the-store"
 
 - title: "Services"
   url: 'services'

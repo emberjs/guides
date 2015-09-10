@@ -3,55 +3,30 @@ data that you present to the user. Anything that the user expects to see
 if they leave your app and come back later (or if they refresh the page)
 should be represented by a model.
 
-Make sure to include `ember-data.js` after `ember.js`
-
-```html
-<script type="text/javascript" src="ember.js"></script>
-<script type="text/javascript" src="ember-data.js"></script>
-```
-
-For every model in your application, create a subclass of `DS.Model`:
+When you want a new model for your application you need to create a new file
+under the models folder and extend from `DS.Model`. This is more conveniently
+done by using one of Ember CLI's generator commands. For instance, let's create
+a `person` model:
 
 ```bash
 ember generate model person
 ```
 
+This will generate the following file:
+
 ```app/models/person.js
-export default DS.Model.extend();
+export default DS.Model.extend({
+});
 ```
 
-After you have defined a model class, you can start finding and creating
-records of that type. When interacting with the store, you will need to
-specify a record's type using the model name. For example, the store's
-`find()` method expects a string as the first argument to tell it what
-type of record to find:
+After you have defined a model class, you can start [finding](../finding-records)
+and [creating records](../creating-and-deleting-records) of that type.
 
-```js
-store.findRecord('person', 1);
-```
-
-The table below shows how model names map to model file paths.
-
-<table>
-  <thead>
-  <tr>
-    <th>Model Name</th>
-    <th>Model Class</th>
-  </tr>
-  </thead>
-  <tr>
-    <td><code>photo</code></td>
-    <td><code>app/models/photo.js</code></td>
-  </tr>
-  <tr>
-    <td><code>admin-user-profile</code></td>
-    <td><code>app/models/admin-user-profile.js</code></td>
-  </tr>
-</table>
 
 ### Defining Attributes
 
-You can specify which attributes a model has by using `DS.attr`.
+The `person` model we generated earlier didn't have any attributes. Let's
+add first and last name, as well as the birthday, using `DS.attr`:
 
 ```app/models/person.js
 export default DS.Model.extend({
@@ -105,23 +80,24 @@ attribute types, and new types can be registered as transforms. See the
 
 #### Options
 
-`DS.attr` takes an optional hash as a second parameter:
+`DS.attr` can also take a hash of options as a second parameter. At the moment
+the only option available is `defaultValue`, which can use a string or a
+function to set the default value of the attribute if one is not supplied.
 
-- `defaultValue`: Pass a string or a function to be called to set the
-                  attribute to a default value if none is supplied.
+In the following example we define that `verified` has a default value of
+`false` and `createdAt` defaults to the current date at the time of the model's
+creation:
 
-  Example
-
-  ```app/models/user.js
-  export default DS.Model.extend({
-    username: DS.attr('string'),
-    email: DS.attr('string'),
-    verified: DS.attr('boolean', { defaultValue: false }),
-    createdAt: DS.attr('string', {
-      defaultValue() { return new Date(); }
-    })
-  });
-  ```
+```app/models/user.js
+export default DS.Model.extend({
+  username: DS.attr('string'),
+  email: DS.attr('string'),
+  verified: DS.attr('boolean', { defaultValue: false }),
+  createdAt: DS.attr('string', {
+    defaultValue() { return new Date(); }
+  })
+});
+```
 
 
 ### Defining Relationships
