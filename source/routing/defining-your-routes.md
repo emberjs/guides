@@ -216,3 +216,11 @@ and `comments/new`) will be rendered in the `comments` outlet.
 
 However, the `/post/:id/comments` path will load the `comments.hbs` template,
 rather than the `post/comments.hbs` template.
+
+## Route Handlers
+
+To have your route do something beyond render a template with the same name, you'll
+need to create a route handler. The following guides will explore the different
+features of route handlers. For more information on routes, see the API documentation
+for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route
+handlers](http://emberjs.com/api/classes/Ember.Route.html).
