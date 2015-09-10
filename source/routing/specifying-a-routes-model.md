@@ -86,3 +86,43 @@ when it is entered via the URL. If the route is entered through a transition
 (e.g. when using the [link-to](../../templates/links) Handlebars helper), then a model context is
 already provided and the hook is not executed. Routes without dynamic segments
 will always execute the model hook.
+
+## Multiple Models
+
+Multiple models can be returned through an
+[Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+The `Ember.RSVP.hash` takes
+parameters that return promises, and when all parameter promises resolve, then
+the `Ember.RSVP.hash` promise resolves. For example:
+
+```app/routes/songs.js
+export default Ember.Route.extend({
+  model() {
+    return Ember.RSVP.hash({
+      songs: this.store.findAll('song'),
+      albums: this.store.findAll('album')
+    });
+  }
+});
+```
+
+In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
+each record in the song model and album model:
+
+```app/templates/songs.hbs
+<h1>Playlist</h1>
+
+<ul>
+  {{#each model.songs as |song|}}
+    <li>{{song.name}} by {{song.artist}}</li>
+  {{/each}}
+</ul>
+
+<h1>Albums</h1>
+
+<ul>
+  {{#each model.albums as |album|}}
+    <li>{{album.title}} by {{album.artist}}</li>
+  {{/each}}
+</ul>
+```
