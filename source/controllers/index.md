@@ -1,14 +1,23 @@
 ## Controllers
 
-In Ember.js, controllers allow you to decorate your models with
-display logic. In general, your models will have properties that
-are saved to the server, while controllers will have properties
-that your app does not need to save to the server.
+Modern Ember applications don't often use controllers. When they do, their
+responsibility is strictly limited to two avenues:
 
-For example, if you were building a blog, you would have a
-`BlogPost` model that you would present in a `blog-post` template.
+* Controllers maintain state based on the current route. In general, models
+  will have properties that are saved to the server, while controllers will
+  have properties that your app does not need to save to the server.
+* User actions pass through the controller layer when moving from
+  a component to a route.
 
-Your `BlogPost` model would have properties like:
+The context of templates rendered by a route is a corresponding
+controller. Ember's following of "convention over configuration" means
+you should only create a controller if you need one. If not, everything
+continues to "Just Work".
+
+Let's explore the example of a route displaying a blog post. Presume a
+`BlogPost` model that is presented in a `blog-post` template.
+
+The `BlogPost` model would have properties like:
 
 * `title`
 * `intro`
