@@ -13,7 +13,7 @@ corresponding component or controller.
 {{/if}}
 ```
 
-In the component or controller, you can then define whatthe action does within
+In the component or controller, you can then define what the action does within
 the `actions` hook:
 
 ```app/components/post.js
