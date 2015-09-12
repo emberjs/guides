@@ -64,8 +64,8 @@ With Ember Data, managing models as your application grows becomes both
 simple _and_ easy.
 
 Once you have an understanding of Ember Data, you will have a much
-better way to manage the complexity of data loading in your application,
-allowing your code to evolve without becoming a mess.
+better way to manage the complexity of data loading in your application.
+This will allow your code to evolve without becoming a mess.
 
 #### The Store and a Single Source of Truth
 
