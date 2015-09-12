@@ -153,7 +153,7 @@ export default Ember.Route.extend({
 
 You can significantly reduce the amount of code you need to write and
 maintain by relying on Ember's conventions. By adopting these
-conventions, your don't just write less code; your code will be much
+conventions, you won't just write less code; your code will be much
 easier to maintain and be understood by other developers on your team.
 
 Rather than create an arbitrary set of conventions, Ember Data is
