@@ -5,11 +5,12 @@ create a `components/blog-post` template.
 **Note:** Components must have at least one dash in their name. So `blog-post` is an acceptable name, so is `audio-player-controls`, but `post` is not. This prevents clashes with current or future HTML element names, and
 ensures Ember detects the components automatically.
 
-A sample component template would look like this:
+You can generate a component using ember-cli. Running this command will generate the files necessary to create a component named `blog-post`: 
 
 ```bash
 ember generate component blog-post
 ```
+A sample component template would look like this:
 
 ```app/templates/components/blog-post.hbs
 <h1>Blog Post</h1>
