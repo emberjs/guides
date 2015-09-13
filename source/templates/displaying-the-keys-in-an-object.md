@@ -18,7 +18,7 @@ export Ember.Component.extend({
 
 ```/app/templates/components/store-categories.hbs
 <ul>
-  {{#each-in categories as |category, products|}}
+  {{#each-in categories as |category products|}}
     <li>{{category}}
       <ol>
         {{#each products key="@item" as |product|}}
@@ -121,7 +121,7 @@ The contents of this block will render if the object is empty, null, or
 undefined:
 
 ```handlebars
-{{#each-in people as |name, person|}}
+{{#each-in people as |name person|}}
   Hello, {{name}}! You are {{person.age}} years old.
 {{else}}
   Sorry, nobody is here.
