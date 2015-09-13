@@ -85,7 +85,7 @@ The first parameter of the helper is the name of a component to render, as a str
 
 The real value of `{{component}}` comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a
-mean to dispatch to different components for displaying different kinds of posts:
+means to dispatch to different components for displaying different kinds of posts:
 
 
 ```app/templates/components/foo-component.hbs
