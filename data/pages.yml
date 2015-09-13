@@ -178,7 +178,7 @@
       url: "info"
     - title: "Debugging Promises"
       url: "promises"
-    - title: "Inspecting the Container"
+    - title: "Inspecting Objects via the Container"
       url: "container"
     - title: "Rendering Performance"
       url: "render-performance"
