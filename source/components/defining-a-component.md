@@ -7,10 +7,6 @@ ensures Ember detects the components automatically.
 
 A sample component template would look like this:
 
-```bash
-ember generate component blog-post
-```
-
 ```app/templates/components/blog-post.hbs
 <h1>Blog Post</h1>
 <p>Lorem ipsum dolor sit amet.</p>
