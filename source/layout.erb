@@ -74,7 +74,7 @@
           <h1>
             <%= page_title %>
             <a href="https://github.com/emberjs/guides/edit/master/source/<%= current_page.path.gsub('html', 'md') %>"
-               target="_blank" class="edit-page icon-pencil">Edit Page</a>
+               target="_blank" class="edit-page icon-pencil" id="edit-page">Edit Page</a>
           </h1>
           <hr>
 
@@ -122,6 +122,26 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+     $('#edit-page').on('click', function(event) {
+         event.preventDefault();
+         var editPageUrl = event.target.getAttribute('href');
+
+         var existenceCheckingUrl = editPageUrl.replace('https://github.com/emberjs/guides/edit/master', 'https://api.github.com/repos/emberjs/guides/contents');
+
+         var pageExists = $.ajax({
+             type: 'HEAD',
+             url: existenceCheckingUrl,
+             success: function(response) {
+               window.location = editPageUrl;
+             },
+             error: function(response) {
+               if (confirm("This page doesn't exist in the most recent revision of the guides. Click OK to go to the main guides repository so you can look for the file to edit, or Cancel to stay on the current page.")) {
+                 window.location = "https://github.com/emberjs/guides/tree/master/source";
+               }
+             }
+         });
+     });
     </script>
   </body>
 </html>
