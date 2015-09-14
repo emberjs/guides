@@ -1,4 +1,5 @@
-An `Ember.Service` is a long-lived Ember object that can be injected as needed.
+An `Ember.Service` is a long-lived Ember object that can be made available in
+different parts of your application.
 
 Example uses of services include:
 
@@ -87,39 +88,3 @@ export default Ember.Component.extend({
 ```
 
 This also injects the shopping cart service, as the `shoppingCart` property.
-
-### Injecting Services Eagerly
-
-Sometimes it makes sense for a service to be available throughout your application without having to inject it into each class individually. Ember Data uses this to give routes access to the shared store.
-
-This can be accomplished with an initializer:
-
-```app/initializers/shopping-cart.js
-export default {
-  name: 'shopping-cart',
-  initialize: function (container, application) {
-    application.inject('route', 'cart', 'service:shopping-cart');
-  } 
-};
-```
-
-The `shopping-cart` service will be injected as the `cart` property into every `route` in your application.
-
-You can also inject a service into a specific class:
-
-```app/initializers/shopping-cart.js
-application.inject('route:checkout', 'cart', 'service:shopping-cart');
-```
-
-If your eagerly-injected service requires some first-time setup that depends on other services, you can set this up in an instance-initializer:
-
-```app/instance-initializers/shopping-cart.js
-export default {
-  name: 'shopping-cart',
-  initialize: function (instance) {
-    var store = instance.container.lookup('service:store');
-    var cart = instance.container.lookup('service:shopping-cart');
-    cart.add(store.findRecord('item', 'plunger'));
-  }
-};
-```
