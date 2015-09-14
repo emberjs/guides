@@ -129,11 +129,13 @@
     - title: "Pushing Records into the Store"
       url: "pushing-records-into-the-store"
 
-- title: "Services"
-  url: 'services'
+- title: "Services and Initializers"
+  url: 'services-and-initializers'
   pages:
-    - title: "Using Services"
-      url: "index"
+    - title: "Services"
+      url: "services"
+    - title: "Initializers"
+      url: "initializers"
 
 - title: "Testing"
   url: 'testing'
