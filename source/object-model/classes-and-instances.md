@@ -99,7 +99,7 @@ conventions in your Ember applications.
 ### Initializing Instances
 
 When a new instance is created, its `init` method is invoked
-automatically. This is the ideal place to do setup required on new
+automatically. This is the ideal place to implement setup required on new
 instances:
 
 ```js

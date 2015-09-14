@@ -7127,7 +7127,7 @@ function createTween( value, prop, animation ) {
 	for ( ; index < length; index++ ) {
 		if ( (tween = collection[ index ].call( animation, prop, value )) ) {
 
-			// we're done with this property
+			// we've finished with this property
 			return tween;
 		}
 	}
