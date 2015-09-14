@@ -136,6 +136,8 @@
       url: "services"
     - title: "Initializers"
       url: "initializers"
+    - title: "The Container"
+      url: "container"
 
 - title: "Testing"
   url: 'testing'
