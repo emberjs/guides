@@ -125,7 +125,7 @@ two of them.
 
 That said, sometimes you may want to make behavior of helpers
 configurable by the developers that call them from their templates. For
-example, let's abandon our American-centric ways and update our
+example, let's abandon our Americentric ways and update our
 `format-currency` helper to take an optional configuration for which
 currency symbol to display.
 
