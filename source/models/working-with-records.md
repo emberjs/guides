@@ -6,9 +6,10 @@ objects. Making changes is as simple as setting the attribute you
 want to change:
 
 ```js
-var tyrion = this.store.findRecord('person', 1);
-// ...after the record has loaded
-tyrion.set('firstName', "Yollo");
+this.store.findRecord('person', 1).then(function(tyrion) {
+  // ...after the record has loaded
+  tyrion.set('firstName', "Yollo");
+});
 ```
 
 All of the Ember.js conveniences are available for

@@ -39,23 +39,93 @@ export default DS.Model.extend({
 ```app/routes/application.js
 export default Ember.Route.extend({
   model() {
-    this.store.pushPayload({
-      album: {
-        id: 1,
-        title: 'Fewer Moving Parts',
-        artist: 'David Bazan',
-        songCount: 10
-      }
-    });
-
     this.store.push({
-      album: {
+      data: [{
+        id: 1,
+        type: 'album',
+        attributes: {
+          title: 'Fewer Moving Parts',
+          artist: 'David Bazan',
+          songCount: 10
+        },
+        relationships: {}
+      }, {
         id: 2,
-        title: 'Calgary b/w I Can\'t Make You Love Me/Nick Of Time',
-        artist: 'Bon Iver',
-        songCount: 2
-      }
+        type: 'album',
+        attributes: {
+          title: 'Calgary b/w I Can\'t Make You Love Me/Nick Of Time',
+          artist: 'Bon Iver',
+          songCount: 2
+        },
+        relationships: {}
+      }]
     });
+  }
+});
+```
+
+The the store's `push()` method is a low level API which accepts a
+JSON API document with a few important differences from the JSON API
+document that the JSONAPISerializer accepts. The type name in the JSON
+API document must match the type name of the model exactly (In the
+example above the type is `album` because the model is defined in
+`app/models/album.js`). Attributes and relationship names must match
+the casing of the properties defined on the Model class.
+
+If you would like to the data to be normalized by the serializer
+before pushing it into the store you can use the `store.pushPayload`
+method.
+
+```app/routes/application.js
+export default Ember.Route.extend({
+  model() {
+    this.store.pushPayload({
+      data: [{
+        id: 1,
+        type: 'albums',
+        attributes: {
+          title: 'Fewer Moving Parts',
+          artist: 'David Bazan',
+          song-count: 10
+        },
+        relationships: {}
+      }, {
+        id: 2,
+        type: 'albums',
+        attributes: {
+          title: 'Calgary b/w I Can\'t Make You Love Me/Nick Of Time',
+          artist: 'Bon Iver',
+          song-count: 2
+        },
+        relationships: {}
+      }]
+    });
+  }
+});
+```
+
+The `push()` method is also important when working with complex
+endpoints. You may find your application has an endpoint that performs
+some business logic then creates several records. This likely does not
+map cleanly to Ember Data's existing `save()` API which is structured
+around persisting a single record. Instead you should make your own
+custom AJAX request and push the resulting model data into the store
+so it can be accessed by other parts of your application.
+
+
+```app/routes/confirm-payment.js
+export default Ember.Route.extend({
+  actions: {
+    confirm: function(data) {
+      $.ajax({
+        data: data,
+        method: 'POST',
+        url: 'process-payment'
+      }).then((digitalInventory) => {
+        this.store.pushPayload(digitalInventory);
+        this.transitionTo('thank-you');
+      });
+    }
   }
 });
 ```

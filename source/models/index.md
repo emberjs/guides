@@ -68,6 +68,7 @@ better way to manage the complexity of data loading in your application.
 This will allow your code to evolve without becoming a mess.
 
 #### The Store and a Single Source of Truth
+#### The Naive Approach
 
 One common way of building web applications is to tightly couple user
 interface elements to data fetching. For example, imagine you are
@@ -98,28 +99,40 @@ this:
 </ul>
 ```
 
-While this works, it is not ideal for several reasons.
+This works great for the `list-of-drafts` component. However, you app
+is likely made up of many different components. On another page you
+may want a component to display the number of drafts. You may be
+tempted to copy and paste your existing `willRender` code into the new
+component.
 
-First, by tightly coupling data fetching to an isolated UI component,
-the opportunity to share data is lost. As you build out the features of
-your application, other components may want to access that same data.
+```app/components/drafts-button.js
+export default Ember.Component.extend({
+  willRender() {
+    $.getJSON('/drafts').then(data => {
+      this.set('drafts', data);
+    });
+  }
+});
+```
 
-For example, imagine that the next feature you add to the blog editor is
-a widget in the app's toolbar that shows a count of unpublished drafts.
-That component needs the list of drafts as well (so it can count them),
-but because the two components are responsible for their own data
-fetching, your app will make two separate requests for the same information.
+```app/templates/components/drafts-button.hbs
+{{#link-to 'drafts' tagName="button"}}
+Drafts ({{drafts.length}})
+{{/link-to}}
+```
 
-Not only is the redundant data fetching costly in terms of wasted
-bandwidth and affecting the perceived speed of your app, it's easy for
-the two values to get out-of-sync. You yourself have probably used a web
-application where the list of items gets out of sync with the counter in
-a toolbar, leading to a frustrating and inconsistent experience.
+Unfortunately, the app will now make two separate requests for the
+same information. Not only is the redundant data fetching costly in
+terms of wasted bandwidth and affecting the perceived speed of your
+app, it's easy for the two values to get out-of-sync. You yourself
+have probably used a web application where the list of items gets out
+of sync with the counter in a toolbar, leading to a frustrating and
+inconsistent experience.
 
-The second reason this is not ideal is that it creates a _tight
-coupling_ between your application's UI and the network code. If the
-format of the JSON payload changes, it is likely to break all of your UI
-components in ways that are hard to track down.
+There is also a _tight coupling_ between your application's UI and the
+network code. If the url or the format of the JSON payload changes, it
+is likely to break all of your UI components in ways that are hard to
+track down.
 
 The SOLID principles of good design tell us that objects should have a
 single responsibility. The responsibility of a component should be
@@ -136,18 +149,6 @@ from the server once. You can think of the store as a read-through cache
 for your app's models. Both your components and routes have access to
 this shared store; when they need to display or modify a model, they
 first ask the store for it.
-
-You use the store to retrieve records (an instance of a model), as well
-to create new ones.  For example, we might want to find a `person` with
-the ID of `1` from our route's `model` hook:
-
-```app/routes/index.js
-export default Ember.Route.extend({
-  model() {
-    return this.store.findRecord('person', 1);
-  }
-});
-```
 
 #### Convention Over Configuration with JSON API
 
@@ -225,7 +226,7 @@ A **record** is an instance of a model that contains data loaded from a
 server. Your application can also create new records and save them back
 to the server.
 
-A record is uniquely identified by its model type and ID.
+A record is uniquely identified by its model **type** and **ID**.
 
 For example, if you were writing a contact management app, you might
 have a `Person` model. An individual record in your app might
@@ -257,7 +258,7 @@ successful.
 Adapters let you completely change how your API is implemented without
 impacting your Ember application code.
 
-#### Automatic Caching
+#### The Store
 
 The store will automatically cache records for you. If a record had already
 been loaded, asking for it a second time will always return the same
@@ -324,6 +325,7 @@ since it already has it saved locally.
 
 ---
 
-These are the core concepts you should understand to get the most out of
-Ember Data. The following sections go into more depth about each of
-these concepts, and how to use them together.
+Models, records, adapters and the store are the core concepts you
+should understand to get the most out of Ember Data. The following
+sections go into more depth about each of these concepts, and how to
+use them together.
