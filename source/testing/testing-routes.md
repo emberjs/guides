@@ -51,19 +51,29 @@ moduleFor('route:application', {
 });
 
 test('Alert is called on displayAlert', function(assert) {
-  assert.expect(1);
+  assert.expect(2);
 
   // with moduleFor, the subject returns an instance of the route
   var route = this.subject();
-  var expectedText = 'foo';
+  var expectedText;
 
   // stub window.alert to perform a qunit test
+  expectedText = 'foo';
   window.alert = function(text) {
     assert.equal(text, expectedText, 'expected ' + text + ' to be ' + expectedText);
   };
 
   // call the _displayAlert function which triggers the qunit test above
   route._displayAlert(expectedText);
+  
+  // set up a second stub to perform a test with the actual action
+  expectedText = 'bar';
+  window.alert = function(text) {
+    assert.equal(text, expectedText, 'expected ' + text + ' to be ' + expectedText);
+  };
+
+  // Now use the routes send method to test the actual action
+  route.send('displayAlert', expectedText);
 });
 ```
 
