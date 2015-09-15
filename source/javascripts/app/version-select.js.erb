@@ -2,7 +2,7 @@ $.ajax('/versions.json')
   .done(function(data) {
     var versionSelectBox = $(".version-select");
     versionSelectBox.select2({
-      data: data
+      data: data.reverse()
     });
     var currentRevision = 'CURRENT_REVISION_WILL_APPEAR_HERE_WHEN_DEPLOYED';
     versionSelectBox.val(currentRevision).change();
