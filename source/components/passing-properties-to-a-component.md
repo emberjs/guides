@@ -1,7 +1,8 @@
-By default a component does not have access to properties in the
-template scope in which it is used.
+By default a component does not have access to any properties normally
+available in the template in which it is used (sometimes referred to
+as the template `scope`)
 
-For example, imagine you have a `blog-post` component that is used to
+Imagine you have a `blog-post` component that is used to
 display a blog post:
 
 ```app/templates/components/blog-post.hbs
@@ -28,9 +29,9 @@ export default Ember.Route.extend({
 {{blog-post}}
 ```
 
-Running this code, you will see that the first `<h1>` (from the outer
-template) displays the `title` property, but the second `<h1>` (from
-inside the component) is empty.
+If you run this code, you will see that the first `<h1>` (in the outer
+template) displays the `title` property, but the second `<h1>` (inside
+the component) is empty.
 
 We can fix this by making the `title` property available to the
 component:
@@ -53,11 +54,10 @@ In other words, you are binding a named property from the outer scope to
 a named property in the component scope, with the syntax
 `componentProperty=outerProperty`.
 
-It is important to note that the value of these properties is bound.
-Whether you change the value on the model or inside the component, the
-values stay in sync. In the following example, type some text in the
+It is important to note that these properties stay in sync (technically
+known as being `bound`). In the following example, type some text in the
 text field either in the outer template or inside the component and note
-how they stay in sync.
+how the values stay in sync in both places.
 
 You can also bind properties from inside an `{{#each}}` loop. This will
 create a component for each item and bind it to each model in the loop.
@@ -76,9 +76,8 @@ pass properties to the chosen component in the same manner:
 
 ### Positional Params
 
-Apart from passing attributes to a component, you can also pass in positional parameters, like we've seen with the `{{link-to}}`, e.g. `{{link-to "user" userModel}}`.
-
-You can access these parameters by setting the `positionalParams` attribute in your component class.
+Apart from passing attributes to a component, you can also pass in positional parameters
+by setting the `positionalParams` attribute in your component class.
 
 ```app/components/x-visit.js
 const MyComponent = Ember.Component.extend();
