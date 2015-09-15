@@ -75,17 +75,18 @@ file at `app/components/blog-post.js`. If your component was called
 ### Dynamically rendering a component
 
 The `{{component}}` helper can be used to defer the selection of a component to
-run time. The `{{my-component}}` syntax would always render the same component,
-whereas using the `{{component}}` helper allows swapping the component rendered
-on the fly. This is useful in cases where, for example, you want to interact
-with different external libraries depending on the data. Using the `{{component}}`
-helper would allow you to keep those different logic well-separated.
+run time. The `{{my-component}}` syntax always renders the same component,
+while using the `{{component}}` helper allows choosing a component to render on
+the fly. This is useful in cases where you want to interact with different
+external libraries depending on the data. Using the `{{component}}` helper would
+allow you to keep different logic well-separated.
 
-The first parameter of the helper is the name of a component to render, as a string. So if you have `{{component 'blog-post'}}`, that is just the same as just `{{blog-post}}`.
+The first parameter of the helper is the name of a component to render, as a
+string. So `{{component 'blog-post'}}` is just the same as using `{{blog-post}}`.
 
 The real value of `{{component}}` comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a
-means to dispatch to different components for displaying different kinds of posts:
+means of choosing different components for displaying different kinds of posts:
 
 
 ```app/templates/components/foo-component.hbs
@@ -112,9 +113,6 @@ export default Ember.Route.extend({
   {{component post.componentName post=post}}
 {{/each}}
 ```
-
-For brevity, `componentName` is hardcoded inside each post, but it can very
-well be a computed property that deduces the target component based on the data.
 
 When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
 the helper renders nothing. When the parameter changes, the currently rendered
