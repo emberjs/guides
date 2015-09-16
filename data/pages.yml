@@ -10,10 +10,14 @@
   pages:
     - title: "Installing Ember"
       url: "index"
-    - title: "Your First Ember App"
-      url: "first-app"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "Application Setup and Structure"
+      url: "application-setup-and-structure"
+    - title: "Routes and Templates"
+      url: "routes-and-templates"
+    - title: "Models"
+      url: "models"
 
 - title: "The Object Model"
   url: 'object-model'
