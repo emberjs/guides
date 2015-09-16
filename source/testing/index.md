@@ -39,11 +39,6 @@ supported through third-party addons.
 
 Run your tests with `ember test` on the command-line. You can re-run your tests on every file-change with `ember test --server`. These commands run your tests using [Testem] to make testing multiple browsers very easy. You can configure Testem using the `testem.json` file in your application root.
 
-The Ember testing guide provides best practices and examples on how to test your
-Ember applications. If you find any errors or believe the documentation can be
-improved, please feel free to [contribute].
-
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
-[contribute]: https://github.com/emberjs/guides
 [Testem]: https://github.com/airportyh/testem
