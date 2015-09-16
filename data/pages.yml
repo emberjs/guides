@@ -148,8 +148,6 @@
       url: "testing-user-interaction"
     - title: "Unit Testing Basics"
       url: "unit-testing-basics"
-    - title: "Unit Test Helpers"
-      url: "unit-test-helpers"
     - title: "Testing Components"
       url: "testing-components"
     - title: "Testing Controllers"
