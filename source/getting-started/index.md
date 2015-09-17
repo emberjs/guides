@@ -55,6 +55,8 @@ Install Ember using npm:
 npm install -g ember-cli
 ```
 
+Mac users that used Homebrew to install node may wish to run `npm config get prefix`, prior installing ember-cli. If the prefix that this command returns is not in your path, then you can add it to your path or change the prefix with something like `npm config set prefix /usr/local`.
+ 
 While you're at it we recommend you also install PhantomJS to run tests from
 the command line (without the need for a browser to be open):
 
