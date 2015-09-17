@@ -284,6 +284,15 @@ also means that you don't have to manually keep records in sync—you can
 ask for a record by ID and not have to worry about whether other parts
 of your application have already asked for and loaded it.
 
+One downside to returning a cached record is you may find the state of
+the data has changed since it was first loaded into the store's
+identity map. In order to prevent this stale data from being a problem
+for long, Ember Data will automatically make a request in the
+background each time a cached record is returned from the store. When
+the new data comes in, the record is updated, and if there have been
+changes to the record since the initial render, the template is
+re-rendered with the new information.
+
 ### Architecture Overview
 
 The first time your application asks the store for a record, the store
