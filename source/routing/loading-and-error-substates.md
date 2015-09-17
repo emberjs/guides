@@ -56,14 +56,18 @@ Router.map(function() {
   });
 });
 ```
+For projects using pods, a custom `loading` substate can be defined
+for each route by creating a directory, `foo/bar/slow-model-loading`, 
+with a template (and optional route) inside. 
 
-Ember will try to find a `loading` route in the hierarchy
-above `foo.bar.slow-model` that it can transition into, starting with
-`foo.bar.slow-models`'s sibling:
+Ember will automatically try to find a `loading` route that it can
+transition into in the following order:
 
-1. `foo.bar.loading`
-2. `foo.loading`
-3. `loading`
+1. `foo.bar.slow-model-loading`
+2. `foo.bar.loading`
+3. `foo.loading`
+4. `loading`
+
 
 ### The `loading` event
 
