@@ -96,7 +96,7 @@ module TOC
         link_to(title, url, options)
       elsif whats_next = next_guide
         next_chapter = whats_next.pages.first
-        title = "We're done with #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title} \u2192"
+        title = "We've finished covering #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title} \u2192"
         url = "/#{next_guide.url}/#{next_chapter.url}.html"
 
         link_to(title, url, options)

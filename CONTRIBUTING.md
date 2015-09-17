@@ -27,7 +27,7 @@ The Guides are primarily meant to cover the "Ember happy path", and are not inte
 
 Each guide should thoroughly explain the feature it documents, and include links to the API documentation. Links to authoritative sources of information on background concepts are also encouraged: for example, the _Handlebars Basics_ guide appropriately links to http://handlebarsjs.com/. Do not link to other outside content like blog posts or meetup slides, as reviewing and updating this content is better suited for content aggregators.
 
-Liberally use examples in your writing. For example, the sentence "Templates can contain expressions in double curly braces." should have added to it "Templates can contain expressions in double curly braces, like \`&lt;h1&gt;Welcome {{user.name}}&lt;/h1&gt;\`." A short example is often more clear than a long explanation. In fact, it is often helpful to give two examples to make things even clearer.
+Liberally use examples in your writing. For example, the sentence "Templates can contain expressions in double curly braces" should be expanded to something like "Templates can contain expressions in double curly braces, such as \`&lt;h1&gt;Welcome {{user.name}}&lt;/h1&gt;\`" A short example is often more clear than a long explanation. In fact, it is often helpful to give two examples to make things even clearer.
 
 In code samples:
 
