@@ -131,11 +131,15 @@
     - title: "Customizing Serializers"
       url: "customizing-serializers"
 
-- title: "Services"
-  url: 'services'
+- title: "Services and Initializers"
+  url: 'services-and-initializers'
   pages:
-    - title: "Using Services"
-      url: "index"
+    - title: "Services"
+      url: "services"
+    - title: "Initializers"
+      url: "initializers"
+    - title: "The Container"
+      url: "container"
 
 - title: "Testing"
   url: 'testing'
