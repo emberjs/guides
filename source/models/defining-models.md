@@ -58,9 +58,18 @@ export default DS.Model.extend({
 For more about adding computed properties to your classes, see [Computed
 Properties](../../object-model/computed-properties).
 
-If you don't specify the type of the attribute, it will be whatever was
-provided by the server. You can make sure that an attribute is always
-coerced into a particular type by passing a `type` to `attr`:
+#### Transforms
+
+You may find the type of an attribute returned by the server does not
+match the type you would like to use in your JavaScript code. Ember
+Data allows you to define simple serialization and deserialization
+methods for attribute types called transforms. You can specify that
+you would like a transform to run for an attribute by providing the
+transform name as the first argument to the `DS.attr` method.
+
+For example if you would like to ransform an
+[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string to a
+JavaScript date object you would define your attribute like this:
 
 ```app/models/person.js
 export default DS.Model.extend({
@@ -68,15 +77,12 @@ export default DS.Model.extend({
 });
 ```
 
-The default adapter supports attribute types of `string`,
-`number`, `boolean`, and `date`. Custom adapters may offer additional
-attribute types, and new types can be registered as transforms. See the
-[documentation section on the REST Adapter](../../models/the-rest-adapter).
+Ember Data supports attribute types of `string`, `number`, `boolean`,
+and `date`. Which coerce the the value to the JavaScript type that
+matches its name.
 
-**Please note:** Ember Data serializes and deserializes dates according to
-                 [ISO 8601][]. For example: `2014-05-27T12:54:01`
-
-[ISO 8601]: http://en.wikipedia.org/wiki/ISO_8601
+Transforms are not required. If you do not specify a transform name
+Ember Data will do no additional processing of the value.
 
 #### Options
 
@@ -164,13 +170,16 @@ changing the `comments` relationship should update the `post`
 relationship on the inverse because `post` is the only relationship to
 that model.
 
-However, sometimes you may have multiple `belongsTo`/`hasMany`s for the
-same type. You can specify which property on the related model is the
-inverse using `DS.hasMany`'s `inverse` option:
+However, sometimes you may have multiple `belongsTo`/`hasMany`s for
+the same type. You can specify which property on the related model is
+the inverse using `DS.belongsTo` or `DS.hasMany`'s `inverse`
+option. Relationships without an inverse can be indicated as such by
+including `{ inverse: null }`.
+
 
 ```app/models/comment.js
 export default DS.Model.extend({
-  onePost: DS.belongsTo('post'),
+  onePost: DS.belongsTo('post', { inverse: null }),
   twoPost: DS.belongsTo('post'),
   redPost: DS.belongsTo('post'),
   bluePost: DS.belongsTo('post')
@@ -185,13 +194,13 @@ export default DS.Model.extend({
 });
 ```
 
-You can also specify an inverse on a `belongsTo`, which works how you'd expect.
-
 #### Reflexive relation
 
-When you want to define a reflexive relation, you must either explicitly define
-the other side, and set the explicit inverse accordingly, and if you don't need the
-other side, set the inverse to null.
+When you want to define a reflexive relation (a model that relation to
+itself), you must explicitly define the inverse relationship. If there
+is no inverse relationship then you can set the inverse to null.
+
+##### One To Many Reflexive Relationship
 
 ```app/models/folder.js
 export default DS.Model.extend({
@@ -200,10 +209,39 @@ export default DS.Model.extend({
 });
 ```
 
-or
+##### One To One Reflexive Relationship
+
+```app/models/user.js
+export default DS.Model.extend({
+  name: DS.attr('string'),
+  bestFriend: DS.belongsTo('user', {async: true, inverse: 'bestFriend' }),
+});
+```
+
+##### No Inverse Reflexive Relationship
 
 ```app/models/folder.js
 export default DS.Model.extend({
   parent: DS.belongsTo('folder', { inverse: null })
 });
 ```
+
+#### Readonly Nested Data
+
+Some Models may have properties that are deeply nested objects of
+readonly data. The naive solution would be to define models for each
+nested object and use `hasMany` and `belongsTo` to recreate the nested
+relationship. However, since readonly data will never need to be
+updated and saved this often results in the creation of a great deal
+of code for very little benefit. An alternate approch is to define
+these relationships using an attribute with no transform
+(`DS.attr()`). This makes it easy to access readonly values in
+computed properties and templates without the overhead of defining
+extraneous models.
+
+---
+
+Models, attributes and relationships help you define how your data is
+structured. In the next section, we will learn about how to fetch
+records and their relationships from your backend.
+

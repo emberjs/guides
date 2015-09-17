@@ -53,7 +53,27 @@ For example, we could search for all `person` models who have the name of
 `Peter`:
 
 ```javascript
-var peters = this.store.query('person', { name: 'Peter' }); // => GET to /persons?name=Peter
+// GET to /persons?filter[name]=Peter
+this.store.query('person', { filter: { name: 'Peter' } }).then(function(peters) {
+  // Do something with `peters`
+});
+```
+
+### Querying for A Single Record
+
+If you know your query will return only one result Ember Data provides
+a convenience method that will return a promise that resolves with a
+single record. Calling `store.queryRecord()` will make a `GET` request
+with the passed object serialized as query params.
+
+For example, we could search for all `person` models who have the name of
+`Peter`:
+
+```javascript
+// GET to /persons?filter[email]=tomster@example.com
+this.store.queryRecord('person', { filter: { email: 'tomster@example.com' } }).then(function(tomster) {
+  // do something with `tomster`
+});
 ```
 
 ### Integrating with the Route's Model Hook
