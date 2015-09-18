@@ -25,7 +25,7 @@ export default Ember.Route.extend({
 
 ```app/templates/index.hbs
 
-<h1>Template: {{title}}</h1>
+<h1>Template: {{model.title}}</h1>
 {{blog-post}}
 ```
 
@@ -37,7 +37,7 @@ We can fix this by making the `title` property available to the
 component:
 
 ```handlebars
-{{blog-post title=title}}
+{{blog-post title=model.title}}
 ```
 
 This will make the `title` property in the outer template scope
@@ -47,7 +47,7 @@ If, in the above example, the model's `title` property was instead
 called `name`, we would change the component usage to:
 
 ```handlebars
-{{blog-post title=name}}
+{{blog-post title=model.name}}
 ```
 
 In other words, you are binding a named property from the outer scope to
@@ -71,7 +71,7 @@ If you are using the `{{component}}` helper to render your component, you can
 pass properties to the chosen component in the same manner:
 
 ```handlebars
-{{component componentName title=title name=name}}
+{{component componentName title=model.title name=model.name}}
 ```
 
 ### Positional Params
