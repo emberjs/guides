@@ -118,8 +118,6 @@
       url: "defining-models"
     - title: "Finding Records"
       url: "finding-records"
-    - title: "Working with Records"
-      url: "working-with-records"
     - title: "Creating, Updating and Deleting"
       url: "creating-updating-and-deleting-records"
     - title: "Pushing Records into the Store"
