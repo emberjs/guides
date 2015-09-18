@@ -26,7 +26,7 @@ export Ember.Component.extend({
         {{/each}}
       </ol>
     </li>
-  {{/each}}
+  {{/each-in}}
 </ul>
 ```
 
@@ -125,5 +125,5 @@ undefined:
   Hello, {{name}}! You are {{person.age}} years old.
 {{else}}
   Sorry, nobody is here.
-{{/each}}
+{{/each-in}}
 ```
