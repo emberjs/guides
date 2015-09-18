@@ -1,42 +1,37 @@
-Below are some common issues you may encounter, along with the necessary
-steps to solve them. If your issue is not listed below, please submit an
-issue to the inspector's [Github repo][ember-inspector-github].
+Below are some common issues you may encounter when using the Inspector, along with the
+necessary steps to solve them. If your issue is not listed below, please submit an
+issue to the Inspector's [GitHub repo][ember-inspector-github].
 
 ### Ember Application Not Detected
 
-If the inspector cannot detect an Ember application, you will see
+If the Inspector cannot detect an Ember application, you will see
 the following message:
 
 <img
 src="../../images/guides/ember-inspector/troubleshooting-application-not-detected.png" width="350">
 
-Some of the reasons this happens:
+Some of the reasons this may happen:
 
 - This is not an Ember application
 - You are using an old Ember version ( < 1.0 ).
 - You are using a protocol other than http or https. For file:// protocol,
 follow [these steps](../installation/#toc_file-protocol).
 - The Ember application is inside a sandboxed iframe with no url (if you
-  are using Jsbin, follow [these steps](#toc_using-the-inspector-with-jsbin).
+  are using JS Bin, follow [these steps](#toc_using-the-inspector-with-jsbin).
 
-#### Using the Inspector with Jsbin
+### Using the Inspector with JS Bin
 
-Due to the way Jsbin uses iframes, the inspector doesn't work with edit
-mode.
-
-To use the inspector, switch to the "live preview" mode by clicking on the
-arrow circled below.
+Due to the way JS Bin uses iframes, the Inspector doesn't work with edit
+mode. To use the Inspector with JS Bin, switch to the "live preview" mode by clicking on
+the arrow circled below.
 
 <img src="../../images/guides/ember-inspector/troubleshooting-jsbin.png" width="350">
 
-
 ### Application is not Detected Without Reload
 
-If you always have to reload the application after you open the
-inspector, that may mean your application's
-booted state is corrupted. This happens if you are calling
-`advanceReadiness` or `deferReadiness` after the application has
-already booted.
+If you always have to reload your application after you open the Inspector, that may mean
+the application's booted state is corrupt. This happens if you call `advanceReadiness` or
+`deferReadiness` after the application has already booted.
 
 ### Data Adapter Not Detected
 
@@ -44,11 +39,8 @@ When you click on the Data tab, and see this message:
 
 <img src="../../images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350">
 
-It means that you are either not using a data persistence library
-(such as Ember Data), or the library you're using does not support the
-Ember Inspector.
-
-If you are the library's author, [see this section](../data/#toc_building-a-data-custom-adapter) on how to add Ember Inspector support.
+It means that the data persistence library you're using does not support the Inspector.
+If you are the library's author, [see this section](../data/#toc_building-a-data-custom-adapter) on how to add Inspector support to your library.
 
 ### Promises Not Detected
 
@@ -60,23 +52,19 @@ This happens if you are using a version of Ember < 1.3.
 
 #### Missing Promises
 
-If the Promises tab is working, but there are promises you can't find,
+If the Promises tab is working, but there are Promises you can't find,
 it's probably because these Promises were created before the
-inspector is activated.
-
-To start detecting promises the moment the app boots, click on the `Reload` button below:
+Inspector was activated. To detect Promises the moment the app boots, click on the `Reload` button below:
 
 <img src="../../images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350">
 
 #### Inspector Version Old on Firefox
 
-Firefox addons need to go through a review process before every update.
-This causes the Firefox Ember Inspector to usually be one version
-behind.
+Firefox addons need to go through a review process with each update, so the Inspector is usually one version behind.
 
-Unfortunately we don't have control over this process, so if you need
-the latest inspector version, you will have to download and install the inspector
-manually from [Github][ember-inspector-github].
+Unfortunately we don't have control over the Firefox review process, so if you need
+the latest Inspector version, download and install it manually from
+[GitHub][ember-inspector-github].
 
 
 [ember-inspector-github]: https://github.com/emberjs/ember-inspector
