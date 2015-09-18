@@ -1,4 +1,4 @@
-#### Creating Records
+## Creating Records
 
 You can create records by calling the `createRecord` method on the store.
 
@@ -42,7 +42,27 @@ store.findRecord('user', 1).then(function(user) {
 });
 ```
 
-#### Persisting Records
+## Updating Records
+
+Making changes to Ember Data records is as simple as setting the attribute you
+want to change:
+
+```js
+this.store.findRecord('person', 1).then(function(tyrion) {
+  // ...after the record has loaded
+  tyrion.set('firstName', "Yollo");
+});
+```
+
+All of the Ember.js conveniences are available for
+modifying attributes. For example, you can use `Ember.Object`'s
+`incrementProperty` helper:
+
+```js
+person.incrementProperty('age'); // Happy birthday!
+```
+
+## Persisting Records
 
 Records in Ember Data are persisted on a per-instance basis.
 Call `save()` on any instance of `DS.Model` and it will make a network request.
@@ -62,8 +82,7 @@ var post = store.createRecord('post', {
 post.save(); // => POST to '/posts'
 ```
 
-While records that already exist on the backend are updated using the
-HTTP `PATCH` verb when saved.
+Records that already exist on the backend are updated using the HTTP `PATCH` verb.
 
 ```javascript
 store.findRecord('post', 1).then(function(post) {
@@ -75,7 +94,37 @@ store.findRecord('post', 1).then(function(post) {
 });
 ```
 
-### Promises
+You can tell if a record has outstanding changes that have not yet been
+saved by checking its `isDirty` property. You can also see what parts of
+the record were changed and what the original value was using the
+`changedAttributes` function.  `changedAttributes` returns an object,
+whose keys are the changed properties and values are an array of values
+`[oldValue, newValue]`.
+
+```js
+person.get('isAdmin');      //=> false
+person.get('isDirty');      //=> false
+person.set('isAdmin', true);
+person.get('isDirty');      //=> true
+person.changedAttributes(); //=> { isAdmin: [false, true] }
+```
+
+At this point, you can either persist your changes via `save()` or you
+can rollback your changes. Calling `rollback()` reverts all the
+`changedAttributes` to their original value.
+
+```js
+person.get('isDirty');      //=> true
+person.changedAttributes(); //=> { isAdmin: [false, true] }
+
+person.rollback();
+
+person.get('isDirty');      //=> false
+person.get('isAdmin');      //=> false
+person.changedAttributes(); //=> {}
+```
+
+## Promises
 
 `save()` returns a promise, which makes easy to asynchronously handle
  success and failure scenarios.  Here's a common pattern:
@@ -102,7 +151,7 @@ post.save().then(transitionToPost).catch(failure);
 // => transitioning to posts.show route
 ```
 
-### Deleting Records
+## Deleting Records
 
 Deleting records is just as straightforward as creating records. Just
 call `deleteRecord()` on any instance of `DS.Model`. This flags the
@@ -123,7 +172,6 @@ store.findRecord('post', 2).then(function(post) {
 });
 ```
 
-Deleted records will still showup in RecordArrays returned by
+Deleted records will still show up in RecordArrays returned by
 `store.peekAll` and `hasMany` relationships until they have been
 successfully saved.
-
