@@ -1,5 +1,3 @@
-## Models
-
 Models are objects that represent the underlying data that your
 application presents to the user. Different apps will have very
 different models, depending on what problems they're trying to solve.
@@ -52,8 +50,6 @@ powered by WebSockets. You can open a socket to your server and push
 changes into Ember Data whenever they occur, giving your app a real-time
 user interface that is always up-to-date.
 
-### Thinking in Ember Data
-
 At first, using Ember Data may feel different than the way you're used
 to writing JavaScript applications. Many developers are familiar with
 using AJAX to fetch raw JSON data from an endpoint, which may appear
@@ -67,8 +63,7 @@ Once you have an understanding of Ember Data, you will have a much
 better way to manage the complexity of data loading in your application.
 This will allow your code to evolve without becoming a mess.
 
-#### The Store and a Single Source of Truth
-#### The Naive Approach
+## The Store and a Single Source of Truth
 
 One common way of building web applications is to tightly couple user
 interface elements to data fetching. For example, imagine you are
@@ -150,7 +145,7 @@ for your app's models. Both your components and routes have access to
 this shared store; when they need to display or modify a model, they
 first ask the store for it.
 
-#### Convention Over Configuration with JSON API
+## Convention Over Configuration with JSON API
 
 You can significantly reduce the amount of code you need to write and
 maintain by relying on Ember's conventions. By adopting these
@@ -183,7 +178,7 @@ breaking your frontend. And as you add apps for other platforms, such as
 iOS and Android, you will be able to leverage JSON API libraries for
 those platforms to easily consume the same API your Ember app uses.
 
-#### Models
+## Models
 
 In Ember Data, each model is represented by a subclass of `Model` that
 defines the attributes, relationships, and behavior of the data that you
@@ -220,7 +215,7 @@ Models don't have any data themselves; they just define the attributes,
 relationships and behavior of specific instances, which are called
 **records**.
 
-#### Records
+## Records
 
 A **record** is an instance of a model that contains data loaded from a
 server. Your application can also create new records and save them back
@@ -239,7 +234,7 @@ this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
 An ID is usually assigned to a record by the server when you save it for
 the first time, but you can also generate IDs client-side.
 
-#### Adapter
+## Adapter
 
 An **adapter** is an object that translates requests from Ember (such as
 "find the user with an ID of 123") into a requests to a server.
@@ -258,7 +253,7 @@ successful.
 Adapters let you completely change how your API is implemented without
 impacting your Ember application code.
 
-#### The Store
+## Caching
 
 The store will automatically cache records for you. If a record had already
 been loaded, asking for it a second time will always return the same
@@ -293,7 +288,7 @@ the new data comes in, the record is updated, and if there have been
 changes to the record since the initial render, the template is
 re-rendered with the new information.
 
-### Architecture Overview
+## Architecture Overview
 
 The first time your application asks the store for a record, the store
 sees that it doesn't have a local copy and requests it from your
