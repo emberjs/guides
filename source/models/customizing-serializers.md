@@ -405,7 +405,7 @@ for a full list of methods and properties.
 Although Ember Data encourages you to sideload your relationships,
 sometimes when working with legacy APIs you may discover you need to
 deal with JSON that contains relationships embedded inside other
-records. The `EmbeddedRecordsMixin` is ment to help with this problem.
+records. The `EmbeddedRecordsMixin` is meant to help with this problem.
 
 To set up embedded records, include the mixin when extending a
 serializer then define and configure embedded relationships.
