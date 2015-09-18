@@ -91,7 +91,7 @@ Now the image will be shown when the button is clicked.
 
 We should let users hide the image again. In our template component:
 
-``app/templates/components/rental-tile.hbs
+```app/templates/components/rental-tile.hbs
 <li>{{#link-to 'listing' listing.id}}{{listing.owner}}'s {{listing.type}}{{/link-to}}
   {{#if isImageShowing}}
     <p><img src={{listing.image}} alt={{listing.type}} {{action 'imageHide'}}></p>
