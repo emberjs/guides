@@ -10,10 +10,10 @@
   pages:
     - title: "Installing Ember"
       url: "index"
-    - title: "Your First Ember App"
-      url: "first-app"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "Component to Hide/Show Image"
+      url: "component-hide-show-image"
 
 - title: "The Object Model"
   url: 'object-model'
