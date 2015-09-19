@@ -55,9 +55,9 @@ a named property in the component scope, with the syntax
 `componentProperty=outerProperty`.
 
 It is important to note that these properties stay in sync (technically
-known as being `bound`). In the following example, type some text in the
-text field either in the outer template or inside the component and note
-how the values stay in sync in both places.
+known as being `bound`). That is, if the value of `componentProperty`
+changes in the component, `outerProperty` will be updated to reflect that
+change. The reverse is true as well.
 
 You can also bind properties from inside an `{{#each}}` loop. This will
 create a component for each item and bind it to each model in the loop.
