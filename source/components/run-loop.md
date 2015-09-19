@@ -94,14 +94,6 @@ user.set('lastName', 'Katz');
 
 We see that the browser will rerender the template twice.
 
-```javascript
-var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
-user.set('firstName', 'Yehuda');
-user.set('lastName', 'Katz');
-
-// {{firstName}}  {{lastName}} and {{fullName}} are updated
-```
-
 However, if we have the run loop in the above code, the browser will only rerender the template once the attributes have all been set.
 
 ```javascript
