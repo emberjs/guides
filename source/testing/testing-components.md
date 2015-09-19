@@ -1,7 +1,6 @@
-_Unit testing methods and computed properties follows previous patterns shown
-in [Unit Testing Basics] because Ember.Component extends Ember.Object._
 
-Components can be tested using the `moduleForComponent` helper.
+
+Components can be tested with integration tests using the `moduleForComponent` helper.
 
 Let's assume we have a component with a `style` property that is updated
 whenever the value for its `name` property changes. The `style` attribute of the
@@ -15,7 +14,8 @@ export default Ember.Component.extend({
   attributeBindings: ['style'],
 
   style: Ember.computed('name', function() {
-    return 'color: ' + this.get('name') + ';';
+    const name = this.get('name');
+    return `color: ${name}`;
   })
 });
 ```
@@ -25,71 +25,56 @@ Pretty Color: {{name}}
 ```
 
 The `moduleForComponent` helper will find the component by name (`pretty-color`)
-and its template (if available).
+and its template (if available).  Make sure to set `integration: true` to enable
+integration test capability.
 
-```tests/unit/components/pretty-color-test.js
-moduleForComponent('pretty-color', {
-  // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+```tests/integration/components/pretty-color-test.js
+moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
+  integration: true
 });
 ```
 
-Each test following the `moduleForComponent` call has access to the `subject()`
-function, which lets us create a new instance of the component, as well as
-provide any initial values we want it to have.
+Each test following the `moduleForComponent` call has access to the `render()`
+function, which lets us create a new instance of the component by declaring
+the component in template syntax, as we would in our application.
 
 We can test that changing the component's `name` property updates the
 component's `style` attribute and is reflected in the  rendered HTML:
 
-```tests/unit/components/pretty-color-test.js
-test('changing colors', function(assert) {
+```tests/integration/components/pretty-color-test.js
+test('should change colors', function(assert) {
   assert.expect(2);
 
-  // this.subject() is available because we used moduleForComponent
-  var component = this.subject({ name: 'red' });
+  // set the outer context to red
+  this.set('colorValue', 'red');
 
-  // Renders the component to the page
-  this.render();
+  this.render(hbs`{{pretty-color name=colorValue}}`);
 
-  // Assert the initial style
-  assert.equal(this.$().attr('style'), 'color: red;');
+  assert.equal(this.$('div').attr('style'), 'color: red', 'starts as red');
 
-  // We wrap this with Ember.run because this.set is an async function
-  Ember.run(function() {
-    // Change the name
-    component.set('name', 'green');
-  });
+  this.set('colorValue', 'blue');
 
-  // Assert the style has changed
-  assert.equal(this.$().attr('style'), 'color: green;');
+  assert.equal(this.$('div').attr('style'), 'color: blue', 'updates to blue');
 });
 ```
 
 We might also test this component to ensure that the content of its template is
 being rendered properly:
 
-```tests/unit/components/pretty-color-test.js
-test('template is rendered with the color name', function(assert) {
+```tests/integration/components/pretty-color-test.js
+test('should be rendered with its color name', function(assert) {
   assert.expect(2);
 
-  // this.subject() is available because we used moduleForComponent
-  var component = this.subject();
+  this.set('colorValue', 'orange');
 
-  // Renders the component to the page
-  this.render();
+  this.render(hbs`{{pretty-color name=colorValue}}`);
 
-  // Assert initial content of the component
-  var initialContent = $.trim(this.$().text());
-  assert.equal(initialContent, 'Pretty Color:');
+  assert.equal(this.$().text().trim(), 'Pretty Color: orange', 'text starts as orange');
 
-  // we wrap this with Ember.run because it is an async function
-  Ember.run(function() {
-    component.set('name', 'green');
-  });
+  this.set('colorValue', 'green');
 
-  // Assert content of the component has changed
-  var finalContent = $.trim(this.$().text());
-  assert.equal(finalContent, 'Pretty Color: green');
+  assert.equal(this.$().text().trim(), 'Pretty Color: green', 'text switches to green');
+
 });
 ```
 
@@ -128,183 +113,70 @@ export default Ember.Component.extend({
 jQuery triggers can be used to simulate user interaction and test that the title
 is updated when the button is clicked on:
 
-```tests/unit/components/magic-title-test.js
-test('clicking the button updates the title', function(assert) {
+```tests/integration/components/magic-title-test.js
+test('should update title on button click', function(assert) {
   assert.expect(2);
 
-  // Create the component instance
-  var component = this.subject();
+  this.render(hbs`{{magic-title}}`);
 
-  // Assert the initial title
-  var initialTitle = this.$().find('h2').text();
-  assert.equal(initialTitle, 'Hello World');
+  assert.equal(this.$('h2').text(), 'Hello World', 'initial text is hello world');
 
-  // Click on the button
-  this.$().find('button').click();
+  //Click on the button
+  this.$('button').click();
 
-  // Assert that the title has changed
-  var finalTitle = this.$().find('h2').text();
-  assert.equal(finalTitle, 'Hello Ember World');
+  assert.equal(this.$('h2').text(), 'This is Magic', 'title changes after click');
 });
 ```
 
 ### Testing Actions
 
-Components often utilize the `sendAction()` method to send actions to other
-objects in your application.
+Components starting in Ember 2 utilize closure actions. Closure actions allow components
+to directly invoke functions provided outer components.
 
-For example, imagine you have a comment form component that sends a specified
-`submit` action when the form is submitted, passing along the form's data:
+For example, imagine you have a comment form component that invokes a
+`submitComment` action when the form is submitted, passing along the form's data:
 
 > You can follow along by generating your own component with `ember generate
 > component comment-form`.
 
 ```app/components/comment-form.js
 export default Ember.Component.extend({
-  body: null,
+  comment: '',
 
   actions: {
-    submit() {
-      var body = this.get('body');
-
-      this.sendAction('submit', { body: body });
+    submitComment() {
+      this.attrs.submitComment({ comment: this.get('comment') });
     }
   }
 });
 ```
 
 ```app/templates/components/comment-form.hbs
-<form {{action "submit" on="submit"}}>
+<form {{action "submitComment" on="submit"}}>
   <label>Comment:</label>
-  {{textarea value=body}}
+  {{textarea value=comment}}
 
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit"/>
 </form>
 ```
 
-You might use this component in your application like this:
+Here's an example test that asserts that the specified `externalAction` function
+is invoked when the component's internal `submitComment` action is triggered by making use
+of a test double (dummy function):
 
-```handlebars
-{{comment-form submit="createComment"}}
-```
+```tests/integration/components/comment-form-test.js
+test('should trigger external action on form submit', function(assert) {
 
-Here's an example test that asserts that the specified `externalAction` action
-is sent when the component's internal `submit` action is triggered by making use
-of a test double (dummy object):
+  // test double for the external action
+  this.set('externalAction', (attributes) => assert.deepEqual(attributes, { comment: 'You are not a wizard!' }, 'submitted input value gets passed to external action'));
 
-```tests/unit/components/comment-form-test.js
-test('external action is triggered when form is submitted', function(assert) {
-  // This is important to make sure that the test fails if
-  // our assertion is never called
-  assert.expect(1);
+  this.render(hbs`{{comment-form submitComment=(action externalAction)}}`);
 
-  // Create our test double
-  var targetObject = {
-    externalAction(attributes) {
-      // This assertion will be called when the action is triggered
-      assert.deepEqual(attributes, { body: 'You are not a wizard!' });
-    }
-  };
+  // fill out the form and force an onchange
+  this.$('textarea').val('You are not a wizard!');
+  this.$('textarea').change();
 
-  // Creates the component
-  var component = this.subject({
-    // Sets sample data
-    body: 'You are not a wizard!',
-
-    // Sets the targetObject to our test double
-    // (this is where sendAction will send its action)
-    targetObject: targetObject,
-
-    // Specifies which action to send to targetObject on submit
-    submit: 'externalAction'
-  });
-
-  // Renders the component to the page
-  this.render();
-
-  // Submits the form
-  this.$().find('input[type="submit"]').click();
+  // click the button to submit the form
+  this.$('input').click();
 });
 ```
-
-<!---
-### Components Using Other Components
-
-Sometimes components are easier to maintain if they're broken up into parent and child
-components. Here is a simple example:
-
-```app/components/my-album.js
-import layout from '../templates/components/my-kittens';
-
-export default Ember.Component.extend({
-  layout: layout,
-  tagName: 'img',
-  attributeBindings: ['width', 'height', 'src'],
-  src: Ember.computed('width', 'height', function() {
-    return 'http://placekitten.com/' + this.get('width') + '/' + this.get('height');
-  })
-});
-```
-
-```app/templates/components/my-album.hbs
-<h3>{{title}}</h3>
-{{yield}}
-```
-
-```app/components/my-kitten.js
-import layout from '../templates/components/my-kitten';
-
-export default Ember.Component.extend({
-  layout: layout,
-  tagName: 'img',
-  attributeBindings: ['width', 'height', 'src'],
-  src: Ember.computed('width', 'height', function() {
-    return 'http://placekitten.com/' + this.get('width') + '/' + this.get('height');
-  })
-});
-```
-
-Usage of this component might look something like this:
-
-```handlebars
-{{#my-album title="Cats"}}
-  {{my-kitten width="200" height="300"}}
-  {{my-kitten width="100" height="100"}}
-  {{my-kitten width="50" height="50"}}
-{{/my-album}}
-```
-
-Using the `needs` callback greatly simplifies testing components
-with a parent-child relationship.
-
-```tests/unit/components/my-album-test.js
-moduleForComponent('my-album', {
-  // specify the other units that are required for this test
-  needs: ['component:my-kitten']
-});
-
-
-test('renders kittens', function(assert) {
-  assert.expect(2);
-
-  // component instance
-  var component = this.subject({
-    title: 'Cats',
-    template: Ember.Handlebars.compile(
-      '{{my-kitten width="200" height="300"}}' +
-      '{{my-kitten width="100" height="100"}}' +
-      '{{my-kitten width="50" height="50"}}'
-    )
-  });
-
-  // Render the component
-  this.$();
-
-  // perform assertions
-  assert.equal(this.$().find('h3:contains("Cats")').length, 1);
-  assert.equal(this.$().find('img').length, 3);
-});
-```
--->
-
-[Unit Testing Basics]: ../unit-testing-basics
