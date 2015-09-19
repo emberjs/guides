@@ -67,7 +67,7 @@ methods for attribute types called transforms. You can specify that
 you would like a transform to run for an attribute by providing the
 transform name as the first argument to the `DS.attr` method.
 
-For example if you would like to ransform an
+For example if you would like to transform an
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string to a
 JavaScript date object you would define your attribute like this:
 
