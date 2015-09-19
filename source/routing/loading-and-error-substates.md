@@ -57,13 +57,18 @@ Router.map(function() {
 });
 ```
 
-Ember will try to find a `loading` route in the hierarchy
-above `foo.bar.slow-model` that it can transition into, starting with
-`foo.bar.slow-models`'s sibling:
+Ember will alternate trying to find a `routeName-loading` or `loading` template
+in the hierarchy starting with `foo.bar.slow-model-loading`:
 
-1. `foo.bar.loading`
-2. `foo.loading`
-3. `loading`
+1. `slow-model-loading`
+2. `foo.bar.loading` or `foo.bar-loading`
+3. `foo.loading` or `foo-loading`
+4. `loading` or `application-loading`
+
+It's important to note that for `slow-model` itself Ember will not try to find
+a `slow-model.loading` template but for the rest of the hierarchy either
+syntax is acceptable. This can be useful for creating a custom loading screen
+for a leaf route like `slow-model`.
 
 ### The `loading` event
 
@@ -85,7 +90,7 @@ export default Ember.Route.extend({
 
 If the `loading` handler is not defined at the specific route,
 the event will continue to bubble above a transition's parent
-route, providing the `route:application` the opportunity to manage it.
+route, providing the `application` route the opportunity to manage it.
 
 ## `error` substates
 
@@ -104,12 +109,14 @@ Router.map(function() {
 });
 ```
 
-For instance, an thrown error or rejected promise returned from
-`route:articles/overview`'s `model` hook (or `beforeModel` or `afterModel`)
-will look for:
+As with the `loading` substate, on a thrown error or rejected promise returned
+from the `articles.overview` route's `model` hook (or `beforeModel` or
+`afterModel`) Ember will look for an error template or route in the following
+order:
 
-1. Either `route:articles/error` or `articles/error` template
-2. Either `route:error` or `error` template
+1. `articles.overview-error`
+2. `articles.error` or `articles-error`
+3. `error` or `application-error`
 
 If one of the above is found, the router will immediately transition into
 that substate (without updating the URL). The "reason" for the error
@@ -121,9 +128,9 @@ logged.
 
 ### The `error` event
 
-If `route:articles/overview`'s `model` hook returns a promise that rejects (for
-instance the server returned an error, the user isn't logged in,
-etc.), an `error` event will fire on `route:articles/overview` and bubble upward.
+If the `articles.overview` route's `model` hook returns a promise that rejects
+(for instance the server returned an error, the user isn't logged in,
+etc.), an `error` event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
