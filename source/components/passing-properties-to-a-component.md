@@ -55,7 +55,7 @@ a named property in the component scope, with the syntax
 `componentProperty=outerProperty`.
 
 It is important to note that these properties stay in sync (technically
-known as being `bound`). That is, if the value of `componentProperty`
+known as being "bound"). That is, if the value of `componentProperty`
 changes in the component, `outerProperty` will be updated to reflect that
 change. The reverse is true as well.
 
