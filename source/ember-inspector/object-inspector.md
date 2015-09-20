@@ -24,7 +24,7 @@ click on the calculator to compute it.
 #### Sending from the Inspector to the Console
 
 You can expose objects to the console by clicking on the `$E` button within the Inspector.
-This will set the the global `$E` variable to the chosen object.
+This will set the global `$E` variable to the chosen object.
 
 <img src="../../images/guides/ember-inspector/object-inspector-$E.png"
 width="450">
