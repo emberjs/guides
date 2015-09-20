@@ -78,8 +78,8 @@ export default DS.Model.extend({
 ```
 
 Ember Data supports attribute types of `string`, `number`, `boolean`,
-and `date`. Which coerce the the value to the JavaScript type that
-matches its name.
+and `date`. Which coerce the value to the JavaScript type that matches
+its name.
 
 Transforms are not required. If you do not specify a transform name
 Ember Data will do no additional processing of the value.
