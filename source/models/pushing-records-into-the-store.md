@@ -64,8 +64,8 @@ export default Ember.Route.extend({
 });
 ```
 
-The the store's `push()` method is a low level API which accepts a
-JSON API document with a few important differences from the JSON API
+The store's `push()` method is a low level API which accepts a JSON
+API document with a few important differences from the JSON API
 document that the JSONAPISerializer accepts. The type name in the JSON
 API document must match the type name of the model exactly (In the
 example above the type is `album` because the model is defined in
