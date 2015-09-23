@@ -60,7 +60,7 @@ You can specify an alternative event by using the `on` option.
 
 ```handlebars
 <p>
-  <button {{action "select" post on="mouse-up"}}>✓</button>
+  <button {{action "select" post on="mouseUp"}}>✓</button>
   {{post.title}}
 </p>
 ```
