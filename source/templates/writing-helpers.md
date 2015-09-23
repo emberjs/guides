@@ -265,7 +265,7 @@ from within the `compute()` method.
 
 ```app/helpers/is-authenticated.js
 export default Ember.Helper.extend({
-  authentication: Ember.inject.service()
+  authentication: Ember.inject.service(),
   compute() {
     let authentication = this.get('authentication');
 
