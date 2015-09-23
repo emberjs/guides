@@ -190,7 +190,7 @@ export default Ember.Component.extend({
 ```app/templates/components/user-form.hbs
 <form {{action "submit" on="submit"}}>
   <p><label>Name {{input type="text" value=name}}</label></p>
-  <p>label>Bio {{textarea value=bio}}</label></p>
+  <p><label>Bio {{textarea value=bio}}</label></p>
   <button {{action "cancel"}}>Cancel</button>
   <input type="submit">
 </form>
