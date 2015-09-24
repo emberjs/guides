@@ -186,9 +186,6 @@ $('a').click(() => {
   Ember.run.schedule('actions', () => {
     // Do more things
   });
-  Ember.run.scheduleOnce('afterRender', () => {
-    // Yet more things
-  });
 });
 ```
 
@@ -225,12 +222,11 @@ $('a').click(() => {
 
   });
 
-  // 4. scheduleOnce sees the autorun created by schedule above as an available
+  // 4. This schedule sees the autorun created by schedule above as an available
   //    runloop and adds its item to the given queue.
-  Ember.run.scheduleOnce('afterRender', () => {
-    // Yet more things
+  Ember.run.schedule('afterRender', () => {
+    // Do yet more things
   });
-
 });
 ```
 
