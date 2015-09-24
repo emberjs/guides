@@ -66,8 +66,8 @@ a convenience method that will return a promise that resolves with a
 single record. Calling `store.queryRecord()` will make a `GET` request
 with the passed object serialized as query params.
 
-For example, we could search for all `person` models who have the name of
-`Peter`:
+For example, if we know that an email uniquely identifies a person, we could search for a `person` model that has an email address of
+`tomster@example.com`:
 
 ```javascript
 // GET to /persons?filter[email]=tomster@example.com
