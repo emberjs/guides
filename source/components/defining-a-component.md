@@ -1,8 +1,5 @@
-To define a component, create a template in the `components/` directory.
-For example, to define a new component called `{{blog-post}}`,
-create a `components/blog-post` template.
-
-**Note:** Components must have at least one dash in their name. So `blog-post` is an acceptable name, so is `audio-player-controls`, but `post` is not. This prevents clashes with current or future HTML element names, and
+To define a component, create a template in the `app/templates/components/` directory.
+Components must have at least one dash in their name. So `blog-post` is an acceptable name, so is `audio-player-controls`, but `post` is not. This prevents clashes with current or future HTML element names, and
 ensures Ember detects the components automatically.
 
 A sample component template would look like this:
@@ -12,8 +9,7 @@ A sample component template would look like this:
 <p>Lorem ipsum dolor sit amet.</p>
 ```
 
-Having a template whose path name starts with `components/` creates a
-component of the same name. Given the above template, you can now use the
+Given the above template, you can now use the
 `{{blog-post}}` custom element:
 
 ```app/templates/index.hbs
