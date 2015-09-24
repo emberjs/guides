@@ -456,7 +456,7 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
       deserialize: 'records'
     },
     comments: {
-      deserialize: 'records'
+      deserialize: 'records',
       serialize: 'ids'
     }
   }
