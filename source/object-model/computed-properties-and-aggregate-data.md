@@ -4,7 +4,7 @@ to calculate how many remain incomplete based on their `isDone` property.
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
-```app/controllers/todos.js
+```app/components/todos.js
 export default Ember.Component.extend({
   todos: [
     Ember.Object.create({ isDone: true }),
@@ -31,7 +31,8 @@ In the example above, the `remaining` count is `1`:
 
 ```javascript
 import TodosComponent from 'app/components/todos';
-todosComponent = TodosComponent.create();
+
+let todosComponent = TodosComponent.create();
 todosComponent.get('remaining');
 // 1
 ```
@@ -40,8 +41,8 @@ If we change the todo's `isDone` property, the `remaining` property is updated
 automatically:
 
 ```javascript
-var todos = todosComponent.get('todos');
-var todo = todos.objectAt(1);
+let todos = todosComponent.get('todos');
+let todo = todos.objectAt(1);
 todo.set('isDone', true);
 
 todosComponent.get('remaining');
