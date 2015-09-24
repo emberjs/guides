@@ -53,28 +53,3 @@ export default {
   }
 };
 ```
-
-## Pausing the Boot Process
-
-If you need to make sure that the rest of your application doesn't load until
-an initializer has finished loading, you can use the `deferReadiness` and
-`advanceReadiness` methods, which will wait until all of the promises
-are resolved until continuing.
-
-For example, if you wanted to keep your application from booting until the
-current user was set, you could do something like this:
-
-```app/initializers/current-user.js
-export default {
-  name: "currentUserLoader",
-  after: "store",
-
-  initialize: function(container, application) {
-    application.deferReadiness();
-
-    container.lookup('store:main').find('user', 'current').then(function(user) {
-      application.inject('route', 'currentUser', 'user:current');
-      application.advanceReadiness();
-    });
-  }
-};
