@@ -40,7 +40,7 @@ The `{{link-to}}` helper takes one or two arguments:
   an explicit value instead:
 
 ```app/templates/photos.hbs
-{{#link-to "photos.photo.edit" 1}}
+{{#link-to "photos.edit" 1}}
   First Photo Ever
 {{/link-to}}
 ```
