@@ -12,6 +12,12 @@ our application. The alert function `displayAlert` should be put into the
 `ApplicationRoute` because all actions and events bubble up to it from 
 sub-routes and controllers.
 
+> By default Ember CLI does not generate a file for its application route.  To
+> extend the behavior of the ember application route we will run the command
+> `ember generate route application`.  Ember CLI does however generate an application
+> template, so when asked whether we want to overwrite `app/templates/application.hbs`
+> we will answer 'n'.
+
 ```app/routes/application.js
 export default Ember.Route.extend({
   actions: {
@@ -26,8 +32,6 @@ export default Ember.Route.extend({
 });
 ```
 
-This is made possible by using `moduleFor`.
-
 In this route we've [separated our concerns](http://en.wikipedia.org/wiki/Separation_of_concerns):
 The action `displayAlert` contains the code that is called when the action is 
 received, and the private function `_displayAlert` performs the work. While not 
@@ -38,9 +42,11 @@ for testing, which in turn allows you to catch bugs more easily.
 Here is an example of how to unit test this route:
 
 ```tests/unit/routes/application-test.js
+import { moduleFor, test } from 'ember-qunit';
+
 let originalAlert;
 
-moduleFor('route:application', {
+moduleFor('route:application', 'Unit | Route | application', {
   beforeEach() {
     originalAlert = window.alert; // store a reference to window.alert
   },
@@ -50,30 +56,29 @@ moduleFor('route:application', {
   }
 });
 
-test('Alert is called on displayAlert', function(assert) {
+test('should display an alert', function(assert) {
   assert.expect(2);
 
   // with moduleFor, the subject returns an instance of the route
-  var route = this.subject();
-  var expectedText;
+  let route = this.subject();
 
   // stub window.alert to perform a qunit test
-  expectedText = 'foo';
-  window.alert = function(text) {
-    assert.equal(text, expectedText, 'expected ' + text + ' to be ' + expectedText);
+  const expectedTextFoo = 'foo';
+  window.alert = (text) => {
+    assert.equal(text, expectedTextFoo, `expect alert to display ${expectedTextFoo}`);
   };
 
   // call the _displayAlert function which triggers the qunit test above
-  route._displayAlert(expectedText);
-  
-  // set up a second stub to perform a test with the actual action
-  expectedText = 'bar';
-  window.alert = function(text) {
-    assert.equal(text, expectedText, 'expected ' + text + ' to be ' + expectedText);
-  };
+  route._displayAlert(expectedTextFoo);
 
+  // set up a second stub to perform a test with the actual action
+  const expectedTextBar = 'bar';
+  window.alert = (text) => {
+    assert.equal(text, expectedTextBar, `expected alert to display ${expectedTextBar}`);
+  };
+    
   // Now use the routes send method to test the actual action
-  route.send('displayAlert', expectedText);
+  route.send('displayAlert', expectedTextBar);
 });
 ```
 
