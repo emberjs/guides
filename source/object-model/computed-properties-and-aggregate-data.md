@@ -59,7 +59,7 @@ Note that `@each` only works one level deep. You cannot use nested forms like
 
 Sometimes you don't care if properties of individual array items change. In this
 case use the `[]` key instead of `@each`. Computed properties dependent on an array
-using the `[] key will only update if items are added to or removed from the array,
+using the `[]` key will only update if items are added to or removed from the array,
 or if the array property is set to a different array. For example:
 
 ```app/controllers/todos.js
