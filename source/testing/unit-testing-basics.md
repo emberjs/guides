@@ -11,7 +11,7 @@ common cases.
 
 ### Testing Computed Properties
 
-Let's start by looking at an object that has a `computedFoo` computed property
+Let's start by creating an object that has a `computedFoo` computed property
 based on a `foo` property.
 
 ```app/models/some-thing.js
@@ -19,31 +19,35 @@ export default Ember.Object.extend({
   foo: 'bar',
 
   computedFoo: Ember.computed('foo', function() {
-    return 'computed ' + this.get('foo');
+    const foo = this.get('foo');
+    return `computed ${foo}`;
   })
 });
 ```
 
-Within the test we'll create an instance, update the `foo` property (which
+Within the test for this object we'll create an instance, update the `foo` property (which
 should trigger the computed property), and assert that the logic in our
 computed property is working correctly.
 
 ```tests/unit/models/some-thing-test.js
-import SomeThing from '<your-app-name>/models/some-thing';
+import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('model:some-thing', 'Unit: some-thing');
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
 
-test('computedFoo correctly concats foo', function(assert) {
-  var someThing = SomeThing.create({});
-
+test('should correctly concat foo', function(assert) {
+  const someThing = this.subject();
   someThing.set('foo', 'baz');
-
   assert.equal(someThing.get('computedFoo'), 'computed baz');
 });
 ```
 
-See that we have used `moduleFor` one of the several [unit-test helpers](../unit-test-helpers) provided
-by Ember-Qunit.
+See that we have used `moduleFor`, one of the several [unit-test helpers](../unit-test-helpers) provided by Ember-Qunit.
+Test helpers provide us with some conveniences, such the subject function that handles lookup and instantiation for our object under test.
+Note that in a unit test you can customize the initialization of your object under test by passing to the
+subject function an object containing the instance variables you would like to initialize.  For example, to initialize
+the property 'foo' in our object under test, we would call `this.subject({ foo: 'bar' });`
 
 ### Testing Object Methods
 
@@ -65,15 +69,9 @@ call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
 ```tests/unit/models/some-thing-test.js
-import SomeThing from '<your-app-name>/models/some-thing';
-
-moduleFor('model:some-thing', 'Unit: some-thing');
-
-test('calling testMethod updated foo', function(assert) {
-  var someThing = SomeThing.create({});
-
+test('should update foo on testMethod', function(assert) {
+  const someThing = this.subject();
   someThing.testMethod();
-
   assert.equal(someThing.get('foo'), 'baz');
 });
 ```
@@ -87,7 +85,8 @@ export default Ember.Object.extend({
   count: 0,
   calc() {
     this.incrementProperty('count');
-    return 'count: ' + this.get('count');
+    let count = this.get('count');
+    return `count: ${count}`;
   }
 });
 ```
@@ -95,12 +94,8 @@ export default Ember.Object.extend({
 The test would call the `calc` method and assert it gets back the correct value.
 
 ```tests/unit/models/some-thing-test.js
-import SomeThing from '<your-app-name>/models/some-thing';
-
-moduleFor('model:some-thing', 'Unit: some-thing');
-
-test('calc returns incremented count', function(assert) {
-  var someThing = SomeThing.create({});
+test('should return incremented count on calc', function(assert) {
+  const someThing = this.subject();
   assert.equal(someThing.calc(), 'count: 1');
   assert.equal(someThing.calc(), 'count: 2');
 });
@@ -114,7 +109,7 @@ Suppose we have an object that has a property and a method observing that proper
 export default Ember.Object.extend({
   foo: 'bar',
   other: 'no',
-  doSomething: Ember.observer('foo', function(){
+  doSomething: Ember.observer('foo', function() {
     this.set('other', 'yes');
   })
 });
@@ -124,13 +119,9 @@ In order to test the `doSomething` method we create an instance of `SomeThing`,
 update the observed property (`foo`), and assert that the expected effects are present.
 
 ```tests/unit/models/some-thing-test.js
-import SomeThing from '<your-app-name>/models/some-thing';
-
-moduleFor('model:some-thing', 'Unit: some-thing');
-
-test('doSomething observer sets other prop', function() {
-  var someThing = SomeThing.create();
+test('should set other prop to yes when foo changes', function(assert) {
+  const someThing = this.subject();
   someThing.set('foo', 'baz');
-  equal(someThing.get('other'), 'yes');
+  assert.equal(someThing.get('other'), 'yes');
 });
 ```
