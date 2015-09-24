@@ -180,15 +180,17 @@ As mentioned above, you should wrap any non-Ember async callbacks in
 Consider the following callback:
 
 ```javascript
+function sayHi() {
+  console.log('hi');
+}
+
 $('a').click(() => {
   console.log('Doing things...');
 
   Ember.run.schedule('actions', () => {
     // Do more things
   });
-  Ember.run.scheduleOnce('afterRender', () => {
-    // Yet more things
-  });
+  Ember.run.scheduleOnce('afterRender', sayHi);
 });
 ```
 
@@ -200,6 +202,10 @@ runloops we call _autoruns_.
 Here is some pseudocode to describe what happens using the example above:
 
 ```javascript
+function sayHi() {
+  console.log('hi');
+}
+
 $('a').click(() => {
   // 1. autoruns do not change the execution of arbitrary code in a callback.
   //    This code is still run when this callback is executed and will not be
@@ -227,9 +233,7 @@ $('a').click(() => {
 
   // 4. scheduleOnce sees the autorun created by schedule above as an available
   //    runloop and adds its item to the given queue.
-  Ember.run.scheduleOnce('afterRender', () => {
-    // Yet more things
-  });
+  Ember.run.scheduleOnce('afterRender', sayHi);
 
 });
 ```
