@@ -14,6 +14,8 @@
       url: "first-app"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "Routes and Templates"
+      url: "routes-and-templates"
 
 - title: "The Object Model"
   url: 'object-model'
