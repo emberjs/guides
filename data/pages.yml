@@ -10,8 +10,8 @@
   pages:
     - title: "Installing Ember"
       url: "index"
-    - title: "Your First Ember App"
-      url: "first-app"
+    - title: "Ember Data"
+      url: "ember-data"
     - title: "Core Concepts"
       url: "core-concepts"
 
