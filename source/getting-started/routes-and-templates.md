@@ -1,16 +1,16 @@
-To demonstrate the basic setup and processing of an Ember application, the next few lessons are going to walkthrough building a very simple application for a property rental site called Super Rentals.  It will start with just a homepage, an about page and a contact page.  Let's take a look at the application from the user perspective before we get started.
+To demonstrate the basic setup and processing of an Ember application, the next few lessons are going to walk through building an Ember application for a property rental site called Super Rentals.  It will start with just a homepage, an about page and a contact page.  Let's take a look at the application from the user perspective before we get started.
 
 ![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
 
 We arrive at the home page which shows a list of rentals.  From here, we will be able to navigate to an about page and a contact page.  
 
-We already have the new app called super-rentals created. Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the {{outlet}} code in place.  We'll talk more about the role of the `application.hbs` file after our site has a few pages.
+We already have the new app called `super-rentals` created. Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the {{outlet}} code in place.  We'll talk more about the role of the `application.hbs` file after our site has a few pages.
 
 Now, let's start with building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, _about.js_.  The route handler then loads a template.  
 
 ## An About Route
 
-If we run `ember help generate`, we can see a variety of tools come with Ember for automatically generating files for various Ember resources.  We'll use the route generator to build our `about` route.
+If we run `ember help generate`, we can see a variety of tools that come with Ember for automatically generating files for various Ember resources.  We'll use the route generator to start our `about` route.
 
 ```shell
 ember generate route about
@@ -66,12 +66,14 @@ With all of the routing in place from the generator, we can get right to work on
   AND building Ember applications simultaneously.</p>
 ```
 
+Run `ember s` from your shell to start the Ember development server, and then go to `localhost:4200` to see your new app in action!
+
 ## A Contact Route
 
-Let's create another static page with details for contacting the company.  Once again, we'll start by generating a route, a route handler, and a template.
+Let's create another route with details for contacting the company.  Once again, we'll start by generating a route, a route handler, and a template.
 
 ```shell
-ember g route about
+ember g route contact
 ```
 
 We see that our generator has created a `contact` route and corresponding route handler in `app/routes/contact.js`.  We will be using the `contact` template, so the `contact` route does not need any additional changes.
@@ -95,13 +97,13 @@ any questions you may have.</p>
 <p>superrentalsrep@superrentals.com</p>
 ```
 
-Now we have completed our second static page.  If we enter the URL,  `http://super-rentals/contact`, we arrive on our contact page.
+Now we have completed our second route.  If we go to the URL `localhost:4200/contact`, we arrive on our contact page.
 
 ## Navigating with Links and the {{link-to}} Helper
 
 We really don't want users to have to know our URLs in order to move around our site, so let's add some navigational links at the bottom of each page.  Let's make a contact link on the about page and an about link on the contact page.
 
-Ember has built-in **helpers** that provide functionality such as linking to other routes.  Here is how to use the {{link-to}} helper in our code:
+Ember has built-in **helpers** that provide functionality such as linking to other routes.  Here is how to use the `{{link-to}}` helper in our code:
 
 ```app/templates/about.hbs
 <h2>About Super Rentals</h2>
