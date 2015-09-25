@@ -256,7 +256,7 @@ JSON API adapter will send 3 `GET` request to `/comments/1/`,
 `/comments/2/` and `/comments/3/`.
 
 Any `belongsTo` relationships in the JSON representation should be the
-dasherized version of the propertie's name. For example, if you have
+dasherized version of the property's name. For example, if you have
 a model:
 
 ```app/models/comment.js
