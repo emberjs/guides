@@ -411,7 +411,24 @@ To set up embedded records, include the mixin when extending a
 serializer then define and configure embedded relationships.
 
 For example if your `post` model contained an embedded `author` record
-you would define your relationship like this:
+that looks similar to this:
+
+
+```json
+{
+    "id": 1,
+    "title": "Rails is omakase",
+    "tag": "rails",
+    "authors": [
+        {
+            "id": 2,
+            "name": "Steve"
+        }
+    ]
+}
+```
+
+You would define your relationship like this:
 
 ```app/serializers/post.js
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
