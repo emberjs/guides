@@ -7,7 +7,7 @@ than building the support structures that make them run.
 Ember includes a _command line interface_ called Ember CLI with helpful tools
 that are immediately available.  In the terminal, a quick `ember --help` shows
 the commands we can use.  For more information on a specific command, we can
-type `ember help command-name`.  This shows us the details of how the command is
+type `ember help <command-name>`.  This shows us the details of how the command is
   used.
 
 ## Creating a New Ember App
