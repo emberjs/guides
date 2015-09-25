@@ -27,7 +27,7 @@ command line:
 node --version
 ```
 
-The output should say something like `0.12.x`. If it does not:
+The output should give a version number. If it gives a "command not found" error instead:
 
 * Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/download/).
 * Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After
