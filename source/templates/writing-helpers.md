@@ -218,24 +218,44 @@ And two named arguments:
 * `format="YYY MM DD h:mm"`
 * `locale="en"`
 
-### Stateful Helpers
+### Class-based Helpers
 
 By default, helpers are _stateless_. They are passed inputs (parameters
 and a hash), they perform an operation on those inputs, and return a
 single output. They have no side-effects and don't save any information
 that is used on subsequent runs of the function.
 
-In some situations, however, you may need to write a helper that
-interacts with the rest of your application. You can create stateful
-helpers that have access to services in your application, and can
-optionally save state as well.
+In some situations, however, you may need to write a helper that interacts with
+the rest of your application. You can create class-based helpers that have
+access to services in your application, and can optionally save state as well,
+although this is usually unnecessary and error-prone.
 
-To create a stateful helper, rather than returning a simple function,
-you should return a subclass of `Ember.Helper`. Helper classes must
-contain a `compute` method that behaves the same as the function passed
-to `Ember.Helper.helper`.
+To create a class-based helper, rather than exporting a simple function, you
+should export a subclass of `Ember.Helper`. Helper classes must contain a
+`compute` method that behaves the same as the function passed to
+`Ember.Helper.helper`.  In order to access a service, you must first inject it
+into the class-based helper.  Once added, you can call the service's methods or
+access its properties from within the `compute()` method.
 
-In fact, we can refactor the above stateless helper into a stateful
+To exemplify, let's make a helper utilizing an authentication service that
+welcomes users by their name if they're logged in:
+
+```app/helpers/is-authenticated.js
+export default Ember.Helper.extend({
+  authentication: Ember.inject.service(),
+  compute() {
+    let authentication = this.get('authentication');
+
+    if (authentication.get('isAuthenticated')) {
+      return 'Welcome back, ' + authentication.get('username');
+    } else {
+      return 'Not logged in';
+    }
+  }
+});
+```
+
+In fact, we could also refactor the above stateless helper into a class-based
 helper just by making the function into a `compute` method on the class:
 
 ```app/helpers/format-currency.js
@@ -255,28 +275,6 @@ export default Ember.Helper.extend({
 This is exactly equivalent to the example above. You can think of the
 function version as a shorthand for the longer class form if it does not
 require any state.
-
-### Adding Services
-
-Stateful helpers can access the services in your application. In order to
-access a service, you must first inject it into the stateful helper.
-Once added, you can call the service's methods or access its properties
-from within the `compute()` method.
-
-```app/helpers/is-authenticated.js
-export default Ember.Helper.extend({
-  authentication: Ember.inject.service(),
-  compute() {
-    let authentication = this.get('authentication');
-
-    if (authentication.get('isAuthenticated')) {
-      return 'Welcome back, ' + authentication.get('username');
-    } else {
-      return 'Not logged in';
-    }
-  }
-});
-```
 
 ### Escaping HTML Content
 
