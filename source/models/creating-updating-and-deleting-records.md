@@ -110,14 +110,14 @@ person.changedAttributes(); //=> { isAdmin: [false, true] }
 ```
 
 At this point, you can either persist your changes via `save()` or you
-can rollback your changes. Calling `rollback()` reverts all the
+can rollback your changes. Calling `rollbackAttributes()` reverts all the
 `changedAttributes` to their original value.
 
 ```js
 person.get('isDirty');      //=> true
 person.changedAttributes(); //=> { isAdmin: [false, true] }
 
-person.rollback();
+person.rollbackAttributes();
 
 person.get('isDirty');      //=> false
 person.get('isAdmin');      //=> false
