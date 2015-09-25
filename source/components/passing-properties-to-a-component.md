@@ -80,13 +80,10 @@ Apart from passing attributes to a component, you can also pass in positional pa
 by setting the `positionalParams` attribute in your component class.
 
 ```app/components/x-visit.js
-const MyComponent = Ember.Component.extend();
-
-MyComponent.reopenClass({
+export default Ember.Component.extend({
   positionalParams: ['name', 'model']
 });
 
-export default MyComponent;
 ```
 
 This will expose the first parameter in your template as the `{{name}}` attribute and the second as `{{model}}`. They will also be available as regular attributes in your component via `this.get('name')` and `this.get('model')`.
