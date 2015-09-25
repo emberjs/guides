@@ -41,7 +41,7 @@ export default Ember.Route.extend({
 
 If you haven't used the ES6 shorthand method definition syntax before, `model()` is the same as writing `model: function()`.
 
-When we add a method to a class as part of using the Ember framework, we often call it a `hook`. So here, we've added the model hook to our `index` route handler.
+When we add a method to a class as part of using the Ember framework, we often call it a `hook`. So here, we've added the model hook to our `index` route handler, which Ember will automatically call when a user enters the route.
 
 The model hook returns our _rentals_ array, so that the data is now available to the _rentals_ template as the `model` property.
 
