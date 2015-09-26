@@ -10,26 +10,23 @@ This generates this file:
 ```tests/acceptance/login-test.js
 import Ember from 'ember';
 import { module, test } from 'qunit';
-import startApp from 'ember-test/tests/helpers/start-app';
+import startApp from 'testing-guide-examples/tests/helpers/start-app';
 
-var application;
+let application;
 
 module('Acceptance | login', {
-  beforeEach: function() {
+  beforeEach() {
     application = startApp();
   },
 
-  afterEach: function() {
+  afterEach() {
     Ember.run(application, 'destroy');
   }
 });
 
 test('visiting /login', function(assert) {
   visit('/login');
-
-  andThen(function() {
-    assert.equal(currentURL(), '/login');
-  });
+  andThen(() => assert.equal(currentURL(), '/login'));
 });
 ```
 
@@ -42,14 +39,11 @@ Almost every test has a pattern of visiting a route, interacting with the page
 For example:
 
 ```tests/acceptance/new-post-appears-first-test.js
-test('add new post', function(assert) {
+test('should add new post', function(assert) {
   visit('/posts/new');
   fillIn('input.title', 'My new post');
   click('button.submit');
-
-  andThen(function() {
-    assert.equal(find('ul.posts li:first').text(), 'My new post');
-  });
+  andThen(() => assert.equal(find('ul.posts li:first').text(), 'My new post'));
 });
 ```
 
@@ -128,24 +122,17 @@ complete prior to progressing forward. Let's take a look at the following
 example.
 
 ```tests/acceptance/new-post-appears-first-test.js
-test('simple test', function(assert) {
-  assert.expect(1); // Ensure that we will perform one assertion
-
+test('should add new post', function(assert) {
   visit('/posts/new');
   fillIn('input.title', 'My new post');
   click('button.submit');
-
-  // Wait for asynchronous helpers above to complete
-  andThen(function() {
-    assert.equal(find('ul.posts li:first').text(), 'My new post');
-  });
+  andThen(() => assert.equal(find('ul.posts li:first').text(), 'My new post'));
 });
 ```
 
-First we tell QUnit that this test should have one assertion made by the end
-of the test by calling `assert.expect` with an argument of `1`. We then visit the new
-posts URL "/posts/new", enter the text "My new post" into an input control
-with the CSS class "title", and click on a button whose class is "submit".
+First we visit the new posts URL "/posts/new", enter the text "My new post"
+into an input control with the CSS class "title", and click on a button whose
+class is "submit".
 
 We then make a call to the `andThen` helper which will wait for the preceding
 asynchronous test helpers to complete (specifically, `andThen` will only be
@@ -184,16 +171,11 @@ first parameter. Other parameters need to be provided when calling the helper. H
 Here is an example of a non-async helper:
 
 ```tests/helpers/should-have-element-with-count.js
-export default Ember.Test.registerHelper(
-    'shouldHaveElementWithCount',
-    function(app, assert, selector, n, context) {
-
-    var el = findWithAssert(selector, context);
-    var count = el.length;
-    assert.equal(n, count, 'found ' + count + ' times');
-  }
-);
-
+export default Ember.Test.registerHelper('shouldHaveElementWithCount', function(app, assert, selector, n, context) {
+  const el = findWithAssert(selector, context);
+  const count = el.length;
+  assert.equal(n, count, `found ${count} times`);
+});
 // shouldHaveElementWithCount(assert, 'ul li', 3);
 ```
 
@@ -202,10 +184,8 @@ Here is an example of an async helper:
 ```tests/helpers/dblclick.js
 export default Ember.Test.registerAsyncHelper('dblclick',
   function(app, assert, selector, context) {
-    var $el = findWithAssert(selector, context);
-    Ember.run(function() {
-      $el.dblclick();
-    });
+    let $el = findWithAssert(selector, context);
+    Ember.run(() => $el.dblclick());
   }
 );
 
@@ -217,7 +197,7 @@ into one helper. For example:
 
 ```tests/helpers/add-contact.js
 export default Ember.Test.registerAsyncHelper('addContact',
-  function(app, assert, name, context) {
+  function(app, assert, name) {
     fillIn('#name', name);
     click('button.create');
   }
