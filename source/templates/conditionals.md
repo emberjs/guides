@@ -51,7 +51,7 @@ properties on `person` only if that it is present:
 ```
 
 `{{if}}` checks for truthiness, which means all values except `false`,
-`undefined`, `null`, `''`  or `[]` (i.e., any JavaScript falsy value or an
+`undefined`, `null`, `''`, `0`  or `[]` (i.e., any JavaScript falsy value or an
 empty array).
 
 If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
