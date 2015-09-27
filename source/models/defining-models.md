@@ -20,7 +20,7 @@ export default DS.Model.extend({
 ```
 
 After you have defined a model class, you can start [finding](../finding-records)
-and [creating records](../creating-and-deleting-records) of that type.
+and [working with records](../creating-updating-and-deleting-records) of that type.
 
 
 ### Defining Attributes
