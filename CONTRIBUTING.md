@@ -11,7 +11,7 @@ Please note that no attempt is made to update content, layout, or styles for old
 
 ## Style Guide
 
-Before you a PR with anything but a minor fix, please familiarize yourself with this style guide so that we can ensure a high quality, consistent style of writing throughout the documentation.
+Before you open a PR with anything but a minor fix, please familiarize yourself with this style guide so that we can ensure a high quality, consistent style of writing throughout the documentation.
 
 - The **Guides** refers to the entire Ember Guides project. Here, _Guides_ is capitalized.
 - A **guide** is one page of the Guides, for example "Defining Your Routes". Here, _guide_ is lowercase.
