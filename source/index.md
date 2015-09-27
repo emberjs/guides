@@ -1,18 +1,21 @@
-Welcome to the Ember.js guides! This documentation will take you from
-total beginner to Ember expert. It is designed to start from the basics,
-and slowly increase to more sophisticated concepts until you know
-everything there is to know about building awesome web applications.
+Welcome to the Ember.js Guides! This documentation will take you from
+total beginner to Ember expert.
+
+On the left side of each page in the Guides is a table of contents,
+organized into sections that can be expanded to show the topics
+they cover. Both the sections and the topics within each section are
+ordered from the most basic concepts to more advanced.
+
+The Guides are intended to contain practical explanations of how to
+build Ember apps, focusing on the most widely-used features of Ember.js.
+For exhaustive documentation of every Ember feature and API, see the
+[Ember.js API documenation](http://emberjs.com/api/).
 
 These guides are written in Markdown and are
 [available on GitHub](https://github.com/emberjs/guides/).
 If there is something missing, or you find a typo or
 mistake, please help us by filing an issue or submitting a pull
-request. Thanks!
-
-We're excited about all of the great apps you're going to build with
-Ember.js. To get started, select a topic from the left. They are
-presented in the order that we think will be most useful to you as
-you're learning Ember.js, but you can also jump to whatever seems
-most interesting.
+request. You can easily jump to Github's editor for any page by
+clicking the pencil icon in the upper right corner.
 
 Good luck!
