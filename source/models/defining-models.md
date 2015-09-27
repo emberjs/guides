@@ -23,7 +23,7 @@ After you have defined a model class, you can start [finding](../finding-records
 and [working with records](../creating-updating-and-deleting-records) of that type.
 
 
-### Defining Attributes
+## Defining Attributes
 
 The `person` model we generated earlier didn't have any attributes. Let's
 add first and last name, as well as the birthday, using `DS.attr`:
@@ -58,7 +58,7 @@ export default DS.Model.extend({
 For more about adding computed properties to your classes, see [Computed
 Properties](../../object-model/computed-properties).
 
-#### Transforms
+### Transforms
 
 You may find the type of an attribute returned by the server does not
 match the type you would like to use in your JavaScript code. Ember
@@ -84,7 +84,7 @@ its name.
 Transforms are not required. If you do not specify a transform name
 Ember Data will do no additional processing of the value.
 
-#### Options
+### Options
 
 `DS.attr` can also take a hash of options as a second parameter. At the moment
 the only option available is `defaultValue`, which can use a string or a
@@ -106,12 +106,12 @@ export default DS.Model.extend({
 ```
 
 
-### Defining Relationships
+## Defining Relationships
 
 Ember Data includes several built-in relationship types to help you
 define how your models relate to each other.
 
-#### One-to-One
+### One-to-One
 
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
@@ -128,7 +128,7 @@ export default DS.Model.extend({
 });
 ```
 
-#### One-to-Many
+### One-to-Many
 
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
@@ -145,7 +145,7 @@ export default DS.Model.extend({
 });
 ```
 
-#### Many-to-Many
+### Many-to-Many
 
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
@@ -162,7 +162,7 @@ export default DS.Model.extend({
 });
 ```
 
-#### Explicit Inverses
+### Explicit Inverses
 
 Ember Data will do its best to discover which relationships map to one
 another. In the one-to-many code above, for example, Ember Data can figure out that
@@ -194,13 +194,13 @@ export default DS.Model.extend({
 });
 ```
 
-#### Reflexive relation
+### Reflexive Relations
 
-When you want to define a reflexive relation (a model that relation to
+When you want to define a reflexive relation (a model that has a relationship to
 itself), you must explicitly define the inverse relationship. If there
-is no inverse relationship then you can set the inverse to null.
+is no inverse relationship then you can set the inverse to `null`.
 
-##### One To Many Reflexive Relationship
+Here's an example of a one-to-many reflexive relationship:
 
 ```app/models/folder.js
 export default DS.Model.extend({
@@ -209,16 +209,16 @@ export default DS.Model.extend({
 });
 ```
 
-##### One To One Reflexive Relationship
+Here's an example of a one-to-one reflexive relationship:
 
 ```app/models/user.js
 export default DS.Model.extend({
   name: DS.attr('string'),
-  bestFriend: DS.belongsTo('user', {async: true, inverse: 'bestFriend' }),
+  bestFriend: DS.belongsTo('user', { inverse: 'bestFriend' }),
 });
 ```
 
-##### No Inverse Reflexive Relationship
+You can also define a reflexive relationship that doesn't have an inverse:
 
 ```app/models/folder.js
 export default DS.Model.extend({
@@ -226,9 +226,9 @@ export default DS.Model.extend({
 });
 ```
 
-#### Readonly Nested Data
+### Readonly Nested Data
 
-Some Models may have properties that are deeply nested objects of
+Some models may have properties that are deeply nested objects of
 readonly data. The naive solution would be to define models for each
 nested object and use `hasMany` and `belongsTo` to recreate the nested
 relationship. However, since readonly data will never need to be
@@ -238,10 +238,3 @@ these relationships using an attribute with no transform
 (`DS.attr()`). This makes it easy to access readonly values in
 computed properties and templates without the overhead of defining
 extraneous models.
-
----
-
-Models, attributes and relationships help you define how your data is
-structured. In the next section, we will learn about how to fetch
-records and their relationships from your backend.
-
