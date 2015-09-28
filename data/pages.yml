@@ -122,6 +122,8 @@
       url: "creating-updating-and-deleting-records"
     - title: "Pushing Records into the Store"
       url: "pushing-records-into-the-store"
+    - title: "Working with Relationships"
+      url: "working-with-relationships"
     - title: "Handling Metadata"
       url: "handling-metadata"
     - title: "Customizing Adapters"
