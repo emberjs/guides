@@ -56,7 +56,7 @@ Let's allow the user to show and hide a rental image:
 </li>
 ```
 
-When 'isImageShowing' is set to `false`, the user will see a `Show image` button as an option.  When `isImageShowing` is `true`, they'll see the image.  
+When 'isImageShowing' is set to `false`, the user will see a `Show image` button as an option.  When `isImageShowing` is `true`, they'll see the image.
 
 The value of `isImageShowing` comes from the component's JavaScript file, in our case `rental-tile.js`.  Since we do not want the image to be showing at first, we will set the property to false:
 
@@ -91,7 +91,7 @@ Now the image will be shown when the button is clicked.
 
 We should let users hide the image again. In our template component:
 
-``app/templates/components/rental-tile.hbs
+```app/templates/components/rental-tile.hbs
 <li>{{#link-to 'listing' listing.id}}{{listing.owner}}'s {{listing.type}}{{/link-to}}
   {{#if isImageShowing}}
     <p><img src={{listing.image}} alt={{listing.type}} {{action 'imageHide'}}></p>
