@@ -9,7 +9,7 @@ ordered from the most basic concepts to more advanced.
 The Guides are intended to contain practical explanations of how to
 build Ember apps, focusing on the most widely-used features of Ember.js.
 For exhaustive documentation of every Ember feature and API, see the
-[Ember.js API documenation](http://emberjs.com/api/).
+[Ember.js API documentation](http://emberjs.com/api/).
 
 These guides are written in Markdown and are
 [available on GitHub](https://github.com/emberjs/guides/).
