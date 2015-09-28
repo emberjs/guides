@@ -9,6 +9,9 @@ of the ember-qunit framework.
 Here we have a controller `PostsController` with some computed properties and an
 action `setProps`.
 
+> You can follow along by generating your own controller with `ember generate
+> controller posts`.
+
 ```app/controllers/posts.js
 export default Ember.Controller.extend({
   propA: 'You need to write tests',
@@ -33,8 +36,6 @@ container:
 
 ```tests/unit/controllers/posts-test.js
 moduleFor('controller:posts', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
 });
 ```
 
@@ -44,15 +45,15 @@ write a test to check the action. `this.subject()` is a helper method from the
 using `moduleFor`.
 
 ```tests/unit/controllers/posts-test.js
-test('calling the action setProps updates props A and B', function(assert) {
+test('should update A and B on setProps action', function(assert) {
   assert.expect(4);
 
   // get the controller instance
-  var ctrl = this.subject();
+  const ctrl = this.subject();
 
   // check the properties before the action is triggered
-  assert.equal(ctrl.get('propA'), 'You need to write tests');
-  assert.equal(ctrl.get('propB'), 'And write one for me too');
+  assert.equal(ctrl.get('propA'), 'You need to write tests', 'propA initialized');
+  assert.equal(ctrl.get('propB'), 'And write one for me too', 'propB initialized');
 
   // trigger the action on the controller by using the `send` method,
   // passing in any params that our action may be expecting
@@ -60,8 +61,8 @@ test('calling the action setProps updates props A and B', function(assert) {
 
   // finally we assert that our values have been updated
   // by triggering our action.
-  assert.equal(ctrl.get('propA'), 'Testing is cool');
-  assert.equal(ctrl.get('propB'), 'Testing Rocks!');
+  assert.equal(ctrl.get('propA'), 'Testing is cool', 'propA updated');
+  assert.equal(ctrl.get('propB'), 'Testing Rocks!', 'propB updated');
 });
 ```
 
@@ -70,6 +71,9 @@ test('calling the action setProps updates props A and B', function(assert) {
 Sometimes controllers have dependencies on other controllers. This is
 accomplished by injecting one controller into another. For example, here are two simple controllers. The
 `CommentsController` uses the `PostController` via `inject`:
+
+> You can follow along by generating your own controller with `ember generate
+> controller post`, and `ember generate controller comments`.
 
 ```app/controllers/post.js
 export default Ember.Controller.extend({
@@ -80,7 +84,7 @@ export default Ember.Controller.extend({
 ```app/controllers/comments.js
 export default Ember.Controller.extend({
   post: Ember.inject.controller(),
-  title: Ember.computed.alias('post.title'),
+  title: Ember.computed.alias('post.title')
 });
 ```
 
@@ -97,12 +101,12 @@ Now let's write a test that sets a property on our `post` model in the
 `PostController` that would be available on the `CommentsController`.
 
 ```tests/unit/controllers/comments-test.js
-test('modify the post', function(assert) {
+test('should modify the post model', function(assert) {
   assert.expect(2);
 
   // grab an instance of `CommentsController` and `PostController`
-  var ctrl = this.subject();
-  var postCtrl = ctrl.get('controllers.post');
+  const ctrl = this.subject();
+  const postCtrl = ctrl.get('post');
 
   // wrap the test in the run loop because we are dealing with async functions
   Ember.run(function() {
@@ -111,13 +115,13 @@ test('modify the post', function(assert) {
     postCtrl.set('model', Ember.Object.create({ title: 'foo' }));
 
     // check the values before we modify the post
-    assert.equal(ctrl.get('title'), 'foo');
+    assert.equal(ctrl.get('title'), 'foo', 'title is set');
 
     // modify the title of the post
     postCtrl.get('model').set('title', 'bar');
 
     // assert that the controllers title has changed
-    assert.equal(ctrl.get('title'), 'bar');
+    assert.equal(ctrl.get('title'), 'bar', 'title is updated');
   });
 });
 ```
