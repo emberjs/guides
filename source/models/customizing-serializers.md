@@ -1,7 +1,7 @@
 ## Serializers
 
 In Ember Data the Serializer is a class that is responsible for
-transforming the data returned by you adapter into a JSON API document
+transforming the data returned by your adapter into a JSON API document
 that Ember Data can understand. Serializers can be customized to work
 with any backend. By default, Ember Data ships with 3 Serializers. The
 `JSONAPISerializer` is the default serializer and works with JSON API
