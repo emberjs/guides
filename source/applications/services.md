@@ -13,18 +13,31 @@ Example uses of services include:
 
 ### Defining Services
 
-To define a service, extend the `Ember.Service` base class:
+Services can be generated using Ember CLI's `service` generator. For example,
+the following command will create the `ShoppingCart` service:
+
+```bash
+ember generate service shopping-cart
+```
+
+Services must extend the `Ember.Service` base class:
 
 ```app/services/shopping-cart.js
 export default Ember.Service.extend({
 });
 ```
 
-Like any Ember object, a service can have properties and methods of its own.
+Like any Ember object, a service is initialized and can have properties and
+methods of its own.
 
 ```app/services/shopping-cart.js
 export default Ember.Service.extend({
-  items: [],
+  items: null,
+
+  init() {
+    this._super(...arguments);
+    this.set('items', []);
+  },
 
   add(item) {
     this.get('items').pushObject(item);
@@ -42,7 +55,7 @@ export default Ember.Service.extend({
 
 ### Accessing Services
 
-To access a service, inject it with `Ember.inject`:
+To access a service, inject it either in an initializer or with `Ember.inject`:
 
 ```app/components/cart-contents.js
 export default Ember.Component.extend({
@@ -50,7 +63,8 @@ export default Ember.Component.extend({
 });
 ```
 
-This injects the shopping cart service into the component and makes it available as the `cart` property.
+This injects the shopping cart service into the component and makes it available
+as the `cart` property.
 
 You can then access properties and methods on the service:
 
@@ -77,9 +91,11 @@ export default Ember.Component.extend({
 </ul>
 ```
 
-The injected property is lazy; the service will not be instantiated until the property is explicitly called. It will then persist until the application exits.
+The injected property is lazy; the service will not be instantiated until the
+property is explicitly called. It will then persist until the application exits.
 
-If no argument is provided to `service()`, Ember will use the dasherized version of the property name:
+If no argument is provided to `service()`, Ember will use the dasherized version
+of the property name:
 
 ```app/components/cart-contents.js
 export default Ember.Component.extend({
