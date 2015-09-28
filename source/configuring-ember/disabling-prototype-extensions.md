@@ -13,7 +13,8 @@ objects in the following ways:
 
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
-  via the `observes()` or `observesBefore()` methods.
+  via the `observes()` or `observesBefore()` methods. Use of these methods
+  is now discouraged and not covered in recent versions of the Guides.
 
 This is the extent to which Ember.js enhances native prototypes. We have
 carefully weighed the tradeoffs involved with changing these prototypes,
@@ -54,13 +55,13 @@ ENV = {
 }
 ```
 
-### Life Without Prototype Extension
+## Life Without Prototype Extension
 
 In order for your application to behave correctly, you will need to
 manually extend or create the objects that the native objects were
 creating before.
 
-#### Arrays
+### Arrays
 
 Native arrays will no longer implement the functionality needed to
 observe them. If you disable prototype extension and attempt to use
@@ -88,7 +89,7 @@ islands.contains('Oahu');
 //=> true
 ```
 
-#### Strings
+### Strings
 
 Strings will no longer have the convenience methods described in the
 [Ember.String API reference.](http://emberjs.com/api/classes/Ember.String.html). Instead,
@@ -103,7 +104,12 @@ Ember.String.camelize("my_cool_class");
 //=> "myCoolClass"
 ```
 
-#### Functions
+### Functions
+
+The [Object Model](../../object-model/) section of the Guides describes
+how to write computed properties, observers, and bindings without
+prototype extensions. Below you can learn about how to convert existing
+code to the format now encouraged.
 
 To annotate computed properties, use the `Ember.computed()` method to
 wrap the function:
