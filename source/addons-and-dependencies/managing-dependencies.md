@@ -1,4 +1,4 @@
-As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself, such as authentication or using SASS for your stylesheets. Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve these problems. Additionally, you may want to make use of front-end dependencies like a CSS framework on a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
+As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself, such as authentication or using SASS for your stylesheets. Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve these problems. Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
 
 ## Addons
 
