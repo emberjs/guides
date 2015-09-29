@@ -1,7 +1,9 @@
-In Ember Data, the Adapter determines the structure of requests to a
-backend data store, such as the URL format and headers.
-Ember Data's Adapter has some built-in
-assumptions of how a [REST API](http://jsonapi.org/) should look. If
+In Ember Data, the Adapter determines how data is persisted to a
+backend data store, such as the URL format and headers for a REST API.
+(The format of the data itself is determined by the
+[serializer](../customizing-serializers/).)
+Ember Data's default Adapter has some built-in
+assumptions of how a [REST API should look](http://jsonapi.org/). If
 your backend conventions differ from these assumptions Ember Data
 makes it easy to change its functionality by swapping out or extending
 the default Adapter.
@@ -9,11 +11,11 @@ the default Adapter.
 Some reasons for customizing an Adapter include using
 `underscores_case` in your urls, using a medium other than REST to
 communicate with your backend API or even using a
-[local backend](https://github.com/rpflorence/ember-localstorage-adapter).
+[local storage backend](https://github.com/rpflorence/ember-localstorage-adapter).
 
 Extending Adapters is a natural process in Ember Data. Ember takes the
 position that you should extend an adapter to add different
-functionality instead of adding a flag. This results in code that is
+functionality. This results in code that is
 more testable, easier to understand and reduces bloat for people who
 may want to subclass your adapter.
 
