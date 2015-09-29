@@ -1,5 +1,6 @@
-In Ember Data, the logic for communicating with a backend data store
-lives in the `Adapter`. Ember Data's Adapter has some built-in
+In Ember Data, the Adapter determines the structure of requests to a
+backend data store, such as the URL format and headers.
+Ember Data's Adapter has some built-in
 assumptions of how a [REST API](http://jsonapi.org/) should look. If
 your backend conventions differ from these assumptions Ember Data
 makes it easy to change its functionality by swapping out or extending
