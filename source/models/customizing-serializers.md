@@ -136,6 +136,122 @@ import DS from 'ember-data';
 export default DS.JSONSerializer.extend({});
 ```
 
+To change the format of the data that is sent to the backend store, you can use
+the `serialize` hook. Let's say that we have this JSON API response from Ember
+Data:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": 1,
+      "name": "My Product",
+      "amount": 100,
+      "currency": "SEK"
+    },
+    "type": "product"
+  }
+}
+```
+
+But our server expects data in this format:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": 1,
+      "name": "My Product",
+      "cost": {
+        "amount": 100,
+        "currency": "SEK"
+      }
+    },
+    "type": "product"
+  }
+}
+```
+
+Here's how you can change the data:
+
+```app/serializers/application.js
+import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend({
+  serialize(snapshot, options) {
+    var json = this._super(...arguments);
+
+    json.data.attributes.cost = {
+      amount: json.data.attributes.amount,
+      currency: json.data.attributes.currency
+    };
+
+    delete json.data.attributes.amount;
+    delete json.data.attributes.currency;
+
+    return json;
+  },
+});
+```
+
+Similarly, if your backend store provides data in a format other than JSON API,
+you can use the `normalizeResponse` hook. Using the same example as above, if
+the server provides data that looks like:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": 1,
+      "name": "My Product",
+      "cost": {
+        "amount": 100,
+        "currency": "SEK"
+      }
+    },
+    "type": "product"
+  }
+}
+```
+
+And so we need to change it to look like:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": 1,
+      "name": "My Product",
+      "amount": 100,
+      "currency": "SEK"
+    },
+    "type": "product"
+  }
+}
+```
+
+Here's how we could do it:
+
+```app/serializers/application.js
+import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend({
+  normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+    payload.data.attributes.amount = payload.data.attributes.cost.amount;
+    payload.data.attributes.amount = payload.data.attributes.cost.currency;
+
+    delete payload.data.attributes.cost;
+
+    return this._super(...arguments);
+  },
+});
+```
+
+To normalize only a single model, you can use the `normalize` hook similarly.
+
+For more hooks to customize the serializer with, see the [Ember Data serializer
+API documentation](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#index).
+
 ### IDs
 
 In order to keep track of unique records in the store Ember Data
