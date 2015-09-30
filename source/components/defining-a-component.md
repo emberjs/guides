@@ -1,24 +1,16 @@
-To define a component, create a template in the `app/templates/components/` directory.
-Components must have at least one dash in their name. So `blog-post` is an acceptable name, so is `audio-player-controls`, but `post` is not. This prevents clashes with current or future HTML element names, and
-ensures Ember detects the components automatically.
+To define a component, run:
 
-A sample component template would look like this:
-
-```app/templates/components/blog-post.hbs
-<h1>Blog Post</h1>
-<p>Lorem ipsum dolor sit amet.</p>
+```shell
+ember generate component my-component-name
 ```
 
-Given the above template, you can now use the
-`{{blog-post}}` custom element:
+Components must have at least one dash in their name. So `blog-post` is an acceptable
+name, and so is `audio-player-controls`, but `post` is not. This prevents clashes with
+current or future HTML element names, aligns Ember components with the W3C [Custom
+Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html)
+spec, and ensures Ember detects the components automatically.
 
-```app/templates/index.hbs
-{{#each model as |post|}}
-  {{#blog-post title=post.title}}
-    {{post.body}}
-  {{/blog-post}}
-{{/each}}
-```
+A sample component template could look like this:
 
 ```app/templates/components/blog-post.hbs
 <article class="blog-post">
@@ -28,16 +20,20 @@ Given the above template, you can now use the
 </article>
 ```
 
+Given the above template, you can now use the `{{blog-post}}` component:
+
+```app/templates/index.hbs
+{{#each model as |post|}}
+  {{#blog-post title=post.title}}
+    {{post.body}}
+  {{/blog-post}}
+{{/each}}
+
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('post');
   }
-});
-```
-
-```app/components/blog-post.js
-export default Ember.Component.extend({
 });
 ```
 
@@ -48,7 +44,7 @@ To learn how to change the element Ember uses for your component, see
 Element](../customizing-a-components-element).
 
 
-### Defining a Component Subclass
+## Defining a Component Subclass
 
 Often times, your components will just encapsulate certain snippets of
 Handlebars templates that you find yourself using over and over. In
@@ -68,7 +64,7 @@ file at `app/components/blog-post.js`. If your component was called
 `audio-player-controls`, the file name would be at
 `app/components/audio-player-controls.js`.
 
-### Dynamically rendering a component
+## Dynamically rendering a component
 
 The `{{component}}` helper can be used to defer the selection of a component to
 run time. The `{{my-component}}` syntax always renders the same component,
