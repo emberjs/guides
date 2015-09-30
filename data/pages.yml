@@ -84,8 +84,6 @@
 - title: "Components"
   url: 'components'
   pages:
-    - title: "Introduction"
-      url: "index"
     - title: "Defining a Component"
       url: "defining-a-component"
     - title: "Passing Properties to a Component"
