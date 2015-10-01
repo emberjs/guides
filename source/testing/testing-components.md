@@ -180,3 +180,102 @@ test('should trigger external action on form submit', function(assert) {
   this.$('input').click();
 });
 ```
+### Stubbing Services
+
+In cases where components have dependencies on Ember services, it is possible to stub these
+dependencies for integration tests. Stub Ember services by using the built-in register
+function to register your stub service in place of the default.
+
+Imagine you have the following component that uses a location service to display the city
+and country of your current location:
+
+> You can follow along by generating your own component with `ember generate
+> component location-indicator`.
+
+```app/components/location-indicator.js
+export default Ember.Component.extend({
+  locationService: Ember.inject.service('location-service'),
+
+  //when the coordinates change, call the location service to evaluate what the city and country would be
+  city: Ember.computed('locationService.currentLocation', function () {
+    return this.get('locationService').getCurrentCity();
+  }),
+
+  country: Ember.computed('locationService.currentLocation', function () {
+    return this.get('locationService').getCurrentCountry();
+  })
+});
+```
+
+```app/templates/components/location-indicator.hbs
+You currently are located in {{city}}, {{country}}
+```
+To stub the location service in your test, create a local stub object that extends
+`Ember.Service`, and register the stub as the service your tests need in the
+beforeEach function.  In this case we initially force location to New York.
+
+
+```tests/integration/components/location-indicator-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import Ember from 'ember';
+
+//keep a reference to the location service stub instance
+//for manipulating and asserting within tests
+let locationService;
+
+//Stub location service
+const locationStub = Ember.Service.extend({
+  city: 'New York',
+  country: 'USA',
+  currentLocation: {
+    x: 1234,
+    y: 5678
+  },
+
+  init() {
+    this._super(...arguments);
+    locationService = this;
+  },
+  getCurrentCity() {
+    return this.get('city');
+  },
+  getCurrentCountry() {
+    return this.get('country');
+  }
+});
+
+moduleForComponent('location-indicator', 'Integration | Component | location indicator', {
+  integration: true,
+
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+  }
+});
+```
+
+Once the stub service is registered the test simply needs to check that the stub data that
+is being returned from the service is reflected in the component output.
+
+```tests/integration/components/location-indicator-test.js
+test('should reveal current location', function(assert) {
+  this.render(hbs`{{location-indicator}}`);
+  assert.equal(this.$().text().trim(), 'You currently are located in New York, USA');
+});
+```
+
+In the next example, we'll add another test that validates that the display changes
+when we modify the values on the service.
+
+```tests/integration/components/location-indicator-test.js
+test('should change displayed location when current location changes', function (assert) {
+  this.render(hbs`{{location-indicator}}`);
+  assert.equal(this.$().text().trim(), 'You currently are located in New York, USA', 'origin location should display');
+  Ember.run(() => {
+    locationService.set('city', 'Beijing');
+    locationService.set('country', 'China');
+    locationService.set('currentLocation', { x: 11111, y: 222222 });
+  });
+  assert.equal(this.$().text().trim(), 'You currently are located in Beijing, China', 'location display should change');
+});
+```
