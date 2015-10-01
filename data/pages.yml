@@ -94,8 +94,6 @@
       url: "customizing-a-components-element"
     - title: "Sending Actions from Components to Your Application"
       url: "sending-actions-from-components-to-your-application"
-    - title: "Composing Components"
-      url: "composing-components"
     - title: "The Run Loop"
       url: "run-loop"
 
