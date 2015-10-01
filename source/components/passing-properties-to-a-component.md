@@ -67,7 +67,7 @@ To set the component up to receive parameters this way, you need
 set the `positionalParams` attribute in your component class.
 
 ```app/components/blog-post.js
-const BlogPostComponent = Ember.Component.extend;
+const BlogPostComponent = Ember.Component.extend({});
 
 BlogPostComponent.reopenClass({
   positionalParams: ['title', 'body']
@@ -79,15 +79,27 @@ export default BlogPostComponent;
 Then you can use the attributes in the component exactly as if they had been
 passed in like `{{blog-post title=post.title body=post.body}}`.
 
-Notice that the component is defined slightly differently here than in other
-places, starting with `const BlogPostComponent = Ember.Component.extend;`. This
-is a performance optimization unique to components using positional params.
+Notice that the `positionalParams` property is added to the class as a
+static variable via `reopenClass`. Positional params are always declared on
+the component class and cannot be changed while an application runs.
 
-Alternatively, you can accept have an arbitrary number of parameters by setting `positionalParams`
-to a string, e.g. `positionalParams: 'params'`. This will allow you to access those params as an array like so:
+Alternatively, you can accept have an arbitrary number of parameters by
+setting `positionalParams` to a string, e.g. `positionalParams: 'params'`. This
+will allow you to access those params as an array like so:
 
-```app/templates/components/x-visit.hbs
-{{#each params as |param|}}
-  {{param}}
-{{/each}}
+```app/components/blog-post.js
+const BlogPostComponent = Ember.Component.extend({
+  title: Ember.computed('params.[]', function(){
+    return this.get('params')[0];
+  }),
+  body: Ember.computed('params.[]', function(){
+    return this.get('params')[1];
+  })
+});
+
+BlogPostComponent.reopenClass({
+  positionalParams: 'params'
+});
+
+export default BlogPostComponent;
 ```
