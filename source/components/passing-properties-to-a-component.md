@@ -1,97 +1,89 @@
-By default a component does not have access to any properties normally
-available in the template in which it is used (sometimes referred to
-as the template `scope`)
+Components are isolated from their surroundings, so any data that the component
+needs has to be passed in.
 
-Imagine you have a `blog-post` component that is used to
+For example, imagine you have a `blog-post` component that is used to
 display a blog post:
 
 ```app/templates/components/blog-post.hbs
-<h1>Component: {{title}}</h1>
-<p>Lorem ipsum dolor sit amet.</p>
+<article class="blog-post">
+  <h1>{{title}}</h1>
+  <p>{{body}}</p>
+</article>
 ```
-
-You can see that it has a `{{title}}` Handlebars expression to print the
-value of the `title` property inside the `<h1>`.
 
 Now imagine we have the following template and route:
 
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('post').get('firstObject');
+    return this.store.findAll('post');
   }
 });
 ```
 
+If we tried to use the component like this:
+
 ```app/templates/index.hbs
-
-<h1>Template: {{model.title}}</h1>
-{{blog-post}}
+{{#each model as |post|}}
+  {{blog-post}}
+{{/each}}
 ```
 
-If you run this code, you will see that the first `<h1>` (in the outer
-template) displays the `title` property, but the second `<h1>` (inside
-the component) is empty.
+The following HTML would be rendered:
 
-We can fix this by making the `title` property available to the
-component:
-
-```handlebars
-{{blog-post title=model.title}}
+```html
+<article class="blog-post">
+  <h1></h1>
+  <p></p>
+</article>
 ```
 
-This will make the `title` property in the outer template scope
-available inside the component's template using the same name, `title`.
+In order to make a property available to a component, you must pass it
+in like this:
 
-If, in the above example, the model's `title` property was instead
-called `name`, we would change the component usage to:
-
-```handlebars
-{{blog-post title=model.name}}
+```app/templates/index.hbs
+{{#each model as |post|}}
+  {{blog-post title=post.title body=post.body}}
+{{/each}}
 ```
-
-In other words, you are binding a named property from the outer scope to
-a named property in the component scope, with the syntax
-`componentProperty=outerProperty`.
 
 It is important to note that these properties stay in sync (technically
 known as being "bound"). That is, if the value of `componentProperty`
 changes in the component, `outerProperty` will be updated to reflect that
 change. The reverse is true as well.
 
-You can also bind properties from inside an `{{#each}}` loop. This will
-create a component for each item and bind it to each model in the loop.
+## Positional Params
 
-```handlebars
+In addition to passing parameters in by name, you can pass them in by position.
+In other words, you can invoke the above component example like this:
+
+```app/templates/index.hbs
 {{#each model as |post|}}
-  {{blog-post title=post.title}}
+  {{blog-post post.title post.body}}
 {{/each}}
 ```
-If you are using the `{{component}}` helper to render your component, you can
-pass properties to the chosen component in the same manner:
 
-```handlebars
-{{component componentName title=model.title name=model.name}}
-```
+To set the component up to receive parameters this way, you need
+set the `positionalParams` attribute in your component class.
 
-### Positional Params
+```app/components/blog-post.js
+const BlogPostComponent = Ember.Component.extend;
 
-Apart from passing attributes to a component, you can also pass in positional parameters
-by setting the `positionalParams` attribute in your component class.
-
-```app/components/x-visit.js
-const MyComponent = Ember.Component.extend();
-
-MyComponent.reopenClass({
-  positionalParams: ['name', 'model']
+BlogPostComponent.reopenClass({
+  positionalParams: ['title', 'body']
 });
 
-export default MyComponent;
+export default BlogPostComponent;
 ```
 
-This will expose the first parameter in your template as the `{{name}}` attribute and the second as `{{model}}`. They will also be available as regular attributes in your component via `this.get('name')` and `this.get('model')`.
+Then you can use the attributes in the component exactly as if they had been
+passed in like `{{blog-post title=post.title body=post.body}}`.
 
-In addition to mapping the parameters to attributes, you can also have an arbitrary number of parameters by setting `positionalParams`
+Notice that the component is defined slightly differently here than in other
+places, starting with `const BlogPostComponent = Ember.Component.extend;`. This
+is a performance optimization unique to components using positional params.
+
+Alternatively, you can accept have an arbitrary number of parameters by setting `positionalParams`
 to a string, e.g. `positionalParams: 'params'`. This will allow you to access those params as an array like so:
 
 ```app/templates/components/x-visit.hbs
