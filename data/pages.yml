@@ -127,15 +127,17 @@
     - title: "Customizing Serializers"
       url: "customizing-serializers"
 
-- title: "Services and Initializers"
-  url: 'services-and-initializers'
+- title: "Application Concerns"
+  url: 'applications'
   pages:
-    - title: "Services"
-      url: "services"
+    - title: "Applications and Instances"
+      url: "applications-and-instances"
+    - title: "Dependency Injection"
+      url: "dependency-injection"
     - title: "Initializers"
       url: "initializers"
-    - title: "The Container"
-      url: "container"
+    - title: "Services"
+      url: "services"
 
 - title: "Testing"
   url: 'testing'

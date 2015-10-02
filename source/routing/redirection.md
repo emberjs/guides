@@ -26,7 +26,7 @@ export default Ember.Route.extend({
 ```
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../services-and-initializers/services).
+you might use a [service](../../applications/services).
 
 ## Transitioning After the Model is Known
 
