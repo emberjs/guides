@@ -31,7 +31,7 @@ should be dash-cased. For example, if you request a record from
 {
   "data": {
     "type": "people",
-    "id": 123,
+    "id": "123",
     "attributes": {
       "first-name": "Jeff",
       "last-name": "Atwood"
@@ -47,14 +47,14 @@ A response that contains multiple records may have an array in its
 {
   "data": [{
     "type": "people",
-    "id": 123,
+    "id": "123",
     "attributes": {
       "first-name": "Jeff",
       "last-name": "Atwood"
     }
   }, {
     "type": "people",
-    "id": 124,
+    "id": "124",
     "attributes": {
       "first-name": "Yehuda",
       "last-name": "Katz"
@@ -144,7 +144,7 @@ Data:
 {
   "data": {
     "attributes": {
-      "id": 1,
+      "id": "1",
       "name": "My Product",
       "amount": 100,
       "currency": "SEK"
@@ -160,7 +160,7 @@ But our server expects data in this format:
 {
   "data": {
     "attributes": {
-      "id": 1,
+      "id": "1",
       "name": "My Product",
       "cost": {
         "amount": 100,
@@ -202,7 +202,7 @@ the server provides data that looks like:
 {
   "data": {
     "attributes": {
-      "id": 1,
+      "id": "1",
       "name": "My Product",
       "cost": {
         "amount": 100,
@@ -220,7 +220,7 @@ And so we need to change it to look like:
 {
   "data": {
     "attributes": {
-      "id": 1,
+      "id": "1",
       "name": "My Product",
       "amount": 100,
       "currency": "SEK"
@@ -287,7 +287,7 @@ in the document payload returned by your server:
 ```js
 {
   "data": {
-    "id": 44,
+    "id": "44",
     "type": "people",
     "attributes": {
       "first-name": "Barack",
@@ -482,10 +482,10 @@ to be a JSON object that looks similar to this:
 
 ```json
 {
-    "id": 1,
+    "id": "1",
     "title": "Rails is omakase",
     "tag": "rails",
-    "comments": [1, 2]
+    "comments": ["1", "2"]
 }
 ```
 
@@ -496,15 +496,15 @@ looks similar to this:
 
 ```json
 [{
-  "id": 1,
+  "id": "1",
   "title": "Rails is omakase",
   "tag": "rails",
-  "comments": [1, 2]
+  "comments": ["1", "2"]
 }, {
-  "id": 2,
+  "id": "2",
   "title": "I'm Running to Reform the W3C's Tag",
   "tag": "w3c",
-  "comments": [3]
+  "comments": ["3"]
 }]
 ```
 
@@ -531,12 +531,12 @@ that looks similar to this:
 
 ```json
 {
-    "id": 1,
+    "id": "1",
     "title": "Rails is omakase",
     "tag": "rails",
     "authors": [
         {
-            "id": 2,
+            "id": "2",
             "name": "Steve"
         }
     ]
@@ -648,7 +648,7 @@ export default DS.Model.extend({
 ```js
 {
   data: {
-    id: 1,
+    id: "1",
     type: 'post',
     attributes: {
       title: "Rails is omakase",
@@ -656,8 +656,8 @@ export default DS.Model.extend({
     },
     relationships: {
       comments: {
-        data: [{ id: 1, type: 'comment' },
-               { id: 2, type: 'comment' }],
+        data: [{ id: "1", type: 'comment' },
+               { id: "2", type: 'comment' }],
       },
       relatedPosts: {
         data: {
