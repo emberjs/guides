@@ -92,8 +92,6 @@
       url: "customizing-a-components-element"
     - title: "Sending Actions from Components to Your Application"
       url: "sending-actions-from-components-to-your-application"
-    - title: "The Run Loop"
-      url: "run-loop"
 
 - title: "Controllers"
   url: 'controllers'
@@ -136,6 +134,8 @@
       url: "initializers"
     - title: "Services"
       url: "services"
+    - title: "The Run Loop"
+      url: "run-loop"
 
 - title: "Testing"
   url: 'testing'
