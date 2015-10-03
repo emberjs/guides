@@ -94,6 +94,8 @@
       url: "customizing-a-components-element"
     - title: "Sending Actions from Components to Your Application"
       url: "sending-actions-from-components-to-your-application"
+    - title: "Handling Events"
+      url: "handling-events"
 
 - title: "Controllers"
   url: 'controllers'
