@@ -1,23 +1,24 @@
-## Serializers
+In Ember Data, serializers format the data sent to and recieved from
+the backend store. By default, Ember Data serializes data using the
+[JSON API](http://jsonapi.org/) format. If your backend uses a different
+format, Ember Data allows you to customize the serializer or use a
+different serializer entirely.
 
-In Ember Data the Serializer is a class that is responsible for
-transforming the data returned by your adapter into a JSON API document
-that Ember Data can understand. Serializers can be customized to work
-with any backend. By default, Ember Data ships with 3 Serializers. The
+Ember Data ships with 3 Serializers. The
 `JSONAPISerializer` is the default serializer and works with JSON API
 backends. The `JSONSerializer` is a simple serializer for working with
 single json object or arrays of records. The `RESTSerializer` is a
 more complex serializer that supports sideloading and was the default
 serializer before 2.0.
 
-### JSONAPISerializer Conventions
+## JSONAPISerializer Conventions
 
 When requesting a record, the `JSONAPISerializer` expects your server
 to return a JSON representation of the record that conforms to the
 following conventions.
 
 
-#### JSON API Document
+### JSON API Document
 
 The JSONAPI serializer expects the backend to return a JSON API
 Document that follows the JSON API specification and the conventions
@@ -30,7 +31,7 @@ should be dash-cased. For example, if you request a record from
 {
   "data": {
     "type": "people",
-    "id": 123,
+    "id": "123",
     "attributes": {
       "first-name": "Jeff",
       "last-name": "Atwood"
@@ -46,14 +47,14 @@ A response that contains multiple records may have an array in its
 {
   "data": [{
     "type": "people",
-    "id": 123,
+    "id": "123",
     "attributes": {
       "first-name": "Jeff",
       "last-name": "Atwood"
     }
   }, {
     "type": "people",
-    "id": 124,
+    "id": "124",
     "attributes": {
       "first-name": "Yehuda",
       "last-name": "Katz"
@@ -62,7 +63,7 @@ A response that contains multiple records may have an array in its
 }
 ```
 
-#### Sideloaded Data
+### Sideloaded Data
 
 Data that is not a part of the primary request but includes linked
 relationships should be placed in an array under the `included`
@@ -112,9 +113,9 @@ like this:
 }
 ```
 
-### Customizing Serializers
+## Customizing Serializers
 
-Ember Data uses the `JSONAPISerializer` by default, however, you can
+Ember Data uses the `JSONAPISerializer` by default, but you can
 override this default by defining a custom serializer. There are two
 ways to define a custom serializer. First, you can define a custom
 serializer for you entire application by defining an "application"
@@ -135,7 +136,123 @@ import DS from 'ember-data';
 export default DS.JSONSerializer.extend({});
 ```
 
-#### ID
+To change the format of the data that is sent to the backend store, you can use
+the `serialize` hook. Let's say that we have this JSON API response from Ember
+Data:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": "1",
+      "name": "My Product",
+      "amount": 100,
+      "currency": "SEK"
+    },
+    "type": "product"
+  }
+}
+```
+
+But our server expects data in this format:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": "1",
+      "name": "My Product",
+      "cost": {
+        "amount": 100,
+        "currency": "SEK"
+      }
+    },
+    "type": "product"
+  }
+}
+```
+
+Here's how you can change the data:
+
+```app/serializers/application.js
+import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend({
+  serialize(snapshot, options) {
+    var json = this._super(...arguments);
+
+    json.data.attributes.cost = {
+      amount: json.data.attributes.amount,
+      currency: json.data.attributes.currency
+    };
+
+    delete json.data.attributes.amount;
+    delete json.data.attributes.currency;
+
+    return json;
+  },
+});
+```
+
+Similarly, if your backend store provides data in a format other than JSON API,
+you can use the `normalizeResponse` hook. Using the same example as above, if
+the server provides data that looks like:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": "1",
+      "name": "My Product",
+      "cost": {
+        "amount": 100,
+        "currency": "SEK"
+      }
+    },
+    "type": "product"
+  }
+}
+```
+
+And so we need to change it to look like:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": "1",
+      "name": "My Product",
+      "amount": 100,
+      "currency": "SEK"
+    },
+    "type": "product"
+  }
+}
+```
+
+Here's how we could do it:
+
+```app/serializers/application.js
+import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend({
+  normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+    payload.data.attributes.amount = payload.data.attributes.cost.amount;
+    payload.data.attributes.amount = payload.data.attributes.cost.currency;
+
+    delete payload.data.attributes.cost;
+
+    return this._super(...arguments);
+  },
+});
+```
+
+To normalize only a single model, you can use the `normalize` hook similarly.
+
+For more hooks to customize the serializer with, see the [Ember Data serializer
+API documentation](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#index).
+
+### IDs
 
 In order to keep track of unique records in the store Ember Data
 expects every record to have an `id` property in the payload. Ids
@@ -150,7 +267,7 @@ export default DS.JSONSerializer.extend({
 });
 ```
 
-#### Attribute Names
+### Attribute Names
 
 In Ember Data the convention is to camelize attribute names on a
 model. For example:
@@ -170,7 +287,7 @@ in the document payload returned by your server:
 ```js
 {
   "data": {
-    "id": 44,
+    "id": "44",
     "type": "people",
     "attributes": {
       "first-name": "Barack",
@@ -221,7 +338,7 @@ export default DS.JSONAPISerializer.extend({
 });
 ```
 
-#### Relationships
+### Relationships
 
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
@@ -292,7 +409,7 @@ export default DS.JSONAPISerializer.extend({
 ```
 
 
-#### Creating Custom Transformations
+## Creating Custom Transformations
 
 In some circumstances, the built in attribute types of `string`,
 `number`, `boolean`, and `date` may be inadequate. For example, a
@@ -341,9 +458,7 @@ If `position` is modified and saved, it will pass through the
 `serialize` function in the transform and again be presented as
 an array in JSON.
 
-
-
-### JSONSerializer
+## JSONSerializer
 
 Not all APIs follow the conventions that the `JSONAPISerializer` uses
 with a data namespace and sideloaded relationship records. Some
@@ -367,10 +482,10 @@ to be a JSON object that looks similar to this:
 
 ```json
 {
-    "id": 1,
+    "id": "1",
     "title": "Rails is omakase",
     "tag": "rails",
-    "comments": [1, 2]
+    "comments": ["1", "2"]
 }
 ```
 
@@ -381,15 +496,15 @@ looks similar to this:
 
 ```json
 [{
-  "id": 1,
+  "id": "1",
   "title": "Rails is omakase",
   "tag": "rails",
-  "comments": [1, 2]
+  "comments": ["1", "2"]
 }, {
-  "id": 2,
+  "id": "2",
   "title": "I'm Running to Reform the W3C's Tag",
   "tag": "w3c",
-  "comments": [3]
+  "comments": ["3"]
 }]
 ```
 
@@ -400,7 +515,7 @@ serialization process. Be sure to check out the
 for a full list of methods and properties.
 
 
-### EmbeddedRecordMixin
+## EmbeddedRecordMixin
 
 Although Ember Data encourages you to sideload your relationships,
 sometimes when working with legacy APIs you may discover you need to
@@ -416,12 +531,12 @@ that looks similar to this:
 
 ```json
 {
-    "id": 1,
+    "id": "1",
     "title": "Rails is omakase",
     "tag": "rails",
     "authors": [
         {
-            "id": 2,
+            "id": "2",
             "name": "Steve"
         }
     ]
@@ -480,7 +595,7 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 });
 ```
 
-#### EmbeddedRecordsMixin Defaults
+### EmbeddedRecordsMixin Defaults
 
 If you do not overwrite `attrs` for a specific relationship, the
 `EmbeddedRecordsMixin` will behave in the following way:
@@ -491,9 +606,9 @@ HasMany:   `{ serialize: false, deserialize: 'ids' }`
 
 There is an option of not embedding JSON in the serialized payload by
 using serialize: 'ids'. If you do not want the relationship sent at
-all, you can use serialize: false.
+all, you can use `serialize: false`.
 
-### Authoring Serializers
+## Authoring Serializers
 
 If you would like to create a custom serializer its recommend that you
 start with the `JSONAPISerializer` or `JSONSerializer` and extend one of
@@ -533,7 +648,7 @@ export default DS.Model.extend({
 ```js
 {
   data: {
-    id: 1,
+    id: "1",
     type: 'post',
     attributes: {
       title: "Rails is omakase",
@@ -541,9 +656,9 @@ export default DS.Model.extend({
     },
     relationships: {
       comments: {
-        data: [{ id: 1, type: 'comment' },
-               { id: 2, type: 'comment' }],
-      }, 
+        data: [{ id: "1", type: 'comment' },
+               { id: "2", type: 'comment' }],
+      },
       relatedPosts: {
         data: {
           related: "/api/v1/posts/1/related-posts/"
