@@ -43,7 +43,7 @@ $(function() {
     var searchLink = $(this).find('a');
     var originalUrl = searchLabel.data('dest-url');
     if(originalUrl.indexOf(currentRevision) === -1) {
-      var searchUrl = currentRevision + originalUrl;
+      var searchUrl = '/' + currentRevision + originalUrl;
       searchLabel.attr('data-dest-url', searchUrl);
       searchLink.attr('href', searchUrl);
     }
