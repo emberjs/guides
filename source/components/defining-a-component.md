@@ -28,6 +28,7 @@ Given the above template, you can now use the `{{blog-post}}` component:
     {{post.body}}
   {{/blog-post}}
 {{/each}}
+```
 
 ```app/routes/index.js
 export default Ember.Route.extend({
