@@ -90,7 +90,7 @@ store.findRecord('post', 1).then(function(post) {
 
   post.set('title', 'A new post');
 
-  post.save(); // => PUT to '/posts/1'
+  post.save(); // => PATCH to '/posts/1'
 });
 ```
 
