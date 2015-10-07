@@ -83,7 +83,7 @@ Notice that the `positionalParams` property is added to the class as a
 static variable via `reopenClass`. Positional params are always declared on
 the component class and cannot be changed while an application runs.
 
-Alternatively, you can accept have an arbitrary number of parameters by
+Alternatively, you can accept an arbitrary number of parameters by
 setting `positionalParams` to a string, e.g. `positionalParams: 'params'`. This
 will allow you to access those params as an array like so:
 
