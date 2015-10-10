@@ -87,8 +87,8 @@ Ember Data will do no additional processing of the value.
 ### Options
 
 `DS.attr` can also take a hash of options as a second parameter. At the moment
-the only option available is `defaultValue`, which can use a string or a
-function to set the default value of the attribute if one is not supplied.
+the only option available is `defaultValue`, which can use a value or a function
+to set the default value of the attribute if one is not supplied.
 
 In the following example we define that `verified` has a default value of
 `false` and `createdAt` defaults to the current date at the time of the model's
