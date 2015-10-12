@@ -110,8 +110,9 @@ person.changedAttributes();       //=> { isAdmin: [false, true] }
 ```
 
 At this point, you can either persist your changes via `save()` or you can roll
-back your changes. Calling `rollbackAttributes()` reverts all the
-`changedAttributes` to their original value.
+back your changes. Calling `rollbackAttributes()` for a saved record reverts all
+the `changedAttributes` to their original value. If the record `isNew` it will
+be removed from the store.
 
 ```js
 person.get('hasDirtyAttributes'); //=> true
