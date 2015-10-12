@@ -10,7 +10,7 @@ return a promise that fulfills with the requested record:
 var post = this.store.findRecord('post', 1); // => GET /posts/1
 ```
 
-Use `store.peekRecord()` to retrieve a record by its type and ID, without making
+Use [`store.peekRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekRecord) to retrieve a record by its type and ID, without making
 a network request. This will return the record only if it is already present in
 the store:
 
