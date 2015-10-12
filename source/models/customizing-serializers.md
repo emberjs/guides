@@ -22,7 +22,7 @@ following conventions.
 
 The JSONAPI serializer expects the backend to return a JSON API
 Document that follows the JSON API specification and the conventions
-of the examples found on http://jsonapi.org/format/. This means all
+of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all
 type names should be pluralized and attribute and relationship names
 should be dash-cased. For example, if you request a record from
 `/people/123`, the response should looks like this:
