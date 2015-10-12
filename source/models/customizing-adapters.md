@@ -64,7 +64,7 @@ by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default
 ## Customizing the JSONAPIAdapter
 
 The
-[DS.JSONAPIAdapter](http://emberjs.com/api/data/classes/DS.JSONAdapter.html)
+[DS.JSONAPIAdapter](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html)
 has a handful of hooks that are commonly used to extend it to work
 with non-standard backends.
 
