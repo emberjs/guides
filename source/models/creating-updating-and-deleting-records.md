@@ -109,8 +109,8 @@ person.get('hasDirtyAttributes'); //=> true
 person.changedAttributes();       //=> { isAdmin: [false, true] }
 ```
 
-At this point, you can either persist your changes via `save()` or you
-can rollback your changes. Calling `rollbackAttributes()` reverts all the
+At this point, you can either persist your changes via `save()` or you can roll
+back your changes. Calling `rollbackAttributes()` reverts all the
 `changedAttributes` to their original value.
 
 ```js
