@@ -3,16 +3,17 @@ type.
 
 ### Retrieving a Single Record
 
-Use `store.findRecord()` to retrieve a record by its type and ID. This will
-return a promise that fulfills with the requested record:
+Use [`store.findRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord)
+to retrieve a record by its type and ID. This will return a promise that
+fulfills with the requested record:
 
 ```javascript
 var post = this.store.findRecord('post', 1); // => GET /posts/1
 ```
 
-Use [`store.peekRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekRecord) to retrieve a record by its type and ID, without making
-a network request. This will return the record only if it is already present in
-the store:
+Use [`store.peekRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekRecord)
+to retrieve a record by its type and ID, without making a network request.
+This will return the record only if it is already present in the store:
 
 ```javascript
 var post = this.store.peekRecord('post', 1); // => no network request
@@ -20,14 +21,16 @@ var post = this.store.peekRecord('post', 1); // => no network request
 
 ### Retrieving Multiple Records
 
-Use `store.findAll()` to retrieve all of the records for a given type:
+Use [`store.findAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_findAll)
+to retrieve all of the records for a given type:
 
 ```javascript
 var posts = this.store.findAll('post'); // => GET /posts
 ```
 
-Use `store.peekAll()` to retrieve all of the records for a given type that are
-already loaded into the store, without making a network request:
+Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll)
+to retrieve all of the records for a given type that are already loaded into 
+the store, without making a network request:
 
 ```javascript
 var posts = this.store.peekAll('post'); // => no network request
@@ -45,7 +48,8 @@ not work--you'll have to use `objectAt(index)` instead.
 
 ### Querying for Multiple Records
 
-Ember Data provides the ability to query for records that meet certain criteria. Calling `store.query()`
+Ember Data provides the ability to query for records that meet certain criteria. Calling
+[`store.query()`](http://emberjs.com/api/data/classes/DS.Store.html#method_query)
 will make a `GET` request with the passed object serialized as query params. This method returns
 `DS.PromiseArray` in the same way as `find`.
 
@@ -63,8 +67,9 @@ this.store.query('person', { filter: { name: 'Peter' } }).then(function(peters) 
 
 If you know your query will return only one result Ember Data provides
 a convenience method that will return a promise that resolves with a
-single record. Calling `store.queryRecord()` will make a `GET` request
-with the passed object serialized as query params.
+single record. Calling
+[`store.queryRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_queryRecord)
+will make a `GET` request with the passed object serialized as query params.
 
 For example, if we know that an email uniquely identifies a person, we could search for a `person` model that has an email address of
 `tomster@example.com`:

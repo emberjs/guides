@@ -19,7 +19,7 @@ you want to update the UI immediately.
 
 ### Pushing Records
 
-To push a record into the store, call the store's `push()` method.
+To push a record into the store, call the store's [`push()`](http://emberjs.com/api/data/classes/DS.Store.html#method_push) method.
 
 For example, imagine we want to preload some data into the store when
 the application boots for the first time.
@@ -73,8 +73,8 @@ example above the type is `album` because the model is defined in
 the casing of the properties defined on the Model class.
 
 If you would like to the data to be normalized by the serializer
-before pushing it into the store you can use the `store.pushPayload`
-method.
+before pushing it into the store you can use the
+[`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
 
 ```app/routes/application.js
 export default Ember.Route.extend({
