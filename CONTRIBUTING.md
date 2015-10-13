@@ -37,6 +37,12 @@ In code samples:
 * In fenced code blocks, include the filename or language after the triple-backticks, like <code>&#96;&#96;&#96;routes/kittens.js</code> or <code>&#96;&#96;&#96;hbs</code>.
 * Write paths relative to the project root.
 
+When linking to API pages:
+
+* use code backticks as part of the link text, i.e., \[<code>&#96;store.push()&#96;</code>]
+(api link)
+* include parenthesis when linking to an API method, i.e., <code>&#96;store.push()&#96;</code>
+
 Write once, edit twice (at least!) before opening a PR. When you edit your own writing, ask yourself:
 
 * Am I using proper grammar and spelling?
