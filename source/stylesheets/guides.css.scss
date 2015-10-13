@@ -25,6 +25,10 @@ body.guides, body.blog, body.api {
     @include border-radius(5px);
   }
 
+  a code {
+    color: $orange-color;
+  }
+
   pre.code {
     font-family: Menlo, Courier, monospace;
     font-size: 90%;
