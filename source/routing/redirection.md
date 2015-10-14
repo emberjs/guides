@@ -58,7 +58,7 @@ with the single post object being its model.
 
 ### Child Routes
 
-Let's change the router above to used a nested route, like this:
+Let's change the router above to use a nested route, like this:
 
 ```app/router.js
 Router.map(function() {
