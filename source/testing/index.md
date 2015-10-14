@@ -67,7 +67,8 @@ Run your tests with `ember test` on the command-line. You can re-run your tests 
 file-change with `ember test --server`.
 
 Tests can also be executed when you are running a local development server (started by
-running `ember server`), at the `/tests` URI.  A word of caution using this approach:
+running `ember server`), at the `/tests` URI which renders the `tests/index.html` template.
+A word of caution using this approach:
 Tests run using `ember server` have the environment configuration `development`, whereas tests executed
 under `ember test --server` are run with the configuration `test`.  This could cause
 differences in execution, such as which libraries are loaded and available.  Therefore its
