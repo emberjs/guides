@@ -17,6 +17,15 @@ var documentType = 'guides-' + currentRevision.replace(/\./g,'-');
   Swiftype.searchFetchFields[documentType] = ['title','body',  'url']
   Swiftype.searchDocumentTypes = [documentType];
 
+  // Changes the onClick handler to redirect to /<currentRevision>/<url>
+  Swiftype.utilOverrides = {};
+  Swiftype.utilOverrides.pingSearchResultClick = function(docId, query, destinationUrl, theWindow) {
+    var sanitizedQuery = encodeURIComponent(query);
+    var url = Swiftype.root_url + "/api/v1/public/analytics/pc?engine_key=" + Swiftype.key + "&doc_id=" + docId + "&q=" + sanitizedQuery;
+    destinationUrl = '/' + currentRevision + destinationUrl;
+    Swiftype.Util.pingUrl(url, destinationUrl, theWindow);
+  };
+
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.async = true;
@@ -36,16 +45,5 @@ $(function() {
     fetchFields: Swiftype.searchFetchFields,
     documentTypes: Swiftype.searchDocumentTypes,
     onComplete: onComplete
-  });
-
-  $(document).on('DOMNodeInserted', '.st-result', function() {
-    var searchLabel = $(this).find('h3');
-    var searchLink = $(this).find('a');
-    var originalUrl = searchLabel.data('dest-url');
-    if(originalUrl.indexOf(currentRevision) === -1) {
-      var searchUrl = '/' + currentRevision + originalUrl;
-      searchLabel.attr('data-dest-url', searchUrl);
-      searchLink.attr('href', searchUrl);
-    }
   });
 });
