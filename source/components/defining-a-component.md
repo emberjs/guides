@@ -30,6 +30,8 @@ Given the above template, you can now use the `{{blog-post}}` component:
 {{/each}}
 ```
 
+Its model is populated in `model` hook in the route handler:
+
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
