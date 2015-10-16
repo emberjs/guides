@@ -1,7 +1,8 @@
-To iterate over a list of items, use the `{{#each}}` helper. The first
-argument to this helper is the array to be iterated, and the value being
-iterated is yielded as a block param. Block params are only available inside
-the block of their helper.
+To iterate over a list of items, use the
+[`{{#each}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each)
+helper. The first argument to this helper is the array to be iterated, and
+the value being iterated is yielded as a block param. Block params are only
+available inside the block of their helper.
 
 For example, this template iterates an array named `people` that contains
 objects. Each item in the array is provided as the block param `person`.
@@ -60,9 +61,9 @@ block param. Block params are space-seperated, without commas. For example:
 
 ### Empty Lists
 
-The `{{#each}}` helper can have a corresponding `{{else}}`.
-The contents of this block will render if the array passed to `{{#each}}` is
-is empty:
+The [`{{#each}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each)
+helper can have a corresponding `{{else}}`. The contents of this block will
+render if the array passed to `{{#each}}` is empty:
 
 ```handlebars
 {{#each people as |person|}}

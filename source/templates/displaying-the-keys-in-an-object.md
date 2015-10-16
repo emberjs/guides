@@ -1,5 +1,6 @@
 If you need to display all of the keys or values of a
-JavaScript object in your template, you can use the `{{#each-in}}`
+JavaScript object in your template, you can use the
+[`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in)
 helper:
 
 ```/app/components/store-categories.js
@@ -57,10 +58,11 @@ The above example will print a list like this:
 
 ### Re-rendering
 
-The `{{#each-in}}` helper **does not observe property
-changes** to the object passed into it. In the above example, if you were
-to add a key to the component's `categories` property after the
-component had rendered, the template would **not** automatically update.
+The [`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in)
+helper **does not observe property changes** to the object passed into it. In
+ the above example, if you were to add a key to the component's `categories`
+ property after the component had rendered, the template would **not**
+ automatically update.
 
 ```/app/components/store-categories.js
 export default Ember.Component.extend({
@@ -82,9 +84,10 @@ export default Ember.Component.extend({
 ```
 
 In order to cause a component to re-render after you have added,
-removed or changed a property from an object, you need to either `set()` the
+removed or changed a property from an object, you need to either
+[`set()`](http://emberjs.com/api/classes/Ember.Component.html#method_set) the
 property on the component again, or manually trigger a re-render of the
-component via `rerender()`:
+component via [`rerender()`](http://emberjs.com/api/classes/Ember.Component.html#method_rerender):
 
 ```/app/components/store-categories.js
 export default Ember.Component.extend({
@@ -112,13 +115,14 @@ export default Ember.Component.extend({
 An object's keys will be listed in the same order as the array returned
 from calling `Object.keys` on that object. If you want a different sort
 order, you should use `Object.keys` to get an array, sort that array
-with the built-in JavaScript tools, and use the `{{#each}}` helper
-instead.
+with the built-in JavaScript tools, and use the
+[`{{#each}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in)
+helper instead.
 
 ### Empty Lists
-The `{{#each-in}}` helper can have a matching `{{else}}`.
-The contents of this block will render if the object is empty, null, or
-undefined:
+The [`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in)
+helper can have a matching `{{else}}`. The contents of this block will render
+ if the object is empty, null, or undefined:
 
 ```handlebars
 {{#each-in people as |name person|}}
