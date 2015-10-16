@@ -37,7 +37,9 @@ You can also have Ember generate the file for you from the command line:
 ember generate helper format-currency
 ```
 
-That file should export a function wrapped with `Ember.Helper.helper()`:
+That file should export a function wrapped with [`Ember.Helper.helper()`][1]:
+
+[1]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
 
 ```app/helpers/format-currency.js
 export default Ember.Helper.helper(function(params) {
@@ -231,11 +233,15 @@ access to services in your application, and can optionally save state as well,
 although this is usually unnecessary and error-prone.
 
 To create a class-based helper, rather than exporting a simple function, you
-should export a subclass of `Ember.Helper`. Helper classes must contain a
-`compute` method that behaves the same as the function passed to
-`Ember.Helper.helper`.  In order to access a service, you must first inject it
+should export a subclass of [`Ember.Helper`][1]. Helper classes must contain a
+[`compute`][2] method that behaves the same as the function passed to
+[`Ember.Helper.helper`][3].  In order to access a service, you must first inject it
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
+
+[1]: http://emberjs.com/api/classes/Ember.Helper.html
+[2]: http://emberjs.com/api/classes/Ember.Helper.html#method_compute
+[3]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
 
 To exemplify, let's make a helper utilizing an authentication service that
 welcomes users by their name if they're logged in:
@@ -305,7 +311,7 @@ Ember will escape the HTML tags, like this:
 This shows the literal string `<b>Hello world</b>` to the user, rather
 than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
-`htmlSafe` string utility:
+[`htmlSafe`][1] string utility:
 
 ```app/helpers/make-bold.js
 export default Ember.Helper.helper(function(params) {
@@ -314,8 +320,10 @@ export default Ember.Helper.helper(function(params) {
 ```
 
 If you return a `SafeString` (a string that has been wrapped in a call
-to `htmlSafe`), Ember knows that you have vouched on its behalf that it
+to [`htmlSafe`][1]), Ember knows that you have vouched on its behalf that it
 contains no malicious HTML.
+
+[1]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe
 
 However, note that in the above code we may have just inadvertently
 introduced an XSS vulnerability into our application! By blindly marking

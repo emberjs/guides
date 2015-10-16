@@ -1,6 +1,8 @@
 ## The `{{link-to}}` Helper
 
-You create a link to a route using the `{{link-to}}` helper.
+You create a link to a route using the
+[`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to)
+helper.
 
 ```app/router.js
 Router.map(function() {
@@ -101,8 +103,9 @@ populate the url according to `CommentRoute`'s `serialize` hook.
 
 ### Using link-to as an inline helper
 
-In addition to being used as a block expression, the `link-to` helper
-can also be used in inline form by specifying the link text as the first
+In addition to being used as a block expression, the
+[`link-to`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to)
+helper can also be used in inline form by specifying the link text as the first
 argument to the helper:
 
 ```handlebars
@@ -133,9 +136,11 @@ adding class names, Ember will also apply the standard `ember-view` and possibly
 
 ### Replacing history entries
 
-The default behavior for `link-to` is to add entries to the browser's history
-when transitioning between the routes. However, to replace the current entry in
-the browser's history you can use the `replace=true` option:
+The default behavior for
+[`link-to`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to)
+is to add entries to the browser's history when transitioning between the
+routes. However, to replace the current entry in the browser's history you
+can use the `replace=true` option:
 
 ```handlebars
 <p>
