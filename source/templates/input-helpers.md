@@ -1,5 +1,3 @@
-## Input Helpers
-
 The `{{input}}` and `{{textarea}}` helpers in Ember.js are the easiest way to
 create common form controls. The `{{input}}` helper wraps the built-in
 [Ember.TextField][1] and [Ember.Checkbox][2] views, while `{{textarea}}` wraps
@@ -11,7 +9,7 @@ declarations almost identical to how you'd create a traditional `<input>` or
 [2]: http://emberjs.com/api/classes/Ember.Checkbox.html
 [3]: http://emberjs.com/api/classes/Ember.TextArea.html
 
-### Text fields
+## Text fields
 
 ```handlebars
 {{input value="http://www.facebook.com"}}
@@ -51,7 +49,7 @@ rendering context. For example:
 Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
 current context.
 
-### Actions
+## Actions
 
 To dispatch an action on specific events, such as `enter` or `key-press`, use the following
 
@@ -61,7 +59,7 @@ To dispatch an action on specific events, such as `enter` or `key-press`, use th
 
 [Event Names](http://emberjs.com/api/classes/Ember.View.html#toc_event-names) must be dasherized.
 
-### Checkboxes
+## Checkboxes
 
 You can also use the `{{input}}` helper to create a checkbox by setting its
 `type`:
@@ -83,7 +81,7 @@ Checkboxes support the following properties:
 
 Which can be bound or set as described in the previous section.
 
-### Text Areas
+## Text Areas
 
 ```handlebars
 {{textarea value=name cols="80" rows="6"}}
