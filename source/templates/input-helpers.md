@@ -108,3 +108,19 @@ Will bind the value of the text area to `name` on the current context.
 * `form`
 * `spellcheck`
 * `required`
+
+### The `{{get}}` Helper
+
+The [`{{get}}`](https://github.com/emberjs/guides/issues/861) helper allows you to
+dynamically look up a property on an object. For example, these two usages are equivilent:
+
+```handlebars
+{{person.height}}
+{{get person "height"}}
+```
+
+The second argument to {{get}} should have a string value, although it can be bound.
+
+```handlebars
+{{get person factName}}
+```
