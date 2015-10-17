@@ -21,7 +21,9 @@ template. For example, the `posts.new` route will render its template into the
 the `application.hbs`'s `{{outlet}}`.
 
 If you want to render a template other than the default one, implement the
-`renderTemplate` hook:
+[`renderTemplate()`][1] hook:
+
+[1]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
 
 ```app/routes/posts.js
 export default Ember.Route.extend({

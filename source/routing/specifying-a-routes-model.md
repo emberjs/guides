@@ -9,8 +9,10 @@ Router.map(function() {
 });
 ```
 
-To load a model for the `favoritePosts` route, you would use the `model` hook in
-the `posts` route handler:
+To load a model for the `favoritePosts` route, you would use the [`model()`][1] 
+hook in the `posts` route handler:
+
+[1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
 
 ```app/routes/favorite-posts.js
 export default Ember.Route.extend({
