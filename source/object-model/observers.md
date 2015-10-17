@@ -67,9 +67,11 @@ person.set('firstName', 'John');
 person.set('lastName', 'Smith');
 ```
 
-To get around these problems, you should make use of `Ember.run.once`. This will
-ensure that any processing you need to do only happens once, and happens in the
-next run loop once all bindings are synchronized:
+To get around these problems, you should make use of [`Ember.run.once()`][1].
+This will ensure that any processing you need to do only happens once, and
+happens in the next run loop once all bindings are synchronized:
+
+[1]: http://emberjs.com/api/classes/Ember.run.html#method_once
 
 ```javascript
 Person.reopen({
@@ -94,7 +96,9 @@ Observers never fire until after the initialization of an object is complete.
 
 If you need an observer to fire as part of the initialization process, you
 cannot rely on the side effect of `set`. Instead, specify that the observer
-should also run after `init` by using `Ember.on()`:
+should also run after `init` by using [`Ember.on()`][1]:
+
+[1]: http://emberjs.com/api/classes/Ember.html#method_on
 
 ```javascript
 Person = Ember.Object.extend({
@@ -110,7 +114,7 @@ Person = Ember.Object.extend({
 
 ### Unconsumed Computed Properties Do Not Trigger Observers
 
-If you never `get` a computed property, its observers will not fire even if
+If you never `get()` a computed property, its observers will not fire even if
 its dependent keys change. You can think of the value changing from one unknown
 value to another.
 
@@ -120,12 +124,14 @@ the value of a computed property, put it in DOM (or draw it with D3), and then
 observe it so you can update the DOM once the property changes.
 
 If you need to observe a computed property but aren't currently retrieving it,
-just get it in your `init` method.
+just get it in your `init()` method.
 
 ### Outside of class definitions
 
 You can also add observers to an object outside of a class definition
-using `addObserver`:
+using [`addObserver()`][1]:
+
+[1]: http://emberjs.com/api/classes/Ember.Object.html#method_addObserver
 
 ```javascript
 person.addObserver('fullName', function() {

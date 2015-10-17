@@ -18,9 +18,9 @@ where available.
 
 In order for Ember to observe when you make a change to an enumerable, you need
 to use special methods that `Ember.Enumerable` provides. For example, if you add
-an element to an array using the standard JavaScript method `push`, Ember will
+an element to an array using the standard JavaScript method `push()`, Ember will
 not be able to observe the change, but if you use the enumerable method
-`pushObject`, the change will propagate throughout your application.
+`pushObject()`, the change will propagate throughout your application.
 
 Here is a list of standard JavaScript array methods and their observable
 enumerable equivalents:
@@ -50,7 +50,10 @@ reference documentation.](http://emberjs.com/api/classes/Ember.Enumerable.html)
 
 ### Iterating Over an Enumerable
 
-To enumerate all the values of an enumerable object, use the `forEach` method:
+To enumerate all the values of an enumerable object, use the [`forEach()`][1]
+method:
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_forEach
 
 ```javascript
 var food = ['Poi', 'Ono', 'Adobo Chicken'];
@@ -66,8 +69,11 @@ food.forEach(function(item, index) {
 
 ### First and Last Objects
 
-All enumerables expose `firstObject` and `lastObject` properties
+All enumerables expose [`firstObject`][1] and [`lastObject`][2] properties
 that you can bind to.
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#property_firstObject
+[2]: http://emberjs.com/api/classes/Ember.Enumerable.html#property_lastObject
 
 ```javascript
 var animals = ['rooster', 'pig'];
@@ -84,8 +90,10 @@ animals.get('lastObject');
 ### Map
 
 You can easily transform each item in an enumerable using the
-`map()` method, which creates a new array with results of calling a
+[`map()`][1] method, which creates a new array with results of calling a
 function on each item in the enumerable.
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_map
 
 ```javascript
 var words = ['goodbye', 'cruel', 'world'];
@@ -96,9 +104,11 @@ var emphaticWords = words.map(function(item) {
 // ["goodbye!", "cruel!", "world!"]
 ```
 
-If your enumerable is composed of objects, there is a `mapBy()`
+If your enumerable is composed of objects, there is a [`mapBy()`][1]
 method that will extract the named property from each of those objects
 in turn and return a new array:
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_mapBy
 
 ```javascript
 var hawaii = Ember.Object.create({
@@ -121,9 +131,11 @@ Another common task to perform on an enumerable is to take the
 enumerable as input, and return an Array after filtering it based on
 some criteria.
 
-For arbitrary filtering, use the `filter` method.  The filter method
+For arbitrary filtering, use the [`filter()`][1] method.  The filter method
 expects the callback to return `true` if Ember should include it in the
 final Array, and `false` or `undefined` if Ember should not.
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_filter
 
 ```javascript
 var arr = [1,2,3,4,5];
@@ -135,7 +147,9 @@ arr.filter(function(item, index, self) {
 // returns [1,2,3]
 ```
 
-When working with a collection of Ember objects, you will often want to filter a set of objects based upon the value of some property. The `filterBy` method provides a shortcut.
+When working with a collection of Ember objects, you will often want to filter a set of objects based upon the value of some property. The [`filterBy()`][1] method provides a shortcut.
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_filterBy
 
 ```javascript
 Todo = Ember.Object.extend({
@@ -153,11 +167,19 @@ todos.filterBy('isDone', true);
 // returns an Array containing only items with `isDone == true`
 ```
 
-If you want to return just the first matched value, rather than an Array containing all of the matched values, you can use `find` and `findBy`, which work just like `filter` and `filterBy`, but return only one item.
+If you want to return just the first matched value, rather than an Array
+containing all of the matched values, you can use [`find()`][1] and [`findBy()`][2],
+which work just like `filter()` and `filterBy()`, but return only one item.
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_find
+[2]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_findBy
 
 ### Aggregate Information (Every or Any)
 
-To find out whether every item in an enumerable matches some condition, you can use the `every` method:
+To find out whether every item in an enumerable matches some condition, you can
+use the [`every()`][1] method:
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_every
 
 ```javascript
 Person = Ember.Object.extend({
@@ -177,7 +199,10 @@ people.every(function(person, index, self) {
 // returns false
 ```
 
-To find out whether at least one item in an enumerable matches some condition, you can use the `any` method:
+To find out whether at least one item in an enumerable matches some condition,
+you can use the [`any()`][1] method:
+
+[1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_any
 
 ```javascript
 people.any(function(person, index, self) {
@@ -187,7 +212,8 @@ people.any(function(person, index, self) {
 // returns true
 ```
 
-Just like the filtering methods, the `every` and `any` methods have analogous `isEvery` and `isAny` methods.
+Just like the filtering methods, the `every()` and `any()` methods have 
+analogous `isEvery()` and `isAny()` methods.
 
 ```javascript
 people.isEvery('isHappy', true) // false
