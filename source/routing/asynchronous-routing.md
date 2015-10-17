@@ -8,12 +8,14 @@ heavy use of the concept of Promises. In short, promises are objects that
 represent an eventual value. A promise can either _fulfill_
 (successfully resolve the value) or _reject_ (fail to resolve the
 value). The way to retrieve this eventual value, or handle the cases
-when the promise rejects, is via the promise's `then` method, which
+when the promise rejects, is via the promise's [`then()`][1] method, which
 accepts two optional callbacks, one for fulfillment and one for
 rejection. If the promise fulfills, the fulfillment handler gets called
 with the fulfilled value as its sole argument, and if the promise rejects,
 the rejection handler gets called with a reason for the rejection as its
 sole argument. For example:
+
+[1]: http://emberjs.com/api/classes/RSVP.Promise.html#method_then
 
 ```js
 var promise = fetchTheAnswer();
@@ -67,14 +69,16 @@ arrays, the transition will complete immediately. But if the `model` hook
 if a promise was provided as an argument to `transitionTo`), the transition
 will pause until that promise fulfills or rejects.
 
-The router considers any object with a `then` method
+The router considers any object with a `then()` method
 defined on it to be a promise.
 
 If the promise fulfills, the transition will pick up where it left off and
 begin resolving the next (child) route's model, pausing if it too is a
 promise, and so on, until all destination route models have been
-resolved. The values passed to the `setupController` hook for each route
+resolved. The values passed to the [`setupController()`][1] hook for each route
 will be the fulfilled values from the promises.
+
+[1]: http://emberjs.com/api/classes/Ember.Route.html#method_setupController
 
 A basic example:
 
@@ -94,11 +98,11 @@ export default Ember.Route.extend({
 });
 ```
 
-When transitioning into `route:tardy`, the `model` hook will be called and
+When transitioning into `route:tardy`, the `model()` hook will be called and
 return a promise that won't resolve until 3 seconds later, during which time
 the router will be paused in mid-transition. When the promise eventually
 fulfills, the router will continue transitioning and eventually call
-`route:tardy`'s `setupController` hook with the resolved object.
+`route:tardy`'s `setupController()` hook with the resolved object.
 
 This pause-on-promise behavior is extremely valuable for when you need
 to guarantee that a route's data has fully loaded before displaying a
