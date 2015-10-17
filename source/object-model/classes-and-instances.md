@@ -4,8 +4,11 @@ as other major features of the Ember object model.
 
 ### Defining Classes
 
-To define a new Ember _class_, call the `extend()` method on
-`Ember.Object`:
+To define a new Ember _class_, call the [`extend()`][1] method on
+[`Ember.Object`][2]:
+
+[1]: http://emberjs.com/api/classes/Ember.Object.html#method_extend
+[2]: http://emberjs.com/api/classes/Ember.Object.html
 
 ```javascript
 Person = Ember.Object.extend({
@@ -19,7 +22,9 @@ This defines a new `Person` class with a `say()` method.
 
 You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
-of Ember's built-in `Ember.Component` class:
+of Ember's built-in [`Ember.Component`][1] class:
+
+[1]: http://emberjs.com/api/classes/Ember.Component.html
 
 ```app/components/todo-item.js
 export default Ember.Component.extend({
@@ -58,9 +63,11 @@ yehuda.say('Yes'); // alerts "Yehuda Katz says: Yes, sir!"
 ### Creating Instances
 
 Once you have defined a class, you can create new _instances_ of that
-class by calling its `create()` method. Any methods, properties and
+class by calling its [`create()`][1] method. Any methods, properties and
 computed properties you defined on the class will be available to
 instances:
+
+[1]: http://emberjs.com/api/classes/Ember.Object.html#method_create
 
 ```javascript
 var person = Person.create();
@@ -98,9 +105,11 @@ conventions in your Ember applications.
 
 ### Initializing Instances
 
-When a new instance is created, its `init` method is invoked
+When a new instance is created, its [`init()`][1] method is invoked
 automatically. This is the ideal place to implement setup required on new
 instances:
+
+[1]: http://emberjs.com/api/classes/Ember.Object.html#method_init
 
 ```js
 Person = Ember.Object.extend({
@@ -118,14 +127,17 @@ Person.create({
 ```
 
 If you are subclassing a framework class, like `Ember.Component`, and you
-override the `init` method, make sure you call `this._super(...arguments)`! If you don't,
-a parent class may not have an opportunity to do important setup work, and you'll
-see strange behavior in your application.
+override the `init()` method, make sure you call `this._super(...arguments)`!
+If you don't, a parent class may not have an opportunity to do important
+setup work, and you'll see strange behavior in your application.
 
 ### Accessing Object Properties
 
-When accessing the properties of an object, use the `get`
-and `set` accessor methods:
+When accessing the properties of an object, use the [`get()`][1]
+and [`set()`][2] accessor methods:
+
+[1]: http://emberjs.com/api/classes/Ember.Object.html#method_get
+[2]: http://emberjs.com/api/classes/Ember.Object.html#method_set
 
 ```js
 var person = Person.create();
