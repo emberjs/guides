@@ -49,7 +49,7 @@ Soldier = Person.extend({
   say(thing) {
     // this will call the method in the parent class (Person#say), appending
     // the string ', sir!' to the variable `thing` passed in
-    this._super(thing + ', sir!');
+    this._super(`${thing}, sir!`);
   }
 });
 
@@ -80,7 +80,7 @@ by passing an optional hash to the `create()` method:
 ```javascript
 Person = Ember.Object.extend({
   helloWorld() {
-    alert('Hi, my name is ' + this.get('name'));
+    alert(`Hi, my name is ${this.get('name')}`);
   }
 });
 
@@ -115,7 +115,7 @@ instances:
 Person = Ember.Object.extend({
   init() {
     var name = this.get('name');
-    alert(name + ', reporting for duty!');
+    alert(`${name}, reporting for duty!`);
   }
 });
 
