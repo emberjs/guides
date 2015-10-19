@@ -44,13 +44,17 @@ export default {
 ```
 
 ## Application Instance Initializers
+Application instance initializers are currently unavailable in Ember CLI,
+so you'll need to manually generate the file below (and folder if needed).
 
+<!--
 Application instance initializers can be created with Ember CLI's
 `instance-initializer` generator:
 
 ```bash
 ember generate instance-initializer logger
 ```
+//-->
 
 Let's add some simple logging to indicate that the instance has booted:
 
