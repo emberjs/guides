@@ -82,20 +82,20 @@ be run in a chain; each one is only called after the previous one finishes. You 
 be their execution order, and that the previous helper has finished before the
 next one starts.
 
-* `click(selector)`
+* [`click(selector)`][1]
   - Clicks an element and triggers any actions triggered by the element's `click`
     event and returns a promise that fulfills when all resulting async behavior
     is complete.
-* `fillIn(selector, value)`
+* [`fillIn(selector, value)`][2]
   - Fills in the selected input with the given value and returns a promise that
      fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
-* `keyEvent(selector, type, keyCode)`
+* [`keyEvent(selector, type, keyCode)`][3]
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
-* `triggerEvent(selector, type, options)`
+* [`triggerEvent(selector, type, options)`][4]
   - Triggers the given event, e.g. `blur`, `dblclick` on the element identified
     by the provided selector.
-* `visit(url)`
+* [`visit(url)`][5]
   - Visits the given route and returns a promise that fulfills when all resulting
      async behavior is complete.
 
@@ -103,13 +103,13 @@ next one starts.
 
 Synchronous helpers are performed immediately when triggered.
 
-* `currentPath()`
+* [`currentPath()`][6]
   - Returns the current path.
-* `currentRouteName()`
+* [`currentRouteName()`][7]
   - Returns the currently active route name.
-* `currentURL()`
+* [`currentURL()`][8]
   - Returns the current URL.
-* `find(selector, context)`
+* [`find(selector, context)`][9]
   - Finds an element within the app's root element and within the context
     (optional). Scoping to the root element is especially useful to avoid
     conflicts with the test framework's reporter, and this is done by default
@@ -145,6 +145,16 @@ In the `andThen` helper, we finally make our call to `assert.equal` which makes 
 assertion that the text found in the first li of the ul whose class is "posts"
 is equal to "My new post".
 
+[1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
+[2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
+[3]: http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent
+[4]: http://emberjs.com/api/classes/Ember.Test.html#method_triggerEvent
+[5]: http://emberjs.com/api/classes/Ember.Test.html#method_visit
+[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentPath
+[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
+[8]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
+[9]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+
 ### Custom Test Helpers
 
 For creating your own test helper, just run `ember generate test-helper
@@ -157,12 +167,15 @@ export default Ember.Test.registerAsyncHelper(
 });
 ```
 
-`Ember.Test.registerAsyncHelper` and `Ember.Test.registerHelper` are used to
-register test helpers that will be injected when `startApp` is
+[`Ember.Test.registerAsyncHelper`][10] and [`Ember.Test.registerHelper`][11] 
+are used to register test helpers that will be injected when `startApp` is
 called. The difference between `Ember.Test.registerHelper` and
 `Ember.Test.registerAsyncHelper` is that the latter will not run until any
 previous async helper has completed and any subsequent async helper will wait
 for it to finish before running.
+
+[10]: http://emberjs.com/api/classes/Ember.Test.html#method_registerAsyncHelper
+[11]: http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper
 
 The helper method will always be called with the current Application as the
 first parameter. Other parameters need to be provided when calling the helper. Helpers need to be registered prior to calling
