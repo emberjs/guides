@@ -56,10 +56,12 @@ the Handlebars template as described above and use the component that is
 created.
 
 If you need to customize the behavior of the component you'll
-need to define a subclass of `Ember.Component`. For example, you would
+need to define a subclass of [`Ember.Component`][1]. For example, you would
 need a custom subclass if you wanted to change a component's element,
 respond to actions from the component's template, or manually make
 changes to the component's element using JavaScript.
+
+[1]: http://emberjs.com/api/classes/Ember.Component.html
 
 Ember knows which subclass powers a component based on its filename. For
 example, if you have a component called `blog-post`, you would create a
@@ -69,7 +71,7 @@ file at `app/components/blog-post.js`. If your component was called
 
 ## Dynamically rendering a component
 
-The `{{component}}` helper can be used to defer the selection of a component to
+The [`{{component}}`][2] helper can be used to defer the selection of a component to
 run time. The `{{my-component}}` syntax always renders the same component,
 while using the `{{component}}` helper allows choosing a component to render on
 the fly. This is useful in cases where you want to interact with different
@@ -79,10 +81,11 @@ allow you to keep different logic well-separated.
 The first parameter of the helper is the name of a component to render, as a
 string. So `{{component 'blog-post'}}` is just the same as using `{{blog-post}}`.
 
-The real value of `{{component}}` comes from being able to dynamically pick
+The real value of [`{{component}}`][2] comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a
 means of choosing different components for displaying different kinds of posts:
 
+[2]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_component
 
 ```app/templates/components/foo-component.hbs
 <h3>Hello from foo!</h3>
