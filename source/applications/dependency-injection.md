@@ -4,11 +4,11 @@ pattern to declare and instantiate classes of objects and dependencies between
 them. Applications and application instances each serve a role in Ember's DI
 implementation.
 
-An `Ember.Application` serves as a "registry" for dependency declarations.
+An [`Ember.Application`][1] serves as a "registry" for dependency declarations.
 Factories (i.e. classes) are registered with an application, as well as rules
 about "injecting" dependencies that are applied when objects are instantiated.
 
-An `Ember.ApplicationInstance` serves as a "container" for objects that are
+An [`Ember.ApplicationInstance`][2] serves as a "container" for objects that are
 instantiated from registered factories. Application instances provide a means to
 "look up" (i.e. instantiate and / or retrieve) objects.
 
@@ -16,6 +16,9 @@ instantiated from registered factories. Application instances provide a means to
 each `ApplicationInstance` can also serve as a registry. Instance-level
 registrations are useful for providing instance-level customizations, such as
 A/B testing of a feature._
+
+[1]: http://emberjs.com/api/classes/Ember.Application.html
+[2]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html
 
 ## Factory Registrations
 

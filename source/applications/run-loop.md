@@ -189,10 +189,14 @@ $('a').click(() => {
 });
 ```
 
-The runloop API calls that _schedule_ work i.e. `run.schedule`,
-`run.scheduleOnce`, `run.once` have the property that they will approximate a
+The runloop API calls that _schedule_ work i.e. [`run.schedule`][1],
+[`run.scheduleOnce`][2], [`run.once`][3] have the property that they will approximate a
 runloop for you if one does not already exist. These automatically created
 runloops we call _autoruns_.
+
+[1]: http://emberjs.com/api/classes/Ember.run.html#method_schedule
+[2]: http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce
+[3]: http://emberjs.com/api/classes/Ember.run.html#method_once
 
 Here is some pseudocode to describe what happens using the example above:
 
