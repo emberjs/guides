@@ -62,6 +62,9 @@ the command line (without the need for a browser to be open):
 npm install -g phantomjs2
 ```
 
+If you run into any problems with this step, consult the [PhantomJS download
+instructions](http://phantomjs.org/download.html).
+
 To verify that your installation was successful, run:
 
 ```bash
