@@ -104,13 +104,22 @@ Data comes bundled with
 [Ember Inflector](https://github.com/stefanpenner/ember-inflector), a
 ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
-pluralizations can be specified via `Ember.Inflector.inflector`:
+pluralizations can be specified via `Ember.Inflector.inflector`.
+A common way to do this is:
 
-```js
+```app/app.js
+// sets up Ember.Inflector
+import './models/custom-inflector-rules';
+```
+
+```app/models/custom-inflector-rules.js
 var inflector = Ember.Inflector.inflector;
 
 inflector.irregular('formula', 'formulae');
 inflector.uncountable('advice');
+
+// Meet Ember Inspector's expectation of an export
+export default {};
 ```
 
 This will tell the JSON API adapter that requests for `formula`
