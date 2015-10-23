@@ -33,6 +33,8 @@ export default Ember.Component.extend({
 });
 ```
 
+####Overriding Parent Class Methods
+
 When defining a subclass, you can override methods but still access the
 implementation of your parent class by calling the special `_super()`
 method:
@@ -59,6 +61,25 @@ var yehuda = Soldier.create({
 
 yehuda.say('Yes'); // alerts "Yehuda Katz says: Yes, sir!"
 ```
+
+In certain cases, you will want to pass arguments to `_super()` before or after overriding.
+
+This allows the original method to continue operating as it normally would.
+
+One common example is when overriding the [`normalizeResponse()`][3] hook in one of Ember-Data's serializers.
+
+A handy shortcut for this is to use a "spread operator", like `...arguments`:
+
+[3]: http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse
+
+```javascript
+normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
+  // Customize my JSON payload for Ember-Data
+  return this._super(...arguments);
+}
+```
+
+The above example returns the original arguments (after your customizations) back to the parent class, so it can continue with its normal operations.
 
 ### Creating Instances
 
