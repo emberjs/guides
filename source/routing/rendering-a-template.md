@@ -17,7 +17,7 @@ the `posts.new` route will render `posts/new.hbs`.
 
 Each template will be rendered into the `{{outlet}}` of its parent route's
 template. For example, the `posts.new` route will render its template into the
-`post.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
+`posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
 the `application.hbs`'s `{{outlet}}`.
 
 If you want to render a template other than the default one, implement the
