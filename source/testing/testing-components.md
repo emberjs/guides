@@ -273,3 +273,71 @@ test('should change displayed location when current location changes', function 
   assert.equal(this.$().text().trim(), 'You currently are located in Beijing, China', 'location display should change');
 });
 ```
+
+### Waiting on Asynchronous Behavior
+Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.  The
+`wait` helper is designed to handle these scenarios, by providing a hook to ensure assertions are made after
+all ajax requests and timers are complete.
+
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](http://emberjs.com/api/classes/Ember.run.html#method_debounce)
+to limit requests to the server, and you want to verify that results are displayed after typing a character.
+
+> You can follow along by generating your own component with `ember generate
+> component delayed-typeahead`.
+
+```app/components/delayed-typeahead.js
+export default Ember.Component.extend({
+  actions: {
+    handleTyping() {
+      //the fetchResults function is passed into the component from its parent
+      Ember.run.debounce(this, this.get('fetchResults'), this.get('searchValue'), 250);
+    }
+  }
+});
+```
+
+```app/templates/components/delayed-typeahead.hbs
+{{input value=searchValue key-up=(action 'handleTyping')}}
+<ul>
+{{#each results as |result|}}
+  <li class="result">{{result.name}}</li>
+{{/each}}
+</ul>
+```
+
+In your integration test, use the `wait` function to wait until your debounce timer is up and then assert
+that the page is rendered appropriately.
+
+```tests/integration/components/delayed-typeahead-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import wait from 'ember-test-helpers/wait';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('delayed-typeahead', 'Integration | Component | delayed typeahead', {
+  integration: true
+});
+
+const stubResults = [
+  { name: 'result 1' },
+  { name: 'result 2' }
+];
+
+test('should render results after typing a term', function(assert) {
+  assert.expect(2);
+
+  this.set('results', []);
+  this.set('fetchResults', (value) => {
+    assert.equal(value, 'test', 'fetch closure action called with search value');
+    this.set('results', stubResults);
+  });
+
+  this.render(hbs`{{delayed-typeahead fetchResults=fetchResults results=results}}`);
+  this.$('input').val('test');
+  this.$('input').trigger('keyup');
+
+  return wait().then(() => {
+    assert.equal(this.$('.result').length, 2, 'two results rendered');
+  });
+
+});
+```
