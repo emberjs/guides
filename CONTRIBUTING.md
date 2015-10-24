@@ -29,6 +29,11 @@ Each guide should thoroughly explain the feature it documents, and include links
 
 Liberally use examples in your writing. For example, the sentence "Templates can contain expressions in double curly braces" should be expanded to something like "Templates can contain expressions in double curly braces, such as \`&lt;h1&gt;Welcome {{user.name}}&lt;/h1&gt;\`" A short example is often more clear than a long explanation. In fact, it is often helpful to give two examples to make things even clearer.
 
+When writing prose:
+
+* Use a single space after periods.
+* Manually break lines that are longer than 120 characters.
+
 In code samples:
 
 * Follow the [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md).
