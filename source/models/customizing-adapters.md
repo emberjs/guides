@@ -52,7 +52,7 @@ want to create an adapter that is radically different from the other
 Ember adapters.
 
 - [DS.JSONAPIAdapter](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html)
-The `JSONAdapter` is the default adapter and follows JSON API
+The `JSONAPIAdapter` is the default adapter and follows JSON API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
