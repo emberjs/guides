@@ -5,7 +5,7 @@ For example, take this router:
 
 ```app/router.js
 Router.map(function() {
-  this.route('favoritePosts');
+  this.route('favorite-posts');
 });
 ```
 
