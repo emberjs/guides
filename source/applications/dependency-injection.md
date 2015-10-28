@@ -98,7 +98,7 @@ factories as non-singletons using the `singleton: false` option.
 
 In the following example, the `Message` class is registered as a non-singleton:
 
-```app/initializers/logger.js
+```app/initializers/notification.js
 export function initialize(application) {
   var Message = Ember.Object.extend({
     text: ''
@@ -108,7 +108,7 @@ export function initialize(application) {
 }
 
 export default {
-  name: 'logger',
+  name: 'notification',
   initialize: initialize
 };
 ```
