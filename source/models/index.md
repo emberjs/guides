@@ -157,7 +157,7 @@ designed to work out of the box with [JSON API][json-api]. JSON API is a
 formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
 
-[json-api]: http://www.jsonapi.org
+[json-api]: http://jsonapi.org
 
 JSON API standardizes how JavaScript applications talk to servers, so
 you decrease the coupling between your frontend and backend, and have
