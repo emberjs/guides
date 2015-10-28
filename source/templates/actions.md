@@ -158,3 +158,100 @@ For example:
   cursor: pointer;
 }
 ```
+
+## Closure Actions and Components
+
+When building complex components, the traditional way of passing and calling actions was cumbersome. Often while building and constructing components, it is preferable to build them in a composable manner and keep each composable part completely isolated and only concerned about itself. However the traditional approach to calling actions made this difficult, rather the parent component always needed to know about the child components actions.  For example, suppose I have three components, all related to building a table (my-table, my-table-header-row, my-table-header-cell). Anytime I click on the "my-table-header-cell", the "cellClicked" action should be called and passed the key for that cell. The traditional approach would look something like this:
+
+```handlebars
+{{! /templates/application.hbs}}
+{{#my-table}}
+  {{#my-table-header-row}}
+    {{#my-table-header-cell key="cell1" clickAction="cellClicked"}}Cell 1{{/my-table-header-cell}}
+    {{#my-table-header-cell key="cell2" clickAction="cellClicked"}}Cell 2{{/my-table-header-cell}}
+  {{/my-table-header-row}}
+{{/mytable}}
+```
+
+```js
+// /controllers/application.js
+actions: {
+  cellClicked(key) {
+    this.set('sortKey', key);
+  }
+}
+```
+
+```js
+// /components/my-table.js
+actions: {
+  clickAction() {
+    this.sendAction('clickAction', this.attrs.key);
+  }
+}
+```
+
+```js
+// /components/my-table-header-row.js
+actions: {
+  clickAction() {
+    this.sendAction('clickAction', this.attrs.key);
+  }
+}
+```
+
+```handlebars
+{{! /templates/components/my-table-header-cell.hbs}}
+<span {{action "clickAction"}}>{{yield}}</span>
+```
+
+```js
+// /components/my-table-header-cell.js
+actions: {
+  clickAction() {
+    this.sendAction('clickAction', this.attrs.key);
+  }
+}
+```
+
+In the above example, the parent component has to know about the actions for all children and grandchildren, etc. Instead, it would be preferable for the parent to only be concerned about itself and for the children and grandchildren to not need to go through their parents in order to call a passed action.  That is where "closure actions" come in and they are available as of Ember 1.13. Using the above example, our implementation would change to:
+
+```handlebars
+{{! /templates/application.hbs}}
+{{#my-table}}
+  {{#my-table-header-row}}
+    {{#my-table-header-cell clickAction=(action 'cellClicked' 'cell1')}}
+      Cell 1
+    {{/my-table-header-cell}}
+    {{#my-table-header-cell clickAction=(action 'cellClicked' 'cell2')}}
+      Cell 2
+    {{/my-table-header-cell}}
+  {{/my-table-header-row}}
+{{/mytable}}
+```
+
+```js
+// /controllers/application.js
+actions: {
+  cellClicked(key) {
+    this.set('sortKey', key);
+  }
+}
+```
+
+```handlebars
+{{! /templates/components/my-table-header-cell.hbs}}
+<span {{action "clickAction"}}>{{yield}}</span>
+```
+
+
+```js
+// /components/my-table-header-cell.js
+actions: {
+  clickAction() {
+    this.attrs.clickAction();
+  }
+}
+```
+
+Notice that in this modified implementation, the action is executed inside the containing component rather than a notification being passed up through the parents to the original controller who ultimately executes the action. The result is better isolation and simplicity is building and composing components.
