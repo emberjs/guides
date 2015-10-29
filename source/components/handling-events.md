@@ -15,7 +15,7 @@ clicked, an alert is displayed:
 
 ```app/components/double-clickable.js
 export default Ember.Component.extend({
-  doubleClick: function() {
+  doubleClick() {
     alert("DoubleClickableComponent was clicked!");
   }
 });
@@ -27,7 +27,7 @@ in your component.
 
 ```app/components/double-clickable.js
 export default Ember.Component.extend({
-  doubleClick: function() {
+  doubleClick() {
     Ember.Logger.info("DoubleClickableComponent was clicked!");
     return true;
   }
@@ -56,11 +56,11 @@ export default Ember.Component.extend({
   attributeBindings: ['draggable'],
   draggable: 'true',
 
-  dragOver: function() {
+  dragOver() {
     return false;
   },
 
-  drop: function(event) {
+  drop(event) {
     let id = event.dataTransfer.getData('text/data');
     this.sendAction('action', id);
   }
