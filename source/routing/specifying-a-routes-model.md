@@ -31,7 +31,7 @@ rendering the template.
 The return value from the `model` hook is then available in your template and
 controller with the `model` property:
 
-```app/templates/favorite-post.hbs
+```app/templates/favorite-posts.hbs
 <h1>Favorite Posts</h1>
 {{#each model as |post|}}
   <p>{{post.body}}</p>
