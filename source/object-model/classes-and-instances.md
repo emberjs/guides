@@ -152,6 +152,57 @@ override the `init()` method, make sure you call `this._super(...arguments)`!
 If you don't, a parent class may not have an opportunity to do important
 setup work, and you'll see strange behavior in your application.
 
+Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object. 
+```js
+Person = Ember.Object.extend({
+  shoppingList: ['eggs', 'cheese']
+});
+
+Person.create({
+  name: 'Stefan Penner',
+  addItem() {
+    this.get('shoppingList').pushObject('bacon');
+  }
+});
+
+Person.create({
+  name: 'Robert Jackson',
+  addItem() {
+    this.get('shoppingList').pushObject('sausage');
+  }
+});
+
+// Stefan and Robert both trigger their addItem.
+// They both end up with: ['eggs', 'cheese', 'bacon', 'sausage']
+```
+
+To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
+
+```js
+Person = Ember.Object.extend({
+  init() {
+    this.set('shoppingList', ['eggs', 'cheese']);
+  }
+});
+
+Person.create({
+  name: 'Stefan Penner',
+  addItem() {
+    this.get('shoppingList').pushObject('bacon');
+  }
+});
+
+Person.create({
+  name: 'Robert Jackson',
+  addItem() {
+    this.get('shoppingList').pushObject('sausage');
+  }
+});
+
+// Stefan ['eggs', 'cheese', 'bacon']
+// Robert ['eggs', 'cheese', 'sausage']
+```
+
 ### Accessing Object Properties
 
 When accessing the properties of an object, use the [`get()`][1]
