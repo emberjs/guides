@@ -84,7 +84,8 @@ export default Ember.Route.extend({
   },
   actions: {
     loading(transition, originRoute) {
-      alert('Sorry this page is taking so long to load!');
+      let controller = this.controllerFor('foo');
+      controller.set('currentlyLoading', true);
     }
   }
 });
@@ -93,6 +94,23 @@ export default Ember.Route.extend({
 If the `loading` handler is not defined at the specific route,
 the event will continue to bubble above a transition's parent
 route, providing the `application` route the opportunity to manage it.
+
+When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
+
+```app/routes/foo-slow-model.js
+export default Ember.Route.extend({
+  ...
+  actions: {
+    loading(transition, originRoute) {
+      let controller = this.controllerFor('foo');
+      controller.set('currentlyLoading', true);
+      transition.promise.finally(function() {
+          controller.set('currentlyLoading', false);
+      });
+    }
+  }
+});
+```
 
 ## `error` substates
 
