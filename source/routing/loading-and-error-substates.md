@@ -84,7 +84,8 @@ export default Ember.Route.extend({
   },
   actions: {
     loading(transition, originRoute) {
-      alert('Sorry this page is taking so long to load!');
+      let controller = this.controllerFor('foo');
+      controller.set('currentlyLoading', true);
     }
   }
 });
