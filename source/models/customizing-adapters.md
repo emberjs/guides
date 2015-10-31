@@ -244,7 +244,7 @@ export default DS.JSONAPIAdapter.extend({
 
 ## Community Adapters
 
-If none of the builtin Ember Data Adapters work for your backend,
+If none of the built-in Ember Data Adapters work for your backend,
 be sure to check out some of the community maintained Ember Data
 Adapters. Some good places to look for Ember Data Adapters include:
 

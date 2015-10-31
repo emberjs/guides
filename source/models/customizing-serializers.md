@@ -1,4 +1,4 @@
-In Ember Data, serializers format the data sent to and recieved from
+In Ember Data, serializers format the data sent to and received from
 the backend store. By default, Ember Data serializes data using the
 [JSON API](http://jsonapi.org/) format. If your backend uses a different
 format, Ember Data allows you to customize the serializer or use a
@@ -306,8 +306,8 @@ If the attributes returned by your server use a different convention
 you can use the serializer's
 [`keyForAttribute()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer
 .html#method_keyForAttribute)
-method to convert an attribute name in your model to a key in your JSON 
-payload. For example, if your backend returned attributes that are 
+method to convert an attribute name in your model to a key in your JSON
+payload. For example, if your backend returned attributes that are
 `under_scored` instead of `dash-cased` you could override the `keyForAttribute`
 method like this.
 
@@ -638,7 +638,7 @@ record's type name or attributes. It is important to make sure that
 the type name matches the name of the file where it is defined
 exactly. Also attribute and relationship names in the JSON API
 document should match the name an casing of the attribute and
-relationship properites on the Model.
+relationship properties on the Model.
 
 For Example: given this `post` model.
 
@@ -686,7 +686,7 @@ defined on the Model will be ignored.
 
 ## Community Serializers
 
-If none of the builtin Ember Data Serializers work for your backend,
+If none of the built-in Ember Data Serializers work for your backend,
 be sure to check out some of the community maintained Ember Data
 Adapters and serializers. Some good places to look for Ember Data
 Serializers include:

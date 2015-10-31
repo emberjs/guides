@@ -10,13 +10,13 @@ Suppose you want to integrate your favorite date picker library into an Ember pr
 
 When a component successfully renders its backing html element into the DOM, it will trigger its [`didInsertElement()`][1] hook.
 
-It is at this point in the component life-cycle, when [`this.$()`][2] will become available to target with jquery.
+It is at this point in the component life-cycle, when [`this.$()`][2] will become available to target with jQuery.
 
 [`this.$()`][2] will, by default, return the component's main element, but it is also valid to target child elements within the component's template as well: `this.$('.some-css-selector')`.
 
 So let's initialize our date picker by overriding the [`didInsertElement()`][1] method with `_super()`.
 
-Date picker libraries usually attach to an `<input>` so we will use jquery to find an appropriate input within our component's template.
+Date picker libraries usually attach to an `<input>` so we will use jQuery to find an appropriate input within our component's template.
 
 ```js
 didInsertElement() {

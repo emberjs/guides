@@ -10,7 +10,7 @@ your application.
 Application instance initializers are run as an application instance is loaded.
 They provide a way to configure the initial state of your application, as well
 as to set up dependency injections that are local to the application instance
-(e.g. A/B testing confurations).
+(e.g. A/B testing configurations).
 
 Operations performed in initializers should be kept as lightweight as possible
 to minimize delays in loading your application. Although advanced techniques
