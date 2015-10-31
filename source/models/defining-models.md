@@ -229,11 +229,11 @@ export default DS.Model.extend({
 ### Readonly Nested Data
 
 Some models may have properties that are deeply nested objects of
-readonly data. The naive solution would be to define models for each
+readonly data. The naïve solution would be to define models for each
 nested object and use `hasMany` and `belongsTo` to recreate the nested
 relationship. However, since readonly data will never need to be
 updated and saved this often results in the creation of a great deal
-of code for very little benefit. An alternate approch is to define
+of code for very little benefit. An alternate approach is to define
 these relationships using an attribute with no transform
 (`DS.attr()`). This makes it easy to access readonly values in
 computed properties and templates without the overhead of defining

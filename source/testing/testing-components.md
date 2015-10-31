@@ -277,7 +277,7 @@ test('should change displayed location when current location changes', function 
 ### Waiting on Asynchronous Behavior
 Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.  The
 `wait` helper is designed to handle these scenarios, by providing a hook to ensure assertions are made after
-all ajax requests and timers are complete.
+all Ajax requests and timers are complete.
 
 Imagine you have a typeahead component that uses [`Ember.run.debounce`](http://emberjs.com/api/classes/Ember.run.html#method_debounce)
 to limit requests to the server, and you want to verify that results are displayed after typing a character.
