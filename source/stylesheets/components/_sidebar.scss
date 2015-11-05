@@ -32,6 +32,10 @@ li.toc-level-0 {
     display: block;
     line-height: 1.25;
     padding: 0.33em 0;
+
+    &:hover {
+      color: $ember-orange;
+    }
   }
 
   > a {
@@ -50,9 +54,15 @@ ol.toc-level-1 {
 
   li {
     border-left: 3px solid transparent;
+    transition: border-width $duration;
 
-    &.selected {
+    &.selected,
+    &:hover {
       border-left-color: $base-border-color;
+    }
+
+    &:hover {
+      border-left-width: 6px;
     }
   }
 
