@@ -191,8 +191,8 @@ export default DS.JSONAPIAdapter.extend({
 ```
 
 `headers` can also be used as a computed property to support dynamic
-headers. In the example below, the `session` object has been
-injected into an adapter by Ember's container.
+headers. In the example below, the headers are generated with a computed
+property dependent on the `session` service.
 
 ```app/adapters/application.js
 export default DS.JSONAPIAdapter.extend({

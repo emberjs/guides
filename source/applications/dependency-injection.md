@@ -8,7 +8,7 @@ An [`Ember.Application`][1] serves as a "registry" for dependency declarations.
 Factories (i.e. classes) are registered with an application, as well as rules
 about "injecting" dependencies that are applied when objects are instantiated.
 
-An [`Ember.ApplicationInstance`][2] serves as a "container" for objects that are
+An [`Ember.ApplicationInstance`][2] serves as the "owner" for objects that are
 instantiated from registered factories. Application instances provide a means to
 "look up" (i.e. instantiate and / or retrieve) objects.
 
