@@ -514,11 +514,6 @@ p {
 }
 
 #content {
-  &.has-sidebar {
-    margin: 38px 0 90px 2.1em;
-    width: $content-width;
-    float: left;
-  }
 
   ol + h2, ul + h2, p + h2,
   ol + h3, ul + h3, p + h3,
