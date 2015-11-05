@@ -497,18 +497,6 @@ p {
   }
 }
 
-#content-wrapper {
-  @include clearfix;
-  width: 960px;
-  padding: 0px 0px 20px 0px;
-  margin: 0 auto;
-  position: relative;
-
-  &.grid {
-    background-image: url('/images/grid.png');
-  }
-}
-
 #content {
 
   ol + h2, ul + h2, p + h2,

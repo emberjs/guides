@@ -28,7 +28,7 @@
 
     <%= yield_content :outside_wrapper %>
 
-    <div id="content-wrapper">
+    <main class="container">
       <%= partial "sidebar" %>
       
       <article>
@@ -46,7 +46,7 @@
           <%= chapter_links %>
         </div>
       </article>
-    </div>
+    </main>
     
     <%= partial "footer" %>
 
