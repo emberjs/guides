@@ -35,7 +35,6 @@
   }
 
   table {
-    background-color: $code-background;
     border: none;
     margin: 0;
     table-layout: auto;
@@ -56,20 +55,18 @@
       color: $white;
 
       &.line-numbers {
-        background-color: $code-line-number-background;
         color: $medium-gray;
         text-align: center;
         width: 2em;
       }
 
       &.code {
+        background-color: $code-background;
         padding: 0.5em 0 0.5em 1em;
       }
     }
 
     thead {
-      background-color: $code-header-background;
-
       td {
         color: $ember-orange;
       }
@@ -93,7 +90,7 @@
   }
 
   .ribbon {
-    @include position(absolute, 0.33em 0 null null);
+    @include position(absolute, 0.33em -1px null null);
     @include size(52px 20px);
     background: 0 0 no-repeat;
     background-size: 52px 20px;

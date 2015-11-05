@@ -13,12 +13,6 @@ $highlight-yellow: #f8eec7;
 $highlight-green: #E8F4E5;
 $highlight-red: #ffecec;
 
-body.guides .highlight {
-  @include border-radius($border-radius);
-  border: 1px solid #d1d1d1;
-  color: $textColor;
-}
-
 #content .highlight {
   @include well;
 
@@ -91,8 +85,6 @@ body.guides .highlight {
     text-align: center;
     background-color: #f6f6f6;
     color: $gray;
-    @include border-top-left-radius($border-radius);
-    @include border-bottom-left-radius($border-radius);
   }
 
   td.code {
