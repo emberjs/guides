@@ -44,16 +44,6 @@ body.guides .highlight {
     height: 20px;
   }
 
-  &.javascript .ribbon, &.js .ribbon {
-    @include hidpi('js-ribbon', png);
-  }
-  &.html .ribbon {
-    @include hidpi('html-ribbon', png);
-  }
-  &.handlebars .ribbon {
-    @include hidpi('handlebars-ribbon', png);
-  }
-
   .highlight-line {
     display: inline-block;
     margin: 0 -10px;
@@ -99,7 +89,6 @@ body.guides .highlight {
   td.line-numbers {
     width: 38px;
     text-align: center;
-    border-right: 1px solid #d1d1d1;
     background-color: #f6f6f6;
     color: $gray;
     @include border-top-left-radius($border-radius);
