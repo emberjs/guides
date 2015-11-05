@@ -21,6 +21,20 @@ article {
     }
   }
 
+  h2,
+  h3 {
+    margin-top: $large-spacing;
+  }
+
+  hr + h2,
+  hr + h3 {
+    margin-top: 0;
+  }
+
+  h4 {
+    margin-top: $base-spacing;
+  }
+
   ul {
     @extend %default-ul;
   }
@@ -35,15 +49,21 @@ article {
     margin-top: 5em;
     padding: $base-spacing 0;
 
+    a {
+      &::before,
+      &::after {
+        display: inline-block;
+        font-weight: 700;
+        margin: 0 0.5em;
+        transition: transform $duration;
+      }
+    }
+
     .previous-guide {
       float: left;
 
       &::before {
         content: "\2039";
-        display: inline-block;
-        font-weight: 700;
-        margin: 0 0.5em;
-        transition: transform $duration;
       }
 
       &:hover::before {
@@ -56,30 +76,11 @@ article {
 
       &::after {
         content: "\203A";
-        display: inline-block;
-        font-weight: 700;
-        margin: 0 0.5em;
-        transition: transform $duration;
       }
 
       &:hover::after {
         transform: translateX(0.5em);
       }
     }
-  }
-}
-
-.anchorable-tock {
-  h2#{&},
-  h3#{&} {
-    margin-top: $large-spacing;
-  }
-
-  h4#{&} {
-    margin-top: $base-spacing;
-  }
-
-  hr + & {
-    margin-top: 0;
   }
 }
