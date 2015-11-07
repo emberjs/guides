@@ -33,7 +33,7 @@ Let's customize the `shopping-cart` initializer to inject a `cart` property into
 all the routes in your application:
 
 ```app/initializers/shopping-cart.js
-export function initialize(application) {
+export function initialize(container, application) {
   application.inject('route', 'cart', 'service:shopping-cart');
 };
 
@@ -56,7 +56,7 @@ Let's add some simple logging to indicate that the instance has booted:
 
 ```app/instance-initializers/logger.js
 export function initialize(applicationInstance) {
-  var logger = applicationInstance.lookup('logger:main');
+  var logger = applicationInstance.container.lookup('logger:main');
   logger.log('Hello from the instance initializer!');
 }
 
@@ -72,7 +72,7 @@ If you'd like to control the order in which initializers run, you can use the
 `before` and/or `after` options:
 
 ```app/initializers/config-reader.js
-export function initialize(application) {
+export function initialize(container, application) {
   // ... your code ...
 };
 
@@ -84,7 +84,7 @@ export default {
 ```
 
 ```app/initializers/websocket-init.js
-export function initialize(application) {
+export function initialize(container, application) {
   // ... your code ...
 };
 
