@@ -167,9 +167,9 @@ todos.filterBy('isDone', true);
 // returns an Array containing only items with `isDone == true`
 ```
 
-If you want to return just the first matched value, rather than an Array
+If you only want to return the first matched value, rather than an Array
 containing all of the matched values, you can use [`find()`][1] and [`findBy()`][2],
-which work just like `filter()` and `filterBy()`, but return only one item.
+which work like `filter()` and `filterBy()`, but return only one item.
 
 [1]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_find
 [2]: http://emberjs.com/api/classes/Ember.Enumerable.html#method_findBy
@@ -212,7 +212,7 @@ people.any(function(person, index, self) {
 // returns true
 ```
 
-Just like the filtering methods, the `every()` and `any()` methods have 
+Like the filtering methods, the `every()` and `any()` methods have 
 analogous `isEvery()` and `isAny()` methods.
 
 ```javascript

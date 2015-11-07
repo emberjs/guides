@@ -60,7 +60,7 @@ post.save();
 
 ## Removing Relationships
 
-To remove a `belongsTo` relationship, we can just set it to `null`, which will also remove it from the `hasMany` side:
+To remove a `belongsTo` relationship, we can set it to `null`, which will also remove it from the `hasMany` side:
 
 ```javascript
 let comment = this.store.peekRecord('comment', 1);

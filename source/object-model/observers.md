@@ -127,7 +127,7 @@ the value of a computed property, put it in DOM (or draw it with D3), and then
 observe it so you can update the DOM once the property changes.
 
 If you need to observe a computed property but aren't currently retrieving it,
-just get it in your `init()` method.
+get it in your `init()` method.
 
 ### Outside of class definitions
 

@@ -35,7 +35,7 @@ once the `articles` route has been entered, any changes to the
 `category` query param in the URL will update the `category` property
 on `controller:articles`, and vice versa.
 
-Now we just need to define a computed property of our category-filtered
+Now we need to define a computed property of our category-filtered
 array that the `articles` template will render:
 
 ```app/controllers/articles.js
@@ -101,7 +101,7 @@ accept a final argument, which is an object with the key `queryParams`.
 this.transitionTo('post', object, { queryParams: { showDetails: true }});
 this.transitionTo('posts', { queryParams: { sort: 'title' }});
 
-// if you just want to transition the query parameters without changing the route
+// if you want to transition the query parameters without changing the route
 this.transitionTo({ queryParams: { direction: 'asc' }});
 ```
 
@@ -142,7 +142,7 @@ export default Ember.Route.extend({
     // query param changes by setting `refreshModel:true` above.
 
     // params has format of { category: "someValueOrJustNull" },
-    // which we can just forward to the server.
+    // which we can forward to the server.
     return this.store.query('articles', params);
   }
 });

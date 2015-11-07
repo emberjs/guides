@@ -107,11 +107,11 @@ export default Ember.Component.extend({
 
 ## Passing the Action to the Component
 
-Now we just need to make it so that the `onConfirm()` event in the
+Now we need to make it so that the `onConfirm()` event in the
 `button-with-confirmation()` component triggers the
 `userDidDeleteAccount()` action in the `user-profile` component.
-One important thing to know about actions is that they're **just
-functions** you can call, like any other method on your component.
+One important thing to know about actions is that they're functions
+you can call, like any other method on your component.
 So they can be passed from one component to another like this:
 
 ```app/components/user-profile.hbs
@@ -150,7 +150,7 @@ only difference is that the property is set to a function that knows how
 to trigger behavior.
 
 That makes it easy to remember how to add an action to a component. It's
-just like passing an attribute, but you use the `action` helper to pass
+like passing an attribute, but you use the `action` helper to pass
 a function instead.
 
 Actions in components allow you to

@@ -148,9 +148,9 @@ first ask the store for it.
 ## Convention Over Configuration with JSON API
 
 You can significantly reduce the amount of code you need to write and
-maintain by relying on Ember's conventions. By adopting these
-conventions, you won't just write less code; your code will be much
-easier to maintain and be understood by other developers on your team.
+maintain by relying on Ember's conventions. Since these conventions
+will be shared among developers on your team, following them leads
+to code that is easier to maintain and understand.
 
 Rather than create an arbitrary set of conventions, Ember Data is
 designed to work out of the box with [JSON API][json-api]. JSON API is a
@@ -211,7 +211,7 @@ export default DS.Model.extend({
 });
 ```
 
-Models don't have any data themselves; they just define the attributes,
+Models don't have any data themselves, they define the attributes,
 relationships and behavior of specific instances, which are called
 **records**.
 

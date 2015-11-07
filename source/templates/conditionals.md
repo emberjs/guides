@@ -25,7 +25,7 @@ inside attribute values:
 </div>
 ```
 
-**Nested invocation** is another way to use a helper. Just like inline helpers,
+**Nested invocation** is another way to use a helper. Like inline helpers,
 nested helpers generate and return a single value. For example, this template
 only renders `"zoooom"` if both `isFast` and `isFueled` are true:
 
