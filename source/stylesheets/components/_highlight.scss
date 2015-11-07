@@ -58,11 +58,12 @@
         color: $medium-gray;
         text-align: center;
         width: 2em;
+        background-color: $code-background;
       }
 
       &.code {
         background-color: $code-background;
-        padding: 0.5em 0 0.5em 1em;
+        padding: 0.5em 0 0.5em 0.5em;
       }
     }
 
