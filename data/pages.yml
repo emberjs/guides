@@ -14,6 +14,10 @@
       url: "core-concepts"
     - title: "Application Setup and Structure"
       url: "application-setup-and-structure"
+
+- title: "Tutorial"
+  url: 'tutorial'
+  pages:
     - title: "Routes and Templates"
       url: "routes-and-templates"
     - title: "Models"
