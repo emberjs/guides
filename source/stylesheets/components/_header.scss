@@ -1,8 +1,8 @@
 .header {
-  background: mix($ember-orange, $creme) image-url("header.svg") top center no-repeat;
+  background: $ember-orange image-url("header.svg") top center no-repeat;
   background-size: cover;
   color: $white;
-  padding: 2em 0;
+  padding: 1em 0;
 
   .container {
     @include media($large-screen) {
@@ -62,7 +62,7 @@
 
   .st-search-input {
     appearance: none;
-    background: image-url("search-icon.svg") rgba(white, 0.5) 10px 10px no-repeat;
+    background: image-url("search-icon.svg") rgba(white, 0.1) 10px 10px no-repeat;
     border: none;
     border-radius: 35px;
     box-shadow: none;
