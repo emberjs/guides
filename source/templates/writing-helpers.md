@@ -25,7 +25,7 @@ your template:
 Your total is {{format-currency model.totalDue}}.
 ```
 
-Let's now implement the helper. Helpers are just functions that take
+Let's now implement the helper. Helpers are functions that take
 one or more inputs and return a single output that should be put into
 the HTML.
 
@@ -262,7 +262,7 @@ export default Ember.Helper.extend({
 ```
 
 In fact, we could also refactor the above stateless helper into a class-based
-helper just by making the function into a `compute` method on the class:
+helper by making the function into a `compute` method on the class:
 
 ```app/helpers/format-currency.js
 export default Ember.Helper.extend({
@@ -325,7 +325,7 @@ contains no malicious HTML.
 
 [1]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe
 
-However, note that in the above code we may have just inadvertently
+However, note that in the above code we may have inadvertently
 introduced an XSS vulnerability into our application! By blindly marking
 the string as safe, a malicious user could get their own HTML into our
 app, allowing them to do things like access sensitive customer data.
@@ -358,7 +358,7 @@ export default Ember.Helper.helper(function(params) {
 Now the value passed into the helper has its HTML escaped, but the trusted
 `<b>` tags that we want to wrap the value in are _not_ escaped. A
 malicious user setting their `firstName` to something containing HTML
-would just see this:
+would see this:
 
 ```handlebars
 Welcome back! <b>&lt;script

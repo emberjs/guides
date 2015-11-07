@@ -47,7 +47,7 @@ template:
 ```
 
 In this simple example, we don't have any display-specific properties
-or actions just yet. For now, our controller's `model` property just acts as a
+or actions just yet. For now, our controller's `model` property acts as a
 pass-through (or "proxy") for the model properties. (Remember that
 a controller gets the model it represents from its route handler.)
 
@@ -75,8 +75,8 @@ new `isExpanded` property is true.
 {{/if}}
 ```
 
-In the controller, you can then define what the action does within
-the `actions` hook, just as you would with a component:
+You can then define what the action does within the `actions` hook
+of the controller, as you would with a component:
 
 ```app/controllers/blog-post.js
 export default Ember.Controller.extend({

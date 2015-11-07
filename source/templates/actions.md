@@ -119,7 +119,7 @@ event listeners and enables to work with one-way bindings.
 <input type="text" value={{favoriteBand}} onblur={{action "bandDidChange"}}/>
 ```
 
-Let's assume we have an action handler that just prints its first parameter:
+Let's assume we have an action handler that prints its first parameter:
 
 ```js
 actions: {
