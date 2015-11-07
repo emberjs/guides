@@ -470,7 +470,7 @@ serializer that ships with Ember Data that can be used along side the
 To use it in your application you will need to define an
 `adapter:application` that extends the `JSONSerializer`.
 
-```app/serializer/application.js
+```app/serializers/application.js
 export default DS.JSONSerializer.extend({
   // ...
 });
