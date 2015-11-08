@@ -14,6 +14,10 @@ gem "middleman-alias"
 gem "middleman-swiftype", :git => "https://github.com/LeonB/middleman-swiftype.git"
 gem "underscore-rails"
 
+gem "bourbon"
+gem "neat"
+gem "normalize-scss"
+
 source 'https://rails-assets.org' do
   gem "rails-assets-js-md5"
   gem "rails-assets-moment"
