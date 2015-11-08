@@ -68,8 +68,8 @@ You can specify an alternative event by using the `on` option.
 </p>
 ```
 
-You should use the dasherized event names, so two-word names like `keypress`
-become `key-press`.
+You should use the <code>camelCased</code> event names, so two-word names like `keypress`
+become `keyPress`.
 
 ## Allowing Modifier Keys
 
