@@ -31,19 +31,17 @@
       <%= partial "sidebar" %>
 
       <article>
-        <div class="chapter">
-          <h1>
-            <%= page_title %>
-            <a href="https://github.com/emberjs/guides/edit/master/source/<%= current_page.path.gsub('html', 'md') %>"
-               target="_blank" class="edit-page icon-pencil">Edit Page</a>
-          </h1>
-          <hr>
+        <h1>
+          <%= page_title %>
+          <a href="https://github.com/emberjs/guides/edit/master/source/<%= current_page.path.gsub('html', 'md') %>"
+             target="_blank" class="edit-page icon-pencil">Edit Page</a>
+        </h1>
+        <hr>
 
-          <%= yield %>
+        <%= yield %>
 
 
-          <%= chapter_links %>
-        </div>
+        <%= chapter_links %>
       </article>
     </main>
 

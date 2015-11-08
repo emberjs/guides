@@ -19,7 +19,6 @@ h6 {
   font-size: $base-font-size;
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
-  text-transform: uppercase;
   font-weight: bold;
 
   code {
@@ -28,17 +27,13 @@ h6 {
 }
 
 @each $i in 0, 1, 2, 3, 4 {
-  h#{$i} {
+  h#{$i + 1} {
     font-size: modular-scale(-$i, 2em, 1.2);
   }
 }
 
 h1 {
-  font-size: 22px;
   color: $ember-orange;
-  padding: 0px 0px 0 2em;
-  background: no-repeat top left;
-  @include hidpi('chapter-mark', 'png');
 }
 
 p {
