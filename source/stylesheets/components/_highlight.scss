@@ -156,3 +156,7 @@ code {
   padding: 0.2em 0.5em;
   margin: 0 0.1em;
 }
+
+a code {
+  color: $ember-orange;
+}

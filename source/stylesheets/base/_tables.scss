@@ -6,16 +6,22 @@ table {
   width: 100%;
 }
 
+thead {
+  background-color: $linen;
+}
+
 th {
   border-bottom: 1px solid darken($base-border-color, 15%);
   font-weight: 600;
-  padding: $small-spacing 0;
   text-align: left;
 }
 
 td {
   border-bottom: $base-border;
-  padding: $small-spacing 0;
+}
+
+th, td {
+  padding: $small-spacing;
 }
 
 tr,

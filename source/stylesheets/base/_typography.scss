@@ -1,3 +1,5 @@
+@import "mixins/hidpi";
+
 body {
   @include font-feature-settings("kern", "liga", "pnum");
   -webkit-font-smoothing: antialiased;
@@ -17,6 +19,12 @@ h6 {
   font-size: $base-font-size;
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  code {
+    text-transform: none;
+  }
 }
 
 @each $i in 0, 1, 2, 3, 4 {
@@ -25,8 +33,17 @@ h6 {
   }
 }
 
+h1 {
+  font-size: 22px;
+  color: $ember-orange;
+  padding: 0px 0px 0 2em;
+  background: no-repeat top left;
+  @include hidpi('chapter-mark', 'png');
+}
+
 p {
-  margin: 0 0 $small-spacing;
+  margin: 1.5em 0 $small-spacing;
+  line-height: 1.5em;
 }
 
 a {
@@ -58,4 +75,12 @@ img,
 picture {
   margin: 0;
   max-width: 100%;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
 }

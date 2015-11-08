@@ -7,7 +7,6 @@
     <meta property="st:title" content="<%= current_page.data.title || full_page_title %>" />
     <%= favicon_tag 'images/favicon.png' %>
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
-    <%= stylesheet_link_tag "site" %>
     <%= stylesheet_link_tag "application" %>
 
     <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
@@ -22,7 +21,7 @@
     <!--[if gte IE 9]><!-->
       <%= javascript_include_tag 'common-modern' %>
     <!--<![endif]-->
-    
+
     <%= partial "header" %>
 
 
@@ -30,7 +29,7 @@
 
     <main class="container">
       <%= partial "sidebar" %>
-      
+
       <article>
         <div class="chapter">
           <h1>
@@ -47,7 +46,7 @@
         </div>
       </article>
     </main>
-    
+
     <%= partial "footer" %>
 
     <%= yield_content :foot %>
