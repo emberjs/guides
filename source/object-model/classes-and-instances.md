@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 });
 ```
 
-####Overriding Parent Class Methods
+### Overriding Parent Class Methods
 
 When defining a subclass, you can override methods but still access the
 implementation of your parent class by calling the special `_super()`
