@@ -72,33 +72,39 @@ example above the type is `album` because the model is defined in
 `app/models/album.js`). Attributes and relationship names must match
 the casing of the properties defined on the Model class.
 
-If you would like to the data to be normalized by the serializer
-before pushing it into the store you can use the
+If you would like to the data to be normalized by the model's default
+serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
+
+```app/serializers/album.js
+export default DS.RestSerializer.extend({
+  normalize(typeHash, hash) {
+    hash['songCount'] = hash['song_count']
+    delete hash['song_count']
+    return this._super(typeHash, hash);
+  }
+
+})
+```
 
 ```app/routes/application.js
 export default Ember.Route.extend({
   model() {
     this.store.pushPayload({
-      data: [{
-        id: 1,
-        type: 'albums',
-        attributes: {
-          title: 'Fewer Moving Parts',
+      albums: [
+        {
+          id: 1,
+          title: 'Fever Moving Parts',
           artist: 'David Bazan',
-          song-count: 10
+          song_count: 10
         },
-        relationships: {}
-      }, {
-        id: 2,
-        type: 'albums',
-        attributes: {
+        {
+          id: 2,
           title: 'Calgary b/w I Can\'t Make You Love Me/Nick Of Time',
           artist: 'Bon Iver',
-          song-count: 2
-        },
-        relationships: {}
-      }]
+          song_count: 2
+        }
+      ]
     });
   }
 });
