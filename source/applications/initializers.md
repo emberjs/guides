@@ -4,7 +4,7 @@ There are two types of initializers: application initializers and application
 instance initializers.
 
 Application initializers are run as your application boots, and provide the
-primary means to configure [dependency injections](./dependency-injection) in
+primary means to configure [dependency injections](../dependency-injection) in
 your application.
 
 Application instance initializers are run as an application instance is loaded.
