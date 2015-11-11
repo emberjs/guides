@@ -45,6 +45,9 @@ ol {
 .chapter li {
   margin: $small-spacing 0;
 }
+.chapter ul + .highlight {
+  margin-top: $base-spacing;
+}
 
 dl {
   margin-bottom: $small-spacing;
