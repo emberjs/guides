@@ -3,8 +3,8 @@ through our command line build tool Ember CLI.
 This tool provides:
 
 * Modern application asset management (including concatenation, minifying, and versioning)
-* Generators to help you create components, routes, and more
-* A conventional project layout, so approaching existing Ember.js applications is easy
+* Generators to help create components, routes, and more
+* A conventional project layout, making existing Ember.js applications easy to approach.
 * Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/)
   project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used
   throughout this guide.
