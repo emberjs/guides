@@ -67,7 +67,7 @@ window.deprecationWorkflow.config = {
 
 You might notice that you have a lot of duplicated messages in your workflow file, like the 3 messages in the above example that start with
 `Accessing 'template' in...`.  This is because some of the deprecation messages provide context to the specific deprecation, making them
-different than the same deprecation in other parts of the app.  If you want considate the
+different than the same deprecation in other parts of the app.  If you want to consolidate the
 duplication, you can use a simple regular expression and a wildcard (`.*`) for the part of the message that varies per instance.
 
 Below is the same deprecation-workflow file as above now with a regular expression on line 11 to remove some redundant messages
@@ -94,7 +94,7 @@ throw an actual exception when the deprecation is encountered, so that tests tha
 simply log a warning to the console as before.  These settings give you some flexibility on how you want to go about fixing the
 deprecations.
 
-The code below is the deprecation-workflow file with the first deprecation set to throw an exception on occurence.  The image demonstrates what
+The code below is the deprecation-workflow file with the first deprecation set to throw an exception on occurrence.  The image demonstrates what
 that deprecation looks like when you run your tests.
 
 ``` /config/deprecation-workflow.js
@@ -128,11 +128,11 @@ it difficult to review your compilation logs.
 <img width="675px" src="../../images/guides/configuring-ember/handling-deprecations/compile-deprecations.png" title="Compile Deprecations Clouding Log"/>
 
 If you are using the deprecation workflow process above you will likely prefer to gather these same warnings during runtime execution.  The way to hide these
-warnings during compile is to install the [ember-cli-template-lint](http://emberobserver.com/addons/ember-cli-template-lint) addon.  It supresses
+warnings during compile is to install the [ember-cli-template-lint](http://emberobserver.com/addons/ember-cli-template-lint) addon.  It suppresses
 template deprecation warnings during compile in favor of showing them in the browser console during test suite execution or application usage.
 
 ## Deprecation Handling in Ember Inspector
 
-Ember Inspector also provides deprecation handling capability.  It can work complimentary to ember-cli-deprecation-workflow.  As you un-silence deprecations to
+Ember Inspector also provides deprecation handling capability.  It can work complimentary to ember-cli-deprecation-workflow.  As you unsilence deprecations to
 fix them, the inspector can allow you to more quickly find where in your code a deprecation occurs when you run into it at runtime, reducing the amount of
 stack trace browsing you have to do.  For more information on using deprecation handling in Ember Inspector see its [guides section](../../ember-inspector/deprecations/).
