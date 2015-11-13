@@ -51,7 +51,7 @@ click on the backing objects to send them to the object inspector.
 
 <img src="../../images/guides/ember-inspector/view-tree-inspect.png">
 
-Click on the `X` button to unselect a template.
+Click on the `X` button to deselect a template.
 
 
 ### Duration
