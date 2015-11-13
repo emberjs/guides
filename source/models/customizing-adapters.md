@@ -42,7 +42,7 @@ export default DS.JSONAPIAdapter.extend({
 });
 ```
 
-By default Ember Data comes with several builtin adapters. Feel free
+By default Ember Data comes with several built-in adapters. Feel free
 to use these adapters as a starting point for creating your own custom
 adapter.
 
