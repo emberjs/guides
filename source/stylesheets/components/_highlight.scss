@@ -69,7 +69,7 @@
 
     thead {
       td {
-        color: $ember-orange;
+        color: lightgrey;
       }
     }
 
@@ -159,4 +159,8 @@ code {
 
 a code {
   color: $ember-orange;
+}
+
+.CodeRay thead {
+  background-color: #292929;
 }
