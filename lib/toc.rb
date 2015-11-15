@@ -68,7 +68,7 @@ module TOC
 
       if previous_chapter
         url = "/#{current_guide.url}/#{previous_chapter.url}.html"
-        title = " \u2190 #{previous_chapter.title}"
+        title = previous_chapter.title
 
         link_to(title, url, options)
       elsif whats_before = previous_guide
@@ -78,7 +78,7 @@ module TOC
 
         url = is_root ? "/#{previous_guide.url}.html" : "/#{previous_guide.url}/#{previous_chapter.url}.html"
 
-        title = " \u2190 #{previous_chapter.title}"
+        title = previous_chapter.title
 
         link_to(title, url, options)
       else
@@ -91,12 +91,12 @@ module TOC
 
       if next_chapter
         url = "/#{current_guide.url}/#{next_chapter.url}.html"
-        title = "#{next_chapter.title} \u2192"
+        title = next_chapter.title
 
         link_to(title, url, options)
       elsif whats_next = next_guide
         next_chapter = whats_next.pages.first
-        title = "We've finished covering #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title} \u2192"
+        title = "We've finished covering #{current_guide.title}. Next up: #{next_guide.title} - #{next_chapter.title}"
         url = "/#{next_guide.url}/#{next_chapter.url}.html"
 
         link_to(title, url, options)

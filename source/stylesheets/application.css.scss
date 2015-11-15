@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+@import "normalize";
+@import "vendor/all";
+@import "bourbon";
+@import "base/base";
+@import "neat";
+@import "components/all";
+@import "vendor-overwrites";
+@import 'fonts/fontello';
+
+.note {
+  background: rgba(0,0,0, 0.2);
+
+  &::before {
+    content: "Note"
+  }
+}
+
+.previous-guide {
+  float: left;
+  border-bottom: 1px solid transparent;
+}
+
+.next-guide {
+  float: right;
+  border-bottom: 1px solid transparent;
+}
