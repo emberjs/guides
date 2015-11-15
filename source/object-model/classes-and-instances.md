@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 });
 ```
 
-####Overriding Parent Class Methods
+### Overriding Parent Class Methods
 
 When defining a subclass, you can override methods but still access the
 implementation of your parent class by calling the special `_super()`
@@ -152,7 +152,8 @@ override the `init()` method, make sure you call `this._super(...arguments)`!
 If you don't, a parent class may not have an opportunity to do important
 setup work, and you'll see strange behavior in your application.
 
-Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object. 
+Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
+
 ```js
 Person = Ember.Object.extend({
   shoppingList: ['eggs', 'cheese']

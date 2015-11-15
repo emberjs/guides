@@ -51,7 +51,7 @@ Element](../customizing-a-components-element).
 
 Often times, your components will just encapsulate certain snippets of
 Handlebars templates that you find yourself using over and over. In
-those cases, you do not need to write any JavaScript at all. Just define
+those cases, you do not need to write any JavaScript at all. Define
 the Handlebars template as described above and use the component that is
 created.
 
@@ -79,7 +79,7 @@ external libraries depending on the data. Using the `{{component}}` helper would
 allow you to keep different logic well-separated.
 
 The first parameter of the helper is the name of a component to render, as a
-string. So `{{component 'blog-post'}}` is just the same as using `{{blog-post}}`.
+string. So `{{component 'blog-post'}}` is the same as using `{{blog-post}}`.
 
 The real value of [`{{component}}`][2] comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a

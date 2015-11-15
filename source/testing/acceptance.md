@@ -157,7 +157,7 @@ is equal to "My new post".
 
 ### Custom Test Helpers
 
-For creating your own test helper, just run `ember generate test-helper
+For creating your own test helper, run `ember generate test-helper
 <helper-name>`. Here is the result of running `ember g test-helper
 shouldHaveElementWithCount`:
 
@@ -239,7 +239,7 @@ Finally, don't forget to add your helpers in `tests/.jshintrc` and in
 }
 ```
 
-In `tests/helpers/start-app.js` you just need to import the helper file: it
+In `tests/helpers/start-app.js` you need to import the helper file: it
 will be registered then.
 
 ```tests/helpers/start-app.js

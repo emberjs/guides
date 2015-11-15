@@ -2,7 +2,7 @@ Part of what makes a component such a useful tool is that it is closely tied to 
 
 Components are your primary means for direct DOM manipulation, listening and responding to browser events, and attaching 3rd party JS libraries into your Ember app.
 
-To get the most use out of a component, it is important to understand its "life-cycle" methods. The following hooks are a few of the most useful and commonly used in current apps.
+To get the most use out of a component, it is important to understand its "lifecycle" methods. The following hooks are a few of the most useful and commonly used in current apps.
 
 ## Attaching to the Component Element
 
@@ -10,7 +10,7 @@ Suppose you want to integrate your favorite date picker library into an Ember pr
 
 When a component successfully renders its backing html element into the DOM, it will trigger its [`didInsertElement()`][1] hook.
 
-It is at this point in the component life-cycle, when [`this.$()`][2] will become available to target with jQuery.
+It is at this point in the component lifecycle, when [`this.$()`][2] will become available to target with jQuery.
 
 [`this.$()`][2] will, by default, return the component's main element, but it is also valid to target child elements within the component's template as well: `this.$('.some-css-selector')`.
 

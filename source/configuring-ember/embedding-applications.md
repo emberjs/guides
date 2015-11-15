@@ -7,7 +7,7 @@ same domain as another app?
 
 ### Changing the Root Element
 
-By default, your application will render the [application template](../../templates/the-application-template)
+By default, your application will render the [application template](../../routing/defining-your-routes/#toc_the-application-route)
 and attach it to the document's `body` element.
 
 You can tell the application to append the application template to a
@@ -26,7 +26,7 @@ string](http://api.jquery.com/category/selectors/).
 ### Disabling URL Management
 
 You can prevent Ember from making changes to the URL by [changing the
-router's `location`](../../routing/specifying-the-location-api) to
+router's `location`](../specifying-url-type) to
 `none`:
 
 ```config/environment.js

@@ -25,7 +25,7 @@ your template:
 Your total is {{format-currency model.totalDue}}.
 ```
 
-Let's now implement the helper. Helpers are just functions that take
+Let's now implement the helper. Helpers are functions that take
 one or more inputs and return a single output that should be put into
 the HTML.
 
@@ -60,15 +60,13 @@ count of cents into a formatted string, like `"$5.00"`.
 Whenever you use your helper in a template, Ember will call this
 function and insert whatever you return from the helper into the DOM.
 
-So, for example, if we had a template like this where we pass a value in
-cents:
+So, if we want to display a purchase total we can pass the value into the template in cents:
 
 ```hbs
 Your total is {{format-currency 250}}.
 ```
 
-Ember would replace the content inside the `{{ }}` with the formatted
-amount:
+And Ember makes use of our new helper function to replace the content inside the ```{{ }}``` with the formatted amount.
 
 ```hbs
 Your total is $2.50.
@@ -76,7 +74,7 @@ Your total is $2.50.
 
 Whenever the arguments you've passed to a helper change, whether they
 come from a model or a component, Ember will automatically call your
-helper again with the new values and keep the DOM up-to-date.
+helper again with the new values and keep the page up-to-date.
 
 ### Helper Names
 
@@ -85,7 +83,7 @@ their name.
 
 ### Helper Arguments
 
-You can pass one or more arguments to  which can be used
+You can pass one or more arguments to be used
 inside the function. In the above example, we passed the amount in cents
 as the first and only argument.
 
@@ -262,7 +260,7 @@ export default Ember.Helper.extend({
 ```
 
 In fact, we could also refactor the above stateless helper into a class-based
-helper just by making the function into a `compute` method on the class:
+helper by making the function into a `compute` method on the class:
 
 ```app/helpers/format-currency.js
 export default Ember.Helper.extend({
@@ -325,7 +323,7 @@ contains no malicious HTML.
 
 [1]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe
 
-However, note that in the above code we may have just inadvertently
+However, note that in the above code we may have inadvertently
 introduced an XSS vulnerability into our application! By blindly marking
 the string as safe, a malicious user could get their own HTML into our
 app, allowing them to do things like access sensitive customer data.
@@ -358,7 +356,7 @@ export default Ember.Helper.helper(function(params) {
 Now the value passed into the helper has its HTML escaped, but the trusted
 `<b>` tags that we want to wrap the value in are _not_ escaped. A
 malicious user setting their `firstName` to something containing HTML
-would just see this:
+would see this:
 
 ```handlebars
 Welcome back! <b>&lt;script

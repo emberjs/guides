@@ -68,8 +68,8 @@ You can specify an alternative event by using the `on` option.
 </p>
 ```
 
-You should use the dasherized event names, so two-word names like `keypress`
-become `key-press`.
+You should use the <code>camelCased</code> event names, so two-word names like `keypress`
+become `keyPress`.
 
 ## Allowing Modifier Keys
 
@@ -119,7 +119,7 @@ event listeners and enables to work with one-way bindings.
 <input type="text" value={{favoriteBand}} onblur={{action "bandDidChange"}}/>
 ```
 
-Let's assume we have an action handler that just prints its first parameter:
+Let's assume we have an action handler that prints its first parameter:
 
 ```js
 actions: {

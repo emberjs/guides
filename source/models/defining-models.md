@@ -40,7 +40,7 @@ Attributes are used when turning the JSON payload returned from your
 server into a record, and when serializing a record to save back to the
 server after it has been modified.
 
-You can use attributes just like any other property, including as part of a
+You can use attributes like any other property, including as part of a
 computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
