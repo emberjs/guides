@@ -86,8 +86,8 @@
   pages:
     - title: "Defining a Component"
       url: "defining-a-component"
-    - title: "The Component Life-cycle"
-      url: "the-component-life-cycle"
+    - title: "The Component Lifecycle"
+      url: "the-component-lifecycle"
     - title: "Passing Properties to a Component"
       url: "passing-properties-to-a-component"
     - title: "Wrapping Content in a Component"
