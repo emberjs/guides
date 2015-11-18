@@ -8,29 +8,21 @@ ember g acceptance-test login
 This generates this file:
 
 ```tests/acceptance/login-test.js
-import Ember from 'ember';
-import { module, test } from 'qunit';
-import startApp from 'testing-guide-examples/tests/helpers/start-app';
+import { test } from 'qunit';
+import moduleForAcceptance from 'people/tests/helpers/module-for-acceptance';
 
-let application;
-
-module('Acceptance | login', {
-  beforeEach() {
-    application = startApp();
-  },
-
-  afterEach() {
-    Ember.run(application, 'destroy');
-  }
-});
+moduleForAcceptance('Acceptance | login');
 
 test('visiting /login', function(assert) {
   visit('/login');
-  andThen(() => assert.equal(currentURL(), '/login'));
+
+  andThen(function() {
+    assert.equal(currentURL(), '/login');
+  });
 });
 ```
 
-Most of this is boilerplate test setup and teardown. The last few lines, within
+`moduleForAcceptance` deals with application setup and teardown. The last few lines, within
 the function `test`, contain an example test.
 
 Almost every test has a pattern of visiting a route, interacting with the page
