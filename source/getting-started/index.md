@@ -47,6 +47,11 @@ download and run [this Git installer](http://git-scm.com/download/win).
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
+### PhantomJS (optional)
+
+You can run your tests from the command line with PhantomJS, without the
+need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
+
 ## Installation
 
 Install Ember using npm:
@@ -54,16 +59,6 @@ Install Ember using npm:
 ```bash
 npm install -g ember-cli
 ```
-
-While you're at it we recommend you also install PhantomJS to run tests from
-the command line (without the need for a browser to be open):
-
-```bash
-npm install -g phantomjs2
-```
-
-If you run into any problems with this step, consult the [PhantomJS download
-instructions](http://phantomjs.org/download.html).
 
 To verify that your installation was successful, run:
 
