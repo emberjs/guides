@@ -14,6 +14,15 @@ GIT
   specs:
     coderay (1.1.0.rc1)
 
+GIT
+  remote: https://github.com/mwils/middleman-spellcheck.git
+  revision: 9edeaa3d7ef793f2eded94eacd3fb48d3b64a3de
+  branch: class
+  specs:
+    middleman-spellcheck (0.8.0)
+      middleman-core (~> 3.2)
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -209,6 +218,7 @@ DEPENDENCIES
   listen
   middleman (~> 3.0)
   middleman-alias
+  middleman-spellcheck!
   middleman-swiftype!
   poltergeist
   pry
@@ -222,3 +232,6 @@ DEPENDENCIES
   tzinfo-data
   underscore-rails
   wdm (>= 0.1.0)
+
+BUNDLED WITH
+   1.10.6
