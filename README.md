@@ -12,10 +12,18 @@ The Guides' content is in the `source` folder. The left nav bar is produced from
 `data/pages.yml`. `lib` contains Middleman plugins, and `spec` contains tests
 for those plugins.
 
-## Developing with the Guides
+## Dependencies
 
 The Guides are built with Middleman, which runs on Ruby 1.9.3 or newer
 (2.0.0 recommended).
+
+During build, Middleman will require Aspell to look for misspellings. It can be installed via Homebrew:
+
+``` sh
+brew install aspell
+```
+
+## Developing with the Guides
 
 To get started:
 
@@ -27,6 +35,11 @@ bundle exec middleman
 ```
 
 Then visit [http://localhost:4567/](http://localhost:4567/).
+
+### Spellchecking
+
+If you have a false hit during spellchecking, you can add the word to /data/spelling-exceptions.txt
+Words are line seperated and case insensitive.
 
 ### Troubleshooting tips for Windows devs
 
