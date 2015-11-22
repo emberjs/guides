@@ -28,8 +28,15 @@ server. To build your app for production, run:
 ember build --environment=production
 ```
 
-When this finishes the `dist/` directory will contain a version of your
+When this finishes the `dist/` directory (default) will contain a version of your
 application suitable for production use. Copy the contents of
-this folder to your production server. Alternatively you can, explore the
+this folder to your production server. Alternatively, you can specify your own distribution directory in `.ember-cli` as shown below 
+
+```shell
+{
+  "output-path": "url-to-your-specified-path"
+}
+```
+Or Alternatively again, you can explore the
 [ember-cli-deploy](http://ember-cli.github.io/ember-cli-deploy/) addon for
 more advanced functionality.
