@@ -256,3 +256,17 @@ wildcard
 workflow
 xhr
 xss
+CDN
+CDNs
+CoffeeScript
+TypeScript
+preprocessor
+Linter
+jslint
+interoperable
+SSR
+Transpile
+transpiles
+transpiling
+internet
+plugin
