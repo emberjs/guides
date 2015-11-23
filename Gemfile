@@ -28,6 +28,7 @@ group :test do
   gem "capybara"
   gem "poltergeist"
   gem "hashie"
+  gem 'jshint', :git => "https://github.com/mtthgn/jshint.git"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
