@@ -1,62 +1,118 @@
-Part of what makes a component such a useful tool is that it is closely tied to your app's templates and the DOM itself.
+Part of what makes components so useful is that they let you take
+complete control of a section of the DOM.  This allows for direct DOM
+manipulation, listening and responding to browser events, and using 3rd
+party JavaScript libraries in your Ember app.
 
-Components are your primary means for direct DOM manipulation, listening and responding to browser events, and attaching 3rd party JS libraries into your Ember app.
+As components are rendered, re-rendered and finally removed, Ember
+provides _lifecycle hooks_ that allow you to run code at specific
+times in a component's life.
 
-To get the most use out of a component, it is important to understand its "lifecycle" methods. The following hooks are a few of the most useful and commonly used in current apps.
+To get the most use out of a component, it is important to understand
+these lifecycle methods. The following hooks are a few of the most
+useful and commonly used in Ember apps.
 
 ## Attaching to the Component Element
 
-Suppose you want to integrate your favorite date picker library into an Ember project. Typically, 3rd party JS/Jquery libraries require a DOM element to bind itself to. So, where is the best place to initialize and attach the library?
+Suppose you want to integrate your favorite date picker library into an
+Ember project. Typically, 3rd party JS/jQuery libraries require a DOM
+element to bind to. So, where is the best place to initialize and attach
+the library?
 
-When a component successfully renders its backing html element into the DOM, it will trigger its [`didInsertElement()`][1] hook.
+After a component successfully renders its backing HTML element into the
+DOM, it will trigger its [`didInsertElement()`][did-insert-element] hook.
 
-It is at this point in the component lifecycle, when [`this.$()`][2] will become available to target with jQuery.
+Ember guarantees that, by the time `didInsertElement()` is called:
 
-[`this.$()`][2] will, by default, return the component's main element, but it is also valid to target child elements within the component's template as well: `this.$('.some-css-selector')`.
+1. The component's element has been both created and inserted into the
+   DOM.
+2. The component's element is accessible via the component's
+   [`$()`][dollar]
+   method.
 
-So let's initialize our date picker by overriding the [`didInsertElement()`][1] method with `_super()`.
-
-Date picker libraries usually attach to an `<input>` so we will use jQuery to find an appropriate input within our component's template.
+A component's [`$()`][dollar] method allows you to access the
+component's DOM element via jQuery. For example, you can set an
+attribute using jQuery's `attr()` method:
 
 ```js
 didInsertElement() {
-  this._super(...arguments);
-  this.$('input.date').myDatepickerLib();
+  this.$().attr('contenteditable', true);
 }
 ```
 
-[`didInsertElement()`][1] is also a place to attach event listeners. This is particularly useful for custom events or other browser events which do not have a [built-in event handler][3].
-
-Perhaps you have some custom CSS animations trigger when the component is rendered and you want to handle some cleanup when it ends?
+[`$()`][dollar] will, by default, return a jQuery object for the
+component's root element, but you can also target child elements within
+the component's template by passing a selector:
 
 ```js
 didInsertElement() {
-  this._super(...arguments);
+  this.$('div p button').addClass('enabled');
+}
+```
+
+Let's initialize our date picker by overriding the
+[`didInsertElement()`][did-insert-element] method.
+
+Date picker libraries usually attach to an `<input>` element, so we will
+use jQuery to find an appropriate input within our component's template.
+
+```js
+didInsertElement() {
+  this.$('input.date').myDatePickerLib();
+}
+```
+
+[`didInsertElement()`][did-insert-element] is also a good place to
+attach event listeners. This is particularly useful for custom events or
+other browser events which do not have a [built-in event
+handler][event-names].
+
+For example, perhaps you have some custom CSS animations trigger when the component
+is rendered and you want to handle some cleanup when it ends:
+
+```js
+didInsertElement() {
   this.$().on('animationend', () => {
     $(this).removeClass('.sliding-anim');
   });
 }
 ```
 
-**There are a few things to note about the `didInsertElement()` hook:**
+There are a few things to note about the `didInsertElement()` hook:
 
 - It is only triggered once when the component element is first rendered.
-- In the case wherein a parent component is rendering child components, child components trigger their respective [`didInsertElement()`][1] first, and then bubble up to the parent.
-- Setting properties in [`didInsertElement()`][1] triggers a re-render, and for performance reasons, is not allowed.
-- While [`didInsertElement()`][1] is technically an event that can be listened for using [`on()`][4], it is encouraged to override the default method itself, particularly when order of execution is important.
+- In cases where you have components nested inside other components, the
+  child component will always receive the `didInsertElement()` call
+  before its parent does.
+- Setting properties on the component in
+  [`didInsertElement()`][did-insert-element] triggers a re-render, and
+  for performance reasons, is not allowed.
+- While [`didInsertElement()`][did-insert-element] is technically an
+  event that can be listened for using [`on()`][on], it is encouraged to
+  override the default method itself, particularly when order of execution
+  is important.
 
-[1]: http://emberjs.com/api/classes/Ember.Component.html#event_didInsertElement
-[2]: http://emberjs.com/api/classes/Ember.Component.html#method__
-[3]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
-[4]: http://emberjs.com/api/classes/Ember.Component.html#method_on
+[did-insert-element]: http://emberjs.com/api/classes/Ember.Component.html#event_didInsertElement
+[dollar]: http://emberjs.com/api/classes/Ember.Component.html#method__
+[event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
+[on]: http://emberjs.com/api/classes/Ember.Component.html#method_on
 
 ## Detaching and Tearing Down Component Elements
 
-When a component detects that it is time to remove itself from the DOM, [`willDestroyElement()`][1] will trigger, allowing for any teardown logic to be performed.
+When a component detects that it is time to remove itself from the DOM,
+Ember will trigger the [`willDestroyElement()`][will-destroy-element]
+method, allowing for any teardown logic to be performed.
 
-This can be triggered by number of conditions, for instance, a conditional htmlbars block closing around your component: `{{#if falseBool}}{{my-component}}{{/if}}`, or a parent template being torn down in response to a route transition.
+Component teardown can be triggered by a number of different conditions.
+For instance, the user may navigate to a different route, or a
+conditional Handlebars block surrounding your component may change:
 
-Let's use that hook to cleanup our date picker and event listener from above:
+```hbs
+{{#if falseBool}}
+  {{my-component}}
+{{/if}}
+```
+
+Let's use this hook to cleanup our date picker and event listener from above:
 
 ```js
 willDestroyElement() {
@@ -64,6 +120,5 @@ willDestroyElement() {
   this.$('input.date').myDatepickerLib().destroy();
 }
 ```
-There is no default implementation for [`willDestroyElement()`][1] so `_super` is not necessary.
 
-[1]: http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement
+[will-destroy-element]: http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement
