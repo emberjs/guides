@@ -115,7 +115,7 @@ Will bind the value of the text area to `name` on the current context.
 
 ### Binding dynamic attribute
 
-You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`][http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_get] and [`{{mut}}`][http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_mut] in conjunction like shown in the following example:
+You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_get) and [`{{mut}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_mut) in conjunction like shown in the following example:
 
 ```handlebars
 {{input value=(mut (get person field))}}
