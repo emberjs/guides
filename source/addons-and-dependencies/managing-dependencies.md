@@ -2,7 +2,7 @@ As you're developing your Ember app, you'll likely run into common scenarios tha
 
 ## Addons
 
-Ember Addons are installed using NPM (eg. `npm install --save-dev ember-cli-sass`). Addons
+Ember Addons are installed using NPM (e.g. `npm install --save-dev ember-cli-sass`). Addons
 may bring in other dependencies by modifying your project's `bower.json` file
 automatically.
 
@@ -60,7 +60,7 @@ app.import('bower_components/ic-ajax/dist/named-amd/main.js', {
 });
 ```
 
-You can now `import` them in your app. Eg. `import { raw as icAjaxRaw } from 'ic-ajax';`
+You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
 
 ### Environment Specific Assets
 

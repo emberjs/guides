@@ -139,7 +139,7 @@ by using `attributeBindings`:
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['href'],
-  href: "http://emberjs.com"
+  href: 'http://emberjs.com'
 });
 ```
 

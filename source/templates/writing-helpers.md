@@ -60,15 +60,13 @@ count of cents into a formatted string, like `"$5.00"`.
 Whenever you use your helper in a template, Ember will call this
 function and insert whatever you return from the helper into the DOM.
 
-So, for example, if we had a template like this where we pass a value in
-cents:
+So, if we want to display a purchase total we can pass the value into the template in cents:
 
 ```hbs
 Your total is {{format-currency 250}}.
 ```
 
-Ember would replace the content inside the `{{ }}` with the formatted
-amount:
+And Ember makes use of our new helper function to replace the content inside the ```{{ }}``` with the formatted amount.
 
 ```hbs
 Your total is $2.50.
@@ -76,7 +74,7 @@ Your total is $2.50.
 
 Whenever the arguments you've passed to a helper change, whether they
 come from a model or a component, Ember will automatically call your
-helper again with the new values and keep the DOM up-to-date.
+helper again with the new values and keep the page up-to-date.
 
 ### Helper Names
 
@@ -85,7 +83,7 @@ their name.
 
 ### Helper Arguments
 
-You can pass one or more arguments to  which can be used
+You can pass one or more arguments to be used
 inside the function. In the above example, we passed the amount in cents
 as the first and only argument.
 

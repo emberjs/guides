@@ -5,15 +5,16 @@ This tool provides:
 
 * Modern application asset management (including concatenation, minifying, and
   versioning)
-* Generators to help you create components, routes, and more
-* A conventional project layout, so approaching existing Ember.js applications
-is easy
+* Generators to help create components, routes, and more
+* A conventional project layout, making existing Ember.js applications easy to
+approach.
 * Support for ES2015/ES6 JavaScript via the
 [Babel](http://babeljs.io/docs/learn-es2015/)
   project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used
   throughout this guide.
 * A complete [QUnit](https://qunitjs.com/) test harness
 * The ability to consume a growing ecosystem of Ember Addons
+
 
 ## Dependencies
 
@@ -76,6 +77,11 @@ when files change or get
 deleted/added by installing
 [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
+### PhantomJS (optional)
+
+You can run your tests from the command line with PhantomJS, without the
+need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
+
 ## Installation
 
 Ember CLI is installed using npm.
@@ -103,7 +109,7 @@ CLI's executable, which is `ember`. There are many commands available by running
 the executable `ember` along with another command. A list of all commands is
 available by simply running `ember` or `ember help` from the command line.
 
-To check if the install was successful, run:
+To verify that your installation was successful, run:
 
 ```bash
 ember -v

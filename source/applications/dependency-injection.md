@@ -189,11 +189,11 @@ export default Ember.Component.extend({
 });
 ```
 
-## Factory Lookups
+## Factory Instance Lookups
 
 The vast majority of Ember registrations and lookups are performed implicitly.
 
-In the rare cases in which you want to perform an explicit lookup of a
+In the rare cases in which you want to perform an explicit lookup of an instance of a
 registered factory, you can do so on an application instance in its associated
 instance initializer. For example:
 
