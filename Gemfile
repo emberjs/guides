@@ -13,6 +13,7 @@ gem "builder"
 gem "middleman-alias"
 gem "middleman-swiftype", :git => "https://github.com/LeonB/middleman-swiftype.git"
 gem "underscore-rails"
+gem "html-proofer"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-js-md5"
