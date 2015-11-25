@@ -12,20 +12,20 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-    - title: "Application Setup and Structure"
-      url: "application-setup-and-structure"
+    - title: "Ember CLI"
+      url: "ember-cli"
 
 - title: "Tutorial"
   url: 'tutorial'
   pages:
     - title: "Routes and Templates"
       url: "routes-and-templates"
-    - title: "Models"
-      url: "models"
+    - title: "The Model Hook"
+      url: "model-hook"
     - title: "Ember Data"
       url: "ember-data"
-    - title: "Component to Hide/Show Image"
-      url: "component-hide-show-image"
+    - title: "A Simple Component"
+      url: "simple-component"
 
 - title: "The Object Model"
   url: 'object-model'

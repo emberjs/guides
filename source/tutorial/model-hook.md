@@ -1,4 +1,4 @@
-Now, let's add a list of available rentals to the index template.  We know that rentals will not be static.  Eventually, users will be able to add, update or delete them.  For this reason, we will need a _rentals_ model to save information about the rentals. However, to keep things simple at first, our model is just going to be a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, so that we can let users create and modify their own rentals.
+Now, let's add a list of available rentals to the index template. We know that rentals will not be static: eventually, users will be able to add, update or delete them.  For this reason, we will need a _rentals_ model to save information about the rentals. However, to keep things simple at first, our model is just going to be a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, so that we can let users create and modify their own rentals.
 
 Here's what our homepage will look like when we're done:
 
@@ -11,6 +11,7 @@ import Ember from 'ember';
 
 var rentals = [{
   id: 1,
+  title: "Grand Old Mansion",
   owner: "Veruca Salt",
   city: "San Francisco",
   type: "Estate",
@@ -18,6 +19,7 @@ var rentals = [{
   image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
 }, {
   id: 2,
+  title: "Urban Living",
   owner: "Mike TV",
   city: "Seattle",
   type: "Condo",
@@ -25,6 +27,7 @@ var rentals = [{
   image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg"
 }, {
   id: 3,
+  title: "Downtown Charm",
   owner: "Violet Beauregarde",
   city: "Portland",
   type: "Apartment",
@@ -52,15 +55,14 @@ Now, let's switch over to our template. We can use the model data to display our
 
 We hope you find exactly what you're looking for in a place to stay.
 
-<ul>
-  {{#each model as |rental|}}
-     <li>{{rental.owner}}'s {{rental.type}} in {{rental.city}}</li>
-  {{/each}}
-</ul>
-
-{{#link-to 'about'}}About{{/link-to}}
-{{#link-to 'contact'}}Click here to contact us.{{/link-to}}
-
+{{#each model as |rental|}}
+  <h2>{{rental.title}}</h2>
+  <p>Owner: {{rental.owner}}</p>
+  <p>Type: {{rental.type}}</p>
+  <p>Location: {{rental.city}}</p>
+  <p>Number of bedrooms: {{rental.bedrooms}}</p>
+{{/each}}
 ```
 
-Here we have an unordered list.  We loop through each model object and identify it as _rental_.  For each rental, we create a list item with the rental's owner, type and city displayed.
+Here we loop through each model object and identify it as _rental_. For each
+rental, we create a listing with information about the property.

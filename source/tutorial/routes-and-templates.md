@@ -1,10 +1,12 @@
-To demonstrate the basic setup and processing of an Ember application, the next few lessons are going to walk through building an Ember application for a property rental site called Super Rentals.  It will start with just a homepage, an about page and a contact page.  Let's take a look at the application from the user perspective before we get started.
+To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals.  It will start with just a homepage, an about page and a contact page.  Let's take a look at the application from the user perspective before we get started.
 
 ![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
 
 We arrive at the home page which shows a list of rentals.  From here, we will be able to navigate to an about page and a contact page.  
 
-We already have the new app called `super-rentals` created. Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the {{outlet}} code in place.  We'll talk more about the role of the `application.hbs` file after our site has a few pages.
+If you haven't already, create a new Ember app called `super-rentals`.
+
+Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the `{{outlet}}` code in place.  We'll talk more about the role of the `application.hbs` file after our site has a few routes.
 
 Now, let's start with building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, _about.js_.  The route handler then loads a template.  
 
@@ -25,7 +27,6 @@ ember g route about
 We can see what actions are taken by the generator:
 
 ```shell
-version: 1.13.8
 installing route
   create app/routes/about.js
   create app/templates/about.hbs
@@ -61,9 +62,9 @@ With all of the routing in place from the generator, we can get right to work on
 ```app/templates/about.hbs
 <h2>About Super Rentals</h2>
 
-<p>The Super Rentals website is a delightful project created to explore Ember.<br>
-  By building a property rental site, we can simultaneously imagine traveling<br>
-  AND building Ember applications simultaneously.</p>
+<p>The Super Rentals website is a delightful project created to explore Ember.
+By building a property rental site, we can simultaneously imagine traveling
+AND building Ember applications.</p>
 ```
 
 Run `ember s` from your shell to start the Ember development server, and then go to `localhost:4200` to see your new app in action!
@@ -146,7 +147,7 @@ With our two static pages in place, we are ready to add our home page which welc
 
 ```shell
 ember g route index
-version: 1.13.8
+
 installing route
   create app/routes/index.js
   create app/templates/index.hbs
@@ -159,7 +160,7 @@ Unlike the other route handlers we've made so far, the `index` route is special:
 We can update our `index.hbs` with some HTML and we have our welcome home page and our links to the other routes in our application:
 
 ```hbs
-<h1> Welcome to Super Rentals </h1>
+<h1>Welcome to Super Rentals</h1>
 
 We hope you find exactly what you're looking for in a place to stay.
 
