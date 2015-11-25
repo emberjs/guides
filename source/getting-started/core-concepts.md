@@ -1,4 +1,4 @@
-Before we start writing any Ember code, let's walk through an overview of how an
+Before you start writing any Ember code, it's a good idea to get an overview of how an
 Ember application works.
 
 ![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
