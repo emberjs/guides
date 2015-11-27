@@ -20,22 +20,22 @@ runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/)
 installed you are ready to go.
 
 Ember requires Node.js 0.12 or higher and npm 2.7 or higher.
-If you're not sure whether you have Node.js, run this on your
+If you're not sure whether you have Node.js or the right version, run this on your
 command line:
 
 ```bash
 node --version
+npm --version
 ```
 
-The output should give a version number. If it gives a "command not found" error instead:
+If you get a *"command not found"* error or an outdated version for Node:
 
 * Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/download/).
 * Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After
 installing Homebrew, run `brew install node` to install Node.js.
 * Linux users can use [this guide for Node.js installation on Linux](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
 
-Once you've got Node.js installed, re-run `node --version` to verify your
-computer's setup.
+If you get an outdated version of npm, run `npm install -g npm`.
 
 ### Git
 
