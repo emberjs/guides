@@ -8,6 +8,8 @@
 - title: "Getting Started"
   url: 'getting-started'
   pages:
+    - title: "Quick Start"
+      url: "quick-start"
     - title: "Installing Ember"
       url: "index"
     - title: "Core Concepts"
