@@ -41,7 +41,7 @@ Then visit [http://localhost:4567/](http://localhost:4567/).
 ### Spellchecking
 
 If you have a false hit during spellchecking, you can add the word to `/data/spelling-exceptions.txt`.
-Words are line seperated and case insensitive.
+Words are line separated and case insensitive.
 
 ### Troubleshooting tips for Windows devs
 
