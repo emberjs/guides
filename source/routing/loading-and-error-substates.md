@@ -152,18 +152,7 @@ If the `articles.overview` route's `model` hook returns a promise that rejects
 (for instance the server returned an error, the user isn't logged in,
 etc.), an [`error`][1] event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
-redirect to a login page, etc. Please note that the default implementations
-of the rest and jsonapi adapters do not pass error messages along other than validation errors.
-You can extend the adapter's handleResponse function along the following lines for any custom error handling.
-
-```
-handleResponse: function(status, headers, payload){
-    if(status === 401){
-      return new DS.AdapterError(payload.errors, 'not authorized');
-    }
-    return this._super(...arguments);
-  }
-```
+redirect to a login page, etc.
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#event_error
 
@@ -184,3 +173,16 @@ export default Ember.Route.extend({
 
 Analogous to the `loading` event, you could manage the `error` event
 at the application level to avoid writing the same code for multiple routes.
+
+Please note that the default implementations
+of the rest and jsonapi adapters do not pass error messages along other than validation errors.
+You can extend the adapter's handleResponse function along the following lines for any custom error handling.
+
+```
+handleResponse: function(status, headers, payload){
+    if(status === 401){
+      return new DS.AdapterError(payload.errors, 'not authorized');
+    }
+    return this._super(...arguments);
+  }
+```
