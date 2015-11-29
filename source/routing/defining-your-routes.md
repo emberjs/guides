@@ -196,30 +196,6 @@ Router.map(function() {
 });
 ```
 
-## Resetting Nested Route Namespace
-
-When nesting routes, it may be beneficial for a child route to not inherit its ancestors name. This allows you to reference and reuse a given route in multiple route trees as well as keep the class name short.
-
-You can reset the current "namespace" with the aptly named `resetNamespace: true` option.
-
-```app/router.js
-Router.map(function() {
-  this.route('post', { path: '/post/:post_id' }, function() {
-    this.route('edit');
-    this.route('comments', { resetNamespace: true }, function() {
-      this.route('new');
-    });
-  });
-});
-```
-
-Just like before, the `comments` template will be rendered in the `post`
-template's `{{outlet}}`, and all templates under `comments` (`comments/index`
-and `comments/new`) will be rendered in the `comments` outlet.
-
-However, the `/post/:id/comments` path will load the `comments.hbs` template,
-rather than the `post/comments.hbs` template.
-
 ## Route Handlers
 
 To have your route do something beyond render a template with the same name, you'll
