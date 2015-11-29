@@ -178,7 +178,7 @@ Please note that the default implementations
 of the rest and jsonapi adapters do not pass error messages along other than validation errors.
 You can extend the adapter's handleResponse function along the following lines for any custom error handling.
 
-```
+```app/adapters/application.js
 handleResponse: function(status, headers, payload){
     if(status === 401){
       return new DS.AdapterError(payload.errors, 'not authorized');
