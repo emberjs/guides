@@ -131,6 +131,21 @@ person.get('isAdmin');            //=> false
 person.changedAttributes();       //=> {}
 ```
 
+## Handling Validation Errors
+
+If the backend server returns validation errors after trying to save, they will
+be available on the `errors` property of your model. Here's how you might display
+the errors from saving a blog post in your template:
+
+```hbs
+{{#each post.errors.title as |error|}}
+  <div class="error">{{error.message}}</div>
+{{/each}}
+{{#each post.errors.body as |error|}}
+  <div class="error">{{error.message}}</div>
+{{/each}}
+```
+
 ## Promises
 
 [`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) returns
