@@ -131,7 +131,7 @@ test('should update title on button click', function(assert) {
 ### Testing Actions
 
 Components starting in Ember 2 utilize closure actions. Closure actions allow components
-to directly invoke functions provided outer components.
+to directly invoke functions provided by outer components.
 
 For example, imagine you have a comment form component that invokes a
 `submitComment` action when the form is submitted, passing along the form's data:
