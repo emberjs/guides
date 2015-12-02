@@ -77,7 +77,7 @@ Let's create another route with details for contacting the company.  Once again,
 ember g route contact
 ```
 
-We see that our generator has created a `contact` route and corresponding route handler in `app/routes/contact.js`.  We will be using the `contact` template, so the `contact` route does not need any additional changes.
+We see that our generator has created a `contact` route in the `app/router.js` file, and a corresponding route handler in `app/routes/contact.js`.  We will be using the `contact` template, so the `contact` route does not need any additional changes.
 
 In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 

@@ -84,7 +84,7 @@ Clicking this button will send the action to the component:
 export default Ember.Component.extend({
   isImageShowing: false,
   actions: {
-    imageShow: function() {
+    imageShow() {
       this.set('isImageShowing', true);
     }
   }
@@ -115,10 +115,10 @@ In our JavaScript file:
 export default Ember.Component.extend({
   isImageShowing: false,
  actions: {
-    imageShow: function() {
+    imageShow() {
       this.set('isImageShowing', true);
     },
-    imageHide: function() {
+    imageHide() {
       this.set('isImageShowing', false)
     }
   }

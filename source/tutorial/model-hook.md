@@ -1,4 +1,4 @@
-Now, let's add a list of available rentals to the index template. We know that rentals will not be static: eventually, users will be able to add, update or delete them.  For this reason, we will need a _rentals_ model to save information about the rentals. However, to keep things simple at first, our model is just going to be a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, so that we can let users create and modify their own rentals.
+Now, let's add a list of available rentals to the index template. We know that rentals will not be static, since eventually users will be able to add, update or delete them.  For this reason, we will need a _rentals_ model to save information about the rentals. However, to keep things simple at first, our model is just going to be a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing model data.
 
 Here's what our homepage will look like when we're done:
 
@@ -44,11 +44,11 @@ export default Ember.Route.extend({
 
 If you haven't used the ES6 shorthand method definition syntax before, `model()` is the same as writing `model: function()`.
 
-When we add a method to a class as part of using the Ember framework, we often call it a `hook`. So here, we've added the model hook to our `index` route handler, which Ember will automatically call when a user enters the route.
+When we add special methods that the Ember framework will call, we often call them **hooks**. So here, we've added the model hook to our `index` route handler, which Ember will automatically call when a user enters the route.
 
 The model hook returns our _rentals_ array, so that the data is now available to the _rentals_ template as the `model` property.
 
-Now, let's switch over to our template. We can use the model data to display our list of rentals.  We'll use a new helper called `{{each}}` that will let us loop through each of the objects in our model.  Here is how our index template is updated:
+Now, let's switch over to our template. We can use the model data to display our list of rentals.  We'll use another common helper called `{{each}}` that will let us loop through each of the objects in our model.  Here is how our index template is updated:
 
 ```app/templates/index.hbs
 <h1> Welcome to Super Rentals </h1>
@@ -64,5 +64,5 @@ We hope you find exactly what you're looking for in a place to stay.
 {{/each}}
 ```
 
-Here we loop through each model object and identify it as _rental_. For each
+Here we loop through each model object and call it _rental_. For each
 rental, we create a listing with information about the property.

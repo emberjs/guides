@@ -1,4 +1,4 @@
-Currently, we're using hard-coded data in the `rentals` route handler file to set the model.  This is good for demonstrating how routing and templates use model information, but very limited in practice.  As our application grows, we will want to be able to create new rentals, make updates to them, and delete them. Ember integrates with a model data management library called Ember Data that will provide this functionality.
+Currently, we're using hard-coded data in the `rentals` route handler file to set the model. As our application grows, we will want to be able to create new rentals, make updates to them, and delete them, and store them on a backend server. Ember integrates with a model data management library called Ember Data that makes this easy.
 
 Let's generate our first Ember Data model:
 
@@ -44,12 +44,12 @@ Now we have a model in our Ember Data store.
 
 ## Using Mirage with Ember Data
 
-Ember Data can be configured to save to any persistent data source. By default, it expects to use a server that you would have to set up yourself. So that we don't have to build a server as part of this tutorial, we are going to configure our app to use [Mirage](http://www.ember-cli-mirage.com) which will help us produce fake data easily for our system.
+Ember Data can be configured to save data in a variety of ways, but often is setup to work with a backend API server. So that we don't have to build a server as part of this tutorial, we are going to configure our app to use [Mirage](http://www.ember-cli-mirage.com) which will help us produce fake data easily for our system.
 
 Let's start by installing Mirage:
 
 ```shell
-ember install ember-cli-mirage@v0.2.0-beta.1
+ember install ember-cli-mirage
 ```
 
 Let's now configure Mirage to send back our rentals that we had defined above by
