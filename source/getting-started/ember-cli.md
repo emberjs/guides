@@ -106,6 +106,13 @@ as the variable `config`. At the end of the file, `export default Router;
 ` makes the `Router` variable defined in this file available to other parts
 of the app.
 
+## Upgrading Ember
+
+Before continuing to the tutorial, make sure that you have the most recent
+version of Ember installed. If the versions of `ember` and `ember-data` in
+`bower.json` are lower than the version number in the upper-left corner of these
+Guides, update the version numbers in `bower.json` and then run `bower install`.
+
 ## The Development Server
 
 Once we have a new project in place, we can confirm everything is working by
