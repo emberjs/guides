@@ -38,6 +38,7 @@ checkboxes
 cli
 clickable
 cli's
+codebase
 config
 consolesending
 controllerslog
@@ -116,6 +117,7 @@ inputmode
 instantiation
 interop
 ios
+isImageShowing
 javascript
 JavaScript's
 jquery
@@ -162,6 +164,7 @@ pascalcased
 performant
 phantomjs
 pipelining
+plugins
 pluralizations
 polyfill
 polyfills
@@ -222,6 +225,7 @@ testem
 textarea
 textfield
 tildeio
+tmp
 todo
 todo's
 tomhuda
