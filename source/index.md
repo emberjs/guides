@@ -6,7 +6,7 @@ total beginner to Ember expert.
 On the left side of each page in the Guides is a table of contents,
 organized into sections that can be expanded to show the topics
 they cover. Both the sections and the topics within each section are
-ordered from the most basic concepts to more advanced.
+ordered from the most basic concepts to the more advanced.
 
 The Guides are intended to contain practical explanations of how to
 build Ember apps, focusing on the most widely-used features of Ember.js.
