@@ -1,58 +1,61 @@
-To get started with Ember.js, there are a few core concepts you
-should understand.
+Before you start writing any Ember code, it's a good idea to get an overview of how an
+Ember application works.
+
+![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
+
+## Router and Route Handlers
+Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like _What rental are they looking at?_ and _Are they editing it?_ In Ember.js, the answer to these questions is determined by the URL.
+The URL can be set in a few ways:
+
+* The user loads the app for the first time.
+* The user changes the URL manually, such as by clicking the back button or by editing the address bar.
+* The user clicks a link within the app.
+* Some other event in the app causes the URL to change.
+
+No matter how the URL gets set, the first thing that happens is that the Ember router maps the URL to a route handler.
+
+The route handler then typically does two things:
+
+* It renders a template.
+* It loads a model that is then available to the template.
 
 ## Templates
 
-Templates, written in the Handlebars language, describe the user interface of
-your application. In addition to plain HTML, templates can contain expressions,
-like `{{title}}` or `{{author}}`, which take information from a component or
-controller and put it into HTML. They can also contain helpers, such as
-`{{#if isAdmin}}30 people have viewed your blog today.{{/if}}.` Finally, they
-can contain components such as a template listing blog posts rendering a
-component for each post.
+Ember.js uses templates to organize the layout of HTML in an application.
 
-## Components
+Most templates in an Ember codebase are instantly familiar, and look like any
+fragment of HTML. For example:
 
-Components are the primary way user interfaces are organized in Ember. They
-consist of two parts: a template, and a source file written in JavaScript that
-defines the component's behavior. For example, a blog application might have a
-component for displaying a list of blog posts called `all-posts`, and another
-component for displaying an individual post called `view-post`. If users can
-upvote a post, the `view-post` component might define a behavior like _when the
-user clicks the upvote button, increase the `vote` property's value by 1_.
+```handlebars
+<div>Hi, this is a valid Ember template!</div>
+```
 
-## Controllers
+Ember templates use the syntax of [Handlebars](http://handlebarsjs.com)
+templates. Anything that is valid Handlebars syntax is valid Ember syntax.
 
-Controllers are very much like components, so much so that in future versions of
-Ember, controllers will be replaced entirely with components. At the moment,
-components cannot be routed to (see below), but when this changes, it will be
-recommended to replace all controllers with components.
+Templates can also display properties provided to them from their context, which is either a component or a route (technically, a controller presents the model from the route to the template, but this is rarely used in modern Ember apps and will be deprecated soon). For example:
+
+```handlebars
+<div>Hi {{name}}, this is a valid Ember template!</div>
+```
+
+Here, `{{name}}` is a property provided by the template's context.
+
+Besides properties, double curly braces (`{{}}`) may also contain
+helpers and components, which we'll discuss later.
 
 ## Models
 
-Models represent _persistent state_. For example, a blog application would want
-to save the content of a blog post when a user publishes it, and so the blog
-post would have a model defining it, perhaps called the `Post` model. A model
-typically persists information to a server, although models can be configured to
-save to anywhere else, such as the browser's Local Storage.
+Models represent persistent state.
 
-## Routes
+For example, a property rentals application would want to save the details of a rental when a user publishes it, and so a rental would have a model defining its details, perhaps called the _rental_ model.
 
-Routes load a controller and a template. They can also load one or more models
-to provide data to the controller that can then be displayed by the template.
-For example, an `all-posts` route might load all the blog posts from the `Post`
-model, load the `all-posts` controller, and render the `all-posts` template.
-Similarly, a `view-post` route might load the model for the blog post to be
-shown, load the `view-post` controller, and render the `view-post` template.
+A model typically persists information to a web server, although models can be configured to save to anywhere else, such as the browser's Local Storage.
 
-## The Router
+## Components
 
-The router maps a URL to a route. For example, when a user visits the `/posts`
-URL, the router might load the `all-posts` route. The router can also load
-nested routes. For example, if our blogging app had a list of blog posts on the
-left of the screen and then showed the current blog post on the right, we'd say
-that the `view-post` route was nested inside the `all-posts` route.
+While templates describe how a user interface looks, components control how the user interface _behaves_.
 
-Perhaps the most important thing to remember about Ember is that the URL drives
-the state of the application. The URL determines what route to load, which in
-turn determines what model, controller, and template to load.
+Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
+
+Let's see these core concepts in action by building a property rental application in the next lesson.

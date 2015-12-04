@@ -10,10 +10,22 @@
   pages:
     - title: "Installing Ember"
       url: "index"
-    - title: "Your First Ember App"
-      url: "first-app"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "Ember CLI"
+      url: "ember-cli"
+
+- title: "Tutorial"
+  url: 'tutorial'
+  pages:
+    - title: "Routes and Templates"
+      url: "routes-and-templates"
+    - title: "The Model Hook"
+      url: "model-hook"
+    - title: "Ember Data"
+      url: "ember-data"
+    - title: "A Simple Component"
+      url: "simple-component"
 
 - title: "The Object Model"
   url: 'object-model'
