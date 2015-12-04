@@ -7,7 +7,12 @@
     <meta property="st:title" content="<%= current_page.data.title || full_page_title %>" />
     <%= favicon_tag 'images/favicon.png' %>
     <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
-    <%= stylesheet_link_tag "site" %>
+    <%= stylesheet_link_tag "application" %>
+
+    <!-- This TypeKit account is managed by @wifelette. Contact her with any issues. -->
+    <script src="https://use.typekit.net/stz3kpn.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
     <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
     <%= yield_content :head %>
   </head>
@@ -21,92 +26,30 @@
       <%= javascript_include_tag 'common-modern' %>
     <!--<![endif]-->
 
-    <div id="header">
-      <div id="wrapper">
-        <a id="logo" href="http://emberjs.com/">&nbsp;</a>
-        <ul id="nav">
-          <li>
-            <a href="http://emberjs.com/">about</a>
-          </li>
-          <li class="active">
-            <a href="/">guides</a>
-          </li>
-          <li>
-            <a href="http://emberjs.com/api">api</a>
-          </li>
-          <li>
-            <a href="http://emberjs.com/community">community</a>
-          </li>
-          <li>
-            <a href="http://emberjs.com/blog">blog</a>
-          </li>
-          <li>
-            <a href="http://emberjs.com/builds">builds</a>
-          </li>
+    <%= partial "header" %>
 
-          <li id="search">
-            <form>
-              <input type="text" id="st-search-input" class="st-search-input" placeholder="Search the guides"/>
-            </form>
-            <div id="st-results-container"></div>
-          </li>
-        </ul>
-
-        <div id="github">
-          <a href="https://github.com/emberjs/ember.js"><i class="icon-fork"></i>Fork Us!</a>
-        </div>
-      </div>
-    </div>
 
     <%= yield_content :outside_wrapper %>
 
-    <div id="content-wrapper">
-      <div id="sidebar-wrapper">
-        <select class="version-select" style="width: 100%"></select>
-        <div id="sidebar">
+    <main class="container">
+      <%= partial "sidebar" %>
 
-          <%= toc_for(data.pages) %>
-          <div id="back-to-top"><a id="back-top-top" href="#">&#11014; Back to Top</a></div>
-        </div>
-      </div>
-      <div id="content" class="has-sidebar">
-        <div class="chapter">
-          <h1>
-            <%= page_title %>
-            <a href="https://github.com/emberjs/guides/edit/master/source/<%= current_page.path.gsub('html', 'md') %>"
-               target="_blank" class="edit-page icon-pencil">Edit Page</a>
-          </h1>
-          <hr>
+      <article class="chapter">
+        <h1>
+          <%= page_title %>
+          <a href="https://github.com/emberjs/guides/edit/master/source/<%= current_page.path.gsub('html', 'md') %>"
+             target="_blank" class="edit-page icon-pencil">Edit Page</a>
+        </h1>
+        <hr>
 
-          <%= yield %>
+        <%= yield %>
 
 
-          <%= chapter_links %>
-        </div>
-      </div>
-    </div>
+        <%= chapter_links %>
+      </article>
+    </main>
 
-    <div id="footer">
-      <div id="footer-wrapper">
-        <div class="info">
-          Copyright <%= Time.now.strftime('%Y') %> <a href="http://tilde.io">Tilde Inc.</a><br>
-          <a href="http://emberjs.com/team">Core Team</a> | <a href="http://emberjs.com/sponsors">Sponsors</a> | <a href="http://emberjs.com/legal">Legal</a></br>
-          <a href="http://emberjs.com/guidelines">Community Guidelines</a>
-        </div>
-        <div class="statement">Ember.js is free, open source and always will be.</div>
-        <div class="links">
-          <a class="twitter" href="http://twitter.com/emberjs">
-            <i class="icon-twitter"></i><span>Twitter</span>
-          </a>
-          <a class="github" href="https://github.com/emberjs/ember.js">
-            <i class="icon-github"></i><span>GitHub</span>
-          </a>
-          <a class="googleplus" href="https://plus.google.com/communities/106387049790387471205">
-            <i class="icon-gplus"></i><span>Google+</span>
-          </a>
-        </div>
-      </div>
-    </div>
+    <%= partial "footer" %>
 
     <%= yield_content :foot %>
 
