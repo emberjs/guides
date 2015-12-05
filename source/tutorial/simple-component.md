@@ -114,7 +114,7 @@ In our JavaScript file:
 ```app/components/rental-listing.js
 export default Ember.Component.extend({
   isImageShowing: false,
- actions: {
+  actions: {
     imageShow() {
       this.set('isImageShowing', true);
     },
