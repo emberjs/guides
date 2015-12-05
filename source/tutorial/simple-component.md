@@ -74,7 +74,7 @@ For the button to make the image show, we will need to add an action that change
 
 ```app/templates/components/rental-listing.hbs
 ...
-<button {{action 'imageShow'}}>Show image</button>
+<button {{action "imageShow"}}>Show image</button>
 ...
 ```
 
@@ -103,9 +103,9 @@ We should let users hide the image again. In our template:
 <p>Number of bedrooms: {{rental.bedrooms}}</p>
 {{#if isImageShowing }}
   <p><img src={{rental.image}} alt={{rental.type}} width="500px"></p>
-  <button {{action 'imageHide'}}>Hide image</button>
+  <button {{action "imageHide"}}>Hide image</button>
 {{else}}
-  <button {{action 'imageShow'}}>Show image</button>
+  <button {{action "imageShow"}}>Show image</button>
 {{/if}}
 ```
 
