@@ -182,15 +182,26 @@ export default Ember.Component.extend({
 
 ## Factory Instance Lookups
 
-The vast majority of Ember registrations and lookups are performed implicitly.
+To fetch an instantiated factory from the running application you can call the
+[`lookup`][3] method on an application instance. This method takes a string
+to identify a factory and returns the appropriate object.
 
-In the rare cases in which you want to perform an explicit lookup of an instance of a registered factory,
-you can do so on an application instance in its associated instance initializer.
-For example:
+```javascript
+applicationInstance.lookup('factory-type:factory-name');
+```
+
+The application instance is passed to Ember's instance initializer hooks and it
+is added as the "owner" of each object that was instantiated by the application
+instance.
+
+### Using an Application Instance Within an Instance Initializer
+
+Instance initializers receive an application instance as an argument, providing
+an opportunity to look up an instance of a registered factory.
 
 ```app/instance-initializers/logger.js
 export function initialize(applicationInstance) {
-  var logger = applicationInstance.lookup('logger:main');
+  let logger = applicationInstance.lookup('logger:main');
 
   logger.log('Hello from the instance initializer!');
 }
@@ -200,3 +211,43 @@ export default {
   initialize: initialize
 };
 ```
+
+### Getting an Application Instance from a Factory Instance
+
+[`Ember.getOwner`][4] will retrieve the application instance that "owns" an
+object. This means that framework objects like components, helpers, and routes
+can use [`Ember.getOwner`][4] to perform lookups through their application
+instance at runtime.
+
+For example, this component plays songs with different audio services based
+on a song's `audioType`.
+
+```app/components/play-audio.js
+import Ember from 'ember';
+const {
+  Component,
+  computed,
+  getOwner
+} = Ember;
+
+// Usage:
+//
+//   {{play-audio song=song}}
+//
+export default Component.extend({
+  audioService: computed('song.audioType', function() {
+    let applicationInstance = getOwner(this);
+    let audioType = this.get('song.audioType');
+    return applicationInstance.lookup(`service:audio-${audioType}`);
+  }),
+
+  click() {
+    let player = this.get('audioService');
+    player.play(this.get('song.file'));
+  }
+});
+```
+
+[3]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup
+[4]: http://emberjs.com/api/#method_getOwner
+
