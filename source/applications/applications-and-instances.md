@@ -18,4 +18,4 @@ to be booted repeatedly during testing and / or server-rendering (e.g. via
 [FastBoot](https://github.com/tildeio/ember-cli-fastboot)). The configuration of
 a single `Application` can be done once and shared among multiple stateful
 `ApplicationInstance` instances. These instances can be discarded once they're
-no longer needed (e.g. when a test run or FastBoot request has finished).
+no longer needed (e.g. when a test has run or FastBoot request has finished).
