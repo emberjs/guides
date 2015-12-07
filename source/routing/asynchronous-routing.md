@@ -23,7 +23,7 @@ var promise = fetchTheAnswer();
 promise.then(fulfill, reject);
 
 function fulfill(answer) {
-  console.log('The answer is ' + answer);
+  console.log(`The answer is ${answer}`);
 }
 
 function reject(reason) {
