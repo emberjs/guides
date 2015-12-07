@@ -162,7 +162,7 @@ We can update our `index.hbs` with some HTML and we have our welcome home page a
 ```hbs
 <h1>Welcome to Super Rentals</h1>
 
-We hope you find exactly what you're looking for in a place to stay.
+<p>We hope you find exactly what you're looking for in a place to stay.</p>
 
 {{#link-to "about"}}About{{/link-to}}
 {{#link-to "contact"}}Click here to contact us.{{/link-to}}
