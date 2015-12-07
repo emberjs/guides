@@ -53,9 +53,9 @@ ember install ember-cli-mirage
 ```
 
 Let's now configure Mirage to send back our rentals that we had defined above by
-updating `mirage/config.js` like this:
+updating `app/mirage/config.js` like this:
 
-```mirage/config.js
+```app/mirage/config.js
 export default function() {
   this.get('/rentals', function() {
     return {
