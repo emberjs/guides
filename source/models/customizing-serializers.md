@@ -375,7 +375,7 @@ The JSON should encode the relationship as an array of IDs and types:
 ```
 
 `Comments` for a `post` can be loaded by `post.get('comments')`. The
-JSON API adapter will send 3 `GET` request to `/comments/1/`,
+JSON API adapter will send 3 `GET` requests to `/comments/1/`,
 `/comments/2/` and `/comments/3/`.
 
 Any `belongsTo` relationships in the JSON representation should be the
@@ -578,9 +578,9 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 
 
 The `serialize` and `deserialize` keys support 3 options.
-- `records` is uses to signal that the entire record is expected
-- `ids` is uses to signal that only the id of the record is expected
-- false is uses to signal that the record is not expected
+- `records` is used to signal that the entire record is expected
+- `ids` is used to signal that only the id of the record is expected
+- false is used to signal that the record is not expected
 
 For example you may find that you want to read an embedded record when
 extracting a JSON payload but only include the relationship's id when
@@ -633,11 +633,11 @@ Its also important to know about the `normalized` JSON form that Ember
 Data expects as an argument to `store.push()`.
 
 `store.push` accepts a JSON API document. However, unlike the
-JSONAPISerializer, store.push does not do any transformation of the
+JSONAPISerializer, `store.push` does not do any transformation of the
 record's type name or attributes. It is important to make sure that
 the type name matches the name of the file where it is defined
 exactly. Also attribute and relationship names in the JSON API
-document should match the name an casing of the attribute and
+document should match the name and casing of the attribute and
 relationship properties on the Model.
 
 For Example: given this `post` model.
