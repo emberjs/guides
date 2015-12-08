@@ -72,7 +72,7 @@ example above the type is `album` because the model is defined in
 `app/models/album.js`). Attributes and relationship names must match
 the casing of the properties defined on the Model class.
 
-If you would like to the data to be normalized by the model's default
+If you would like the data to be normalized by the model's default
 serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
 
