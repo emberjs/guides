@@ -25,7 +25,7 @@ Document that follows the JSON API specification and the conventions
 of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all
 type names should be pluralized and attribute and relationship names
 should be dash-cased. For example, if you request a record from
-`/people/123`, the response should looks like this:
+`/people/123`, the response should look like this:
 
 ```js
 {
@@ -67,9 +67,9 @@ A response that contains multiple records may have an array in its
 
 Data that is not a part of the primary request but includes linked
 relationships should be placed in an array under the `included`
-key. For example if you `/people/1` and the backend also returned any
-comments associated with that relationship the response should look
-like this:
+key. For example, if you request `/people/1` and the backend also
+returned any comments associated with that person the response
+should look like this:
 
 ```js
 {
