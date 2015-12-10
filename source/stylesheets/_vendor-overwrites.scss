@@ -50,3 +50,10 @@
 
 .select2-container--default .select2-selection--single {
   outline: none; }
+
+@media screen and (max-width : $large-screen) {
+  .select2-container.select2-container--default {
+    margin-top: 10px; 
+  }
+}
+
