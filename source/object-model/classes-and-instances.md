@@ -112,9 +112,8 @@ var tom = Person.create({
 tom.helloWorld(); // alerts "Hi, my name is Tom Dale"
 ```
 
-For performance reasons, note that you cannot redefine an instance's
-computed properties or methods when calling `create()`, nor can you
-define new ones. You should only set simple properties when calling
+Note that for performance reasons, while calling `create()` you cannot redefine an instance's
+computed properties and should not redefine existing or define new methods. You should only set simple properties when calling
 `create()`. If you need to define or redefine methods or computed
 properties, create a new subclass and instantiate that.
 
