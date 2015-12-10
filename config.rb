@@ -99,3 +99,7 @@ helpers do
     classes
   end
 end
+
+# this configuration is due to https://github.com/JohnAlbin/normalize-scss/issues/43
+# when that issue is resolved and we upgrade normalize-css, the line below can be removed
+compass_config { |c| c.add_import_path(Bundler.rubygems.find_name('support-for').first.full_gem_path + "/sass") }

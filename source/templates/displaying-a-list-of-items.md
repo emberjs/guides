@@ -48,7 +48,7 @@ to update bound arrays.
 
 ### Accessing an item's `index`
 
-During iteration, the index of each item in an the array is provided as a second
+During iteration, the index of each item in the array is provided as a second
 block param. Block params are space-separated, without commas. For example:
 
 ```handlebars

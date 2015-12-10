@@ -86,7 +86,7 @@ module Highlighter
         line_numbers: :table,
         line_number_anchors: false
 
-      if file_name.present?
+      unless file_name.nil?
 
         table = table.sub('<table class="CodeRay">', <<-HEADER)
 <table class="CodeRay">

@@ -53,44 +53,44 @@ ember install ember-cli-mirage
 ```
 
 Let's now configure Mirage to send back our rentals that we had defined above by
-updating `mirage/config.js` like this:
+updating `app/mirage/config.js` like this:
 
-```mirage/config.js
+```app/mirage/config.js
 export default function() {
   this.get('/rentals', function() {
     return {
       data: [{
-        type: "rentals",
+        type: 'rentals',
         id: 1,
         attributes: {
-          title: "Grand Old Mansion",
-          owner: "Veruca Salt",
-          city: "San Francisco",
-          type: "Estate",
+          title: 'Grand Old Mansion',
+          owner: 'Veruca Salt',
+          city: 'San Francisco',
+          type: 'Estate',
           bedrooms: 15,
-          image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
+          image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
         }
       }, {
-        type: "rentals",
+        type: 'rentals',
         id: 2,
         attributes: {
-          title: "Urban Living",
-          owner: "Mike Teavee",
-          city: "Seattle",
-          type: "Condo",
+          title: 'Urban Living',
+          owner: 'Mike Teavee',
+          city: 'Seattle',
+          type: 'Condo',
           bedrooms: 1,
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg"
+          image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
         }
       }, {
-        type: "rentals",
+        type: 'rentals',
         id: 3,
         attributes: {
-          title: "Downtown Charm",
-          owner: "Violet Beauregarde",
-          city: "Portland",
-          type: "Apartment",
+          title: 'Downtown Charm',
+          owner: 'Violet Beauregarde',
+          city: 'Portland',
+          type: 'Apartment',
           bedrooms: 3,
-          image: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg"
+          image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
         }
       }]
     }

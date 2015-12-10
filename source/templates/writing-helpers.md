@@ -237,10 +237,6 @@ should export a subclass of [`Ember.Helper`][1]. Helper classes must contain a
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
-[1]: http://emberjs.com/api/classes/Ember.Helper.html
-[2]: http://emberjs.com/api/classes/Ember.Helper.html#method_compute
-[3]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
-
 To exemplify, let's make a helper utilizing an authentication service that
 welcomes users by their name if they're logged in:
 
@@ -309,7 +305,7 @@ Ember will escape the HTML tags, like this:
 This shows the literal string `<b>Hello world</b>` to the user, rather
 than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
-[`htmlSafe`][1] string utility:
+[`htmlSafe`][4] string utility:
 
 ```app/helpers/make-bold.js
 export default Ember.Helper.helper(function(params) {
@@ -318,10 +314,8 @@ export default Ember.Helper.helper(function(params) {
 ```
 
 If you return a `SafeString` (a string that has been wrapped in a call
-to [`htmlSafe`][1]), Ember knows that you have vouched on its behalf that it
+to [`htmlSafe`][4]), Ember knows that you have vouched on its behalf that it
 contains no malicious HTML.
-
-[1]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe
 
 However, note that in the above code we may have inadvertently
 introduced an XSS vulnerability into our application! By blindly marking
@@ -362,3 +356,7 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
+[1]: http://emberjs.com/api/classes/Ember.Helper.html
+[2]: http://emberjs.com/api/classes/Ember.Helper.html#method_compute
+[3]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
+[4]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe

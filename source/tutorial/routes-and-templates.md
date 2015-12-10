@@ -44,7 +44,7 @@ When we open the router, we can see that the generator has mapped a new _about_ 
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
+const Router = Ember.Router.extend({
   location: config.locationType
 });
 
@@ -113,7 +113,7 @@ Ember has built-in **helpers** that provide functionality such as linking to oth
   By building a property rental site, we can simultaneously imagine traveling<br>
   AND building Ember applications simultaneously.</p>
 
-{{#link-to 'contact'}}Click here to contact us.{{/link-to}}
+{{#link-to "contact"}}Click here to contact us.{{/link-to}}
 ```
 
 The helper takes an argument with the name of the route to link to, in this case, `contact`.  When we look at our about page, we now have a link to our contact page.
@@ -138,7 +138,7 @@ Now, we'll add one to link to our about page so we can navigate from back and fo
 
 <p>superrentalsrep@superrentals.com</p>
 
-{{#link-to 'about'}}About{{/link-to}}
+{{#link-to "about"}}About{{/link-to}}
 ```
 
 ## An Index Route
@@ -162,8 +162,8 @@ We can update our `index.hbs` with some HTML and we have our welcome home page a
 ```hbs
 <h1>Welcome to Super Rentals</h1>
 
-We hope you find exactly what you're looking for in a place to stay.
+<p>We hope you find exactly what you're looking for in a place to stay.</p>
 
-{{#link-to 'about'}}About{{/link-to}}
-{{#link-to 'contact'}}Click here to contact us.{{/link-to}}
+{{#link-to "about"}}About{{/link-to}}
+{{#link-to "contact"}}Click here to contact us.{{/link-to}}
 ```

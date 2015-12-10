@@ -159,12 +159,12 @@ redirect to a login page, etc.
 ```app/routes/articles-overview.js
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findAll('nonexistentModel');
+    return this.store.findAll('problematicModel');
   },
   actions: {
     error(error, transition) {
-      if (error && error.status === 400) {
-        return this.transitionTo('modelNotFound');
+      if (error) {
+        return this.transitionTo('errorPage');
       }
     }
   }
