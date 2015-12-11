@@ -1,5 +1,5 @@
-An [`Ember.Service`][1] is a long-lived Ember object that can be made available in
-different parts of your application.
+An [`Ember.Service`][1] is a long-lived Ember object
+that can be made available in different parts of your application.
 
 [1]: http://emberjs.com/api/classes/Ember.Service.html
 
@@ -31,8 +31,7 @@ export default Ember.Service.extend({
 });
 ```
 
-Like any Ember object, a service is initialized and can have properties and
-methods of its own.
+Like any Ember object, a service is initialized and can have properties and methods of its own.
 
 ```app/services/shopping-cart.js
 export default Ember.Service.extend({
@@ -67,8 +66,7 @@ export default Ember.Component.extend({
 });
 ```
 
-This injects the shopping cart service into the component and makes it available
-as the `cart` property.
+This injects the shopping cart service into the component and makes it available as the `cart` property.
 
 You can then access properties and methods on the service:
 
@@ -95,11 +93,10 @@ export default Ember.Component.extend({
 </ul>
 ```
 
-The injected property is lazy; the service will not be instantiated until the
-property is explicitly called. It will then persist until the application exits.
+The injected property is lazy; the service will not be instantiated until the property is explicitly called.
+It will then persist until the application exits.
 
-If no argument is provided to `service()`, Ember will use the dasherized version
-of the property name:
+If no argument is provided to `service()`, Ember will use the dasherized version of the property name:
 
 ```app/components/cart-contents.js
 export default Ember.Component.extend({
