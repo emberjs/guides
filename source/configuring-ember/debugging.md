@@ -39,7 +39,7 @@ ENV.APP.LOG_ACTIVE_GENERATION = true;
 
 ## Observers / Binding
 
-#### See all observers for a object, key
+#### See all observers for an object, key
 
 ```javascript
 Ember.observersFor(comments, keyName);
