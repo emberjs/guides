@@ -1,6 +1,10 @@
-As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision. Let's add the ability to hide and show an image for each rental.  To do this, we'll use a component.
+As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision.
+Let's add the ability to hide and show an image for each rental.
+To do this, we'll use a component.
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element.  So `rental-listing` is acceptable but `rental` would not be.
+Let's generate a `rental-listing` component that will manage the behavior for each of our rentals.
+A dash is required in every component name to avoid conflicting with a possible HTML element.
+So `rental-listing` is acceptable but `rental` would not be.
 
 ```shell
 ember g component rental-listing
@@ -17,10 +21,13 @@ installing component-test
   create tests/integration/components/rental-listing-test.js
 ```
 
-A component consists of two parts: a Handlebars template that defines how it will look (`app/templates/components/rental-listing.hbs`) and a JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
+A component consists of two parts:
+a Handlebars template that defines how it will look (`app/templates/components/rental-listing.hbs`)
+and a JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
 
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.
-To start, let's move the rental display details for a single rental from the `index.hbs` template into `rental-listing.hbs`:
+To start, let's move the rental display details for a single rental from the `index.hbs` template
+into `rental-listing.hbs`:
 
 ```app/templates/components/rental-listing.hbs
 <h2>{{rental.title}}</h2>
@@ -30,7 +37,8 @@ To start, let's move the rental display details for a single rental from the `in
 <p>Number of bedrooms: {{rental.bedrooms}}</p>
 ```
 
-In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
+In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
+with our new `rental-listing` component:
 
 ```app/templates/index.hbs
 …
@@ -39,7 +47,8 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
 {{/each}}
 …
 ```
-Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+Here we invoke the `rental-listing` component by name,
+and assign each `rentalUnit` as the `rental` attribute of the component.
 
 ## Hiding and Showing an Image
 
@@ -61,7 +70,8 @@ Otherwise, let's show a button to allow our user to toggle this:
 {{/if}}
 ```
 
-The value of `isImageShowing` comes from our component's JavaScript file, in this case `rental-listing.js`.  Since we do not want the image to be showing at first, we will set the property to start as `false`:
+The value of `isImageShowing` comes from our component's JavaScript file, in this case `rental-listing.js`.
+Since we do not want the image to be showing at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js
 import Ember from 'ember';
@@ -71,7 +81,8 @@ export default Ember.Component.extend({
 });
 ```
 
-To make it where clicking on the button shows the image to the user, we will need to add an action that changes the value of `isImageShowing` to `true`.
+To make it where clicking on the button shows the image to the user,
+we will need to add an action that changes the value of `isImageShowing` to `true`.
 Let's call this action `imageShow`
 
 ```app/templates/components/rental-listing.hbs

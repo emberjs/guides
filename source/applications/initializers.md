@@ -1,36 +1,32 @@
 Initializers provide an opportunity to configure your application as it boots.
 
-There are two types of initializers: application initializers and application
-instance initializers.
+There are two types of initializers: application initializers and application instance initializers.
 
-Application initializers are run as your application boots, and provide the
-primary means to configure [dependency injections](../dependency-injection) in
-your application.
+Application initializers are run as your application boots,
+and provide the primary means to configure [dependency injections](../dependency-injection) in your application.
 
 Application instance initializers are run as an application instance is loaded.
-They provide a way to configure the initial state of your application, as well
-as to set up dependency injections that are local to the application instance
+They provide a way to configure the initial state of your application,
+as well as to set up dependency injections that are local to the application instance
 (e.g. A/B testing configurations).
 
 Operations performed in initializers should be kept as lightweight as possible
-to minimize delays in loading your application. Although advanced techniques
-exist for allowing asynchrony in application initializers (i.e. `deferReadiness`
-and `advanceReadiness`), these techniques should generally be avoided. Any
-asynchronous loading conditions (e.g. user authorization) are almost always
-better handled in your application route's hooks, which allows for DOM
-interaction while waiting for conditions to resolve.
+to minimize delays in loading your application.
+Although advanced techniques exist for allowing asynchrony in application initializers
+(i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided.
+Any asynchronous loading conditions (e.g. user authorization) are almost always
+better handled in your application route's hooks,
+which allows for DOM interaction while waiting for conditions to resolve.
 
 ## Application Initializers
 
-Application initializers can be created with Ember CLI's `initializer`
-generator:
+Application initializers can be created with Ember CLI's `initializer` generator:
 
 ```bash
 ember generate initializer shopping-cart
 ```
 
-Let's customize the `shopping-cart` initializer to inject a `cart` property into
-all the routes in your application:
+Let's customize the `shopping-cart` initializer to inject a `cart` property into all the routes in your application:
 
 ```app/initializers/shopping-cart.js
 export function initialize(application) {
@@ -45,8 +41,7 @@ export default {
 
 ## Application Instance Initializers
 
-Application instance initializers can be created with Ember CLI's
-`instance-initializer` generator:
+Application instance initializers can be created with Ember CLI's `instance-initializer` generator:
 
 ```bash
 ember generate instance-initializer logger
@@ -68,8 +63,7 @@ export default {
 
 ## Specifying Initializer Order
 
-If you'd like to control the order in which initializers run, you can use the
-`before` and/or `after` options:
+If you'd like to control the order in which initializers run, you can use the `before` and/or `after` options:
 
 ```app/initializers/config-reader.js
 export function initialize(application) {
@@ -95,6 +89,5 @@ export default {
 };
 ```
 
-Note that ordering only applies to initializers of the same type (i.e.
-application or application instance). Application initializers will always run
-before application instance initializers.
+Note that ordering only applies to initializers of the same type (i.e. application or application instance).
+Application initializers will always run before application instance initializers.

@@ -1,4 +1,8 @@
-Now, let's add a list of available rentals to the index template. We know that rentals will not be static, since eventually users will be able to add, update, and delete them.  For this reason, we'll need a _rentals_ model to save information about the rentals. To keep things simple at first, we'll use a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
+Now, let's add a list of available rentals to the index template.
+We know that rentals will not be static, since eventually users will be able to add, update, and delete them.
+For this reason, we'll need a _rentals_ model to save information about the rentals.
+To keep things simple at first, we'll use a hard-coded array of JavaScript objects.
+Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
 
 Here's what our homepage will look like when we're done:
 
@@ -45,11 +49,15 @@ export default Ember.Route.extend({
 
 Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
 
-The `model` function acts as a **hook**, meaning that Ember will call it for us as during different times in our app. The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
+The `model` function acts as a **hook**, meaning that Ember will call it for us as during different times in our app.
+The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
 
 The `model` hook returns our _rentals_ array and passes it to our `index` template as the `model` property.
 
-Now, let's switch over to our template. We can use the model data to display our list of rentals.  Here, we'll use another common Handlebars helper called `{{each}}` which will let us loop through each of the objects in our model:
+Now, let's switch over to our template.
+We can use the model data to display our list of rentals.
+Here, we'll use another common Handlebars helper called `{{each}}`.
+This helper will let us loop through each of the objects in our model:
 
 ```app/templates/index.hbs
 <h1> Welcome to Super Rentals </h1>
@@ -65,5 +73,5 @@ We hope you find exactly what you're looking for in a place to stay.
 {{/each}}
 ```
 
-In this template, we loop through each model object and call it _rental_. For each
-rental, we then create a listing with information about the property.
+In this template, we loop through each model object and call it _rental_.
+For each rental, we then create a listing with information about the property.
