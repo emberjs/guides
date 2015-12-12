@@ -73,7 +73,7 @@ should look like this:
 
 ```js
 {
-  "data": {
+  "data": [{
     "type": "articles",
     "id": "1",
     "attributes": {
