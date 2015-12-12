@@ -2,6 +2,7 @@
 button {
   @include appearance(none);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: $action-color;
   border-radius: $base-border-radius;
   border: none;
