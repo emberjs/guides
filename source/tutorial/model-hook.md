@@ -49,7 +49,7 @@ export default Ember.Route.extend({
 
 Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
 
-The `model` function acts as a **hook**, meaning that Ember will call it for us as during different times in our app.
+The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
 The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
 
 The `model` hook returns our _rentals_ array and passes it to our `index` template as the `model` property.
