@@ -32,7 +32,10 @@ Liberally use examples in your writing. For example, the sentence "Templates can
 When writing prose:
 
 * Use a single space after periods.
-* Manually break lines that are longer than 120 characters.
+* Manually break lines:
+  * at the beginning of every new sentence;
+  * after the last comma in sentences over 120 characters; or
+  * after logical statements in sentences over 120 characters with no commas.
 
 In code samples:
 
