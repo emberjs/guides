@@ -52,10 +52,25 @@ Ember Data can be configured to save data in a variety of ways, but often it is 
 For this tutorial, we will use [Mirage](http://www.ember-cli-mirage.com).
 This will allow us to create fake data to work with while developing our app and mimic a running backend server.
 
+
 Let's start by installing Mirage:
 
 ```shell
 ember install ember-cli-mirage
+```
+
+NOTE: To use Mirage, you would have to enable it. See snipet below
+```config/environment.js
+if (environment === 'development') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    }
+  }
 ```
 
 Let's now configure Mirage to send back our rentals that we had defined above by updating `app/mirage/config.js`:
