@@ -65,21 +65,26 @@ match the type you would like to use in your JavaScript code. Ember
 Data allows you to define simple serialization and deserialization
 methods for attribute types called transforms. You can specify that
 you would like a transform to run for an attribute by providing the
-transform name as the first argument to the `DS.attr` method.
-
-For example if you would like to transform an
-[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string to a
-JavaScript date object you would define your attribute like this:
+transform name as the first argument to the `DS.attr` method. Ember Data
+supports attribute types of `string`, `number`, `boolean`, and `date`,
+which coerce the value to the JavaScript type that matches its name.
 
 ```app/models/person.js
 export default DS.Model.extend({
+  name: DS.attr('string'),
+  age: DS.attr('number'),
+  admin: DS.attr('boolean'),
   birthday: DS.attr('date')
 });
 ```
 
-Ember Data supports attribute types of `string`, `number`, `boolean`,
-and `date`. Which coerce the value to the JavaScript type that matches
-its name.
+The `date` transform will transform an
+[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string to a JavaScript
+date object.
+
+The `boolean` transform can handle values other than `true` or
+`false`. The strings `"true"` or `"t"` in any casing, `"1"`, and the number
+`1` will all coerce to `true`, and `false` otherwise.
 
 Transforms are not required. If you do not specify a transform name
 Ember Data will do no additional processing of the value.
