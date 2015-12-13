@@ -1,4 +1,6 @@
 .highlight {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
   border-radius: $base-border-radius;
   font-family: $monospace-font-family;
   font-size: 0.8em;
