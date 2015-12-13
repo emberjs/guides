@@ -73,7 +73,7 @@ should look like this:
 
 ```js
 {
-  "data": [{
+  "data": {
     "type": "articles",
     "id": "1",
     "attributes": {
@@ -90,7 +90,7 @@ should look like this:
         ]
       }
     }
-  }],
+  },
   "included": [{
     "type": "comments",
     "id": "5",
