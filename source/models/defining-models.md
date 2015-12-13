@@ -90,14 +90,9 @@ export default DS.Model.extend({
 });
 ```
 
-The `string` and `number` transforms simply use the `String` and `Number`
-functions respectively to coerce the attributes.
-
 The `boolean` transform can handle values other than `true` or
-`false`. The strings `"true"` or `"t"` in any casing, or `"1"` will coerce to
-`true`, and `false` otherwise. The number `1` will coerce to `true`, and
-`false` otherwise. If the value is not a `Boolean`, `String`, or `Number`, it
-will coerce to false.
+`false`. The strings `"true"` or `"t"` in any casing, `"1"`, and the number
+`1` will all coerce to `true`, and `false` otherwise.
 
 Transforms are not required. If you do not specify a transform name
 Ember Data will do no additional processing of the value.
