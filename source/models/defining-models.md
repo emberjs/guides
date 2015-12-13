@@ -78,8 +78,26 @@ export default DS.Model.extend({
 ```
 
 Ember Data supports attribute types of `string`, `number`, `boolean`,
-and `date`. Which coerce the value to the JavaScript type that matches
+and `date`, which coerce the value to the JavaScript type that matches
 its name.
+
+```app/models/person.js
+export default DS.Model.extend({
+  name: DS.attr('string'),
+  age: DS.attr('number'),
+  admin: DS.attr('boolean'),
+  birthday: DS.attr('date')
+});
+```
+
+The `string` and `number` transforms simply use the `String` and `Number`
+functions respectively to coerce the attributes.
+
+The `boolean` transform can handle values other than `true` or
+`false`. The strings `"true"` or `"t"` in any casing, or `"1"` will coerce to
+`true`, and `false` otherwise. The number `1` will coerce to `true`, and
+`false` otherwise. If the value is not a `Boolean`, `String`, or `Number`, it
+will coerce to false.
 
 Transforms are not required. If you do not specify a transform name
 Ember Data will do no additional processing of the value.
