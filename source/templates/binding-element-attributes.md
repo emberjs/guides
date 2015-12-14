@@ -6,7 +6,7 @@ to an image:
 
 ```handlebars
 <div id="logo">
-  <img src={{logoUrl}} alt="Logo">
+  <img src="{{logoUrl}}" alt="Logo">
 </div>
 ```
 
@@ -22,7 +22,7 @@ If you use data binding with a Boolean value, it will add or remove
 the specified attribute. For example, given this template:
 
 ```handlebars
-<input type="checkbox" disabled={{isAdministrator}}>
+<input type="checkbox" disabled="{{isAdministrator}}">
 ```
 
 If `isAdministrator` is `true`, Handlebars will produce the following
