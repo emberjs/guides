@@ -8,7 +8,7 @@ Person.reopen({
   isPerson: true
 });
 
-Person.create().get('isPerson') // true
+Person.create().get('isPerson'); // true
 ```
 
 When using `reopen()`, you can also override existing methods and
