@@ -5,10 +5,12 @@ format, Ember Data allows you to customize the serializer or use a
 different serializer entirely.
 
 Ember Data ships with 3 Serializers. The
-`JSONAPISerializer` is the default serializer and works with JSON API
-backends. The `JSONSerializer` is a simple serializer for working with
-single json object or arrays of records. The `RESTSerializer` is a
-more complex serializer that supports sideloading and was the default
+[`JSONAPISerializer`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html)
+is the default serializer and works with JSON API backends. The
+[`JSONSerializer`](http://emberjs.com/api/data/classes/DS.JSONSerializer.html)
+is a simple serializer for working with single json object or arrays of records. The 
+[`RESTSerializer`](http://emberjs.com/api/data/classes/DS.RESTSerializer.html)
+is a more complex serializer that supports sideloading and was the default
 serializer before 2.0.
 
 ## JSONAPISerializer Conventions
