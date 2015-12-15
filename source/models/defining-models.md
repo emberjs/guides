@@ -89,6 +89,40 @@ The `boolean` transform can handle values other than `true` or
 Transforms are not required. If you do not specify a transform name
 Ember Data will do no additional processing of the value.
 
+#### Custom Transforms
+
+You can also create custom transforms with Ember CLI's `transform` generator:
+
+```bash
+ember generate transform dollars
+```
+
+Here is a simple transform that converts values between cents and US dollars.
+
+```app/transforms/dollars.js
+export default DS.Transform.extend({
+  deserialize: function(serialized) {
+    return serialized / 100; // returns dollars
+  },
+
+  serialize: function(deserialized) {
+    return deserialized * 100; // returns cents
+  }
+});
+```
+
+A transform has two functions: `serialize` and `deserialize`. Deserialization
+converts a value to a format that the client expects. Serialization does the
+reverse and converts a value to the format expected by the persistence layer.
+
+You would use the custom `dollars` transform like this:
+
+```app/models/product.js
+export default DS.Model.extend({
+  spent: DS.attr('dollars')
+});
+```
+
 ### Options
 
 `DS.attr` can also take a hash of options as a second parameter. At the moment
