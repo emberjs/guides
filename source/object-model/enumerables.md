@@ -142,7 +142,7 @@ var arr = [1,2,3,4,5];
 
 arr.filter(function(item, index, self) {
   return item < 4;
-})
+});
 
 // returns [1,2,3]
 ```
@@ -216,6 +216,6 @@ Like the filtering methods, the `every()` and `any()` methods have
 analogous `isEvery()` and `isAny()` methods.
 
 ```javascript
-people.isEvery('isHappy', true) // false
-people.isAny('isHappy', true)  // true
+people.isEvery('isHappy', true); // false
+people.isAny('isHappy', true);  // true
 ```
