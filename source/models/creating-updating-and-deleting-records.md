@@ -13,37 +13,6 @@ store.createRecord('post', {
 
 The store object is available in controllers and routes using `this.store`.
 
-Although `createRecord` is fairly straightforward, the only thing to watch out for
-is that you cannot assign a promise as a relationship, currently.
-
-For example, if you want to set the `author` property of a post, this would **not** work
-if the `user` with id isn't already loaded into the store:
-
-```js
-var store = this.store;
-
-store.createRecord('post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum',
-  author: store.findRecord('user', 1)
-});
-```
-
-However, you can easily set the relationship after the promise has fulfilled:
-
-```js
-var store = this.store;
-
-var post = store.createRecord('post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum'
-});
-
-store.findRecord('user', 1).then(function(user) {
-  post.set('author', user);
-});
-```
-
 ## Updating Records
 
 Making changes to Ember Data records is as simple as setting the attribute you
@@ -193,7 +162,3 @@ store.findRecord('post', 2).then(function(post) {
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```
-
-Deleted records will still show up in RecordArrays returned by
-[`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll)
-and `hasMany` relationships until they have been successfully saved.
