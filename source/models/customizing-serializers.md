@@ -8,7 +8,7 @@ Ember Data ships with 3 Serializers. The
 [`JSONAPISerializer`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html)
 is the default serializer and works with JSON API backends. The
 [`JSONSerializer`](http://emberjs.com/api/data/classes/DS.JSONSerializer.html)
-is a simple serializer for working with single json object or arrays of records. The 
+is a simple serializer for working with single json object or arrays of records. The
 [`RESTSerializer`](http://emberjs.com/api/data/classes/DS.RESTSerializer.html)
 is a more complex serializer that supports sideloading and was the default
 serializer before 2.0.
@@ -282,7 +282,6 @@ model. For example:
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
-
   isPersonOfTheYear: DS.attr('boolean')
 });
 ```
@@ -341,7 +340,7 @@ export default DS.Model.extend({
 ```app/serializers/person.js
 export default DS.JSONAPISerializer.extend({
   attrs: {
-    lastName: 'lastNameOfPerson',
+    lastName: 'lastNameOfPerson'
   }
 });
 ```
@@ -690,7 +689,7 @@ defined on the Model will be ignored.
 
 If none of the built-in Ember Data Serializers work for your backend,
 be sure to check out some of the community maintained Ember Data
-Adapters and serializers. Some good places to look for Ember Data
+Adapters and Serializers. Some good places to look for Ember Data
 Serializers include:
 
 - [Ember Observer](http://emberobserver.com/categories/data)
