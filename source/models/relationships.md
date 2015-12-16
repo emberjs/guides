@@ -176,26 +176,22 @@ For example, if you want to set the `author` property of a post, this would **no
 if the `user` with id isn't already loaded into the store:
 
 ```js
-var store = this.store;
-
-store.createRecord('post', {
+this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
-  author: store.findRecord('user', 1)
+  author: this.store.findRecord('user', 1)
 });
 ```
 
 However, you can easily set the relationship after the promise has fulfilled:
 
 ```js
-var store = this.store;
-
-var post = store.createRecord('post', {
+var post = this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 
-store.findRecord('user', 1).then(function(user) {
+this.store.findRecord('user', 1).then(function(user) {
   post.set('author', user);
 });
 ```
