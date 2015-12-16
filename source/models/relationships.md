@@ -186,7 +186,7 @@ this.store.createRecord('post', {
 However, you can easily set the relationship after the promise has fulfilled:
 
 ```js
-var post = this.store.createRecord('post', {
+let post = this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
