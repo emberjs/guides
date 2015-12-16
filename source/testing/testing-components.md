@@ -245,7 +245,7 @@ moduleForComponent('location-indicator', 'Integration | Component | location ind
 
   beforeEach: function () {
     this.register('service:location-service', locationStub);
-    this.inject.service('location-service', { as: 'location' });
+    this.inject.service('location-service', { as: 'locationService' });
   }
 });
 ```
