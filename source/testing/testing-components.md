@@ -145,7 +145,7 @@ export default Ember.Component.extend({
 
   actions: {
     submitComment() {
-      this.attrs.submitComment({ comment: this.get('comment') });
+      this.get('submitComment')({ comment: this.get('comment') });
     }
   }
 });
