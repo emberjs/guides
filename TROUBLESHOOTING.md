@@ -8,11 +8,13 @@
 El Capitan no longer includes Open SSL headers by default. OpenSSL must be install manually (via homebrew or similar).
 
 Solution:
+
 ```
 brew install openssl
 ```  
+
 OR
+
 ```
 brew link openssl --force
-
 ```

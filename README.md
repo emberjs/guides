@@ -65,3 +65,6 @@ If you get an error like this when doing a gem update (or bundle install):
 5. If the error still happens, try running ```gem update --system```
 
 After these workarounds, you should finally be able to run ```bundle exec middleman```. You may be prompted by Windows Firewall; Click "Allow access" and you'll be in business!
+
+### Other Troubleshooting tips
+If you're running into other problems, check [Troubleshooting.md](TROUBLESHOOTING.md) for other suggestions.
