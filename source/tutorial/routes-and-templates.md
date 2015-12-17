@@ -186,7 +186,7 @@ We'll learn more about why the entry isn't required when we look at nested route
 
 Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
-```hbs
+```app/templates/index.hbs
 <h1>Welcome to Super Rentals</h1>
 
 <p>We hope you find exactly what you're looking for in a place to stay.</p>
