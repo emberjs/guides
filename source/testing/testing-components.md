@@ -245,6 +245,8 @@ moduleForComponent('location-indicator', 'Integration | Component | location ind
 
   beforeEach: function () {
     this.register('service:location-service', locationStub);
+    // Calling inject puts the service instance in the test's context,
+    // making it accessible as "locationService" within each test
     this.inject.service('location-service', { as: 'locationService' });
   }
 });
@@ -267,9 +269,9 @@ when we modify the values on the service.
 test('should change displayed location when current location changes', function (assert) {
   this.render(hbs`{{location-indicator}}`);
   assert.equal(this.$().text().trim(), 'You currently are located in New York, USA', 'origin location should display');
-  this.set('location.city', 'Beijing');
-  this.set('location.country', 'China');
-  this.set('location.currentLocation', { x: 11111, y: 222222 });
+  this.set('locationService.city', 'Beijing');
+  this.set('locationService.country', 'China');
+  this.set('locationService.currentLocation', { x: 11111, y: 222222 });
   assert.equal(this.$().text().trim(), 'You currently are located in Beijing, China', 'location display should change');
 });
 ```
