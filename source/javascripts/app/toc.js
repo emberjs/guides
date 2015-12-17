@@ -5,6 +5,10 @@ $(function(){
     return false;
   });
 
+  $('label[for="toc-toggle"]').click(function() {
+    $('.toc-container').slideToggle(500);
+  });
+
   $(function(){
     $('.anchorable-toc').each(function(){
       var toc = $(this),
