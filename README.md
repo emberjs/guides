@@ -95,7 +95,7 @@ This enables the team to merge in fixes for the current version of the Guides an
 You should use [homu](http://homu.io) when accepting pull requests.
 You can read about the available commands in the front page.
 
-The Guides repository has [homu configured to auto-squash commits](http://homu.io/r/emberjs/guides).
+The Guides repository has homu [configured to auto-squash commits](http://homu.io/r/emberjs/guides).
 
 # Releasing
 
