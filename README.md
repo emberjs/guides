@@ -75,15 +75,15 @@ This section will document some of the processes that members of the documentati
 
 ## Review period
 
-The two weeks preceeding the scheduled date of the next release is considered the review period of the Guides.
+The two weeks preceeding a scheduled release is considered the review period of the Guides.
+It is only during this period that pull requests for the relevant milestone are to be merged in.
 
-It is only during this period that Pull Requests for the relevant milestone are to be merged in.
-This enables the team to merge in fixes for the current version of the Guides and redeploy it.
+Before the review period starts, the previous version should be re-released with any updates.
 
 ## Labels
 
-* infrastructure
-* help wanted
+* `infrastructure`: this label refers to issues that involve writing code, rather than writing documentation
+* `help wanted`: This label is for issues that are suitable for any interested contributor to work on.
 
 ## Milestones
 
