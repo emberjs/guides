@@ -73,7 +73,7 @@ If you're running into other problems, check [Troubleshooting.md](TROUBLESHOOTIN
 
 This section will document some of the processes that members of the documentation team should adhere to.
 
-## Review period
+## Review Period
 
 The two weeks preceeding a scheduled release is considered the review period of the Guides.
 It is only during this period that pull requests for the relevant milestone are to be merged in.
