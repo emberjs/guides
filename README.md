@@ -87,8 +87,8 @@ Before the review period starts, the previous version should be re-released with
 
 ## Milestones
 
-* `Future`: any future work that has is not scheduled for the next release
-* `M.N`: work that is scheduled for the `M.N` (Major.Minor) release
+* `Future`: Any future work that has is not scheduled for the next release
+* `M.N`: Work that is scheduled for the `M.N` (Major.Minor) release
 
 ## Pull Requests
 
