@@ -62,7 +62,7 @@ This helper will let us loop through each of the objects in our model:
 ```app/templates/index.hbs
 <h1> Welcome to Super Rentals </h1>
 
-We hope you find exactly what you're looking for in a place to stay.
+<p>We hope you find exactly what you're looking for in a place to stay.</p>
 
 {{#each model as |rental|}}
   <h2>{{rental.title}}</h2>
