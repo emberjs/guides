@@ -68,3 +68,28 @@ After these workarounds, you should finally be able to run ```bundle exec middle
 
 ### Other Troubleshooting tips
 If you're running into other problems, check [Troubleshooting.md](TROUBLESHOOTING.md) for other suggestions.
+
+# Maintainers
+
+This section will document some of the processes that members of the documentation team should adhere to.
+
+## Review period
+
+The two weeks preceeding the scheduled date of the next release is considered the review period of the Guides.
+
+It is only during this period that Pull Requests for the relevant milestone are to be merged in.
+This enables the team to merge in fixes for the current version of the Guides and redeploy it.
+
+## Labels
+
+* infrastructure
+* help wanted
+
+## Milestones
+
+* `Future`: any future work that has is not scheduled for the next release
+* `M.N`: work that is scheduled for the `M.N` (Major.Minor) release
+
+## Pull Requests
+
+Use homu: http://homu.io/r/emberjs/guides.
