@@ -58,6 +58,8 @@ Let's start by installing Mirage:
 ember install ember-cli-mirage
 ```
 
+If you were running `ember serve` in another shell, restart the server to include Mirage in your build.
+
 Let's now configure Mirage to send back our rentals that we had defined above by updating `app/mirage/config.js`:
 
 ```app/mirage/config.js
