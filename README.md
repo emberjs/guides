@@ -93,3 +93,7 @@ This enables the team to merge in fixes for the current version of the Guides an
 ## Pull Requests
 
 Use homu: http://homu.io/r/emberjs/guides.
+
+# Releasing
+
+See https://github.com/emberjs/guides.emberjs.com.
