@@ -41,11 +41,13 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
 with our new `rental-listing` component:
 
 ```app/templates/index.hbs
-…
+<h1> Welcome to Super Rentals </h1>
+
+We hope you find exactly what you're looking for in a place to stay.
+
 {{#each model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
 {{/each}}
-…
 ```
 Here we invoke the `rental-listing` component by name,
 and assign each `rentalUnit` as the `rental` attribute of the component.
@@ -86,9 +88,16 @@ we will need to add an action that changes the value of `isImageShowing` to `tru
 Let's call this action `imageShow`
 
 ```app/templates/components/rental-listing.hbs
-...
-<button {{action "imageShow"}}>Show image</button>
-...
+<h2>{{rental.title}}</h2>
+<p>Owner: {{rental.owner}}</p>
+<p>Type: {{rental.type}}</p>
+<p>Location: {{rental.city}}</p>
+<p>Number of bedrooms: {{rental.bedrooms}}</p>
+{{#if isImageShowing }}
+  <p><img src={{rental.image}} alt={{rental.type}} width="500px"></p>
+{{else}}
+  <button {{action "imageShow"}}>Show image</button>
+{{/if}}
 ```
 
 Clicking this button will send the action to the component.
@@ -135,7 +144,7 @@ export default Ember.Component.extend({
       this.set('isImageShowing', true);
     },
     imageHide() {
-      this.set('isImageShowing', false)
+      this.set('isImageShowing', false);
     }
   }
 });
