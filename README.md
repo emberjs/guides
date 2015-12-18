@@ -82,7 +82,7 @@ Before the review period starts, the previous version should be re-released with
 
 ## Labels
 
-* `infrastructure`: this label refers to issues that involve writing code, rather than writing documentation
+* `infrastructure`: This label refers to issues that involve writing code, rather than writing documentation
 * `help wanted`: This label is for issues that are suitable for any interested contributor to work on.
 
 ## Milestones
