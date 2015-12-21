@@ -83,7 +83,7 @@ AND building Ember applications.</p>
 ```
 
 Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server,
-and then go to `localhost:4200` to see our new app in action!
+and then go to `localhost:4200/about` to see our new app in action!
 
 ## A Contact Route
 
