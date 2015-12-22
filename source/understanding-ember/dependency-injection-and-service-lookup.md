@@ -54,7 +54,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-`Ember.inject` bases the service it injects on the name of the property is is
+`Ember.inject` bases the service it injects on the name of the property it is
 assigned to. If injecting a service with a different name than the property
 is required, that name can be passed as an argument to `service()`.
 
