@@ -4,7 +4,7 @@ one, functioning as a redirect. `transitionTo()` behaves exactly like the
 [link-to](../../templates/links) helper.
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo
-[2]: http://emberjs.com/api/classes/Ember.Route.html#method_transitionToRoute
+[2]: http://emberjs.com/api/classes/Ember.Controller.html#method_transitionToRoute
 
 If the new route has dynamic segments, you need to pass either a _model_ or an _identifier_ for each segment.
 Passing a model will skip that segment's `model()` hook (since the model is
@@ -85,7 +85,7 @@ before the redirect.
 Instead, we can use the [`redirect()`][1] method, which will leave the original
 transition validated, and not cause the parent route's hooks to fire again:
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
+[1]: http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
