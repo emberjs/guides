@@ -73,6 +73,11 @@ You can read about the available commands in the front page.
 
 The Guides repository has homu [configured to auto-squash commits](http://homu.io/r/emberjs/guides).
 
+Before merging you should check the following:
+
+- Milestone. If it's assigned to the Milestone of the next release, only merge during the review period.
+- Assignee. If it's assigned to someone, get explicit authorization from them before merging.
+
 # Releasing
 
 See https://github.com/emberjs/guides.emberjs.com.
