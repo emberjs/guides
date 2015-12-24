@@ -150,4 +150,4 @@ export default Ember.Component.extend({
 });
 ```
 
-Now our users can toggle or images on and off using the "Show image" and "Hide image" buttons.
+Now our users can toggle images on and off using the "Show image" and "Hide image" buttons.
