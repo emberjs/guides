@@ -66,4 +66,11 @@ To verify that your installation was successful, run:
 ember -v
 ```
 
-If the result is a series of version numbers, you're ready to go.
+If the result is a series of version numbers, everything is installed and operational.
+
+## Upgrading Ember
+
+Before continuing to the tutorial, make sure that you have the most recent
+version of Ember installed. If the versions of `ember` and `ember-data` in
+`bower.json` are lower than the version number in the upper-left corner of these
+Guides, update the version numbers in `bower.json` and then run `bower install`.
