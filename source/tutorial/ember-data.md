@@ -100,7 +100,7 @@ export default function() {
           image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
         }
       }]
-    }
+    };
   });
 }
 ```
