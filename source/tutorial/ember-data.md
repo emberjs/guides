@@ -66,7 +66,7 @@ Let's now configure Mirage to send back our rentals that we had defined above by
 export default function() {
   this.get('/rentals', function() {
     return {
-      data: [{
+      rental: [{
         type: 'rentals',
         id: 1,
         attributes: {
