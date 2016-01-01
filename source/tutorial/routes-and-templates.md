@@ -176,7 +176,10 @@ Using the same process we did for our about and contact pages, we will first gen
 
 ```shell
 ember g route index
+```
 
+We can see the now familiar output for the route generator:
+```shell
 installing route
   create app/routes/index.js
   create app/templates/index.hbs
