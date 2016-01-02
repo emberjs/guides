@@ -138,7 +138,7 @@ the event object:
 
 ```handlebars
 <label>What's your favorite band?</label>
-<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange" value="target.value"}}/>
+<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange" value="target.value"}} />
 ```
 
 The `newValue` parameter thus becomes the `target.value` property of the event
