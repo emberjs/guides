@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   {{#each-in categories as |category products|}}
     <li>{{category}}
       <ol>
-        {{#each products key="@item" as |product|}}
+        {{#each products as |product|}}
           <li>{{product}}</li>
         {{/each}}
       </ol>
