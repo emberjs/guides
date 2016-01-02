@@ -116,7 +116,7 @@ event listeners and enables to work with one-way bindings.
 
 ```handlebars
 <label>What's your favorite band?</label>
-<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange"}}/>
+<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange"}} />
 ```
 
 Let's assume we have an action handler that prints its first parameter:
