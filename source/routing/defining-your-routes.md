@@ -93,7 +93,7 @@ routes, it will load a template with the same name (`application` in
 this case) by default.
 You should put your header, footer, and any other decorative content
 here. All other routes will render
-their templates into the `application.hbs` templates's `{{outlet}}`.
+their templates into the `application.hbs` template's `{{outlet}}`.
 
 This route is part of every application, so you don't need to
 specify it in your `app/router.js`.
