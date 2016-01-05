@@ -15,10 +15,8 @@ class SourceFileFinder
     Dir["#{dir}/*"].each do |file|
       if File.directory?(file)
         find_in_directory(file)
-      else
-        if ALLOWED_FILE_EXTENSIONS.include?(File.extname(file))
-          @files.push(file)
-        end
+      elsif ALLOWED_FILE_EXTENSIONS.include?(File.extname(file))
+        @files.push(file)
       end
     end
 
