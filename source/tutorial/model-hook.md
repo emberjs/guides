@@ -64,17 +64,17 @@ This helper will let us loop through each of the objects in our model:
 
 <p>We hope you find exactly what you're looking for in a place to stay.</p>
 
-{{#each model as |rental|}}
-  <h2>{{rental.title}}</h2>
-  <p>Owner: {{rental.owner}}</p>
-  <p>Type: {{rental.type}}</p>
-  <p>Location: {{rental.city}}</p>
-  <p>Number of bedrooms: {{rental.bedrooms}}</p>
+{{#each model as |rentals|}}
+  <h2>{{rentals.title}}</h2>
+  <p>Owner: {{rentals.owner}}</p>
+  <p>Type: {{rentals.type}}</p>
+  <p>Location: {{rentals.city}}</p>
+  <p>Number of bedrooms: {{rentals.bedrooms}}</p>
 {{/each}}
 
 {{#link-to "about"}}About{{/link-to}}
 {{#link-to "contact"}}Click here to contact us.{{/link-to}}
 ```
 
-In this template, we loop through each model object and call it _rental_.
+In this template, we loop through each model object and call it _rentals_.
 For each rental, we then create a listing with information about the property.
