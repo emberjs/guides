@@ -65,7 +65,7 @@ Otherwise, let's show a button to allow our user to toggle this:
 <p>Type: {{rental.type}}</p>
 <p>Location: {{rental.city}}</p>
 <p>Number of bedrooms: {{rental.bedrooms}}</p>
-{{#if isImageShowing }}
+{{#if isImageShowing}}
   <p><img src={{rental.image}} alt={{rental.type}} width="500px"></p>
 {{else}}
   <button>Show image</button>
