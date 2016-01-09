@@ -153,7 +153,7 @@ export default Ember.Component.extend({
 });
 ```
 
-You can dynamically remove attributes bound to unused properties:
+If the attribute is null, it won't be rendered:
 
 ```app/components/link-item.js
 export default Ember.Component.extend({
