@@ -3,7 +3,7 @@ define how your models relate to each other.
 
 ### One-to-One
 
-To declare a one-to-one relationship between two models, use
+To declare an one-to-one relationship between two models, use
 `DS.belongsTo`:
 
 ```app/models/user.js
@@ -20,7 +20,7 @@ export default DS.Model.extend({
 
 ### One-to-Many
 
-To declare a one-to-many relationship between two models, use
+To declare an one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
 ```app/models/post.js
@@ -90,7 +90,7 @@ When you want to define a reflexive relation (a model that has a relationship to
 itself), you must explicitly define the inverse relationship. If there
 is no inverse relationship then you can set the inverse to `null`.
 
-Here's an example of a one-to-many reflexive relationship:
+Here's an example of an one-to-many reflexive relationship:
 
 ```app/models/folder.js
 export default DS.Model.extend({
@@ -99,7 +99,7 @@ export default DS.Model.extend({
 });
 ```
 
-Here's an example of a one-to-one reflexive relationship:
+Here's an example of an one-to-one reflexive relationship:
 
 ```app/models/user.js
 export default DS.Model.extend({
