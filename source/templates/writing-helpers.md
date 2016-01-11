@@ -42,7 +42,7 @@ That file should export a function wrapped with [`Ember.Helper.helper()`][1]:
 [1]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
 
 ```app/helpers/format-currency.js
-export default Ember.Helper.helper(function(params) {
+export function formatCurrency(params) {
   let value = params[0],
       dollars = Math.floor(value / 100),
       cents = value % 100,
@@ -50,7 +50,9 @@ export default Ember.Helper.helper(function(params) {
 
   if (cents.toString().length === 1) { cents = '0' + cents; }
   return `${sign}${dollars}.${cents}`;
-});
+}
+
+export default Ember.Helper.helper(formatCurrency);
 ```
 
 In this example, the function receives a dollar amount in cents as the first
