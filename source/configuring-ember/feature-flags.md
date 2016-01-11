@@ -7,7 +7,7 @@ Ember.js community considers them ready for production use.
 
 ## Feature Life-Cycle
 A newly-flagged feature is only available in canary builds and can be enabled
-at runtime through your project's configuration file.
+at runtime through your project's configuration file. [See below how](#toc_enabling-at-runtime).
 
 At the start of a beta cycle the Ember core team evaluates each new feature.
 Features deemed stable are made available in the next beta and enabled by default.
@@ -45,7 +45,7 @@ This list is kept current, and reflects what is available in each channel
 (`stable`, `beta`, and `master`).
 
 ## Enabling At Runtime
-When using the Ember.js canary or beta builds you can enable any "**present** but **disabled**"
+When using the Ember.js `canary` or `beta` builds you can enable any "**present** but **disabled**"
 by setting its flag value to `true` before your application boots:
 
 ```config/environment.js
