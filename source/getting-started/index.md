@@ -57,7 +57,7 @@ need for a browser to be open. Consult the [PhantomJS download instructions](htt
 Install Ember using npm:
 
 ```bash
-npm install -g ember-cli@2.2.0-beta.3
+npm install -g ember-cli@2.2.0-beta.4
 ```
 
 To verify that your installation was successful, run:
@@ -66,4 +66,4 @@ To verify that your installation was successful, run:
 ember -v
 ```
 
-If the version shown is `2.2.0-beta.3`, you're ready to go.
+If the version shown is `2.2.0-beta.4`, you're ready to go.
