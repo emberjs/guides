@@ -152,3 +152,24 @@ export default Ember.Component.extend({
   customHref: 'http://emberjs.com'
 });
 ```
+
+If the attribute is null, it won't be rendered:
+
+```app/components/link-item.js
+export default Ember.Component.extend({
+  tagName: 'span',
+  title: null,
+  attributeBindings: ['title'],
+});
+```
+This would render this HTML when no title is passed to the component:
+
+```html
+<span class="ember-view">
+```
+
+...and this HTML when a title of "Ember JS" is passed to the component:
+
+```html
+<span class="ember-view" title="Ember JS">
+```
