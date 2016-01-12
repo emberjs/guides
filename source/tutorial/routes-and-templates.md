@@ -13,6 +13,11 @@ Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
 ember new super-rentals
 ```
 
+We should also check that we have the versions of Ember and Ember Data that
+match this guide, and follow the
+[upgrading instructions](../../getting-started/ember-cli/#toc_upgrading-ember)
+if necessary.
+
 Before we start building the three pages for our app,
 we are going to clear out the contents of the `app/templates/application.hbs` file
 and only leave the `{{outlet}}` code in place.
