@@ -88,7 +88,7 @@ name (`posts.new`, not `new`).
 
 ## The application route
 
-The `application` is entered when your app first boots up. Like other
+The `application` route is entered when your app first boots up. Like other
 routes, it will load a template with the same name (`application` in
 this case) by default.
 You should put your header, footer, and any other decorative content
