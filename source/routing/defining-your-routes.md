@@ -180,9 +180,8 @@ Router.map(function() {
 ```
 
 If the user navigates to `/post/5`, the route will then have the `post_id` of
-`5` to use to load the correct post. See [Specifying a Route's
-Model](../specifying-a-routes-model) for
-more about how to load a model.
+`5` to use to load the correct post. In the next section, [Specifying a Route's
+Model](../specifying-a-routes-model), you will learn more about how to load a model.
 
 ## Wildcard / globbing routes
 
