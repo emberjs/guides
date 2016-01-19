@@ -5,6 +5,9 @@ Let's take a look at the application from the user perspective before we get sta
 ![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
 
 We arrive at the home page which shows a list of rentals.
+^^ The above line is confusing because it makes it seem as if your your home page already looks like this.
+Instead, I suggest showing an image of what the home page currently looks like (when I navigate to localhost:4200 my page is blank). 
+Then, show that super rentals homepage screenshot on line 5 above and state that this is what we WILL create. 
 From here, we will be able to navigate to an about page and a contact page.
 
 Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
@@ -12,6 +15,7 @@ Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
 ```shell
 ember new super-rentals
 ```
+^^ What if you already have an Ember CLI app? What will show up in your terminal? 
 
 Before we start building the three pages for our app,
 we are going to clear out the contents of the `app/templates/application.hbs` file
