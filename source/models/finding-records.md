@@ -1,5 +1,5 @@
 The Ember Data store provides an interface for retrieving records of a single
-type.
+type. The store object is available in controllers and routes using `this.store`.
 
 ### Retrieving a Single Record
 

@@ -1,3 +1,5 @@
+
+
 A model is a class that defines the properties and behavior of the
 data that you present to the user. Anything that the user expects to see
 if they leave your app and come back later (or if they refresh the page)

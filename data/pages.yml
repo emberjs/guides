@@ -105,11 +105,33 @@
     - title: "Managing Dependencies Between Controllers"
       url: "dependencies-between-controllers"
 
+#coalescing, live updating, store.push, pushPayload, model states, transforms, polymorphism, preloading, unloading, dirtyness, reloading, lifecycle hooks, peeking,
+#rollback,
 - title: "Models"
   url: 'models'
   pages:
-    - title: "Introduction"
+    - title: "Introduction" #purpose, json-api, store/adapter/serializer
       url: "index"
+    - title: "Loading a record"
+      url: "loading-single-record"
+    - title: "More advanced loading"
+      url: "loading-complex"
+    - title: "Editing and saving records"
+      url: "editing-saving-records"
+    - title: "Caching data in the browser"
+      url: "caching-records-in-browser"
+    - title: "Relationships between records"
+      url: "relationships-between-records"
+    - title: "Error handling and validations"
+      url: "error-handling-and-validations"
+    - title: "Model states and rollback"
+      url: "model-states-and-rollback"
+    - title: "Responding to changes"
+      url: "responding-to-changes"
+    - title: "Cleanup"
+      url: "cleanup"
+
+
     - title: "Defining Models"
       url: "defining-models"
     - title: "Finding Records"
