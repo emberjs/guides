@@ -52,6 +52,44 @@ controllers and components.
 
 ### Helpers
 
-Helpers bring a minimum of logic into Ember templating. Ember ships with several
-built-in helpers, which are explained in the following guides, and also allows
-you to [write your own helpers](../writing-helpers/).
+Ember gives you the ability to [write your own helpers](../writing-helpers/), to bring a minimum of logic into Ember templating.
+
+For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
+
+```javascript
+// helpers/sum.js
+export default Ember.Helper.helper(function(params) {
+  return params.reduce(function(a, b) {
+    return a + b;
+  });
+});
+
+```
+
+This helper allows you to call `{{sum}}` in your templates:
+
+```html
+<p>Total: {{sum 1 2 3}}</p>
+```
+
+This will output a total of `6`.
+
+Ember ships with several built-in helpers, which you will learn more about in the following guides.
+
+#### Nested Helpers
+
+Helpers have the ability to be nested within other helper invocations and also component invocations.
+
+This gives you the flexibility to compute a value _before_ it is passed in as an argument or an attribute of another.
+
+It is not possible to nest curly braces `{{}}` inside of a helper already using the curly braces, so a "sub-expression" can be created using parentheses `()`:
+
+```html
+{{sum (multiply 2 4) 2}}
+```
+
+In this example, we are using a helper to multiply `2` and `4` _before_ passing the value into `{{sum`.
+
+Thus, the output of these combined helpers is `10`.
+
+As you move forward with these template guides, keep in mind that most of Ember's built-in helpers can accept _nested_ helper values as arguments.
