@@ -156,7 +156,7 @@ them into fulfills that won't halt the transition.
 ```app/routes/funky.js
 export default Ember.Route.extend({
   model() {
-    return iHopeThisWorks().then(null, function() {
+    return iHopeThisWorks().catch(function() {
       // Promise rejected, fulfill with some default value to
       // use as the route's model and continue on with the transition
       return { msg: 'Recovered from rejected promise' };
