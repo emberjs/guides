@@ -76,8 +76,6 @@ The value of `isImageShowing` comes from our component's JavaScript file, in thi
 Since we do not want the image to be showing at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   isImageShowing: false
 });
