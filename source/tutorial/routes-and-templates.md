@@ -179,6 +179,7 @@ ember g route index
 ```
 
 We can see the now familiar output for the route generator:
+
 ```shell
 installing route
   create app/routes/index.js
