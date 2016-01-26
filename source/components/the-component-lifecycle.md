@@ -197,7 +197,7 @@ Since scrolling to a specific spot is based on positions within the DOM, we need
 We can first render this list, and then set the scroll.
 
 The component below takes a list of items and displays them on the screen.
-Additionally, it takes an object representing the which item is selected and will select and set the scroll top to that item.
+Additionally, it takes an object representing which item is selected and will select and set the scroll top to that item.
 
 ```hbs
 {{selected-item-list items=items selectedItem=selection}}
