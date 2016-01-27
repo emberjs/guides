@@ -97,7 +97,7 @@ Router.map(function() {
 export default Router;
 ```
 
-Ember CLI uses ECMAScript 6 (or ES6 for short) modules to organize application
+Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
 code.
 For example, the line `import Ember from 'ember';` gives us access to the actual
 Ember.js library as the variable `Ember`. And the `import config from
