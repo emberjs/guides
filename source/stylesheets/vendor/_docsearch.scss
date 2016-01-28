@@ -10,12 +10,10 @@
 // Main autocomplete wrapper
 .aa-dropdown-menu {
   background-color: #FFF;
-  border: 1px solid #333;
   border-radius: 4px;
-  font-size: 16px;
   margin: 6px 0 0;
-  padding: 4px;
   text-align: left;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
 // Each suggestion
@@ -29,12 +27,13 @@
 // Main category headers
 .algolia-docsearch-suggestion--category-header {
   display: none;
+  border: 2px solid white;
   background: $color-category-header-background;
   color: white;
   font-weight: 600;
   padding: 5px 10px;
   text-align: left;
-  // Only show it when flaggued as "__main"
+  // Only show it when flagged as "__main"
   .algolia-docsearch-suggestion__main & {
     display: block;
   }
@@ -138,7 +137,7 @@
     color: $color-left-column;
     display: table-cell;
     overflow: hidden;
-    padding: 5px 7px 5px 5px;
+    padding: 3px 7px 3px 5px;
     text-align: right;
     text-overflow: ellipsis;
     vertical-align: top;
@@ -157,7 +156,7 @@
   }
   .algolia-docsearch-suggestion--content {
     display: table-cell;
-    padding: 5px 10px;
+    padding: 3px 10px;
   }
   .algolia-docsearch-suggestion--subcategory-inline {
     display: none;
