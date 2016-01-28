@@ -29,7 +29,7 @@ export default DS.Model.extend({
 ```
 
 Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
-_owner_, _city_, _type_, _image_, and _bedrooms_:
+_title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
 
 ```app/models/rental.js
 import DS from 'ember-data';
