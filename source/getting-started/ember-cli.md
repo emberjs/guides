@@ -129,4 +129,4 @@ ember s
 ```
 
 If we navigate to `localhost:4200`, we'll see our brand new app displaying
-the text "Welcome to Ember.js".
+the text "Welcome to Ember".
