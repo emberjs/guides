@@ -94,4 +94,4 @@ Thus, the output of these combined helpers is `10`.
 
 As you move forward with these template guides, keep in mind that a helper can be used anywhere a normal value can be used.
 
-Thusly, many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
+Thus, many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
