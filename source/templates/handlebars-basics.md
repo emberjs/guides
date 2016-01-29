@@ -56,23 +56,23 @@ Ember gives you the ability to [write your own helpers](../writing-helpers/), to
 
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
-```javascript
-// helpers/sum.js
-export default Ember.Helper.helper(function(params) {
-  return params.reduce(function(a, b) {
+```app/helpers/sum.js
+export function sum(params) {
+  return params.reduce((a, b) => {
     return a + b;
   });
-});
+};
 
+export default Ember.Helper.helper(sum);
 ```
 
-This helper allows you to call `{{sum}}` in your templates:
+The above code will allow you invoke the `sum()` function as a `{{sum}}` handlebars "helper" in your templates:
 
 ```html
 <p>Total: {{sum 1 2 3}}</p>
 ```
 
-This will output a total of `6`.
+This helper will output a value of `6`.
 
 Ember ships with several built-in helpers, which you will learn more about in the following guides.
 
@@ -82,7 +82,7 @@ Helpers have the ability to be nested within other helper invocations and also c
 
 This gives you the flexibility to compute a value _before_ it is passed in as an argument or an attribute of another.
 
-It is not possible to nest curly braces `{{}}` inside of a helper already using the curly braces, so a "sub-expression" can be created using parentheses `()`:
+It is not possible to nest curly braces `{{}}`, so the correct way to nest a helper is by using parentheses `()`:
 
 ```html
 {{sum (multiply 2 4) 2}}
@@ -92,4 +92,6 @@ In this example, we are using a helper to multiply `2` and `4` _before_ passing 
 
 Thus, the output of these combined helpers is `10`.
 
-As you move forward with these template guides, keep in mind that most of Ember's built-in helpers can accept _nested_ helper values as arguments.
+As you move forward with these template guides, keep in mind that a helper can be used anywhere a normal value can be used.
+
+Thusly, many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
