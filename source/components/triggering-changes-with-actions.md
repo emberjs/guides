@@ -382,3 +382,47 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+## Calling Actions Up Multiple Component Layers
+
+When your components go multiple template layers deep, its common to need to handle an action several layers up the tree.
+Using the action helper, it is possible to make actions defined in parent components available at the bottom layers of
+your component tree without adding JavaScript code to the components in between.
+
+For example, we want to take account deletion out of the `user-profile` component and handle deletion in its parent.
+In our template in `user-profile.hbs`, we can change our action to call `deleteCurrentUser`,
+which will be defined on `system-preferences-editor`.
+
+```app/templates/components/user-profile.hbs
+{{button-with-confirmation onConfirm=(action deleteCurrentUser)
+  text="Click OK to delete your account."}}
+```
+
+Note that `deleteCurrentUser` is not in quotes as was the case [previously](#toc_passing-the-action-to-the-component)
+when the action was local to `user-profile`.  When you pass an actual function reference (without quotes) to the action
+helper, it will call the function from the component's local context.
+
+Alternately, when you pass a string to the action helper, Ember will attempt to call that function from the
+component's local `actions` object.
+
+Here our `system-preferences-editor` template passes its `deleteUser` action into the `user-profile`
+component's local `deleteCurrentUser` property.
+
+```app/templates/components/system-preferences-editor.hbs
+{{user-profile deleteCurrentUser=(action 'deleteUser' login.currentUser.id)}}
+```
+
+Now when you confirm deletion, the action goes straight to the `system-preferences-editor` to handle.
+
+```app/components/system-preferences-editor.js
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  login: Ember.inject.service(),
+  actions: {
+    deleteUser(idStr) {
+      return this.get('login').deleteUserAccount(idStr);
+    }
+  }
+});
+```
