@@ -21,7 +21,7 @@ were enabled during the beta cycle. At this point the feature flags will be remo
 the canary and future beta branches and the feature becomes of the framework.
 
 ## Flagging Details
-The flag status in the generated build is controlled by the `features.json`
+The flag status in the generated build is controlled by the [`features.json`](https://github.com/emberjs/ember.js/blob/master/features.json)
 file in the root of the Ember.js project. This file lists all new features and their current status.
 
 A feature can have one of a three flags:

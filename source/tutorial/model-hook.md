@@ -60,9 +60,9 @@ Here, we'll use another common Handlebars helper called `{{each}}`.
 This helper will let us loop through each of the objects in our model:
 
 ```app/templates/index.hbs
-<h1> Welcome to Super Rentals </h1>
+<h1>Welcome to Super Rentals</h1>
 
-We hope you find exactly what you're looking for in a place to stay.
+<p>We hope you find exactly what you're looking for in a place to stay.</p>
 
 {{#each model as |rental|}}
   <h2>{{rental.title}}</h2>
@@ -71,6 +71,9 @@ We hope you find exactly what you're looking for in a place to stay.
   <p>Location: {{rental.city}}</p>
   <p>Number of bedrooms: {{rental.bedrooms}}</p>
 {{/each}}
+
+{{#link-to "about"}}About{{/link-to}}
+{{#link-to "contact"}}Click here to contact us.{{/link-to}}
 ```
 
 In this template, we loop through each model object and call it _rental_.

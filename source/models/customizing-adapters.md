@@ -123,7 +123,8 @@ export default {};
 ```
 
 This will tell the JSON API adapter that requests for `formula`
-should go to `/formulae/1` instead of `/formulas/1`.
+should go to `/formulae/1` instead of `/formulas/1`, and that
+requests for `advice` should go to `/advice/1` instead of `/advices/1`.
 
 #### Endpoint Path Customization
 

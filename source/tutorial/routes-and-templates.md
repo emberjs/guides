@@ -7,7 +7,11 @@ Let's take a look at the application from the user perspective before we get sta
 We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
 
-Let's make sure we have a fresh Ember CLI app called `super-rentals` by running `ember new super-rentals`.
+Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
+
+```shell
+ember new super-rentals
+```
 
 Before we start building the three pages for our app,
 we are going to clear out the contents of the `app/templates/application.hbs` file
@@ -83,7 +87,7 @@ AND building Ember applications.</p>
 ```
 
 Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server,
-and then go to `localhost:4200` to see our new app in action!
+and then go to `localhost:4200/about` to see our new app in action!
 
 ## A Contact Route
 
@@ -144,7 +148,7 @@ When we look at our about page, we now have a working link to our contact page.
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a to link to our about page so we can navigate from back and forth between `about` and `contact`.
+Now, we'll add a to link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs
 <p>Super Rentals Representatives would love to help you <br>
@@ -172,7 +176,11 @@ Using the same process we did for our about and contact pages, we will first gen
 
 ```shell
 ember g route index
+```
 
+We can see the now familiar output for the route generator:
+
+```shell
 installing route
   create app/routes/index.js
   create app/templates/index.hbs
@@ -186,7 +194,7 @@ We'll learn more about why the entry isn't required when we look at nested route
 
 Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
-```hbs
+```app/templates/index.hbs
 <h1>Welcome to Super Rentals</h1>
 
 <p>We hope you find exactly what you're looking for in a place to stay.</p>

@@ -41,11 +41,13 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
 with our new `rental-listing` component:
 
 ```app/templates/index.hbs
-…
+<h1> Welcome to Super Rentals </h1>
+
+We hope you find exactly what you're looking for in a place to stay.
+
 {{#each model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
 {{/each}}
-…
 ```
 Here we invoke the `rental-listing` component by name,
 and assign each `rentalUnit` as the `rental` attribute of the component.
@@ -63,8 +65,8 @@ Otherwise, let's show a button to allow our user to toggle this:
 <p>Type: {{rental.type}}</p>
 <p>Location: {{rental.city}}</p>
 <p>Number of bedrooms: {{rental.bedrooms}}</p>
-{{#if isImageShowing }}
-  <p><img src={{rental.image}} alt={{rental.type}} width="500px"></p>
+{{#if isImageShowing}}
+  <p><img src={{rental.image}} alt={{rental.type}} width="500"></p>
 {{else}}
   <button>Show image</button>
 {{/if}}
@@ -74,8 +76,6 @@ The value of `isImageShowing` comes from our component's JavaScript file, in thi
 Since we do not want the image to be showing at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js
-import Ember from 'ember';
-
 export default Ember.Component.extend({
   isImageShowing: false
 });
@@ -86,9 +86,16 @@ we will need to add an action that changes the value of `isImageShowing` to `tru
 Let's call this action `imageShow`
 
 ```app/templates/components/rental-listing.hbs
-...
-<button {{action "imageShow"}}>Show image</button>
-...
+<h2>{{rental.title}}</h2>
+<p>Owner: {{rental.owner}}</p>
+<p>Type: {{rental.type}}</p>
+<p>Location: {{rental.city}}</p>
+<p>Number of bedrooms: {{rental.bedrooms}}</p>
+{{#if isImageShowing}}
+  <p><img src={{rental.image}} alt={{rental.type}} width="500"></p>
+{{else}}
+  <button {{action "imageShow"}}>Show image</button>
+{{/if}}
 ```
 
 Clicking this button will send the action to the component.
@@ -117,8 +124,8 @@ In our template, let's add a button with an `imageHide` action:
 <p>Type: {{rental.type}}</p>
 <p>Location: {{rental.city}}</p>
 <p>Number of bedrooms: {{rental.bedrooms}}</p>
-{{#if isImageShowing }}
-  <p><img src={{rental.image}} alt={{rental.type}} width="500px"></p>
+{{#if isImageShowing}}
+  <p><img src={{rental.image}} alt={{rental.type}} width="500"></p>
   <button {{action "imageHide"}}>Hide image</button>
 {{else}}
   <button {{action "imageShow"}}>Show image</button>
@@ -135,10 +142,10 @@ export default Ember.Component.extend({
       this.set('isImageShowing', true);
     },
     imageHide() {
-      this.set('isImageShowing', false)
+      this.set('isImageShowing', false);
     }
   }
 });
 ```
 
-Now our users can toggle or images on and off using the "Show image" and "Hide image" buttons.
+Now our users can toggle images on and off using the "Show image" and "Hide image" buttons.

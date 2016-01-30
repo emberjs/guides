@@ -88,12 +88,12 @@ name (`posts.new`, not `new`).
 
 ## The application route
 
-The `application` is entered when your app first boots up. Like other
+The `application` route is entered when your app first boots up. Like other
 routes, it will load a template with the same name (`application` in
 this case) by default.
 You should put your header, footer, and any other decorative content
 here. All other routes will render
-their templates into the `application.hbs` templates's `{{outlet}}`.
+their templates into the `application.hbs` template's `{{outlet}}`.
 
 This route is part of every application, so you don't need to
 specify it in your `app/router.js`.
@@ -180,9 +180,8 @@ Router.map(function() {
 ```
 
 If the user navigates to `/post/5`, the route will then have the `post_id` of
-`5` to use to load the correct post. See [Specifying a Route's
-Model](../specifying-a-routes-model) for
-more about how to load a model.
+`5` to use to load the correct post. In the next section, [Specifying a Route's
+Model](../specifying-a-routes-model), you will learn more about how to load a model.
 
 ## Wildcard / globbing routes
 

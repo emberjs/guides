@@ -35,6 +35,14 @@
     }
   }
 
+  li:not(.header-logo):not(.header-search) {
+    width: 32%;
+    display: inline-block;
+    @include media($large-screen) {
+      width: auto;
+    }
+  }
+
   .header-logo {
     @include media($large-screen) {
       @include flex(1.5 0 0);

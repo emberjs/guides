@@ -154,7 +154,7 @@ Working with this API directly is not common in most Ember apps,
 but understanding this example will help you to understand the run-loops algorithm,
 which will make you a better Ember developer.
 
-<iframe src="http://emberjs.com.s3.amazonaws.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe>
+<iframe src="https://s3.amazonaws.com/emberjs.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe>
 
 ## How do I tell Ember to start a run loop?
 
