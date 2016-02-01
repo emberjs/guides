@@ -113,7 +113,9 @@ import './models/custom-inflector-rules';
 ```
 
 ```app/models/custom-inflector-rules.js
-var inflector = Ember.Inflector.inflector;
+import Inflector from 'ember-inflector';
+
+const inflector = Inflector.inflector;
 
 inflector.irregular('formula', 'formulae');
 inflector.uncountable('advice');
