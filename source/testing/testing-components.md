@@ -3,7 +3,7 @@
 Components can be tested with integration tests using the `moduleForComponent` helper.
 
 Let's assume we have a component with a `style` property that is updated
-whenever the value for its `name` property changes. The `style` attribute of the
+whenever the value of the `name` property changes. The `style` attribute of the
 component is bound to its `style` property.
 
 > You can follow along by generating your own component with `ember generate
@@ -186,7 +186,7 @@ test('should trigger external action on form submit', function(assert) {
 ### Stubbing Services
 
 In cases where components have dependencies on Ember services, it is possible to stub these
-dependencies for integration tests. Stub Ember services by using the built-in register
+dependencies for integration tests. You stub Ember services by using the built-in `register()`
 function to register your stub service in place of the default.
 
 Imagine you have the following component that uses a location service to display the city
@@ -199,7 +199,7 @@ and country of your current location:
 export default Ember.Component.extend({
   locationService: Ember.inject.service('location-service'),
 
-  //when the coordinates change, call the location service to evaluate what the city and country would be
+  // when the coordinates change, call the location service to get the current city and country
   city: Ember.computed('locationService.currentLocation', function () {
     return this.get('locationService').getCurrentCity();
   }),

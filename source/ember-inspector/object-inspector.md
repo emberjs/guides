@@ -1,4 +1,4 @@
-The Inspector includes an panel that allows you to view and interact with your Ember objects. 
+The Inspector includes a panel that allows you to view and interact with your Ember objects. 
 To open it, click on any Ember object. You can then view the object's properties.
 
 

@@ -6,7 +6,7 @@ As it is the basic object type in Ember, being able to test a simple
 [`Ember.Object`][1] sets the foundation for testing more specific parts of your
 Ember application such as controllers, components, etc. Testing an `Ember.Object`
 is as simple as creating an instance of the object, setting its state, and
-running assertions against the object. By way of example lets look at a few
+running assertions against the object. By way of example, let's look at a few
 common cases.
 
 [1]: http://emberjs.com/api/classes/Ember.Object.html

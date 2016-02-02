@@ -159,7 +159,7 @@ export default Ember.Test.registerAsyncHelper(
 });
 ```
 
-[`Ember.Test.registerAsyncHelper`][10] and [`Ember.Test.registerHelper`][11] 
+[`Ember.Test.registerAsyncHelper`][10] and [`Ember.Test.registerHelper`][11]
 are used to register test helpers that will be injected when `startApp` is
 called. The difference between `Ember.Test.registerHelper` and
 `Ember.Test.registerAsyncHelper` is that the latter will not run until any
@@ -176,11 +176,14 @@ first parameter. Other parameters need to be provided when calling the helper. H
 Here is an example of a non-async helper:
 
 ```tests/helpers/should-have-element-with-count.js
-export default Ember.Test.registerHelper('shouldHaveElementWithCount', function(app, assert, selector, n, context) {
-  const el = findWithAssert(selector, context);
-  const count = el.length;
-  assert.equal(n, count, `found ${count} times`);
-});
+export default Ember.Test.registerHelper('shouldHaveElementWithCount',
+  function(app, assert, selector, n, context) {
+    const el = findWithAssert(selector, context);
+    const count = el.length;
+    assert.equal(n, count, `found ${count} times`);
+  }
+);
+
 // shouldHaveElementWithCount(assert, 'ul li', 3);
 ```
 

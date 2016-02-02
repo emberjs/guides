@@ -12,7 +12,7 @@ our application. The alert function `displayAlert` should be put into the
 `ApplicationRoute` because all actions and events bubble up to it from 
 sub-routes and controllers.
 
-> By default Ember CLI does not generate a file for its application route.  To
+> By default, Ember CLI does not generate a file for its application route.  To
 > extend the behavior of the ember application route we will run the command
 > `ember generate route application`.  Ember CLI does however generate an application
 > template, so when asked whether we want to overwrite `app/templates/application.hbs`

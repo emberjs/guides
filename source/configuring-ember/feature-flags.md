@@ -16,9 +16,9 @@ Beta features that receive negative feedback from the community are disabled in 
 release, and are not included in the next stable release. They may still be included
 in the next beta cycle if the issues/concerns are resolved.
 
-Once the beta cycle has completed the next stable release will include any features that
+Once the beta cycle has completed, the next stable release will include any features that
 were enabled during the beta cycle. At this point the feature flags will be removed from
-the canary and future beta branches and the feature becomes of the framework.
+the canary and future beta branches, and the feature becomes part of the framework.
 
 ## Flagging Details
 The flag status in the generated build is controlled by the [`features.json`](https://github.com/emberjs/ember.js/blob/master/features.json)
@@ -38,15 +38,15 @@ handled by [`defeatureify`](https://github.com/thomasboyt/defeatureify).
 
 ## Feature Listing ([`FEATURES.md`](https://github.com/emberjs/ember.js/blob/master/FEATURES.md))
 
-When a developer adds a new feature `canary` channel (i.e. the `master` branch on github), they
+When a developer adds a new feature to the `canary` channel (i.e. the `master` branch on github), they
 also add an entry to [`FEATURES.md`](https://github.com/emberjs/ember.js/blob/master/FEATURES.md)
-explaining what the feature does and linking to their originating pull request.
+explaining what the feature does, and linking to their originating pull request.
 This list is kept current, and reflects what is available in each channel
-(`stable`, `beta`, and `master`).
+(`release`, `beta`, and `canary`).
 
 ## Enabling At Runtime
-When using the Ember.js canary or beta builds you can enable any "**present** but **disabled**"
-by setting its flag value to `true` before your application boots:
+When using the Ember.js canary or beta builds you can enable a "**present** but **disabled**"
+feature by setting its flag value to `true` before your application boots:
 
 ```config/environment.js
 var ENV = {

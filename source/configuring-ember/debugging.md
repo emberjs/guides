@@ -110,7 +110,7 @@ difficult to track down where a given issue is coming from. Thankfully,
 `RSVP` has a solution for this problem built in.
 
 You can provide an `onerror` function that will be called with the error
-details if any errors occur within your promise. This function can be anything
+details if any errors occur within your promise. This function can be anything,
 but a common practice is to call `console.assert` to dump the error to the
 console.
 
