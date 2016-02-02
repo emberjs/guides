@@ -148,7 +148,7 @@ When we look at our about page, we now have a working link to our contact page.
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a to link to our contact page so we can navigate from back and forth between `about` and `contact`.
+Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs
 <p>Super Rentals Representatives would love to help you <br>
