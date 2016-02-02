@@ -433,7 +433,7 @@ export default DS.Transform.extend({
     return [value.get('x'), value.get('y')];
   },
   deserialize: function(value) {
-    return Ember.create({ x: value[0], y: value[1] });
+    return Ember.Object.create({ x: value[0], y: value[1] });
   }
 });
 ```
@@ -471,8 +471,8 @@ an array in JSON.
 
 Not all APIs follow the conventions that the `JSONAPISerializer` uses
 with a data namespace and sideloaded relationship records. Some
-legacy APIs may return a simple JSON payload that is just the resource
-request or an array of serialized records. The `JSONSerializer` is a
+legacy APIs may return a simple JSON payload that is just the requested
+resource or an array of serialized records. The `JSONSerializer` is a
 serializer that ships with Ember Data that can be used along side the
 `RESTAdapter` to serialize these simpler APIs.
 
