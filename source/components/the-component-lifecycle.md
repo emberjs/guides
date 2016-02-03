@@ -106,6 +106,7 @@ export default Ember.Component.extend({
       this.set('profile', JSON.parse(profile));
     } else {
       this.set('profile', profile);
+    }
   }
 });
 ```
