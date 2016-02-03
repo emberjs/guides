@@ -689,9 +689,4 @@ defined on the Model will be ignored.
 
 If none of the built-in Ember Data Serializers work for your backend,
 be sure to check out some of the community maintained Ember Data
-Adapters and Serializers. Some good places to look for Ember Data
-Serializers include:
-
-- [Ember Observer](http://emberobserver.com/categories/data)
-- [GitHub](https://github.com/search?q=ember+data+serializers&ref=cmdform)
-- [Bower](http://bower.io/search/?q=ember-data-)
+Adapters and Serializers. A good place to search for them is [Ember Observer](http://emberobserver.com/categories/data).
