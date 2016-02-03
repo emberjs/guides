@@ -13,9 +13,9 @@ already loaded).
 ## Transitioning Before the Model is Known
 
 If you want to redirect from one route to another, you can do the transition in
-the [`beforeModel()`][1] hook of your route handler.
+the [`beforeModel()`][3] hook of your route handler.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel
+[3]: http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel
 
 ```app/router.js
 Router.map(function() {
@@ -37,11 +37,11 @@ you might use a [service](../../applications/services).
 ## Transitioning After the Model is Known
 
 If you need information about the current model in order to decide about
-redirection, you can use the [`afterModel()`][1] hook.
+redirection, you can use the [`afterModel()`][4] hook.
 It receives the resolved model as the first parameter and the transition as
 the second one. For example:
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_afterModel
+[4]: http://emberjs.com/api/classes/Ember.Route.html#method_afterModel
 
 ```app/router.js
 Router.map(function() {
@@ -82,10 +82,10 @@ route's `beforeModel`, `model`, and `afterModel` hooks will fire again within
 the new, redirected transition. This is inefficient, since they just fired
 before the redirect.
 
-Instead, we can use the [`redirect()`][1] method, which will leave the original
+Instead, we can use the [`redirect()`][5] method, which will leave the original
 transition validated, and not cause the parent route's hooks to fire again:
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo
+[5]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
 
 ```app/routes/posts.js
 export default Ember.Route.extend({
