@@ -6,8 +6,8 @@ of the ember-qunit framework.
 
 ### Testing Controller Actions
 
-Here we have a controller `PostsController` with some computed properties and an
-action `setProps`.
+Here we have a controller `PostsController` with two properties, a method that
+sets one of those properties, and an action named `setProps`.
 
 > You can follow along by generating your own controller with `ember generate
 > controller posts`.
@@ -30,8 +30,8 @@ export default Ember.Controller.extend({
 });
 ```
 
-`setProps` sets a property on the controller and also calls a method. In our 
-generated test, ember-cli already uses the `moduleFor` helper to setup a test 
+The `setProps` action directly sets one property, and calls the method to set the other.
+In our generated test, ember-cli already uses the `moduleFor` helper to set up a test
 container:
 
 ```tests/unit/controllers/posts-test.js

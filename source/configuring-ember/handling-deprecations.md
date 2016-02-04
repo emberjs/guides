@@ -68,9 +68,9 @@ window.deprecationWorkflow.config = {
 You might notice that you have a lot of duplicated messages in your workflow file, like the 3 messages in the above example that start with
 `Accessing 'template' in...`.  This is because some of the deprecation messages provide context to the specific deprecation, making them
 different than the same deprecation in other parts of the app.  If you want to consolidate the
-duplication, you can use a simple regular expression and a wildcard (`.*`) for the part of the message that varies per instance.
+duplication, you can use a simple regular expression with a wildcard (`.*`) for the part of the message that varies per instance.
 
-Below is the same deprecation-workflow file as above now with a regular expression on line 11 to remove some redundant messages
+Below is the same deprecation-workflow file as above, now with a regular expression on line 7 to remove some redundant messages. Note that the double quotes around `matchMessage` have also been replaced with forward slashes.
 
 ``` /config/deprecation-workflow.js
 window.deprecationWorkflow = window.deprecationWorkflow || {};
@@ -114,20 +114,20 @@ window.deprecationWorkflow.config = {
 ### 3. Fix and Repeat
 After fixing a deprecation and getting your scenarios working again, you might want to leave the deprecation message in the workflow file with the
 throw handler enabled.  This will ensure you haven't missed anything, and ensure no new deprecated calls of that type are introduced to your project.
-Next its just a matter of going down the list, updating the handler, and fixing each remaining deprecation.
+Next, it's just a matter of going down the list, updating the handler, and fixing each remaining deprecation.
 
-In the end your deprecations can be fully turned on as "throw" and you should be able to use your application without error.  At this point you can
+In the end, your deprecations can be fully turned on as "throw" and you should be able to use your application without error.  At this point, you can
 go ahead and update your Ember version!  When you upgrade, be sure you remove the deprecations you've fixed from the deprecation workflow file,
 so that you can start the process over for the next release.
 
 ## Silencing Deprecation Warnings During Compile
 
-You might also notice as you upgrade between releases that your terminal log begins to stream template-related deprecation warnings during the compile process, making
+As you upgrade between releases, you might also notice that your terminal log begins to stream template-related deprecation warnings during the compile process, making
 it difficult to review your compilation logs.
 
 <img width="675px" src="../../images/guides/configuring-ember/handling-deprecations/compile-deprecations.png" title="Compile Deprecations Clouding Log"/>
 
-If you are using the deprecation workflow process above you will likely prefer to gather these same warnings during runtime execution.  The way to hide these
+If you are using the deprecation workflow process above, you will likely prefer to gather these warnings during runtime execution instead.  The way to hide these
 warnings during compile is to install the [ember-cli-template-lint](http://emberobserver.com/addons/ember-cli-template-lint) addon.  It suppresses
 template deprecation warnings during compile in favor of showing them in the browser console during test suite execution or application usage.
 
@@ -135,4 +135,4 @@ template deprecation warnings during compile in favor of showing them in the bro
 
 Ember Inspector also provides deprecation handling capability.  It can work complimentary to ember-cli-deprecation-workflow.  As you unsilence deprecations to
 fix them, the inspector can allow you to more quickly find where in your code a deprecation occurs when you run into it at runtime, reducing the amount of
-stack trace browsing you have to do.  For more information on using deprecation handling in Ember Inspector see its [guides section](../../ember-inspector/deprecations/).
+stack trace browsing you have to do.  For more information on using deprecation handling in Ember Inspector, see its [guides section](../../ember-inspector/deprecations/).

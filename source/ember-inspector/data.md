@@ -1,4 +1,4 @@
-You can inspect your models by clicking on the `Data` menu. Check out [Building a Data Custom Adapter][building-data-adapter] below if you maintain your own persistence library. 
+You can inspect your models by clicking on the `Data` tab. Check out [Building a Data Custom Adapter][building-data-adapter] below if you maintain your own persistence library. 
 [building-data-adapter]:#toc_building-a-data-custom-adapter
 
 When you open the Data tab, you will see a list of model types defined
