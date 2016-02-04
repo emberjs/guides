@@ -164,7 +164,7 @@ array and print it:
   {{#each model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
-<ul>
+</ul>
 ```
 
 Here, we use the `each` helper to loop over each item in the array we
@@ -196,7 +196,7 @@ component's template and edit it to look as follows:
   {{#each people as |person|}}
     <li>{{person}}</li>
   {{/each}}
-<ul>
+</ul>
 ```
 
 Note that we've changed the title from a hard-coded string ("List of
