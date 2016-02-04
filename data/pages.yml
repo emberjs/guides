@@ -232,3 +232,9 @@
       url: "adding-new-features"
     - title: "Repositories"
       url: "repositories"
+
+- title: "Glossary"
+  url: "glossary"
+  pages:
+    - title: "Glossary"
+      url: "glossary"
