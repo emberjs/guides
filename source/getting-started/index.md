@@ -66,4 +66,4 @@ To verify that your installation was successful, run:
 ember -v
 ```
 
-If the version shown is `2.2.0-beta.6`, you're ready to go.
+If a version number is shown, you're ready to go.
