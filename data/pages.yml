@@ -14,12 +14,12 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-    - title: "Ember CLI"
-      url: "ember-cli"
 
 - title: "Tutorial"
   url: 'tutorial'
   pages:
+    - title: "Creating a new app"
+      url: "ember-cli"
     - title: "Routes and Templates"
       url: "routes-and-templates"
     - title: "The Model Hook"
@@ -242,5 +242,5 @@
 - title: "Glossary"
   url: "glossary"
   pages:
-    - title: "Glossary"
-      url: "glossary"
+    - title: "Web Development"
+      url: "web-development"
