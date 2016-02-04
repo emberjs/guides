@@ -1,16 +1,15 @@
 So far, our app is directly showing the user data from our Ember Data models.
 As our app grows, we will want to manipulate data further before presenting it to our users.
-For this reason, Ember offers handlebars template helpers to decorate the data in our templates.
+For this reason, Ember offers Handlebars template helpers to decorate the data in our templates.
 Let's use a handlebars helper to allow our users to quickly see if a property is "standalone" or part of a "Community".
 
-To get started, let's generate a helper for `rental-property-type`, note that helpers must have at least one dash,
-so we could not call our helper `type`:
+To get started, let's generate a helper for `rental-property-type`:
 
 ```shell
 ember g helper rental-property-type
 ```
 
-This will create two files, our helper and it's related test:
+This will create two files, our helper and its related test:
 
 ```shell
 installing helper
@@ -31,7 +30,6 @@ export function rentalGroup(params/*, hash*/) {
 export default Ember.Helper.helper(rentalGroup);
 ```
 
-To use this helper, we can use the helper's name within a handlebars block and pass a set of arguments.
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
 
 ```app/templates/components/rental-listing.hbs
@@ -63,7 +61,7 @@ const communityPropertyTypes = [
 ];
 
 export function rentalGroup([type]/*, hash*/) {
-  if (communityPropertyTypes.indexOf(type) > -1) {
+  if (communityPropertyTypes.contains(type)) {
     return 'Community';
   }
 
@@ -74,7 +72,7 @@ export default Ember.Helper.helper(rentalGroup);
 ```
 
 Handlebars passes an array of arguments from our template to our helper.
-We are using the ES6 shorthand to get the first item in the array and name it `type`.
+We are using ES2015 destructuring to get the first item in the array and name it `type`.
 Then we can check to see if `type` exists in our `communityPropertyTypes` array.
 
 Now in our browser we should see that the first rental property is listed as "Standalone",
