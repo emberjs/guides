@@ -82,7 +82,7 @@ The `link-to` helper supports specifying query params using the
 ```
 
 In the above examples, `direction` is presumably a query param property
-on the `controller:post`, but it could also refer to a `direction` property
+on the `posts` controller, but it could also refer to a `direction` property
 on any of the controllers associated with the `posts` route hierarchy,
 matching the leaf-most controller with the supplied property name.
 
