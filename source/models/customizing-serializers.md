@@ -69,7 +69,7 @@ A response that contains multiple records may have an array in its
 
 Data that is not a part of the primary request but includes linked
 relationships should be placed in an array under the `included`
-key. For example, if you request `/people/1` and the backend also
+key. For example, if you request `/articles/1` and the backend also
 returned any comments associated with that person the response
 should look like this:
 
