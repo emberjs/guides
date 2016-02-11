@@ -17,6 +17,7 @@ set :markdown, :layout_engine => :erb,
          :lax_html_blocks => true,
          :renderer => Highlighter::HighlightedHTML.new
 
+activate :i18n, :langs => [:en]
 activate :directory_indexes
 activate :toc
 activate :highlighter

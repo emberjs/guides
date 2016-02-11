@@ -29,7 +29,7 @@ module TOC
 
           page_path = base_path + "/" + page.url
 
-          unless page.pages || File.exist?(file = "source" + page_path + ".md")
+          unless page.pages || File.exist?(file = "source/localizable" + page_path + ".md")
             raise "#{file} does not exist but is referenced in data/guides.yml."
           end
 
