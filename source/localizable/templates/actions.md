@@ -154,7 +154,7 @@ elements, a CSS workaround exists to make them clickable, `cursor: pointer`.
 For example:
 
 ```css
-[data-ember-action] {
+[data-ember-action]:not(:disabled) {
   cursor: pointer;
 }
 ```
