@@ -38,7 +38,6 @@ application will include:
 
 * A development server
 * Template compilation
-* CSS preprocessing
 * JavaScript and CSS minification
 * ES2015 features via Babel
 
