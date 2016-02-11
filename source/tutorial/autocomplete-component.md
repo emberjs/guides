@@ -77,8 +77,8 @@ We hope you find exactly what you're looking for in a place to stay.
 <br /><br />
 {{filter-listing filteredList=filteredList 
 autoComplete=(action 'autoComplete') search=(action 'search')}}
-{{#each model as |rental-unit|}}
-  {{rental-listing rental=rental-unit}}
+{{#each model as |rentalUnit|}}
+  {{rental-listing rental=rentalUnit}}
 {{/each}}
 
 {{#link-to 'about'}}About{{/link-to}}

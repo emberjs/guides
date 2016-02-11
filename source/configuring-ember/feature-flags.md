@@ -1,6 +1,4 @@
-> I'm going to re-organize the guide to explain the several stages that a feature goes through, and how to use it in each stage.
-
-New features are added to Ember.js within conditional statements.
+New features are added to Ember.js within conditional statements.
 
 Code behind these flags can be conditionally enabled
 (or completely removed) based on your project's configuration. This

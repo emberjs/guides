@@ -101,6 +101,18 @@ In the above example, the model hook for `PhotoRoute` will run with `params.phot
 `CommentRoute` _won't_ run since you supplied a model object for the `comment` segment. The comment's id will
 populate the url according to `CommentRoute`'s `serialize` hook.
 
+### Setting query-params
+
+The `query-params` helper can be used to set query params on a link:
+
+```handlebars
+// Explicitly set target query params
+{{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
+
+// Binding is also supported
+{{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
+```
+
 ### Using link-to as an inline helper
 
 In addition to being used as a block expression, the

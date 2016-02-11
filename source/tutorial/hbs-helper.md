@@ -23,11 +23,11 @@ Our new helper starts out with some boilerplate code from the generator:
 ```app/helpers/rental-property-type.js
 import Ember from 'ember';
 
-export function rentalGroup(params/*, hash*/) {
+export function rentalPropertyType(params/*, hash*/) {
   return params;
 }
 
-export default Ember.Helper.helper(rentalGroup);
+export default Ember.Helper.helper(rentalPropertyType);
 ```
 
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
@@ -60,7 +60,7 @@ const communityPropertyTypes = [
   'Apartment'
 ];
 
-export function rentalGroup([type]/*, hash*/) {
+export function rentalPropertyType([type]/*, hash*/) {
   if (communityPropertyTypes.contains(type)) {
     return 'Community';
   }
@@ -68,7 +68,7 @@ export function rentalGroup([type]/*, hash*/) {
   return 'Standalone';
 }
 
-export default Ember.Helper.helper(rentalGroup);
+export default Ember.Helper.helper(rentalPropertyType);
 ```
 
 Handlebars passes an array of arguments from our template to our helper.
