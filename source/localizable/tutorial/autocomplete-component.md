@@ -54,7 +54,7 @@ export default Ember.Component.extend({
       this.get('search')(this.get('filter'));
     },
     choose(city) {
-      this.set('filter',city);
+      this.set('filter', city);
     }
   }
 });
@@ -108,8 +108,7 @@ export default Ember.Controller.extend({
         this.store.query('rental', {city: param}).then((result) => {
           this.set('filteredList',result);
         });
-      }
-      else {
+      } else {
         this.set('filteredList').clear();
       }
     },
@@ -118,8 +117,7 @@ export default Ember.Controller.extend({
         this.store.query('rental', {city: param}).then((result) => {
           this.set('model',result);
         });
-      }
-      else {
+      } else {
         this.set('model').clear();
       }
     }
@@ -147,7 +145,7 @@ to look like this, so that it can respond to our queries.
 
 ```app/mirage/config.js
 export default function() {
-  this.get('/rentals', function(db,request) {
+  this.get('/rentals', function(db, request) {
     let rentals = [{
         type: 'rentals',
         id: 1,
@@ -188,8 +186,7 @@ export default function() {
         return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
       });
       return { data: filteredRentals };
-    }
-    else {
+    } else {
       return { data: rentals };
     }
   });
