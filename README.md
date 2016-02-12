@@ -1,5 +1,8 @@
 ## Ember Guides Source
 
+[![Build Status](https://travis-ci.org/emberjs/guides.svg?branch=master)](https://travis-ci.org/emberjs/guides)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/emberjs/localized.svg)](https://crowdin.com/project/emberjs)
+
 The source for the Ember.js Guides.
 
 ## Contributing
