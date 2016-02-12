@@ -1,14 +1,14 @@
-Welcome to the Ember.js Guides! This documentation will take you from total beginner to Ember expert.
+Ember.jsガイドへようこそ! このドキュメントはあなたを完全なビギナーからEmberのエキスパートへ案内します。
 
-## Organization
+## 構成
 
-On the left side of each page in the Guides is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from the most basic concepts to the more advanced.
+カイド内の各ページ左側には目次があり、広げることでそれぞれがカバーする項目を表示することができます。 各セクションとそれに含まれる項目は、基本的なコンセプトから、より高度なコンセプトへと順に並んでいます。
 
-The Guides are intended to contain practical explanations of how to build Ember apps, focusing on the most widely-used features of Ember.js. For exhaustive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
+このガイドは、Ember.js の最も広く使用される機能に焦点を当て、Emberでアプリケーションを作成する実用的な説明をめざしています。 Emberの機能とAPI の完全なドキュメントについては、[Ember.js API のドキュメント](http://emberjs.com/api/) を参照してください。.
 
-The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
+このガイドは、まず、Emberをどのように利用するのかという説明から始まり、初めてのEmberアプリケーションの作り方のチュートリアルが続きます。もし、あなたが完全にEmberが初めてならこれらの二つのセクションから始めることをお薦めします。
 
-## Assumptions
+## 前提
 
 While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
 

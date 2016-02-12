@@ -1,6 +1,6 @@
-Agora, vamos adicionar uma lista de alugueres ao template index. Sabemos que os alugueres não vão ser estáticos, visto que eventualmente os utilizadores vão poder adicionar, atualizar e apagar. Por esta razão, precisaremos de um modelo *rentals* para guardar a informação sobre os alugueres. Para manter as coisas simples no início, usaremos um array hard-coded com objetos JavaScript. Mais tarde, passaremos a usar Ember Data, uma biblioteca para gerir robustamente os dados na nossa aplicação.
+Now, let's add a list of available rentals to the index template. We know that rentals will not be static, since eventually users will be able to add, update, and delete them. For this reason, we'll need a *rentals* model to save information about the rentals. To keep things simple at first, we'll use a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
 
-Aqui está como a nossa homepage parecerá quando acabarmos:
+Here's what our homepage will look like when we're done:
 
 ![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
 
@@ -14,15 +14,15 @@ export default Ember.Route.extend({ model() { return rentals; }, });
 
     <br />Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
     
-    A função `model` age como um **hook**, o que significa que o Ember o invocará por nós em diferentes fases da nossa aplicação.
-    O hook model que adicionamos à nossa rota `index` será invocado quando o utilizador entrar na rota `index`.
+    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
+    The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
     
     The `model` hook returns our _rentals_ array and passes it to our `index` template as the `model` property.
     
-    Agora, mudemos para o nosso template.
-    Podemos usar os dados do modelo para mostrar uma lista de alugueres.
-    Aqui, usaremos outro helper Handlebars comum chamado `{{each}}`.
-    Este helper permitirá iterar cada um dos objetos no nosso modelo:
+    Now, let's switch over to our template.
+    We can use the model data to display our list of rentals.
+    Here, we'll use another common Handlebars helper called `{{each}}`.
+    This helper will let us loop through each of the objects in our model:
     
     ```app/templates/index.hbs
     <h1>Welcome to Super Rentals</h1>
@@ -39,7 +39,6 @@ export default Ember.Route.extend({ model() { return rentals; }, });
     
     {{#link-to "about"}}About{{/link-to}}
     {{#link-to "contact"}}Click here to contact us.{{/link-to}}
-    ```
     
 
-Neste template, iteramos cada objecto no modelo e chamamos-lhe *rental*. Por cada <0>rental</0> criamos uma listagem com informações relacionadas com a propriedade.
+In this template, we loop through each model object and call it *rental*. For each rental, we then create a listing with information about the property.
