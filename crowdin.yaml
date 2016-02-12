@@ -1,5 +1,5 @@
 project_identifier: emberjs
-api_key: CROWDIN_API_KEY
+api_key_env: CROWDIN_API_KEY
 base_path: './source/localizable'
 
 files:
