@@ -5,3 +5,5 @@ base_path: './source/localizable'
 files:
   - source: '/**/*.md'
     translation: '/**/%file_name%.%locale%.%file_extension%'
+    ignore:
+      - '/**/**.*.md'
