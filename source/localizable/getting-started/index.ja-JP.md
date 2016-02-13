@@ -1,57 +1,57 @@
-Getting started with Ember.js is easy. Ember.js projects are created and managed through our command line build tool Ember CLI. This tool provides:
+Ember.js を始めるは簡単です。Ember.js プロジェクトを作成して、コマンド ライン ビルド ツール Ember CLI を利用して管理します。 Ember CLI は次の機能をを提供しています。
 
-* Modern application asset management (including concatenation, minifying, and versioning)
-* Generators to help create components, routes, and more
-* A conventional project layout, making existing Ember.js applications easy to approach.
-* Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
-* A complete [QUnit](https://qunitjs.com/) test harness
-* The ability to consume a growing ecosystem of Ember Addons
+* モダンなアプリケーション資産管理 (連結、縮小、およびバージョン管理をが含まれています。)
+* コンポーネントや、ルートなどの作成するためジェネレーター。
+* コンベンショナルなプロジェクトのレイアウトは、既存のEmber.jsアプリケーションへのアプローチを簡単にします。
+* [Babel プロジェクト](http://babeljs.io/docs/learn-es2015/)経由で、JavaScript ES2015/ES6 をサポートします。 このガイドでも利用されている [JavaScript modules](http://exploringjs.com/es6/ch_modules.html) のサポートも含まれています。
+* 完全な [QUnit](https://qunitjs.com/) テスト ハーネス
+* 成長を続ける、Ember Addonsのエコシステムが利用できます。
 
-## Dependencies
+## 依存関係
 
-### Node.js and npm
+### Node.js とnpm
 
-Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
+Ember CLI は JavaScript、で作られており、 [Node.js](https://nodejs.org/)のランタイムを必要としています。 また、依存関係の取得のために、[npm](https://www.npmjs.com/) が必要です。 npmは、Node.js とともにインストールされるので、すでに、Node.js があなたのコンピューターにインストールされている場合は、次に進む準備ができています。
 
-Ember requires Node.js 0.12 or higher and npm 2.7 or higher. If you're not sure whether you have Node.js or the right version, run this on your command line:
+Ember は Node.js 0.12 または、それ以上 npm 2.7 または、それ以上 が必要です。 Node.js がインストールされているかわからない、またはバージョンが不明な場合は、コマンドラインで、次のコマンドを実行してください。
 
 ```bash
 node --version
 npm --version
 ```
 
-If you get a *"command not found"* error or an outdated version for Node:
+もし、 *"command not found"* エラー、または Node のバージョンが古い時は
 
-* Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/download/).
-* Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After installing Homebrew, run `brew install node` to install Node.js.
-* Linux users can use [this guide for Node.js installation on Linux](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
+* Windows または Mac のユーザーの場合は [この Node.js インストーラー](http://nodejs.org/download/) を実行することができます。.
+* Mac ユーザーは[ Homebrew ](http://brew.sh/) を使用してノードをインストールするのを好むことがあります。Homebrewをインストールした後、Node.js をインストールするには `brew install node` を実行します。
+* Linux ユーザの場合はは、この[ガイド](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) を使用できます。.
 
-If you get an outdated version of npm, run `npm install -g npm`.
+もし npm が古い場合は、`npm install -g npm` を実行してください。.
 
 ### Git
 
-Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
+Ember は、多くの依存関係の管理で Git を利用しています。 Git は Mac OS X と 多くのLinux ディストリビューションすでに含まれています。 Windows ユーザーは、[この Git のインストーラー](http://git-scm.com/download/win) ダウンロードすることで、実行できます。.
 
-### Watchman (optional)
+### Watchman (オプション)
 
-On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+Mac 及び Linux の場合は、[Watchman](https://facebook.github.io/watchman/docs/install.html) をインストールすることで、ファイルウォッチングのパフォーマンスを向上することができます。.
 
-### PhantomJS (optional)
+### PhantomJS (オプション)
 
-You can run your tests from the command line with PhantomJS, without the need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
+テストをPhantomJS とともにコマンドラインから実行することで、ブラウザを開く必要が必要がなくなります。[PhantomJS ダウンロードの手順](http://phantomjs.org/download.html) を参照にしてください。.
 
-## Installation
+## インストール
 
-Install Ember using npm:
+Ember のインストールには npm を利用します。
 
 ```bash
 npm install -g ember-cli@beta
 ```
 
-To verify that your installation was successful, run:
+インストールが成功したことを確認するには、次のコマンドを実行します。
 
 ```bash
 ember -v
 ```
 
-If a version number is shown, you're ready to go.
+バージョンナンバーが表示されたら、次に進む準備が整いました。

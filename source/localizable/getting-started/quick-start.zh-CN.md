@@ -1,74 +1,73 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+这份指南将会指导你如何从零开始构建一个简单的 Ember 应用程序。
 
-We'll cover these steps:
+我们将介绍以下步骤：
 
-  1. Installing Ember
-  2. Creating a new application
-  3. Defining a route
-  4. Writing a UI component
-  5. Building your app to be deployed to production
+  1. 安装 Ember
+  2. 创建一个新的应用程序
+  3. 定义路由
+  4. 编写一个 UI 组件
+  5. 为生产环境构建可用于部署的应用程序
 
-## Install Ember
+## 安装 Ember
 
-You can install Ember with a single command using npm, the Node.js package manager. Type this into your terminal:
+使用 Node.js 的包管理器 npm 只需要一条命令即可安装 Ember。在终端输入：
 
 ```sh
 npm install -g ember-cli@beta
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
+还没有 npm 吗？[这里教你如何安装 Node.js 和 npm](https://docs.npmjs.com/getting-started/installing-node)。.
 
-## Create a New Application
+## 创建一个新的应用程序
 
-Once you've installed Ember via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
+通过 npm 安装好 Ember 之后，你就可以在终端使用新的命令 `ember`。你可以用 `ember new` 命令来创建一个新的应用程序。
 
 ```sh
 ember new ember-quickstart
 ```
 
-This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it. Out of the box, your application will include:
+这一命令将会创建一个新的目录叫做 `ember-quickstart`，同时在其中设置好一个全新的 Ember 应用程序。无需额外动作，你的应用程序就已包括：
 
-* A development server
-* Template compilation
-* JavaScript and CSS minification
-* ES2015 features via Babel
+* 用于开发的服务器
+* 模板编译
+* JavaScript 和 CSS 压缩
+* 通过 Babel 实现的 ES2015 特性
 
-By providing everything you need to build production-ready web applications in an integrated package, Ember makes starting new projects a breeze.
+通过集成软件包为你提供创建可直接就绪生产环境的 web 应用所需的一切基础，Ember 让开始一个新项目变得无比轻松自如。
 
-Let's make sure everything is working properly. Open the `ember-quickstart` directory in your favorite editor, such as Sublime Text or Vim. Once you have your editor open, `cd` into the application directory and start the development server by typing:
+让我们确保一切都正常工作。 用你喜爱的编辑器，比如 Sublime Text 或是 Vim 打开 `ember-quickstart` 目录。 编辑器打开之后，（在终端中）输入 `cd` 进入应用程序目录然后运行开发服务器，命令是：
 
 ```sh
 cd ember-quickstart
 ember serve
 ```
 
-After a few seconds, you should see output that looks like this:
+几秒钟后，你会看到如下的输出：
 
 ```text
 Livereload server on http://localhost:49152
 Serving on http://localhost:4200/
 ```
 
-(To stop the server at any time, type Ctrl-C in your terminal.)
+（在终端中键入 Ctrl-C 可以随时终止服务器。）
 
-Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. You should see a page that says "Welcome to Ember" and not much else. Congratulations! You just created and booted your first Ember app.
+在浏览器中打开 <http://localhost:4200>。 你将看到一个干净的只写有 "Welcome to Ember" 的页面。 恭喜！ 你刚刚创建并运行了你的第一个 Ember 应用程序。
 
-Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
+切换到你的编辑器并打开 `app/templates/application.hbs` 文件。这就是 `application` 模板了，当用户打开你的应用程序时该模板会始终显示在屏幕上。
 
-In your editor, change the text inside the `<h1>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
+在你的编辑器中，将 `<h1>` 标签里的 `Welcome to Ember` 改成 `PeopleTracker` 然后保存。 注意 Ember 会检测到你刚才所做的改变并在后台为你自动刷新页面。 你应该能看到 "Welcome to Ember" 已经变成了 "PeopleTracker"。
 
-## Define a Route
+## 定义路由
 
-Let's build an application that shows a list of scientists. To do that, the first step is to create a route. For now, you can think of routes as being the different pages that make up your application.
+来让我们创建一个能显示科学家列表的应用程序吧。 要做到这一点，第一步是创建一个路由。 现在，你可以把路由看作是组成你的应用程序的不同的页面。
 
-Ember comes with *generators* that automate the boilerplate code for common tasks. To generate a route, type this in your terminal:
+Ember 带有一个*生成器*可以为常见的任务自动创建样板代码。要生成一个路由，可以在终端中输入：
 
 ```sh
 ember generate route scientists
 ```
 
-You'll see output like this:
+你会看到像这样的输出：
 
 ```text
 installing route
@@ -80,21 +79,20 @@ installing route-test
   create tests/unit/routes/scientists-test.js
 ```
 
-That's Ember telling you that it has created:
+这就是在告诉你 Ember 已经创建了：
 
-  1. A template to be displayed when the user visits `/scientists`
-  2. A `Route` object that fetches the model used by that template
-  3. An entry in the application's router (located in `app/router.js`)
-  4. A unit test for this route
+  1. 一个在当用户访问 `/scientists` 时用于显示的模板
+  2. 一个用于为模版获取数据模型（model）的 `Route` 对象
+  3. 一个应用程序路由器里的入口（代码位于 `app/router.js`）)
+  4. 一个针对该路由的单元测试
 
-Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
+打开新创建的 `app/templates/scientists.hbs` 模板文件并添加下列 HTML 代码：
 
 ```app/templates/scientists.hbs 
 
 ## List of Scientists
 
-    <br />In your browser, open
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
+    <br />在你的浏览器中打开 [http://localhost:4200/scientists](http://localhost:4200/scientists)。 You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
     `<h1>` from our `application.hbs` template.
     
