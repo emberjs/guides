@@ -4,13 +4,13 @@ Our goal is to help you avoid that mess and come up to speed as fast as possible
 
 ## CDN
 
-Content Delivery Network
+コンテンツデリバリーネットワーク
 
 This is typically a paid service you can use to get great performance for your app. Many CDNs act as caching proxies to your origin server; some require you to upload your assets to them. They give you a URL for each resource in your app. This URL will resolve differently for folks depending on where they're browsing.
 
 Behind the scenes, the CDN will distribute your content geographically with the goal of end-users being able to fetch your content with the lowest latency possible. For example, if a user is in India, they'd likely get content served from India faster than from the United States.
 
-## CoffeeScript, TypeScript
+## CoffeeScript TypeScript
 
 These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypeScript or CoffeeScript into JavaScript.
 
@@ -22,7 +22,7 @@ Browsers that update themselves (without user intervention).
 
 [Evergreen Browsers](http://tomdale.net/2013/05/evergreen-browsers/)
 
-## ES3, ES5, ES5.1, ES6 (aka ES2015), etc
+## ES3, ES5, ES5.1, ES6 (あるいは ES2015)など
 
 ES stands for ECMAScript, which is the specification that JavaScript is based on. The number that follows is the version of the specification.
 
@@ -33,13 +33,13 @@ Most browsers support at least ES5, and some even have ES6 (also known as ES2015
 
 [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 
-## LESS, Sass
+## LESS Sass
 
 Both LESS and Sass are types of CSS preprocessor markup intended to give you much more control over your CSS. During the build process, the LESS or Sass resources compile down to vanilla CSS (which can be executed in a browser).
 
 [Sass/Less Comparison](https://gist.github.com/chriseppstein/674726)
 
-## Linter, linting, jslint, jshint
+## Linter linting jslint jshint
 
 A validation tool which checks for common issues in your JavaScript. You'd usually use this in your build process to enforce quality in your codebase. A great example of something to check for: *making sure you've always got your semicolons*.
 
