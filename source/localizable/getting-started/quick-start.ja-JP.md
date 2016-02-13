@@ -6,9 +6,9 @@
   2. 新しいアプリケーションの作成。
   3. ルートの定義。
   4. UI コンポーネントの記述
-  5. Building your app to be deployed to production
+  5. あなたのアプリケーションをプロダクションにデプロイするためのビルド。
 
-## Install Ember
+## Ember のインストール
 
 You can install Ember with a single command using npm, the Node.js package manager. Type this into your terminal:
 
@@ -18,7 +18,7 @@ npm install -g ember-cli@beta
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
 
-## Create a New Application
+## 新しいアプリケーションの作成
 
 Once you've installed Ember via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
 
@@ -58,7 +58,7 @@ Switch to your editor and open `app/templates/application.hbs`. This is called t
 In your editor, change the text inside the `<h1>` from `Welcome to
 Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
 
-## Define a Route
+## ルートの定義
 
 Let's build an application that shows a list of scientists. To do that, the first step is to create a route. For now, you can think of routes as being the different pages that make up your application.
 
@@ -187,7 +187,7 @@ Reload the page in your browser and you should see that the UI looks identical. 
 
 You can see this in action if you create a new route that shows a different list of people. As an exercise for the reader, you may try to create a `programmers` route that shows a list of famous programmers. By re-using the `people-list` component, you can do it in almost no code at all.
 
-## Building For Production
+## プロダクションへビルド
 
 Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
 
