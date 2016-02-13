@@ -4,11 +4,11 @@ that shows a blog title, and supports expanding the post to show the body.
 
 If you add the
 [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action)
-helper to an HTML element, when a user clicks the element, the named event
+helper to any HTML DOM element, when a user clicks the element, the named event
 will be sent to the template's corresponding component or controller.
 
 ```app/templates/components/single-post.hbs
-<h3 {{action "toggleBody"}}>{{title}}</h3>
+<h3><button {{action "toggleBody"}}>{{title}}</button></h3>
 {{#if isShowingBody}}
   <p>{{{body}}}</p>
 {{/if}}
@@ -158,3 +158,5 @@ For example:
   cursor: pointer;
 }
 ```
+
+Keep in mind that even with this workaround in place, the `click` event will not automatically trigger via keyboard driven `click` equivalents (such as the `enter` key when focused). Browsers will trigger this on clickable elements only by default.
