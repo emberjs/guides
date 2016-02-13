@@ -1,11 +1,11 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+このガイドでは、Ember 使って、シンプルなアプリケーションを0から構築する方法を紹介します。
 
-We'll cover these steps:
+次の手順について、説明しています。
 
-  1. Installing Ember
-  2. Creating a new application
-  3. Defining a route
-  4. Writing a UI component
+  1. Ember のインストール
+  2. 新しいアプリケーションの作成。
+  3. ルートの定義。
+  4. UI コンポーネントの記述
   5. Building your app to be deployed to production
 
 ## Install Ember
