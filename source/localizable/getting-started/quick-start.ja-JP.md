@@ -10,13 +10,13 @@
 
 ## Ember のインストール
 
-You can install Ember with a single command using npm, the Node.js package manager. Type this into your terminal:
+Emberは Node.jsのパッケージマネージャー npmを使えば、コマンドを一つ実行するだけでのインストールすることができます。次のコマンドをターミナルで実行してください。
 
 ```sh
 npm install -g ember-cli@beta
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
+npm がないですか?[このリンク先から、Node.js とnpmをインストールできます](https://docs.npmjs.com/getting-started/installing-node)。.
 
 ## 新しいアプリケーションの作成
 
