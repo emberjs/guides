@@ -17,7 +17,7 @@ $hidpi-min-pixel-ratio: 1.3 !default;
   $image-fullname: '#{$image}.#{$extension}';
   $image-hidpi-fullname: '#{$image}#{$postfix}.#{$extension}';
 
-  background-image: url('images/#{$image-hidpi-fullname}');
+  background-image: url('../images/#{$image-hidpi-fullname}');
   background-size: image-width($image-fullname) image-height($image-fullname);
 }
 
@@ -30,7 +30,7 @@ $hidpi-min-pixel-ratio: 1.3 !default;
     }
   } @else {
     @if $image {
-      background-image: url('images/#{$image}.#{$extension}');
+      background-image: url('../images/#{$image}.#{$extension}');
     }
     // Inspired by:
     // http://www.brettjankord.com/2012/11/28/cross-browser-retinahigh-resolution-media-queries/
