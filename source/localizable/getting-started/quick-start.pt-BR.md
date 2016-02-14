@@ -4,23 +4,23 @@ Nós vamos cobrir estas etapas:
 
   1. Instalando o Ember
   2. Criando um novo aplicativo
-  3. Defining a route
-  4. Writing a UI component
-  5. Building your app to be deployed to production
+  3. Definindo uma rota
+  4. Escrevendo um componente de UI
+  5. Construindo seu app para ser implantado em produção
 
-## Install Ember
+## Instalando o Ember
 
-You can install Ember with a single command using npm, the Node.js package manager. Type this into your terminal:
+Você pode instalar o Ember com um único comando usando npm, o gerenciador de pacotes do Node.js. Digite o seguinte comando em seu terminal:
 
 ```sh
 npm install -g ember-cli@beta
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
+Não tem npm? [Aprenda a instalar Node. js e npm aqui](https://docs.npmjs.com/getting-started/installing-node).
 
-## Create a New Application
+## Criando um novo aplicativo
 
-Once you've installed Ember via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
+Uma vez instalado Ember através do npm, você terá acesso a um novo comando `ember` em seu terminal. Você pode usar o comando `ember new` para criar um novo aplicativo.
 
 ```sh
 ember new ember-quickstart
