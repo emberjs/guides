@@ -26,10 +26,10 @@ Uma vez instalado Ember através do npm, você terá acesso a um novo comando `e
 ember new ember-quickstart
 ```
 
-This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it. Out of the box, your application will include:
+Este único comando irá criar um novo diretório chamado `ember-quickstart` e configurar um novo aplicativo de Ember dentro dela. De cara, seu aplicativo irá incluir:
 
-* A development server
-* Template compilation
+* Um servidor para desenvolvimento
+* Compilação de Template
 * JavaScript and CSS minification
 * ES2015 features via Babel
 
