@@ -30,8 +30,8 @@ Este único comando irá criar um novo diretório chamado `ember-quickstart` e c
 
 * Um servidor para desenvolvimento
 * Compilação de Template
-* JavaScript and CSS minification
-* ES2015 features via Babel
+* "Minificação" de arquivos JavaScript e CSS
+* Funcionalidades ES2015 através da biblioteca Babel
 
 By providing everything you need to build production-ready web applications in an integrated package, Ember makes starting new projects a breeze.
 
