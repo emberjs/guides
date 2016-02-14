@@ -1,9 +1,9 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+Este guia vai te ensinar como construir do zero um aplicativo simples usando Ember.
 
-We'll cover these steps:
+Nós vamos cobrir estas etapas:
 
-  1. Installing Ember
-  2. Creating a new application
+  1. Instalando o Ember
+  2. Criando um novo aplicativo
   3. Defining a route
   4. Writing a UI component
   5. Building your app to be deployed to production

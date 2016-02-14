@@ -1,21 +1,21 @@
-Before you start writing any Ember code, it's a good idea to get an overview of how an Ember application works.
+Ember のコードを書き始める前に、Ember アプリケーションのしくみの概要を確認するのをおすすめします。
 
 ![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
 
-## Router and Route Handlers
+## ルーターとルート ハンドラー
 
-Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember.js, the answer to these questions is determined by the URL. The URL can be set in a few ways:
+レンタルのWeb アプリケーションを書いていると仮定してみてください。 いつでも、*何を探しているのか?* や *編集をしているのか?* といったそのときの状況がすぐに分かるようにしたいものです、Ember.jsではそれらの問題の答えは、URLによって解決されています。 URL はいくつかの方法で設定することが可能です。
 
-* The user loads the app for the first time.
-* The user changes the URL manually, such as by clicking the back button or by editing the address bar.
-* The user clicks a link within the app.
-* Some other event in the app causes the URL to change.
+* ユーザーが、初めてアプリケーションを読み込みこんだとき。
+* ユーザーが手動で、[戻る] ボタンをクリックするあるいは、アドレス バーを編集して、手動でURL の変更を行ったとき。
+* ユーザーがアプリケーション内のリンクをクリックしたとき。
+* それら以外のイベンドによってURLが変更されたとき。
 
-No matter how the URL gets set, the first thing that happens is that the Ember router maps the URL to a route handler.
+URL がどのように設定されたかに関わらず、まず Ember ルーターがルートハンドラと URL を関連付けます。
 
-The route handler then typically does two things:
+通常、ルートハンドラは次の二つのことを行います。
 
-* It renders a template.
+* テンプレートを描画する。
 * It loads a model that is then available to the template.
 
 ## Templates
