@@ -1,6 +1,6 @@
 Ember CLIはEmberのコマンドラインインターフェイスです、標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
-## Creating a New App
+## 新規アプリケーションの作成
 
 To create a new project using Ember CLI, use the `new` command. In preparation for the tutorial in the next section, you can make an app called `super-rentals`.
 
@@ -8,7 +8,7 @@ To create a new project using Ember CLI, use the `new` command. In preparation f
 ember new super-rentals
 ```
 
-## Directory Structure
+## ディレクトリ構造
 
 The `new` command generates a project structure with the following files and directories:
 
@@ -52,7 +52,7 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
-## ES6 Modules
+## ES6 モジュール
 
 If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
 
