@@ -1,4 +1,4 @@
-Ember CLIはEmberのコマンドラインインターフェイスです、標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
+Ember CLIはEmberのコマンドラインインターフェイスです、標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 これにより、Ember 開発者はアプリケーションを実行するための構造を開発するのではなく、アプリケーションそのものの開発に焦点を絞ることができます。 From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## 新規アプリケーションの作成
 
@@ -80,16 +80,14 @@ export default Router;
     `bower.json` are lower than the version number in the upper-left corner of these
     Guides, update the version numbers in `bower.json` and then run `bower install`.
     
-    ## The Development Server
-    
-    Once we have a new project in place, we can confirm everything is working by
-    starting the Ember development server:
+    ## 開発用サーバー
+    新規アプリケーションができていることを確かめるためには、開発用サーバーを起動することで確認できます。
     
     ```shell
     ember server
     
 
-or, for short:
+または、省略された
 
 ```shell
 ember s
