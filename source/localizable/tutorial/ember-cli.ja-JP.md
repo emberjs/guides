@@ -1,4 +1,4 @@
-Ember CLIはEmberのコマンドラインインターフェイスです、標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 これにより、Ember 開発者はアプリケーションを実行するための構造を開発するのではなく、アプリケーションそのものの開発に焦点を絞ることができます。 From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
+Ember CLIはEmberのコマンドラインインターフェイスです、標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 これにより、Ember 開発者はアプリケーションを実行するための構造を開発するのではなく、アプリケーションそのものの開発に焦点を絞ることができます。 コマンドラインで、 `ember --help`を実行するとEmber CLI が提供しているコマンドが表示されます。 さらに、特定のコマンドについて情報確認したい場合は、`ember help <command-name>`と実行してください。.
 
 ## 新規アプリケーションの作成
 
