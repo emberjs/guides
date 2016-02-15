@@ -121,7 +121,7 @@ Ember が次のことを行ったことを意味しています。
 
 {{#each model as |scientist|}} 
 
-* {{scientist}} {{scientist}} 
+* {{scientist}} {{/each}} 
 
     <br />ここでは、`model()` から取り出した、配列の各要素を`<li>`内のエレメントとして、出力するために`each`ヘルバーを使っています。
     
