@@ -1,4 +1,4 @@
-Este guia vai te ensinar como construir do zero um aplicativo simples usando Ember.
+Este guia vai te ensinar como construir, do zero, um aplicativo simples usando Ember.
 
 Nós vamos cobrir estas etapas:
 
@@ -33,42 +33,41 @@ Este único comando irá criar um novo diretório chamado `ember-quickstart` e c
 * "Minificação" de arquivos JavaScript e CSS
 * Funcionalidades ES2015 através da biblioteca Babel
 
-By providing everything you need to build production-ready web applications in an integrated package, Ember makes starting new projects a breeze.
+Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
 
-Let's make sure everything is working properly. Open the `ember-quickstart` directory in your favorite editor, such as Sublime Text or Vim. Once you have your editor open, `cd` into the application directory and start the development server by typing:
+Vamos ver se que tudo está funcionando corretamente. Abra o diretório `ember-quickstart` em seu editor de texto favorito, um Sublime Text ou Vim da vida. Uma vez aberto seu editor, `cd` no diretório do aplicativo e inicie o servidor de desenvolvimento com os comandos:
 
 ```sh
 cd ember-quickstart
 ember serve
 ```
 
-After a few seconds, you should see output that looks like this:
+Após alguns segundo, você deverá ver a seguinte saída:
 
 ```text
 Livereload server on http://localhost:49152
 Serving on http://localhost:4200/
 ```
 
-(To stop the server at any time, type Ctrl-C in your terminal.)
+(Se quiser parar o servidor, digite Ctrl-C a qualquer hora no seu terminal)
 
-Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. You should see a page that says "Welcome to Ember" and not much else. Congratulations! You just created and booted your first Ember app.
+Abra [http://localhost:4200/](http://localhost:4200) em seu navegador. Você deve ver uma página que diz "Welcome do Ember" e não muito mais. Parabéns! Você acabou de criar e iniciar seu primeiro aplicativo em Ember.
 
-Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
+Alterne para o seu editor e abra `app/templates/application.hbs`. Isto se chama o template do `aplicativo` e está sempre na tela enquanto o usuário tem seu aplicativo carregado.
 
-In your editor, change the text inside the `<h1>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
+No seu editor, altere o texto dentro do `< h1 >` de `Welcome do Ember` para `PeopleTracker` e salve o arquivo. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
 
-## Define a Route
+## Definindo uma Rota
 
-Let's build an application that shows a list of scientists. To do that, the first step is to create a route. For now, you can think of routes as being the different pages that make up your application.
+Vamos construir um aplicativo que mostra uma lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por enquanto, você pode pensar de rotas como sendo diferentes páginas que compõem o seu aplicativo.
 
-Ember comes with *generators* that automate the boilerplate code for common tasks. To generate a route, type this in your terminal:
+Ember vem com *geradores* que automatizam o código padrão para tarefas comuns. Para gerar uma rota, digite o seguinte em seu terminal:
 
 ```sh
 ember generate route scientists
 ```
 
-You'll see output like this:
+Você verá na saída algo assim:
 
 ```text
 installing route
@@ -80,18 +79,18 @@ installing route-test
   create tests/unit/routes/scientists-test.js
 ```
 
-That's Ember telling you that it has created:
+Isso é Ember dizendo que criou:
 
-  1. A template to be displayed when the user visits `/scientists`
-  2. A `Route` object that fetches the model used by that template
-  3. An entry in the application's router (located in `app/router.js`)
-  4. A unit test for this route
+  1. Um template a ser exibido quando o usuário visita `/scientists`
+  2. Um objeto `Route` (Rota) que busca o model usado por esse template
+  3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`)
+  4. Um teste unitário para esta rota
 
-Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
+Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seguinte HTML:
 
 ```app/templates/scientists.hbs 
 
-## List of Scientists
+## Lista de Cientistas
 
     <br />In your browser, open
     [http://localhost:4200/scientists](http://localhost:4200/scientists). You should

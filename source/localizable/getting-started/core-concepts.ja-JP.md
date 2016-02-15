@@ -1,6 +1,6 @@
 Ember のコードを書き始める前に、Ember アプリケーションのしくみの概要を確認するのをおすすめします。
 
-![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
+![Ember コア　コンセプト](../../images/ember-core-concepts/ember-core-concepts.png)
 
 ## ルーターとルート ハンドラー
 
@@ -16,42 +16,42 @@ URL がどのように設定されたかに関わらず、まず Ember ルータ
 通常、ルートハンドラは次の二つのことを行います。
 
 * テンプレートを描画する。
-* It loads a model that is then available to the template.
+* テンプレートで利用するmodel を読み込みます。
 
-## Templates
+## テンプレート
 
-Ember.js uses templates to organize the layout of HTML in an application.
+Ember.js はHTML のレイアウトを調整するためにテンプレートを利用します。
 
-Most templates in an Ember codebase are instantly familiar, and look like any fragment of HTML. For example:
-
-```handlebars
-<div>Hi, this is a valid Ember template!</div>
-```
-
-Ember templates use the syntax of [Handlebars](http://handlebarsjs.com) templates. Anything that is valid Handlebars syntax is valid Ember syntax.
-
-Templates can also display properties provided to them from their context, which is either a component or a route (technically, a controller presents the model from the route to the template, but this is rarely used in modern Ember apps and will be deprecated soon). For example:
+Ember のコードベースのテンプレートの大部分は、即座に違和感のない、HTMLの断片のようにみえるでしょう
 
 ```handlebars
-<div>Hi {{name}}, this is a valid Ember template!</div>
+<div>こんにちは、これは有効な Ember テンプレートです!</div>
 ```
 
-Here, `{{name}}` is a property provided by the template's context.
+Ember テンプレートは[Handlebars](http://handlebarsjs.com)の構文を利用しています。有効なHandlebarsの構文なら、それは有効なEmber の構文です。
 
-Besides properties, double curly braces (`{{}}`) may also contain helpers and components, which we'll discuss later.
+テンプレートは、コンポーネントまたルート (技術的には、コントローラーがルートからそのモデルをテンプレートに表示しているが、この方法はモダンな Ember ではほとんど利用されておらず、近いうちにデプリケーションされることになっています。) の、そのコンテキストからに提供されたプロパティを表示することもできます。 例えば
 
-## Models
+```handlebars
+<div>こんにちは {{name}}、これは有効な Ember テンプレートです!</div>
+```
 
-Models represent persistent state.
+ここでは、`{{name}}` は、テンプレートのコンテキストによって提供されたプロパティです。
 
-For example, a property rentals application would want to save the details of a rental when a user publishes it, and so a rental would have a model defining its details, perhaps called the *rental* model.
+ダブルカーリーブレースは(`{{}}`) プロパティ以外にも、ヘルパーやコンポーネント含んでいることもありますが、これらについては後ほど、説明します。
 
-A model typically persists information to a web server, although models can be configured to save to anywhere else, such as the browser's Local Storage.
+## モデル
 
-## Components
+モデルは、永続的な状態を表します。
 
-While templates describe how a user interface looks, components control how the user interface *behaves*.
+例えば、レンタルアプリケーションはユーザーがレンタル品の公開をした時、レンタル品の詳細を保存したいとします、その場合おそらく、レンタル品とその詳細を定義した*rental* モデルと呼ばれるモデルがあるでしょう。
 
-Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
+通常モデルは、web サーバーに情報を保持しますが、それ以外のブラウザのローカルストレージといった場所に保存するように設定することも可能です。
 
-Let's see these core concepts in action by building a property rental application in the next lesson.
+## コンポーネント
+
+テンプレートでは、ユーザー インターフェイスを記述する一方、コンポーネント は*動作* をコントロールしています。.
+
+コンポーネントは、Handlebarで記載されたテンプレートと、コンポーネントの動作を定義するJavaScript で記述されたソース ファイルの2 つの部分で構成されます:。 例えば、資産レンタルアプリケーションはすべてのレンタル品を表示する`all-rentals`コンポーネントと一つ一つのレンラル品を表示すt`rental-tile`があるかもしれません。 `rental-tile`コンポーネントはユーザーがレンタル品の写真を表示したり、消したりする動作の定義があるかもしれません。
+
+次のレッスンでは、レンタル　アプリケーションを構築しながらこれらのコアコンセプトを実際に見ていきましょう。
