@@ -3,7 +3,7 @@ Começar em Ember.js é fácil. Projetos Ember.js são criados e gerenciados atr
 * Gerenciamento moderno de ativos de aplicação (incluindo concatenação, "minifying" e controle de versão)
 * Geradores para ajudar a criar componentes, rotas e muito mais
 * Um layout padrão de projeto, tornando mais fácil entender aplicações Ember.js existentes.
-* Suporte a Javascript ES2015/ES6 através do projeto [Babe](http://babeljs.io/docs/learn-es2015/). Isso inclui suporte para [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que são usados ao longo deste guia.
+* Suporte a Javascript ES2015/ES6 através do projeto [Babel](http://babeljs.io/docs/learn-es2015/). Isso inclui suporte para [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que são usados ao longo deste guia.
 * Uma estrutura completa de testes [QUnit](https://qunitjs.com/)
 * A capacidade de consumir Addons Ember de um ecossistema crescente
 
