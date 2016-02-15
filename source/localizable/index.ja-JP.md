@@ -10,28 +10,28 @@ Ember.jsガイドへようこそ! このドキュメントはあなたを完全�
 
 ## 前提
 
-While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
+ガイドが初心者にとっても優しいものであるように、最大限の努力をしますが、Ember.js の機能について焦点を絞るにはベースラインを決める必要があります。 私たちは概念を導入するたびに、適切なドキュメントへのリンク提供するつもりです。
 
-To make the most out of the guides, you should have a working knowledge of:
+このガイドを最大限に活用するために、次の事柄についてある程度の知識が必要です。
 
-* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
-* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
-* **ES2015 modules** - you will better understand Ember CLI's project structure and import paths if you are comfortable with [ES6 JavaScript Modules](http://jsmodules.io/).
-* **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can take advantage of newer language features such as arrow functions, template strings, destructuring, and more. You can check the [Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
+* **HTML、CSS、JavaScript** - web ページの作るための要素です。 それぞれの要素について[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)で情報を得ることができます。.
+* **Promises** - JavaScriptのコードで非同期を扱うためのネイティブな方法。 [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)該当セクションを参照してください。
+* **ES2015 modules** - [ES6 JavaScript Modules](http://jsmodules.io/)に慣れ親しんでいる方が、Ember CLIプロジェクトの構造やインポートパスについてより理解しやすいでしょう。.
+* **ES2015 syntax** - Ember CLI はデフォルトでBabel.js を含んでいますので、アローファンクション、テンプレートストリング、destructuring (ディストゥラクチャリング)などの新しい、（JavaScriptの）構文が活用できます。 [Babel.js ドキュメント](https://babeljs.io/docs/learn-es2015/) あるいは[Understanding ECMAScript 6](https://leanpub.com/understandinges6/read)をオンンラインで読むことが可能です。
 
-## Reporting a problem
+## 問題の報告
 
-Typos, missing words, code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
+入力ミス、単語の不足、エラー コード サンプルなどはドキュメント のバグと捉えられるべきです。そのような箇所をみつけ場合は、または、既存のガイドをよくしたい時は、あなたが私たちを助けることができるよう、喜んであなたを支援します!
 
-Some of the more common ways to report a problem with the guides are:
+ガイドの問題点を報告する、一般的な方法は次のとおりです。
 
-* Using the pencil icon on the top-right of each guide page
-* Opening an issue/pull request to [the GitHub repository](https://github.com/emberjs/guides/)
+* ガイド各ページの右上にある、鉛筆アイコンを利用してください。
+* [the GitHub repository](https://github.com/emberjs/guides/)でイシューまたはプルリクエストを開いてください。
 
-Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
+鉛筆アイコンをクリックすると、GitHub の該当ページが開きますので直接、Markdownで編集できます。 この方法が、タイプミス、単語の不足、またはコード サンプルのエラーを修正する一番早い方法です。
 
-If you wish to make a more significant contribution be sure to check our [issue tracker](https://github.com/emberjs/guides/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
+もし、もっと貢献することが大きな場合は、すでにその問題が[issue tracker](https://github.com/emberjs/guides/issues) にあがっていないか、必ず確認してください。 アクティブなイシューが見つからない場合には、新たなイシューを開けてください。
 
-If you have any styling questions, or about the contributing process you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#documentation` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+スタイリングや、コントリビューションプロセスについて、疑問があるときは [コントリビューション ガイド](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)を確認してください。 疑問が解決できない場合は、 [Slack group](https://ember-community-slackin.herokuapp.com/)内の`#documentation` に質問を投稿してください。.
 
 Good luck!
