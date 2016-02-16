@@ -35,7 +35,7 @@ Este comando irá criar um novo diretório chamado `ember-quickstart` e configur
 
 Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
 
-Vamos ver se que tudo está funcionando corretamente. Abra o diretório `ember-quickstart` em seu editor de texto favorito, um Sublime Text ou Vim da vida. Uma vez aberto seu editor, `cd` no diretório do aplicativo e inicie o servidor de desenvolvimento com os comandos:
+Vamos ver se que tudo está funcionando corretamente. Abra o diretório `ember-quickstart` em seu editor de texto favorito, como o Sublime Text ou Vim. Uma vez aberto seu editor, `cd` para o diretório do aplicativo e inicie o servidor de desenvolvimento com os comandos:
 
 ```sh
 cd ember-quickstart
@@ -82,7 +82,7 @@ installing route-test
 Isso é Ember dizendo que criou:
 
   1. Um template a ser exibido quando o usuário visita `/scientists`
-  2. Um objeto `Route` (Rota) que busca o model usado por esse template
+  2. Um objeto `Route` (Rota) que busca o model usado por esse "template"
   3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`)
   4. Um teste unitário para esta rota
 
@@ -92,10 +92,8 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
 
 ## Lista de Cientistas
 
-    <br />In your browser, open
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h1>` from our `application.hbs` template.
+    <br />No seu navegador, abra
+    [http://localhost:4200/scientists](http://localhost:4200/scientists). Você deverá ver o `<h2>` que colocou no "template" `scientists.hbs`, logo abaixo do `<h1>` do nosso "template" `application.hbs`.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. We do that by specifying a _model_ for that route, and
