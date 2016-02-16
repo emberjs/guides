@@ -95,9 +95,7 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
     <br />No seu navegador, abra
     [http://localhost:4200/scientists](http://localhost:4200/scientists). Você deverá ver o `<h2>` que colocou no "template" `scientists.hbs`, logo abaixo do `<h1>` do nosso "template" `application.hbs`.
     
-    Now that we've got the `scientists` template rendering, let's give it some
-    data to render. We do that by specifying a _model_ for that route, and
-    we can specify a model by editing `app/routes/scientists.js`.
+    Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para apresentar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
     
     We'll take the code created for us by the generator and add a `model()`
     method to the `Route`:
