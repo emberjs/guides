@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- FIXME
+  <title>Ember.js - <%= current_page.data.title || full_page_title %></title>
+  <meta property="st:title" content="<%= current_page.data.title || full_page_title %>" />
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="images/favicon.png" rel="icon" type="image/png" />
+  <!--[if lte IE 7 ]>
+  <!-- FIXME: <%= stylesheet_link_tag "fonts/fontello-ie7" %>--><![endif]-->
+
+  <!-- This TypeKit account is managed by @wifelette. Contact her with any issues. -->
+  <script src="https://use.typekit.net/stz3kpn.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
+
+  {{content-for "head"}}
+
+  <link rel="stylesheet" href="assets/vendor.css">
+  <link rel="stylesheet" href="assets/viewer.css">
+
+  {{content-for "head-footer"}}
+
+</head>
+
+<!-- FIXME: <body class="guides <%= page_classes %>"> -->
+<body class="guides">
+
+  <!--[if lt IE 9]>
+  <!-- FIXME <%= javascript_include_tag 'common-old-ie' %> -->
+  <![endif]-->
+  <!--[if gte IE 9]><!-->
+  <!-- FIXME <%= javascript_include_tag 'common-modern' %> -->
+  <!--<![endif]-->
+
+  {{content-for "body"}}
+
+  <!-- FIXME: decide whether we need this
+  <%= yield_content :foot %>
+  -->
+
+  <script src="assets/vendor.js"></script>
+  <script src="assets/viewer.js"></script>
+
+  {{content-for "body-footer"}}
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+    _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+    _gaq.push(['_setAccount', 'UA-27675533-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>

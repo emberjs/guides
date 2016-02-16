@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+@import "normalize";
+@import "vendor/all";
+@import "bourbon";
+@import "base/base";
+@import "neat";
+@import "components/all";
+@import "vendor-overwrites";
+@import "fonts/fontello";
+@import "ember-power-select";
+
+.note {
+  background: rgba(0,0,0, 0.2);
+
+  &::before {
+    content: "Note"
+  }
+}
+
+.previous-guide {
+  float: left;
+  border-bottom: 1px solid transparent;
+}
+
+.next-guide {
+  float: right;
+  border-bottom: 1px solid transparent;
+}
+
+.visually-hidden {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}

@@ -1,0 +1,13 @@
+{{partial 'header'}}
+
+<!-- FIXME: decide whether we need this still
+<%= yield_content :outside_wrapper %>
+-->
+
+<main class="container">
+  {{partial 'sidebar'}}
+
+  {{outlet}}
+</main>
+
+{{layout-footer}}

@@ -1,41 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-
-    <title>Ember.js - <%= current_page.data.title || full_page_title %></title>
-    <meta property="st:title" content="<%= current_page.data.title || full_page_title %>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= favicon_tag 'images/favicon.png' %>
-    <!--[if lte IE 7 ]><%= stylesheet_link_tag "fonts/fontello-ie7" %><![endif]-->
-    <%= stylesheet_link_tag "application" %>
-
-    <!-- This TypeKit account is managed by @wifelette. Contact her with any issues. -->
-    <script src="https://use.typekit.net/stz3kpn.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-    <link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" title="Ember.js - Blog" />
-    <%= yield_content :head %>
-  </head>
-
-  <body class="guides <%= page_classes %>">
-
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag 'common-old-ie' %>
-    <![endif]-->
-    <!--[if gte IE 9]><!-->
-      <%= javascript_include_tag 'common-modern' %>
-    <!--<![endif]-->
-
-    <%= partial "header" %>
-
-
-    <%= yield_content :outside_wrapper %>
-
-    <main class="container">
-      <%= partial "sidebar" %>
-
-      <article class="chapter">
         <h1>
           <%= page_title %>
           <a href="https://github.com/emberjs/guides/edit/master/source/localizable/<%= current_page.path.gsub('html', 'md') %>"
@@ -44,28 +6,3 @@
         <hr>
 
         <%= yield %>
-
-
-        <%= chapter_links %>
-      </article>
-    </main>
-
-    <%= partial "footer" %>
-
-    <%= yield_content :foot %>
-
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
-      _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
-      _gaq.push(['_setAccount', 'UA-27675533-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-  </body>
-</html>

@@ -1,0 +1,17 @@
+<article class="chapter">
+<!-- FIXME: work out how to get this (including title) out of Middleman and into Ember
+<h1>
+  {{title}}
+  <a href="https://github.com/emberjs/guides/edit/master/source/<%= current_page.path.gsub('html', 'md') %>"
+     target="_blank" class="edit-page icon-pencil">Edit Page</a>
+  </h1>
+  <hr>
+   -->
+
+  {{display-html model.html}}
+  {{outlet}}
+
+  <!-- FIXME: re-implement chapter links
+  <%= chapter_links %>
+  //-->
+</article>
