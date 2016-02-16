@@ -11,9 +11,9 @@ Começar em Ember.js é fácil. Projetos Ember.js são criados e gerenciados atr
 
 ### Node. js e npm
 
-Ember CLI é construída com JavaScript e espera o "runtime" [Node.js](https://nodejs.org/). Ela também precisa de dependências buscadas através do [npm](https://www.npmjs.com/). npm é empacotado com node. js, então se seu computador tem Node.js instalado, você está pronto para começar.
+Ember CLI é construída com JavaScript e espera o "runtime" [Node.js](https://nodejs.org/). Ela também precisa de dependências buscadas através do [npm](https://www.npmjs.com/). npm é empacotado com Node.js, então, se seu computador tem Node.js instalado, você está pronto para começar.
 
-Ember requer node.js 0.12 ou superior e npm 2.7 ou superior. Caso não tenha certeza se tem a versão correta, execute isso na sua linha de comando:
+Ember requer Node.js 0.12 ou superior e npm 2.7 ou superior. Caso não tenha certeza se tem a versão correta, execute isso na sua linha de comando:
 
 ```bash
 node --version
@@ -42,7 +42,7 @@ Com PhantomJs, você pode rodar seus testes da linha de comando, sem precisar ab
 
 ## Instalação
 
-Instale Ember usando npm:
+Instale o Ember CLI usando npm:
 
 ```bash
 npm install -g ember-cli@beta
