@@ -6,7 +6,7 @@ Nós vamos cobrir estas etapas:
   2. Criando um novo aplicativo
   3. Definindo uma rota
   4. Escrevendo um componente de UI (Interface com o Usuário)
-  5. Construindo seu aplicativo para ser implantado em produção
+  5. Construindo seu aplicativo para ser instalado ("deployed") em produção
 
 ## Instalando o Ember
 
@@ -29,7 +29,7 @@ ember new ember-quickstart
 Este comando irá criar um novo diretório chamado `ember-quickstart` e configurar um novo aplicativo de Ember dentro dela. De cara, seu aplicativo irá incluir:
 
 * Um servidor para desenvolvimento
-* Compilação de Template
+* Compilação de "Template"
 * "Minificação" de arquivos JavaScript e CSS
 * Funcionalidades ES2015 através da biblioteca Babel
 
@@ -97,10 +97,9 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
     
     Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para apresentar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
     
-    We'll take the code created for us by the generator and add a `model()`
-    method to the `Route`:
+    Vamos pegar o código criado pelo gerador e adicionar um método `model()` à `Route` (Rota):
     
-    ```app/routes/scientists.js{+4,+5,+6}
+     ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
     
     export default Ember.Route.extend({
