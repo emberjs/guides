@@ -1,6 +1,6 @@
-Initializers provide an opportunity to configure your application as it boots.
+イニシャライザはアプリケーション起動時にアプリケーションを設定する機会を提供します。
 
-There are two types of initializers: application initializers and application instance initializers.
+イニシャライザには、アプリケーションイニシャライザとアプリケーションインスタンスイニシャライザの２種類があります。
 
 Application initializers are run as your application boots, and provide the primary means to configure [dependency injections](../dependency-injection) in your application.
 

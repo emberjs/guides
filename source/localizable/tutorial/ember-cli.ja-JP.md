@@ -2,7 +2,7 @@ Ember CLIはEmberのコマンドラインインターフェイスです、標準
 
 ## 新規アプリケーションの作成
 
-To create a new project using Ember CLI, use the `new` command. In preparation for the tutorial in the next section, you can make an app called `super-rentals`.
+Ember CLI を使って新規のプロジェクトを作るには、`new`コマンドを使います。チュートリアルの次のセクションので利用するために、`super-rentals`を作ります。.
 
 ```shell
 ember new super-rentals
@@ -10,7 +10,7 @@ ember new super-rentals
 
 ## ディレクトリ構造
 
-The `new` command generates a project structure with the following files and directories:
+`new` コマンドは次のファイルとディレクトリ構造を含んだ、プロジェクトを作成します。
 
 ```text
 |--app
@@ -30,31 +30,31 @@ README.md
 testem.json
 ```
 
-Let's take a look at the folders and files Ember CLI generates.
+Ember CLI が作成した、ファイルとディレクトリを確認してみましょう。
 
-**app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
+**app**: この配下にモジュール、コンポーネント、ルート、テンプレートそしてスタイルシートが含まれています。Emberプロジェクトでのコーディングはこの中で行われます。
 
-**bower_components / bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, jQuery, Ember Data and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here and added to the `bower_components` directory.
+**bower_components / bower.json**: Bower は依存関係を管理するツールです。 Ember CLI ではフロントエンドのプラグインとコンポーネント(HTML、 CSS、 JavaScript、 など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components` ディレクトリにインストールされます。 `bower.json`を開くと自動的にインストールされる、Ember、jQuery、Ember Data と QUnit (テストで利用される)が一連の依存関係を確認できます。 もし、追加のフロントエンドに関する依存関係を(例えばBootstrapなど) を追加すれば`bower_components` にリストアップされるのを確認できます。
 
-**config**: The config directory contains the `environment.js` where you can configure settings for your app.
+**config**: アプリケーションの設定を行う`environment.js` が含まれています。
 
-**dist**: When we build our app for deployment, the output files will be created here.
+**dist**: デプロイメント用のアプリケーションをビルドすると、この配下に出力されます。
 
-**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember-CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
+**node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネジャーです。 Ember は Node で書かれていて、様々なNode.js モジュールを利用しています。 `Package.json` ファイルは、アプリケーションが利用している、 npm の依存関係を管理しています。追加でインストールしたEmber-CLI add-ons があれば、それもこのリストで管理されます。 `package.json`に乗っているパッケージは、node_modules ディレクトリにインストールされます。
 
-**public**: This directory contains assets such as images and fonts.
+**public**: このディレクトリには、画像ファイルやフォントなどの資産が含まれています。
 
-**vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
+**vendor**: このディレクトリはBower によって管理されていないフロント エンド (JavaScript、CSS など) の依存関係が行きます。
 
-**tests / testem.json**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.json`.
+**tests / testem.json**: アプリケーションの自動テストファイルは、`tests` フォルダーに、`testem.json` にはEmber CLI のテスト ランナー **testem** の設定ファイルがあります。.
 
-**tmp**: Ember CLI temporary files live here.
+**tmp**: Ember CLI の一時ファイルはここにあります。
 
-**ember-cli-build.js**: This file describes how Ember CLI should build our app.
+**ember-cli-build.js**: このファイルには、Ember CLIがどのようにアプリケーションをビルドすべきかが記載されています。
 
 ## ES6 モジュール
 
-If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
+`app/router.js`を見るとすぐに、あまり馴染みのないコードに気がつくかもしれません。
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -64,21 +64,14 @@ Router.map(function() { });
 
 export default Router;
 
-    <br />Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
-    code.
-    For example, the line `import Ember from 'ember';` gives us access to the actual
-    Ember.js library as the variable `Ember`. And the `import config from
-    './config/environment';` line gives us access to our app's configuration data
-    as the variable `config`. At the end of the file, `export default Router;
-    ` makes the `Router` variable defined in this file available to other parts
-    of the app.
+    <br />Ember CLI は ECMAScript 2015 (省略してES2015、または、ES6とも呼ばれる。) モジュールを、コードの整理のために利用しています。
+    例えば、`import Ember from 'ember';` という行は、Ember.js ライブラリーを `Ember`という変数で利用できるようにします。 また`import config from
+    './config/environment';` は、 `config` という変数でアプリケーションの環境設定を利用できるようにします。 ファイルの終わりの `export default Router;
+    ` はこのファイルで記述したコードが、変数 `Router` としてアプリケーションの、他のパーツでも利用できるようにしています。
     
-    ## Upgrading Ember
+    ## Emberのアップグレード
     
-    Before continuing to the tutorial, make sure that you have the most recent
-    version of Ember installed. If the versions of `ember` and `ember-data` in
-    `bower.json` are lower than the version number in the upper-left corner of these
-    Guides, update the version numbers in `bower.json` and then run `bower install`.
+    チュートリアルの先に進む前に、インストールされた、Ember が最新のバージョンであることを確認してください。 もし 、`bower.json`ファイルに記載のある、`ember` や`ember-data`ガイドの左上にあるバージョン番号よりも低い場合は、`bower.json` ないのバージョン番号を、編集してから `bower install`コマンドを実行して、Emberのバージョンを更新してください。
     
     ## 開発用サーバー
     新規アプリケーションができていることを確かめるためには、開発用サーバーを起動することで確認できます。
@@ -93,4 +86,4 @@ export default Router;
 ember s
 ```
 
-If we navigate to `localhost:4200`, we'll see our brand new app displaying the text "Welcome to Ember".
+ブラウザで `localhost:4200`を開くと、真新しいアプリケーションが、 "Welcome to Ember"　と表示されているが確認できるはずです。
