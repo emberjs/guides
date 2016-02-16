@@ -5,8 +5,8 @@ Nós vamos cobrir estas etapas:
   1. Instalando o Ember
   2. Criando um novo aplicativo
   3. Definindo uma rota
-  4. Escrevendo um componente de UI
-  5. Construindo seu app para ser implantado em produção
+  4. Escrevendo um componente de UI (Interface com o Usuário)
+  5. Construindo seu aplicativo para ser implantado em produção
 
 ## Instalando o Ember
 
@@ -26,7 +26,7 @@ Uma vez instalado Ember através do npm, você terá acesso a um novo comando `e
 ember new ember-quickstart
 ```
 
-Este único comando irá criar um novo diretório chamado `ember-quickstart` e configurar um novo aplicativo de Ember dentro dela. De cara, seu aplicativo irá incluir:
+Este comando irá criar um novo diretório chamado `ember-quickstart` e configurar um novo aplicativo de Ember dentro dela. De cara, seu aplicativo irá incluir:
 
 * Um servidor para desenvolvimento
 * Compilação de Template
