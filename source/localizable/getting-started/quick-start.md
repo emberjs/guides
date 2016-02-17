@@ -3,11 +3,11 @@ scratch.
 
 We'll cover these steps:
 
-1. Installing Ember
-2. Creating a new application
-3. Defining a route
-4. Writing a UI component
-5. Building your app to be deployed to production
+1. Installing Ember.
+2. Creating a new application.
+3. Defining a route.
+4. Writing a UI component.
+5. Building your app to be deployed to production.
 
 ## Install Ember
 
@@ -36,10 +36,10 @@ This one command will create a new directory called `ember-quickstart`
 and set up a new Ember application inside of it.  Out of the box, your
 application will include:
 
-* A development server
-* Template compilation
-* JavaScript and CSS minification
-* ES2015 features via Babel
+* A development server.
+* Template compilation.
+* JavaScript and CSS minification.
+* ES2015 features via Babel.
 
 By providing everything you need to build production-ready web
 applications in an integrated package, Ember makes starting new projects
@@ -105,10 +105,10 @@ installing route-test
 
 That's Ember telling you that it has created:
 
-1. A template to be displayed when the user visits `/scientists`
-2. A `Route` object that fetches the model used by that template
-3. An entry in the application's router (located in `app/router.js`)
-4. A unit test for this route
+1. A template to be displayed when the user visits `/scientists`.
+2. A `Route` object that fetches the model used by that template.
+3. An entry in the application's router (located in `app/router.js`).
+4. A unit test for this route.
 
 Open the newly-created template in `app/templates/scientists.hbs` and add
 the following HTML:

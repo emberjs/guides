@@ -18,5 +18,4 @@ URL to one or more route handlers. A route handler can do several things:
 * It can load a model that is then available to the template.
 * It can redirect to a new route, such as if the user isn't allowed to visit
 that part of the app.
-* It can handle actions that involve changing a model or transitioning to a new
-route.
+* It can handle actions that involve changing a model or transitioning to a new route.

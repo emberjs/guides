@@ -5,13 +5,13 @@ An [`Ember.Service`][1] is a long-lived Ember object that can be made available 
 Services are useful for features that require shared state or persistent connections. Example uses of services might
 include:
 
-* User/session authentication
-* Geolocation
-* Web Sockets
-* Server-sent events or notifications
-* Server-backed API calls that may not fit Ember Data
-* Third-party APIs
-* Logging
+* User/session authentication.
+* Geolocation.
+* Web Sockets.
+* Server-sent events or notifications.
+* Server-backed API calls that may not fit Ember Data.
+* Third-party APIs.
+* Logging.
 
 ### Defining Services
 

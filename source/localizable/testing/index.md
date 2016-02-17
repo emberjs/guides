@@ -52,30 +52,22 @@ Examples of integration tests are:
 
 * An author's full name and date are properly displayed in a blog post.
 * A user is prevented from typing more than 50 characters into post's title field.
-* Submitting a post without a title displays a red validation state on the field and gives
-the user text indicating that the title is required.
+* Submitting a post without a title displays a red validation state on the field and gives the user text indicating that the title is required.
 * The blog post list scrolls to position a new post at the top of the viewport.
 
 ### Testing Frameworks
 
-[QUnit] is the default testing framework for this guide, but others are supported through
-third-party addons.
+[QUnit] is the default testing framework for this guide, but others are supported through third-party addons.
 
 ### How to Run Your Tests
 
-Run your tests with `ember test` on the command-line. You can re-run your tests on every
-file-change with `ember test --server`.
+Run your tests with `ember test` on the command-line. You can re-run your tests on every file-change with `ember test --server`.
 
-Tests can also be executed when you are running a local development server (started by
-running `ember server`), at the `/tests` URI which renders the `tests/index.html` template.
+Tests can also be executed when you are running a local development server (started by running `ember server`), at the `/tests` URI which renders the `tests/index.html` template.
 A word of caution using this approach:
-Tests run using `ember server` have the environment configuration `development`, whereas tests executed
-under `ember test --server` are run with the configuration `test`.  This could cause
-differences in execution, such as which libraries are loaded and available.  Therefore its
-recommended that you use `ember test --server` for test execution.
+Tests run using `ember server` have the environment configuration `development`, whereas tests executed under `ember test --server` are run with the configuration `test`.  This could cause differences in execution, such as which libraries are loaded and available.  Therefore its recommended that you use `ember test --server` for test execution.
 
-These commands run your tests using [Testem] to make testing multiple browsers very easy. You
-can configure Testem using the `testem.json` file in your application root.
+These commands run your tests using [Testem] to make testing multiple browsers very easy. You can configure Testem using the `testem.json` file in your application root.
 
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/

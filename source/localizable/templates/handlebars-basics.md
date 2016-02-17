@@ -1,18 +1,12 @@
 Ember.js uses the [Handlebars templating library](http://www.handlebarsjs.com)
-to power your app's user interface. Handlebars templates contain static HTML and
-dynamic content inside Handlebars expressions, which are invoked with double
-curly braces: `{{}}`.
+to power your app's user interface. Handlebars templates contain static HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
 
-Dynamic content inside a Handlebars expression is rendered with data-binding. This means if
-you update a property, your usage of that property in a template will be
-automatically updated to the latest value.
+Dynamic content inside a Handlebars expression is rendered with data-binding. This means if you update a property, your usage of that property in a template will be automatically updated to the latest value.
 
 ### Displaying Properties
 
 Templates are backed with a context. A context is an object from which
-Handlebars expressions read their properties. In Ember this is often a component. For
-templates rendered by a route (like `application.hbs`), the context is a
-controller.
+Handlebars expressions read their properties. In Ember this is often a component. For templates rendered by a route (like `application.hbs`), the context is a controller.
 
 For example, this `application.hbs` template will render a first and last name:
 

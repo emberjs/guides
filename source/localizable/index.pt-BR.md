@@ -25,8 +25,8 @@ Typos, missing words, code samples with errors are all considered documentation 
 
 Some of the more common ways to report a problem with the guides are:
 
-* Using the pencil icon on the top-right of each guide page
-* Opening an issue/pull request to [the GitHub repository](https://github.com/emberjs/guides/)
+* Using the pencil icon on the top-right of each guide page.
+* Opening an issue/pull request to [the GitHub repository](https://github.com/emberjs/guides/).
 
 Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
 
