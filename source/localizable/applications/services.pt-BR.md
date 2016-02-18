@@ -1,14 +1,14 @@
 An [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) is a long-lived Ember object that can be made available in different parts of your application.
 
-Example uses of services include:
+Services are useful for features that require shared state or persistent connections. Example uses of services might include:
 
-* Logging
 * User/session authentication
 * Geolocation
-* Third-party APIs
 * Web Sockets
 * Server-sent events or notifications
 * Server-backed API calls that may not fit Ember Data
+* Third-party APIs
+* Logging
 
 ### Defining Services
 
@@ -23,6 +23,7 @@ Services must extend the [`Ember.Service`](http://emberjs.com/api/classes/Ember.
 ```app/services/shopping-cart.js export default Ember.Service.extend({ });
 
     <br />Like any Ember object, a service is initialized and can have properties and methods of its own.
+    Below the shopping cart service manages an items array that represents the items currently in the shopping cart.
     
     ```app/services/shopping-cart.js
     export default Ember.Service.extend({
@@ -49,41 +50,41 @@ Services must extend the [`Ember.Service`](http://emberjs.com/api/classes/Ember.
 
 ### Accessing Services
 
-To access a service, inject it either in an initializer or with `Ember.inject`:
+To access a service, you can inject it in any container-resolved object such as a component or another service using the `Ember.inject.service` function. There are 2 ways to use this function. You can either invoke it with no arguments, or you can pass it the registered name of the service. When no arguments are passed the services is loaded based in the name of the variable key. You can load the shopping cart service with no arguments like below.
 
-```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
+```app/components/cart-contents.js export default Ember.Component.extend({ //will load the service in file /app/services/shopping-cart.js shoppingCart: Ember.inject.service() });
 
-    <br />This injects the shopping cart service into the component and makes it available as the `cart` property.
+    <br />The other way to inject a service is to provide the name of the service as the argument.
     
-    You can then access properties and methods on the service:
-    
-    ```app/components/cart-contents.js
-    export default Ember.Component.extend({
-      cart: Ember.inject.service('shopping-cart'),
-    
-      actions: {
-        remove(item) {
-          this.get('cart').remove(item);
-        }
-      }
-    });
-    
-
-```app/templates/components/cart-contents.hbs 
-
-{{#each cart.items as |item|}} 
-
-* {{item.name}} <button {{action "remove" item}}>Remove</button>  {{/each}} 
-
-    <br />The injected property is lazy; the service will not be instantiated until the property is explicitly called.
-    It will then persist until the application exits.
-    
-    If no argument is provided to `service()`, Ember will use the dasherized version of the property name:
     
     ```app/components/cart-contents.js
     export default Ember.Component.extend({
-      shoppingCart: Ember.inject.service()
+      //will load the service in file /app/services/shopping-cart.js
+      cart: Ember.inject.service('shopping-cart')
     });
     
 
-This also injects the shopping cart service, as the `shoppingCart` property.
+This injects the shopping cart service into the component and makes it available as the `cart` property.
+
+Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called. Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
+
+Once loaded, a service will persist until the application exits.
+
+Below we add a remove action to the `cart-contacts` component. Notice that below we access the `cart` service with a call to`this.get`.
+
+```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart'),
+
+actions: { remove(item) { this.get('cart').remove(item); } } });
+
+    Once injected into a component, a service can also be used in the template.
+    Note `cart` being used below to get data from the cart.
+    
+    ```app/templates/components/cart-contents.hbs
+    <ul>
+      {{#each cart.items as |item|}}
+        <li>
+          {{item.name}}
+          <button {{action "remove" item}}>Remove</button>
+        </li>
+      {{/each}}
+    </ul>

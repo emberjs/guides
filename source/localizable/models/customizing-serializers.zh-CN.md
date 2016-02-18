@@ -442,7 +442,7 @@ For example if your `post` model contained an embedded `author` record that look
 
 You would define your relationship like this:
 
-```app/serializers/post.js export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, { attrs: { author: { serialize: 'records', deserialize: 'records' } } });
+```app/serializers/post.js export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, { attrs: { authors: { serialize: 'records', deserialize: 'records' } } });
 
     <br />If you find yourself needing to both serialize and deserialize the
     embedded relationship you can use the shorthand option of `{ embedded:
@@ -451,7 +451,7 @@ You would define your relationship like this:
     ```app/serializers/post.js
     export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
       attrs: {
-        author: { embedded: 'always' }
+        authors: { embedded: 'always' }
       }
     });
     

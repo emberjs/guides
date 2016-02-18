@@ -1,26 +1,26 @@
-Before you start writing any Ember code, it's a good idea to get an overview of how an Ember application works.
+Antes de começar a escrever qualquer código de Ember, é uma boa idéia obter uma visão geral de como funciona um aplicativo Ember.
 
 ![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
 
 ## Router and Route Handlers
 
-Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember.js, the answer to these questions is determined by the URL. The URL can be set in a few ways:
+Imagine que estamos escrevendo um aplicativo da web para um sítio que permite ao usuário listar suas propriedades para alugar. Em qualquer momento, deve ser capaz de responder a perguntas sobre o estado atual como *que aluguel estão olhando?* e *eles estão a editá-lo?* Em Ember, a resposta a estas perguntas é determinada pelo URL. O URL pode ser definido de algumas maneiras:
 
-* The user loads the app for the first time.
-* The user changes the URL manually, such as by clicking the back button or by editing the address bar.
-* The user clicks a link within the app.
-* Some other event in the app causes the URL to change.
+* O usuário carrega o aplicativo pela primeira vez.
+* O usuário altera o URL manualmente, por exemplo clicando no botão voltar ou editando a barra de endereços.
+* O usuário clica em uma ligação dentro do aplicativo.
+* Algum outro evento no aplicativo que faz mudar o URL.
 
 No matter how the URL gets set, the first thing that happens is that the Ember router maps the URL to a route handler.
 
 The route handler then typically does two things:
 
-* It renders a template.
-* It loads a model that is then available to the template.
+* Ele renderiza uma template.
+* Ele carrega o modelo que estará disponível na template.
 
 ## Templates
 
-Ember.js uses templates to organize the layout of HTML in an application.
+Ember usa templates para organizar a estrutura HTML de um aplicativo.
 
 Most templates in an Ember codebase are instantly familiar, and look like any fragment of HTML. For example:
 
@@ -28,7 +28,7 @@ Most templates in an Ember codebase are instantly familiar, and look like any fr
 <div>Hi, this is a valid Ember template!</div>
 ```
 
-Ember templates use the syntax of [Handlebars](http://handlebarsjs.com) templates. Anything that is valid Handlebars syntax is valid Ember syntax.
+Templates Ember usam a sintaxe [Handlebars](http://handlebarsjs.com). Tudo o que é sintaxe válida do Handlebars é sintaxe válida de Ember.
 
 Templates can also display properties provided to them from their context, which is either a component or a route (technically, a controller presents the model from the route to the template, but this is rarely used in modern Ember apps and will be deprecated soon). For example:
 
@@ -36,13 +36,13 @@ Templates can also display properties provided to them from their context, which
 <div>Hi {{name}}, this is a valid Ember template!</div>
 ```
 
-Here, `{{name}}` is a property provided by the template's context.
+Aqui, `{{name}}` é uma propriedade fornecida pelo contexto da template.
 
-Besides properties, double curly braces (`{{}}`) may also contain helpers and components, which we'll discuss later.
+Além de propriedades, duplas chavetas (`{{}}`) podem conter também auxiliares e componentes, que discutiremos mais tarde.
 
-## Models
+## Modelos
 
-Models represent persistent state.
+Modelos representam um estado persistente.
 
 For example, a property rentals application would want to save the details of a rental when a user publishes it, and so a rental would have a model defining its details, perhaps called the *rental* model.
 

@@ -44,7 +44,7 @@ The Handlebars template looks like this:
           this.get('search')(this.get('filter'));
         },
         choose(city) {
-          this.set('filter',city);
+          this.set('filter', city);
         }
       }
     });
@@ -102,7 +102,7 @@ Now, define your new controller like so:
     
     ```app/mirage/config.js
     export default function() {
-      this.get('/rentals', function(db,request) {
+      this.get('/rentals', function(db, request) {
         let rentals = [{
             type: 'rentals',
             id: 1,
@@ -143,8 +143,7 @@ Now, define your new controller like so:
             return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
           });
           return { data: filteredRentals };
-        }
-        else {
+        } else {
           return { data: rentals };
         }
       });

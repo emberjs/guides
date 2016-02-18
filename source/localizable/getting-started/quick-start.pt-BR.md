@@ -59,7 +59,7 @@ No seu editor, altere o texto dentro do `< h1 >` de `Welcome do Ember` para `Peo
 
 ## Definindo uma Rota
 
-Vamos construir um aplicativo que mostra uma lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por enquanto, você pode pensar de rotas como sendo diferentes páginas que compõem o seu aplicativo.
+Vamos construir um aplicativo que mostra uma lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por enquanto, você pode pensar em rotas como sendo diferentes páginas que compõem o seu aplicativo.
 
 Ember vem com *geradores* que automatizam o código padrão para tarefas comuns. Para gerar uma rota, digite o seguinte em seu terminal:
 
@@ -95,7 +95,7 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
     <br />No seu navegador, abra
     [http://localhost:4200/scientists](http://localhost:4200/scientists). Você deverá ver o `<h2>` que colocou no "template" `scientists.hbs`, logo abaixo do `<h1>` do nosso "template" `application.hbs`.
     
-    Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para apresentar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
+    Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para mostrar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
     
     Vamos pegar o código criado pelo gerador e adicionar um método `model()` à `Route` (Rota):
     

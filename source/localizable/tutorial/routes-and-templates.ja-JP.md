@@ -1,34 +1,34 @@
-To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals. It will start with a homepage, an about page and a contact page. Let's take a look at the application from the user perspective before we get started.
+Ember アプリケーションの基本的な準備と、順序を示すために、この項目では、Super Rentalsという資産レンタルのEmber アプリケーションの構築を順を追って示していきます。 homeページ、aboutページと、contact ページから始めましょう。 その前に、ユーザーの目線でアプリケーションを見てみましょう。
 
 ![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
 
-We arrive at the home page which shows a list of rentals. From here, we will be able to navigate to an about page and a contact page.
+ホームページはレンタルのリストを表示しています。ここから、about ページと contact ページに遷移することができます。
 
-Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
+まっさらの`super-rentals`というEmber CLI アプリケーションが起動していることを、確認してください。
 
 ```shell
 ember new super-rentals
 ```
 
-Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the `{{outlet}}` code in place. We'll talk more about the role of the `application.hbs` file after our site has a few routes.
+アプリケーションの３つのページを構築する前に、 `app/templates/application.hbs` ファイルの内容を`{{outlet}}` 意外、消去します。 `application.hbs` ファイルのルールについては、アプケーションにツートをいくつか作った後で説明します。
 
-Now, let's start by building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, *about.js*. The route handler then loads a template.
+では、まず　"about" ページを作成してみましょう。 URL `/about`が読み込まれると、URLと同じ名前のルーターハンドラー *about.js*をマップしているということを、念頭においてください。 その後、ルートハンドラがテンプレートを読み込みます。
 
-## An About Route
+## ルートに関して
 
-If we run `ember help generate`, we can see a variety of tools that come with Ember for automatically generating files for various Ember resources. Let's use the route generator to start our `about` route.
+`ember help generate`を実行すると、Ember とともにインストールされる、様々なEmber リソースのファイルを自動生成できるツールについて、確認ができます。 ルートジェネレータを使って、`about`ルートの作成を、初めて行きましょう。
 
 ```shell
 ember generate route about
 ```
 
-or for short,
+次の省略形でも、同じ結果が実行でします。
 
 ```shell
 ember g route about
 ```
 
-We can then see what actions were taken by the generator:
+実行後、ジェネレータ実行することを確認することができます。
 
 ```shell
 installing route
@@ -40,9 +40,9 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-Three new files are created: one for the route handler,one for the template the route handler will render, and a test file. The fourth file that is touched is the router.
+新規で３つのファイルが生成されます: 一つはルートハンドラー、一つはルートハンドラーが描画するテンプレート、最後の一つはテストファイル。4つ目のファイルルーターには編集が加えられています。
 
-When we open the router, we can see that the generator has mapped a new *about* route for us. This route will load the `about` route handler.
+ルーターファイルを開くと、ジェネレータが自動的に*about*ルートをマップしてることが、確認できます。このルートが`about`のルートハンドラーを読み込みます。
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -52,11 +52,11 @@ Router.map(function() { this.route('about'); });
 
 export default Router;
 
-    <br />By default, the `about` route handler loads the `about.hbs` template.
-    This means we don't actually have to change anything in the new `app/routes/about.js` file for the `about.hbs` template to render as we want.
+    <br />デフォルトで、`about`ルートハンドラーは`about.hbs` テンプレートを読み込みます。
+    これは`app/routes/about.js` に変更しなくても、 `about.hbs` が表示されることを意味しています。
     
-    With all of the routing in place from the generator, we can get right to work on coding our template.
-    For our `about` page, we'll add some HTML that has a bit of information about the site:
+    ジェネレータによって必要なルーティングが完了しているので、すぐにテンプレートのコーディングが行えます。
+    `about`ページ:　このサイトに関する情報のHTMLを追加しましょう。
     
     ```app/templates/about.hbs
     <h2>About Super Rentals</h2>
@@ -66,19 +66,19 @@ export default Router;
     AND building Ember applications.</p>
     
 
-Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server, and then go to `localhost:4200/about` to see our new app in action!
+`ember serve`(省略形だと`ember s`)を実行して、シェルからEmberの開発サーバーを起動しましょう、その後ブラウザで`localhost:4200/about`を開くとアプリケーションが確認できます。
 
-## A Contact Route
+## Contact ルート
 
-Let's create another route with details for contacting the company. Once again, we'll start by generating a route, a route handler, and a template.
+続いて、会社のコンタクト情報を記載するルートを作成しましょう。もう一度、ルート、ルートハンドラー、テンプレートを自動生成することから始めます。
 
 ```shell
 ember g route contact
 ```
 
-We see that our generator has created a `contact` route in the `app/router.js` file, and a corresponding route handler in `app/routes/contact.js`. Since we will be using the `contact` template, the `contact` route does not need any additional changes.
+ジェネレータコマンドを実行され、`app/router.js`ないに`contact` ルートが作成され、`app/routes/contact.js`には該当するルートが作成されます。 `contact`テンプレートを利用していくので、`contact`ルートには編集をする必要がありません。
 
-In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
+`contact.hbs`テンプレートには Super Rentals HQのコンタクト情報を追記します:
 
 ```app/templates/contact.hbs 
 
@@ -96,17 +96,16 @@ Super Rentals HQ
 
 <superrentalsrep@superrentals.com>
 
-    <br />Now we have completed our second route.
-    If we go to the URL `localhost:4200/contact`, we'll arrive on our contact page.
+    <br />これで、２番目のルートが完成しました。
+    該当のURL `localhost:4200/contact` にアクセスすると、contactページが表示されます。
     
-    ## Navigating with Links and the {{link-to}} Helper
+    ## リンクによるナビゲーションと {{link-to}} ヘルバー
     
-    We really don't want users to have to know our URLs in order to move around our site,
-    so let's add some navigational links at the bottom of each page.
-    Let's make a contact link on the about page and an about link on the contact page.
+    アプリケーション内を遷移するのに、ユーザーがURLを知る必要があるようなこと望んでません、そこで各ページの下部にナビゲーション用のリンクを追加しましょう。
+    それではaboutページにcontactページへのリンク、aboutページにはcontactへのリンクを作ります。
     
-    Ember has built-in **helpers** that provide functionality such as linking to other routes.
-    Here we will use the `{{link-to}}` helper in our code to link between routes:
+    Ember には他のルートへのリンクなどの機能を提供する**ヘルパー** が組み込まれています。
+    ここではルーター間のリンクするために、 `{{link-to}}` ヘルパーを利用します:
     
     ```app/templates/about.hbs
     <h2>About Super Rentals</h2>
@@ -118,11 +117,11 @@ Super Rentals HQ
     {{#link-to "contact"}}Click here to contact us.{{/link-to}}
     
 
-The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page, we now have a working link to our contact page.
+`{{link-to}}` ヘルパーは、リンクする先のルーター名を引数として一つとります。この場合は`contact`がそれにあたります。 about ページを確認するとcontact ページへのリンクが機能していることが確認できます。
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
+`contact`ページと`about` の間で移動ができるように、次は contact ページにリンクを追加します。.
 
 ```app/templates/contact.hbs 
 
@@ -141,16 +140,16 @@ superrentalsrep@superrentals.com
 
 {{#link-to "about"}}About{{/link-to}}
 
-    <br />## An Index Route
+    <br />## Index ルート
     
-    With our two static pages in place, we are ready to add our home page which welcomes users to the site.
-    Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
+    静的パージが二つ完成したので、ユーザーを迎える home を追加する準備ができました。
+    about ページと contact ページのプロセスと同様に、`index`という名前のルートを生成することから始めます。
     
     ```shell
     ember g route index
     
 
-We can see the now familiar output for the route generator:
+ルートジェネレータの出力はすでに馴染みななっているものです。
 
 ```shell
 installing route
@@ -160,9 +159,9 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at nested routes in Ember.
+作成してきた他のルートハンドラーとは違い、`index`ルートは特別で、ルートマッピングにエントリーは必要ありません。 どうしてエントリーの必要がないのか、に関してはネストされたEmberのルートを扱う際に詳細を説明します。
 
-Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
+`index.hbs`にhome ページ用のHTMLとアプリケーション内の他のルートへのリンクを追加します。
 
 ```app/templates/index.hbs 
 
