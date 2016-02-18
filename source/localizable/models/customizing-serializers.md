@@ -557,7 +557,7 @@ You would define your relationship like this:
 ```app/serializers/post.js
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
-    author: {
+    authors: {
       serialize: 'records',
       deserialize: 'records'
     }
@@ -572,7 +572,7 @@ embedded relationship you can use the shorthand option of `{ embedded:
 ```app/serializers/post.js
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
-    author: { embedded: 'always' }
+    authors: { embedded: 'always' }
   }
 });
 ```
