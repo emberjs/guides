@@ -17,9 +17,9 @@ The template inside of the `{{#each}}` block will be repeated once for each item
 Given an input array like:
 
 ```js
-[ {name: 'Yehuda'},
-  {name: 'Tom'   },
-  {name: 'Trek'  } ]
+[ { name: 'Yehuda' },
+  { name: 'Tom' },
+  { name: 'Trek' } ]
 ```
 
 The above template will render HTML like this:
