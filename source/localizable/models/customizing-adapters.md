@@ -75,7 +75,7 @@ communicates with based on the name of the model. For example, if you
 ask for a `Post` by ID:
 
 ```js
-store.find('post', 1).then(function(post) {
+store.findRecord('post', 1).then(function(post) {
 });
 ```
 
