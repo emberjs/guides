@@ -5,6 +5,8 @@ require 'support-for'
 
 Dir['./lib/*'].each { |f| require f }
 
+ignore /[a-z]{2}-[A-Z]{2}$/
+
 # Debugging
 set(:logging, ENV['RACK_ENV'] != 'production')
 
