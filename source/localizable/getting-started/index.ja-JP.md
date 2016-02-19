@@ -1,11 +1,11 @@
 Ember.js を始めるは簡単です。Ember.js プロジェクトを作成して、コマンド ライン ビルド ツール Ember CLI を利用して管理します。 Ember CLI は次の機能をを提供しています。
 
-* Modern application asset management (including concatenation, minifying, and versioning).
-* Generators to help create components, routes, and more.
+* モダンなアプリケーション資産管理 (連結、縮小、およびバージョン管理をが含まれています。)
+* コンポーネントや、ルートなどの作成するためジェネレーター。
 * コンベンショナルなプロジェクトのレイアウトは、既存のEmber.jsアプリケーションへのアプローチを簡単にします。
-* Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
-* A complete [QUnit](https://qunitjs.com/) test harness.
-* The ability to consume a growing ecosystem of Ember Addons.
+* [Babel プロジェクト](http://babeljs.io/docs/learn-es2015/)経由で、JavaScript ES2015/ES6 をサポートします。 This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
+* 完全な [QUnit](https://qunitjs.com/) テスト ハーネス
+* 成長を続ける、Ember Addonsのエコシステムが利用できます。
 
 ## 依存関係
 

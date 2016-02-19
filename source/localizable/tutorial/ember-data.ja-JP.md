@@ -23,7 +23,7 @@ export default DS.Model.extend({
 
 });
 
-    <br />Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
+    <br />ハードコードされた、JavaScriptオブジェクトの配列にレンタル品の要素を追加しましょう。
     _title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
     
     ```app/models/rental.js

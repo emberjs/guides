@@ -2,11 +2,11 @@
 
 次の手順について、説明しています。
 
-  1. Installing Ember.
-  2. Creating a new application.
-  3. Defining a route.
-  4. Writing a UI component.
-  5. Building your app to be deployed to production.
+  1. Ember のインストール
+  2. 新しいアプリケーションの作成。
+  3. ルートの定義。
+  4. UI コンポーネントの記述
+  5. あなたのアプリケーションをプロダクションにデプロイするためのビルド。
 
 ## Ember のインストール
 
@@ -28,10 +28,10 @@ ember new ember-quickstart
 
 このコマンドで新しい、 `ember-quickstart`というディレクトリが作成され、内部に新しい Ember アプリケーションが準備されます。あなたのアプリケーションにはすでに、次のものが含まれています。
 
-* A development server.
-* Template compilation.
-* JavaScript and CSS minification.
-* ES2015 features via Babel.
+* 開発用サーバー
+* テンプレートの編集
+* JavaScript と CSS の圧縮
+* Babelを介したES2015 の機能
 
 Emberは、あなたのWebアプリケーションがプロダクションに必要なものを全て統合されたパッケージにすることで、新規のプロジェクトを始めるのを爽やかなものにします。
 
@@ -82,9 +82,9 @@ installing route-test
 Ember が次のことを行ったことを意味しています。
 
   1. ユーザーが`/scientists`を訪れた時に表示されるテンプレート.
-  2. A `Route` object that fetches the model used by that template.
+  2. テンプレートがモデルを取得する際に利用する`ルート`
   3. アプリケーションが利用するルーターのエントリ(`App/router.js` に存在する).
-  4. A unit test for this route.
+  4. このルートのためのユニットテスト
 
 `app/templates/scientists.hbs` を開いて、以下のHTMLを追加してください。
 
