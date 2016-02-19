@@ -24,7 +24,7 @@ Don't have npm? [Learn how to install Node.js and npm here][npm].
 
 ## Create a New Application
 
-Once you've installed Ember via npm, you will have access to a new
+Once you've installed Ember CLI via npm, you will have access to a new
 `ember` command in your terminal. You can use the `ember new` command to
 create a new application.
 
