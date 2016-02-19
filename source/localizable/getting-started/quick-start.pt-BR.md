@@ -2,18 +2,18 @@ Este guia vai te ensinar como construir, do zero, um aplicativo simples usando E
 
 Nós vamos cobrir estas etapas:
 
-  1. Instalando o Ember
-  2. Criando um novo aplicativo
-  3. Definindo uma rota
-  4. Escrevendo um componente de UI (Interface com o Usuário)
-  5. Construindo seu aplicativo para ser instalado ("deployed") em produção
+  1. Instalando o Ember.
+  2. Criando um novo aplicativo.
+  3. Definindo uma rota.
+  4. Escrevendo um componente de UI (Interface com usuário).
+  5. Construindo seu aplicativo para ser instalado ("deployed") em produção.
 
 ## Instalando o Ember
 
 Você pode instalar o Ember com um único comando usando npm, o gerenciador de pacotes do Node.js. Digite o seguinte comando em seu terminal:
 
 ```sh
-npm install -g ember-cli@beta
+npm install -g ember-cli@2.3
 ```
 
 Não tem npm? [Aprenda a instalar Node. js e npm aqui](https://docs.npmjs.com/getting-started/installing-node).
@@ -28,10 +28,10 @@ ember new ember-quickstart
 
 Este comando irá criar um novo diretório chamado `ember-quickstart` e configurar um novo aplicativo de Ember dentro dela. De cara, seu aplicativo irá incluir:
 
-* Um servidor para desenvolvimento
-* Compilação de "Template"
-* "Minificação" de arquivos JavaScript e CSS
-* Funcionalidades ES2015 através da biblioteca Babel
+* Um servidor para desenvolvimento.
+* Compilação de "Template".
+* "Minificação" de arquivos JavaScript e CSS.
+* Funcionalidades ES2015 através da biblioteca Babel.
 
 Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
 
@@ -81,10 +81,10 @@ installing route-test
 
 Isso é Ember dizendo que criou:
 
-  1. Um template a ser exibido quando o usuário visita `/scientists`
-  2. Um objeto `Route` (Rota) que busca o model usado por esse "template"
-  3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`)
-  4. Um teste unitário para esta rota
+  1. Um template a ser exibido quando o usuário visita `/scientists`.
+  2. Um objeto `Route` (Rota) que busca o model usado por esse "template".
+  3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`).
+  4. Um teste unitário para esta rota.
 
 Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seguinte HTML:
 
@@ -109,17 +109,17 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
     });
     
 
-(This code example uses the latest features in JavaScript, some of which you may not be familiar with. Learn more with this [overview of the newest JavaScript features](https://ponyfoo.com/articles/es6).)
+(Este código exemplifica usos das funcionalidades mais recentes em JavaScript, algumas que talvez não lhe sejam muito familiares. Saiba mais com este [resumo das funcionalidades mais novas do JavaScript](https://ponyfoo.com/articles/es6).)
 
-In a route's `model()` method, you return whatever data you want to make available to the template. If you need to fetch data asynchronously, the `model()` method supports any library that uses [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+No método `model()` de uma rota, você deve retornar qualquer dado que queira tornar disponível para a "template". Se precisar buscar dados assíncronamente, o método `model()` suporta qualquer biblioteca que use [Promessas ("Promises") JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Now let's tell Ember how to turn that array of strings into HTML. Open the `scientists` template and add some Handlebars code to loop through the array and print it:
+Agora vamos dizer para o Ember como transformar aquele vetor ("array") de strings em HTML. Abra o "template" `scientists` e adicione um código Handlebars que itere o vetor e o imprima:
 
 ```app/templates/scientists.hbs{+3,+4,+5,+6,+7} 
 
-## List of Scientists
+## Lista de Cientistas
 
-{{#each model as |scientist|}} 
+{#each model as |scientist|} 
 
 * {{scientist}} {{/each}} 
 

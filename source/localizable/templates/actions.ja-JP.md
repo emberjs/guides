@@ -1,8 +1,10 @@
 Your app will often need a way to let users interact with controls that change application state. For example, imagine that you have a template that shows a blog title, and supports expanding the post to show the body.
 
-If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action) helper to an HTML element, when a user clicks the element, the named event will be sent to the template's corresponding component or controller.
+If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action) helper to any HTML DOM element, when a user clicks the element, the named event will be sent to the template's corresponding component or controller.
 
-```app/templates/components/single-post.hbs <h3 {{action "togglebody"}}>{{title}}</h3> {{#if isShowingBody}} 
+```app/templates/components/single-post.hbs 
+
+### <button {{action "togglebody"}}>{{title}}</button> {{#if isShowingBody}} 
 
 {{{body}}} {{/if}}
 
@@ -116,3 +118,5 @@ Note that actions may be attached to any element of the DOM, but not all respond
   cursor: pointer;
 }
 ```
+
+Keep in mind that even with this workaround in place, the `click` event will not automatically trigger via keyboard driven `click` equivalents (such as the `enter` key when focused). Browsers will trigger this on clickable elements only by default.

@@ -2,18 +2,18 @@
 
 我们将介绍以下步骤：
 
-  1. 安装 Ember
-  2. 创建一个新的应用程序
-  3. 定义路由
-  4. 编写一个 UI 组件
-  5. 为生产环境构建可用于部署的应用程序
+  1. Installing Ember.
+  2. Creating a new application.
+  3. Defining a route.
+  4. Writing a UI component.
+  5. Building your app to be deployed to production.
 
 ## 安装 Ember
 
 使用 Node.js 的包管理器 npm 只需要一条命令即可安装 Ember。在终端输入：
 
 ```sh
-npm install -g ember-cli@beta
+npm install -g ember-cli@2.3
 ```
 
 还没有 npm 吗？[这里教你如何安装 Node.js 和 npm](https://docs.npmjs.com/getting-started/installing-node)。.
@@ -28,10 +28,10 @@ ember new ember-quickstart
 
 这一命令将会创建一个新的目录叫做 `ember-quickstart`，同时在其中设置好一个全新的 Ember 应用程序。无需额外动作，你的应用程序就已包括：
 
-* 用于开发的服务器
-* 模板编译
-* JavaScript 和 CSS 压缩
-* 通过 Babel 实现的 ES2015 特性
+* A development server.
+* Template compilation.
+* JavaScript and CSS minification.
+* ES2015 features via Babel.
 
 通过集成软件包为你提供创建可直接就绪生产环境的 web 应用所需的一切基础，Ember 让开始一个新项目变得无比轻松自如。
 
@@ -81,10 +81,10 @@ installing route-test
 
 这就是在告诉你 Ember 已经创建了：
 
-  1. 一个在当用户访问 `/scientists` 时用于显示的模板
-  2. 一个用于为模版获取数据模型（model）的 `Route` 对象
-  3. 一个应用程序路由器里的入口（代码位于 `app/router.js`）)
-  4. 一个针对该路由的单元测试
+  1. 一个在当用户访问 `/scientists` 时用于显示的模板.
+  2. A `Route` object that fetches the model used by that template.
+  3. 一个应用程序路由器里的入口（代码位于 `app/router.js`）).
+  4. A unit test for this route.
 
 打开新创建的 `app/templates/scientists.hbs` 模板文件并添加下列 HTML 代码：
 

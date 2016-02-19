@@ -172,8 +172,8 @@ This illustrates that once you change a query param, it is stored and tied to th
 
 If you wish to reset a query param, you have two options:
 
-  1. explicitly pass in the default value for that query param into `link-to` or `transitionTo`
-  2. use the `Route.resetController` hook to set query param values back to their defaults before exiting the route or changing the route's model
+  1. explicitly pass in the default value for that query param into `link-to` or `transitionTo`.
+  2. use the `Route.resetController` hook to set query param values back to their defaults before exiting the route or changing the route's model.
 
 In the following example, the controller's `page` query param is reset to 1, *while still scoped to the pre-transition `ArticlesRoute` model*. The result of this is that all links pointing back into the exited route will use the newly reset value `1` as the value for the `page` query param.
 

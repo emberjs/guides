@@ -4,12 +4,12 @@ Antes de começar a escrever qualquer código de Ember, é uma boa idéia obter 
 
 ## Router and Route Handlers
 
-Imagine que estamos escrevendo um aplicativo da web para um sítio que permite ao usuário listar suas propriedades para alugar. Em qualquer momento, deve ser capaz de responder a perguntas sobre o estado atual como *que aluguel estão olhando?* e *eles estão a editá-lo?* Em Ember, a resposta a estas perguntas é determinada pelo URL. O URL pode ser definido de algumas maneiras:
+Imagine que estamos escrevendo um aplicativo da web para um sítio que permite ao usuário listar suas propriedades para alugar. Em qualquer momento, deve ser capaz de responder a perguntas sobre o estado atual como *que aluguel estão olhando?* e *eles estão a editá-lo?* Em Ember, a resposta a estas perguntas é determinada pelo URL. A URL pode ser definido de algumas maneiras:
 
 * O usuário carrega o aplicativo pela primeira vez.
 * O usuário altera o URL manualmente, por exemplo clicando no botão voltar ou editando a barra de endereços.
 * O usuário clica em uma ligação dentro do aplicativo.
-* Algum outro evento no aplicativo que faz mudar o URL.
+* Algum outro evento no aplicativo que faz mudar a URL.
 
 No matter how the URL gets set, the first thing that happens is that the Ember router maps the URL to a route handler.
 

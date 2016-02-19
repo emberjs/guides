@@ -1,10 +1,10 @@
-index テンプレートに利用可能なレンタル品のリストを追加してみましょう。 We know that rentals will not be static, since eventually users will be able to add, update, and delete them. For this reason, we'll need a *rentals* model to save information about the rentals. To keep things simple at first, we'll use a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
+index テンプレートに利用可能なレンタル品のリストを追加してみましょう。 ユーザーがレンタル品の追加、更新、削除などを行うので、レンタルが静的なものではないことは、すでに分かっています。 そのためにレンタル品の情報を保存する*rentals*モデルが必要です。 最初はシンプルに、JavaScript オブジェクトの配列をハードコードします。 のちにアプリケーションのデーターを管理する、Ember Dataを利用して置き換えいきます。
 
-Here's what our homepage will look like when we're done:
+次に示すのが、ホームページが完成した時の姿です。
 
-![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
+![スーパー レンタルのレンタル リストとホームページ](../../images/models/super-rentals-index-with-list.png)
 
-In Ember, route handlers are responsible for loading model data. Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:
+Emberではルートハンドラが、モデルデータの読み込みを担っています。`app/routes/index.js` を開けて、`model` フックとしてハードコードデータを追加します。
 
 ```app/routes/index.js import Ember from 'ember';
 
@@ -12,17 +12,16 @@ var rentals = [{ id: 1, title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 
 
 export default Ember.Route.extend({ model() { return rentals; } });
 
-    <br />Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
+    <br />ここでは、`model: function()`と同意義のES6メソッド 簡略構文の `model()`で書いています。
     
-    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
-    The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
+    `model`ファンクションは**hook**として機能します、つまりアプリケーションの様々なときに、 Ember が呼び出しをすることを意味しています。`index` ルートに追加されたモデルフックは、ユーザーが`index` ルートを入力するたびに呼び出されます。
     
-    The `model` hook returns our _rentals_ array and passes it to our `index` template as the `model` property.
+    `model` フックは　配列 our _rentals_ array を`model` プロパティとして`index` テンプレートに渡します。
     
-    Now, let's switch over to our template.
-    We can use the model data to display our list of rentals.
-    Here, we'll use another common Handlebars helper called `{{each}}`.
-    This helper will let us loop through each of the objects in our model:
+    では、テンプレートを見てみましょう。　　
+    モデルデータをリストの表示のために利用できます。
+    ここでは、別のよく使われる、`{{each}}`と呼ばれる、Handlebarsヘルパーを利用します。
+    このヘルパーはモデルの中のそれぞれのオブジェクトをループで回します。
     
     ```app/templates/index.hbs
     <h1>Welcome to Super Rentals</h1>
@@ -41,4 +40,4 @@ export default Ember.Route.extend({ model() { return rentals; } });
     {{#link-to "contact"}}Click here to contact us.{{/link-to}}
     
 
-In this template, we loop through each model object and call it *rental*. For each rental, we then create a listing with information about the property.
+このテンプレートでは、それぞれのモデルオブジェクトを*rental*と呼びます。各レンタル品のプロパティについての情報を一覧として作成します。
