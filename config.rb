@@ -13,13 +13,13 @@ set(:logging, ENV['RACK_ENV'] != 'production')
 activate :relative_assets
 set :relative_links, true
 
+activate :i18n, :langs => [:en]
 set :markdown_engine, :redcarpet
 set :markdown, :layout_engine => :erb,
          :fenced_code_blocks => true,
          :lax_html_blocks => true,
          :renderer => Highlighter::HighlightedHTML.new
 
-activate :i18n, :langs => [:en]
 activate :directory_indexes
 activate :toc
 activate :highlighter
