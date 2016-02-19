@@ -32,8 +32,7 @@ Location: {{rental.city}}
 
 Number of bedrooms: {{rental.bedrooms}}
 
-    <br />In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
-    with our new `rental-listing` component:
+    <br />`index.hbs` テンプレートにある古いHTMLを、新たな `rental-listing`コンポーネントの`{{#each}}` ループと置き換えましょう。
     
     ```app/templates/index.hbs
     <h1> Welcome to Super Rentals </h1>
