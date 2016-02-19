@@ -1,5 +1,3 @@
-
-
 Components can be tested with integration tests using the `moduleForComponent` helper.
 
 Let's assume we have a component with a `style` property that is updated
