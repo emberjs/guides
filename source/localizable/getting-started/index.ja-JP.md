@@ -3,7 +3,7 @@ Ember.js を始めるは簡単です。Ember.js プロジェクトを作成し�
 * モダンなアプリケーション資産管理 (連結、縮小、およびバージョン管理をが含まれています。)
 * コンポーネントや、ルートなどの作成するためジェネレーター。
 * コンベンショナルなプロジェクトのレイアウトは、既存のEmber.jsアプリケーションへのアプローチを簡単にします。
-* [Babel プロジェクト](http://babeljs.io/docs/learn-es2015/)経由で、JavaScript ES2015/ES6 をサポートします。 This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
+* [Babel プロジェクト](http://babeljs.io/docs/learn-es2015/)経由で、JavaScript ES2015/ES6 をサポートします。 このガイドでも利用されている [JavaScript モジュール](http://exploringjs.com/es6/ch_modules.html) のサポートも含まれています。
 * 完全な [QUnit](https://qunitjs.com/) テスト ハーネス
 * 成長を続ける、Ember Addonsのエコシステムが利用できます。
 
