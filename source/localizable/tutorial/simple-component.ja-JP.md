@@ -95,7 +95,7 @@ Number of bedrooms: {{rental.bedrooms}} {{#if isImageShowing}}
 
     <br />Clicking this button will send the action to the component.
     Ember will then go into the `actions` hash and call the `imageShow` function.
-    Let's create the `imageShow` function and set `isImageShowing` to `true` on our component:
+    コンポーネントの`imageShow` ファンクションを作って `isImageShowing` を `true` にしましょう。
     
     ```app/components/rental-listing.js
     export default Ember.Component.extend({
@@ -126,7 +126,7 @@ Number of bedrooms: {{rental.bedrooms}} {{#if isImageShowing}}
 
 <img src={{rental.image}} alt={{rental.type}} width="500"><button {{action "imagehide"}}>Hide image</button> {{else}} <button {{action "imageshow"}}>Show image</button> {{/if}}
 
-    <br />Then let's setup an `imageHide` action handler in our component to set `isImageShowing` to `false`:
+    <br />`imageHide`アクションハンドラの `isImageShowing` を `false`に設定します。
     
     ```app/components/rental-listing.js
     export default Ember.Component.extend({

@@ -20,7 +20,7 @@ npm install -g ember-cli@2.3
 
 ## 创建一个新的应用程序
 
-通过 npm 安装好 Ember 之后，你就可以在终端使用新的命令 `ember`。你可以用 `ember new` 命令来创建一个新的应用程序。
+Once you've installed Ember CLI via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
 
 ```sh
 ember new ember-quickstart
