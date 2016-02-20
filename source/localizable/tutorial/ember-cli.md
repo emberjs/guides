@@ -103,7 +103,7 @@ For example, the line `import Ember from 'ember';` gives us access to the actual
 Ember.js library as the variable `Ember`. And the `import config from
 './config/environment';` line gives us access to our app's configuration data
 as the variable `config`. `const` is a way to declare a read-only variable, 
-as to make sure it is not accidently reassigned elsewhere. At the end of the file,
+as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
 `export default Router;` makes the `Router` variable defined in this file available 
 to other parts of the app.
 
