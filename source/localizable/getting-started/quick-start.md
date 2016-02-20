@@ -45,10 +45,8 @@ By providing everything you need to build production-ready web
 applications in an integrated package, Ember makes starting new projects
 a breeze.
 
-Let's make sure everything is working properly. Open the
-`ember-quickstart` directory in your favorite editor, such as Sublime
-Text or Vim. Once you have your editor open, `cd` into the application
-directory and start the development server by typing:
+Let's make sure everything is working properly. `cd` into the application
+directory `ember-quickstart` and start the development server by typing:
 
 ```sh
 cd ember-quickstart
