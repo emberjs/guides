@@ -35,7 +35,7 @@ ember new ember-quickstart
 
 通过集成软件包为你提供创建可直接就绪生产环境的 web 应用所需的一切基础，Ember 让开始一个新项目变得无比轻松自如。
 
-让我们确保一切都正常工作。 用你喜爱的编辑器，比如 Sublime Text 或是 Vim 打开 `ember-quickstart` 目录。 编辑器打开之后，（在终端中）输入 `cd` 进入应用程序目录然后运行开发服务器，命令是：
+Let's make sure everything is working properly. `cd` into the application directory `ember-quickstart` and start the development server by typing:
 
 ```sh
 cd ember-quickstart
