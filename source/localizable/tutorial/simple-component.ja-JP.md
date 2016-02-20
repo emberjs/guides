@@ -1,4 +1,4 @@
-As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision. Let's add the ability to hide and show an image for each rental. To do this, we'll use a component.
+レンタル品をユーザーが閲覧している時に、ユーザーが決断できるように後押しする、いくつかのインタラクティブな選択肢があるのを望んでいるかもしれません。 Let's add the ability to hide and show an image for each rental. To do this, we'll use a component.
 
 Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element. So `rental-listing` is acceptable but `rental` would not be.
 
