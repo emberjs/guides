@@ -1,6 +1,6 @@
-レンタル品をユーザーが閲覧している時に、ユーザーが決断できるように後押しする、いくつかのインタラクティブな選択肢があるのを望んでいるかもしれません。 Let's add the ability to hide and show an image for each rental. To do this, we'll use a component.
+レンタル品をユーザーが閲覧している時に、ユーザーが決断できるように後押しする、いくつかのインタラクティブな選択肢があるのを望んでいるかもしれません。 各レンタル品の画像を表示したり、消したりする機能を追加してみましょう。 これを実現するために、コンポーネントを利用します。
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element. So `rental-listing` is acceptable but `rental` would not be.
+各レンタル品の、動作を管理する`rental-listing` コンポーネントを自動生成しましょう。 A dash is required in every component name to avoid conflicting with a possible HTML element. So `rental-listing` is acceptable but `rental` would not be.
 
 ```shell
 ember g component rental-listing
