@@ -1,12 +1,12 @@
-So far, our app is directly showing the user data from our Ember Data models. As our app grows, we will want to manipulate data further before presenting it to our users. For this reason, Ember offers Handlebars template helpers to decorate the data in our templates. Let's use a handlebars helper to allow our users to quickly see if a property is "standalone" or part of a "Community".
+これまでのところ、このアプリケーションはユーザーに直接Ember Data モデルから データを表示していました。 アプリケーションが成長するにつれ、データをそのまま表示するだけではなく、データを加工してからユーザーに表示したいと思います。 そのために、Ember には Handlebars テンプレートにヘルパーがあり、テンプレーのデータを装飾（decorate）することができます。 handlebars ヘルパーを使って、ユーザーが資産(レンタル品) が "standalone"なのか"Community"の一部なのか簡単に確認できるようにします。
 
-To get started, let's generate a helper for `rental-property-type`:
+そのために、`rental-property-type`ヘルパーを作っていきましょう。
 
 ```shell
 ember g helper rental-property-type
 ```
 
-This will create two files, our helper and its related test:
+このコマンドは、ヘルパーと、それに該当するテストの二つのファイルを生成します
 
 ```shell
 installing helper
@@ -15,7 +15,7 @@ installing helper-test
   create tests/unit/helpers/rental-property-type-test.js
 ```
 
-Our new helper starts out with some boilerplate code from the generator:
+この新しいヘルパーは、ジェネレーターが自動生成したコードから始まります。
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
@@ -23,7 +23,7 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
+    <br />`rental-listing`コンポーネントテンプレートを更新して、`rental.type`をヘルパーが引き渡すようにしましょう。
     
     ```app/templates/components/rental-listing.hbs
     <h2>{{rental.title}}</h2>
@@ -39,7 +39,7 @@ export default Ember.Helper.helper(rentalPropertyType);
     {{/if}}
     
 
-Ideally we'll see "Type: Standalone - Estate" for our first rental property. Instead, our default template helper is returning back our `rental.type` values. Let's update our helper to look if a property exists in an array of `communityPropertyTypes`, if so, we'll return either `'Community'` or `'Standalone'`:
+理想としては、最初の、レンタル品のとして"Type: Standalone - Estate"が表示されます。 実際には、デフォルトのテンプレートヘルパーは`rental.type` の値を返しています。 これを更新して、ヘルパーが配列`communityPropertyTypes`を探してもしプロパティが存在したら `'Community'` または `'Standalone'`を返してようにしましょう。
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
@@ -51,6 +51,6 @@ return 'Standalone'; }
 
 export default Ember.Helper.helper(rentalPropertyType); ```
 
-Handlebars passes an array of arguments from our template to our helper. We are using ES2015 destructuring to get the first item in the array and name it `type`. Then we can check to see if `type` exists in our `communityPropertyTypes` array.
+Handlebars はヘルパーにテンプレートから配列を引数として渡します。 ES2015 のDestructuring assignmentを使って、配列の最初の項目を取り出して、`type`という名称にしています。 これによって、配列`communityPropertyTypes`に`type`が存在するか確認ができるようになります。
 
-Now in our browser we should see that the first rental property is listed as "Standalone", while the other two are listed as "Community".
+ブラウザで確認をすると、最初のレンタル品は"Standalone"として他の2つの項目が"Community"として表示されてるはずです。

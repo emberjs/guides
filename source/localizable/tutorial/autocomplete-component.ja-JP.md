@@ -30,7 +30,7 @@ The Handlebars template looks like this:
     populate the `input` field with the name of the `city` in the clicked list
      item.
     
-    Here is what the component's JavaScript looks like:
+    コンポーネントのJavaScript は次のようになっています:
     
     ```app/components/filter-listing.js
     export default Ember.Component.extend({
