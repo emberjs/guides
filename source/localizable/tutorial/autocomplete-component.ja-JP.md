@@ -1,34 +1,24 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them search for properties within a city, and also suggest cities to them as they type.
+ユーザーが賃貸物件を検索するとき、検索対象を特定の都市に限定に限定することもあるでしょう。 特定の都市で検索したり、入力中に検索候補を出すコンポーネントを作成しましょう。
 
-To begin, let's generate our new component. We'll call this component `filter-listing`.
+`filter-listing`という名称の新しいコンポーネントを作成しまう。.
 
 ```shell
 ember g component filter-listing
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/filter-listing.hbs`) and a JavaScript file (`app/components/filter-listing.js`).
+以前と同じように、このコマンドははHandlebars テンプレート (`app/templates/components/filter-listing.hbs`) と JavaScript ファイル (`app/components/filter-listing.js`を作成します。).
 
-The Handlebars template looks like this:
+Handlebars テンプレートはこのようになります。
 
 ```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action 'autoComplete' filter)}} <button {{action 'search'}}>Search</button>
 
 {{#each filteredList as |item|}} <li {{action 'choose' item.city}}>{{item.city}}</li> {{/each}} 
 
-    It contains an [`{{input}}`](../../templates/input-helpers) helper, that 
-    renders as a text field that the user can type in to look for properties 
-    in a given city. The `value` property of the `input` will be bound to the 
-    `filter` property in our component. The `key-up` property 
-    will be bound to a `autoComplete` action in our backing object, and passes
-     the `filter` property as a parameter.
+    [`{{input}}`](../../templates/input-helpers) ヘルパーが含まれて、ユーザーは特定の都市で、賃貸物件を検索することができます。 `input`の入力値`value`は`filter` のプロパティと関連付けされます。 `key-up`プロパティは`autoComplete`アクションと関連付けされ、`filter` プロパティのパラメータとして引き渡します。
     
-    It also contains a button, whose `action` parameter is bound to the 
-    `search` action in our component.
+    また、それにはボタンが含まれていて、`action` パラメーターは`search` アクションと関連付けられています。
     
-    Lastly, it contains an unordered list, that uses the `filteredList` 
-    property for data, and displays the `city` property of each item in the 
-    list. Clicking the list item will fire the `choose` action, which will 
-    populate the `input` field with the name of the `city` in the clicked list
-     item.
+    最終的には、データとして`filteredList` プロパティを利用し、それぞれの項目`city` プロパティをアンオーダーリストとして表示します。 リストをクリックすると`choose`アクションが実行され、クリックされた`city` 名が、`input` フィールドに埋め込まれます。
     
     コンポーネントのJavaScript は次のようになっています:
     
@@ -51,9 +41,9 @@ The Handlebars template looks like this:
     
     
 
-There's a property for each of the `filter` and `filteredList`, and actions as described above. What's interesting is that only the `choose` action is defined by the component. The actual logic of each of the `autoComplete` and `search` actions are pulled from the component's properties, which means that those actions need to be \[passed\] (../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object, a pattern known as *closure actions*.
+以上が、上記で説明した各`filter` と`filteredList`とアクションとなります。 興味深いのは、コンポーネントによって定義されているのは`choose` アクションだけです。 各`autoComplete` と`search`アクションのロジックはコンポーネントプロパティから読み込まれます。つまり、それらのアクションは呼ばれたアクション (../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) を [passed] 引き渡す*closure actions*と呼ばれるデザインパターンです。.
 
-To see how this works, change your `index.hbs` template to look like this:
+これが、どのように動作するかを確認するために `index.hbs`テンプレートを次のように編集します。
 
 ```app/templates/index.hbs 
 
@@ -65,40 +55,25 @@ We hope you find exactly what you're looking for in a place to stay.
 
 {{#link-to 'about'}}About{{/link-to}} {{#link-to 'contact'}}Click here to contact us.{{/link-to}}
 
-    We've added the `filter-listing` component to our `index.hbs` template. We 
-    then pass in the functions and properties we want the `filter-listing` 
-    component to use, so that the `index` page can define some of how it wants 
-    the component to behave, and so the component can use those specific 
-    functions and properties.
+    `index.hbs`テンプレートに`filter-listing`コンポーネントを追加しました。 我々 は、関数およびプロパティを使用して、' フィルター リスト」コンポーネント、'インデックス' ページは、動作するようにコンポーネントを望んでいる方法のいくつかを定義できるようにしたいを渡すし、コンポーネントは、それらの特定の機能とプロパティを使用できますので。
     
-    For this to work, we need to introduce a `controller` into our app. 
-    Generate a controller for the `index` page by running the following:
+    これが動作するためにはアプリケーションに `コントローラー` を追加する必要があります、 <0>index. hbs</0>用のコントローラーを自動生成するには
+    次のコマンドを実行します。
     
     ```shell
     ember g controller index
     
 
-Now, define your new controller like so:
+次のように新しいコントローラを定義します。
 
 ```app/controllers/index.js export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if(param !== "") { this.store.query('rental', {city: param}).then((result) => { this.set('filteredList',result); }); } else { this.set('filteredList').clear(); } }, search(param) { if(param !== "") { this.store.query('rental', {city: param}).then((result) => { this.set('model',result); }); } else { this.set('model').clear(); } } } });
 
-    <br />As you can see, we define a property in the controller called 
-    `filteredList`, that is referenced from within the `autoComplete` action.
-     When the user types in the text field in our component, this is the 
-     action that is called. This action filters the `rental` data to look for 
-     records in data that match what the user has typed thus far. When this 
-     action is executed, the result of the query is placed in the 
-     `filteredList` property, which is used to populate the autocomplete list 
-     in the component.
+    <br />以上で見たように、`autoComplete`アクションが参照する`filteredList`コントローラのプロパティを定義しました。
+     ユーザーがテキストフィールドに入力を行っているとき、このアクションが呼び出されます。 このアクションがレコードの`rental`を参照して、ユーザーがそれまでに入力したものでフィルター処理をします。 このアクションが実行されると、クエーリーの結果は `filteredList`プロパティに置かれ、コンポーネントのオートコンプリートのとして用いられます。
     
-    We also define a `search` action here that is passed in to the component,
-     and called when the search button is clicked. This is slightly different
-      in that the result of the query is actually used to update the `model` 
-      of the `index` route, and that changes the full rental listing on the 
-      page.
+    また、ここでは`search`アクションを定義して、ボタンがクリックされた時にコンポーネントに引き渡します。 これは、クエーリーの結果が`index`ルートの`モデル`を更新しそれが、ページの賃貸物件のリストを更新するのとは異なります。
     
-    For these actions to work, we need to modify the Mirage `config.js` file 
-    to look like this, so that it can respond to our queries.
+    これらのアクションが動くにはMirage の`config.js`をリクエストに応えるように、次のように変更する必要があります。
     
     ```app/mirage/config.js
     export default function() {
@@ -150,4 +125,4 @@ Now, define your new controller like so:
     }
     
 
-With these changes, users can search for properties in a given city, with a search field that provides suggestions as they type.
+これらの変更で、ユーザーは、入力候補が出る検索フィールドで好みの都市で賃貸不動産を検索することができます。
