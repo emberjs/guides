@@ -39,7 +39,7 @@ export default Ember.Helper.helper(rentalPropertyType);
     {{/if}}
     
 
-理想としては、最初の、レンタル品のとして"Type: Standalone - Estate"が表示されます。 実際には、デフォルトのテンプレートヘルパーは`rental.type` の値を返しています。 これを更新して、ヘルパーが配列`communityPropertyTypes`を探してもしプロパティが存在したら `'Community'` または `'Standalone'`を返してようにしましょう。
+理想としては、最初の、賃貸物件として"Type: Standalone - Estate"が表示されます。 実際には、デフォルトのテンプレートヘルパーは`rental.type` の値を返しています。 これを更新して、ヘルパーが配列`communityPropertyTypes`を探してもしプロパティが存在したら `'Community'` または `'Standalone'`を返してようにしましょう。
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 

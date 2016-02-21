@@ -167,7 +167,7 @@ Ember が次のことを行ったことを意味しています。
     {{people-list title="List of Scientists" people=model}}
     
 
-ブラウザーでページをリロードしても、UI が変わっていないことが確認できるはずです。唯一の違いは、コンポーネント化リストにしたことにより、より再利用が可能で保守性の高いやバージョン利用していることです。
+Go back to your browser and you should see that the UI looks identical. The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
 
 この挙動は、違う人々のリストを利用する、ルートを作成することで、確認が可能です。 例題として、著名なプログラマを表示する`programmers`ルートを作成することができます。 `people-list`コンポーネントを利用することで、例題をほぼコードを書かずに解くことができるでしょう。
 

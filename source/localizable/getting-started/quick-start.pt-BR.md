@@ -177,7 +177,7 @@ Copy and paste the `scientists` template into the `people-list` component's temp
     {{people-list title="List of Scientists" people=model}}
     
 
-Reload the page in your browser and you should see that the UI looks identical. The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
+Go back to your browser and you should see that the UI looks identical. The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
 
 You can see this in action if you create a new route that shows a different list of people. As an exercise for the reader, you may try to create a `programmers` route that shows a list of famous programmers. By re-using the `people-list` component, you can do it in almost no code at all.
 

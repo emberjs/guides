@@ -58,7 +58,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
-var Router = Ember.Router.extend({ location: config.locationType });
+const Router = Ember.Router.extend({ location: config.locationType });
 
 Router.map(function() { });
 
@@ -66,15 +66,22 @@ export default Router;
 
     <br />Ember CLI は ECMAScript 2015 (省略してES2015、または、ES6とも呼ばれる。) モジュールを、コードの整理のために利用しています。
     例えば、`import Ember from 'ember';` という行は、Ember.js ライブラリーを `Ember`という変数で利用できるようにします。 また`import config from
-    './config/environment';` は、 `config` という変数でアプリケーションの環境設定を利用できるようにします。 ファイルの終わりの `export default Router;
-    ` はこのファイルで記述したコードが、変数 `Router` としてアプリケーションの、他のパーツでも利用できるようにしています。
+    './config/environment';` は、 `config` という変数でアプリケーションの環境設定を利用できるようにします。 `const` is a way to declare a read-only variable, 
+    as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
+    `export default Router;` makes the `Router` variable defined in this file available 
+    to other parts of the app.
     
-    ## Emberのアップグレード
+    ## Upgrading Ember
     
-    チュートリアルの先に進む前に、インストールされた、Ember が最新のバージョンであることを確認してください。 もし 、`bower.json`ファイルに記載のある、`ember` や`ember-data`ガイドの左上にあるバージョン番号よりも低い場合は、`bower.json` ないのバージョン番号を、編集してから `bower install`コマンドを実行して、Emberのバージョンを更新してください。
+    Before continuing to the tutorial, make sure that you have the most recent
+    version of Ember installed. If the versions of `ember` and `ember-data` in
+    `bower.json` are lower than the version number in the upper-left corner of these
+    Guides, update the version numbers in `bower.json` and then run `bower install`.
     
-    ## 開発用サーバー
-    新規アプリケーションができていることを確かめるためには、開発用サーバーを起動することで確認できます。
+    ## The Development Server
+    
+    Once we have a new project in place, we can confirm everything is working by
+    starting the Ember development server:
     
     ```shell
     ember server
