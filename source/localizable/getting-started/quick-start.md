@@ -221,9 +221,9 @@ curly braces (`{{component}}`). We're going to tell our component:
 {{people-list title="List of Scientists" people=model}}
 ```
 
-Reload the page in your browser and you should see that the UI looks
-identical. The only difference is that now we've componentized our list
-into a version that's more reusable and more maintainable.
+Go back to your browser and you should see that the UI looks identical.
+The only difference is that now we've componentized our list into a
+version that's more reusable and more maintainable.
 
 You can see this in action if you create a new route that shows a
 different list of people. As an exercise for the reader, you may try to
