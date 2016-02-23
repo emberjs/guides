@@ -117,6 +117,14 @@
     box-sizing: content-box;
     display: inline-block;
     margin: 0 -10px;
+
+    &.added {
+      background-color: $highlight-added;
+    }
+
+    &.removed {
+      background-color: $highlight-removed;
+    }
   }
 
   .code .highlight-line {
@@ -124,6 +132,19 @@
     border-right-width: 13px;
     margin: 0 -13px;
     width: 613px;
+  }
+
+  .line-numbers .highlight-line {
+    width: 28px;
+    border-right-color: darken($highlight-yellow, 20%);
+
+    &.added {
+      border-right-color: darken($highlight-green, 20%);
+    }
+
+    &.removed {
+     border-right-color: darken($highlight-red, 20%);
+    }
   }
 }
 
