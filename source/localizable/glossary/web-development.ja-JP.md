@@ -53,7 +53,7 @@ JavaScriptでよくありがちな問題を解決する、バリデーション�
 
 非同期の呼び出しは通常プロミス(または、延期)を返します。これは、状態を保持しているオブジェクトで、満たすあるいは拒否するといったことハンドラーを与えることが可能です。
 
-Ember makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
+EmberはPromisをルートもモデルフックなどで利用します。Promisが解決するまで、Emberはルートを"ローディング"状態にすることができます。
 
 * [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
 * [emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
@@ -83,4 +83,4 @@ ES6の他にも、ショートハンドな言語、CoffeeScriptについてJavaS
 
 ## Virtual DOM
 
-Not to be confused with Shadow DOM. バーチャルDOMのコンセプトは、コード(今の場合で言えばEmber) をブラウザーのDOMから仮想に抽象化して、容易に読み取り/書き込みあるいは簡単にシリアライズできるものにすることです。
+シャドー DOMと混同してはいけません。 バーチャルDOMのコンセプトは、コード(今の場合で言えばEmber) をブラウザーのDOMから仮想に抽象化して、容易に読み取り/書き込みあるいは簡単にシリアライズできるものにすることです。
