@@ -1,8 +1,8 @@
-In general, new feature development should be done on master.
+一般的には、新機能の開発はマスターで行われるべきです。
 
-Bugfixes should not introduce new APIs or break existing APIs, and do not need feature flags.
+バグの修正は、新規の API を取り入れたり、既存の API を壊してはいけません、また機能フラグも不要です。
 
-Features can introduce new APIs, and need feature flags. They should not be applied to the release or beta branches, since SemVer requires bumping the minor version to introduce new features.
+新機能は新 API を導入することができ、機能フラグが必要です。新機能はリリースやベータブランチに対して適用してはいけません、なぜならセマンティックバージョニングでは新機能はマイナーバージョンの更新をする必要があるからです。
 
 Security fixes should not introduce new APIs, but may, if strictly necessary, break existing APIs. Such breakages should be as limited as possible.
 

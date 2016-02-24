@@ -6,7 +6,7 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 * <https://github.com/emberjs/ember.js>
 
-**Ember Data** - Ember.jsのための、データ永続化ライブラリ
+**Ember Data** - Emberのための、データ永続化ライブラリ
 
 * <https://github.com/emberjs/data>
 
