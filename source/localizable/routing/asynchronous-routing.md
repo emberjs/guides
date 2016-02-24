@@ -8,14 +8,13 @@ heavy use of the concept of Promises. In short, promises are objects that
 represent an eventual value. A promise can either _fulfill_
 (successfully resolve the value) or _reject_ (fail to resolve the
 value). The way to retrieve this eventual value, or handle the cases
-when the promise rejects, is via the promise's [`then()`][1] method, which
+when the promise rejects, is via the promise's [`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then) method, which
 accepts two optional callbacks, one for fulfillment and one for
 rejection. If the promise fulfills, the fulfillment handler gets called
 with the fulfilled value as its sole argument, and if the promise rejects,
 the rejection handler gets called with a reason for the rejection as its
 sole argument. For example:
 
-[1]: http://emberjs.com/api/classes/RSVP.Promise.html#method_then
 
 ```js
 var promise = fetchTheAnswer();
@@ -75,10 +74,9 @@ defined on it to be a promise.
 If the promise fulfills, the transition will pick up where it left off and
 begin resolving the next (child) route's model, pausing if it too is a
 promise, and so on, until all destination route models have been
-resolved. The values passed to the [`setupController()`][1] hook for each route
+resolved. The values passed to the [`setupController()`](http://emberjs.com/api/classes/Ember.Route.html#method_setupController) hook for each route
 will be the fulfilled values from the promises.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_setupController
 
 A basic example:
 
