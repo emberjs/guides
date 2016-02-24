@@ -112,14 +112,15 @@ export default Ember.Controller.extend({
         this.set('filteredList').clear();
       }
     },
-    search(param) {
-      if(param !== "") {
-        this.store.query('rental', {city: param}).then((result) => {
-          this.set('model',result);
-        });
-      } else {
-        this.set('model').clear();
-      }
+    search(city) {
+      var params = {};
+
+      if(city)
+        params.city = city;
+
+      this.store.query('rental', params).then((result) => {
+        this.set('model', result);
+      });
     }
   }
 });
