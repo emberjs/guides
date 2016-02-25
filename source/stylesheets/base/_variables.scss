@@ -39,6 +39,8 @@ $highlight-green: #C3F590;
 $highlight-red: #EC605E;
 $highlight-blue: #90D7F5;
 $highlight-cyan: #78CEC8;
+$highlight-added: #5D7D5D;
+$highlight-removed: #905454;
 $code-background: $dark-gray;
 $code-header-background: shade($code-background, 40%);
 $code-line-number-background: mix($code-background, $code-header-background);
