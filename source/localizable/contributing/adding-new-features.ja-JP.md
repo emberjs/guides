@@ -18,7 +18,7 @@
 
 #### セキュリティ修正プログラム
 
-Security fixes need to be applied to the beta branch, the current release branch, and the previous tag. If possible, they should be made on master and tagged with [SECURITY].
+セキュリティ修正はベータブランチ、カレントブランチと前のタグに対して行われるべきで、可能であれば、 [SECURITY] とタグを付けマスターにも適用するべきです。
 
 ### 機能:
 
