@@ -22,15 +22,15 @@ The route handler then typically does two things:
 
 Ember usa templates para organizar a estrutura HTML de um aplicativo.
 
-Most templates in an Ember codebase are instantly familiar, and look like any fragment of HTML. For example:
+A maioria das templates em um projeto Ember são familiares, e se parecem com um qualquer fragmento de HTML. Por exemplo:
 
 ```handlebars
 <div>Hi, this is a valid Ember template!</div>
 ```
 
-Templates Ember usam a sintaxe [Handlebars](http://handlebarsjs.com). Tudo o que é sintaxe válida do Handlebars é sintaxe válida de Ember.
+As templates do Ember usam a sintaxe [Handlebars](http://handlebarsjs.com). Tudo o que é sintaxe válida do Handlebars é sintaxe válida de Ember.
 
-Templates can also display properties provided to them from their context, which is either a component or a route (technically, a controller presents the model from the route to the template, but this is rarely used in modern Ember apps and will be deprecated soon). For example:
+As templates podem também mostrar propriedades fornecidas através do contexto, que pode ser tanto um component como uma rota. Por exemplo:
 
 ```handlebars
 <div>Hi {{name}}, this is a valid Ember template!</div>
@@ -48,10 +48,10 @@ For example, a property rentals application would want to save the details of a 
 
 A model typically persists information to a web server, although models can be configured to save to anywhere else, such as the browser's Local Storage.
 
-## Components
+## Componentes
 
-While templates describe how a user interface looks, components control how the user interface *behaves*.
+Enquanto que as templates descrevem a aparência de uma interface de usuário, os componentes controlam como a interface *se comporta*.
 
-Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
+Componentes consisten em duas partes: uma template escrita em Handlebars, e um ficheiro de código escrito em JavaScript que define o seu comportamento. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
 
-Let's see these core concepts in action by building a property rental application in the next lesson.
+Vamos ver estes conceitos básicos em ação através da construção de uma aplicação de aluguel de propriedade na próxima lição.

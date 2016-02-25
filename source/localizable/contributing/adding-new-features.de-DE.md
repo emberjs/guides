@@ -1,26 +1,26 @@
-一般的には、新機能の開発はマスターで行われるべきです。
+In general, new feature development should be done on master.
 
-バグの修正は、新規の API を取り入れたり、既存の API を壊してはいけません、また機能フラグも不要です。
+Bugfixes should not introduce new APIs or break existing APIs, and do not need feature flags.
 
-新機能は新 API を導入することができ、機能フラグが必要です。新機能はリリースやベータブランチに対して適用してはいけません、なぜならセマンティックバージョニングでは新機能はマイナーバージョンの更新をする必要があるからです。
+Features can introduce new APIs, and need feature flags. They should not be applied to the release or beta branches, since SemVer requires bumping the minor version to introduce new features.
 
-セキュリティの問題が既存のAPIを壊す必要がない限り、セキュリティ修正プログラムは新たなAPIを導入してはいけません。そのような修正は最小限に限られるべきです。
+Security fixes should not introduce new APIs, but may, if strictly necessary, break existing APIs. Such breakages should be as limited as possible.
 
 ### Bug Fixes
 
-#### 緊急のバグ修正
+#### Urgent Bug Fixes
 
-緊急のバグ修正は、既存のリリースブランチに対して適用されるものです。可能であれば、マスターに対して行われ、[BUGFIX release] がつけられるべきです。
+Urgent bugfixes are bugfixes that need to be applied to the existing release branch. If possible, they should be made on master and prefixed with [BUGFIX release].
 
-#### ベータ版バグ修正
+#### Beta Bug Fixes
 
-ベータ版バグ修正はベータ版に適用されるべき、バグ修正です。可能であれば、マスターで作成され、 [BUGFIX beta] のタグがつけられるべきです。
+Beta bugfixes are bugfixes that need to be applied to the beta branch. If possible, they should be made on master and tagged with [BUGFIX beta].
 
-#### セキュリティ修正プログラム
+#### Security Fixes
 
 Security fixes need to be applied to the beta branch, the current release branch, and the previous tag. If possible, they should be made on master and tagged with [SECURITY].
 
-### 機能:
+### Features
 
 Features must always be wrapped in a feature flag. Tests for the feature must also be wrapped in a feature flag.
 
@@ -34,13 +34,13 @@ if (Ember.FEATURES.isEnabled("feature")) {
 
 Tests will always run with all features on, so make sure that any tests for the feature are passing against the current state of the feature.
 
-#### コミット
+#### Commits
 
 Commits related to a specific feature should include a prefix like [FEATURE htmlbars]. This will allow us to quickly identify all commits for a specific feature in the future. Features will never be applied to beta or release branches. Once a beta or release branch has been cut, it contains all of the new features it will ever have.
 
 If a feature has made it into beta or release, and you make a commit to master that fixes a bug in the feature, treat it like a bugfix as described above.
 
-#### 機能ネーミング規則
+#### Feature Naming Conventions
 
 ```config/environment.js Ember.FEATURES['<packagename>-<feature>'] // if package specific Ember.FEATURES['container-factory-injections'] Ember.FEATURES['htmlbars']
 
@@ -92,17 +92,17 @@ For a new commit to master:
 
 The idea is that new commits should be submitted as PRs to ensure they apply cleanly, and once the merge button is pressed, Travis will apply them to the right branches.
 
-### Go/No-Go プロセス
+### Go/No-Go Process
 
 Every six weeks, the core team goes through the following process.
 
-#### ベータブランチ
+#### Beta Branch
 
 All remaining features on the beta branch are vetted for readiness. If any feature isn't ready, it is removed from features.json.
 
 Once this is done, the beta branch is tagged and merged into release.
 
-#### マスター ブランチ
+#### Master Branch
 
 All features on the master branch are vetted for readiness. In order for a feature to be considered "ready" at this stage, it must be ready as-is with no blockers. Features are a no-go even if they are close and additional work on the beta branch would make it ready.
 
@@ -110,7 +110,7 @@ Because this process happens every six weeks, there will be another opportunity 
 
 Once this is done, the master branch is merged into beta. A `features.json` file is added with the features that are ready.
 
-### ベータリリース
+### Beta Releases
 
 Every week, we repeat the Go/No-Go process for the features that remain on the beta branch. Any feature that has become unready is removed from the features.json.
 

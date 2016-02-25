@@ -1,15 +1,15 @@
-Imagine we are writing a web app for managing a blog. At any given time, we should be able to answer questions like *What post are they looking at?* and *Are they editing it?* In Ember.js, the answer to these questions is determined by the URL.
+Blog管理のアプリケーションを開発していると、想像してみてください。 いつでも、次のようなことに、答えられなければなりません、*どのような投稿を探しているのか？* あるいは *編集中なのか?* Ember では答えはURLによって決まっています。
 
-The URL can be set in a few ways:
+URL はいくつかの方法で設定することが可能です。
 
-* The user loads the app for the first time.
-* The user changes the URL manually, such as by clicking the back button or by editing the address bar.
-* The user clicks a link within the app.
-* Some other event in the app causes the URL to change.
+* ユーザーが、初めてアプリケーションを読み込みこんだとき。
+* ユーザーが手動で、[戻る] ボタンをクリックするあるいは、アドレス バーを編集して、手動でURL の変更を行ったとき。
+* ユーザーがアプリケーション内のリンクをクリックしたとき。
+* それら以外のイベンドによってURLが変更されたとき。
 
-Regardless of how the URL becomes set, the Ember router then maps the current URL to one or more route handlers. A route handler can do several things:
+どのようにURLがセットされたかに関わらず、Ember ルーターは現在の URL を一つまたは、複数のルートハンドラとセットされます。ルートハンドラーは次にような事柄を行うことができます。
 
-* It can render a template.
-* It can load a model that is then available to the template.
-* It can redirect to a new route, such as if the user isn't allowed to visit that part of the app.
-* It can handle actions that involve changing a model or transitioning to a new route.
+* テンプレートを描画すること。
+* テンプレートで利用するモデルの読み込み。
+* 新たなルートにリダイレクトする、例えば、ユーザーがアクセスを許されていないアプリケーションの部分にアクセスを行おうとしたときなど。
+* モデルの変更や、新たなルートへの変更などを引き起こすアクションの操作
