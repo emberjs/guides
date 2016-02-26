@@ -53,10 +53,9 @@ Serving on http://localhost:4200/
 
 Öffne nun in deinem Lieblingsbrowser die URL [http://localhost:4200/](http://localhost:4200). Du solltest nun eine Webseite sehen, die "Welcome to Ember" (und nicht viel mehr) beinhaltet. Herzlichen Glückwunsch! Du hast soeben deine erste Ember-Anwendung erstellt und gestartet.
 
-Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
+Öffne in deinem Editor die Datei `app/templates/application.hbs`. Hierbei handelt es sich um das `application`-Template, das stets angezeigt wird, wenn der Benutzer deine Anwendung geöffnet hat.
 
-In your editor, change the text inside the `<h2>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
+Ändere in deinem Editor den Text innerhalb des `<h2>`-Tags von `Welcome to Ember` zu `Personentracker` und speichere die Datei. Du wirst feststellen, dass Ember deine Änderung mitbekommt und die Webseite für dich im Hintergrund automatisch neu lädt. Nun solltest du sehen, dass der Text "Welcome to Ember" durch "Personentracker" ersetzt wurde.
 
 ## Define a Route
 
