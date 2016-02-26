@@ -22,9 +22,9 @@
 
 ### 機能:
 
-Features must always be wrapped in a feature flag. Tests for the feature must also be wrapped in a feature flag.
+新機能は、必ず、機能フラグでラップする必要があります。新機能のテストもまた、機能フラグでラップする必要があります。
 
-Because the build-tools will process feature-flags, flags must use precisely this format. We are choosing conditionals rather than a block form because functions change the surrounding scope and may introduce problems with early return.
+ビルドツールが、機能フラグほ処理するため、機能フラグのフォーマットは正確に次の形式にする必要があります。 ファンクションは、ファンクションはスコープを変えて、早期にreturnしてしまわないように、私たちはブロックではなく、コンディショナルを利用しています。
 
 ```js
 if (Ember.FEATURES.isEnabled("feature")) {
@@ -32,24 +32,21 @@ if (Ember.FEATURES.isEnabled("feature")) {
 }
 ```
 
-Tests will always run with all features on, so make sure that any tests for the feature are passing against the current state of the feature.
+テストは必ず全ての機能を有効にして、行われますので、現状のテストに対して、機能テストが引き渡されていることを確認してください。
 
 #### コミット
 
-Commits related to a specific feature should include a prefix like [FEATURE htmlbars]. This will allow us to quickly identify all commits for a specific feature in the future. Features will never be applied to beta or release branches. Once a beta or release branch has been cut, it contains all of the new features it will ever have.
+特定の機能に対するコミットは、次のようなプレフィックスを含める必要があります。 [FEATURE htmlbars] こうすることで、この先、特定の機能を素早く特定することことができるようになります。 機能は決して、ベータやリリースブランチに対しては適用されません。 ベータやリリースブランチが切られたら、そのブランチが持つ機能の全てをすでに含んでいるということになります。
 
-If a feature has made it into beta or release, and you make a commit to master that fixes a bug in the feature, treat it like a bugfix as described above.
+ もし機能がベータやリリースにたどり着いて、もしマスターにその機能のバグを修正するコミットをしたら、上記のようにコミットを行ってください。
 
 #### 機能ネーミング規則
 
 ```config/environment.js Ember.FEATURES['<packagename>-<feature>'] // if package specific Ember.FEATURES['container-factory-injections'] Ember.FEATURES['htmlbars']
 
-    <br />### Builds
+    <br />### ビルド
     
-    The Canary build, which is based off master, will include all features,
-    guarded by the conditionals in the original source. This means that
-    users of the canary build can enable whatever features they want by
-    enabling them before creating their Ember.Application.
+    カナリーのビルドは、マスターに基づいており、オリジナルのソースを囲った、全ての機能を備えています。 これは、カナリービルドのユーザーはEmberアプリケーションを作成する前に、希望する機能を有効化することができます。
     
     ```config/environment.js
     module.exports = function(environment) {
@@ -65,9 +62,9 @@ If a feature has made it into beta or release, and you make a commit to master t
 
 ### `features.json`
 
-The root of the repository will contain a features.json file, which will contain a list of features that should be enabled for beta or release builds.
+リポジトリのルートにはfeatures.jsonがあり、ベータやリリースをビルドする際に機能のを有効化することができます。
 
-This file is populated when branching, and may not gain additional features after the original branch. It may remove features.
+このファイルはブランチを切る際に作成されて、その後、機能の追加は行われませんが削除される可能があります。
 
 ```js
 {
@@ -75,11 +72,11 @@ This file is populated when branching, and may not gain additional features afte
 }
 ```
 
-The build process will remove any features not included in the list, and remove the conditionals for features in the list.
+ビルドプロセスはリストにない機能を取り除き、リストから該当の機能の条件を取り除きます。
 
-### Travis Testing
+### トラヴィスのテスト
 
-For a new PR:
+新規のPRについて
 
   1. Travis will test against master with all feature flags on.
   2. If a commit is tagged with [BUGFIX beta], Travis will also cherry-pick the commit into beta, and run the tests on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.

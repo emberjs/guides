@@ -1,6 +1,6 @@
 Bevor du damit beginnst, Code für deine Anwendung zu schreiben, solltest du dir einen Überblick darüber verschaffen, wie eine Ember-Anwendung funktioniert.
 
-![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
+![Grundkonzepte von Ember](../../images/ember-core-concepts/ember-core-concepts.png)
 
 ## Routen und Route-Handler
 
@@ -52,6 +52,6 @@ In der Regel wird ein Model Daten auf einem Web-Server persistieren. Man kann Mo
 
 Während Templates das Aussehen einer Benutzeroberfläche festlegen, steuern Komponenten deren *Verhalten*.
 
-Komponenten bestehen aus zwei Teilen: Einem in Handlebars geschriebenen Template und einer JavaScript-Datei, die das Verhalten der Komponente festlegen. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
+Komponenten bestehen aus zwei Teilen: Einem in Handlebars geschriebenen Template und einer JavaScript-Datei, die das Verhalten der Komponente festlegen. In unserer Anwendung zur Liegenschaftsverwaltung könnte es zum Beispiel eine Komponente geben, die alle Liegenschaften anzeigt und die `all-rentals` benannt ist, und eine andere Komponente, die eine einzelne Liegenschaft anzeigt und `rental-tile` heißt. Die `rental-tile`-Komponente definiert dann möglicherweise das Verhalten, um einen Benutzer das Bild-Attribut der Liegenschaft ein- und ausblenden zu lassen.
 
-Let's see these core concepts in action by building a property rental application in the next lesson.
+In der nächsten Lektion schauen wir uns diese Grundkonzepte im Einsatz an, indem eine Anwendung zur Liegenschaftsverwaltung bauen.

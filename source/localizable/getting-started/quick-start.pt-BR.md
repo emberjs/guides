@@ -20,7 +20,7 @@ Não tem npm? [Aprenda a instalar Node. js e npm aqui](https://docs.npmjs.com/ge
 
 ## Criando um novo aplicativo
 
-Once you've installed Ember CLI via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
+Uma vez instalado Ember através do npm, você terá acesso a um novo comando `ember` em seu terminal. Você pode usar o comando `ember new` para criar um novo aplicativo.
 
 ```sh
 ember new ember-quickstart
@@ -35,7 +35,7 @@ Este comando irá criar um novo diretório chamado `ember-quickstart` e configur
 
 Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
 
-Let's make sure everything is working properly. `cd` into the application directory `ember-quickstart` and start the development server by typing:
+Vamos ver se tudo está funcionando corretamente. `cd` para o diretório de aplicativo `embet-quickstart` e iniciar o servidor de desenvolvimento, digitando:
 
 ```sh
 cd ember-quickstart
@@ -189,7 +189,7 @@ Now that we've written our application and verified that it works in development
 ember build --env production
 ```
 
-The `build` command packages up all of the assets that make up your application&mdash;JavaScript, templates, CSS, web fonts, images, and more.
+O comando `build` empacota todos seus TDK(assets) que compõem o seu aplicativo&mdash;JavaScript, templates, CSS, web fonts, imagens, e mais.
 
 In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
 
