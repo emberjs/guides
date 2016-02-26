@@ -70,7 +70,7 @@ Switch to your editor and open `app/templates/application.hbs`. This is
 called the `application` template and it is always on screen while the
 user has your application loaded.
 
-In your editor, change the text inside the `<h1>` from `Welcome to
+In your editor, change the text inside the `<h2>` from `Welcome to
 Ember` to `PeopleTracker` and save the file. Notice that Ember detects
 the change you just made and automatically reloads the page for you in
 the background. You should see that "Welcome to Ember" has been
@@ -118,7 +118,7 @@ the following HTML:
 In your browser, open
 [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
 see the `<h2>` you put in the `scientists.hbs` template, right below the
-`<h1>` from our `application.hbs` template.
+`<h2>` from our `application.hbs` template.
 
 Now that we've got the `scientists` template rendering, let's give it some
 data to render. We do that by specifying a _model_ for that route, and
