@@ -10,7 +10,7 @@ Folgende Schritte werden wir beschreiben:
 
 ## Ember installieren
 
-Ember lässt sich in einem Schritt installieren, indem man npm, den Node.js-Paketmanager, benutzt. Gib folgendes in dein Terminal ein:
+Ember lässt sich mit einem npm-Befehl installieren (npm ist der Node.js-Paketmanager). Gib folgendes in dein Terminal ein:
 
 ```sh
 npm install -g ember-cli@2.3
@@ -20,7 +20,7 @@ Hast du npm noch nicht? [Finde hier heraus, wie du Node.js und npm installieren 
 
 ## Eine neue Anwendung erstellen
 
-Once you've installed Ember CLI via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
+Sobald du Ember CLI via npm installiert hast, hast du in deinem Terminal Zugriff auf einen neuen Befehl `ember`. Der Befehl `ember new` erstellt eine neue Anwendung.
 
 ```sh
 ember new ember-quickstart
