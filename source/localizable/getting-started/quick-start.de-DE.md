@@ -42,16 +42,16 @@ cd ember-quickstart
 ember serve
 ```
 
-After a few seconds, you should see output that looks like this:
+Nach wenigen Sekunden solltest du eine Ausgabe erhalten, die ungefähr so aussieht:
 
 ```text
 Livereload server on http://localhost:49152
 Serving on http://localhost:4200/
 ```
 
-(To stop the server at any time, type Ctrl-C in your terminal.)
+(Um zu einem beliebigen Zeitpunkt den Server zu stoppen, kannst du Strg-C in deinem Terminal drücken.)
 
-Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. You should see a page that says "Welcome to Ember" and not much else. Congratulations! You just created and booted your first Ember app.
+Öffne nun in deinem Lieblingsbrowser die URL [http://localhost:4200/](http://localhost:4200). Du solltest nun eine Webseite sehen, die "Welcome to Ember" (und nicht viel mehr) beinhaltet. Herzlichen Glückwunsch! Du hast soeben deine erste Ember-Anwendung erstellt und gestartet.
 
 Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
 
