@@ -55,7 +55,8 @@ Serving on http://localhost:4200/
 
 切换到你的编辑器并打开 `app/templates/application.hbs` 文件。这就是 `application` 模板了，当用户打开你的应用程序时该模板会始终显示在屏幕上。
 
-在你的编辑器中，将 `<h1>` 标签里的 `Welcome to Ember` 改成 `PeopleTracker` 然后保存。 注意 Ember 会检测到你刚才所做的改变并在后台为你自动刷新页面。 你应该能看到 "Welcome to Ember" 已经变成了 "PeopleTracker"。
+In your editor, change the text inside the `<h2>` from `Welcome to
+Ember` to `PeopleTracker` and save the file. 注意 Ember 会检测到你刚才所做的改变并在后台为你自动刷新页面。 你应该能看到 "Welcome to Ember" 已经变成了 "PeopleTracker"。
 
 ## 定义路由
 
@@ -94,7 +95,7 @@ installing route-test
 
     <br />在你的浏览器中打开 [http://localhost:4200/scientists](http://localhost:4200/scientists)。 You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h1>` from our `application.hbs` template.
+    `<h2>` from our `application.hbs` template.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. We do that by specifying a _model_ for that route, and

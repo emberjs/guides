@@ -55,7 +55,8 @@ Serving on http://localhost:4200/
 
 エディターに切り替えて、`app/templates/application.hbs` を開きます。これは `application` テンプレートと呼ばれるもので、ユーザーがあなたのアプリケーションを開いたときに、常にスクリーンに表示されるものです。
 
-エディターで `Welcome to Ember` から `PeopleTracker` と `< h1 >` 編集を行い、ファイルを保存します。 Ember はあなたが変更を行ったことを検知して、自動的にバックグラウンドでページを再読み込みしたはずです。 "Welcome to Ember" が "PeopleTracker" へと置き換わったことが、確認できるはずです。
+In your editor, change the text inside the `<h2>` from `Welcome to
+Ember` to `PeopleTracker` and save the file. Ember はあなたが変更を行ったことを検知して、自動的にバックグラウンドでページを再読み込みしたはずです。 "Welcome to Ember" が "PeopleTracker" へと置き換わったことが、確認できるはずです。
 
 ## ルートの定義
 
@@ -93,7 +94,9 @@ Ember が次のことを行ったことを意味しています。
 ## List of Scientists
 
     <br />ブラウザで
-    [http://localhost:4200/scientists](http://localhost:4200/scientists) を開けてください。 `application.hbs`の`<h1>`直下に、`scientists.hbs`テンプレートに追加した、`<h2>`が確認できるはずです。
+    [http://localhost:4200/scientists](http://localhost:4200/scientists) を開けてください。 You should
+    see the `<h2>` you put in the `scientists.hbs` template, right below the
+    `<h2>` from our `application.hbs` template.
     
     `scientists`テンプテートのレンダリングが出来たので、描画するためのデータを与えましょう。 そのために、`app/routes/scientists.js`を編集してルートのための_model_を特定します。
     

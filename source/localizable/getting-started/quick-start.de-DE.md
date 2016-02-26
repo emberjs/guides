@@ -1,10 +1,10 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+In diesem Tutorial lernst du, wie du eine einfache Ember-App von Grund auf neu erstellen kannst.
 
-We'll cover these steps:
+Folgende Schritte werden wir beschreiben:
 
-  1. Installing Ember.
-  2. Creating a new application.
-  3. Defining a route.
+  1. Ember installieren.
+  2. Eine neue Anwendung erstellen.
+  3. Eine Route definieren.
   4. Writing a UI component.
   5. Building your app to be deployed to production.
 
@@ -55,7 +55,7 @@ Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. 
 
 Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
 
-In your editor, change the text inside the `<h1>` from `Welcome to
+In your editor, change the text inside the `<h2>` from `Welcome to
 Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
 
 ## Define a Route
@@ -96,7 +96,7 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
     <br />In your browser, open
     [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h1>` from our `application.hbs` template.
+    `<h2>` from our `application.hbs` template.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. We do that by specifying a _model_ for that route, and

@@ -55,7 +55,8 @@ Abra [http://localhost:4200/](http://localhost:4200) em seu navegador. Você dev
 
 Alterne para o seu editor e abra `app/templates/application.hbs`. Isto se chama o template do `aplicativo` e está sempre na tela enquanto o usuário tem seu aplicativo carregado.
 
-No seu editor, altere o texto dentro do `< h1 >` de `Welcome do Ember` para `PeopleTracker` e salve o arquivo. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
+In your editor, change the text inside the `<h2>` from `Welcome to
+Ember` to `PeopleTracker` and save the file. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
 
 ## Definindo uma Rota
 
@@ -93,7 +94,9 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
 ## Lista de Cientistas
 
     <br />No seu navegador, abra
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). Você deverá ver o `<h2>` que colocou no "template" `scientists.hbs`, logo abaixo do `<h1>` do nosso "template" `application.hbs`.
+    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
+    see the `<h2>` you put in the `scientists.hbs` template, right below the
+    `<h2>` from our `application.hbs` template.
     
     Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para mostrar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
     
