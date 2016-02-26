@@ -26,16 +26,16 @@ Sobald du Ember CLI via npm installiert hast, hast du in deinem Terminal Zugriff
 ember new ember-quickstart
 ```
 
-This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it. Out of the box, your application will include:
+Dieser Befehl erstellt ein neues Verzeichnis mit dem Namen `ember-quickstart`, das das Grundgerüst für eine neue Ember-Anwendung enthält. In diesem Grundgerüst sind schon einige Features enthalten:
 
-* A development server.
-* Template compilation.
-* JavaScript and CSS minification.
-* ES2015 features via Babel.
+* Ein Development-Server.
+* Kompilieren von Templates.
+* Minifizierung von JavaScript und CSS.
+* ES2015-Features via Babel.
 
-By providing everything you need to build production-ready web applications in an integrated package, Ember makes starting new projects a breeze.
+Ember macht es dir sehr einfach, neue Projekte zu erstellen, indem es dir in einem integrierten Paket alles zur Verfügung stellt, was du brauchst, um produktionsfähige Webanwendungen zu erstellen.
 
-Let's make sure everything is working properly. `cd` into the application directory `ember-quickstart` and start the development server by typing:
+Wir wollen nun sicherstellen, dass alles korrekt funktioniert. Wechsel mit `cd` in das Anwendungsverzeichnis `ember-quickstart` und starte den Development-Server, indem du folgendes eingibst:
 
 ```sh
 cd ember-quickstart
