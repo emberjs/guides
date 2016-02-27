@@ -1,16 +1,15 @@
-When your application starts, the router matches the current URL to the *routes* that you've defined. The routes, in turn, are responsible for displaying templates, loading data, and otherwise setting up application state.
+アプリケーションが起動すると、ルーターが現在のURLに設定された *ルート*と一致させます。 ルートが順番に、テンプレートを表示、データを読み込み、またはアプリケーションの状態を設定する責を担っています。
 
-## Basic Routes
+## 基本的なルート
 
-The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) method of your Ember application's router can be invoked to define URL mappings. When calling `map()`, you should pass a function that will be invoked with the value `this` set to an object which you can use to create routes.
+Emberアプリケーションのルーターの[`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) メソッドの呼び出しは、URL マッピングの定義として呼び出すことができます。 `Map()` を呼び出すとき、ルートの作成のために、`this` の値を持った関数を渡す必要があります。
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
-    <br />Now, when the user visits `/about`, Ember.js will render the `about`
-    template. Visiting `/favs` will render the `favorites` template.
+    <br />ユーザーが`/about`にアクセスするとき、 Ember は`about`テンプレーを描画します。
+    template. `/favs` にアクセスすると、 `favorites` テンプレートを描画します。
     
-    You can leave off the path if it is the same as the route
-    name. In this case, the following is equivalent to the above example:
+    もしルートの名前と、パスが同じ場合は、省略することができます。 この場合、次のコードが上記と同等の例になります。
     
     ```app/router.js
     Router.map(function() {
@@ -19,7 +18,7 @@ The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) metho
     });
     
 
-Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) to navigate between routes, using the name that you provided to the `route` method.
+テンプレート内で[`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) を `ルート` メソッド名で利用することで、 ルート間を移動することができます。
 
 ```handlebars
 {{#link-to "index"}}<img class="logo">{{/link-to}}
@@ -30,20 +29,19 @@ Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classe
 </nav>
 ```
 
-The `{{link-to}}` helper will also add an `active` class to the link that points to the currently active route.
+`{{link-to}}` ヘルパーは、現在アクディブになっているルートに`active` クラスを、追加することもできます。
 
-## Nested Routes
+## ネスト(入れ子)されたルート
 
-Often you'll want to have a template that displays inside another template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
+テンプレート内で、他のテンプレートを描画したいということは、よくあることです。 例えば、ブログアプリケーションでブログポストのリストから新規ポストを作成するのではなく、リストの隣に、ポスト作成を表示させたいかもしれません。
 
-In these cases, you can use nested routes to display one template inside of another.
+この場合、ネストされたルートを利用することで、テンプレート内で他のテンプレーを表示することができます。
 
-You can define nested routes by passing a callback to `this.route`:
+`this.route`にコールバックを渡すことで、ネストされたルートを定義することができます。
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />And then add the `{{outlet}}` helper to your template where you want the nested
-    template to display:
+    <br />そしてその後ネストされたテンプレーを表示させたい箇所に `{{outlet}}` ヘルパーをテンプレートに追加します。
     
     ```templates/posts.hbs
     <h1>Posts</h1>
@@ -51,9 +49,9 @@ You can define nested routes by passing a callback to `this.route`:
     {{outlet}}
     
 
-This router creates a route for `/posts` and for `/posts/new`. When a user visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index routes](#toc_index-routes) explains an important addition to this.) When the user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into the `{{outlet}}` of the `posts` template.
+このルーターは`/posts` と`/posts/new`からルートを作成します。 ユーザーが`/posts`にアクセスするとき、単に`posts.hbs`テンプレートが表示されます。 ([index routes](#toc_index-routes)直下にこの事柄につての重要な追加説明があります。) ユーザーが `posts/new`にアクセスすると、ユーザーは`posts` テンプレートの`{{outlet}}` に描画された`posts/new.hbs`テンプレートを見ることができます。
 
-A nested route's names includes the names of its ancestors. If you want to transition to a route (either via `transitionTo` or `{{#link-to}}`), make sure to use the full route name (`posts.new`, not `new`).
+ネストされたルートの名称には、その元の名前が含まれています。 もし、ルートに(`transitionTo` もしくは`{{#link-to}}`を経由して)推移したいとき、完全なルート名を使うのを忘れないでください。( `new`でhなく`posts.new`).
 
 ## The application route
 
@@ -69,7 +67,7 @@ For example, if you write a simple router like this:
 
 ```app/router.js Router.map(function(){ this.route('favorites'); });
 
-    <br />It is the equivalent of:
+    <br />次のコードと同じです。
     
     ```app/router.js
     Router.map(function(){
@@ -84,7 +82,7 @@ A nested router like this:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('favorites'); }); });
 
-    <br />Is the equivalent of:
+    <br />次のコードと同じです。
     
     ```app/router.js
     Router.map(function(){
@@ -100,7 +98,7 @@ If the user navigates to `/posts`, the current route will be `posts.index`, and 
 
 If the user then navigates to `/posts/favorites`, Ember.js will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
 
-## Dynamic Segments
+## ダイナミックなセグメント
 
 One of the responsibilities of a route is to load a model.
 
@@ -130,6 +128,6 @@ A dynamic segment is a portion of a URL that starts with a `:` and is followed b
     });
     
 
-## Route Handlers
+## ルート ハンドラー
 
 To have your route do something beyond render a template with the same name, you'll need to create a route handler. The following guides will explore the different features of route handlers. For more information on routes, see the API documentation for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route handlers](http://emberjs.com/api/classes/Ember.Route.html).

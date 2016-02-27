@@ -87,7 +87,7 @@ if (Ember.FEATURES.isEnabled("feature")) {
   1. Travis は上記に示したように、テストを行います。
   2. もしビルドに成功すれば、Travis はコミットを選択して該当するブランチに含めます。
 
-The idea is that new commits should be submitted as PRs to ensure they apply cleanly, and once the merge button is pressed, Travis will apply them to the right branches.
+アイデアは、新規のコミットは、PRとしてなされることで、Travis が適切なブランチにコミットが正しく適応されていることを確約するということです。
 
 ### Go/No-Go プロセス
 
@@ -95,20 +95,20 @@ The idea is that new commits should be submitted as PRs to ensure they apply cle
 
 #### ベータブランチ
 
-All remaining features on the beta branch are vetted for readiness. If any feature isn't ready, it is removed from features.json.
+ベーラブランチに残った機能は準備が整っているか、厳密に精査されます。機能がもし準備が不十分ならfeatures.jsonから取り除かれます。
 
-Once this is done, the beta branch is tagged and merged into release.
+これが完了すると、ベータブランチはタグ付けされ、リリースにマージされます。
 
 #### マスター ブランチ
 
-All features on the master branch are vetted for readiness. In order for a feature to be considered "ready" at this stage, it must be ready as-is with no blockers. Features are a no-go even if they are close and additional work on the beta branch would make it ready.
+マスターランチに残った機能は準備が整っているか、厳密に精査されます。 この段階で機能が「準備完了」とされるのは、文字通り全く障害がないという意味になります。 準備が整っていないと判断された機能はベータブランチに留まり、準備が整えられます。
 
-Because this process happens every six weeks, there will be another opportunity for a feature to make it soon enough.
+この工程は６週おきに行われるので、新規機能が「準備が整っている」とされる機会はすぐにまた来ます。
 
-Once this is done, the master branch is merged into beta. A `features.json` file is added with the features that are ready.
+この工程が完了したら、マスターブランチはベータブランチにマージされます。`features.json`ファイルに準備ができた機能が追加されます。
 
 ### ベータリリース
 
-Every week, we repeat the Go/No-Go process for the features that remain on the beta branch. Any feature that has become unready is removed from the features.json.
+ベータブランチに残っている機能に対して、準備が整った/整っていないという工程を毎週行います。準備が整っていないとされた機能があれば、features.jsonから取り除かれます。
 
-Once this is done, a Beta release is tagged and pushed.
+この工程が完了したなら、ベータリリースはタグ付けされ、プッシュされます。
