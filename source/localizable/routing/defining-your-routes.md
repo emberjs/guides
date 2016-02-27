@@ -16,7 +16,7 @@ Router.map(function() {
 });
 ```
 
-Now, when the user visits `/about`, Ember.js will render the `about`
+Now, when the user visits `/about`, Ember will render the `about`
 template. Visiting `/favs` will render the `favorites` template.
 
 You can leave off the path if it is the same as the route
@@ -100,7 +100,7 @@ specify it in your `app/router.js`.
 
 ## Index Routes
 
-At every level of nesting (including the top level), Ember.js
+At every level of nesting (including the top level), Ember
 automatically provides a route for the `/` path named `index`.
 
 For example, if you write a simple router like this:
@@ -122,7 +122,7 @@ Router.map(function(){
 
 The `index` template will be rendered into the `{{outlet}}` in the
 `application` template. If the user navigates to `/favorites`,
-Ember.js will replace the `index` template with the `favorites`
+Ember will replace the `index` template with the `favorites`
 template.
 
 A nested router like this:
@@ -151,7 +151,7 @@ If the user navigates to `/posts`, the current route will be
 `posts.index`, and the `posts/index` template
 will be rendered into the `{{outlet}}` in the `posts` template.
 
-If the user then navigates to `/posts/favorites`, Ember.js will
+If the user then navigates to `/posts/favorites`, Ember will
 replace the `{{outlet}}` in the `posts` template with the
 `posts/favorites` template.
 
