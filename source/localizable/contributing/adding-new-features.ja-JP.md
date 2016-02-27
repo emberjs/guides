@@ -78,20 +78,20 @@ if (Ember.FEATURES.isEnabled("feature")) {
 
 新規のPRについて
 
-  1. Travis will test against master with all feature flags on.
-  2. If a commit is tagged with [BUGFIX beta], Travis will also cherry-pick the commit into beta, and run the tests on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
-  3. If a commit is tagged with [BUGFIX release], Travis will also cherry-pick the commit into release, and run the test on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
+  1. Travis-ciはマスターに対して、全ての機能フラグを有効にしてテストを行います。
+  2. もしコミットに [BUGFIX beta] タグが付けられていたら、 Travis はタグが付けられたコミットを選択して、ベータブランチでのテストにも適応します。 もしコミットが正常に適用されない、あるいは失敗する場合は、テストは失敗で終わります。
+  3. コミットが [BUGFIX release] とタグ付けされていたら、Travis はタグが付けられたコミットを選択して、リリースブランチでのテストにも適応します。 もしコミットが正常に適用されない、あるいは失敗する場合は、テストは失敗で終わります。
 
-For a new commit to master:
+マスターに対する新規コミット
 
-  1. Travis will run the tests as described above.
-  2. If the build passes, Travis will cherry-pick the commits into the appropriate branches.
+  1. Travis は上記に示したように、テストを行います。
+  2. もしビルドに成功すれば、Travis はコミットを選択して該当するブランチに含めます。
 
 The idea is that new commits should be submitted as PRs to ensure they apply cleanly, and once the merge button is pressed, Travis will apply them to the right branches.
 
 ### Go/No-Go プロセス
 
-Every six weeks, the core team goes through the following process.
+6 週間ごとにコア チームは、次のプロセスを行います。
 
 #### ベータブランチ
 
