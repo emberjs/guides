@@ -1,18 +1,18 @@
-Joining a web development community can be a challenge within itself, especially when all the resources you visit assume you're familiar with other technologies that you're not familiar with.
+Juntar-se a nossa comunidade de desenvolvimento web pode ser, por si só, um desafio. Especialmente quando todos os materiais que você lê assumem que você já está familiarizado com tecnologias com as quais você não está.
 
-Our goal is to help you avoid that mess and come up to speed as fast as possible; you can consider us your internet friend.
+Nosso objetivo é ajudá-lo a evitar essa confusão e destravá-lo o mais rápido possível; considere-nos seu amigo da internet.
 
 ## CDN
 
-Content Delivery Network
+Content Delivery Network (Rede de Fornecimento de Conteúdo)
 
-This is typically a paid service you can use to get great performance for your app. Many CDNs act as caching proxies to your origin server; some require you to upload your assets to them. They give you a URL for each resource in your app. This URL will resolve differently for folks depending on where they're browsing.
+Normalmente é um serviço pago, usado para que seu aplicativo obtenha alto desempenho. Muitos CDNs agem como proxies de cache do seu servidor origem; alguns requerem que os ativos de desenvolvimento (assets) sejam armazenados neles. Eles dão uma URL para cada recurso no seu aplicativo. Essa URL irá resolver de forma diferente para cada um, dependendo de onde, fisicamente, eles estão navegando.
 
-Behind the scenes, the CDN will distribute your content geographically with the goal of end-users being able to fetch your content with the lowest latency possible. For example, if a user is in India, they'd likely get content served from India faster than from the United States.
+Por trás dos panos, o CDN vai distribuir o seu conteúdo geograficamente com o objetivo de fazer com que os usuários finais possam baixar seu conteúdo com a menor latência possível. Por exemplo, se um usuário está na Índia, eles provavelmente terão conteúdo servido da Índia mais rapidamente do que dos Estados Unidos.
 
 ## CoffeeScript, TypeScript
 
-These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypeScript or CoffeeScript into JavaScript.
+Essas duas linguagens compilam para JavaScript. Você pode escrever seu código usando a sintaxe delas e, quando estiver pronto, compilar seu TypeScript ou CoffeeScript para JavaScript.
 
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
@@ -22,34 +22,34 @@ Browsers that update themselves (without user intervention).
 
 [Evergreen Browsers](http://tomdale.net/2013/05/evergreen-browsers/)
 
-## ES3, ES5, ES5.1, ES6 (aka ES2015), etc
+## ES3, ES5, ES5.1, ES6 (vulgo ES2015), etc
 
-ES stands for ECMAScript, which is the specification that JavaScript is based on. The number that follows is the version of the specification.
+ES é um acrônimo para ECMAScript, a especificação sobre a qual JavaScript se baseia. O número que acompanha é a versão da especificação.
 
-Most browsers support at least ES5, and some even have ES6 (also known as ES2015) support. You can check each browser's support (including yours) here:
+A maioria dos navegadores suporta pelo menos ES5, e alguns até suportam ES6 (vulgo ES2015). Você pode checar suporte de cada navegador (incluindo o seu) aqui:
 
-* [ES5 support](http://kangax.github.io/compat-table/es5/)
-* [ES6 support](http://kangax.github.io/compat-table/es6/)
+* [Suporte ES5](http://kangax.github.io/compat-table/es5/)
+* [Suporte ES6](http://kangax.github.io/compat-table/es6/)
 
 [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 
 ## LESS, Sass
 
-Both LESS and Sass are types of CSS preprocessor markup intended to give you much more control over your CSS. During the build process, the LESS or Sass resources compile down to vanilla CSS (which can be executed in a browser).
+Tanto LESS quanto Sass são tipos de pré-processadores de CSS capazes de dar muito mais controle sobre o seu CSS. Durante o processo de montagem (build process), os recursos LESS ou Sass compilam para CSS "feijão-com-arroz" (que pode ser executado em um navegador).
 
-[Sass/Less Comparison](https://gist.github.com/chriseppstein/674726)
+[Comparação Saas/Less](https://gist.github.com/chriseppstein/674726)
 
 ## Linter, linting, jslint, jshint
 
-A validation tool which checks for common issues in your JavaScript. You'd usually use this in your build process to enforce quality in your codebase. A great example of something to check for: *making sure you've always got your semicolons*.
+Ferramentas de validação que checam erros comuns no seu JavaScript. Geralmente usados durante o processo de montagem (build process) para forçar qualidade na base de código. Um bom exemplo de algo a se checar: *ter certeza que você colocou todos os ponto e vírgulas*.
 
-[An example of some of the options you can configure](http://jshint.com/docs/options/)
+[Um exemplo de algumas opções que você pode configurar](http://jshint.com/docs/options/)
 
 ## Polyfill
 
-This is a concept that typically means providing JavaScript which tests for features that are missing (prototypes not defined, etc) and "fills" them by providing an implementation.
+Esse é um conceito que normalmente significa prover código Javascript que testa por funcionalidades não implementadas (protótipos não definidos, etc) e "preenchem" com uma implementação.
 
-## Promise
+## Promise (Promessa)
 
 Asynchronous calls typically return a promise (or deferred). This is an object which has a state: it can be given handlers for when it's fulfilled or rejected.
 
@@ -64,17 +64,17 @@ Server Side Rendering
 
 [Inside FastBoot: The Road to Server-Side Rendering](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
 
-## Transpile
+## Transpilação
 
-When related to JavaScript, this can be part of your build process which "transpiles" (converts) your ES6 syntax JavaScript to JavaScript that is supported by current browsers.
+Quando relacionado a JavaScript, isso tem a ver com o processo de montagem (build process) que "transpila" (converte) seu código JavaScript com sintaxe ES6 em JavaScript suportado pelos navegadores atuais.
 
-Besides ES6, you'll see a lot of content about compiling/transpiling CoffeeScript, a short-hand language which can "compile" to JavaScript.
+Além de ES6, você encontrará muito conteúdos sobre compilação/transpilação CoffeeScript, uma linguagem que pode ser "compilada" para JavaScript.
 
-* Ember CLI specifically uses [Babel](https://babeljs.io/) via the [ember-cli-babel](https://github.com/babel/ember-cli-babel) plugin.
+* Ember CLI usa especificamente [Babel](https://babeljs.io/) via o plugin [ember-cli-babel](https://github.com/babel/ember-cli-babel).
 
 ## Shadow DOM
 
-Not to be confused with Virtual DOM. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
+Não confundir com Virtual DOM. Shadow DOM é ainda um trabalho em andamento, mas basicamente é uma proposta de ter um DOM "isolado" encapsulado no DOM do seu aplicativo.
 
 Creating a re-usable "widget" or control might be a good use-case for this. Browsers implement some of their controls using their own version of a shadow DOM.
 
@@ -83,4 +83,4 @@ Creating a re-usable "widget" or control might be a good use-case for this. Brow
 
 ## Virtual DOM
 
-Not to be confused with Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
+Não confundir com Shadow DOM. O conceito de um DOM virtual significa abster seu código (no nosso caso, do Ember) de usar o DOM do navegador e usar, ao invés, um DOM "virtual" que pode ser mais facilmente acessado para leitura/escrita e até serializado (serialized).

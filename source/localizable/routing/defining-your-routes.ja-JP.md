@@ -6,8 +6,7 @@ Emberアプリケーションのルーターの[`map()`](http://emberjs.com/api/
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
-    <br />ユーザーが`/about`にアクセスするとき、 Ember は`about`テンプレーを描画します。
-    template. `/favs` にアクセスすると、 `favorites` テンプレートを描画します。
+    <br />ユーザーが`/about`にアクセスするとき、 Ember は`about`テンプレーを描画します。 `/favs` にアクセスすると、 `favorites` テンプレートを描画します。
     
     もしルートの名前と、パスが同じ場合は、省略することができます。 この場合、次のコードが上記と同等の例になります。
     
@@ -53,17 +52,17 @@ Emberアプリケーションのルーターの[`map()`](http://emberjs.com/api/
 
 ネストされたルートの名称には、その元の名前が含まれています。 もし、ルートに(`transitionTo` もしくは`{{#link-to}}`を経由して)推移したいとき、完全なルート名を使うのを忘れないでください。( `new`でhなく`posts.new`).
 
-## The application route
+## アプリケーション ルート
 
-The `application` route is entered when your app first boots up. Like other routes, it will load a template with the same name (`application` in this case) by default. You should put your header, footer, and any other decorative content here. All other routes will render their templates into the `application.hbs` template's `{{outlet}}`.
+アプリケーションが起動すると、まず`application` が呼び出されます。 デフォルトで他のルートのように、同じ名前を持つ、テンプレートを呼び出します。 (この場合`application`) You should put your header, footer, and any other decorative content here. All other routes will render their templates into the `application.hbs` template's `{{outlet}}`.
 
 This route is part of every application, so you don't need to specify it in your `app/router.js`.
 
-## Index Routes
+## インデックス ルート
 
-At every level of nesting (including the top level), Ember.js automatically provides a route for the `/` path named `index`.
+入れ子のあらゆる場面で、 (一番上の階層も含めて)、 Ember 自動的に `index`という名称の`/` ルートを提供します。.
 
-For example, if you write a simple router like this:
+たとえば、このような単純なルーターを記述した場合。
 
 ```app/router.js Router.map(function(){ this.route('favorites'); });
 
@@ -76,9 +75,9 @@ For example, if you write a simple router like this:
     });
     
 
-The `index` template will be rendered into the `{{outlet}}` in the `application` template. If the user navigates to `/favorites`, Ember.js will replace the `index` template with the `favorites` template.
+`application`テンプレート内の`{{outlet}}`に`index`テンプレートが描画されます。 ユーザーが`/favorites`に移動したら、Ember は `index` テンプレートを `favorites` テンプレートと置き換えます。
 
-A nested router like this:
+次のように、入れ子になったルーター:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('favorites'); }); });
 
@@ -96,7 +95,7 @@ A nested router like this:
 
 If the user navigates to `/posts`, the current route will be `posts.index`, and the `posts/index` template will be rendered into the `{{outlet}}` in the `posts` template.
 
-If the user then navigates to `/posts/favorites`, Ember.js will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
+If the user then navigates to `/posts/favorites`, Ember will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
 
 ## ダイナミックなセグメント
 

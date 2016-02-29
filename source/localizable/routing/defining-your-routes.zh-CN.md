@@ -6,7 +6,7 @@ The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) metho
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
-    <br />Now, when the user visits `/about`, Ember.js will render the `about`
+    <br />Now, when the user visits `/about`, Ember will render the `about`
     template. Visiting `/favs` will render the `favorites` template.
     
     You can leave off the path if it is the same as the route
@@ -63,7 +63,7 @@ This route is part of every application, so you don't need to specify it in your
 
 ## Index Routes
 
-At every level of nesting (including the top level), Ember.js automatically provides a route for the `/` path named `index`.
+At every level of nesting (including the top level), Ember automatically provides a route for the `/` path named `index`.
 
 For example, if you write a simple router like this:
 
@@ -78,7 +78,7 @@ For example, if you write a simple router like this:
     });
     
 
-The `index` template will be rendered into the `{{outlet}}` in the `application` template. If the user navigates to `/favorites`, Ember.js will replace the `index` template with the `favorites` template.
+The `index` template will be rendered into the `{{outlet}}` in the `application` template. If the user navigates to `/favorites`, Ember will replace the `index` template with the `favorites` template.
 
 A nested router like this:
 
@@ -98,7 +98,7 @@ A nested router like this:
 
 If the user navigates to `/posts`, the current route will be `posts.index`, and the `posts/index` template will be rendered into the `{{outlet}}` in the `posts` template.
 
-If the user then navigates to `/posts/favorites`, Ember.js will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
+If the user then navigates to `/posts/favorites`, Ember will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
 
 ## Dynamic Segments
 
