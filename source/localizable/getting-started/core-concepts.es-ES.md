@@ -4,7 +4,7 @@ Antes de empezar a escribir código, es buena idea obtener una visión general d
 
 ## Enrutador y gestores de ruta
 
-Supongamos que vamos a escribir una aplicación web que permite a los usuarios anunciar una o varias propiedades para ser alquiladas. En un momento dado, deberíamos ser capaces de responder a preguntas sobre el estado actual como *¿qué propiedad están buscando?* o *¿está siendo editada?* En Ember.js, la respuesta a estas dos preguntas viene determinada por la URL. La URL se puede establecer de varias formas:
+Supongamos que vamos a escribir una aplicación web que permite a los usuarios anunciar una o varias propiedades para ser alquiladas. En un momento dado, deberíamos ser capaces de responder a preguntas sobre el estado actual como *¿qué propiedad están buscando?* o *¿se está simplemente visualizando o está siendo editada?* En Ember.js, la respuesta a estas dos posibles preguntas viene determinada por la URL. La URL se puede establecer de varias formas:
 
 * El usuario carga la aplicación por primera vez.
 * El usuario cambia la URL manualmente, como por ejemplo haciendo clic en el botón de retroceder o editando la barra de direcciones.
@@ -30,7 +30,7 @@ La mayoría de plantillas en Ember nos resultan familiares, ya que no son más q
 
 En Ember, las plantillas utilizan adicionalmente la sintaxis de [Handlebars](http://handlebarsjs.com). Todo lo que sea válido en Handlebars es asimismo válido en Ember.
 
-Las plantillas también pueden mostrar propiedades que procedan de su contexto, que puede ser un componente o una ruta (técnicamente, se podría tratar también de un controlador, pero últimamente ya casi no se utiliza de este modo, y de hecho pronto quedará obsoleto). Por ejemplo:
+Las plantillas también pueden mostrar propiedades establecidas en su contexto, que puede ser un componente o una ruta (técnicamente, podrían proceder también de un controlador, pero últimamente ya casi no se utiliza de este modo, y de hecho pronto esta práctica pronto quedará obsoleta). Por ejemplo:
 
 ```handlebars
 < div > ¡Hola {{nombre}}! Esta es una plantilla de Ember totalmente válida. < / div >
