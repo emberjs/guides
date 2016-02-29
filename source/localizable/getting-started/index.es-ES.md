@@ -1,4 +1,4 @@
-Con Ember es fácil empezar. Proyectos de Ember se crea y se mantiena con un construccion de linea llamado Ember CLI. Este herramienat le proporciona:
+Es fácil empezar con Ember. Un proyecto de Ember se crea y se mantiene gracias a un comando de consola llamado Ember CLI. Este herramienta proporciona:
 
 * Modern application asset management (including concatenation, minifying, and versioning).
 * Generators to help create components, routes, and more.
