@@ -54,9 +54,9 @@ Emberアプリケーションのルーターの[`map()`](http://emberjs.com/api/
 
 ## アプリケーション ルート
 
-アプリケーションが起動すると、まず`application` が呼び出されます。 デフォルトで他のルートのように、同じ名前を持つ、テンプレートを呼び出します。 (この場合`application`) You should put your header, footer, and any other decorative content here. All other routes will render their templates into the `application.hbs` template's `{{outlet}}`.
+アプリケーションが起動すると、まず`application` が呼び出されます。 デフォルトで他のルートのように、同じ名前を持つ、テンプレートを呼び出します。 (この場合`application`) ヘッダー、フッターなどのデコラティブなコンテンツはここに置く必要があります。 他のすべてのルートは`application.hbs` テンプレートの `{{outlet}}`にそろぞれのテンプレートを描画します。.
 
-This route is part of every application, so you don't need to specify it in your `app/router.js`.
+このルートは、すべてのアプリケーションの一部なので、`app/router.js`のしては不要です。.
 
 ## インデックス ルート
 
@@ -93,9 +93,9 @@ This route is part of every application, so you don't need to specify it in your
     });
     
 
-If the user navigates to `/posts`, the current route will be `posts.index`, and the `posts/index` template will be rendered into the `{{outlet}}` in the `posts` template.
+ユーザーが `/posts`にナビゲートしてきたら、そのときのカレントルートは`posts.index`になり`posts/index`テンプレートが`posts`テンプレートの`{{outlet}}` 内に描画されます。
 
-If the user then navigates to `/posts/favorites`, Ember will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
+ユーザーが `/posts/favorites`にナビゲートしてきたら、Emberは`{{outlet}}`を`posts` テンプレートから`posts/favorites`テンプレートに置き換えます。
 
 ## ダイナミックなセグメント
 
