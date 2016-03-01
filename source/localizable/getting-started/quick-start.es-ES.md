@@ -1,26 +1,26 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+Esta guía le enseñará cómo construir una aplicación simple usando Ember desde cero.
 
-We'll cover these steps:
+Daremos estos pasos:
 
-  1. Installing Ember.
-  2. Creating a new application.
-  3. Defining a route.
-  4. Writing a UI component.
-  5. Building your app to be deployed to production.
+  1. Instalación de Ember.
+  2. Creación de una nueva aplicación.
+  3. Definir una ruta.
+  4. Escribir un componente.
+  5. Construir la aplicación para ser desplegada en producción.
 
-## Install Ember
+## Instalar Ember
 
-You can install Ember with a single command using npm, the Node.js package manager. Type this into your terminal:
+Ember se puede instalar mediante un solo comando usando npm, el gestor de paquetes de Node.js. Escribe esto en tu terminal:
 
 ```sh
 npm install -g ember-cli@2.3
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
+¿No tienes npm? [Aprende a instalar Node.js y npm aquí](https://docs.npmjs.com/getting-started/installing-node).
 
-## Create a New Application
+## Crear una nueva aplicación
 
-Once you've installed Ember CLI via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
+Una vez que has instalado Ember CLI mediante npm, ya puedes ejecutar el nuevo comando `ember` en la terminal. En concreto y para empezar, puedes utilizar el comando `ember new` para crear una nueva aplicación.
 
 ```sh
 ember new ember-quickstart
