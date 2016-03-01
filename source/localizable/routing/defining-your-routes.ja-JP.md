@@ -99,27 +99,24 @@ Emberアプリケーションのルーターの[`map()`](http://emberjs.com/api/
 
 ## ダイナミックなセグメント
 
-One of the responsibilities of a route is to load a model.
+ルートの機能の 1 つは、モデルを読み込むことです。
 
-For example, if we have the route `this.route('posts');`, our route might load all of the blog posts for the app.
+たとえば、 `this.route('posts');`,というルートがあるとします、ルートはアプリケーションのすべてのブログポストを読み込むかもしれません。
 
-Because `/posts` represents a fixed model, we don't need any additional information to know what to retrieve. However, if we want a route to represent a single post, we would not want to have to hardcode every possible post into the router.
+なぜなら`/posts` が静的なモデルのため、データを再取得するのに必要な追加的な情報が必要ないからです。 一方、ルートにポストを一つだけ表示させたい場合、ルーターに各ポストを表示させるためにハードコードはしたくないものです。
 
-Enter *dynamic segments*.
+*動的セグメント*の入力。.
 
-A dynamic segment is a portion of a URL that starts with a `:` and is followed by an identifier.
+動的セグメントとは、`:` から始まり、識別子が続くURLの一部です。
 
 ```app/router.js Router.map(function() { this.route('posts'); this.route('post', { path: '/post/:post_id' }); });
 
-    <br />If the user navigates to `/post/5`, the route will then have the `post_id` of
-    `5` to use to load the correct post. In the next section, [Specifying a Route's
-    Model](../specifying-a-routes-model), you will learn more about how to load a model.
+    <br />ユーザーが`/post/5`にナビゲーションした場合、ルートが`post_id` を`5` として、該当するポストを読み込みます。 次のセクション[Specifying a Route's
+    Model](../specifying-a-routes-model) では、さらに「どのようにモデルを読み込むか」について学習します。
     
-    ## Wildcard / globbing routes
+    ## ワイルドカード / グロビングルート
     
-    You can define wildcard routes that will match multiple URL segments. This could be used, for example,
-    if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed
-    by your app.
+    複数のURL セグメントと一致するワイルドカードルートを定義することが可能です。 例えばユーザーが、アプリケーションでは管理をしていないような不正なURL を入力した場合などのための、キャッチオールルータとして利用できます。
     
     ```app/router.js
     Router.map(function() {
@@ -129,4 +126,4 @@ A dynamic segment is a portion of a URL that starts with a `:` and is followed b
 
 ## ルート ハンドラー
 
-To have your route do something beyond render a template with the same name, you'll need to create a route handler. The following guides will explore the different features of route handlers. For more information on routes, see the API documentation for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route handlers](http://emberjs.com/api/classes/Ember.Route.html).
+ルートにテンプレートの描画以上のことをさせたいとき、ルートハンドが必要になります。 次のガイドでは、ルート ハンドラーのさまざまな機能について学習します。 さらにルートの詳細を確認したい場合は、API ドキュメントの [the router](http://emberjs.com/api/classes/Ember.Router.html) と [route handlers](http://emberjs.com/api/classes/Ember.Route.html)を参照してください。.

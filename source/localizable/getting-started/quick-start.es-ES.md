@@ -1,4 +1,4 @@
-Esta guía le enseñará cómo construir una aplicación simple usando Ember desde cero.
+Esta guía te enseñará cómo construir una aplicación simple usando Ember desde cero.
 
 Daremos estos pasos:
 
@@ -51,24 +51,23 @@ Serving on http://localhost:4200/
 
 (Para detener el servidor en cualquier momento, haz Ctrl-C en el terminal.)
 
-Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. You should see a page that says "Welcome to Ember" and not much else. Congratulations! You just created and booted your first Ember app.
+Abre [http://localhost:4200 /](http://localhost:4200) en tu navegador. Deberías ver una página que dice "Welcome to Ember". ¡Felicidades! Acabas de crear y arrancar tu primera aplicación de Ember.
 
-Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
+Ahora, en tu editor de texto abre `app/templates/application.hbs`. Esta es la plantilla de `application` y su contenido siempre se mostrará mientras la aplicación esté en ejecución.
 
-In your editor, change the text inside the `<h2>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
+Modifica el texto dentro de `<h2>`, de modo que donde dice `Welcome to Ember` cámbialo por `PeopleTracker` y guarda el archivo. Date cuenta de que Ember detecta el cambio que acabas de hacer y automáticamente vuelve a cargar la página. Deberías ver que "Welcome to Ember" ha sido reemplazado por "PeopleTracker".
 
-## Define a Route
+## Definir una ruta
 
-Let's build an application that shows a list of scientists. To do that, the first step is to create a route. For now, you can think of routes as being the different pages that make up your application.
+Vamos a crear una aplicación que muestra una lista de científicos. Para ello, el primer paso es crear una ruta. Por ahora, puedes entender las rutas como las diferentes páginas que componen la aplicación.
 
-Ember comes with *generators* that automate the boilerplate code for common tasks. To generate a route, type this in your terminal:
+Ember viene con *generadores* que crearán por ti el código base que se repite para tareas habituales. Para generar una ruta, escribe esto en tu terminal:
 
 ```sh
 ember generate route scientists
 ```
 
-You'll see output like this:
+Verás una salida como esta:
 
 ```text
 installing route
@@ -80,21 +79,20 @@ installing route-test
   create tests/unit/routes/scientists-test.js
 ```
 
-That's Ember telling you that it has created:
+Se trata de Ember diciendo que ha creado:
 
-  1. A template to be displayed when the user visits `/scientists`.
-  2. A `Route` object that fetches the model used by that template.
-  3. An entry in the application's router (located in `app/router.js`).
-  4. A unit test for this route.
+  1. Una plantilla que aparecerá cuando el usuario visite `/scientists`.
+  2. Un objeto de tipo `Route` que obtendrá el modelo utilizado por esa plantilla.
+  3. Una entrada en el enrutador de la aplicación (ubicado en `app/router.js`).
+  4. Una test unitario para esta ruta.
 
-Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
+Abre la plantilla recién creada en `app/templates/scientists.hbs` y agrega el siguiente código HTML:
 
-```app/templates/scientists.hbs 
+'''app/templates/scientists.hbs 
 
-## List of Scientists
+## Lista de científicos
 
-    <br />In your browser, open
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
+    <br />En el navegador, abre [http://localhost:4200/scientists] (http://localhost:4200/scientists). You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
     `<h2>` from our `application.hbs` template.
     
@@ -115,11 +113,11 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
     });
     
 
-(This code example uses the latest features in JavaScript, some of which you may not be familiar with. Learn more with this [overview of the newest JavaScript features](https://ponyfoo.com/articles/es6).)
+(Este ejemplo de código utiliza las últimas características de JavaScript, algunas de las cuales pueden no serte familiares aún. Aprende más sobre ellas con este [resumen de las nuevas características de JavaScript](https://ponyfoo.com/articles/es6).)
 
 In a route's `model()` method, you return whatever data you want to make available to the template. If you need to fetch data asynchronously, the `model()` method supports any library that uses [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Now let's tell Ember how to turn that array of strings into HTML. Open the `scientists` template and add some Handlebars code to loop through the array and print it:
+Ahora le indicaremos a Ember cómo convertir esa matriz de cadenas en HTML. Abre la plantilla `scientists` y añade el código Handlebars necesario para recorrer el array y mostrarlo:
 
 ```app/templates/scientists.hbs{+3,+4,+5,+6,+7} 
 

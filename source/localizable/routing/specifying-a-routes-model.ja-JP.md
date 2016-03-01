@@ -1,4 +1,4 @@
-Often, you'll want a template to display data from a model. Loading the appropriate model is one job of a route.
+多くの場合、モデルからのデータをテンプレートに表示させたい、ルートの機能の一つは適切なモデルを読み込むことです。
 
 For example, take this router:
 
@@ -78,7 +78,7 @@ The return value from the `model` hook is then available in your template and co
     [Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
     The `Ember.RSVP.hash` takes
     parameters that return promises, and when all parameter promises resolve, then
-    the `Ember.RSVP.hash` promise resolves. For example:
+    the `Ember.RSVP.hash` promise resolves. 例えば
     
     ```app/routes/songs.js
     export default Ember.Route.extend({
