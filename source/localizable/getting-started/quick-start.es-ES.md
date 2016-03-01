@@ -35,21 +35,21 @@ Este comando creará un nuevo directorio llamado `ember-quickstart` y configurar
 
 Proporcionando todo lo necesario para construir aplicaciones web en un paquete integrado, Ember facilita enormemente el inicio de nuevos proyectos.
 
-Let's make sure everything is working properly. `cd` into the application directory `ember-quickstart` and start the development server by typing:
+Comprobemos que todo esté funcionando correctamente. Accedamos al directorio de la aplicación mediante `cd ember-quickstart` y arranquemos el servidor de desarrollo escribiendo:
 
 ```sh
 cd ember-quickstart
 ember serve
 ```
 
-After a few seconds, you should see output that looks like this:
+Después de unos segundos, deberías leer en el terminal algo parecido a esto:
 
 ```text
 Livereload server on http://localhost:49152
 Serving on http://localhost:4200/
 ```
 
-(To stop the server at any time, type Ctrl-C in your terminal.)
+(Para detener el servidor en cualquier momento, haz Ctrl-C en el terminal.)
 
 Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. You should see a page that says "Welcome to Ember" and not much else. Congratulations! You just created and booted your first Ember app.
 
