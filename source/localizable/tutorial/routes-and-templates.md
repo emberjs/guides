@@ -166,7 +166,7 @@ Now, we'll add a link to our contact page so we can navigate from back and forth
 
 <p>(503)555-1212</p>
 
-<p>superrentalsrep@superrentals.com</p>
+<p><a href="mailto:superrentalsrep@superrentals.com">superrentalsrep@superrentals.com</a></p>
 
 {{#link-to "about"}}About{{/link-to}}
 ```
