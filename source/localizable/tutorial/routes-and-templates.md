@@ -140,7 +140,7 @@ Here we will use the `{{link-to}}` helper in our code to link between routes:
 
 <p>The Super Rentals website is a delightful project created to explore Ember.<br>
   By building a property rental site, we can simultaneously imagine traveling<br>
-  AND building Ember applications simultaneously.</p>
+  AND building Ember applications.</p>
 
 {{#link-to "contact"}}Click here to contact us.{{/link-to}}
 ```
