@@ -1,8 +1,8 @@
-Calling [`transitionTo()`](http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo) from a route or [`transitionToRoute()`](http://emberjs.com/api/classes/Ember.Controller.html#method_transitionToRoute) from a controller will stop any transition currently in progress and start a new one, functioning as a redirect. `transitionTo()` behaves exactly like the [link-to](../../templates/links) helper.
+ルートから[`transitionTo()`](http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo) を呼び出す、または [`transitionToRoute()`](http://emberjs.com/api/classes/Ember.Controller.html#method_transitionToRoute) をコントローラから呼び出すと、そのとき行われているすべての遷移は中断され、リダイレクトとして機能する新しい遷移が始まります。 [link-to](../../templates/links) ヘルパー`transitionTo()` は同様の動作を行います。
 
 If the new route has dynamic segments, you need to pass either a *model* or an *identifier* for each segment. Passing a model will skip that segment's `model()` hook (since the model is already loaded).
 
-## Transitioning Before the Model is Known
+## モデルがわかる前の、遷移
 
 If you want to redirect from one route to another, you can do the transition in the [`beforeModel()`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel) hook of your route handler.
 
