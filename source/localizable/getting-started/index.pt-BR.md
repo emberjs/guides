@@ -45,7 +45,7 @@ Com PhantomJs, você pode rodar seus testes da linha de comando, sem precisar ab
 Instale o Ember CLI usando npm:
 
 ```bash
-npm install -g ember-cli@2.3
+npm install -g ember-cli@2.4
 ```
 
 Para verificar se a instalação foi bem-sucedida, execute:

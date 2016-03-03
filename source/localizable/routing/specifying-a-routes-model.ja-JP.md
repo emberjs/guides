@@ -1,11 +1,10 @@
 多くの場合、モデルからのデータをテンプレートに表示させたい、ルートの機能の一つは適切なモデルを読み込むことです。
 
-For example, take this router:
+たとえば、次のこのルーターをご覧ください。
 
 ```app/router.js Router.map(function() { this.route('favorite-posts'); });
 
-    <br />To load a model for the `favoritePosts` route, you would use the [`model()`][1] 
-    hook in the `posts` route handler:
+    <br />`favoritePosts` ルートのモデルを読み込むには、 ` ルートハンドラの[`model()`][1] フックを使います。
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
     
@@ -17,9 +16,9 @@ For example, take this router:
     });
     
 
-Typically, the `model` hook should return an [Ember Data](../../models/) record, but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises), or a plain JavaScript object or array. Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
+通常`model`フックは[Ember Data](../../models/)のレコードを返しますが、[プロミス](https://www.promisejs.org/)オブジェクト(Ember Dataオブジェクトまたはプロミス)を返すことも、純粋なJavaScriptのオブジェクトや配列を返すこともできます。 Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
 
-The return value from the `model` hook is then available in your template and controller with the `model` property:
+The route will then set the return value from the `model` hook as the `model` property of the controller. You will then be able to access the controller's `model` property in your template:
 
 ```app/templates/favorite-posts.hbs 
 

@@ -45,7 +45,7 @@ You can run your tests from the command line with PhantomJS, without the need fo
 Install Ember using npm:
 
 ```bash
-npm install -g ember-cli@2.3
+npm install -g ember-cli@2.4
 ```
 
 To verify that your installation was successful, run:

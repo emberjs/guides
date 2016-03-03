@@ -19,7 +19,7 @@ For example, take this router:
 
 Typically, the `model` hook should return an [Ember Data](../../models/) record, but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises), or a plain JavaScript object or array. Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
 
-The return value from the `model` hook is then available in your template and controller with the `model` property:
+The route will then set the return value from the `model` hook as the `model` property of the controller. You will then be able to access the controller's `model` property in your template:
 
 ```app/templates/favorite-posts.hbs 
 

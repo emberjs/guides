@@ -113,7 +113,7 @@ Super Rentals HQ
     
     <p>The Super Rentals website is a delightful project created to explore Ember.<br>
       By building a property rental site, we can simultaneously imagine traveling<br>
-      AND building Ember applications simultaneously.</p>
+      AND building Ember applications.</p>
     
     {{#link-to "contact"}}Click here to contact us.{{/link-to}}
     
@@ -137,7 +137,7 @@ Testington, OR 97233
 
 (503)555-1212
 
-superrentalsrep@superrentals.com
+<superrentalsrep@superrentals.com>
 
 {{#link-to "about"}}About{{/link-to}}
 

@@ -105,14 +105,14 @@ Super Rentals HQ
     それではaboutページにcontactページへのリンク、aboutページにはcontactへのリンクを作ります。
     
     Ember には他のルートへのリンクなどの機能を提供する**ヘルパー** が組み込まれています。
-    ここではルーター間のリンクするために、 `{{link-to}}` ヘルパーを利用します:
+    Here we will use the `{{link-to}}` helper in our code to link between routes:
     
     ```app/templates/about.hbs
     <h2>About Super Rentals</h2>
     
     <p>The Super Rentals website is a delightful project created to explore Ember.<br>
       By building a property rental site, we can simultaneously imagine traveling<br>
-      AND building Ember applications simultaneously.</p>
+      AND building Ember applications.</p>
     
     {{#link-to "contact"}}Click here to contact us.{{/link-to}}
     
@@ -136,7 +136,7 @@ Testington, OR 97233
 
 (503)555-1212
 
-superrentalsrep@superrentals.com
+<superrentalsrep@superrentals.com>
 
 {{#link-to "about"}}About{{/link-to}}
 

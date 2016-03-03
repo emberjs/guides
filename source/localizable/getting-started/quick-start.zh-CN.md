@@ -13,7 +13,7 @@
 使用 Node.js 的包管理器 npm 只需要一条命令即可安装 Ember。在终端输入：
 
 ```sh
-npm install -g ember-cli@2.3
+npm install -g ember-cli@2.4
 ```
 
 还没有 npm 吗？[这里教你如何安装 Node.js 和 npm](https://docs.npmjs.com/getting-started/installing-node)。.

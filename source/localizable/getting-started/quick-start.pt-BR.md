@@ -13,7 +13,7 @@ Nós vamos cobrir estas etapas:
 Você pode instalar o Ember com um único comando usando npm, o gerenciador de pacotes do Node.js. Digite o seguinte comando em seu terminal:
 
 ```sh
-npm install -g ember-cli@2.3
+npm install -g ember-cli@2.4
 ```
 
 Não tem npm? [Aprenda a instalar Node. js e npm aqui](https://docs.npmjs.com/getting-started/installing-node).

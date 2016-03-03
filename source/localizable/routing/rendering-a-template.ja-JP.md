@@ -1,19 +1,14 @@
-One job of a route handler is rendering the appropriate template to the screen.
+ルートハンドラの役割の一つは、画面に適切なテンプレートを描画することです。
 
-By default, a route handler will render the template with the same name as the route. Take this router:
+デフォルトで、ルートハンドラはルートと同じ名前のテンプレートを描画します。例えば
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />Here, the `posts` route will render the `posts.hbs` template, and
-    the `posts.new` route will render `posts/new.hbs`.
+    <br />ここでは`posts` ルートは`posts.hbs`テンプレートをそして、`posts.new`ルートは`posts/new.hbs`テンプレートを描画します。
     
-    Each template will be rendered into the `{{outlet}}` of its parent route's
-    template. For example, the `posts.new` route will render its template into the
-    `posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
-    the `application.hbs`'s `{{outlet}}`.
+    それぞれのテンプレートは親ルールのテンプレとにある`{{outlet}}`内に描画されます。 例えば`posts.new` ルートは`posts.hbs`の`{{outlet}}`に、 `posts` ルートは`application.hbs`'の`{{outlet}}`にそれぞれ、描画します。
     
-    If you want to render a template other than the default one, implement the
-    [`renderTemplate()`][1] hook:
+    デフォルトのテンプレート以外を描画したい場合は[`renderTemplate()`][1] フックをインプリメントしてください:
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
     

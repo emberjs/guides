@@ -13,7 +13,7 @@
 Emberは Node.jsのパッケージマネージャー npmを使えば、コマンドを一つ実行するだけでのインストールすることができます。次のコマンドをターミナルで実行してください。
 
 ```sh
-npm install -g ember-cli@2.3
+npm install -g ember-cli@2.4
 ```
 
 npm がないですか?[このリンク先から、Node.js とnpmをインストールできます](https://docs.npmjs.com/getting-started/installing-node)。.
