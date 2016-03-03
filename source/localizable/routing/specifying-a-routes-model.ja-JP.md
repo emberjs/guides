@@ -16,9 +16,9 @@
     });
     
 
-通常`model`フックは[Ember Data](../../models/)のレコードを返しますが、[プロミス](https://www.promisejs.org/)オブジェクト(Ember Dataオブジェクトまたはプロミス)を返すことも、純粋なJavaScriptのオブジェクトや配列を返すこともできます。 Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
+通常`model`フックは[Ember Data](../../models/)のレコードを返しますが、[プロミス](https://www.promisejs.org/)オブジェクト(Ember Dataオブジェクトまたはプロミス)を返すことも、純粋なJavaScriptのオブジェクトや配列を返すこともできます。 Ember はテンプレートを描画する前に、データが読み込まれる (プロミスが解決される) まで待機します。
 
-The route will then set the return value from the `model` hook as the `model` property of the controller. You will then be able to access the controller's `model` property in your template:
+そしてルートは`モデル`フックの戻り値をコントローラの`モデル`プロパティとします。 そうすることで、テンプレートの`model`プロパティとしてアクセス可能にまります。
 
 ```app/templates/favorite-posts.hbs 
 
@@ -26,30 +26,17 @@ The route will then set the return value from the `model` hook as the `model` pr
 
 {{post.body}} {{/each}}
 
-    <br />## Dynamic Models
+    <br />## ダイナミックモデル
     
-    Some routes always display the same model. For example, the `/photos`
-    route will always display the same list of photos available in the
-    application. If your user leaves this route and comes back later, the
-    model does not change.
+    ルートの中には常に同じモデルを表示するものがあります。 例えば、`/photos`ルートは常に、アプリケーションでアクセス可能な写真の一覧を表示します。 もしユーザーが現在のルートから一旦離れて、その後戻ってきたら、モデルは変更されません。
     
-    However, you will often have a route whose model will change depending
-    on user interaction. For example, imagine a photo viewer app. The
-    `/photos` route will render the `photos` template with the list of
-    photos as the model, which never changes. But when the user clicks on a
-    particular photo, we want to display that model with the `photo`
-    template. If the user goes back and clicks on a different photo, we want
-    to display the `photo` template again, this time with a different model.
+    ただし、そのルートのモデルがユーザーの操作に応じて変更されることはあるでしょう。 例えば、フォトビューアーアプリケーションがあったとします。`/photos` ルートが、変更されることのない写真のリストをモデルとして、`/photos` テンプレートを描画します。 しかし、ユーザーが特定の写真をクリックすると、選択されたモデルで`photo`テンプレートを表示させたいと思います。 もしユーザーが、一旦戻り、別の写真をクリックした場合は、今度は違うモデルで `photo` テンプレートを描画させます。
     
-    In cases like this, it's important that we include some information in
-    the URL about not only which template to display, but also which model.
+    このような事例の場合、URL にテンプレートの情報だけではなく、どのモデルなのかという情報も含めるのが重要です。
     
-    In Ember, this is accomplished by defining routes with [dynamic
-    segments](../defining-your-routes/#toc_dynamic-segments).
+    Ember はこれを [ダイナミック セグメント](../defining-your-routes/#toc_dynamic-segments)がルートを定義する達成しています。
     
-    Once you have defined a route with a dynamic segment,
-    Ember will extract the value of the dynamic segment from the URL for
-    you and pass them as a hash to the `model` hook as the first argument:
+    一度ダイナミックセグメントでルートを定義したら、Ember は　ダイナミックな部分をURL から摘出して、モデルフックにハッシュとして引き渡します:
     
     ```app/router.js
     Router.map(function() {
@@ -59,25 +46,15 @@ The route will then set the return value from the `model` hook as the `model` pr
 
 ```app/routes/photo.js export default Ember.Route.extend({ model(params) { return this.store.findRecord('photo', params.photo_id); } });
 
-    <br />In the `model` hook for routes with dynamic segments, it's your job to
-    turn the ID (something like `47` or `post-slug`) into a model that can
-    be rendered by the route's template. In the above example, we use the
-    photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
-    method.
+    <br />ダイナミックセグメントがあるルートの`model` フックを、ID(例えば、`47` とか `post-slug`など)をモデルに変更して、ルートのテンプレートとして描画できるようにする必要があります。 上記の例の場合は、写真のID(`params.photo_id`) を Ember Data'sの`findRecord`
+    メソッドの引数としています。
     
-    Note: A route with a dynamic segment will only have its `model` hook called
-    when it is entered via the URL. If the route is entered through a transition
-    (e.g. when using the [link-to](../../templates/links) Handlebars helper), then a model context is
-    already provided and the hook is not executed. Routes without dynamic segments
-    will always execute the model hook.
+    注意: ダイナミックセグメントがあるルートは、URLの入力があったときだけ呼び出された場合のみ、`model`フックを呼び出します。 遷移によりルートの入力があった場合は(例 [link-to](../../templates/links)Handlebarsヘルパーを利用しているときなど ) モデルのコンテキストはすでに与えられているため、フックは実行されません。 ダイナミック セグメントのないルートは常にモデル フックを実行します。
     
-    ## Multiple Models
+    ## 複数モデル
     
-    Multiple models can be returned through an
-    [Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
-    The `Ember.RSVP.hash` takes
-    parameters that return promises, and when all parameter promises resolve, then
-    the `Ember.RSVP.hash` promise resolves. 例えば
+    複数モデルは、[Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash) を通じて返すことが可能です。
+    `Ember.RSVP.hash` はプロミスを返す、パラメータを受け取り、すべてのプロミスが解決されたとき `Ember.RSVP.hash` 自体のプロミスが解決されます。 例えば
     
     ```app/routes/songs.js
     export default Ember.Route.extend({
@@ -90,7 +67,7 @@ The route will then set the return value from the `model` hook as the `model` pr
     });
     
 
-In the `songs` template, we can specify both models and use the `{{#each}}` helper to display each record in the song model and album model:
+この`songs` テンプレートでは、`{{#each}}`で利用する、曲モデルと、アルバムモデルの両方を指定して、利用することができます。
 
 ```app/templates/songs.hbs 
 
