@@ -105,7 +105,7 @@ Super Rentals HQ
     それではaboutページにcontactページへのリンク、aboutページにはcontactへのリンクを作ります。
     
     Ember には他のルートへのリンクなどの機能を提供する**ヘルパー** が組み込まれています。
-    Here we will use the `{{link-to}}` helper in our code to link between routes:
+    ここではルーター間のリンクするために、 `{{link-to}}` ヘルパーを利用します:
     
     ```app/templates/about.hbs
     <h2>About Super Rentals</h2>
