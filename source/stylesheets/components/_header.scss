@@ -61,7 +61,10 @@
     @include size(100px 40px);
     background: image-url("ember-logo.svg") no-repeat;
     display: block;
-    margin: -15px auto 0 0;
+    margin: -15px auto 0 auto;
+    @include media($large-screen) {
+      margin-left: 0;
+    }
   }
 }
 
