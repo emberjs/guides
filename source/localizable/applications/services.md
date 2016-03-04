@@ -90,7 +90,7 @@ Therefore you need to access services in your component using the `get` function
 
 Once loaded, a service will persist until the application exits.
 
-Below we add a remove action to the `cart-contacts` component.
+Below we add a remove action to the `cart-contents` component.
 Notice that below we access the `cart` service with a call to`this.get`.
 
 ```app/components/cart-contents.js
