@@ -70,7 +70,7 @@ Injected properties are lazy loaded; meaning the service will not be instantiate
 
 Once loaded, a service will persist until the application exits.
 
-Below we add a remove action to the `cart-contacts` component. Notice that below we access the `cart` service with a call to`this.get`.
+Below we add a remove action to the `cart-contents` component. Notice that below we access the `cart` service with a call to`this.get`.
 
 ```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart'),
 
