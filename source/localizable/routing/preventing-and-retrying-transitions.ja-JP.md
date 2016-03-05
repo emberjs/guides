@@ -1,4 +1,4 @@
-During a route transition, the Ember Router passes a transition object to the various hooks on the routes involved in the transition. Any hook that has access to this transition object has the ability to immediately abort the transition by calling `transition.abort()`, and if the transition object is stored, it can be re-attempted at a later time by calling `transition.retry()`.
+ルートの遷移の間に、Emberルータは遷移オブジェクトを関連する遷移に関係するるとにルートフックに引き渡します。 Any hook that has access to this transition object has the ability to immediately abort the transition by calling `transition.abort()`, and if the transition object is stored, it can be re-attempted at a later time by calling `transition.retry()`.
 
 ### Preventing Transitions via `willTransition`
 
