@@ -4,7 +4,7 @@ Ember application works.
 ![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
 
 ## Router and Route Handlers
-Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like _What rental are they looking at?_ and _Are they editing it?_ In Ember.js, the answer to these questions is determined by the URL.
+Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like _What rental are they looking at?_ and _Are they editing it?_ In Ember, the answer to these questions is determined by the URL.
 The URL can be set in a few ways:
 
 * The user loads the app for the first time.
@@ -21,7 +21,7 @@ The route handler then typically does two things:
 
 ## Templates
 
-Ember.js uses templates to organize the layout of HTML in an application.
+Ember uses templates to organize the layout of HTML in an application.
 
 Most templates in an Ember codebase are instantly familiar, and look like any
 fragment of HTML. For example:
