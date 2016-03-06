@@ -34,4 +34,4 @@ Ember.jsガイドへようこそ! このドキュメントはあなたを完全�
 
 スタイリングや、コントリビューションプロセスについて、疑問があるときは [コントリビューション ガイド](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)を確認してください。 疑問が解決できない場合は、 [Slack group](https://ember-community-slackin.herokuapp.com/)内の`#documentation` に質問を投稿してください。.
 
-Good luck!
+がんばってね！

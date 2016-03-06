@@ -20,7 +20,7 @@ URL がどのように設定されたかに関わらず、まず Ember ルータ
 
 ## テンプレート
 
-Ember uses templates to organize the layout of HTML in an application.
+Ember はHTML のレイアウトを調整するためにテンプレートを利用します。
 
 Ember のコードベースのテンプレートの大部分は、即座に違和感のない、HTMLの断片のようにみえるでしょう
 
