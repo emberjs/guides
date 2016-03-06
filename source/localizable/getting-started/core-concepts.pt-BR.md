@@ -4,7 +4,7 @@ Antes de começar a escrever qualquer código de Ember, é uma boa idéia obter 
 
 ## Router and Route Handlers
 
-Imagine que estamos escrevendo um aplicativo da web para um sítio que permite ao usuário listar suas propriedades para alugar. Em qualquer momento, deve ser capaz de responder a perguntas sobre o estado atual como *que aluguel estão olhando?* e *eles estão a editá-lo?* Em Ember, a resposta a estas perguntas é determinada pelo URL. A URL pode ser definido de algumas maneiras:
+Imagine que estamos escrevendo um aplicativo da web para um sítio que permite ao usuário listar suas propriedades para alugar. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. A URL pode ser definido de algumas maneiras:
 
 * O usuário carrega o aplicativo pela primeira vez.
 * O usuário altera o URL manualmente, por exemplo clicando no botão voltar ou editando a barra de endereços.
@@ -20,7 +20,7 @@ The route handler then typically does two things:
 
 ## Templates
 
-Ember usa templates para organizar a estrutura HTML de um aplicativo.
+Ember uses templates to organize the layout of HTML in an application.
 
 A maioria das templates em um projeto Ember são familiares, e se parecem com um qualquer fragmento de HTML. Por exemplo:
 

@@ -1,10 +1,10 @@
-The Ember Router allows you to provide feedback that a route is loading, as well as when an error occurs in loading a route.
+Emberルーターはルータが読み込みでエラーが発生した時だけではなく、ルートが読み込み中のときもフィードバックを提供することができます。
 
-## `loading` substates
+## `ローディング`サブステート
 
-During the `beforeModel`, `model`, and `afterModel` hooks, data may take some time to load. Technically, the router pauses the transition until the promises returned from each hook fulfill.
+`beforeModel` フック、 `model`フックそして `afterModel`フックのが行われる間、データの読み込みに時間がかることがあります。 技術的には、ルーターは各フックのプロミスが満たされるまで、遷移を停止します。
 
-Consider the following:
+次のことを検討してください。
 
 ```app/router.js Router.map(function() { this.route('slow-model'); });
 
@@ -16,7 +16,7 @@ Consider the following:
     });
     
 
-If you navigate to `slow-model`, in the `model` hook, the query may take a long time to complete. During this time, your UI isn't really giving you any feedback as to what's happening. If you're entering this route after a full page refresh, your UI will be entirely blank, as you have not actually finished fully entering any route and haven't yet displayed any templates. If you're navigating to `slow-model` from another route, you'll continue to see the templates from the previous route until the model finish loading, and then, boom, suddenly all the templates for `slow-model` load.
+`モデル` フックの`スローモデル`に遷移したとき、クエリーの完了に時間がかかることがあります。 この間、UIは何が起こっているのかをフィードバックすることはありません。 If you're entering this route after a full page refresh, your UI will be entirely blank, as you have not actually finished fully entering any route and haven't yet displayed any templates. If you're navigating to `slow-model` from another route, you'll continue to see the templates from the previous route until the model finish loading, and then, boom, suddenly all the templates for `slow-model` load.
 
 So, how can we provide some visual feedback during the transition?
 

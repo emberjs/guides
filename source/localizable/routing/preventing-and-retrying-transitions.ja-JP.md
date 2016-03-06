@@ -1,12 +1,12 @@
-ルートの遷移の間に、Emberルータは遷移オブジェクトを関連する遷移に関係するるとにルートフックに引き渡します。 Any hook that has access to this transition object has the ability to immediately abort the transition by calling `transition.abort()`, and if the transition object is stored, it can be re-attempted at a later time by calling `transition.retry()`.
+ルートの遷移の間に、Emberルータは遷移オブジェクトを関連する遷移に関係するるとにルートフックに引き渡します。 この遷移オブジェクトへのアクセスがあるすべてのフックには`transition.abort()`を呼ぶことで、遷移を中断する機能があります、そして遷移オブジェクトがストアされた場合は `transition.retry()`を呼び出すことで、再実行することができます。.
 
-### Preventing Transitions via `willTransition`
+### `willTransition`を介して遷移を防止
 
-When a transition is attempted, whether via `{{link-to}}`, `transitionTo`, or a URL change, a `willTransition` action is fired on the currently active routes. This gives each active route, starting with the leaf-most route, the opportunity to decide whether or not the transition should occur.
+`{{link-to}}`、 `transitionTo`または、URLの変更で遷移を行うとき、 カレントのアクティブルートで`willTransition` アクションが発生します。 これが、アクティブな各リーフルートルートが遷移を発生させるかどうかの決断を行うことを可能にします。
 
 Imagine your app is in a route that's displaying a complex form for the user to fill out and the user accidentally navigates backwards. Unless the transition is prevented, the user might lose all of the progress they made on the form, which can make for a pretty frustrating user experience.
 
-Here's one way this situation could be handled:
+次の例がこの状況を処理する一つの方法です。
 
 ```app/routes/form.js export default Ember.Route.extend({ actions: { willTransition(transition) { if (this.controller.get('userHasEnteredData') && !confirm('Are you sure you want to abandon progress?')) { transition.abort(); } else { // Bubble the `willTransition` action so that // parent routes can decide whether or not to abort. return true; } } } });
 

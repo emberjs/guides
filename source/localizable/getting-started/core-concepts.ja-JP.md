@@ -4,7 +4,7 @@ Ember のコードを書き始める前に、Ember アプリケーションの�
 
 ## ルーターとルート ハンドラー
 
-レンタルのWeb アプリケーションを書いていると仮定してみてください。 いつでも、*何を探しているのか?* や *編集をしているのか?* といったそのときの状況がすぐに分かるようにしたいものです、Ember.jsではそれらの問題の答えは、URLによって解決されています。 URL はいくつかの方法で設定することが可能です。
+レンタルのWeb アプリケーションを書いていると仮定してみてください。 At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. URL はいくつかの方法で設定することが可能です。
 
 * ユーザーが、初めてアプリケーションを読み込みこんだとき。
 * ユーザーが手動で、[戻る] ボタンをクリックするあるいは、アドレス バーを編集して、手動でURL の変更を行ったとき。
@@ -20,7 +20,7 @@ URL がどのように設定されたかに関わらず、まず Ember ルータ
 
 ## テンプレート
 
-Ember.js はHTML のレイアウトを調整するためにテンプレートを利用します。
+Ember uses templates to organize the layout of HTML in an application.
 
 Ember のコードベースのテンプレートの大部分は、即座に違和感のない、HTMLの断片のようにみえるでしょう
 

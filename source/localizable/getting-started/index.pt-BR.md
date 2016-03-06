@@ -1,8 +1,8 @@
-Começar em Ember.js é fácil. Projetos Ember.js são criados e gerenciados através da Ember CLI, nossa ferramenta de linha de comando. Essa ferramenta fornece:
+Começar com Ember é fácil. Projetos em Ember são criados e gerenciados pelo Ember CLI, nossa ferramenta de linha de comando. Com essa ferramenta você tem:
 
 * Gerenciamento moderno de ativos de aplicação (incluindo concatenação, "minificação" e controle de versão).
 * Geradores para ajudar a criar componentes, rotas e muito mais.
-* Um layout padrão de projeto, tornando mais fácil entender aplicações Ember.js existentes.
+* Uma estrutura de projeto padrão, tornando mais fácil entender aplicações Ember existentes.
 * Suporte a Javascript ES2015/ES6 através do projeto [Babel](http://babeljs.io/docs/learn-es2015/). Isso inclui suporte para [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que são usados ao longo deste guia.
 * Uma estrutura completa de testes [QUnit](https://qunitjs.com/).
 * A capacidade de consumir Addons Ember de um ecossistema crescente.
