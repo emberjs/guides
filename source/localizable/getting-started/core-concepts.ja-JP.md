@@ -4,7 +4,7 @@ Ember のコードを書き始める前に、Ember アプリケーションの�
 
 ## ルーターとルート ハンドラー
 
-レンタルのWeb アプリケーションを書いていると仮定してみてください。 At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. URL はいくつかの方法で設定することが可能です。
+レンタルのWeb アプリケーションを書いていると仮定してみてください。 いつでも、*どの物件を探しているのか?* や *それを編集をしているのか?* といったそのときの状況がすぐに分かるよしなければいけません、Emberではそれらの問題の答えは、URLによって解決されています。 URL はいくつかの方法で設定することが可能です。
 
 * ユーザーが、初めてアプリケーションを読み込みこんだとき。
 * ユーザーが手動で、[戻る] ボタンをクリックするあるいは、アドレス バーを編集して、手動でURL の変更を行ったとき。
