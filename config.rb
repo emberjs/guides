@@ -25,9 +25,6 @@ activate :toc
 activate :highlighter
 activate :alias
 
-###
-# Swiftype
-###
 def current_guide(mm_instance, current_page)
   path = current_page.path.gsub('.html', '')
   guide_path = path.split("/")[0]
@@ -51,12 +48,6 @@ def current_chapter(mm_instance, current_page)
   end
 
   current_chapter
-end
-
-activate :swiftype do |swift|
-  swift.pages_selector = lambda { |p| p.path.match(/\.html/) && p.metadata[:options][:layout] == nil }
-  swift.title_selector = lambda { |mm_instance, p| return current_chapter(mm_instance, p) == nil ? "" : current_chapter(mm_instance, p).title }
-  swift.should_index = lambda { |p, title| return title.to_s == '' ? false : true }
 end
 
 ###
