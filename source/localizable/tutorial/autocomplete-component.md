@@ -43,6 +43,8 @@ populate the `input` field with the name of the `city` in the clicked list
 Here is what the component's JavaScript looks like:
 
 ```app/components/filter-listing.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   filter: null,
   filteredList: null,
@@ -100,6 +102,8 @@ ember g controller index
 Now, define your new controller like so:
 
 ```app/controllers/index.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   filteredList: null,
   actions: {
