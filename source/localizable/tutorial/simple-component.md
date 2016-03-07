@@ -76,6 +76,8 @@ The value of `isImageShowing` comes from our component's JavaScript file, in thi
 Since we do not want the image to be showing at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   isImageShowing: false
 });
@@ -103,6 +105,8 @@ Ember will then go into the `actions` hash and call the `imageShow` function.
 Let's create the `imageShow` function and set `isImageShowing` to `true` on our component:
 
 ```app/components/rental-listing.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   isImageShowing: false,
   actions: {
@@ -135,6 +139,8 @@ In our template, let's add a button with an `imageHide` action:
 Then let's setup an `imageHide` action handler in our component to set `isImageShowing` to `false`:
 
 ```app/components/rental-listing.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   isImageShowing: false,
   actions: {
