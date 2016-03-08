@@ -34,7 +34,7 @@ export default Ember.Component.extend({
 The template inside of the `{{#each-in}}` block is repeated once for
 each key in the passed object. The first block parameter (`category` in
 the above example) is the key for this iteration, while the second block
-parameter (`product`) is the actual value of that key.
+parameter (`products`) is the actual value of that key.
 
 The above example will print a list like this:
 
