@@ -69,8 +69,6 @@
 }
 
 .header-search {
-  margin-left: 4%;
-
   .st-search-input {
     appearance: none;
     background: image-url("search-icon.svg") rgba(white, 0.1) 10px 10px no-repeat;
@@ -88,5 +86,9 @@
     @include placeholder {
       color: $white;
     }
+  }
+
+  @include media($large-screen) {
+    margin-left: 4%;
   }
 }
