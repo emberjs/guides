@@ -1,10 +1,10 @@
-多くの場合、モデルからのデータをテンプレートに表示させたい、ルートの機能の一つは適切なモデルを読み込むことです。
+モデルからのデータをテンプレートに表示させたいことが多々あります。ルートの機能の一つは適切なモデルを読み込むことです。
 
 たとえば、次のこのルーターをご覧ください。
 
 ```app/router.js Router.map(function() { this.route('favorite-posts'); });
 
-    <br />`favoritePosts` ルートのモデルを読み込むには、 ` ルートハンドラの[`model()`][1] フックを使います。
+    <br />`favoritePosts`ルートのモデルを読み込むには、`favoritePosts` ルートハンドラーで [`model()`][1] フックを設定します:
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
     
