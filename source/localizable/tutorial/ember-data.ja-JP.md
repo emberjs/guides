@@ -69,7 +69,7 @@ ember install ember-cli-mirage
     export default Ember.Route.extend({
       model() {
         return this.store.findAll('rental');
-      },
+      }
     });
     
 

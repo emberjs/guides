@@ -4,26 +4,17 @@
 
 `{{link-to}}`、 `transitionTo`または、URLの変更で遷移を行うとき、 カレントのアクティブルートで`willTransition` アクションが発生します。 これが、アクティブな各リーフルートルートが遷移を発生させるかどうかの決断を行うことを可能にします。
 
-Imagine your app is in a route that's displaying a complex form for the user to fill out and the user accidentally navigates backwards. Unless the transition is prevented, the user might lose all of the progress they made on the form, which can make for a pretty frustrating user experience.
+アプリケーションの状態が、ユーザーが入力する複雑なフォームを表示しているルートだとします、ユーザーが誤って戻るボタンを押してしまったとします。 遷移を中断しない限り、ユーザーはすでに入力した情報を失うかもしれません、そのような状態はユーザーにとって良いユーザー体験とは言えません。
 
 次の例がこの状況を処理する一つの方法です。
 
 ```app/routes/form.js export default Ember.Route.extend({ actions: { willTransition(transition) { if (this.controller.get('userHasEnteredData') && !confirm('Are you sure you want to abandon progress?')) { transition.abort(); } else { // Bubble the `willTransition` action so that // parent routes can decide whether or not to abort. return true; } } } });
 
-    <br />When the user clicks on a `{{link-to}}` helper, or when the app initiates a
-    transition by using `transitionTo`, the transition will be aborted and the URL
-    will remain unchanged. However, if the browser back button is used to
-    navigate away from `route:form`, or if the user manually changes the URL, the
-    new URL will be navigated to before the `willTransition` action is
-    called. This will result in the browser displaying the new URL, even if
-    `willTransition` calls `transition.abort()`.
+    <br />ユーザーが`{{link-to}}` ヘルパーをクリッスしたとき、または、アプリケーションが`transitionTo`を使って遷移を行っているとき、遷移は中断され URL は変化されずそのまま残ります。 一方で、ブラウザの戻るボタンを使って、`route:form`から離れる操作を行った、もしくはユーザーが手動でURLを書き換え、`willTransition` アクションが呼ばれる前に新しいURLに移動したとき。 この結果、`willTransition`が`transition.abort()`を呼び出しても、ブラウザは新しいURLを表示します。
     
-    ### Aborting Transitions Within `model`, `beforeModel`, `afterModel`
+    ### `model`、`beforeModel`、`afterModel`での遷移の中断
     
-    The `model`, `beforeModel`, and `afterModel` hooks described in
-    [Asynchronous Routing](../asynchronous-routing)
-    each get called with a transition object. This makes it possible for
-    destination routes to abort attempted transitions.
+    [Asynchronous Routing](../asynchronous-routing)で説明のある、`model`、`beforeModel`、`afterModel`フックはそれぞれ遷移オブジェクトから呼び出されます。 これにより遷移先のルートが遷移を中断することが可能になります。
     
     ```app/routes/disco.js
     export default Ember.Route.extend({
@@ -36,9 +27,9 @@ Imagine your app is in a route that's displaying a complex form for the user to 
     });
     
 
-### Storing and Retrying a Transition
+### 遷移の保存と再挑戦
 
-Aborted transitions can be retried at a later time. A common use case for this is having an authenticated route redirect the user to a login page, and then redirecting them back to the authenticated route once they've logged in.
+中断された遷移はその後、再挑戦することが可能です。 この一般的な使用例としては、認証済ルートがユーザーをログインページにリダイレクトし、その後ユーザーが再度、ログイン後認証済ルートのもどってくるといったケースです。
 
 ```app/routes/some-authenticated.js export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { var loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
 

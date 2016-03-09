@@ -16,7 +16,7 @@ If you need to display all of the keys or values of a JavaScript object in your 
     </ul>
     
 
-The template inside of the `{{#each-in}}` block is repeated once for each key in the passed object. The first block parameter (`category` in the above example) is the key for this iteration, while the second block parameter (`product`) is the actual value of that key.
+The template inside of the `{{#each-in}}` block is repeated once for each key in the passed object. The first block parameter (`category` in the above example) is the key for this iteration, while the second block parameter (`products`) is the actual value of that key.
 
 The above example will print a list like this:
 

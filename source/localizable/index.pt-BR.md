@@ -4,7 +4,7 @@ Welcome to the Ember.js Guides! This documentation will take you from total begi
 
 On the left side of each page in the Guides is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from the most basic concepts to the more advanced.
 
-The Guides are intended to contain practical explanations of how to build Ember apps, focusing on the most widely-used features of Ember.js. For exhaustive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
+The Guides are intended to contain practical explanations of how to build Ember apps, focusing on the most widely-used features of Ember.js. For comprehensive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
 
 The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
 

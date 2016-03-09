@@ -70,7 +70,7 @@ Let's now configure Mirage to send back our rentals that we had defined above by
     export default Ember.Route.extend({
       model() {
         return this.store.findAll('rental');
-      },
+      }
     });
     
 
