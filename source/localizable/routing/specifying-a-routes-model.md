@@ -10,7 +10,7 @@ Router.map(function() {
 ```
 
 To load a model for the `favoritePosts` route, you would use the [`model()`][1] 
-hook in the `posts` route handler:
+hook in the `favoritePosts` route handler:
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
 
