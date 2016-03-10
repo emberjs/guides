@@ -159,4 +159,9 @@ For example:
 }
 ```
 
-Keep in mind that even with this workaround in place, the `click` event will not automatically trigger via keyboard driven `click` equivalents (such as the `enter` key when focused). Browsers will trigger this on clickable elements only by default.
+Keep in mind that even with this workaround in place, the `click` event will
+not automatically trigger via keyboard driven `click` equivalents (such as
+the `enter` key when focused). Browsers will trigger this on clickable
+elements only by default. This also doesn't make an element accessible to
+users of assistive technology. You will need to add additional things like
+`role` and/or `tabindex` to make this accessible for your users.
