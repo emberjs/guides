@@ -10,6 +10,7 @@ americentric
 api
 apis
 app's
+assistive
 async
 asynchronicity
 asynchrony
