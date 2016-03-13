@@ -1,57 +1,199 @@
-Começar com Ember é fácil. Projetos em Ember são criados e gerenciados pelo Ember CLI, nossa ferramenta de linha de comando. Com essa ferramenta você tem:
+Este guia vai te ensinar como construir, do zero, um aplicativo simples usando Ember.
 
-* Gerenciamento moderno de ativos de aplicação (incluindo concatenação, "minificação" e controle de versão).
-* Geradores para ajudar a criar componentes, rotas e muito mais.
-* Uma estrutura de projeto padrão, tornando mais fácil entender aplicações Ember existentes.
-* Suporte a Javascript ES2015/ES6 através do projeto [Babel](http://babeljs.io/docs/learn-es2015/). Isso inclui suporte para [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que são usados ao longo deste guia.
-* Uma estrutura completa de testes [QUnit](https://qunitjs.com/).
-* A capacidade de consumir Addons Ember de um ecossistema crescente.
+Nós vamos cobrir estas etapas:
 
-## Dependências
+  1. Instalando o Ember.
+  2. Criando um novo aplicativo.
+  3. Definindo uma rota.
+  4. Escrevendo um componente de UI (Interface com usuário).
+  5. Construindo seu aplicativo para ser instalado ("deployed") em produção.
 
-### Node. js e npm
+## Instalando o Ember
 
-Ember CLI é construída com JavaScript e espera o "runtime" [Node.js](https://nodejs.org/). Ela também precisa de dependências buscadas através do [npm](https://www.npmjs.com/). npm é empacotado com Node.js, então, se seu computador tem Node.js instalado, você está pronto para começar.
+Você pode instalar o Ember com um único comando usando npm, o gerenciador de pacotes do Node.js. Digite o seguinte comando em seu terminal:
 
-Ember requer Node.js 0.12 ou superior e npm 2.7 ou superior. Caso não tenha certeza se tem a versão correta, execute isso na sua linha de comando:
-
-```bash
-node --version
-npm --version
-```
-
-Se você receber um erro *"command not found"* ou tiver uma versão desatualizada de Node:
-
-* Usuários de Windows ou Mac podem baixar e executar [o instalador de Node. js](http://nodejs.org/download/).
-* Usuários de Mac podem instalar Node usando [Homebrew](http://brew.sh/). Depois de instalar o Homebrew, execute `brew install node` para instalar o Node.js.
-* Os usuários de Linux podem usar [este guia para instalação de Node.js no Linux](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
-
-Se você estiver com uma versão desatualizada do npm, execute `npm install -g npm`.
-
-### Git
-
-Ember requer Git para gerenciar muitas de suas dependências. Git vem com o Mac OS X e na maioria das distribuições Linux. Usuários Windows podem baixar e executar [este instalador Git](http://git-scm.com/download/win).
-
-### Watchman (opcional)
-
-No Mac e no Linux, você pode melhorar o desempenho da observação de arquivos ("file watching") instalando [Watchman](https://facebook.github.io/watchman/docs/install.html).
-
-### PhantomJS (opcional)
-
-Com PhantomJs, você pode rodar seus testes da linha de comando, sem precisar abrir um navegador. Consulte as [instruções para baixar PhantomJs](http://phantomjs.org/download.html).
-
-## Instalação
-
-Instale o Ember CLI usando npm:
-
-```bash
+```sh
 npm install -g ember-cli@2.4
 ```
 
-Para verificar se a instalação foi bem-sucedida, execute:
+Não tem npm? [Aprenda a instalar Node. js e npm aqui](https://docs.npmjs.com/getting-started/installing-node).
 
-```bash
-ember -v
+## Criando um novo aplicativo
+
+Uma vez instalado Ember através do npm, você terá acesso a um novo comando `ember` em seu terminal. Você pode usar o comando `ember new` para criar um novo aplicativo.
+
+```sh
+ember new ember-quickstart
 ```
 
-Se um número de versão for exibido, você está pronto para começar.
+Este comando irá criar um novo diretório chamado `ember-quickstart` e configurar um novo aplicativo de Ember dentro dela. De cara, seu aplicativo irá incluir:
+
+* Um servidor para desenvolvimento.
+* Compilação de "Template".
+* "Minificação" de arquivos JavaScript e CSS.
+* Funcionalidades ES2015 através da biblioteca Babel.
+
+Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
+
+Vamos ver se tudo está funcionando corretamente. `cd` para o diretório de aplicativo `embet-quickstart` e iniciar o servidor de desenvolvimento, digitando:
+
+```sh
+cd ember-quickstart
+ember serve
+```
+
+Após alguns segundo, você deverá ver a seguinte saída:
+
+```text
+Livereload server on http://localhost:49152
+Serving on http://localhost:4200/
+```
+
+(Se quiser parar o servidor, digite Ctrl-C a qualquer hora no seu terminal)
+
+Abra [http://localhost:4200/](http://localhost:4200) em seu navegador. Você deve ver uma página que diz "Welcome do Ember" e não muito mais. Parabéns! Você acabou de criar e iniciar seu primeiro aplicativo em Ember.
+
+Alterne para o seu editor e abra `app/templates/application.hbs`. Isto se chama o template do `aplicativo` e está sempre na tela enquanto o usuário tem seu aplicativo carregado.
+
+In your editor, change the text inside the `<h2>` from `Welcome to
+Ember` to `PeopleTracker` and save the file. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
+
+## Definindo uma Rota
+
+Vamos construir um aplicativo que mostra uma lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por enquanto, você pode pensar em rotas como sendo diferentes páginas que compõem o seu aplicativo.
+
+Ember vem com *geradores* que automatizam o código padrão para tarefas comuns. Para gerar uma rota, digite o seguinte em seu terminal:
+
+```sh
+ember generate route scientists
+```
+
+Você verá na saída algo assim:
+
+```text
+installing route
+  create app/routes/scientists.js
+  create app/templates/scientists.hbs
+updating router
+  add route scientists
+installing route-test
+  create tests/unit/routes/scientists-test.js
+```
+
+Isso é Ember dizendo que criou:
+
+  1. Um template a ser exibido quando o usuário visita `/scientists`.
+  2. Um objeto `Route` (Rota) que busca o model usado por esse "template".
+  3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`).
+  4. Um teste unitário para esta rota.
+
+Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seguinte HTML:
+
+```app/templates/scientists.hbs 
+
+## Lista de Cientistas
+
+    <br />No seu navegador, abra
+    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
+    see the `<h2>` you put in the `scientists.hbs` template, right below the
+    `<h2>` from our `application.hbs` template.
+    
+    Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para mostrar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
+    
+    Vamos pegar o código criado pelo gerador e adicionar um método `model()` à `Route` (Rota):
+    
+     ```app/routes/scientists.js{+4,+5,+6}
+    import Ember from 'ember';
+    
+    export default Ember.Route.extend({
+      model() {
+        return ['Marie Curie', 'Mae Jemison', 'Albert Hofmann'];
+      }
+    });
+    
+
+(Este código exemplifica usos das funcionalidades mais recentes em JavaScript, algumas que talvez não lhe sejam muito familiares. Saiba mais com este [resumo das funcionalidades mais novas do JavaScript](https://ponyfoo.com/articles/es6).)
+
+No método `model()` de uma rota, você deve retornar qualquer dado que queira tornar disponível para a "template". Se precisar buscar dados assíncronamente, o método `model()` suporta qualquer biblioteca que use [Promessas ("Promises") JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+Agora vamos dizer para o Ember como transformar aquele vetor ("array") de strings em HTML. Abra o "template" `scientists` e adicione um código Handlebars que itere o vetor e o imprima:
+
+```app/templates/scientists.hbs{+3,+4,+5,+6,+7} 
+
+## Lista de Cientistas
+
+{#each model as |scientist|} 
+
+* {{scientist}} {{/each}} 
+
+    <br />Here, we use the `each` helper to loop over each item in the array we
+    provided from the `model()` hook and print it inside an `<li>` element.
+    
+    ## Create a UI Component
+    
+    As your application grows and you notice you are sharing UI elements
+    between multiple pages (or using them multiple times on the same page),
+    Ember makes it easy to refactor your templates into reusable components.
+    
+    Let's create a `people-list` component that we can use
+    in multiple places to show a list of people.
+    
+    As usual, there's a generator that makes this easy for us. Make a new
+    component by typing:
+    
+    ```sh
+    ember generate component people-list
+    
+
+Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+
+```app/templates/components/people-list.hbs 
+
+## {{title}}
+
+{{#each people as |person|}} 
+
+* {{person}} {{/each}} 
+
+    <br />Note that we've changed the title from a hard-coded string ("List of
+    Scientists") to a dynamic property (`{{title}}`). We've also renamed
+    `scientist` to the more-generic `person`, decreasing the coupling of our
+    component to where it's used.
+    
+    Save this template and switch back to the `scientists` template. Replace all
+    our old code with our new componentized version. Components look like
+    HTML tags but instead of using angle brackets (`<tag>`) they use double
+    curly braces (`{{component}}`). We're going to tell our component:
+    
+    1. What title to use, via the `title` attribute.
+    2. What array of people to use, via the `people` attribute. We'll
+       provide this route's `model` as the list of people.
+    
+    ```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
+    <h2>List of Scientists</h2>
+    
+    <ul>
+      {{#each model as |scientist|}}
+        <li>{{scientist}}</li>
+      {{/each}}
+    </ul>
+    {{people-list title="List of Scientists" people=model}}
+    
+
+Go back to your browser and you should see that the UI looks identical. The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
+
+You can see this in action if you create a new route that shows a different list of people. As an exercise for the reader, you may try to create a `programmers` route that shows a list of famous programmers. By re-using the `people-list` component, you can do it in almost no code at all.
+
+## Building For Production
+
+Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
+
+```sh
+ember build --env production
+```
+
+O comando `build` empacota todos seus TDK(assets) que compõem o seu aplicativo&mdash;JavaScript, templates, CSS, web fonts, imagens, e mais.
+
+In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
+
+The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli.github.io/ember-cli-deploy/) addon.
