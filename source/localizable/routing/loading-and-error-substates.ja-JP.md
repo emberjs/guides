@@ -16,35 +16,30 @@ Emberルーターはルータが読み込みでエラーが発生した時だけ
     });
     
 
-`モデル` フックの`スローモデル`に遷移したとき、クエリーの完了に時間がかかることがあります。 この間、UIは何が起こっているのかをフィードバックすることはありません。 If you're entering this route after a full page refresh, your UI will be entirely blank, as you have not actually finished fully entering any route and haven't yet displayed any templates. If you're navigating to `slow-model` from another route, you'll continue to see the templates from the previous route until the model finish loading, and then, boom, suddenly all the templates for `slow-model` load.
+`モデル` フックの`スローモデル`に遷移したとき、クエリーの完了に時間がかかることがあります。 この間、UIは何が起こっているのかをフィードバックすることはありません。 ページ全体をリフレッシュしたその後に、このルートを入力しているとき、ルートの入力が完全に完了していなく、テンプレートがまだ表示されていないため、UIには何も表示されていません。 もしたのルートから`slow-model`から遷移してきたたとして、モデルの読み込みが完了して、突然、`slow-model`のテンプレートが表示されるまでは事前のルータのテンプレートが表示されたままです。
 
-So, how can we provide some visual feedback during the transition?
+では、このような遷移の途中でどのようなフードバックを提供することができるでしょうか。
 
-Simply define a template called `loading` (and optionally a corresponding route) that Ember will transition to. The intermediate transition into the loading substate happens immediately (synchronously), the URL won't be updated, and, unlike other transitions, the currently active transition won't be aborted.
+単にEmberが遷移する、`loading` という名称のテンプレート(それに該当するルートを定義することも可能です) を定義することです 読み込み時の、サブステータスへの遷移は即時に行われますが(同期的に)、URLは更新されません、また、他の遷移とは違い、現在のアクティブな遷移は中断されません。
 
-Once the main transition into `slow-model` completes, the `loading` route will be exited and the transition to `slow-model` will continue.
+`slow-model`への遷移がが完了すると、`loading` ルートが終了されます、`slow-model`の遷移が続行されます。
 
-For nested routes, like:
+ネストされたルートの場合は次のようになります:
 
 ```app/router.js Router.map(function() { this.route('foo', function() { this.route('bar', function() { this.route('slow-model'); }); }); });
 
-    <br />Ember will alternate trying to find a `routeName-loading` or `loading` template
-    in the hierarchy starting with `foo.bar.slow-model-loading`:
+    <br />Ember は代わりに`foo.bar.slow-model-loading`で始まる階層から`ルータの名前の付いたloading`もしくは`loading`を探します。:
     
     1. `foo.bar.slow-model-loading`
     2. `foo.bar.loading` or `foo.bar-loading`
-    3. `foo.loading` or `foo-loading`
-    4. `loading` or `application-loading`
+    3. `foo.loading` または`foo-loading`
+    4. `loading` もしくは`アプリケーションloading`
     
-    It's important to note that for `slow-model` itself Ember will not try to find
-    a `slow-model.loading` template but for the rest of the hierarchy either
-    syntax is acceptable. This can be useful for creating a custom loading screen
-    for a leaf route like `slow-model`.
+    Ember 自身は`slow-model` から`slow-model.loading` テンプレートを探そうとはせず、階層の構文として許されているものを探すことは重要なので指摘しておきます。 これは`slow-model`のような末端のルートでロード画面を表示することが可能になるので、有効です。
     
-    ### The `loading` event
+    ### `読み込み` イベント
     
-    If the various `beforeModel`/`model`/`afterModel` hooks
-    don't immediately resolve, a [`loading`][1] event will be fired on that route.
+    もし`beforeModel`/`model`/`afterModel` などのフックが即座に解決できない場合、そのルートで [`loading`][1] イベントが発生します。
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
     
@@ -62,16 +57,15 @@ For nested routes, like:
     });
     
 
-If the `loading` handler is not defined at the specific route, the event will continue to bubble above a transition's parent route, providing the `application` route the opportunity to manage it.
+もし、特定のルートで`読み込み` ハンドラーが定義されていなかった場合、 イベントは遷移の親ルートを遡り、`application` ルートがそのイベントを管理する機会を提供します。
 
-When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
+この`読み込み` ハンドラーを利用する場合、遷移プロミスを利用して、いつ読み込みイベントが完了したかを把握することができます:
 
 ```app/routes/foo-slow-model.js export default Ember.Route.extend({ ... actions: { loading(transition, originRoute) { let controller = this.controllerFor('foo'); controller.set('currentlyLoading', true); transition.promise.finally(function() { controller.set('currentlyLoading', false); }); } } });
 
-    <br />## `error` substates
+    <br />## `エラー` サブステート
     
-    Ember provides an analogous approach to `loading` substates in
-    the case of errors encountered during a transition.
+    Ember はエラーが発生した場合、`読み込み` サブステートに類似したアプローチを提供しています。
     
     Similar to how the default `loading` event handlers are implemented,
     the default `error` handlers will look for an appropriate error substate to

@@ -35,7 +35,7 @@ Este comando irá criar um novo diretório chamado `ember-quickstart` e configur
 
 Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
 
-Vamos ver se tudo está funcionando corretamente. `cd` para o diretório de aplicativo `embet-quickstart` e iniciar o servidor de desenvolvimento, digitando:
+Vamos ver se tudo está funcionando corretamente. `cd` para o diretório de aplicativo `ember-quickstart` e iniciar o servidor de desenvolvimento, digitando:
 
 ```sh
 cd ember-quickstart

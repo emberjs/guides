@@ -4,7 +4,7 @@ Ember.jsガイドへようこそ! このドキュメントはあなたを完全�
 
 カイド内の各ページ左側には目次があり、広げることでそれぞれがカバーする項目を表示することができます。 各セクションとそれに含まれる項目は、基本的なコンセプトから、より高度なコンセプトへと順に並んでいます。
 
-このガイドは、Ember.js の最も広く使用される機能に焦点を当て、Emberでアプリケーションを作成する実用的な説明をめざしています。 For comprehensive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
+このガイドは、Ember.js の最も広く使用される機能に焦点を当て、Emberでアプリケーションを作成する実用的な説明をめざしています。 Emberの機能とAPI の完全なドキュメントについては、[Ember.js API のドキュメント](http://emberjs.com/api/) を参照してください。.
 
 このガイドは、まず、Emberをどのように利用するのかという説明から始まり、初めてのEmberアプリケーションの作り方のチュートリアルが続きます。もし、あなたが完全にEmberが初めてならこれらの二つのセクションから始めることをお薦めします。
 
