@@ -6,7 +6,7 @@ http://example.com/articles?sort=ASC&page=2
 
 Query params allow for additional application state to be serialized into the URL that can't otherwise fit into the *path* of the URL (i.e. everything to the left of the `?`). Common use cases for query params include representing the current page number in a paginated collection, filter criteria, or sorting criteria.
 
-### Specifying Query Parameters
+### クエリ パラメーターの設定
 
 Query params are declared on route-driven controllers. For example, to configure query params that are active within the `articles` route, they must be declared on `controller:articles`.
 
@@ -82,7 +82,7 @@ Arguments provided to `transitionTo` or `link-to` only correspond to a change in
 
 But some query param changes necessitate loading data from the server, in which case it is desirable to opt into a full-on transition. To opt into a full transition when a controller query param property changes, you can use the optional `queryParams` configuration hash on the `Route` associated with that controller, and set that query param's `refreshModel` config property to `true`:
 
-```app/routes/articles.js export default Ember.Route.extend({ queryParams: { category: { refreshModel: true } }, model(params) { // This gets called upon entering 'articles' route // for the first time, and we opt into refiring it upon // query param changes by setting `refreshModel:true` above.
+```app/routes/articles.js export default Ember.Route.extend({ queryParams: { category: { refreshModel: true } }, model(params) { // 上記の`refreshModel:true` のクエーリパラメーターを設定することで、初めて'articles' ルートが呼び出されます。
 
     // params has format of { category: "someValueOrJustNull" },
     // which we can forward to the server.
@@ -111,9 +111,7 @@ By default, Ember will use `pushState` to update the URL in the address bar in r
     ### Map a controller's property to a different query param key
     
     By default, specifying `foo` as a controller query param property will
-    bind to a query param whose key is `foo`, e.g. `?foo=123`. You can also map
-    a controller property to a different query param key using the
-    following configuration syntax:
+    bind to a query param whose key is `foo`, e.g. `?foo=123`. 次の設定シンタックスで、コントローラプロパティを他のクエーリパラメーターキー にマップすることも可能です:
     
     ```app/controllers/articles.js
     export default Ember.Controller.extend({
