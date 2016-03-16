@@ -20,8 +20,7 @@ To add a `category` query parameter that will filter out all the articles that h
     `category` query param in the URL will update the `category` property
     on `controller:articles`, and vice versa.
     
-    Now we need to define a computed property of our category-filtered
-    array that the `articles` template will render:
+    次は`articles` テンプレートが描画するためのカタログフィルタ配列のコンピュートプロパティを定義する必要があります:
     
     ```app/controllers/articles.js
     export default Ember.Controller.extend({
@@ -47,15 +46,15 @@ With this code, we have established the following behaviors:
   2. If the user navigates to `/articles?category=recent`, `category` will be set to `"recent"`, so articles will be filtered.
   3. Once inside the `articles` route, any changes to the `category` property on `controller:articles` will cause the URL to update the query param. By default, a query param property change won't cause a full router transition (i.e. it won't call `model` hooks and `setupController`, etc.); it will only update the URL.
 
-### link-to Helper
+### link-to ヘルパー
 
 The `link-to` helper supports specifying query params using the `query-params` subexpression helper.
 
 ```handlebars
-// Explicitly set target query params
+// ターゲットパラメータの明示的な設定
 {{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
 
-// Binding is also supported
+// バインドもサポートされています
 {{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
 ```
 
