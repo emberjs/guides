@@ -2,7 +2,7 @@ Emberルーターはルータが読み込みでエラーが発生した時だけ
 
 ## `ローディング`サブステート
 
-`beforeModel` フック、 `model`フックそして `afterModel`フックのが行われる間、データの読み込みに時間がかることがあります。 技術的には、ルーターは各フックのプロミスが満たされるまで、遷移を停止します。
+`beforeModel` フック、 `model`フックそして `afterModel`フックのが行われる間、データの読み込みに時間がかることがあります。 技術的には、ルーターは各フックのプロミスが満たされるまで、遷移を停止しています。
 
 次のことを検討してください。
 
@@ -67,9 +67,7 @@ Emberルーターはルータが読み込みでエラーが発生した時だけ
     
     Ember はエラーが発生した場合、`読み込み` サブステートに類似したアプローチを提供しています。
     
-    Similar to how the default `loading` event handlers are implemented,
-    the default `error` handlers will look for an appropriate error substate to
-    enter, if one can be found.
+    デフォルト`loading` イベントハンドラー 実装されているように、デフォルト `error` ハンドラー 遷移すべきするのに適した error サブステータス を探します。
     
     ```app/router.js
     Router.map(function() {
@@ -79,19 +77,19 @@ Emberルーターはルータが読み込みでエラーが発生した時だけ
     });
     
 
-As with the `loading` substate, on a thrown error or rejected promise returned from the `articles.overview` route's `model` hook (or `beforeModel` or `afterModel`) Ember will look for an error template or route in the following order:
+`loading` サブステートと同様、`articles.overview`ルートの`モデル`フックか(もしくは`beforeModel` または `afterModel`)らエラーを投げるまたは、プロミスが帰ってこなかった、場合あ Ember はエラーテンプレートまたは次の順番で、ルートを探します。
 
   1. `articles.overview-error`
-  2. `articles.error` or `articles-error`
-  3. `error` or `application-error`
+  2. `articles.error` または `articles-error`
+  3. `error` または `application-error`
 
-If one of the above is found, the router will immediately transition into that substate (without updating the URL). The "reason" for the error (i.e. the exception thrown or the promise reject value) will be passed to that error state as its `model`.
+上記のうち一つが見つかればルーターはすぐにそのサブステートに遷移します (URLは更新されません)。 エラーの"理由" (例　例外が投げられた、プロミスが値を拒否した)が `モデル`としてエラーステートに渡されます。.
 
-If no viable error substates can be found, an error message will be logged.
+もし、実行可能なエラーサブステートが見つからない場合は、エラーメッセージは記録されます。
 
-### The `error` event
+### `error` イベント
 
-If the `articles.overview` route's `model` hook returns a promise that rejects (for instance the server returned an error, the user isn't logged in, etc.), an [`error`](http://emberjs.com/api/classes/Ember.Route.html#event_error) event will fire from that route and bubble upward. This `error` event can be handled and used to display an error message, redirect to a login page, etc.
+もし`articles.overview` ルータの `モデル` フック がプロミス拒否で返したら、(例えば、サーバーがエラーを返した、ユーザーがログインしていないなど)、そのルートから、上位のルートに向かって[`エラー`](http://emberjs.com/api/classes/Ember.Route.html#event_error) イベントが発生します。 この`エラー` イベントはログインページへのリダイレクト処理と、エラーメッセージの表示といったように利用できます。
 
     app/routes/articles-overview.js
     export default Ember.Route.extend({
@@ -107,4 +105,4 @@ If the `articles.overview` route's `model` hook returns a promise that rejects (
       }
     });
 
-Analogous to the `loading` event, you could manage the `error` event at the application level to avoid writing the same code for multiple routes.
+`読み込み` イベントと同様、複数のルートに同じコードの重複を避けるために `エラー` イベントを管理できます。
