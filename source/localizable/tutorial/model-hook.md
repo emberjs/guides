@@ -64,13 +64,11 @@ This helper will let us loop through each of the objects in our model:
 
 <p>We hope you find exactly what you're looking for in a place to stay.</p>
 
-{{#each model as |rental|}}
-  <h2>{{rental.title}}</h2>
-  <p>Owner: {{rental.owner}}</p>
-  <p>Type: {{rental.type}}</p>
-  <p>Location: {{rental.city}}</p>
-  <p>Number of bedrooms: {{rental.bedrooms}}</p>
-{{/each}}
+<ul>
+  {{#each model as |rental|}}
+  <li>{{rental.owner}}'s {{rental.type}} in {{rental.city}}</li>
+  {{/each}}
+</ul>
 
 {{#link-to "about"}}About{{/link-to}}
 {{#link-to "contact"}}Click here to contact us.{{/link-to}}
