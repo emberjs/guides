@@ -68,9 +68,9 @@ The `link-to` helper takes into account query parameters when determining its "a
 
 ```app/routes/some-route.js this.transitionTo('post', object, { queryParams: { showDetails: true }}); this.transitionTo('posts', { queryParams: { sort: 'title' }});
 
-// if you want to transition the query parameters without changing the route this.transitionTo({ queryParams: { direction: 'asc' }});
+// もしルートを変更せずにクエーリパラメーターを遷移したい場合は this.transitionTo({ queryParams: { direction: 'asc' }});
 
-    <br />You can also add query params to URL transitions:
+    <br />URL の遷移に関しても、クエーリパラメーターを追加することができます:
     
     ```app/routes/some-route.js
     this.transitionTo('/posts/1?sort=date&showDetails=true');
