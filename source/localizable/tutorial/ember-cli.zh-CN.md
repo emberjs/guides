@@ -27,7 +27,7 @@ bower.json
 ember-cli-build.js
 package.json
 README.md
-testem.json
+testem.js
 ```
 
 Let's take a look at the folders and files Ember CLI generates.
@@ -46,7 +46,7 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
 
-**tests / testem.json**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.json`.
+**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
 **tmp**: Ember CLI temporary files live here.
 
