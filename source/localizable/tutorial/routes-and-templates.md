@@ -50,7 +50,7 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-Three new files are created: one for the route handler,one for the template the route handler will render,
+Three new files are created: one for the route handler, one for the template the route handler will render,
 and a test file.
 The fourth file that is touched is the router.
 
