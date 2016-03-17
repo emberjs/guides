@@ -27,7 +27,7 @@ bower.json
 ember-cli-build.js
 package.json
 README.md
-testem.json
+testem.js
 ```
 
 Ember CLI が作成した、ファイルとディレクトリを確認してみましょう。
@@ -46,7 +46,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 **vendor**: このディレクトリはBower によって管理されていないフロント エンド (JavaScript、CSS など) の依存関係が行きます。
 
-**tests / testem.json**: アプリケーションの自動テストファイルは、`tests` フォルダーに、`testem.json` にはEmber CLI のテスト ランナー **testem** の設定ファイルがあります。.
+**tests / testem.js**: アプリケーションの自動テストファイルは、`tests` フォルダーに、`testem.js` にはEmber CLI のテスト ランナー **testem** の設定ファイルがあります。.
 
 **tmp**: Ember CLI の一時ファイルはここにあります。
 

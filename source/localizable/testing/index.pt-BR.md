@@ -48,4 +48,4 @@ Run your tests with `ember test` on the command-line. You can re-run your tests 
 
 Tests can also be executed when you are running a local development server (started by running `ember server`), at the `/tests` URI which renders the `tests/index.html` template. A word of caution using this approach: Tests run using `ember server` have the environment configuration `development`, whereas tests executed under `ember test --server` are run with the configuration `test`. This could cause differences in execution, such as which libraries are loaded and available. Therefore its recommended that you use `ember test --server` for test execution.
 
-These commands run your tests using [Testem](https://github.com/airportyh/testem) to make testing multiple browsers very easy. You can configure Testem using the `testem.json` file in your application root.
+These commands run your tests using [Testem](https://github.com/airportyh/testem) to make testing multiple browsers very easy. You can configure Testem using the `testem.js` file in your application root.
