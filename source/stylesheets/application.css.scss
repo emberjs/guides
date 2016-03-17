@@ -1,13 +1,10 @@
 @charset "utf-8";
 
 @import "normalize";
-@import "vendor/all";
 @import "bourbon";
-@import "base/base";
 @import "neat";
-@import "components/all";
-@import "vendor-overwrites";
 @import 'fonts/fontello';
+@import "emberjs_website_styles";
 
 .note {
   background: rgba(0,0,0, 0.2);

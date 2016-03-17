@@ -65,6 +65,11 @@ GEM
       sass (>= 3.2, < 3.5)
     daemons (1.2.3)
     diff-lcs (1.2.5)
+    emberjs_website_styles (1.0.0)
+      bourbon (>= 4.0)
+      neat (>= 1.7.2)
+      sass (~> 3.4)
+      thor (~> 0.19)
     erubis (2.7.0)
     ethon (0.8.0)
       ffi (>= 1.3.0)
@@ -222,6 +227,7 @@ DEPENDENCIES
   builder
   capybara
   coderay!
+  emberjs_website_styles
   hashie
   highline
   html-proofer
@@ -246,4 +252,4 @@ DEPENDENCIES
   wdm (>= 0.1.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
