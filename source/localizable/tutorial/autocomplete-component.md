@@ -28,7 +28,7 @@ It contains an [`{{input}}`](../../templates/input-helpers) helper, that
 renders as a text field that the user can type in to look for properties 
 in a given city. The `value` property of the `input` will be bound to the 
 `filter` property in our component. The `key-up` property 
-will be bound to a `autoComplete` action in our backing object, and passes
+will be bound to an `autoComplete` action in our backing object, and passes
  the `filter` property as a parameter.
 
 It also contains a button, whose `action` parameter is bound to the 
