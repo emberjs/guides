@@ -1,14 +1,14 @@
-Query parameters are optional key-value pairs that appear to the right of the `?` in a URL. For example, the following URL has two query params, `sort` and `page`, with respective values `ASC` and `2`:
+クエリーパラメーター とはURLの`?`の右側に表示さえる、付属的なキー・バリューペアーです。 例えば、次のURLは二つのクエリーパラメーター、`sort` と`page`は、それぞれ`ASC` と `2`の値を持つ:
 
 ```text
 http://example.com/articles?sort=ASC&page=2
 ```
 
-Query params allow for additional application state to be serialized into the URL that can't otherwise fit into the *path* of the URL (i.e. everything to the left of the `?`). Common use cases for query params include representing the current page number in a paginated collection, filter criteria, or sorting criteria.
+クエリーパラメーターは、追加的なURLの*パス* としてアプリケーションの状態をURLに追加することができます(例えば、`?`の左側全て)。 クエリーパラメーターの一般的な利用方法としては、ページコレクションの中で、フィルターの基準や、並びの条件を表す、現在のページ番号を表示するといったものがります。
 
 ### クエリ パラメーターの設定
 
-Query params are declared on route-driven controllers. For example, to configure query params that are active within the `articles` route, they must be declared on `controller:articles`.
+クエリ パラメーターは、ルートドリプンコント ローラーで宣言されます。 例えば、`articles` ルートでアクティブなクエリーパラメーターの設定は、`controller:articles`で宣言されるべきです。.
 
 To add a `category` query parameter that will filter out all the articles that haven't been categorized as popular we'd specify `'category'` as one of `controller:article`'s `queryParams`:
 
@@ -178,9 +178,8 @@ In the following example, the controller's `page` query param is reset to 1, *wh
 
     <br />In some cases, you might not want the sticky query param value to be
     scoped to the route's model but would rather reuse a query param's value
-    even as a route's model changes. This can be accomplished by setting the
-    `scope` option to `"controller"` within the controller's `queryParams`
-    config hash:
+    even as a route's model changes. `"controller"`に`scope` オプションと`queryParams`
+    コンフィグレーションハッシュを設定することで達成することができます:
     
     ```app/controllers/articles.js
     export default Ember.Controller.extend({
@@ -192,7 +191,7 @@ In the following example, the controller's `page` query param is reset to 1, *wh
     });
     
 
-The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
+次の例は、スコープとURLのクエリーパラメーターキーをシングルるコントローラークエーリパラメータで上書きできることを示しています。
 
     app/controllers/articles.js
     export default Ember.Controller.extend({

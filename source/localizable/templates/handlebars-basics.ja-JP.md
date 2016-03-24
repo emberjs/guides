@@ -1,4 +1,4 @@
-Ember.js uses the [Handlebars templating library](http://www.handlebarsjs.com) to power your app's user interface. Handlebars templates contain static HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
+Ember uses the [Handlebars templating library](http://www.handlebarsjs.com) to power your app's user interface. Handlebars templates contain static HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
 
 Dynamic content inside a Handlebars expression is rendered with data-binding. This means if you update a property, your usage of that property in a template will be automatically updated to the latest value.
 

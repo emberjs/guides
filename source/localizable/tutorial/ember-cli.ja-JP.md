@@ -46,7 +46,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 **vendor**: このディレクトリはBower によって管理されていないフロント エンド (JavaScript、CSS など) の依存関係が行きます。
 
-**tests / testem.js**: アプリケーションの自動テストファイルは、`tests` フォルダーに、`testem.js` にはEmber CLI のテスト ランナー **testem** の設定ファイルがあります。.
+**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
 **tmp**: Ember CLI の一時ファイルはここにあります。
 

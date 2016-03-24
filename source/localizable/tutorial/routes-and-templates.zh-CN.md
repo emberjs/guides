@@ -40,7 +40,7 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-Three new files are created: one for the route handler,one for the template the route handler will render, and a test file. The fourth file that is touched is the router.
+Three new files are created: one for the route handler, one for the template the route handler will render, and a test file. The fourth file that is touched is the router.
 
 When we open the router, we can see that the generator has mapped a new *about* route for us. This route will load the `about` route handler.
 
