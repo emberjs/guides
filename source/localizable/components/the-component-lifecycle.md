@@ -67,8 +67,6 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  errors: null,
-
   init() {
     this._super(...arguments);
     this.errors = [];
