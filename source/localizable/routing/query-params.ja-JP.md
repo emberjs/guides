@@ -10,12 +10,11 @@ http://example.com/articles?sort=ASC&page=2
 
 クエリ パラメーターは、ルートドリプンコント ローラーで宣言されます。 例えば、`articles` ルートでアクティブなクエリーパラメーターの設定は、`controller:articles`で宣言されるべきです。.
 
-To add a `category` query parameter that will filter out all the articles that haven't been categorized as popular we'd specify `'category'` as one of `controller:article`'s `queryParams`:
+まだ、「人気のある」という`'category'`に未だに分類されていない、ポストを指定するためにの`controller:article`の`queryParams`パラメータとして`'category'`を指定します。
 
 ```app/controllers/articles.js export default Ember.Controller.extend({ queryParams: ['category'], category: null });
 
-    <br />This sets up a binding between the `category` query param in the URL,
-    and the `category` property on `controller:articles`. In other words,
+    <br />これは、URLの`category`クエリーパラメーターと`controller:articles`の`category`プロパティの間をバインドします。 In other words,
     once the `articles` route has been entered, any changes to the
     `category` query param in the URL will update the `category` property
     on `controller:articles`, and vice versa.

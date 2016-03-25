@@ -64,7 +64,10 @@ An example of this scenario in action is a profile editor component. As you are 
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  errors: [],
+  init() {
+    this._super(...arguments);
+    this.errors = [];
+  },
 
   didUpdateAttrs() {
     this._super(...arguments);
