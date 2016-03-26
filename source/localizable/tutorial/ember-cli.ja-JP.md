@@ -1,4 +1,4 @@
-Ember CLIはEmberのコマンドラインインターフェイスです、標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 これにより、Ember 開発者はアプリケーションを実行するための構造を開発するのではなく、アプリケーションそのものの開発に焦点を絞ることができます。 コマンドラインで、 `ember --help`を実行するとEmber CLI が提供しているコマンドが表示されます。 さらに、特定のコマンドについて情報確認したい場合は、`ember help <command-name>`と実行してください。.
+Ember CLIはEmberのコマンドラインインターフェイスです。標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 これにより、Ember 開発者はアプリケーションを実行するための構造を開発するのではなく、アプリケーションそのものの開発に焦点を絞ることができます。 コマンドラインで、 `ember --help`を実行するとEmber CLI が提供しているコマンドが表示されます。 さらに、特定のコマンドについて情報確認したい場合は、`ember help <command-name>`と実行してください。.
 
 ## 新規アプリケーションの作成
 
@@ -46,7 +46,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 **vendor**: このディレクトリはBower によって管理されていないフロント エンド (JavaScript、CSS など) の依存関係が行きます。
 
-**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
+**tests / testem.js**: アプリケーションの自動テストファイルは`tests` フォルダに、 そしてEmber CLIのテストランナー**testem** は`testem.js`に設定されます。.
 
 **tmp**: Ember CLI の一時ファイルはここにあります。
 
@@ -87,4 +87,4 @@ export default Router;
 ember s
 ```
 
-ブラウザで `localhost:4200`を開くと、真新しいアプリケーションが、 "Welcome to Ember"　と表示されているが確認できるはずです。
+ブラウザで `localhost:4200`を開くと、真新しいアプリケーションが、 "Welcome to Ember" と表示しているのが確認できるはずです。

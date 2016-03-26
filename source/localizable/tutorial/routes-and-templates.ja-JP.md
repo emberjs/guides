@@ -40,7 +40,7 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-Three new files are created: one for the route handler, one for the template the route handler will render, and a test file. The fourth file that is touched is the router.
+３つの新しいファイルが生成されます: 一つはルートハンドラー、一つはルートハンドラーが描画するテンプレート、最後の一つはテストファイル。四つ目のファイル、ルーターには編集が加えられています。
 
 ルーターファイルを開くと、ジェネレータが自動的に*about*ルートをマップしてることが、確認できます。このルートが`about`のルートハンドラーを読み込みます。
 
