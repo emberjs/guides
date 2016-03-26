@@ -38,8 +38,8 @@ http://example.com/articles?sort=ASC&page=2
 
 このコードで、次の動作を確立しています。
 
-  1. If the user navigates to `/articles`, `category` will be `null`, so the articles won't be filtered.
-  2. If the user navigates to `/articles?category=recent`, `category` will be set to `"recent"`, so articles will be filtered.
+  1. もし、ユーザーが`/articles`に遷移すると、`category` は `null`となり記事はフィルタされません。
+  2. ユーザーが`/articles?category=recent`へと遷移すると、`category`が`"recent"`に設定され、記事がフィルタされます。
   3. Once inside the `articles` route, any changes to the `category` property on `controller:articles` will cause the URL to update the query param. By default, a query param property change won't cause a full router transition (i.e. it won't call `model` hooks and `setupController`, etc.); it will only update the URL.
 
 ### link-to ヘルパー
