@@ -14,10 +14,7 @@ http://example.com/articles?sort=ASC&page=2
 
 ```app/controllers/articles.js export default Ember.Controller.extend({ queryParams: ['category'], category: null });
 
-    <br />これは、URLの`category`クエリーパラメーターと`controller:articles`の`category`プロパティの間をバインドします。 In other words,
-    once the `articles` route has been entered, any changes to the
-    `category` query param in the URL will update the `category` property
-    on `controller:articles`, and vice versa.
+    <br />これは、URLの`category`クエリーパラメーターと`controller:articles`の`category`プロパティの間をバインドします。 言い換えると、一度`articles`ルートが入力されると、URLのあらゆる`category`クエーリーパラメーターは`controller:articles`の`category`を更新します、逆も同様です。
     
     次は`articles` テンプレートが描画するためのカタログフィルタ配列のコンピュートプロパティを定義する必要があります:
     
@@ -39,7 +36,7 @@ http://example.com/articles?sort=ASC&page=2
     });
     
 
-With this code, we have established the following behaviors:
+このコードで、次の動作を確立しています。
 
   1. If the user navigates to `/articles`, `category` will be `null`, so the articles won't be filtered.
   2. If the user navigates to `/articles?category=recent`, `category` will be set to `"recent"`, so articles will be filtered.
