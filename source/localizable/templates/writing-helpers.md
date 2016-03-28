@@ -239,26 +239,8 @@ should export a subclass of [`Ember.Helper`][1]. Helper classes must contain a
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
-To exemplify, let's make a helper utilizing an authentication service that
-welcomes users by their name if they're logged in:
-
-```app/helpers/is-authenticated.js
-export default Ember.Helper.extend({
-  authentication: Ember.inject.service(),
-  compute() {
-    let authentication = this.get('authentication');
-
-    if (authentication.get('isAuthenticated')) {
-      return 'Welcome back, ' + authentication.get('username');
-    } else {
-      return 'Not logged in';
-    }
-  }
-});
-```
-
-In fact, we could also refactor the above stateless helper into a class-based
-helper by making the function into a `compute` method on the class:
+As an exercise, here is the above `format-currency` helper re-factored
+into a class-based helper:
 
 ```app/helpers/format-currency.js
 export default Ember.Helper.extend({
@@ -274,9 +256,27 @@ export default Ember.Helper.extend({
 });
 ```
 
-This is exactly equivalent to the example above. You can think of the
-function version as a shorthand for the longer class form if it does not
-require any state.
+This is exactly equivalent to the `format-currency` example above. You
+can think of the function version as a shorthand for the longer class
+form if it does not require dependency injection.
+
+As another example, let's make a helper utilizing an authentication
+service that welcomes users by their name if they're logged in:
+
+```app/helpers/is-authenticated.js
+export default Ember.Helper.extend({
+  authentication: Ember.inject.service(),
+  compute() {
+    let authentication = this.get('authentication');
+
+    if (authentication.get('isAuthenticated')) {
+      return 'Welcome back, ' + authentication.get('username');
+    } else {
+      return 'Not logged in';
+    }
+  }
+});
+```
 
 ### Escaping HTML Content
 
