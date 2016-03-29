@@ -2,7 +2,7 @@
 
 ### プロミスについて...
 
-Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 The way to retrieve this eventual value, or handle the cases when the promise rejects, is via the promise's [`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then) method, which accepts two optional callbacks, one for fulfillment and one for rejection. If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. For example:
+Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 The way to retrieve this eventual value, or handle the cases when the promise rejects, is via the promise's [`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then) method, which accepts two optional callbacks, one for fulfillment and one for rejection. If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. 例えば
 
 ```js
 var promise = fetchTheAnswer();
@@ -18,7 +18,7 @@ function reject(reason) {
 }
 ```
 
-Much of the power of promises comes from the fact that they can be chained together to perform sequential asynchronous operations:
+プロミスの力点は、非同期のオペレーションを次々と処理される、列として処理できることです。
 
 ```js
 // Note: jQuery AJAX methods return promises
@@ -34,7 +34,7 @@ In the above example, if any of the methods `fetchPhotosOfUsers`, `applyInstagra
 
 This guide doesn't intend to fully delve into all the different ways promises can be used, but if you'd like a more thorough introduction, take a look at the readme for [RSVP](https://github.com/tildeio/rsvp.js), the promise library that Ember uses.
 
-### The Router Pauses for Promises
+### プロミスのためのルーターの停止
 
 When transitioning between routes, the Ember router collects all of the models (via the `model` hook) that will be passed to the route's controllers at the end of the transition. If the `model` hook (or the related `beforeModel` or `afterModel` hooks) return normal (non-promise) objects or arrays, the transition will complete immediately. But if the `model` hook (or the related `beforeModel` or `afterModel` hooks) returns a promise (or if a promise was provided as an argument to `transitionTo`), the transition will pause until that promise fulfills or rejects.
 
