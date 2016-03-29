@@ -112,6 +112,8 @@
       url: "wrapping-content-in-a-component"
     - title: "Customizing a Component's Element"
       url: "customizing-a-components-element"
+    - title: "Using Block Params"
+      url: "block-params"
     - title: "Handling Events"
       url: "handling-events"
     - title: "Triggering Changes with Actions"
