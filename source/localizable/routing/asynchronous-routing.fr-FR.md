@@ -1,8 +1,8 @@
-このセクションではルータの高度なフィーチャーとどのようにしてアプリケーション内の複雑な非同期のロジックを扱えるようにしているかを紹介します。
+This section covers some more advanced features of the router and its capability for handling complex async logic within your app.
 
-### プロミスについて...
+### A Word on Promises...
 
-Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 The way to retrieve this eventual value, or handle the cases when the promise rejects, is via the promise's [`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then) method, which accepts two optional callbacks, one for fulfillment and one for rejection. If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. For example:
+Ember's approach to handling asynchronous logic in the router makes heavy use of the concept of Promises. In short, promises are objects that represent an eventual value. A promise can either *fulfill* (successfully resolve the value) or *reject* (fail to resolve the value). The way to retrieve this eventual value, or handle the cases when the promise rejects, is via the promise's [`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then) method, which accepts two optional callbacks, one for fulfillment and one for rejection. If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. For example:
 
 ```js
 var promise = fetchTheAnswer();

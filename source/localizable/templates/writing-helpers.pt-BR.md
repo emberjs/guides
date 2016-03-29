@@ -161,37 +161,37 @@ In some situations, however, you may need to write a helper that interacts with 
 
 To create a class-based helper, rather than exporting a simple function, you should export a subclass of [`Ember.Helper`](http://emberjs.com/api/classes/Ember.Helper.html). Helper classes must contain a [`compute`](http://emberjs.com/api/classes/Ember.Helper.html#method_compute) method that behaves the same as the function passed to [`Ember.Helper.helper`](http://emberjs.com/api/classes/Ember.Helper.html#method_helper). In order to access a service, you must first inject it into the class-based helper. Once added, you can call the service's methods or access its properties from within the `compute()` method.
 
-To exemplify, let's make a helper utilizing an authentication service that welcomes users by their name if they're logged in:
+As an exercise, here is the above `format-currency` helper re-factored into a class-based helper:
 
-```app/helpers/is-authenticated.js export default Ember.Helper.extend({ authentication: Ember.inject.service(), compute() { let authentication = this.get('authentication');
+```app/helpers/format-currency.js export default Ember.Helper.extend({ compute(params, hash) { let value = params[0], dollars = Math.floor(value / 100), cents = value % 100, sign = hash.sign === undefined ? '$' : hash.sign;
 
-    if (authentication.get('isAuthenticated')) {
-      return 'Welcome back, ' + authentication.get('username');
-    } else {
-      return 'Not logged in';
-    }
+    if (cents.toString().length === 1) { cents = '0' + cents; }
+    return `${sign}${dollars}.${cents}`;
     
 
 } });
 
-    <br />In fact, we could also refactor the above stateless helper into a class-based
-    helper by making the function into a `compute` method on the class:
+    <br />This is exactly equivalent to the `format-currency` example above. You
+    can think of the function version as a shorthand for the longer class
+    form if it does not require dependency injection.
     
-    ```app/helpers/format-currency.js
+    As another example, let's make a helper utilizing an authentication
+    service that welcomes users by their name if they're logged in:
+    
+    ```app/helpers/is-authenticated.js
     export default Ember.Helper.extend({
-      compute(params, hash) {
-        let value = params[0],
-            dollars = Math.floor(value / 100),
-            cents = value % 100,
-            sign = hash.sign === undefined ? '$' : hash.sign;
+      authentication: Ember.inject.service(),
+      compute() {
+        let authentication = this.get('authentication');
     
-        if (cents.toString().length === 1) { cents = '0' + cents; }
-        return `${sign}${dollars}.${cents}`;
+        if (authentication.get('isAuthenticated')) {
+          return 'Welcome back, ' + authentication.get('username');
+        } else {
+          return 'Not logged in';
+        }
       }
     });
     
-
-This is exactly equivalent to the example above. You can think of the function version as a shorthand for the longer class form if it does not require any state.
 
 ### Escaping HTML Content
 

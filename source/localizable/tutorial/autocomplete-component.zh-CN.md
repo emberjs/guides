@@ -10,25 +10,24 @@ As before, this creates a Handlebars template (`app/templates/components/filter-
 
 The Handlebars template looks like this:
 
-```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action 'autoComplete' filter)}} <button {{action 'search'}}>Search</button>
+```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action 'autoComplete')}} <button {{action 'search'}}>Search</button>
 
 {{#each filteredList as |item|}} <li {{action 'choose' item.city}}>{{item.city}}</li> {{/each}} 
 
-    It contains an [`{{input}}`](../../templates/input-helpers) helper, that 
-    renders as a text field that the user can type in to look for properties 
-    in a given city. The `value` property of the `input` will be bound to the 
-    `filter` property in our component. The `key-up` property 
-    will be bound to a `autoComplete` action in our backing object, and passes
-     the `filter` property as a parameter.
+    It contains an [`{{input}}`](../../templates/input-helpers) helper
+    that renders as a text field where the user can type a pattern to 
+    filter the list of cities used in a search. The `value` property of
+    the `input` will be bound to the `filter` property in our component.
+    The `key-up` property will be bound to the `autoComplete` action.
     
-    It also contains a button, whose `action` parameter is bound to the 
-    `search` action in our component.
+    It also contains a button that is bound to the `search` action in our 
+    component.
     
-    Lastly, it contains an unordered list, that uses the `filteredList` 
-    property for data, and displays the `city` property of each item in the 
-    list. Clicking the list item will fire the `choose` action, which will 
-    populate the `input` field with the name of the `city` in the clicked list
-     item.
+    Lastly, it contains an unordered list that displays the `city` property
+    of each item in the `filteredList` property in our component. Clicking 
+    the list item will fire the `choose` action with the `city` property of
+    the item as a parameter, which will then populate the `input` field with
+    the name of that `city`.
     
     Here is what the component's JavaScript looks like:
     

@@ -10,15 +10,19 @@ ember g component filter-listing
 
 Handlebars テンプレートはこのようになります。
 
-```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action 'autoComplete' filter)}} <button {{action 'search'}}>Search</button>
+```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action 'autoComplete')}} <button {{action 'search'}}>Search</button>
 
 {{#each filteredList as |item|}} <li {{action 'choose' item.city}}>{{item.city}}</li> {{/each}} 
 
-    [`{{input}}`](../../templates/input-helpers) ヘルパーが含まれて、ユーザーは特定の都市で、賃貸物件を検索することができます。 `input`の入力値`value`は`filter` のプロパティと関連付けされます。 `key-up`プロパティは`autoComplete`アクションと関連付けされ、`filter` プロパティのパラメータとして引き渡します。
+    それには [`{{input}}`](../../templates/input-helpers) ヘルパーが含まれていて、ユーザーが入力すると、都市のリストをがフィルタされ、検索することのできるテキストフィールドを描画します。 `input` の`value` プロパティーはコンポーネントの`filter` プロパティにバインドされます。
+    `key-up` プロパティは`autoComplete` アクションにバインドされます。
     
-    また、それにはボタンが含まれていて、`action` パラメーターは`search` アクションと関連付けられています。
+    また、コンポーネント内の`search` アクションにバインドされるボタンも含んでいます。
     
-    最終的には、データとして`filteredList` プロパティを利用し、それぞれの項目`city` プロパティをアンオーダーリストとして表示します。 リストをクリックすると`choose`アクションが実行され、クリックされた`city` 名が、`input` フィールドに埋め込まれます。
+    最後に、`city` プロパティを表示する、コンポーネント内の各`filteredList` プロパティーのを含んだアンオーダーリスが含まれています。 Clicking 
+    the list item will fire the `choose` アクション with the `city` プロパティ of
+    the item as a parameter, which will then populate the `input` フィールド with
+    the name of that `city`名
     
     コンポーネントのJavaScript は次のようになっています:
     
