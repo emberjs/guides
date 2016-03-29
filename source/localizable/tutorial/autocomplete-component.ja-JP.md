@@ -19,10 +19,7 @@ Handlebars テンプレートはこのようになります。
     
     また、コンポーネント内の`search` アクションにバインドされるボタンも含んでいます。
     
-    最後に、`city` プロパティを表示する、コンポーネント内の各`filteredList` プロパティーのを含んだアンオーダーリスが含まれています。 Clicking 
-    the list item will fire the `choose` アクション with the `city` プロパティ of
-    the item as a parameter, which will then populate the `input` フィールド with
-    the name of that `city`名
+    最後に、`city` プロパティを表示する、コンポーネント内の各`filteredList` プロパティーのを含んだアンオーダーリスが含まれています。 リスト アイテムをクリックすると、その都市の名前アイテムをパラメーターとして 'input' のフィールドに入力する、 `city`プロパティの`choose`アクションが発生します。
     
     コンポーネントのJavaScript は次のようになっています:
     
