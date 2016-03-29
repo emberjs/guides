@@ -24,7 +24,7 @@ export default Ember.Application.extend({
 ```config/environment.js
 ENV.APP.LOG_VIEW_LOOKUPS = true;
 ```
-
+#### View all registered templates
 ```javascript
 Ember.keys(Ember.TEMPLATES)
 ```
