@@ -203,6 +203,7 @@ runloop
 runloops
 runtime
 sandboxed
+scp
 selectiondirection
 semver
 serializer
@@ -244,6 +245,7 @@ truthiness
 typeahead
 ui
 ul
+Unix
 unordered
 unshiftunshiftobject
 unsilence
