@@ -82,7 +82,7 @@ It is not possible to nest curly braces `{{}}`, so the correct way to nest a hel
 {{sum (multiply 2 4) 2}}
 ```
 
-In this example, we are using a helper to multiply `2` and `4` _before_ passing the value into `{{sum`.
+In this example, we are using a helper to multiply `2` and `4` _before_ passing the value into `{{sum}}`.
 
 Thus, the output of these combined helpers is `10`.
 
