@@ -153,18 +153,20 @@ When we look at our about page, we now have a working link to our contact page.
 Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs
-<p>Super Rentals Representatives would love to help you <br>
-  choose a destination or answer any questions you may have.</p>
+<p>Super Rentals Representatives would love to help you choose a destination or answer
+any questions you may have.</p>
 
 <p>Contact us today:</p>
 
 <p>
-  Super Rentals HQ<br>
-  1212 Test Address Avenue<br>
-  Testington, OR 97233
+  Super Rentals HQ
+  <address>
+    1212 Test Address Avenue<br>
+    Testington, OR 97233
+  </address>
 </p>
 
-<p>(503)555-1212</p>
+<p><a href="tel:503.555.1212">(503)555-1212</a></p>
 
 <p><a href="mailto:superrentalsrep@superrentals.com">superrentalsrep@superrentals.com</a></p>
 
