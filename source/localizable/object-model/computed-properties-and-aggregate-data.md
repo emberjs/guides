@@ -27,7 +27,23 @@ and fire observers when any of the following events occurs:
 3. An item is removed from the `todos` array.
 4. The `todos` property of the component is changed to a different array.
 
-In the example above, the `remaining` count is `1`:
+Ember also provides a computed property macro
+[`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
+which is a shorter way of expressing the above computed property:
+
+```app/components/todos.js
+export default Ember.Component.extend({
+  todos: [
+    Ember.Object.create({ isDone: true }),
+    Ember.Object.create({ isDone: false }),
+    Ember.Object.create({ isDone: true })
+  ],
+
+  remaining: Ember.computed.filterBy('todos', 'isDone', false)
+});
+```
+
+In both of the examples above, the `remaining` count is `1`:
 
 ```javascript
 import TodosComponent from 'app/components/todos';

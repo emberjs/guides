@@ -117,3 +117,26 @@ captainAmerica.set('fullName', 'William Burnside');
 captainAmerica.get('firstName'); // William
 captainAmerica.get('lastName'); // Burnside
 ```
+
+### Computed property macros
+
+Some types of computed properties are very common. Ember provides a number of
+computed property macros, which are shorter ways of expressing certain types
+of computed property.
+
+In this example, the two computed properties are equivalent:
+
+```javascript
+Person = Ember.Object.extend({
+  fullName: 'Tony Stark',
+
+  isIronManLongWay: Ember.computed('fullName', function() {
+    return this.get('fullName') === 'Tony Stark';
+  }),
+
+  isIronManShortWay: Ember.computed.equal('fullName', 'Tony Stark')
+});
+```
+
+To see the full list of computed property macros, have a look at
+[the API documentation](http://emberjs.com/api/classes/Ember.computed.html)
