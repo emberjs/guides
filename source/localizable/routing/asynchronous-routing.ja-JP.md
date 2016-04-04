@@ -21,7 +21,7 @@ function reject(reason) {
 プロミスの力点は、非同期のオペレーションを次々と処理される、列として処理できることです。
 
 ```js
-// Note: jQuery AJAX methods return promises
+// Note: jQuery AJAX メソッドはプロミスを返します。
 var usernamesPromise = Ember.$.getJSON('/usernames.json');
 
 usernamesPromise.then(fetchPhotosOfUsers)
@@ -42,7 +42,7 @@ The router considers any object with a `then()` method defined on it to be a pro
 
 If the promise fulfills, the transition will pick up where it left off and begin resolving the next (child) route's model, pausing if it too is a promise, and so on, until all destination route models have been resolved. The values passed to the [`setupController()`](http://emberjs.com/api/classes/Ember.Route.html#method_setupController) hook for each route will be the fulfilled values from the promises.
 
-A basic example:
+簡単な例:
 
 ```app/routes/tardy.js export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
 
@@ -67,10 +67,7 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     is logged to the console.
     
     You can configure this error-handling logic via the `error` handler on
-    the route's `actions` hash. When a promise rejects, an `error` event
-    will be fired on that route and bubble up to `route:application`'s
-    default error handler unless it is handled by a custom error handler
-    along the way, e.g.:
+    the route's `actions` hash. プロミスが拒否すると、ルートで`error` イベントが発生しカスタムエラーハンドラーで処理しないがぎり、`route:application`'のデフォルトのエラーハンドラーまで遡ります、例:
     
     ```app/routes/good-for-nothing.js
     export default Ember.Route.extend({

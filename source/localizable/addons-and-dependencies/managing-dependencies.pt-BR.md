@@ -1,4 +1,4 @@
-As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself, such as authentication or using SASS for your stylesheets. Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve these problems. Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
+Como você está desenvolvendo seu app de Ember, você provavelmente vai encontrar cenários comuns que não são abordados pelo Ember em si, como autenticação ou usar SASS para suas folhas de estilo. Ember CLI fornece um formato comum chamado [Ember Addons](#toc_addons) para a distribuição de bibliotecas reutilizáveis para resolver estes problemas. Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
 
 ## Addons
 
@@ -47,7 +47,7 @@ The globals provided by some assets (like `moment` in the below example) can be 
     });
     
 
-You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
+Você pode agora `import` eles em seu app. (por exemplo, `import { raw as icAjaxRaw } from 'ic-ajax';`)
 
 ### Environment Specific Assets
 

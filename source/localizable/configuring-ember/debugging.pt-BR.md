@@ -16,6 +16,8 @@ Ember provides several configuration options that can help you debug problems wi
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     
 
+#### View all registered templates
+
 ```javascript
 Ember.keys(Ember.TEMPLATES)
 ```

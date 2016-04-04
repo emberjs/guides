@@ -4,7 +4,7 @@
 
 在指南中每个页面的左侧是目录，按照章节组织并在展开后可以看到涵盖的所有主题。 章节及所属的主题由浅入深顺序排列。
 
-这份指南主要是针对构建 Ember 应用程序的实践指导，重点放在 Ember.js 中大多数广泛使用的特性。 For comprehensive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
+这份指南主要是针对构建 Ember 应用程序的实践指导，重点放在 Ember.js 中大多数广泛使用的特性。 如果你想要查阅完整的文档，包括 Ember 所有的特性和 API，请查阅 [Ember.js API 文档](http://emberjs.com/api/)。.
 
 指南开始解释了如何尽快上手 Ember，紧接着是一份教你构建第一个 Ember 应用程序的教程。如果你是第一次接触 Ember 的话，我们推荐你先从上述两个章节开始。
 

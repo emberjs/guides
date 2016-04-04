@@ -88,20 +88,15 @@ Se trata de Ember diciendo que ha creado:
 
 Abre la plantilla recién creada en `app/templates/scientists.hbs` y agrega el siguiente código HTML:
 
-'''app/templates/scientists.hbs 
+```app/templates/scientists.hbs 
 
-## Lista de científicos
+## Lista de científicos```
 
-    <br />En el navegador, abre [http://localhost:4200/scientists] (http://localhost:4200/scientists). You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h2>` from our `application.hbs` template.
+    <br />En el navegador, abre [http://localhost:4200/scientists] (http://localhost:4200/scientists). Deberías ver el `<h2>` que escribiste en la plantilla `scientist.hbs`, justo debajo del ``<h2>` de nuestra plantilla `application.hbs`.
     
-    Now that we've got the `scientists` template rendering, let's give it some
-    data to render. We do that by specifying a _model_ for that route, and
-    we can specify a model by editing `app/routes/scientists.js`.
+    Ahora que tenemos la plantilla de `scientists` funcionando, vamos a darle información para que muestre. Para lograrlo, especificamos un _model_ para esa ruta. Para hacer eso debemos editar `app/routes/scientists.js`.
     
-    We'll take the code created for us by the generator and add a `model()`
-    method to the `Route`:
+    Tomaremos el código que el generado creó para nosotros y añadiremos el método `model()` a la `Route`:
     
     ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
@@ -115,7 +110,7 @@ Abre la plantilla recién creada en `app/templates/scientists.hbs` y agrega el s
 
 (Este ejemplo de código utiliza las últimas características de JavaScript, algunas de las cuales pueden no serte familiares aún. Aprende más sobre ellas con este [resumen de las nuevas características de JavaScript](https://ponyfoo.com/articles/es6).)
 
-In a route's `model()` method, you return whatever data you want to make available to the template. If you need to fetch data asynchronously, the `model()` method supports any library that uses [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+En el método `model()` de la ruta retornamos la información que quieres tener disponible en la plantilla. Si necesitas obtener datos asincrónicamente, el método `model()` soporta cualquier librería que utilice [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 Ahora le indicaremos a Ember cómo convertir esa matriz de cadenas en HTML. Abre la plantilla `scientists` y añade el código Handlebars necesario para recorrer el array y mostrarlo:
 
@@ -127,26 +122,22 @@ Ahora le indicaremos a Ember cómo convertir esa matriz de cadenas en HTML. Abre
 
 * {{scientist}} {{/each}} 
 
-    <br />Here, we use the `each` helper to loop over each item in the array we
-    provided from the `model()` hook and print it inside an `<li>` element.
+    <br />Aquí usamos el helper `each` para iterar sobre cada elemento en el array que proveímos en el hook de `model()` y lo imprimimos en un elemento `<li>`.
     
-    ## Create a UI Component
+    ## Crear un componente de la interfaz gráfica
     
-    As your application grows and you notice you are sharing UI elements
-    between multiple pages (or using them multiple times on the same page),
-    Ember makes it easy to refactor your templates into reusable components.
+    A medida que tu aplicación crece y empiezas a notar elementos de la interfaz gráfica que se comparten entre múltiples páginas (o se utilizan varias veces en la misma página), 
+    Ember hace fácil refactorizar tus plantillas en componentes reusables.
     
-    Let's create a `people-list` component that we can use
-    in multiple places to show a list of people.
+    Creemos ahora un component `people-list` que usaremos en múltiples lugares para mostrar una lista de personas.
     
-    As usual, there's a generator that makes this easy for us. Make a new
-    component by typing:
+    Como habitualmente, hay un generator que hace esto fácil para nosotros. Crea un nuevo componente escribiendo el siguiente comando:
     
     ```sh
     ember generate component people-list
     
 
-Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+Copia y pega la plantilla de `scientists` en la plantilla del componente `people-list` y modifícala para que se vea de la siguiente forma:
 
 ```app/templates/components/people-list.hbs 
 

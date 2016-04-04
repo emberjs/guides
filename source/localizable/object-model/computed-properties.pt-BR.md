@@ -31,6 +31,19 @@ This declares the function to be a computed property, and the arguments tell Emb
 
 Whenever you access the `fullName` property, this function gets called, and it returns the value of the function, which simply calls `firstName` + `lastName`.
 
+When you want to depend on a property which belongs to an object, you can setup multiple dependent keys by using brace expansion:
+
+```javascript
+var obj = Ember.Object.extend({
+  baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
+
+  something: Ember.computed('baz.{foo, bar}') {
+    return this.get('baz.foo') + ' ' + this.get('baz.bar');
+  }
+```
+
+This allows you to observe both `foo` and `bar` on `baz` with much less duplication/redundancy when your dependent keys are mostly similar.
+
 ### Chaining computed properties
 
 You can use computed properties as values to create new computed properties. Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:

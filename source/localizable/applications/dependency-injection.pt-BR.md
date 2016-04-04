@@ -1,16 +1,16 @@
-Ember applications utilize the [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) ("DI") design pattern to declare and instantiate classes of objects and dependencies between them. Applications and application instances each serve a role in Ember's DI implementation.
+Aplicações em Ember utilizam o padrão de projeto de [injeção de dependência](https://en.wikipedia.org/wiki/Dependency_injection) ("DI") para declarar e instanciar classes de objetos e dependências entre eles. Aplicações e instâncias de aplicações tem um papel na implementação de DI em Ember.
 
-An [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html) serves as a "registry" for dependency declarations. Factories (i.e. classes) are registered with an application, as well as rules about "injecting" dependencies that are applied when objects are instantiated.
+Um [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html) serve como um "registro" para declarações de dependência. Fábricas (ou seja, classes) são registradas com um aplicativo, assim como regras sobre "injetar" dependências que são aplicadas quando os objetos são instanciados.
 
-An [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) serves as the "owner" for objects that are instantiated from registered factories. Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
+Um [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) serve como o "dono" para objetos que são instanciados a partir de fábricas registradas. Instâncias de aplicativo fornecem um meio para "procurar" (ou seja, criar uma instância e / ou recuperar) objetos.
 
-> *Note: Although an `Application` serves as the primary registry for an app, each `ApplicationInstance` can also serve as a registry. Instance-level registrations are useful for providing instance-level customizations, such as A/B testing of a feature.*
+> *Nota: Embora um `Ember.Application` serve como o registro primário para um app, cada `Ember.ApplicationInstance` também pode servir como um registro. Os registros em nível de instância são úteis para fornecer personalizações em nível de instância, como teste A/B de um recurso.*
 
-## Factory Registrations
+## Registros de Fábrica
 
-A factory can represent any part of your application, like a *route*, *template*, or custom class. Every factory is registered with a particular key. For example, the index template is registered with the key `template:index`, and the application route is registered with the key `route:application`.
+Uma fábrica pode representar qualquer parte do seu aplicativo, como uma classe personalizada, *template* ou *route*. Cada fábrica é registrada com uma chave particular. Por exemplo, o "template" para "index" é registrado com a chave `template:index`, e a "route" para "application" é registrada com o chave `route:application`.
 
-Registration keys have two segments split by a colon (`:`). The first segment is the framework factory type, and the second is the name of the particular factory. Hence, the `index` template has the key `template:index`. Ember has several built-in factory types, such as `service`, `route`, `template`, and `component`.
+As chaves de registo tem dois segmentos divididos por dois-pontos (`:`). O primeiro segmento é o tipo de fábrica da aplicacao, e o segundo é o nome da fábrica. Portanto, o "template" para `index` tem a chave `template:index`. Ember has several built-in factory types, such as `service`, `route`, `template`, and `component`.
 
 You can create your own factory type by simply registering a factory with the new type. For example, to create a `user` type, you'd simply register your factory with `application.register('user:user-to-register')`.
 

@@ -126,16 +126,17 @@ Now, we'll add a link to our contact page so we can navigate from back and forth
 
 ```app/templates/contact.hbs 
 
-Super Rentals Representatives would love to help you   
-choose a destination or answer any questions you may have.
+Super Rentals Representatives would love to help you choose a destination or answer any questions you may have.
 
 Contact us today:
 
-Super Rentals HQ  
-1212 Test Address Avenue  
-Testington, OR 97233 
+Super Rentals HQ 
 
-(503)555-1212
+<address>
+  1212 Test Address Avenue<br /> Testington, OR 97233
+</address>
+
+[(503)555-1212](tel:503.555.1212)
 
 <superrentalsrep@superrentals.com>
 
