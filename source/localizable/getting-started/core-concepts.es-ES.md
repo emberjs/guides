@@ -4,7 +4,7 @@ Antes de empezar a escribir código, es buena idea obtener una visión general d
 
 ## Enrutador y gestores de ruta
 
-Supongamos que vamos a escribir una aplicación web que permite a los usuarios anunciar una o varias propiedades para ser alquiladas. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. La URL se puede establecer de varias formas:
+Supongamos que vamos a escribir una aplicación web que permite a los usuarios anunciar una o varias propiedades para ser alquiladas. En un momento dado, deberíamos ser capaces de responder a preguntas sobre el estado actual como *¿qué propiedad están buscando?* o *¿se está simplemente visualizando o está siendo editada?* En Ember, la respuesta a estas dos posibles preguntas viene determinada por la URL. La URL se puede establecer de varias formas:
 
 * El usuario carga la aplicación por primera vez.
 * El usuario cambia la URL manualmente, como por ejemplo haciendo clic en el botón de retroceder o editando la barra de direcciones.
@@ -20,7 +20,7 @@ Por lo tanto, el gestor de ruta hace básicamente dos cosas:
 
 ## Plantillas
 
-Ember uses templates to organize the layout of HTML in an application.
+Ember utiliza plantillas para organizar el layout HTML de una aplicación.
 
 La mayoría de plantillas en Ember nos resultan familiares, ya que no son más que fragmentos de HTML. Por ejemplo:
 

@@ -1,8 +1,8 @@
-Getting started with Ember is easy. Ember projects are created and managed through our command line build tool Ember CLI. This tool provides:
+Es sencillo empezar con Ember. Un proyecto de Ember se crea y se mantiene gracias a un comando de consola llamado Ember CLI. Este herramienta proporciona:
 
 * Gestión de recursos (incluyendo concatenación, minificado y versionado).
 * Generadores para crear componentes, rutas y otros elementos.
-* A conventional project layout, making existing Ember applications easy to approach.
+* Una estructura de proyecto genérica, lo cual facilita la comprensión de las aplicaciones ya existentes de Ember.
 * Soporte para JavaScript ES2015/ES6 gracias al proyecto [Babel](http://babeljs.io/docs/learn-es2015/). Se incluye soporte para los [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que se utilizarán a lo largo de esta guía.
 * Soporte integrado de testing con [QUnit](https://qunitjs.com/).
 * Poder disponer de funcionalidad extra gracias al creciente ecosistema de addons de Ember.
