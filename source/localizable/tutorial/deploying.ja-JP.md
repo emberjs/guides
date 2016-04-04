@@ -1,4 +1,4 @@
-To deploy an Ember application simply transfer the output from `ember build` to a web server. This can be done with standard Unix file transfer tools such as `rsync` or `scp`. There are also services that will let you deploy easily.
+Ember アプリケーションをデプロイするには、単に出力された`ember build` をweb サーバーに転送します。 転送は標準的なUnixのファイル転送ツール、`rsync` や `scp`などで行うことが可能です。 また、他にもデプロイを簡略化してくれる、サービスも存在します。
 
 ## Scpコマンドでのデプロイ
 
@@ -11,9 +11,9 @@ scp -r dist/* myserver.com:/var/www/public/
 
 ## Surge.sh へのデプロイ
 
-Surge.sh allows you to publish any folder to the web for free. To deploy an Ember application you can simply deploy the folder produced by `ember build`.
+Surge.sh はフリーで任意のフォルダを、webに公開することができます。Emberアプリケーションは単に`ember build`によって生成されたフォルダーををデプロイすることができます。.
 
-You will need to have the surge cli tool installed:
+surge cliツールのインストールが事前に完了している必要があります:
 
 ```shell
 npm install -g surge

@@ -1,37 +1,37 @@
-Welcome to the Ember.js Guides! This documentation will take you from total beginner to Ember expert.
+Bem vindo ao guia de Ember.js! Esse guia irá te levar de iniciante a perito em Ember.
 
-## Organization
+## Organização
 
-On the left side of each page in the Guides is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from the most basic concepts to the more advanced.
+No lado esquerdo de cada página nos guias tem uma tabela de conteúdo, organizado em seções que podem ser expandidas para mostrar os tópicos que eles cobrem. Ambas, as seções e os tópicos dentro de cada seção são ordenados dos conceitos mais básicos para os mais avançados.
 
-The Guides are intended to contain practical explanations of how to build Ember apps, focusing on the most widely-used features of Ember.js. For comprehensive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
+Os guias tem o objetivo de conter explicações práticas de como construir aplicativos em Ember, enfocando os recursos mais utilizados do Ember.js. Para documentação detalhada de todos os recursos de Ember e da API, consulte a [documentação da API Ember.js](http://emberjs.com/api/).
 
-The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
+Os guias começam com uma explicação de como começar com Ember, seguido de um tutorial sobre como criar seu primeiro aplicativo em Ember. Se você é novo em Ember, recomendamos que comece por essas duas primeiras seções do guia.
 
-## Assumptions
+## Pré-Requisitos
 
-While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
+Enquanto tentamos deixar o guia mais amigável para iniciantes, precisamos estabelecer uma base para que o guia possam manter o foco nas funcionalidades de Ember.js. Vamos tentar linkar a documentação adequada sempre que um conceito for introduzido.
 
-To make the most out of the guides, you should have a working knowledge of:
+Para tirar o máximo de proveito dos guias, você deve ter conhecimento básico de:
 
-* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
-* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
-* **ES2015 modules** - you will better understand Ember CLI's project structure and import paths if you are comfortable with [ES6 JavaScript Modules](http://jsmodules.io/).
-* **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can take advantage of newer language features such as arrow functions, template strings, destructuring, and more. You can check the [Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
+* **HTML, CSS, JavaScript** - a base para construção de páginas web. Você pode encontrar a documentação de cada uma destas tecnologias em [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
+* **Promises** - a maneira nativa para lidar com assincronia no seu código JavaScript. Consulte a seção relevante do [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* **ES2015 modules** - você vai entender melhor a estrutura de projeto do Ember CLI e caminhos de importação, se você estiver confortável com [Módulos de JavaScript ES6](http://jsmodules.io/).
+* **ES2015 sintaxe** - Ember CLI vem com Babel.js por padrão, então você pode tirar proveito dos novos recursos de linguagem, como funções de seta, template strings, desestruturação e mais. Você pode verificar a [documentação de Babel.js](https://babeljs.io/docs/learn-es2015/) ou ler [compreendendo ECMAScript 6](https://leanpub.com/understandinges6/read) on-line.
 
-## Reporting a problem
+## Relatar um problema
 
-Typos, missing words, code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
+Erros de digitação, falta de palavras e exemplos de código com erros são todos considerados bugs de documentação. Se você detectar um deles, ou desejar melhorar os guias existentes, ficamos felizes em te ajudar a nos ajudar!
 
-Some of the more common ways to report a problem with the guides are:
+Algumas das formas mais comuns de relatar um problema com os guias são:
 
-* Using the pencil icon on the top-right of each guide page
-* Opening an issue/pull request to [the GitHub repository](https://github.com/emberjs/guides/)
+* Usando o ícone de lápis na parte superior direita de cada página do guia
+* Reportar um erro ou enviar um pull request no [repositório no GitHub](https://github.com/emberjs/guides/)
 
-Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
+Ao clicar no ícone de lápis você será levado ao editor do GitHub para que você possa editar imediatamente, usando a linguagem de marcação Markdown. Esta é a maneira mais rápida de corrigir um erro de digitação, uma palavra que falta ou um erro em um exemplo de código.
 
-If you wish to make a more significant contribution be sure to check our [issue tracker](https://github.com/emberjs/guides/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
+Se você deseja fazer uma contribuição mais significativa não se esqueça de verificar o nosso [rastreador de problemas](https://github.com/emberjs/guides/issues), para ver se seu problema já está sendo abordado. Se você não encontrar um problema ativo, abra um novo.
 
-If you have any styling questions, or about the contributing process you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#documentation` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+Se você tiver alguma dúvida de estilo, ou sobre o processo de contribuição você pode conferir nosso [Guia de contribuição](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). Se sua pergunta persiste, fale conosco no canal `#documentation` do nosso [grupo Slack](https://ember-community-slackin.herokuapp.com/).
 
-Good luck!
+Boa sorte!

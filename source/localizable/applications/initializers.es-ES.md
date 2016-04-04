@@ -1,12 +1,12 @@
-Initializers provide an opportunity to configure your application as it boots.
+Los inicializadores permiten configurar la aplicación al arranque.
 
-There are two types of initializers: application initializers and application instance initializers.
+Hay dos tipos de inicializadores: inicializadores de la aplicación e inicializadores de la instancia de la aplicación.
 
-Application initializers are run as your application boots, and provide the primary means to configure [dependency injections](../dependency-injection) in your application.
+Los inicializadores de la aplicación se ejecutan en el arranque y suponen el principal métido para poder [inyectar dependencias](../dependency-injection) en la aplicación.
 
-Application instance initializers are run as an application instance is loaded. They provide a way to configure the initial state of your application, as well as to set up dependency injections that are local to the application instance (e.g. A/B testing configurations).
+Los inicializadores de la instancia de la aplicación se ejecutan cuando se carga una instancia de la aplicación. Proporcionan una manera de configurar el estado inicial de la aplicación, así como las inyecciones de dependencias que pertenecen únicamente a la instancia de la aplicación (por ejemplo configuraciones de tests A/B).
 
-Operations performed in initializers should be kept as lightweight as possible to minimize delays in loading your application. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
+Las operaciones realizadas en los inicializadores deben ser tan ligeras como sea posible para minimizar un posible retraso en la carga de la aplicación. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
 
 ## Application Initializers
 
