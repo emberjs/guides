@@ -1,10 +1,10 @@
-Initializers provide an opportunity to configure your application as it boots.
+Inicializadores fornecem uma oportunidade para configurar seu aplicativo quando se inicia.
 
-There are two types of initializers: application initializers and application instance initializers.
+Existem dois tipos de inicializadores: inicializadores de aplicativo e inicializadores de instância do aplicativo.
 
-Application initializers are run as your application boots, and provide the primary means to configure [dependency injections](../dependency-injection) in your application.
+Inicializadores de aplicativos são executados quando seu aplicativo se inicia e fornecem o meio principal de configurar [injeções de dependência](../dependency-injection) em seu aplicativo.
 
-Application instance initializers are run as an application instance is loaded. They provide a way to configure the initial state of your application, as well as to set up dependency injections that are local to the application instance (e.g. A/B testing configurations).
+Inicializadores de instância do aplicativo são executados quando uma instância do aplicativo é inicializada. Eles fornecem uma maneira para configurar o estado inicial do seu aplicativo, e também para configurar as injeções de dependência que são locais para a instância do aplicativo (por exemplo, teste A/B de configurações).
 
 Operations performed in initializers should be kept as lightweight as possible to minimize delays in loading your application. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
 

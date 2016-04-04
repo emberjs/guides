@@ -4,9 +4,9 @@
 
   1. 安装 Ember。
   2. 创建一个新的应用程序。
-  3. 定义一个路由。
-  4. Writing a UI component.
-  5. Building your app to be deployed to production.
+  3. 定义一个路由（Route）。
+  4. 编写一个 UI 组件（Component）。
+  5. 将你的应用程序构建成适合部署到生产环境的产品。
 
 ## 安装 Ember
 
@@ -20,7 +20,7 @@ npm install -g ember-cli@2.4
 
 ## 创建一个新的应用程序
 
-Once you've installed Ember CLI via npm, you will have access to a new `ember` command in your terminal. You can use the `ember new` command to create a new application.
+当你通过 npm 安装好 Ember 之后，就可以在终端中使用一个新的命令 `ember` 了。你可以用 `ember new` 命令来创建一个新的应用程序。
 
 ```sh
 ember new ember-quickstart
@@ -28,14 +28,14 @@ ember new ember-quickstart
 
 这一命令将会创建一个新的目录叫做 `ember-quickstart`，同时在其中设置好一个全新的 Ember 应用程序。无需额外动作，你的应用程序就已包括：
 
-* A development server.
-* Template compilation.
-* JavaScript and CSS minification.
-* ES2015 features via Babel.
+* 一个用于开发的服务器软件。
+* 模板编译系统。
+* JavaScript 和 CSS 压缩系统。
+* 通过 Babel 来实现的 ES2015 特性。
 
 通过集成软件包为你提供创建可直接就绪生产环境的 web 应用所需的一切基础，Ember 让开始一个新项目变得无比轻松自如。
 
-Let's make sure everything is working properly. `cd` into the application directory `ember-quickstart` and start the development server by typing:
+我们来确认一下是否一切都运转正常。`cd` 到应用程序目录 `ember-quickstart` 下，并通过以下命令来启动开发服务器：
 
 ```sh
 cd ember-quickstart
@@ -55,8 +55,7 @@ Serving on http://localhost:4200/
 
 切换到你的编辑器并打开 `app/templates/application.hbs` 文件。这就是 `application` 模板了，当用户打开你的应用程序时该模板会始终显示在屏幕上。
 
-In your editor, change the text inside the `<h2>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. 注意 Ember 会检测到你刚才所做的改变并在后台为你自动刷新页面。 你应该能看到 "Welcome to Ember" 已经变成了 "PeopleTracker"。
+在你的编辑器中，将 `<h1>` 标签里的 `Welcome to Ember` 改成 `PeopleTracker` 然后保存文件。 注意 Ember 会检测到你刚才所做的改变并在后台为你自动刷新页面。 你应该能看到 "Welcome to Ember" 已经变成了 "PeopleTracker"。
 
 ## 定义路由
 
@@ -83,9 +82,9 @@ installing route-test
 这就是在告诉你 Ember 已经创建了：
 
   1. 一个在当用户访问 `/scientists` 时用于显示的模板.
-  2. A `Route` object that fetches the model used by that template.
+  2. 一个 `Route` 对象，该对象负责获取数据模型（model）并在模板中使用。
   3. 一个应用程序路由器里的入口（代码位于 `app/router.js`）).
-  4. A unit test for this route.
+  4. 一个针对该路由的单元测试。
 
 打开新创建的 `app/templates/scientists.hbs` 模板文件并添加下列 HTML 代码：
 
@@ -93,16 +92,11 @@ installing route-test
 
 ## List of Scientists
 
-    <br />在你的浏览器中打开 [http://localhost:4200/scientists](http://localhost:4200/scientists)。 You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h2>` from our `application.hbs` template.
+    <br />在你的浏览器中打开 [http://localhost:4200/scientists](http://localhost:4200/scientists)。 你应该能看到你放在 `scientists.hbs` 模板中的那个 `<h2>`，它就紧挨在 `application.hbs` 模板里那个 `<h2>` 的后面。
     
-    Now that we've got the `scientists` template rendering, let's give it some
-    data to render. We do that by specifying a _model_ for that route, and
-    we can specify a model by editing `app/routes/scientists.js`.
+    现在我们既然已经渲染出 `scientists` 模板了，那不妨再给它一些数据让它渲染。 实现的方法是，给这条路由指定一个数据模型（_model）。我们可以通过编辑 `app/routes/scientists.js` 来指定数据模型。
     
-    We'll take the code created for us by the generator and add a `model()`
-    method to the `Route`:
+    生成器已经替我们产生好了一些代码，我们只要在 `Route` 中添加一个 `model()`方法即可：
     
     ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
@@ -114,11 +108,11 @@ installing route-test
     });
     
 
-(This code example uses the latest features in JavaScript, some of which you may not be familiar with. Learn more with this [overview of the newest JavaScript features](https://ponyfoo.com/articles/es6).)
+（这段代码用到了一些最新的 JavaScript 特性，有一些你可能并不熟悉。 可以通过这篇 [JavaScript 最新特性概述](https://ponyfoo.com/articles/es6) 来深入了解一下。）.)
 
-In a route's `model()` method, you return whatever data you want to make available to the template. If you need to fetch data asynchronously, the `model()` method supports any library that uses [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+在一个路由的 `model()` 方法中，你只需返回你想提供给模板使用的任意数据。 如果需要异步获取数据，`model()` 方法也支持任何使用 [JavaScript Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 的库。.
 
-Now let's tell Ember how to turn that array of strings into HTML. Open the `scientists` template and add some Handlebars code to loop through the array and print it:
+现在我们来告诉 Ember 如何把上面这一组字符串转化成 HTML。打开 `scientists` 模板，添加一些 Handlebar 代码来遍历数组，然后输出︰
 
 ```app/templates/scientists.hbs{+3,+4,+5,+6,+7} 
 
@@ -128,8 +122,7 @@ Now let's tell Ember how to turn that array of strings into HTML. Open the `scie
 
 * {{scientist}} {{/each}} 
 
-    <br />Here, we use the `each` helper to loop over each item in the array we
-    provided from the `model()` hook and print it inside an `<li>` element.
+    <br />我们在这里使用了 `each` 辅助函数来遍历数组中的每一个元素（这个数组是我们从 `model()` 钩子函数中传递出来的），然后把每个元素输出到一个 `<li>` 标签内。
     
     ## Create a UI Component
     
