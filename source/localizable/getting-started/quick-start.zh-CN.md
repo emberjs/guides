@@ -2,9 +2,9 @@
 
 我们将介绍以下步骤：
 
-  1. Installing Ember.
-  2. Creating a new application.
-  3. Defining a route.
+  1. 安装 Ember。
+  2. 创建一个新的应用程序。
+  3. 定义一个路由。
   4. Writing a UI component.
   5. Building your app to be deployed to production.
 
