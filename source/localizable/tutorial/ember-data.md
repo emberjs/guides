@@ -123,5 +123,7 @@ export default Ember.Route.extend({
 ```
 
 When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`.
+You can read more about Ember Data in the [Models section](https://guides.emberjs.com/v2.4.0/models/).
+
 Since we're using Mirage in our development environment, Mirage will return the data we've provided.
 When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
