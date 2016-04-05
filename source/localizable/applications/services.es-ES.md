@@ -1,24 +1,24 @@
 An [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) is a long-lived Ember object that can be made available in different parts of your application.
 
-Services are useful for features that require shared state or persistent connections. Example uses of services might include:
+Los servicios son útiles para implementar funcionalidades que requieran mantener un estado compartido a lo largo de la aplicación. Por ejemplo:
 
-* User/session authentication.
-* Geolocation.
+* Autenticación de la sesión de usuario.
+* Geolocalización.
 * Web Sockets.
 * Server-sent events or notifications.
 * Server-backed API calls that may not fit Ember Data.
-* Third-party APIs.
+* APIs de terceros.
 * Logging.
 
 ### Defining Services
 
-Services can be generated using Ember CLI's `service` generator. For example, the following command will create the `ShoppingCart` service:
+Los servicios pueden crearse usando el generador de `servicios` de Ember CLI. Por ejemplo, el siguiente comando creará el servicio `ShoppingCart`:
 
 ```bash
 ember generate service shopping-cart
 ```
 
-Services must extend the [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) base class:
+Los servicios deben extender de la clase base [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html):
 
 ```app/services/shopping-cart.js export default Ember.Service.extend({ });
 
@@ -68,7 +68,7 @@ This injects the shopping cart service into the component and makes it available
 
 Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called. Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
 
-Once loaded, a service will persist until the application exits.
+Una vez cargado, un servicio existirá y mantendrá su estado hasta que se salga de la aplicación.
 
 Below we add a remove action to the `cart-contents` component. Notice that below we access the `cart` service with a call to`this.get`.
 

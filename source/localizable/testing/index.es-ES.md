@@ -1,4 +1,4 @@
-Testing is a core part of the Ember framework and its development cycle.
+El testing es una parte fundamental de Ember y su ciclo de desarrollo.
 
 Let's assume you are writing an Ember application which will serve as a blog. This application would likely include models such as `user` and `post`. It would also include interactions such as *login* and *create post*. Let's finally assume that you would like to have [automated tests](http://en.wikipedia.org/wiki/Test_automation) in place for your application.
 

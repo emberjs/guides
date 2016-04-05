@@ -2,7 +2,7 @@
 
 ### プロミスについて...
 
-Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 The way to retrieve this eventual value, or handle the cases when the promise rejects, is via the promise's [`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then) method, which accepts two optional callbacks, one for fulfillment and one for rejection. If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. 例えば
+Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 最終の値を取得する、またはプロミスがリジェクトされた場合のハンドリングは成功、リジェクトの二つのコールバックを受け取ることのできる、プロミスの[`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then)メソッドで処理します。 If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. 例えば
 
 ```js
 var promise = fetchTheAnswer();
@@ -91,7 +91,7 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
 
 In the above example, the error event would stop right at `route:good-for-nothing`'s error handler and not continue to bubble. To make the event continue bubbling up to `route:application`, you can return true from the error handler.
 
-### Recovering from Rejection
+### リジェクトからの回復
 
 Rejected model promises halt transitions, but because promises are chainable, you can catch promise rejects within the `model` hook itself and convert them into fulfills that won't halt the transition.
 

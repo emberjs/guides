@@ -19,7 +19,7 @@ surge cliツールのインストールが事前に完了している必要が�
 npm install -g surge
 ```
 
-Then you can use the `surge` command to deploy your application. Note you will also need to provide a copy of index.html with the filename 200.html so that surge can support Ember's client-side routing.
+インストール後、`surge`コマンドでアプリケーションのデプロイが実行可能になります。 surgeがEmberのクライアントサイドでのルーティングをサポートするには、 index.html のコピーを 200.html という名称で提供する必要があることに注意してください。
 
 ```shell
 ember build --environment=production
@@ -28,9 +28,9 @@ cp index.html 200.html
 surge
 ```
 
-Press return to accept the defaults when deploying the first time. You will be provided with a URL in the form `funny-name.surge.sh` that you can use for repeated deployments.
+デプロイの初回時にはデフォルトを承認するために、return キーを押します。`funny-name.surge.sh`等でURLが提供され、そのURLに対して、デプロイを行っていくことができます。
 
-So to deploy to the same URL after making changes, perform the same steps, this time providing the URL for your site:
+アプリケーションに変更を行い同一のURLにデプロイするには、同一のて実行します、今回はアプリケーションのURLをコマンドのオプションにします。
 
 ```shell
 rm -rf dist
