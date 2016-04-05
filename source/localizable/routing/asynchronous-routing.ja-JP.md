@@ -2,7 +2,7 @@
 
 ### プロミスについて...
 
-Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 最終の値を取得する、またはプロミスがリジェクトされた場合のハンドリングは成功、リジェクトの二つのコールバックを受け取ることのできる、プロミスの[`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then)メソッドで処理します。 If the promise fulfills, the fulfillment handler gets called with the fulfilled value as its sole argument, and if the promise rejects, the rejection handler gets called with a reason for the rejection as its sole argument. 例えば
+Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 最終の値を取得する、またはプロミスがリジェクトされた場合のハンドリングは成功、リジェクトの二つのコールバックを受け取ることのできる、プロミスの[`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then)メソッドで処理します。 もし、プロミスが成功すれば、成功の値とともに、成功時のハンドロラーが呼び出されます、また、プロミスがリジェクトされた場合はリジェクトされた理由とともに、リジェクトハンドラーが呼び出されます。 例えば
 
 ```js
 var promise = fetchTheAnswer();
@@ -30,7 +30,7 @@ usernamesPromise.then(fetchPhotosOfUsers)
                 .then(displaySuccessMessage, handleErrors);
 ```
 
-In the above example, if any of the methods `fetchPhotosOfUsers`, `applyInstagramFilters`, or `uploadTrendyPhotoAlbum` returns a promise that rejects, `handleErrors` will be called with the reason for the failure. In this manner, promises approximate an asynchronous form of try-catch statements that prevent the rightward flow of nested callback after nested callback and facilitate a saner approach to managing complex asynchronous logic in your applications.
+上記の例では、もし`fetchPhotosOfUsers`　`applyInstagramFilters`　`uploadTrendyPhotoAlbum`のいずれかのメソッドがプロミスのリジェクトを返したら、`handleErrors`が失敗の理由とともに呼び出されます。 In this manner, promises approximate an asynchronous form of try-catch statements that prevent the rightward flow of nested callback after nested callback and facilitate a saner approach to managing complex asynchronous logic in your applications.
 
 This guide doesn't intend to fully delve into all the different ways promises can be used, but if you'd like a more thorough introduction, take a look at the readme for [RSVP](https://github.com/tildeio/rsvp.js), the promise library that Ember uses.
 
