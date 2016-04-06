@@ -108,7 +108,7 @@ export default Ember.Controller.extend({
           this.set('filteredList',result);
         });
       } else {
-        this.set('filteredList').clear();
+        this.get('filteredList').clear();
       }
     },
     search(param) {
@@ -117,7 +117,7 @@ export default Ember.Controller.extend({
           this.set('model',result);
         });
       } else {
-        this.set('model').clear();
+        this.get('model').clear();
       }
     }
   }
