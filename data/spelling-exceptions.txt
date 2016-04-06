@@ -213,6 +213,7 @@ shiftshiftobject
 sideload
 sideloaded
 sideloading
+sidenote
 spellcheck
 sql
 stacktraces
