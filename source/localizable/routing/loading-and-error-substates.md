@@ -57,18 +57,27 @@ Router.map(function() {
 });
 ```
 
-Ember will alternate trying to find a `routeName-loading` or `loading` template
-in the hierarchy starting with `foo.bar.slow-model-loading`:
+When accessing `foo.bar.slow-model` route then Ember will alternate trying to
+find a `routeName-loading` or `loading` template in the hierarchy starting with
+`foo.bar.slow-model-loading`:
 
 1. `foo.bar.slow-model-loading`
 2. `foo.bar.loading` or `foo.bar-loading`
 3. `foo.loading` or `foo-loading`
 4. `loading` or `application-loading`
 
-It's important to note that for `slow-model` itself Ember will not try to find
-a `slow-model.loading` template but for the rest of the hierarchy either
+It's important to note that for `slow-model` itself, Ember will not try to
+find a `slow-model.loading` template but for the rest of the hierarchy either
 syntax is acceptable. This can be useful for creating a custom loading screen
 for a leaf route like `slow-model`.
+
+When accessing `foo.bar` route then Ember will search for:
+
+1. `foo.bar-loading`
+2. `foo.loading` or `foo-loading`
+3. `loading` or `application-loading`
+
+It's important to note that `foo.bar.loading` is not considered now.
 
 ### The `loading` event
 
