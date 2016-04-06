@@ -49,3 +49,45 @@ In that case, we can use the `{{blog-post}}` component in **block form** and tel
     
 
 It's important to note that the template scope inside the component block is the same as outside. If a property is available in the template outside the component, it is also available inside the component block.
+
+## Sharing Component Data with its Wrapped Content
+
+There is also a way to share data within your blog post component with the content it is wrapping. In our blog post component we want provide a way for the user to configure what type of style they want to write their post in. We will give them the option to specify either `markdown` or `html`.
+
+```app/templates/index.hbs {{#blog-post editingStyle="markdown"}} 
+
+<p class="author">
+  by {{author}}
+</p> {{body}} {{/blog-post}}
+
+    <br />Supporting different editing styles will require different body components to provide special validation and highlighting.
+    To load a different body component based on editing style, you can yield the component using the component helper and hash helper.
+    
+    ```app/templates/blog-post.hbs
+    <h2>{{title}}</h2>
+    <div class="body">{{yield (hash body=(component editStyle))}}</div>
+    
+
+Once yielded the data can be accessed within wrapped content by referencing the `as` variable.
+
+```app/templates/index.hbs {{#blog-post editStyle="markdown" as |post|}} 
+
+<p class="author">
+  by {{author}}
+</p> {{post.body}} {{/blog-post}}
+
+    <br />Finally we want to share the model of the data a user fills out for the post within our `blog-post` and body components.
+    To share the `postData` object with the new body component, you can add arguments to the component helper.
+    
+    ```app/templates/blog-post.hbs
+    <h2>{{title}}</h2>
+    <div class="body">{{yield (hash body=(component editStyle postData=postData))}}</div>
+    
+
+Since the component isn't instantiated until the component block content is rendered, we can add additional arguments within the block. In this case we'll add a text style option which will dictate the style of body text we want in our post. When `{{post.body}}` is instantiated, it will have both the edit style and the `postData` given by its wrapping component.
+
+    app/templates/index.hbs
+    {{#blog-post editStyle="markdown" as |post|}}
+      <p class="author">by {{author}}</p>
+      {{post.body editStyle="compact"}}
+    {{/blog-post}} Sharing components this way is commonly referred to as "Contextual Components", because the component is shared only with the context of the parent component's block area.

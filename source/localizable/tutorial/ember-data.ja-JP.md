@@ -73,4 +73,6 @@ ember install ember-cli-mirage
     });
     
 
-`this.store.findAll('rental')`を呼び出すと、 Ember Data は `/rentals`にGET リクエスを送ります。 開発環境として Mirage を利用しているおかげで、 先ほど与えたデータをMirage が返してくれます。 プロダクションにアプリケーションをデプロイする際には、Ember Data がやりとりをするバックエンドを提供する必要があります。
+`this.store.findAll('rental')`を呼び出すと、 Ember Data は `/rentals`にGET リクエスを送ります。 Ember Data の詳細については[モデルセクション](../../models/)を確認してください。.
+
+開発環境では Mirage を利用しているので、Mirageは事前にMirageに提供したデータを返します。 プロダクションにアプリケーションをデプロイする際には、実際にEmber Data がやりとりをするバックエンドを構築する必要があります。

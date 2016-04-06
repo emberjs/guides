@@ -74,4 +74,6 @@ Let's now configure Mirage to send back our rentals that we had defined above by
     });
     
 
-When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`. Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
+When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`. You can read more about Ember Data in the [Models section](../../models/).
+
+Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
