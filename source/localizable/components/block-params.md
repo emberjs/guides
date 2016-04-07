@@ -19,7 +19,7 @@ but anything that the component has access to can be yielded, such as an interna
 ### Consuming yielded values with block params
 
 The block expression can then use block params to bind names to any yielded values for use in the block.
-This allows for template customisation when using a component,
+This allows for template customization when using a component,
 where the markup is provided by the consuming template,
 but any event handling behavior implemented in the component is retained such as `click()` handlers.
 
