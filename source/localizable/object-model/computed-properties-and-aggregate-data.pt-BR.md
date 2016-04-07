@@ -14,15 +14,31 @@ remaining: Ember.computed('todos.@each.isDone', function() { var todos = this.ge
     3. An item is removed from the `todos` array.
     4. The `todos` property of the component is changed to a different array.
     
-    In the example above, the `remaining` count is `1`:
+    Ember also provides a computed property macro
+    [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
+    which is a shorter way of expressing the above computed property:
     
-    ```javascript
-    import TodosComponent from 'app/components/todos';
+    ```app/components/todos.js
+    export default Ember.Component.extend({
+      todos: [
+        Ember.Object.create({ isDone: true }),
+        Ember.Object.create({ isDone: false }),
+        Ember.Object.create({ isDone: true })
+      ],
     
-    let todosComponent = TodosComponent.create();
-    todosComponent.get('remaining');
-    // 1
+      remaining: Ember.computed.filterBy('todos', 'isDone', false)
+    });
     
+
+In both of the examples above, the `remaining` count is `1`:
+
+```javascript
+import TodosComponent from 'app/components/todos';
+
+let todosComponent = TodosComponent.create();
+todosComponent.get('remaining');
+// 1
+```
 
 If we change the todo's `isDone` property, the `remaining` property is updated automatically:
 

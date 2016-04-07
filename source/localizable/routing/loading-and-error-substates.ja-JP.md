@@ -28,18 +28,31 @@ Emberルーターはルータが読み込みでエラーが発生した時だけ
 
 ```app/router.js Router.map(function() { this.route('foo', function() { this.route('bar', function() { this.route('slow-model'); }); }); });
 
-    <br />Ember は代わりに`foo.bar.slow-model-loading`で始まる階層から`ルータの名前の付いたloading`もしくは`loading`を探します。:
+    <br />When accessing `foo.bar.slow-model` route then Ember will alternate trying to
+    find a `routeName-loading` or `loading` template in the hierarchy starting with
+    `foo.bar.slow-model-loading`:
     
     1. `foo.bar.slow-model-loading`
     2. `foo.bar.loading` or `foo.bar-loading`
     3. `foo.loading` または`foo-loading`
-    4. `loading` もしくは`アプリケーションloading`
+    4. `loading` or `application-loading`
     
-    Ember 自身は`slow-model` から`slow-model.loading` テンプレートを探そうとはせず、階層の構文として許されているものを探すことは重要なので指摘しておきます。 これは`slow-model`のような末端のルートでロード画面を表示することが可能になるので、有効です。
+    It's important to note that for `slow-model` itself, Ember will not try to
+    find a `slow-model.loading` template but for the rest of the hierarchy either
+    syntax is acceptable. これは`slow-model`のような末端のルートでロード画面を表示することが可能になるので、有効です。
     
-    ### `読み込み` イベント
+    When accessing `foo.bar` route then Ember will search for:
     
-    もし`beforeModel`/`model`/`afterModel` などのフックが即座に解決できない場合、そのルートで [`loading`][1] イベントが発生します。
+    1. `foo.bar-loading`
+    2. `foo.loading` or `foo-loading`
+    3. `loading` or `application-loading`
+    
+    It's important to note that `foo.bar.loading` is not considered now.
+    
+    ### The `loading` event
+    
+    If the various `beforeModel`/`model`/`afterModel` hooks
+    don't immediately resolve, a [`loading`][1] event will be fired on that route.
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
     

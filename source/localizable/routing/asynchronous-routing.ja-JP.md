@@ -30,9 +30,9 @@ usernamesPromise.then(fetchPhotosOfUsers)
                 .then(displaySuccessMessage, handleErrors);
 ```
 
-上記の例では、もし`fetchPhotosOfUsers`　`applyInstagramFilters`　`uploadTrendyPhotoAlbum`のいずれかのメソッドがプロミスのリジェクトを返したら、`handleErrors`が失敗の理由とともに呼び出されます。 In this manner, promises approximate an asynchronous form of try-catch statements that prevent the rightward flow of nested callback after nested callback and facilitate a saner approach to managing complex asynchronous logic in your applications.
+上記の例では、もし`fetchPhotosOfUsers`　`applyInstagramFilters`　`uploadTrendyPhotoAlbum`のいずれかのメソッドがプロミスのリジェクトを返したら、`handleErrors`が失敗の理由とともに呼び出されます。 このようにして、プロミスはコールバックが右に深くなっていくのを回避して、アプリケーションの非同期のロジックへのアプローチを容易にするtry-catchステートメントが行う非同期の方法に似ています。
 
-This guide doesn't intend to fully delve into all the different ways promises can be used, but if you'd like a more thorough introduction, take a look at the readme for [RSVP](https://github.com/tildeio/rsvp.js), the promise library that Ember uses.
+このガイドはプロミスを利用できる様々な方法を全て深堀することはしません、しかし[RSVP](https://github.com/tildeio/rsvp.js)のreadmeを見れば、より深くプロミスを紹介しています。
 
 ### プロミスのためのルーターの停止
 
@@ -93,7 +93,7 @@ In the above example, the error event would stop right at `route:good-for-nothin
 
 ### リジェクトからの回復
 
-Rejected model promises halt transitions, but because promises are chainable, you can catch promise rejects within the `model` hook itself and convert them into fulfills that won't halt the transition.
+モデルのプロミスがリジェクトされた場合遷移は中断されますが、プロミスは連結することができため、プロミスのリジェクトを`モデル`フック自身で受け取り、遷移を中断しない成功として遷移の中断が発生しないように成功に変換することができます。
 
     app/routes/funky.js
     export default Ember.Route.extend({

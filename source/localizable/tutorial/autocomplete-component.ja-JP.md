@@ -67,7 +67,7 @@ We hope you find exactly what you're looking for in a place to stay.
 
 次のように新しいコントローラを定義します。
 
-```app/controllers/index.js export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if(param !== "") { this.store.query('rental', {city: param}).then((result) => { this.set('filteredList',result); }); } else { this.set('filteredList').clear(); } }, search(param) { if(param !== "") { this.store.query('rental', {city: param}).then((result) => { this.set('model',result); }); } else { this.set('model').clear(); } } } });
+```app/controllers/index.js export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('filteredList', result); }); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('model', result); }); } else { this.store.findAll('rental').then((result) => { this.set('model', result); }); } } } });
 
     <br />以上で見たように、`autoComplete`アクションが参照する`filteredList`コントローラのプロパティを定義しました。
      ユーザーがテキストフィールドに入力を行っているとき、このアクションが呼び出されます。 このアクションがレコードの`rental`を参照して、ユーザーがそれまでに入力したものでフィルター処理をします。 このアクションが実行されると、クエーリーの結果は `filteredList`プロパティに置かれ、コンポーネントのオートコンプリートのとして用いられます。
