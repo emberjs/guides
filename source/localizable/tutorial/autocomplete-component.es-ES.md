@@ -1,4 +1,4 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them search for properties within a city, and also suggest cities to them as they type.
+Mientras buscan un alquiler, usuarios también podrían querer limitar su búsqueda a una ciudad específica. Vamos a construir un componente que les permitirá buscar propiedades dentro de una ciudad y también les sugerirá ciudades mientras escriben.
 
 To begin, let's generate our new component. We'll call this component `filter-listing`.
 

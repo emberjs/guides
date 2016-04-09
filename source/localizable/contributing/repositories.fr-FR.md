@@ -20,29 +20,44 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 
 # Libraries Used By Ember
 
-These libraries are part of the Ember.js source, but development of them takes place in a separate repository.
+These libraries are part of the Ember.js asset output, but development of them takes place in a separate repository.
 
-## `packages/ember-metal/lib/vendor/backburner.js`
+## `Backburner`
 
 * **backburner.js** - Implements the Ember run loop.
 * <https://github.com/ebryn/backburner.js>
 
-## `packages/ember-routing/lib/vendor/route-recognizer.js`
+## `DAG Map`
 
-* **route-recognizer.js** - A lightweight JavaScript library that matches paths against registered routes.
+* **dag-map** - A directed acyclic graph data structure for javascript
+* <https://github.com/krisselden/dag-map>
+
+## `Glimmer 2`
+
+* **glimmer** - Implements the really fast rendering engine now included in Ember.js
+* <https://github.com/tildeio/glimmer>
+
+## `HTMLBars`
+
+* **htmlbars** - The syntax for templating most often used with Ember.js
+* <https://github.com/tildeio/htmlbars>
+
+## `morph-range`
+
+* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
+* <https://github.com/krisselden/morph-range>
+
+## `Route Recognizer`
+
+* **route-recognizer** - A lightweight JavaScript library that matches paths against registered routes.
 * <https://github.com/tildeio/route-recognizer>
 
-## `packages/ember-routing/lib/vendor/router.js`
+## `router.js`
 
 * **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
 * <https://github.com/tildeio/router.js>
 
-## `packages/metamorph`
+## `RSVP`
 
-* **Metamorph.js** - Used by Ember for databinding handlebars templates
-* <https://github.com/tomhuda/metamorph.js>
-
-## `packages/rsvp`
-
-* **RSVP.js** - Implementation of the of Promises/A+ spec used by Ember.
+* **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
 * <https://github.com/tildeio/rsvp.js>

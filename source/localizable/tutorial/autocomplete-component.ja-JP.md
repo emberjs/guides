@@ -6,20 +6,20 @@
 ember g component filter-listing
 ```
 
-以前と同じように、このコマンドははHandlebars テンプレート (`app/templates/components/filter-listing.hbs`) と JavaScript ファイル (`app/components/filter-listing.js`を作成します。).
+以前と同じように、このコマンドはHandlebars template (`app/templates/components/filter-listing.hbs`) と JavaScript ファイル (`app/components/filter-listing.js`を作成します。).
 
-Handlebars テンプレートはこのようになります。
+Handlebars template はこのようになります。
 
 ```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action 'autoComplete')}} <button {{action 'search'}}>Search</button>
 
 {{#each filteredList as |item|}} <li {{action 'choose' item.city}}>{{item.city}}</li> {{/each}} 
 
-    それには [`{{input}}`](../../templates/input-helpers) ヘルパーが含まれていて、ユーザーが入力すると、都市のリストをがフィルタされ、検索することのできるテキストフィールドを描画します。 `input` の`value` プロパティーはコンポーネントの`filter` プロパティにバインドされます。
-    `key-up` プロパティは`autoComplete` アクションにバインドされます。
+    それには [`{{input}}`](../../templates/input-helpers) helper が含まれていて、ユーザーが入力すると、都市のリストをがフィルタされ、検索することのできるテキストフィールドを描画します。 `input` の`value` property はコンポーネントの`filter` property にバインドされます。
+    `key-up` property は`autoComplete` アクションにバインドされます。
     
-    また、コンポーネント内の`search` アクションにバインドされるボタンも含んでいます。
+    また、component (コンポーネント)内の`search` アクションにバインドされるボタンも含んでいます。
     
-    最後に、`city` プロパティを表示する、コンポーネント内の各`filteredList` プロパティーのを含んだアンオーダーリスが含まれています。 リスト アイテムをクリックすると、その都市の名前アイテムをパラメーターとして 'input' のフィールドに入力する、 `city`プロパティの`choose`アクションが発生します。
+    最後に、`city` プロパティを表示する、component (コンポーネント)内の各`filteredList` プロパティーのを含んだ順不同のリストが含まれています。 リスト アイテムをクリックすると、その都市の名前アイテムをパラメーターとして 'input' のフィールドに入力する、 `city`プロパティの`choose`アクションが発生します。
     
     コンポーネントのJavaScript は次のようになっています:
     
@@ -42,9 +42,9 @@ Handlebars テンプレートはこのようになります。
     
     
 
-以上が、上記で説明した各`filter` と`filteredList`とアクションとなります。 興味深いのは、コンポーネントによって定義されているのは`choose` アクションだけです。 各`autoComplete` と`search`アクションのロジックはコンポーネントプロパティから読み込まれます。つまり、それらのアクションは呼ばれたアクション (../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) を [passed] 引き渡す*closure actions*と呼ばれるデザインパターンです。.
+以上が、上記で説明した各`filter` と`filteredList`とアクションとなります。 興味深いのは、component (コンポーネント)によって定義されているのは`choose` アクションだけです。 各`autoComplete` と`search`アクションのロジックはcomponent's properties (コンポーネントプロパティ)から読み込まれます。つまり、それらのアクションは呼ばれたアクション (../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) を [passed] 引き渡す*closure actions*と呼ばれるデザインパターンです。.
 
-これが、どのように動作するかを確認するために `index.hbs`テンプレートを次のように編集します。
+これが、どのように動作するかを確認するために `index.hbs`template (テンプレート)を次のように編集します。
 
 ```app/templates/index.hbs 
 
@@ -56,7 +56,7 @@ We hope you find exactly what you're looking for in a place to stay.
 
 {{#link-to 'about'}}About{{/link-to}} {{#link-to 'contact'}}Click here to contact us.{{/link-to}}
 
-    `index.hbs`テンプレートに`filter-listing`コンポーネントを追加しました。 そうして、`filter-listing`コンポーネントが利用するファンクションと、プロパティーを引き渡すことで`index` ページがコンポーネントが、どのように動作するのかを定義することができ、そうすることでコンポーネントはそれらの特定のファンクションとプロパティを利用できるようになります。
+    `index.hbs` template (テンプレート)に`filter-listing`component (コンポーネント)を追加しました。 そうして、`filter-listing`component (コンポーネント)が利用するファンクションと、プロパティーを引き渡すことで`index` ページ component (コンポーネント)が、どのように動作するのかを定義することができ、そうすることでcomponent (コンポーネント)はそれらの特定のファンクションとプロパティを利用できるようになります。
     
     これが動作するためにはアプリケーションに `コントローラー` を追加する必要があります、 <0>index. hbs</0>用のコントローラーを自動生成するには
     次のコマンドを実行します。
@@ -69,10 +69,10 @@ We hope you find exactly what you're looking for in a place to stay.
 
 ```app/controllers/index.js export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('filteredList', result); }); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('model', result); }); } else { this.store.findAll('rental').then((result) => { this.set('model', result); }); } } } });
 
-    <br />以上で見たように、`autoComplete`アクションが参照する`filteredList`コントローラのプロパティを定義しました。
-     ユーザーがテキストフィールドに入力を行っているとき、このアクションが呼び出されます。 このアクションがレコードの`rental`を参照して、ユーザーがそれまでに入力したものでフィルター処理をします。 このアクションが実行されると、クエーリーの結果は `filteredList`プロパティに置かれ、コンポーネントのオートコンプリートのとして用いられます。
+    <br />以上で見たように、`autoComplete`アクションが参照する`filteredList`controller (コントローラ)のプロパティを定義しました。
+     ユーザーがテキストフィールドに入力を行っているとき、このアクションが呼び出されます。 このアクションがレコードの`rental`を参照して、ユーザーがそれまでに入力したものでフィルター処理をします。 このアクションが実行されると、クエーリーの結果は `filteredList`プロパティに置かれ、component (コンポーネント)のオートコンプリートとして用いられます。
     
-    また、ここでは`search`アクションを定義して、ボタンがクリックされた時にコンポーネントに引き渡します。 これは、クエーリーの結果が`index`ルートの`モデル`を更新しそれが、ページの賃貸物件のリストを更新するのとは異なります。
+    また、ここでは`search`アクションを定義して、ボタンがクリックされた時に component (コンポーネント)に引き渡します。 これは、クエーリーの結果が`index`ルートの`モデル`を更新しそれが、ページの賃貸物件のリストを更新するのとは異なります。
     
     これらのアクションが動くにはMirage の`config.js`をリクエストに応えるように、次のように変更する必要があります。
     

@@ -20,29 +20,44 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 # Ember が利用しているライブラリ
 
-次のライブラリは Ember.js のソースコードの一部ですが、開発は別リポジドリで行われています。
+These libraries are part of the Ember.js asset output, but development of them takes place in a separate repository.
 
-## `packages/ember-metal/lib/vendor/backburner.js`
+## `Backburner`
 
 * **backburner.js** - Ember ランループの実装
 * <https://github.com/ebryn/backburner.js>
 
-## `packages/ember-routing/lib/vendor/route-recognizer.js`
+## `DAG Map`
 
-* **route-recognizer.js** - JavaScript の軽量なライブラリ、登録されたルートと、パスを一致させます。
+* **dag-map** - A directed acyclic graph data structure for javascript
+* <https://github.com/krisselden/dag-map>
+
+## `Glimmer 2`
+
+* **glimmer** - Implements the really fast rendering engine now included in Ember.js
+* <https://github.com/tildeio/glimmer>
+
+## `HTMLBars`
+
+* **htmlbars** - The syntax for templating most often used with Ember.js
+* <https://github.com/tildeio/htmlbars>
+
+## `morph-range`
+
+* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
+* <https://github.com/krisselden/morph-range>
+
+## `Route Recognizer`
+
+* **route-recognizer** - A lightweight JavaScript library that matches paths against registered routes.
 * <https://github.com/tildeio/route-recognizer>
 
-## `packages/ember-routing/lib/vendor/router.js`
+## `router.js`
 
-* **router.js** - JavaScript の軽量なライブラリ、route-recognizerと rsvp の上で構築され、ルートを処理するためのAPIを提供しています。
+* **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
 * <https://github.com/tildeio/router.js>
 
-## `packages/metamorph`
+## `RSVP`
 
-* **Metamorph.js** - Emberがhandlebars テンプレートのデータバインドのために利用しています。
-* <https://github.com/tomhuda/metamorph.js>
-
-## `packages/rsvp`
-
-* **RSVP.js** - Emberによる、Promises/A+ の実装。
+* **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
 * <https://github.com/tildeio/rsvp.js>

@@ -1,37 +1,27 @@
-Your app will often need a way to let users interact with controls that change application state. For example, imagine that you have a template that shows a blog title, and supports expanding the post to show the body.
+Tu aplicación necesitará a menudo una forma de permitir a los usuarios interactuar con los diferentes elementos, de modo que cambie el estado de la aplicación. Por ejemplo, imagina que tienes una plantilla que inicialmente muestra el título de un blog y que permite expandir cada post para mostrar el contenido.
 
-If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action) helper to any HTML DOM element, when a user clicks the element, the named event will be sent to the template's corresponding component or controller.
+Si agregas el helper [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action) a cualquier elemento del DOM de HTML, cuando un usuario haga clic en el elemento, se ejecutará el evento asociado, que debe estar definido en el controlador o en el componente correspondiente.
 
-```app/templates/components/single-post.hbs 
+'''app/templates/components/single-post.hbs 
 
 ### <button {{action "togglebody"}}>{{title}}</button> {{#if isShowingBody}} 
 
-{{{body}}} {{/if}}
+{{{body}}} {{/If}}
 
-    <br />In the component or controller, you can then define what the action does within
-    the `actions` hook:
-    
-    ```app/components/single-post.js
-    export default Ember.Component.extend({
-      actions: {
-        toggleBody() {
-          this.toggleProperty('isShowingBody');
-        }
-      }
-    });
+    <br />En el componente o el controlador se puede definir lo que hará la acción dentro del hook 'actions': '''app/components/single-post.js export default Ember.Component.extend ({actions: {toggleBody() {this.toggleProperty('isShowingBody');     }   } });
     
 
-## Action Parameters
+## Parámetros opcionales
 
-You can optionally pass arguments to the action handler. Any values passed to the `{{action}}` helper after the action name will be passed to the handler as arguments.
+Opcionalmente puedes pasar argumentos a la función que ejecuta la acción. Los valores colocados tras el nombre de la acción en el helper `{{action}}` se pasarán a la función como argumentos.
 
-For example, if the `post` argument was passed:
+Por ejemplo, supongamos que se pasa el argumento `post`:
 
 ```handlebars
 <p><button {{action "select" post}}>✓</button> {{post.title}}</p>
 ```
 
-The `select` action handler would be called with a single argument containing the post model:
+Se invocará la función `select` con un solo argumento, que será el modelo de post:
 
 ```app/components/single-post.js export default Ember.Component.extend({ actions: { select(post) { console.log(post.get('title')); } } });
 
