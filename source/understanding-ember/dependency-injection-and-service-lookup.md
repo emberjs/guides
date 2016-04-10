@@ -64,7 +64,7 @@ same singleton service instance:
 ```app/components/sign-in-button.js
 export default Ember.Component.extend({
   sessionService: Ember.inject.service('session'),
-  isLoggedIn: Ember.computed.alias('serviceService.isAuthenticated'),
+  isLoggedIn: Ember.computed.alias('sessionService.isAuthenticated'),
   actions: {
     signIn() {
       // There is an alias to the session property, so this change propagates
