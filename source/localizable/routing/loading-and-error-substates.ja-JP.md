@@ -1,8 +1,8 @@
-Emberルーターはルータが読み込みでエラーが発生した時だけではなく、ルートが読み込み中のときもフィードバックを提供することができます。
+Ember Router (ルーター)はルータが読み込みでエラーが発生した時だけではなく、route (ルート)が読み込み中のときでもフィードバックを提供することができます。
 
-## `ローディング`サブステート
+## `loading` substates ( ローディング サブステート)
 
-`beforeModel` フック、 `model`フックそして `afterModel`フックのが行われる間、データの読み込みに時間がかることがあります。 技術的には、ルーターは各フックのプロミスが満たされるまで、遷移を停止しています。
+`beforeModel` フック、 `model`フックそして `afterModel`フックのが行われる間、データの読み込みに時間がかることがあります。 技術的には、ルーターは各フックのpromises (プロミス)が満たされるまで、遷移を停止しています。
 
 次のことを検討してください。
 
@@ -28,31 +28,27 @@ Emberルーターはルータが読み込みでエラーが発生した時だけ
 
 ```app/router.js Router.map(function() { this.route('foo', function() { this.route('bar', function() { this.route('slow-model'); }); }); });
 
-    <br />When accessing `foo.bar.slow-model` route then Ember will alternate trying to
-    find a `routeName-loading` or `loading` template in the hierarchy starting with
-    `foo.bar.slow-model-loading`:
+    <br />`foo.bar.slow-model` route (ルート)にアクセスしている時、Ember 代わりに`routeName-loading` または `loading` template を`foo.bar.slow-model-loading`で始まる回答から、探します:
     
     1. `foo.bar.slow-model-loading`
     2. `foo.bar.loading` or `foo.bar-loading`
     3. `foo.loading` または`foo-loading`
-    4. `loading` or `application-loading`
+    4. `loading` もしくは `application-loading`
     
-    It's important to note that for `slow-model` itself, Ember will not try to
-    find a `slow-model.loading` template but for the rest of the hierarchy either
-    syntax is acceptable. これは`slow-model`のような末端のルートでロード画面を表示することが可能になるので、有効です。
+    `slow-model`について、次のことに注意してください、Emberは`slow-model.loading` templateを探すことはしませんが、それ以外の階層のうどの構文としても許容されます。 これは`slow-model`のような末端のルートでロード画面を表示することが可能になるので、有効です。
     
-    When accessing `foo.bar` route then Ember will search for:
+    `foo.bar` route (ルート)にアクセスをすると、 Ember は次のものを探します:
     
     1. `foo.bar-loading`
-    2. `foo.loading` or `foo-loading`
-    3. `loading` or `application-loading`
+    2. `foo.loading` または `foo-loading`
+    3. `loading` または `application-loading`
     
-    It's important to note that `foo.bar.loading` is not considered now.
+    現段階では`foo.bar.loading` は考慮されていないことに注意してください。
     
-    ### The `loading` event
+    ### `loading` event (ローディングイベント)
     
-    If the various `beforeModel`/`model`/`afterModel` hooks
-    don't immediately resolve, a [`loading`][1] event will be fired on that route.
+    もし、複数の `beforeModel`/`model`/`afterModel` hooks
+    がすぐに解決されない時は route (ルート)で [`loading`][1] イベンントが発生します。
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
     
