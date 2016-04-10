@@ -46,9 +46,9 @@ test('should correctly concat foo', function(assert) {
 ```
 
 See that we have used `moduleFor`, one of the several unit-test helpers provided by Ember-Qunit.
-Test helpers provide us with some conveniences, such the subject function that handles lookup and instantiation for our object under test.
+Test helpers provide us with some conveniences, such as the `subject` function that handles lookup and instantiation for our object under test.
 Note that in a unit test you can customize the initialization of your object under test by passing to the
-subject function an object containing the instance variables you would like to initialize.  For example, to initialize
+`subject` function an object containing the instance variables you would like to initialize.  For example, to initialize
 the property 'foo' in our object under test, we would call `this.subject({ foo: 'bar' });`
 
 ### Testing Object Methods
