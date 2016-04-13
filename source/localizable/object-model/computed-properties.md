@@ -37,9 +37,9 @@ When you want to depend on a property which belongs to an object, you can setup 
 var obj = Ember.Object.extend({
   baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
 
-  something: Ember.computed('baz.{foo, bar}') {
+  something: Ember.computed('baz.{foo, bar}', function() {
     return this.get('baz.foo') + ' ' + this.get('baz.bar');
-  }
+  })
 ```
 
 This allows you to observe both `foo` and `bar` on `baz` with much less duplication/redundancy
