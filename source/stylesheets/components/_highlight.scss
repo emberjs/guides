@@ -35,6 +35,8 @@
   pre {
     margin: 0;
     font-size: 1.2em;
+    font-family: inherit;
+    @include font-feature-settings("kern", "tnum");
   }
 
   table {
