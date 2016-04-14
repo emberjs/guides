@@ -126,8 +126,6 @@
   pages:
     - title: "Introduction"
       url: "index"
-    - title: "Managing Dependencies Between Controllers"
-      url: "dependencies-between-controllers"
 
 - title: "Models"
   url: 'models'
