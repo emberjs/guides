@@ -124,18 +124,18 @@ serializer for you entire application by defining an "application"
 serializer.
 
 ```app/serializers/application.js
-import DS from 'ember-data';
+import JSONSerializer from 'ember-data/serializers/json';
 
-export default DS.JSONSerializer.extend({});
+export default JSONSerializer.extend({});
 ```
 
 You can also define serializer for a specific model. For example if
 you had a `post` model you could also define a `post` serializer:
 
 ```app/serializers/post.js
-import DS from 'ember-data';
+import JSONSerializer from 'ember-data/serializers/json';
 
-export default DS.JSONSerializer.extend({});
+export default JSONSerializer.extend({});
 ```
 
 To change the format of the data that is sent to the backend store, you can use
@@ -177,9 +177,9 @@ But our server expects data in this format:
 Here's how you can change the data:
 
 ```app/serializers/application.js
-import DS from 'ember-data';
+import JSONSerializer from 'ember-data/serializers/json';
 
-export default DS.JSONSerializer.extend({
+export default JSONSerializer.extend({
   serialize(snapshot, options) {
     var json = this._super(...arguments);
 
@@ -237,9 +237,9 @@ And so we need to change it to look like:
 Here's how we could do it:
 
 ```app/serializers/application.js
-import DS from 'ember-data';
+import JSONSerializer from 'ember-data/serializers/json';
 
-export default DS.JSONSerializer.extend({
+export default JSONSerializer.extend({
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     payload.data.attributes.amount = payload.data.attributes.cost.amount;
     payload.data.attributes.currency = payload.data.attributes.cost.currency;
@@ -268,7 +268,9 @@ serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
 ```app/serializers/application.js
-export default DS.JSONSerializer.extend({
+import JSONSerializer from 'ember-data/serializers/json';
+
+export default JSONSerializer.extend({
   primaryKey: '_id'
 });
 ```
@@ -279,10 +281,13 @@ In Ember Data the convention is to camelize attribute names on a
 model. For example:
 
 ```app/models/person.js
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  lastName:  DS.attr('string'),
-  isPersonOfTheYear: DS.attr('boolean')
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+
+export default Model.extend({
+  firstName: attr('string'),
+  lastName:  attr('string'),
+  isPersonOfTheYear: attr('boolean')
 });
 ```
 
@@ -313,7 +318,9 @@ payload. For example, if your backend returned attributes that are
 method like this.
 
 ```app/serializers/application.js
-export default DS.JSONAPISerializer.extend({
+import JSONSerializer from 'ember-data/serializers/json';
+
+export default JSONAPISerializer.extend({
   keyForAttribute: function(attr) {
     return Ember.String.underscore(attr);
   }
@@ -322,7 +329,7 @@ export default DS.JSONAPISerializer.extend({
 
 Irregular keys can be mapped with a custom serializer. The `attrs`
 object can be used to declare a simple mapping between property names
-on DS.Model records and payload keys in the serialized JSON object
+on `Model` records and payload keys in the serialized JSON object
 representing the record. An object with the property key can also be
 used to designate the attribute's key on the response payload.
 
@@ -332,13 +339,18 @@ desired attribute name is simply `lastName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
 ```app/models/person.js
-export default DS.Model.extend({
-  lastName: DS.attr('string')
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+
+export default Model.extend({
+  lastName: attr('string')
 });
 ```
 
 ```app/serializers/person.js
-export default DS.JSONAPISerializer.extend({
+import JSONSerializer from 'ember-data/serializers/json';
+
+export default JSONAPISerializer.extend({
   attrs: {
     lastName: 'lastNameOfPerson'
   }
@@ -351,8 +363,11 @@ References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
 ```app/models/post.js
-export default DS.Model.extend({
-  comments: DS.hasMany('comment', { async: true })
+import Model from 'ember-data/model';
+import { hasMany } from 'ember-data/relationships';
+
+export default Model.extend({
+  comments: hasMany('comment', { async: true })
 });
 ```
 
@@ -384,8 +399,11 @@ dasherized version of the property's name. For example, if you have
 a model:
 
 ```app/models/comment.js
-export default DS.Model.extend({
-  originalPost: DS.belongsTo('post')
+import Model from 'ember-data/model';
+import { belongsTo } from 'ember-data/relationships'
+
+export default Model.extend({
+  originalPost: belongsTo('post')
 });
 ```
 
@@ -410,7 +428,9 @@ the
 method.
 
 ```app/serializers/application.js
-export default DS.JSONAPISerializer.extend({
+import JSONAPISerializer from 'ember-data/serializers/json-api';
+
+export default JSONAPISerializer.extend({
   keyForRelationship: function(key, relationship) {
     return key + 'Ids';
   }
@@ -428,7 +448,9 @@ Ember Data can have new JSON transforms
 registered for use as attributes:
 
 ```app/transforms/coordinate-point.js
-export default DS.Transform.extend({
+import Transform from 'ember-data/transform';
+
+export default Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
   },
@@ -439,8 +461,11 @@ export default DS.Transform.extend({
 ```
 
 ```app/models/cursor.js
-export default DS.Model.extend({
-  position: DS.attr('coordinate-point')
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+
+export default Model.extend({
+  position: attr('coordinate-point')
 });
 ```
 
@@ -480,7 +505,9 @@ To use it in your application you will need to define an
 `serializer:application` that extends the `JSONSerializer`.
 
 ```app/serializers/application.js
-export default DS.JSONSerializer.extend({
+import JSONSerializer from 'ember-data/serializers/json';
+
+export default JSONSerializer.extend({
   // ...
 });
 ```
@@ -555,7 +582,10 @@ that looks similar to this:
 You would define your relationship like this:
 
 ```app/serializers/post.js
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
+import JSONSerializer from 'ember-data/serializers/json';
+import EmbeddedRecordsMixin from 'ember-data/serializers/embedded-records-mixin';
+
+export default JSONSerializer.extend(EmbeddedRecordsMixin, {
   attrs: {
     authors: {
       serialize: 'records',
@@ -570,7 +600,10 @@ embedded relationship you can use the shorthand option of `{ embedded:
 'always' }`. The following example and the one above are equivalent.
 
 ```app/serializers/post.js
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
+import JSONSerializer from 'ember-data/serializers/json';
+import EmbeddedRecordsMixin from 'ember-data/serializers/embedded-records-mixin';
+
+export default JSONSerializer.extend(EmbeddedRecordsMixin, {
   attrs: {
     authors: { embedded: 'always' }
   }
@@ -590,7 +623,10 @@ serializing the record. This is possible by using the `serialize:
 setting `serialize: false`.
 
 ```app/serializers/post.js
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
+import JSONSerializer from 'ember-data/serializers/json';
+import EmbeddedRecordsMixin from 'ember-data/serializers/embedded-records-mixin';
+
+export default JSONSerializer.extend(EmbeddedRecordsMixin, {
   attrs: {
     author: {
       serialize: false,
@@ -623,7 +659,7 @@ If you would like to create a custom serializer its recommend that you
 start with the `JSONAPISerializer` or `JSONSerializer` and extend one of
 those to match your needs. However, if your payload is extremely
 different from one of these serializers you can create your own by
-extending the `DS.Serializer` base class. There are 3 methods that
+extending the `Serializer` base class. There are 3 methods that
 must be implemented on a serializer.
 
 - [normalizeResponse](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalizeResponse)
@@ -644,9 +680,13 @@ relationship properties on the Model.
 For Example: given this `post` model.
 
 ```app/models/post.js
-export default DS.Model.extend({
-  title: DS.attr('string'),
-  tag: DS.attr('string'),
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
+
+export default Model.extend({
+  title: attr('string'),
+  tag: attr('string'),
   comments: hasMany('comment', { async: false }),
   relatedPosts: hasMany('post')
 });
