@@ -29,10 +29,13 @@ the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
 ```app/models/album.js
-export default DS.Model.extend({
-  title: DS.attr(),
-  artist: DS.attr(),
-  songCount: DS.attr()
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+
+export default Model.extend({
+  title: attr(),
+  artist: attr(),
+  songCount: attr()
 });
 ```
 
@@ -77,7 +80,9 @@ serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
 
 ```app/serializers/album.js
-export default DS.RestSerializer.extend({
+import RestSerializer from 'ember-data/serializers/rest';
+
+export default RestSerializer.extend({
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
     delete hash['song_count']

@@ -189,9 +189,12 @@ example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```app/models/person.js
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  birthday:  DS.attr('date')
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+
+export default Model.extend({
+  firstName: attr('string'),
+  birthday:  attr('date')
 });
 ```
 
@@ -200,14 +203,20 @@ example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
 ```app/models/order.js
-export default DS.Model.extend({
-  lineItems: DS.hasMany('line-item')
+import Model from 'ember-data/model';
+import { hasMany } from 'ember-data/relationships';
+
+export default Model.extend({
+  lineItems: hasMany('line-item')
 });
 ```
 
 ```app/models/line-item.js
-export default DS.Model.extend({
-  order: DS.belongsTo('order')
+import Model from 'ember-data/model';
+import { belongsTo } from 'ember-data/relationships';
+
+export default Model.extend({
+  order: belongsTo('order')
 });
 ```
 
