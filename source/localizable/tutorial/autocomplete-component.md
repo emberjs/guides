@@ -99,27 +99,23 @@ ember g controller index
 Now, define your new controller like so:
 
 ```app/controllers/index.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   filteredList: null,
   actions: {
     autoComplete(param) {
       if (param !== '') {
-        this.store.query('rental', { city: param }).then((result) => {
-          this.set('filteredList', result);
-        });
+        this.get('store').query('rental', { city: param }).then((result) => this.set('filteredList', result));
       } else {
         this.set('filteredList', null);
       }
     },
     search(param) {
       if (param !== '') {
-        this.store.query('rental', { city: param }).then((result) => {
-          this.set('model', result);
-        });
+        this.store.query('rental', { city: param }).then((result) => this.set('model', result));
       } else {
-        this.store.findAll('rental').then((result) => {
-          this.set('model', result);
-        });
+        this.get('store').findAll('rental').then((result) => this.set('model', result));
       }
     }
   }
@@ -144,7 +140,7 @@ We also define a `search` action here that is passed in to the component,
 For these actions to work, we need to modify the Mirage `config.js` file 
 to look like this, so that it can respond to our queries.
 
-```app/mirage/config.js
+```mirage/config.js
 export default function() {
   this.get('/rentals', function(db, request) {
     let rentals = [{
