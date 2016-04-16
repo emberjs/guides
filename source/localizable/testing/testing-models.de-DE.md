@@ -1,4 +1,4 @@
-*Unit testing methods and computed properties follows previous patterns shown in [Unit Testing Basics](../unit-testing-basics) because DS.Model extends Ember.Object.*
+*Unit testing methods and computed properties follows previous patterns shown in [Unit Testing Basics](../unit-testing-basics) because Model extends Ember.Object.*
 
 [Ember Data](https://github.com/emberjs/data) Models can be tested using the `moduleForModel` helper.
 
@@ -7,7 +7,9 @@ Let's assume we have a `Player` model that has `level` and `levelName` attribute
 > You can follow along by generating your own model with `ember generate
   model player`.
 
-```app/models/player.js export default DS.Model.extend({ level: DS.attr('number', { defaultValue: 0 }), levelName: DS.attr('string', { defaultValue: 'Noob' }),
+```app/models/player.js import Model from 'ember-data/model'; import attr from 'ember-data/attr';
+
+export default Model.extend({ level: attr('number', { defaultValue: 0 }), levelName: attr('string', { defaultValue: 'Noob' }),
 
 levelUp() { var newLevel = this.incrementProperty('level'); if (newLevel === 5) { this.set('levelName', 'Professional'); } } });
 
@@ -44,11 +46,16 @@ Assume that a `User` can own a `Profile`.
 > You can follow along by generating your own user and profile models with `ember
   generate model user` and `ember generate model profile`.
 
-```app/models/profile.js export default DS.Model.extend({ });
+```app/models/profile.js import Model from 'ember-data/model';
+
+export default Model.extend({ });
 
     <br />```app/models/user.js
-    export default DS.Model.extend({
-      profile: DS.belongsTo('profile')
+    import Model from 'ember-data/model';
+    import { belongsTo } from 'ember-data/relationships';
+    
+    export default Model.extend({
+      profile: belongsTo('profile')
     });
     
 

@@ -55,8 +55,7 @@ Abra [http://localhost:4200/](http://localhost:4200) em seu navegador. Você dev
 
 Alterne para o seu editor e abra `app/templates/application.hbs`. Isto se chama o template do `aplicativo` e está sempre na tela enquanto o usuário tem seu aplicativo carregado.
 
-In your editor, change the text inside the `<h2>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
+No seu editor, altere o texto dentro do `<h2>` de `Welcome to Ember` para `PeopleTracker` e salve o arquivo. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
 
 ## Definindo uma Rota
 
@@ -94,9 +93,7 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
 ## Lista de Cientistas
 
     <br />No seu navegador, abra
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h2>` from our `application.hbs` template.
+    [http://localhost:4200/scientists](http://localhost:4200/scientists). Você deverá ver o `<h2>` que colocou no "template" `scientists.hbs`, logo abaixo do `<h1>` do nosso "template" `application.hbs`.
     
     Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para mostrar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
     
@@ -126,26 +123,21 @@ Agora vamos dizer para o Ember como transformar aquele vetor ("array") de string
 
 * {{scientist}} {{/each}} 
 
-    <br />Here, we use the `each` helper to loop over each item in the array we
-    provided from the `model()` hook and print it inside an `<li>` element.
+    <br />Aqui, usamos o auxiliar `each` para executar um loop sobre cada item do array que fornecemos no `model()` e imprimi-lo dentro de um elemento de `<li>`.
     
-    ## Create a UI Component
+    # # Criar um componente UI
     
-    As your application grows and you notice you are sharing UI elements
-    between multiple pages (or using them multiple times on the same page),
-    Ember makes it easy to refactor your templates into reusable components.
+    Com o crescimento do seu aplicativo você nota que está compartilhando elementos de interface entre várias páginas (ou usando várias vezes na mesma página), Ember facilita a refatorar seus templates em componentes reutilizáveis.
     
-    Let's create a `people-list` component that we can use
-    in multiple places to show a list of people.
+    Vamos criar um componente de `people-list` que podemos usar para mostrar uma lista de pessoas em vários lugares.
     
-    As usual, there's a generator that makes this easy for us. Make a new
-    component by typing:
+    Como de costume, há um gerador que faz isto fácil para nós. Fazer um novo componente digitando: 
     
     ```sh
     ember generate component people-list
     
 
-Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+Copie e cole o template de `scientists` no template do componente `people-list` e edite-o para ter a seguinte aparência:
 
 ```app/templates/components/people-list.hbs 
 
@@ -155,19 +147,12 @@ Copy and paste the `scientists` template into the `people-list` component's temp
 
 * {{person}} {{/each}} 
 
-    <br />Note that we've changed the title from a hard-coded string ("List of
-    Scientists") to a dynamic property (`{{title}}`). We've also renamed
-    `scientist` to the more-generic `person`, decreasing the coupling of our
-    component to where it's used.
+    <br />Note que nós mudamos o título de uma seqüência de caracteres codificada ("List of Scientists") para uma propriedade dinâmica (`{{title}}`). Nós também renomeamos `scientist` para algo mais genérico `person`, diminuindo o acoplamento do nosso componente onde ele é usado.
     
-    Save this template and switch back to the `scientists` template. Replace all
-    our old code with our new componentized version. Components look like
-    HTML tags but instead of using angle brackets (`<tag>`) they use double
-    curly braces (`{{component}}`). We're going to tell our component:
+    Salve este template e volte novamente para o template de `scientists`. Substitua todo o nosso velho código com nossa nova versão componentizada. Componentes parecem com tags HTML mas em vez de usar colchetes (`<tag>`) eles usam chaves duplas (`{{component}}`). Nós vamos contar nosso componente: 
     
-    1. What title to use, via the `title` attribute.
-    2. What array of people to use, via the `people` attribute. We'll
-       provide this route's `model` as the list of people.
+    1. O título para usar, via o atributo `title`.
+    2. Qual array de pessoas usar, via o atributo `pessoas`. Nós forneceremos o `modelo` desta rota, como a lista de pessoas.
     
     ```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
     <h2>List of Scientists</h2>
@@ -180,13 +165,13 @@ Copy and paste the `scientists` template into the `people-list` component's temp
     {{people-list title="List of Scientists" people=model}}
     
 
-Go back to your browser and you should see that the UI looks identical. The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
+Volte para o seu navegador e você verá que a interface parece idêntica. A única diferença é que agora nós já componentizamos nossa lista em uma versão que é mais reutilizável e mais passível de manutenção.
 
-You can see this in action if you create a new route that shows a different list of people. As an exercise for the reader, you may try to create a `programmers` route that shows a list of famous programmers. By re-using the `people-list` component, you can do it in almost no code at all.
+Você pode ver isso em ação, se você criar uma nova rota que mostra uma lista diferente de pessoas. Como um exercício para o leitor, você pode tentar criar uma rota de `programadores` que mostra uma lista de programadores famosos. Re-usando o componente `people-list`, você pode fazer isso com praticamente nenhum código.
 
-## Building For Production
+## Compilando para produção
 
-Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
+Agora que nós escrevemos a nossa aplicação e verificamos que ela funciona em desenvolvimento, é hora de prepará-la para nossos usuários. Para fazer isso, execute o seguinte comando:
 
 ```sh
 ember build --env production
@@ -194,6 +179,6 @@ ember build --env production
 
 O comando `build` empacota todos seus TDK(assets) que compõem o seu aplicativo&mdash;JavaScript, templates, CSS, web fonts, imagens, e mais.
 
-In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
+Neste caso, nós dissemos para o Ember compilar para o ambiente de produção através da etiqueta `--env`. Isso cria um pacote otimizado que está pronto para ser enviado para o seu servidor web. Uma vez que a compilação termine, você encontrará todos os arquivos da sua aplicação concatenados e minificados no diretório `dist /`.
 
-The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli.github.io/ember-cli-deploy/) addon.
+A comunidade Ember valoriza a colaboração e construção de ferramentas comuns que todos possam contar. Se você está interessado em publicar seu aplicativo em produção de forma rápida e confiável, confira o plugin [Ember CLI Deploy](http://ember-cli.github.io/ember-cli-deploy/).

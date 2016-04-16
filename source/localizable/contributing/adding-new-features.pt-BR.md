@@ -1,55 +1,52 @@
-In general, new feature development should be done on master.
+Em geral, desenvolvimento de uma nova funcionalidade deve ser feito no master.
 
-Bugfixes should not introduce new APIs or break existing APIs, and do not need feature flags.
+Correções de bugs não devem introduzir novas APIs ou quebrar APIs atuais, e não precisa de marcadores de recurso.
 
-Features can introduce new APIs, and need feature flags. They should not be applied to the release or beta branches, since SemVer requires bumping the minor version to introduce new features.
+Funcionalidades novas podem introduzir novas APIs e precisam ser marcados (tags). Elas não devem ser aplicadas ao branch de lançamento ou beta, desde que SemVer requer uma versão secundária para introduzir novas funcionalidades.
 
-Security fixes should not introduce new APIs, but may, if strictly necessary, break existing APIs. Such breakages should be as limited as possible.
+Correções de segurança não devem introduzir novas APIs, mas podem, se realmente necessário, quebrar APIs existentes. Tais quebras devem ser o quanto possível evitadas.
 
-### Bug Fixes
+### Correções de Bugs
 
-#### Urgent Bug Fixes
+#### Correções urgentes
 
-Urgent bugfixes are bugfixes that need to be applied to the existing release branch. If possible, they should be made on master and prefixed with [BUGFIX release].
+Correções urgentes são correções de bugs que precisam ser aplicadas ao branch de lançamento existente. Se possível, devem ser feitas no master e com o prefixo [BUGFIX release].
 
-#### Beta Bug Fixes
+#### Correções de bugs do beta
 
-Beta bugfixes are bugfixes that need to be applied to the beta branch. If possible, they should be made on master and tagged with [BUGFIX beta].
+Correções de bugs do beta são correções de bugs que precisam ser aplicadas ao branch do beta. Se possível, deverão ser feitas no master e marcados com [BUGFIX beta].
 
-#### Security Fixes
+#### Correções de segurança
 
-Security fixes need to be applied to the beta branch, the current release branch, and the previous tag. If possible, they should be made on master and tagged with [SECURITY].
+Correções de segurança devem ser aplicados no branch de beta, no branch da versão atual e na última etiqueta. Se possível, deverão ser feitas no master e marcados com [SECURITY].
 
-### Features
+### Funcionalidades
 
-Features must always be wrapped in a feature flag. Tests for the feature must also be wrapped in a feature flag.
+Funcionalidades sempre devem ser organizados com uma etiqueta de funcionalidade. Testes para a funcionalidade também devem ser organizados com uma etiqueta de funcionalidade.
 
-Because the build-tools will process feature-flags, flags must use precisely this format. We are choosing conditionals rather than a block form because functions change the surrounding scope and may introduce problems with early return.
+Como as ferramentas de compilação irão processar as etiquetas de funcionalidades, essas etiquetas devem usar precisamente este formato. Estamos escolhendo condicionais, ao invés de uma forma de bloco, porque funções alteram o escopo em torno e podem apresentar problemas com retorno antecipado.
 
 ```js
 if (Ember.FEATURES.isEnabled("feature")) {
-  // implementation
+  // implementação
 }
 ```
 
-Tests will always run with all features on, so make sure that any tests for the feature are passing against the current state of the feature.
+Testes serão sempre executados com todos os recursos ativos, então certifique-se de que todos os testes para a funcionalidade estão passando de acordo com a versão atual.
 
 #### Commits
 
-Commits related to a specific feature should include a prefix like [FEATURE htmlbars]. This will allow us to quickly identify all commits for a specific feature in the future. Features will never be applied to beta or release branches. Once a beta or release branch has been cut, it contains all of the new features it will ever have.
+Commits relacionados a uma funcionalidade específica devem incluir um prefixo como [FEATURE htmlbars]. Isso nos permitirá identificar rapidamente todos os commits para uma funcionalidade específica no futuro. Funcionalidades novas nunca serão aplicadas aos branches beta ou de lançamento. Uma vez que um branch beta ou release for eliminado, todas essas funcionalidades novas serão perdidas.
 
-If a feature has made it into beta or release, and you make a commit to master that fixes a bug in the feature, treat it like a bugfix as described above.
+Se uma funcionalidade tiver sido feita no branch beta ou de lançamento, e você fizer um commit no master que corrija um bug, você deverá tratar como um bugfix conforme descrito acima.
 
-#### Feature Naming Conventions
+#### Convenções de nomenclatura de funcionalidades
 
 ```config/environment.js Ember.FEATURES['<packagename>-<feature>'] // if package specific Ember.FEATURES['container-factory-injections'] Ember.FEATURES['htmlbars']
 
-    <br />### Builds
+    <br /># # # Builds 
     
-    The Canary build, which is based off master, will include all features,
-    guarded by the conditionals in the original source. This means that
-    users of the canary build can enable whatever features they want by
-    enabling them before creating their Ember.Application.
+    A compilação Canary (Canary build), que é baseado no master, incluirá todas as funcionalidades, guiados pelas condicionais na fonte original. Isto significa que os usuários da compilação Canária podem ativar qualquer características que desejarem, bastando ativa-las antes de criar sua Ember.Application.
     
     ```config/environment.js
     module.exports = function(environment) {
@@ -65,9 +62,9 @@ If a feature has made it into beta or release, and you make a commit to master t
 
 ### `features.json`
 
-The root of the repository will contain a features.json file, which will contain a list of features that should be enabled for beta or release builds.
+Na raiz do repositório existirá um arquivo features.json, que irá conter uma lista de funcionalidades que devem ser ativados para compilações beta ou de lançamento.
 
-This file is populated when branching, and may not gain additional features after the original branch. It may remove features.
+Este arquivo é preenchido quando branching, e não pode ganhar novas funcionalidades após o branch original. Ele deverá remover funcionalidades.
 
 ```js
 {
@@ -75,43 +72,43 @@ This file is populated when branching, and may not gain additional features afte
 }
 ```
 
-The build process will remove any features not included in the list, and remove the conditionals for features in the list.
+O processo de compilação irá remover qualquer funcionalidade não incluída na lista e removerá as condicionais das funcionalidades incluídas.
 
-### Travis Testing
+### Testes do Travis
 
-For a new PR:
+Para um novo PR:
 
-  1. Travis will test against master with all feature flags on.
-  2. If a commit is tagged with [BUGFIX beta], Travis will also cherry-pick the commit into beta, and run the tests on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
-  3. If a commit is tagged with [BUGFIX release], Travis will also cherry-pick the commit into release, and run the test on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
+  1. Travis vai testar contra o master com todas as sinalizações de funcionalidades ativas.
+  2. Se um commit for marcado com [BUGFIX beta], Travis também vai apontar este commit para o beta e executar os testes naquele branch. Se um commit não aplicar corretamente ou os testes falharem, os testes irão falhar.
+  3. Se um commit estiver marcado com [BUGFIX release], Travis também vai apontar este commit para o release e executar o teste naquele branch. Se um commit não aplicar corretamente ou os testes falharem, os testes irão falhar.
 
-For a new commit to master:
+Para um novo commit ao master:
 
-  1. Travis will run the tests as described above.
-  2. If the build passes, Travis will cherry-pick the commits into the appropriate branches.
+  1. Travis executará os testes conforme descrito acima.
+  2. Se a compilação passar, Travis vai apontar os commits aos branches apropriados.
 
-The idea is that new commits should be submitted as PRs to ensure they apply cleanly, and once the merge button is pressed, Travis will apply them to the right branches.
+A idéia é que novos commits devem ser enviados como PRs para garantir que eles se aplicam de forma limpa, e uma vez que for pressionado o botão de merge, Travis vai aplicá-los aos branches corretos.
 
-### Go/No-Go Process
+### Processo de avançar/não avançar
 
-Every six weeks, the core team goes through the following process.
+A cada seis semanas, a equipe do núcleo passa pelo seguinte processo.
 
 #### Beta Branch
 
-All remaining features on the beta branch are vetted for readiness. If any feature isn't ready, it is removed from features.json.
+Todos os recursos restantes no branch beta são prontamente verificados. Se qualquer recurso não estiver pronto, ele é removido do features.json.
 
-Once this is done, the beta branch is tagged and merged into release.
+Depois disso, o branch beta é marcado e mesclado no branch de lançamento.
 
 #### Master Branch
 
-All features on the master branch are vetted for readiness. In order for a feature to be considered "ready" at this stage, it must be ready as-is with no blockers. Features are a no-go even if they are close and additional work on the beta branch would make it ready.
+Todas as funcionalidades no branch master são prontamente verificados. Para que uma funcionalidade seja considerada "pronta" nesta fase, deve estar finalizada sem bloqueios. Funcionalidades são canceladas, mesmo que elas estejam quase prontas, e um trabalho adicional no beta irá torná-la pronta.
 
-Because this process happens every six weeks, there will be another opportunity for a feature to make it soon enough.
+Como esse processo acontece a cada seis semanas, haverá logo outra oportunidade para uma funcionalidade ser publicada.
 
-Once this is done, the master branch is merged into beta. A `features.json` file is added with the features that are ready.
+Depois disso, o branch master é mesclado no beta. Um arquivo `features.json` é adicionado com as funcionalidades que estão prontas.
 
-### Beta Releases
+### Versões Beta
 
-Every week, we repeat the Go/No-Go process for the features that remain on the beta branch. Any feature that has become unready is removed from the features.json.
+Toda semana, repetimos o processo de avançar/não avançar para as funcionalidades que permanecem no branch beta. Qualquer funcionalidade que não estiver pronta é removida do features.json.
 
-Once this is done, a Beta release is tagged and pushed.
+Depois disso, uma versão Beta é marcada e enviada.

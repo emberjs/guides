@@ -67,7 +67,9 @@ We hope you find exactly what you're looking for in a place to stay.
 
 次のように新しいコントローラを定義します。
 
-```app/controllers/index.js export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('filteredList', result); }); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('model', result); }); } else { this.store.findAll('rental').then((result) => { this.set('model', result); }); } } } });
+```app/controllers/index.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.get('store').query('rental', { city: param }).then((result) => this.set('filteredList', result)); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => this.set('model', result)); } else { this.get('store').findAll('rental').then((result) => this.set('model', result)); } } } });
 
     <br />以上で見たように、`autoComplete`アクションが参照する`filteredList`controller (コントローラ)のプロパティを定義しました。
      ユーザーがテキストフィールドに入力を行っているとき、このアクションが呼び出されます。 このアクションがレコードの`rental`を参照して、ユーザーがそれまでに入力したものでフィルター処理をします。 このアクションが実行されると、クエーリーの結果は `filteredList`プロパティに置かれ、component (コンポーネント)のオートコンプリートとして用いられます。
@@ -76,7 +78,7 @@ We hope you find exactly what you're looking for in a place to stay.
     
     これらのアクションが動くにはMirage の`config.js`をリクエストに応えるように、次のように変更する必要があります。
     
-    ```app/mirage/config.js
+    ```mirage/config.js
     export default function() {
       this.get('/rentals', function(db, request) {
         let rentals = [{

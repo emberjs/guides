@@ -1,63 +1,63 @@
-Ember is made up of several libraries. If you wish to add a feature or fix a bug please file a pull request against the appropriate repository. Be sure to check the libraries listed below before making changes in the Ember.js repository.
+Ember é composto de várias bibliotecas. Se você deseja adicionar uma funcionalidade ou corrigir um bug, por favor, envie um pull request para o repositório apropriado. Certifique-se de verificar as bibliotecas listadas abaixo antes de fazer alterações no repositório Ember.js.
 
-# Main Repositories
+# Principais repositórios
 
-**Ember.js** - The main repository for Ember.
+**Ember.js** - o repositório principal do Ember.
 
 * <https://github.com/emberjs/ember.js>
 
-**Ember Data** - A data persistence library for Ember.
+**Ember Data** - uma biblioteca de persistência de dados para Ember.
 
 * <https://github.com/emberjs/data>
 
-**Ember Website** - Source for <http://emberjs.com>
+**Ember Website** - fonte para o site <http://emberjs.com>
 
 * <https://github.com/emberjs/website>
 
-**Ember Guides** - Source for <http://guides.emberjs.com> which you are currently reading.
+**Ember Guides** - fonte para o <http://guides.emberjs.com> que você está lendo atualmente.
 
 * <https://github.com/emberjs/guides>
 
-# Libraries Used By Ember
+# Bibliotecas usadas pelo Ember
 
-These libraries are part of the Ember.js asset output, but development of them takes place in a separate repository.
+Essas bibliotecas são partes ativas do Ember.js, mas o desenvolvimento delas ocorrem em repositórios separados.
 
 ## `Backburner`
 
-* **backburner.js** - Implements the Ember run loop.
+* **backburner.js** - implementa o loop de execução do Ember.
 * <https://github.com/ebryn/backburner.js>
 
 ## `DAG Map`
 
-* **dag-map** - A directed acyclic graph data structure for javascript
+* **dag-map** - Uma estrutura de dados gráfico acíclico para javascript
 * <https://github.com/krisselden/dag-map>
 
 ## `Glimmer 2`
 
-* **glimmer** - Implements the really fast rendering engine now included in Ember.js
+* **glimmer** - implementa o mecanismo de rápida renderização, agora incluído no Ember.js
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`
 
-* **htmlbars** - The syntax for templating most often used with Ember.js
+* **htmlbars** - a sintaxe para templates mais freqüentemente usada com Ember.js
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`
 
-* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
+* **morph-range** - usado pelo Ember para manipular os nós de texto conhecidos como morphs, que são criados pelo HTMLBars para manter controle de textos que podem mudar.
 * <https://github.com/krisselden/morph-range>
 
 ## `Route Recognizer`
 
-* **route-recognizer** - A lightweight JavaScript library that matches paths against registered routes.
+* **route-recognizer** - uma leve biblioteca JavaScript que responde a caminhos de acordo com as rotas registradas.
 * <https://github.com/tildeio/route-recognizer>
 
 ## `router.js`
 
-* **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
+* **router.js** - uma leve biblioteca JavaScript que baseia-se no route-recognizer e rsvp para fornecer uma API para tratamento de rotas.
 * <https://github.com/tildeio/router.js>
 
 ## `RSVP`
 
-* **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
+* **rsvp.js** - implementação de promessas / + uma especificação utilizada pelo Ember.
 * <https://github.com/tildeio/rsvp.js>

@@ -88,9 +88,9 @@ Se trata de Ember diciendo que ha creado:
 
 Abre la plantilla recién creada en `app/templates/scientists.hbs` y agrega el siguiente código HTML:
 
-```app/templates/scientists.hbs 
+'''app/templates/scientists.hbs 
 
-## Lista de científicos```
+## Lista de científicos
 
     <br />En el navegador, abre [http://localhost:4200/scientists] (http://localhost:4200/scientists). Deberías ver el `<h2>` que escribiste en la plantilla `scientist.hbs`, justo debajo del ``<h2>` de nuestra plantilla `application.hbs`.
     
@@ -116,7 +116,7 @@ Ahora le indicaremos a Ember cómo convertir esa matriz de cadenas en HTML. Abre
 
 ```app/templates/scientists.hbs{+3,+4,+5,+6,+7} 
 
-## List of Scientists
+## Lista de científicos
 
 {{#each model as |scientist|}} 
 
@@ -147,8 +147,7 @@ Copia y pega la plantilla de `scientists` en la plantilla del componente `people
 
 * {{person}} {{/each}} 
 
-    <br />Note that we've changed the title from a hard-coded string ("List of
-    Scientists") to a dynamic property (`{{title}}`). We've also renamed
+    <br />Puedes notar que hemos cambiado el título estático ("List of Scientists") para que sea una propiedad dinámica (`{{title}}`). We've also renamed
     `scientist` to the more-generic `person`, decreasing the coupling of our
     component to where it's used.
     

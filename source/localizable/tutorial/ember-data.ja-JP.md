@@ -17,25 +17,26 @@ installing model-test
 
 モデルファイルの中身は
 
-```app/models/rental.js import DS from 'ember-data';
+```app/models/rental.js import Model from 'ember-data/model';
 
-export default DS.Model.extend({
+export default Model.extend({
 
 });
 
-    <br />ハードコードされた、JavaScriptオブジェクトの配列にレンタル品の要素を追加しましょう。
+    <br />賃貸アプリに使う、ハードコードされた配列JavaScript オブジェクトに要素を幾つか追加しましょう。 -
     _title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
     
     ```app/models/rental.js
-    import DS from 'ember-data';
+    import Model from 'ember-data/model';
+    import attr from 'ember-data/attr';
     
-    export default DS.Model.extend({
-      title: DS.attr(),
-      owner: DS.attr(),
-      city: DS.attr(),
-      type: DS.attr(),
-      image: DS.attr(),
-      bedrooms: DS.attr()
+    export default Model.extend({
+      title: attr(),
+      owner: attr(),
+      city: attr(),
+      type: attr(),
+      image: attr(),
+      bedrooms: attr()
     });
     
 

@@ -30,7 +30,7 @@ person.incrementProperty('age'); // Happy birthday!
 
 ## Persisting Records
 
-Records in Ember Data are persisted on a per-instance basis. Call [`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) on any instance of `DS.Model` and it will make a network request.
+Records in Ember Data are persisted on a per-instance basis. Call [`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) on any instance of `Model` and it will make a network request.
 
 Ember Data takes care of tracking the state of each record for you. This allows Ember Data to treat newly created records differently from existing records when saving.
 
@@ -121,7 +121,7 @@ post.save().then(transitionToPost).catch(failure);
 
 ## Deleting Records
 
-Deleting records is as straightforward as creating records. Call [`deleteRecord()`](http://emberjs.com/api/data/classes/DS.Model.html#method_deleteRecord) on any instance of `DS.Model`. This flags the record as `isDeleted`. The deletion can then be persisted using `save()`. Alternatively, you can use the `destroyRecord` method to delete and persist at the same time.
+Deleting records is as straightforward as creating records. Call [`deleteRecord()`](http://emberjs.com/api/data/classes/DS.Model.html#method_deleteRecord) on any instance of `Model`. This flags the record as `isDeleted`. The deletion can then be persisted using `save()`. Alternatively, you can use the `destroyRecord` method to delete and persist at the same time.
 
 ```js
 store.findRecord('post', 1).then(function(post) {

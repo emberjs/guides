@@ -79,7 +79,9 @@ We hope you find exactly what you're looking for in a place to stay.
 
 Now, define your new controller like so:
 
-```app/controllers/index.js export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('filteredList', result); }); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => { this.set('model', result); }); } else { this.store.findAll('rental').then((result) => { this.set('model', result); }); } } } });
+```app/controllers/index.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.get('store').query('rental', { city: param }).then((result) => this.set('filteredList', result)); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => this.set('model', result)); } else { this.get('store').findAll('rental').then((result) => this.set('model', result)); } } } });
 
     <br />As you can see, we define a property in the controller called 
     `filteredList`, that is referenced from within the `autoComplete` action.
@@ -99,7 +101,7 @@ Now, define your new controller like so:
     For these actions to work, we need to modify the Mirage `config.js` file 
     to look like this, so that it can respond to our queries.
     
-    ```app/mirage/config.js
+    ```mirage/config.js
     export default function() {
       this.get('/rentals', function(db, request) {
         let rentals = [{

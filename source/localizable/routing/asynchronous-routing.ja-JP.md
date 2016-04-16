@@ -36,7 +36,7 @@ usernamesPromise.then(fetchPhotosOfUsers)
 
 ### プロミスのためのルーターの停止
 
-When transitioning between routes, the Ember router collects all of the models (via the `model` hook) that will be passed to the route's controllers at the end of the transition. If the `model` hook (or the related `beforeModel` or `afterModel` hooks) return normal (non-promise) objects or arrays, the transition will complete immediately. But if the `model` hook (or the related `beforeModel` or `afterModel` hooks) returns a promise (or if a promise was provided as an argument to `transitionTo`), the transition will pause until that promise fulfills or rejects.
+Ember router (Ember ルーター)は route (ルート)間の transitio (遷移)では、transitio (遷移)の完了時にroute (ルート)の controller (コントラーラ)に渡される、models (モデル) (`model` hook (モデルフック)経由で)を回収します。 If the `model` hook (or the related `beforeModel` or `afterModel` hooks) return normal (non-promise) objects or arrays, the transition will complete immediately. But if the `model` hook (or the related `beforeModel` or `afterModel` hooks) returns a promise (or if a promise was provided as an argument to `transitionTo`), the transition will pause until that promise fulfills or rejects.
 
 The router considers any object with a `then()` method defined on it to be a promise.
 
@@ -58,16 +58,13 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     to guarantee that a route's data has fully loaded before displaying a
     new template.
     
-    ### When Promises Reject...
+    ### Promises (プロミス)がリジェクトされたとき...
     
-    We've covered the case when a model promise fulfills, but what if it rejects?
+    すでに、promise (プロミス)が成功したときについては紹介しましたが、リジェクトされた場合はどうでしょうか？
     
-    By default, if a model promise rejects during a transition, the transition is
-    aborted, no new destination route templates are rendered, and an error
-    is logged to the console.
+    デフォルトで、transition (遷移)中に、model promise (モデル プロミス)がリジェクトされると、transition (遷移)は中止されます、新しく対象のroute templates (ルート テンプレート)が描画されることはありません、そしてコンソールにエラーが出力されます。
     
-    You can configure this error-handling logic via the `error` handler on
-    the route's `actions` hash. プロミスが拒否すると、ルートで`error` イベントが発生しカスタムエラーハンドラーで処理しないがぎり、`route:application`'のデフォルトのエラーハンドラーまで遡ります、例:
+    この、エラーハンドリングのロジックは、route (ルート)の`actions` hash (アクションハッシュ)の`error` handler (エラーハンドラー)経由で設定できます。 プロミスが拒否すると、ルートで`error` イベントが発生しカスタムエラーハンドラーで処理しないがぎり、`route:application`'のデフォルトのエラーハンドラーまで遡ります、例:
     
     ```app/routes/good-for-nothing.js
     export default Ember.Route.extend({
@@ -89,7 +86,7 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     });
     
 
-In the above example, the error event would stop right at `route:good-for-nothing`'s error handler and not continue to bubble. To make the event continue bubbling up to `route:application`, you can return true from the error handler.
+上記の例では、error event (エラーイベント)は`route:good-for-nothing`の error handler (エラーハンドラー)で止まり、上昇していくのは止まります。 `route:application`まで、イベントの上昇を続けるにはerror handler (エラーハンドラー)からtrueを返すことで可能になります。
 
 ### リジェクトからの回復
 

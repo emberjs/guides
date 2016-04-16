@@ -1,15 +1,20 @@
 ## Controllers
 
-Controllers are very much like components, so much so that in future versions of Ember, controllers will be replaced entirely with components. At the moment, components cannot be routed to, but when this changes, it will be recommended to replace all controllers with components.
+Controllers behave like a specialized type of Component that is rendered by the router when entering a Route.
 
-Because of this, modern Ember applications don't often use controllers. When they do, their responsibility is strictly limited to two avenues:
+The controller receives a single property from the Route – `model` – which is the return value of the Route's `model()` method.
 
-* Controllers maintain state based on the current route. In general, models will have properties that are saved to the server, while controllers will have properties that your app does not need to save to the server.
-* User actions pass through the controller layer when moving from a component to a route.
+To define a Controller, run:
 
-The context of templates rendered by a route is a corresponding controller. Ember's following of "convention over configuration" means you should only create a controller if you need one. If not, everything continues to "Just Work".
+```shell
+ember generate controller my-component-name
+```
 
-Let's explore the example of a route displaying a blog post. Presume a `BlogPost` model that is presented in a `blog-post` template.
+The value of `my-component-name` must match the name of the Route that renders it. So a Route named `blog-post` would have a matching Controller named `blog-post`.
+
+You only need to generate a Controller if you want to customize its properties or provide any `actions`. If you have no customizations, Ember will provide a Controller instance for you at run time.
+
+Let's explore these concepts using an example of a route displaying a blog post. Presume a `BlogPost` model that is presented in a `blog-post` template.
 
 The `BlogPost` model would have properties like:
 

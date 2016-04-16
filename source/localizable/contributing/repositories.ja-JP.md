@@ -20,7 +20,7 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 # Ember が利用しているライブラリ
 
-These libraries are part of the Ember.js asset output, but development of them takes place in a separate repository.
+次のライブラリは Ember.js アセットの成果の一部ですが、開発は別リポジドリで行われています。
 
 ## `Backburner`
 

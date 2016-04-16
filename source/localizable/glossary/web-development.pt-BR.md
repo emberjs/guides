@@ -16,11 +16,11 @@ Essas duas linguagens compilam para JavaScript. Você pode escrever seu código 
 
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
-## Evergreen browsers
+## Navegadores Evergreen
 
-Browsers that update themselves (without user intervention).
+Navegadores que atualizam automaticamente (sem intervenção do usuário).
 
-[Evergreen Browsers](http://tomdale.net/2013/05/evergreen-browsers/)
+[Navegadores Evergreen](http://tomdale.net/2013/05/evergreen-browsers/)
 
 ## ES3, ES5, ES5.1, ES6 (vulgo ES2015), etc
 
@@ -51,9 +51,9 @@ Esse é um conceito que normalmente significa prover código Javascript que test
 
 ## Promise (Promessa)
 
-Asynchronous calls typically return a promise (or deferred). This is an object which has a state: it can be given handlers for when it's fulfilled or rejected.
+Chamadas assíncronas normalmente retornam uma promessa (ou deferido). Este é um objeto que tem um estado: podendo retornar manipuladores para quando ele for completado ou rejeitado.
 
-Ember makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
+Ember faz uso disso em lugares como na chamada de um model em uma rota. Até que a promise finalize, Ember é capaz de colocar a rota em um estado de "carregando".
 
 * [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
 * [emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
@@ -62,7 +62,7 @@ Ember makes use of these in places like the model hook for a route. Until the pr
 
 Server Side Rendering
 
-[Inside FastBoot: The Road to Server-Side Rendering](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
+[Por dentro do FastBoot: A estrada para o processamento do lado do servidor (em inglês)](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
 
 ## Transpilação
 
@@ -76,7 +76,7 @@ Além de ES6, você encontrará muito conteúdos sobre compilação/transpilaç�
 
 Não confundir com Virtual DOM. Shadow DOM é ainda um trabalho em andamento, mas basicamente é uma proposta de ter um DOM "isolado" encapsulado no DOM do seu aplicativo.
 
-Creating a re-usable "widget" or control might be a good use-case for this. Browsers implement some of their controls using their own version of a shadow DOM.
+Criar um "widget" re-utilizável ou controle pode ser um bom caso de uso para isso. Navegadores implementam alguns dos seus controles usando sua própria versão de Shadow DOM.
 
 * [W3C Working Draft](http://www.w3.org/TR/shadow-dom/)
 * [What the Heck is Shadow DOM?](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
