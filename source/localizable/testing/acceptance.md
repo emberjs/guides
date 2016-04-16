@@ -170,7 +170,7 @@ for it to finish before running.
 [11]: http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper
 
 The helper method will always be called with the current Application as the
-first parameter. Other parameters need to be provided when calling the helper. Helpers need to be registered prior to calling
+first parameter. Other parameters, such as assert, need to be provided when calling the helper. Helpers need to be registered prior to calling
 `startApp`, but ember-cli will take care of it for you.
 
 Here is an example of a non-async helper:
@@ -197,7 +197,7 @@ export default Ember.Test.registerAsyncHelper('dblclick',
   }
 );
 
-// dblclick('#person-1')
+// dblclick(assert, '#person-1')
 ```
 
 Async helpers also come in handy when you want to group interaction
@@ -205,7 +205,7 @@ into one helper. For example:
 
 ```tests/helpers/add-contact.js
 export default Ember.Test.registerAsyncHelper('addContact',
-  function(app, assert, name) {
+  function(app, name) {
     fillIn('#name', name);
     click('button.create');
   }
