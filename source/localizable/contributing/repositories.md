@@ -1,7 +1,7 @@
-Ember is made up of several libraries. If you wish to add a feature or fix a bug please file a pull request against the appropriate repository. Be sure to check the libraries listed below before making changes in the Ember.js repository.
+Ember is made up of several libraries. If you wish to add a feature or fix a bug please file a pull request against the appropriate repository. Be sure to check the libraries listed below before making changes in the Ember repository.
 
 # Main Repositories
-**Ember.js** - The main repository for Ember.
+**Ember** - The main repository for Ember.
 
 * [https://github.com/emberjs/ember.js](https://github.com/emberjs/ember.js)
 
@@ -19,7 +19,7 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 
 # Libraries Used By Ember
 
-These libraries are part of the Ember.js asset output, but development of them takes place in a separate repository.
+These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
 
 ## `Backburner`
 * **backburner.js** - Implements the Ember run loop.
@@ -30,11 +30,11 @@ These libraries are part of the Ember.js asset output, but development of them t
 * [https://github.com/krisselden/dag-map](https://github.com/krisselden/dag-map)
 
 ## `Glimmer 2`
-* **glimmer** - Implements the really fast rendering engine now included in Ember.js
+* **glimmer** - Implements the really fast rendering engine now included in Ember
 * [https://github.com/tildeio/glimmer](https://github.com/tildeio/glimmer)
 
 ## `HTMLBars`
-* **htmlbars** - The syntax for templating most often used with Ember.js
+* **htmlbars** - The syntax for templating most often used with Ember
 * [https://github.com/tildeio/htmlbars](https://github.com/tildeio/htmlbars)
 
 ## `morph-range`
