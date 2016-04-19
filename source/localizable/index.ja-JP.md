@@ -32,6 +32,6 @@ Ember.jsガイドへようこそ! このドキュメントはあなたを完全�
 
 もし、もっと貢献することが大きな場合は、すでにその問題が[issue tracker](https://github.com/emberjs/guides/issues) にあがっていないか、必ず確認してください。 アクティブなイシューが見つからない場合には、新たなイシューを開けてください。
 
-スタイリングや、コントリビューションプロセスについて、疑問があるときは [コントリビューション ガイド](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)を確認してください。 疑問が解決できない場合は、 [Slack group](https://ember-community-slackin.herokuapp.com/)内の`#documentation` に質問を投稿してください。.
+スタイリングや、コントリビューションプロセスについて、疑問があるときは [コントリビューション ガイド](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)を確認してください。 疑問が解決できない場合は、 [Slack group](https://ember-community-slackin.herokuapp.com/)内の`#-learning` に質問を投稿してください。.
 
 がんばってね！
