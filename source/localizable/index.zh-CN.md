@@ -32,6 +32,6 @@
 
 如果你想要提供更明确的贡献，请事先检索我们的[问题更踪器](https://github.com/emberjs/guides/issues)以确保不要提交重复的问题。 如果没有正在处理中的问题那就可以开一个新的。
 
-如果你有关于样式的问题，或是关于贡献流程的问题可以参考我们的[贡献指南](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)。 如果问题得不到解决，请通过 [Slack 群组](https://ember-community-slackin.herokuapp.com/)中的 `#documentation` 频道联络我们。.
+如果你有关于样式的问题，或是关于贡献流程的问题可以参考我们的[贡献指南](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)。 如果问题得不到解决，请通过 [Slack 群组](https://ember-community-slackin.herokuapp.com/)中的 `#-learning` 频道联络我们。.
 
 祝你好运！
