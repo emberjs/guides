@@ -39,25 +39,25 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 ## `HTMLBars`
 
-* **htmlbars** - The syntax for templating most often used with Ember.js
+* **htmlbars** - Emberで一般的に利用されているテンプレート構文
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`
 
-* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
+* **morph-range** - morphsとして知られているテキストノードを操作する、EmberではHTMLBarsなどでテキストが変更されたかを追跡するために利用される 。
 * <https://github.com/krisselden/morph-range>
 
 ## `Route Recognizer`
 
-* **route-recognizer** - A lightweight JavaScript library that matches paths against registered routes.
+* **route-recognizer** - JavaScript の軽量なライブラリ、登録されたルートと、パスを一致させます。
 * <https://github.com/tildeio/route-recognizer>
 
 ## `router.js`
 
-* **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
+* **router.js** - JavaScript の軽量なライブラリ、route-recognizerと rsvp の上で構築され、ルートを処理するためのAPIを提供しています。
 * <https://github.com/tildeio/router.js>
 
 ## `RSVP`
 
-* **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
+* **rsvp.js** - Emberによる、Promises/A+ の実装。
 * <https://github.com/tildeio/rsvp.js>
