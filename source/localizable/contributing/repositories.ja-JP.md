@@ -29,12 +29,12 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 ## `DAG Map`
 
-* **dag-map** - A directed acyclic graph data structure for javascript
+* **dag-map** - avascript向け有向非巡回グラフ
 * <https://github.com/krisselden/dag-map>
 
 ## `Glimmer 2`
 
-* **glimmer** - Implements the really fast rendering engine now included in Ember.js
+* **glimmer** - Emberに同梱されている高速なレンダリングエンジン
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`

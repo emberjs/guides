@@ -123,7 +123,7 @@ The `andThen` helper will wait for all preceding asynchronous helpers to complet
 
 [`Ember.Test.registerAsyncHelper`](http://emberjs.com/api/classes/Ember.Test.html#method_registerAsyncHelper) and [`Ember.Test.registerHelper`](http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper) are used to register test helpers that will be injected when `startApp` is called. The difference between `Ember.Test.registerHelper` and `Ember.Test.registerAsyncHelper` is that the latter will not run until any previous async helper has completed and any subsequent async helper will wait for it to finish before running.
 
-The helper method will always be called with the current Application as the first parameter. Other parameters need to be provided when calling the helper. Helpers need to be registered prior to calling `startApp`, but ember-cli will take care of it for you.
+The helper method will always be called with the current Application as the first parameter. Other parameters, such as assert, need to be provided when calling the helper. Helpers need to be registered prior to calling `startApp`, but ember-cli will take care of it for you.
 
 Here is an example of a non-async helper:
 
@@ -141,12 +141,12 @@ Here is an example of a non-async helper:
       }
     );
     
-    // dblclick('#person-1')
+    // dblclick(assert, '#person-1')
     
 
 Async helpers also come in handy when you want to group interaction into one helper. For example:
 
-```tests/helpers/add-contact.js export default Ember.Test.registerAsyncHelper('addContact', function(app, assert, name) { fillIn('#name', name); click('button.create'); } );
+```tests/helpers/add-contact.js export default Ember.Test.registerAsyncHelper('addContact', function(app, name) { fillIn('#name', name); click('button.create'); } );
 
 // addContact('Bob'); // addContact('Dan');
 
