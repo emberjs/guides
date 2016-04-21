@@ -2,20 +2,20 @@ Bienvenido a la guía de Ember.js! Esta documentación te llevará de principian
 
 ## Organización
 
-On the left side of each page in the Guides is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from the most basic concepts to the more advanced.
+En el lado izquierdo de cada página en las guías hay una tabla de contenidos, organizada en secciones que pueden ser expandidas para mostrar los temas que cubren. Las secciones y los temas dentro de cada sección se ordenan desde los conceptos más básicos hasta los más avanzados.
 
-The Guides are intended to contain practical explanations of how to build Ember apps, focusing on the most widely-used features of Ember.js. For comprehensive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
+Las guías pretenden contener explicaciones prácticas de cómo crear aplicaciones de Ember, centrándose en las características más usadas de Ember.js. Para una documentación completa de cada función de Ember y el API, consulte la [documentación del API de Ember.js](http://emberjs.com/api/).
 
-The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
+Las guías comienzan con una explicación de cómo empezar con Ember, seguido por un tutorial sobre cómo crear tu primera aplicación de Ember. Si eres nuevo en Ember, recomendamos empezar siguiendo estas dos primeras partes de las guías.
 
-## Assumptions
+## Supuestos
 
-While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
+Mientras que tratamos de hacer las guías amigables para principiantes como sea posible, debemos establecer una base para que las guías pueden mantenerse enfocadas en la funcionalidad de Ember.js. Trataremos de enlazar documentación apropiada cuando se introduzca un concepto.
 
-To make the most out of the guides, you should have a working knowledge of:
+Para hacer la mayoría de las guías, deberías tener conocimientos de:
 
-* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
-* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
+* **HTML, CSS, JavaScript** - los elementos básicos de las páginas web. Puedes encontrar documentación de cada una de estas tecnologías en la [Red de desarrolladores de Mozilla](https://developer.mozilla.org/en-US/docs/Web).
+* **Promises (promesas)** - la manera nativa de trabajar con asincronía en tu código JavaScript. Vea la sección relevante en la [Red de desarrolladores de Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 * **ES2015 modules** - you will better understand Ember CLI's project structure and import paths if you are comfortable with [ES6 JavaScript Modules](http://jsmodules.io/).
 * **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can take advantage of newer language features such as arrow functions, template strings, destructuring, and more. You can check the [Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
 
