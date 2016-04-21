@@ -10,13 +10,13 @@ Puedes encontrar un listado de addons en [Ember Observer](http://emberobserver.c
 
 Ember CLI utiliza el gestor de paquetes [Bower](http://bower.io), haciendo fácil de mantener al día tus dependencias de front-end. El archivo de configuración de Bower, `bower.json`, se encuentra en la raíz de tu proyecto de Ember CLI y lista las dependencias para su proyecto. Ejecutar `bower install` instalará todas las dependencias enumeradas en el archivo `bower.json` en un solo paso.
 
-Ember CLI watches `bower.json` for changes. Thus it reloads your app if you install new dependencies via `bower install <dependencies> --save`.
+Ember CLI observa el archivo `bower.json` para ver si ha cambiado. Así recargará tu aplicación si instalas nuevas dependencias vía `bower install <dependencies> --save`.
 
-## Other assets
+## Otros insumos
 
-Assets not available as an addon or Bower package should be placed in the `vendor` folder in your project.
+Los insumos no disponibles como un addon o un paquete de Bower deberían ser ubicados en el directorio `vendor` de tu proyecto.
 
-## Compiling Assets
+## Compilando insumos
 
 When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
 

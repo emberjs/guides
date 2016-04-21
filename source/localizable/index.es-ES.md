@@ -1,6 +1,6 @@
-Welcome to the Ember.js Guides! This documentation will take you from total beginner to Ember expert.
+Bienvenido a la guía de Ember.js! Esta documentación te llevará de principiante a experto de Ember.
 
-## Organization
+## Organización
 
 On the left side of each page in the Guides is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from the most basic concepts to the more advanced.
 
