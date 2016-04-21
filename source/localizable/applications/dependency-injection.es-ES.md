@@ -30,8 +30,7 @@ export default { name: 'logger', initialize: initialize };
     When registering an already instantiated object instead of a class,
     use the `instantiate: false` option to avoid attempts to re-instantiate it during lookups.
     
-    In the following example, the `logger` is a plain JavaScript object that should
-    be returned "as is" when it's looked up:
+    En el siguiente ejemplo, `logger` es un objeto de Javascript que debería ser retornado "como es", cuando se busca:
     
     ```app/initializers/logger.js
     export function initialize(application) {
@@ -94,7 +93,7 @@ Routes in this example application can now access the injected logger:
 
 ```app/routes/index.js export default Ember.Route.extend({ activate() { // The logger property is injected into all routes this.get('logger').log('Entered the index route!'); } });
 
-    <br />Injections can also be made on a specific factory by using its full key:
+    <br />Las inyecciones también se pueden hacer en una fábrica específica utilizando su mediante su llave completa:
     
     ```js
     application.inject('route:index', 'logger', 'logger:main');
@@ -112,8 +111,7 @@ The following code injects the `shopping-cart` service on the `cart-contents` co
 
 ```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
 
-    <br />If you'd like to inject a service with the same name as the property,
-    simply leave off the service name (the dasherized version of the name will be used):
+    <br />Como inyectar un servicio con el mismo nombre que la propiedad, simplemente deja el nombre de servicio (se utilizará la versión con guiones del nombre): 
     
     ```app/components/cart-contents.js
     export default Ember.Component.extend({

@@ -75,10 +75,10 @@ If we execute the following code without the run loop:
 ```javascript
 var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
 user.set('firstName', 'Yehuda');
-// {{firstName}} and {{fullName}} are updated
+// {{firstName}} y {{fullName}} son actualizados
 
 user.set('lastName', 'Katz');
-// {{lastName}} and {{fullName}} are updated
+// {{lastName}} y {{fullName}} son actualizados
 ```
 
 We see that the browser will rerender the template twice.
@@ -159,7 +159,7 @@ $('a').click(() => {
   console.log('Doing things...');
 
   Ember.run.schedule('actions', () => {
-    // Do more things
+    // Haz mas cosas
   });
 });
 ```
