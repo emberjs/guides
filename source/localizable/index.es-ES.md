@@ -16,22 +16,22 @@ Para hacer la mayoría de las guías, deberías tener conocimientos de:
 
 * **HTML, CSS, JavaScript** - los elementos básicos de las páginas web. Puedes encontrar documentación de cada una de estas tecnologías en la [Red de desarrolladores de Mozilla](https://developer.mozilla.org/en-US/docs/Web).
 * **Promises (promesas)** - la manera nativa de trabajar con asincronía en tu código JavaScript. Vea la sección relevante en la [Red de desarrolladores de Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-* **ES2015 modules** - you will better understand Ember CLI's project structure and import paths if you are comfortable with [ES6 JavaScript Modules](http://jsmodules.io/).
-* **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can take advantage of newer language features such as arrow functions, template strings, destructuring, and more. You can check the [Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
+* **Módulos ES2015** - entenderás mejor la estructura del proyecto de Ember CLI y rutas de importación si te sientes cómodo con los [Módulos de JavaScript ES6](http://jsmodules.io/).
+* **Sintaxis de ES2015** - Ember CLI utiliza Babel.js por defecto para tomar ventaja de las nuevas características del lenguaje como arrow functions, template strings, destructuring y más. Puedes consultar la [documentación de Babel.js](https://babeljs.io/docs/learn-es2015/) o leer [entendiendo ECMAScript 6](https://leanpub.com/understandinges6/read) en línea.
 
-## Reporting a problem
+## Reportar un problema
 
-Typos, missing words, code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
+Errores tipográficos, palabras faltantes o ejemplos de código con errores son considerados errores de documentación. Si encuentras uno, o quieres mejorar las guías existentes, estaremos encantados de ayudarte a ayudarnos!
 
-Some of the more common ways to report a problem with the guides are:
+Algunas de las formas más comunes de reportar un problema con las guías son:
 
-* Using the pencil icon on the top-right of each guide page
-* Opening an issue/pull request to [the GitHub repository](https://github.com/emberjs/guides/)
+* Utilizando el icono de lápiz en la derecha superior de cada página de guía
+* Abrir una issue/pull request en [el repositorio de GitHub](https://github.com/emberjs/guides/)
 
-Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
+Haciendo clic en el icono de lápiz te llevará al editor de GitHub para esa guía por lo que se puede editar inmediatamente, utilizando el lenguaje Markdown. Esta es la manera más rápida de corregir un error, una palabra faltante o un error en una muestra de código.
 
-If you wish to make a more significant contribution be sure to check our [issue tracker](https://github.com/emberjs/guides/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
+Si deseas hacer una contribución más importante compruebe nuestro [issue tracker ](https://github.com/emberjs/guides/issues) para ver si tu problema ya se encuentra solucionándose. Si no encuentras un issue activo, abre uno nuevo.
 
-If you have any styling questions, or about the contributing process you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+Si tienes alguna duda de estilos, o acerca el proceso de contribución puedes consultar nuestra [Guía de contribución](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
 
 Good luck!
