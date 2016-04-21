@@ -48,50 +48,34 @@ Para ver como funciona esto, cambia la plantilla `index.hbs` a esto:
 
 ```app/templates/index.hbs 
 
-# Welcome to Super Rentals
+# Bienvenido a Super Rentals
 
-We hope you find exactly what you're looking for in a place to stay.   
+Espero que encuentres exactamente lo que buscas en un lugar para quedarte.   
   
 {{filter-listing filteredList=filteredList autoComplete=(action 'autoComplete') search=(action 'search')}} {{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{/each}}
 
 {{#link-to 'about'}}About{{/link-to}} {{#link-to 'contact'}}Click here to contact us.{{/link-to}}
 
-    Hemos añadido el componente de `filter-listing` a nuestra plantilla 'index.hbs'. We 
-    then pass in the functions and properties we want the `filter-listing` 
-    component to use, so that the `index` page can define some of how it wants 
-    the component to behave, and so the component can use those specific 
-    functions and properties.
+    Hemos añadido el componente de `filter-listing` a nuestra plantilla 'index.hbs'. Luego pasamos en las funciones y propiedades que queremos que el component (componente) de `filter-listing` a utilizar, para que la página de `index` pueda definir como quiere el component (componente) se comporte, y así que el component (componente) pueda utilizar las propiedades y funciones específicas.
     
-    For this to work, we need to introduce a `controller` into our app. 
-    Generate a controller for the `index` page by running the following:
+    Para que esto funcione, necesitamos introducir un `controller` (controlador) en nuestra aplicación. Genera un controlador para la página de `index` ejecutando lo siguiente:
     
     ```shell
     ember g controller index
     
 
-Now, define your new controller like so:
+Ahora bien, define tu nuevo controlador de esta manera:
 
 ```app/controllers/index.js import Ember from 'ember';
 
 export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.get('store').query('rental', { city: param }).then((result) => this.set('filteredList', result)); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.store.query('rental', { city: param }).then((result) => this.set('model', result)); } else { this.get('store').findAll('rental').then((result) => this.set('model', result)); } } } });
 
-    <br />As you can see, we define a property in the controller called 
-    `filteredList`, that is referenced from within the `autoComplete` action.
-     When the user types in the text field in our component, this is the 
-     action that is called. This action filters the `rental` data to look for 
-     records in data that match what the user has typed thus far. When this 
-     action is executed, the result of the query is placed in the 
-     `filteredList` property, which is used to populate the autocomplete list 
-     in the component.
+    <br />Como puedes ver, definimos una propiedad en el controller (controlador) llamada `filteredList'` que es referenciada desde dentro del action (acción) `autocomplete`.
+     Cuando el usuario escribe en el campo de texto en nuestro component (componente), este es el action (acción) que se llama. Este action (acción) filtra la información de `rental` para buscar por los registros de datos que coincidan con lo que el usuario ha escrito hasta ahora. Cuando se ejecuta esta acción, el resultado de la consulta se coloca en la propiedad `filteredList` que se utiliza para rellenar la lista de autocompletar en el component (componente).
     
-    We also define a `search` action here that is passed in to the component,
-     and called when the search button is clicked. This is slightly different
-      in that the result of the query is actually used to update the `model` 
-      of the `index` route, and that changes the full rental listing on the 
-      page.
+    También definimos una action (acción) `search` que se pasa al component(componente), y se llama cuando se hace clic en el botón search. Esto es ligeramente diferente en que el resultado de la consulta realmente se utiliza para actualizar el `model`(modelo) de la ruta `index`, y que cambia el listado completo de alquiler en la página.
     
-    For these actions to work, we need to modify the Mirage `config.js` file 
-    to look like this, so that it can respond to our queries.
+    Para que estas acciones funcionen, debemos modificar el archivo `config.js` de Mirage para que se vea como este y pueda responder a nuestras consultas.
     
     ```mirage/config.js
     export default function() {
@@ -143,4 +127,4 @@ export default Ember.Controller.extend({ filteredList: null, actions: { autoComp
     }
     
 
-With these changes, users can search for properties in a given city, with a search field that provides suggestions as they type.
+Con estos cambios, los usuarios pueden buscar propiedades en una ciudad determinada, con un campo de búsqueda que ofrece sugerencias mientras escribe.
