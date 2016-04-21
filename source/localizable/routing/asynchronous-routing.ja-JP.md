@@ -36,11 +36,11 @@ usernamesPromise.then(fetchPhotosOfUsers)
 
 ### プロミスのためのルーターの停止
 
-Ember router (Ember ルーター)は route (ルート)間の transitio (遷移)では、transitio (遷移)の完了時にroute (ルート)の controller (コントラーラ)に渡される、models (モデル) (`model` hook (モデルフック)経由で)を回収します。 If the `model` hook (or the related `beforeModel` or `afterModel` hooks) return normal (non-promise) objects or arrays, the transition will complete immediately. But if the `model` hook (or the related `beforeModel` or `afterModel` hooks) returns a promise (or if a promise was provided as an argument to `transitionTo`), the transition will pause until that promise fulfills or rejects.
+Ember router (Ember ルーター)は route (ルート)間の transitio (遷移)では、transitio (遷移)の完了時にroute (ルート)の controller (コントラーラ)に渡される、models (モデル) (`model` hook (モデルフック)経由で)を回収します。 もし`model` hook (または、関連する `beforeModel` あるいは`afterModel` hooks) が通常のオブジェクト(プロミスではない) を返した場合は、transition (遷移) は即座に完了します。 しかし、もし`model` hook (`モデル` フック) (あるいは、関係のある `beforeModel` hook (`ビフォーモデル` フック) または、<0>afterModel</0> hook (<0>アフターモデル</0> フック) ) がプロミス (あるいは、<0>transitionTo</0>の要素として、プロミスが提供された場合) を返した場合、 transition (遷移) はプロミスが、成功またはリジェクトされるまで一時停止します。
 
-The router considers any object with a `then()` method defined on it to be a promise.
+router (ルーター) は`then()`メソッドで定義されているものを、 promise (プロミス) であると判断します。 
 
-If the promise fulfills, the transition will pick up where it left off and begin resolving the next (child) route's model, pausing if it too is a promise, and so on, until all destination route models have been resolved. The values passed to the [`setupController()`](http://emberjs.com/api/classes/Ember.Route.html#method_setupController) hook for each route will be the fulfilled values from the promises.
+promise (プロミス) が成功した場合、 transition (遷移) が中断していたところから再開し、次の (子) route (ルート) の model (モデル) を解決します、次が promise (プロミス) の場合は一旦中断をする、この一連の動きを繰り返し全ての route model(ルート モデル) が解決されるまで繰り返します。 The values passed to the [`setupController()`](http://emberjs.com/api/classes/Ember.Route.html#method_setupController) hook for each route will be the fulfilled values from the promises.
 
 簡単な例:
 

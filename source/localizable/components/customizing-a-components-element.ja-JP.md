@@ -21,7 +21,13 @@ To use a tag other than `div`, subclass `Ember.Component` and assign it a `tagNa
     </ul>
     
 
-### Customizing Class Names
+### Customizing the Element's Class
+
+You can specify the class of a component's element at invocation time the same way you would for a regular HTML element:
+
+```hbs
+{{navigation-bar class="primary"}}
+```
 
 You can also specify which class names are applied to the component's element by setting its `classNames` property to an array of strings:
 
