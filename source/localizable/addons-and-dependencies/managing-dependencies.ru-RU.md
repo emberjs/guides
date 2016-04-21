@@ -1,22 +1,22 @@
-Mientras estás desarrollando tu aplicación de Ember, probablemente te encontrarás con estos escenarios que no son abordados por Ember, como autenticación o utilizar SASS para las hojas de estilo. Ember CLI proporciona un formato común llamado [Ember Addons](#toc_addons) para la distribución de librerías reutilizables para resolver estos problemas. Además, puede que desee hacer uso de las dependencias front-end como un framework CSS o un selector de fechas hecho en JavaScript que no son hechos especificamente para aplicaciones de Ember. Ember CLI soporta la instalación de estos paquetes a través del [gestor de paquetes de Bower](#toc_bower) estándar.
+As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself, such as authentication or using SASS for your stylesheets. Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve these problems. Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
 
 ## Addons
 
-Los addons de Ember se instalan mediante NPM (ej: `npm install --save-dev ember-cli-sass`). Los Addons pueden tener otras dependencias modificando automáticamente el archivo `bower.json` del proyecto.
+Ember Addons are installed using NPM (e.g. `npm install --save-dev ember-cli-sass`). Addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
 
-Puedes encontrar un listado de addons en [Ember Observer](http://emberobserver.com).
+You can find listings of addons on [Ember Observer](http://emberobserver.com).
 
 ## Bower
 
-Ember CLI utiliza el gestor de paquetes [Bower](http://bower.io), haciendo fácil de mantener al día tus dependencias de front-end. El archivo de configuración de Bower, `bower.json`, se encuentra en la raíz de tu proyecto de Ember CLI y lista las dependencias para su proyecto. Ejecutar `bower install` instalará todas las dependencias enumeradas en el archivo `bower.json` en un solo paso.
+Ember CLI uses the [Bower](http://bower.io) package manager, making it easy to keep your front-end dependencies up to date. The Bower configuration file, `bower.json`, is located at the root of your Ember CLI project, and lists the dependencies for your project. Executing `bower install` will install all of the dependencies listed in `bower.json` in one step.
 
-Ember CLI observa el archivo `bower.json` para ver si ha cambiado. Así recargará tu aplicación si instalas nuevas dependencias vía `bower install <dependencies> --save`.
+Ember CLI watches `bower.json` for changes. Thus it reloads your app if you install new dependencies via `bower install <dependencies> --save`.
 
-## Otros insumos
+## Other assets
 
-Los insumos no disponibles como un addon o un paquete de Bower deberían ser ubicados en el directorio `vendor` de tu proyecto.
+Assets not available as an addon or Bower package should be placed in the `vendor` folder in your project.
 
-## Compilando insumos
+## Compiling Assets
 
 When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
 
@@ -61,11 +61,11 @@ If you need to use different assets in different environments, specify an object
     
     ```ember-cli-build.js
     if (app.env === 'development') {
-      // Solo importar en modo de desarrollo
+      // Only import when in development mode
       app.import('vendor/ember-renderspeed/ember-renderspeed.js');
     }
     if (app.env === 'test') {
-      // Only import in modo de test y poner en test-support.js
+      // Only import in test mode and place in test-support.js
       app.import(app.bowerDirectory + '/sinonjs/sinon.js', { type: 'test' });
       app.import(app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', { type: 'test' });
     }

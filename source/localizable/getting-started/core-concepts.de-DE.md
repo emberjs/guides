@@ -4,7 +4,7 @@ Bevor du damit beginnst, Code für deine Anwendung zu schreiben, solltest du dir
 
 ## Routen und Route-Handler
 
-Angenommen wir schreiben eine Web-Anwendung für eine Seite, die Benutzer ihre vermietbaren Liegenschaften auflisten lässt. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. Die URL kann sich auf verschiedene Arten ändern:
+Angenommen wir schreiben eine Web-Anwendung für eine Seite, die Benutzer ihre vermietbaren Liegenschaften auflisten lässt. Zu jedem Zeitpunkt sollte es möglich sein, Fragen über den aktuellen Zustand der Awendung zu beantworten wie *Welche Liegenschaft schaut sich der/die Benutzer/-in an?* und *bearbeitet er/sie die Liegenschaft gerade?* In Ember wird die Antwort auf diese Fragen durch die URL gegeben. Die URL kann sich auf verschiedene Arten ändern:
 
 * Der Benutzer lädt die Anwendung zum ersten Mal.
 * Der benutzer ändert die URL manuell, indem er auf den Zurück-Button klickt oder die Adressleiste editiert.
@@ -20,7 +20,7 @@ Der Route-Handler wird dann in der Regel zwei Dinge tun:
 
 ## Templates
 
-Ember uses templates to organize the layout of HTML in an application.
+Ember benutzt Templates, um das HTML-Layout einer Anwendung zu organisieren.
 
 Die meisten Templates in einer Ember-Codebase wirken sofort vertraut und sehen wie übliche HTML-Fragmente aus. Zum Beispiel:
 
