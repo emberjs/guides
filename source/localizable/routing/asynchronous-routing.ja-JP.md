@@ -48,15 +48,9 @@ promise (プロミス) が成功した場合、 transition (遷移) が中断し
 
 setupController(controller, model) { console.log(model.msg); // "Hold Your Horses" } });
 
-    <br />When transitioning into `route:tardy`, the `model()` hook will be called and
-    return a promise that won't resolve until 3 seconds later, during which time
-    the router will be paused in mid-transition. When the promise eventually
-    fulfills, the router will continue transitioning and eventually call
-    `route:tardy`'s `setupController()` hook with the resolved object.
+    <br />`route:tardy`に transition (遷移) するとき、3秒経つまで満たされることのない、promise (プロミス) として`model()` hook (`モデル()` フック) が呼ばれ、 その間、 router (ルーター) は mid-transition (遷移中) として一時中断されます。 最終的に、 promise (プロミス) が満たされると、 router (ルーター) は transition (遷移) を継続して、最終的に`route:tardy`の `setupController()` hook (`setupController()`フック)を呼び出し、オブジェクトを解決します。
     
-    This pause-on-promise behavior is extremely valuable for when you need
-    to guarantee that a route's data has fully loaded before displaying a
-    new template.
+     pause-on-promise (プロミスを中断) の動作は、 route (ルート) の新しいデータが、新しい template (テンプレート) を確実に表示するようにしたいときなどに有効です。
     
     ### Promises (プロミス)がリジェクトされたとき...
     
