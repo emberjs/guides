@@ -40,7 +40,7 @@ Ember router (Ember ルーター)は route (ルート)間の transitio (遷移)�
 
 router (ルーター) は`then()`メソッドで定義されているものを、 promise (プロミス) であると判断します。 
 
-promise (プロミス) が成功した場合、 transition (遷移) が中断していたところから再開し、次の (子) route (ルート) の model (モデル) を解決します、次が promise (プロミス) の場合は一旦中断をする、この一連の動きを繰り返し全ての route model(ルート モデル) が解決されるまで繰り返します。 The values passed to the [`setupController()`](http://emberjs.com/api/classes/Ember.Route.html#method_setupController) hook for each route will be the fulfilled values from the promises.
+promise (プロミス) が成功した場合、 transition (遷移) が中断していたところから再開し、次の (子) route (ルート) の model (モデル) を解決します、次が promise (プロミス) の場合は一旦中断をする、この一連の動きを繰り返し全ての route model(ルート モデル) が解決されるまで繰り返します。 各 route (ルート) に渡される[`setupController()`](http://emberjs.com/api/classes/Ember.Route.html#method_setupController) hook <0>setupController()</0> hook (<0>セットアップコントローラー</0> フック) の値は、成功した promise (プロミス) の値になります。
 
 簡単な例:
 

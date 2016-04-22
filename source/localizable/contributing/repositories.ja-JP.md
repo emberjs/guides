@@ -1,4 +1,4 @@
-Ember はいくつかのライブラリーからなっています。 機能を追加したい、または、バグを修正したい場合は、該当のリポリトジに対してプルリクエストを行ってください。 必ず Ember.js リポジトリに変更を加える前に次のライブラリを確認してください。
+Ember はいくつかのライブラリーからなっています。 機能を追加したい、または、バグを修正したい場合は、該当のリポリトジに対してプルリクエストを行ってください。 Be sure to check the libraries listed below before making changes in the Ember repository.
 
 # メイン リポジトリ
 
@@ -20,7 +20,7 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 # Ember が利用しているライブラリ
 
-次のライブラリは Ember.js アセットの成果の一部ですが、開発は別リポジドリで行われています。
+These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
 
 ## `Backburner`
 
@@ -34,12 +34,12 @@ Ember はいくつかのライブラリーからなっています。 機能を�
 
 ## `Glimmer 2`
 
-* **glimmer** - Emberに同梱されている高速なレンダリングエンジン
+* **glimmer** - Implements the really fast rendering engine now included in Ember
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`
 
-* **htmlbars** - Emberで一般的に利用されているテンプレート構文
+* **htmlbars** - The syntax for templating most often used with Ember
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`

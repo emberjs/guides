@@ -1,12 +1,12 @@
-Currently, our app is using hard-coded data for *rentals* in the `index` route handler to set the model. As our application grows, we will want to be able to create new rentals, make updates to them, delete them, and save these changes to a backend server. Ember integrates with a data management library called Ember Data to help solve this problem.
+Actualmente, nuestra aplicación está utilizando datos hardcoded para *rentals* en el route (ruta) `Índice` para establecer el modelo. A medida que crece nuestra aplicación, queremos ser capaces de crear nuevos rentals, realizar actualizaciones en ellos, borrarlos y guardar estos cambios en un servidor back-end. Ember utiliza una librería de gestión de datos llamada Ember Data para ayudar a resolver este problema.
 
-Let's generate our first Ember Data model called `rental`:
+Vamos a generar nuestro primer model (modelo) en Ember Data llamado `rental`:
 
 ```shell
 ember g model rental
 ```
 
-This results in the creation of a model file and a test file:
+Esto se traduce en la creación de un archivo para el model y otro archivo para realizar una prueba:
 
 ```shell
 installing model
@@ -15,7 +15,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file, we see:
+Cuando abrimos el archivo del model (modelo), vemos:
 
 ```app/models/rental.js import Model from 'ember-data/model';
 
@@ -23,8 +23,8 @@ export default Model.extend({
 
 });
 
-    <br />Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
-    _title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
+    <br />Agreguemos los mismos atributos para nuestro rental que hemos utilizado previamente  en nuestro arreglo hardcoded de objetos Javascript -
+    _title_, _owner_, _city_, _type_, _image_, y _bedrooms_:
     
     ```app/models/rental.js
     import Model from 'ember-data/model';
@@ -40,30 +40,29 @@ export default Model.extend({
     });
     
 
-Now we have a model in our Ember Data store.
+Ahora tenemos un modelo en nuestro store (depósito) de Ember Data.
 
-## Using Mirage with Ember Data
+## Usando Mirage con Ember Data
 
-Ember Data can be configured to save data in a variety of ways, but often it is setup to work with a backend API server. For this tutorial, we will use [Mirage](http://www.ember-cli-mirage.com). This will allow us to create fake data to work with while developing our app and mimic a running backend server.
+Ember Data configurase para guardar datos en una variedad de maneras, pero a menudo se configura para trabajar con un servidor backend de tipo API. Para este tutorial, usaremos [Mirage](http://www.ember-cli-mirage.com). Esto nos permitirá crear datos falsos para trabajar con en el desarrollo de nuestra aplicación y simular un servidor back-end.
 
-Let's start by installing Mirage:
+Empecemos instalando Mirage:
 
 ```shell
 ember install ember-cli-mirage
 ```
 
-If you were running `ember serve` in another shell, restart the server to include Mirage in your build.
+Si te encuentras ejecutando `ember serve` en otra línea de comandos, reinicia el servidor para incluir Mirage en tu compilación.
 
-Let's now configure Mirage to send back our rentals that we had defined above by updating `app/mirage/config.js`:
+Vamos a configurar ahora Mirage para enviar nuestros rentals que hemos definido anteriormente mediante la actualización de `app/mirage/config.js`:
 
 ```app/mirage/config.js export default function() { this.get('/rentals', function() { return { data: [{ type: 'rentals', id: 1, attributes: { title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg' } }, { type: 'rentals', id: 2, attributes: { title: 'Urban Living', owner: 'Mike Teavee', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg' } }, { type: 'rentals', id: 3, attributes: { title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg' } }] }; }); }
 
-    <br />This configures Mirage so that whenever Ember Data makes a GET request to `/rentals`,
-    Mirage will return this JavaScript object as JSON.
+    <br />Esto configura Mirage para que cada vez que Ember Data hace una petición GET a `/rentals`, Mirage retornará este objeto JavaScript como JSON.
     
-    ### Updating the Model Hook
+    ### Actualización del Hook del Model
     
-    To use our new data store, we need to update the `model` hook in our route handler.
+    Para usar nuestro nuevo almacén de datos, debemos actualizar el hook de `model` en nuestro route.
     
     ```app/routes/index.js
     import Ember from 'ember';
@@ -75,6 +74,6 @@ Let's now configure Mirage to send back our rentals that we had defined above by
     });
     
 
-When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`. You can read more about Ember Data in the [Models section](../../models/).
+Cuando llamamos a `this.store.findAll('rental')`, Ember Data hará una petición GET a `/rentals`. Puedes leer más sobre Ember Data en la [sección de models](../../models/).
 
-Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
+Debido a que estamos Mirage en nuestro entorno de desarrollo Mirage, Mirage retornará los datos que hemos proporcionado. Cuando despleguemos nuestra aplicación en un servidor de producción, necesitamos proporcionar un backend para que Ember Data se comunique con él.

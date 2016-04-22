@@ -1,6 +1,6 @@
 Los modelos son objetos que representan los datos de tu aplicación. Cada aplicación va a tener modelos únicos, dependiendo del tipo de problema.
 
-Por ejemplo, un aplicación para compartir fotos tal vez tendría un modelo `Foto` para representar una sola foto y un modelo `AlbumDeFotos` que representa a un grupo de fotos. Por otro lado, una aplicación de ventas en línea tendría modelos como `Carrito`, `Nota` o `Item`.
+Por ejemplo, un aplicación para compartir fotos tal vez podría tener un modelo `Foto` para representar a una sola foto y un modelo `AlbumDeFotos` que representa a un grupo de fotos. Por otro lado, un aplicación de ventas en línea podría tener modelos como `Carrito`, `Nota` o `Item`.
 
 Los modelos suelen ser *persistentes*. Quiere decir que el usuario espera que los datos del modelo no se pierdan al cerrar la ventana del navegador. Para estar seguro de que los datos no se pierdan si el usuario realiza algún cambio a un modelo, hay que guardar los datos donde no se pierdan.
 
@@ -10,30 +10,29 @@ Una vez que has cargado tus modelos del almacenamiento, los componentes interpre
 
 Ember Data, incluido de forma predeterminada cuando se crea una nueva aplicación, es una librería que se integra estrechamente con Ember para que sea fácil de extraer modelos de su servidor en formato JSON, guardar actualizaciones al servidor, y crear nuevos modelos en el navegador.
 
-Gracias a su uso del *adapter pattern*, se puede configurar Ember Data para que funcione con muchos tipos de backends. There is [an entire ecosystem of adapters](http://emberobserver.com/categories/ember-data-adapters) that allow your Ember app to talk to different types of servers without you writing any networking code.
+Gracias a su uso del *adapter pattern*, se puede configurar Ember Data para que funcione con muchos tipos de backends. Hay [todo un "ecosistema" de adaptadores](http://emberobserver.com/categories/ember-data-adapters) que permite que tu aplicación de Ember comunique con diferentes tipos de servidores sin que escribir código de redes.
 
-If you need to integrate your Ember.js app with a server that does not have an adapter available (for example, you hand-rolled an API server that does not adhere to any JSON specification), Ember Data is designed to be configurable to work with whatever data your server returns.
+Si necesitas integrar tu aplicación de Ember.js con un servidor que no cuenta un adaptador disponible (por ejemplo, si tienes un servidor de API personalizado que no adhiere a cualquier especificación JSON), Ember Data está diseñado para ser configurable para funcionar con cualquier tipo de datos que regresa tu servidor.
 
-Ember Data is also designed to work with streaming servers, like those powered by WebSockets. You can open a socket to your server and push changes into Ember Data whenever they occur, giving your app a real-time user interface that is always up-to-date.
+Ember Data también está diseñado para funcionar con servidores de streaming, como los que utilizan WebSockets. Puedes abrir un socket a tu servidor y empujar cambios a Ember Data cada vez que ocurren, dando a tu aplicación una interfaz de usuario que siempre está actualizada en tiempo real.
 
-At first, using Ember Data may feel different than the way you're used to writing JavaScript applications. Many developers are familiar with using AJAX to fetch raw JSON data from an endpoint, which may appear easy at first. Over time, however, complexity leaks out into your application code, making it hard to maintain.
+Al principio, usar Ember Data puede parecer distinto de la manera que estás acostumbrado a escribir aplicaciones de JavaScript. Muchos desarrolladores están familiarizados con el uso de AJAX para extraer datos JSON desde un endpoint, que puede parecer fácil al principio. Sin embargo, con el tiempo, la complejidad entra en tu código, haciéndolo difícil de mantener.
 
-With Ember Data, managing models as your application grows becomes both simple *and* easy.
+Con Ember Data, administrar los modelos a medida que crece tu aplicación se vuelva sencillo *y* fácil.
 
-Once you have an understanding of Ember Data, you will have a much better way to manage the complexity of data loading in your application. This will allow your code to evolve without becoming a mess.
+Una vez que ya entiendes Ember Data, vas a tener una mejor manera para manejar la complejidad de la carga de datos en tu aplicación. Esto permitirá que tu código evolucione sin llegar a ser un desorden total.
 
-## The Store and a Single Source of Truth
+## El Store (Almacen) y una Sola Fuente de Verdad
 
-One common way of building web applications is to tightly couple user interface elements to data fetching. For example, imagine you are writing the admin section of a blogging app, which has a feature that lists the drafts for the currently logged in user.
+Una manera común de construir aplicaciones web es acoplar los elementos de la interfaz con la extracción de datos del servidor. Por ejemplo, imagina que estás escribiendo la parte de administración de una aplicación de blogging, que tiene una función que muestra una lista de los borradores para el usuario actualmente conectado.
 
-You might be tempted to make the component responsible for fetching that data and storing it:
+Tal vez podrás tener la idea de darle al component la responsabilidad de extraer los datos y guardarlos:
 
 ```app/components/list-of-drafts.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
-    <br />You could then show the list of drafts in your component's template like
-    this:
+    <br />Entonces podrías mostrar la lista de borradores en la plantilla de su component así: 
     
-    ```app/templates/components/list-of-drafts.hbs
+    '''app/templates/components/list-of-drafts.hbs 
     <ul>
       {{#each drafts key="id" as |draft|}}
         <li>{{draft.title}}</li>
@@ -41,7 +40,7 @@ You might be tempted to make the component responsible for fetching that data an
     </ul>
     
 
-This works great for the `list-of-drafts` component. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
+Esto funciona muy bien para el component `list-of-drafts`. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
 
 ```app/components/drafts-button.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 

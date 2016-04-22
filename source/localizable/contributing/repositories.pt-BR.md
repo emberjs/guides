@@ -1,4 +1,4 @@
-Ember é composto de várias bibliotecas. Se você deseja adicionar uma funcionalidade ou corrigir um bug, por favor, envie um pull request para o repositório apropriado. Certifique-se de verificar as bibliotecas listadas abaixo antes de fazer alterações no repositório Ember.js.
+Ember é composto de várias bibliotecas. Se você deseja adicionar uma funcionalidade ou corrigir um bug, por favor, envie um pull request para o repositório apropriado. Be sure to check the libraries listed below before making changes in the Ember repository.
 
 # Principais repositórios
 
@@ -20,7 +20,7 @@ Ember é composto de várias bibliotecas. Se você deseja adicionar uma funciona
 
 # Bibliotecas usadas pelo Ember
 
-Essas bibliotecas são partes ativas do Ember.js, mas o desenvolvimento delas ocorrem em repositórios separados.
+These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
 
 ## `Backburner`
 
@@ -34,12 +34,12 @@ Essas bibliotecas são partes ativas do Ember.js, mas o desenvolvimento delas oc
 
 ## `Glimmer 2`
 
-* **glimmer** - implementa o mecanismo de rápida renderização, agora incluído no Ember.js
+* **glimmer** - Implements the really fast rendering engine now included in Ember
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`
 
-* **htmlbars** - a sintaxe para templates mais freqüentemente usada com Ember.js
+* **htmlbars** - The syntax for templating most often used with Ember
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`
