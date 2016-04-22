@@ -6,7 +6,7 @@ Para empezar, vamos a generar un helper para `rental-property-type`:
 ember g helper rental-property-type
 ```
 
-This will create two files, our helper and its related test:
+Esto creará dos archivos, nuestro helper y su archivo para pruebas relacionado:
 
 ```shell
 installing helper
@@ -15,7 +15,7 @@ installing helper-test
   create tests/unit/helpers/rental-property-type-test.js
 ```
 
-Our new helper starts out with some boilerplate code from the generator:
+Nuestro nuevo helper comienza con algún código que viene del generador:
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
@@ -23,7 +23,7 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
+    <br />Vamos a actualizar nuestro component (componente) `rental-listing` para utilizar nuestro nuevo helper y pasarle `rental.type`:
     
     ```app/templates/components/rental-listing.hbs
     <h2>{{rental.title}}</h2>
@@ -39,7 +39,7 @@ export default Ember.Helper.helper(rentalPropertyType);
     {{/if}}
     
 
-Ideally we'll see "Type: Standalone - Estate" for our first rental property. Instead, our default template helper is returning back our `rental.type` values. Let's update our helper to look if a property exists in an array of `communityPropertyTypes`, if so, we'll return either `'Community'` or `'Standalone'`:
+Idealmente vamos a ver "Type: Standalone - Estate" para nuestro primer rental property. En cambio, template helper por defecto retorna los valores de `rental.type`. Vamos a actualizar nuestro helper para ver si existe una property en un arreglo de `communityPropertyTypes`, si así, retornará `'Community'` o `'Standalone'`:
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
@@ -51,6 +51,6 @@ return 'Standalone'; }
 
 export default Ember.Helper.helper(rentalPropertyType); ```
 
-Handlebars passes an array of arguments from our template to our helper. We are using ES2015 destructuring to get the first item in the array and name it `type`. Then we can check to see if `type` exists in our `communityPropertyTypes` array.
+Handlebars pasa un arreglo de argumentos de nuestra plantilla a nuestro helper. Estamos utilizando desestructuración de ES2015 para obtener el primer elemento de la matriz y llamarlo `tipo`. Así podremos comprobar si `type`. existe en nuestro arreglo de `communityPropertyTypes`.
 
-Now in our browser we should see that the first rental property is listed as "Standalone", while the other two are listed as "Community".
+Ahora en nuestro navegador deberíamos ver que la rental property aparece como "Standalone", mientras que los otros dos aparecen como "Community".
