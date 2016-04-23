@@ -8,8 +8,7 @@ If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.hel
 
 {{{body}}} {{/if}}
 
-    <br />In the component or controller, you can then define what the action does within
-    the `actions` hook:
+    <br />component (コンポーネント) や controller (コントローラー) では`actions` hook (`アクション` フック) のアクションを定義することができます。
     
     ```app/components/single-post.js
     export default Ember.Component.extend({
