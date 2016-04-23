@@ -256,4 +256,4 @@ everyone relies on. If you're interested in deploying your app to
 production in a fast and reliable way, check out the [Ember CLI
 Deploy][ember-deploy] addon.
 
-[ember-deploy]: http://ember-cli.github.io/ember-cli-deploy/
+[ember-deploy]: http://ember-cli-deploy.github.io/ember-cli-deploy/
