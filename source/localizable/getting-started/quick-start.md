@@ -15,7 +15,7 @@ You can install Ember with a single command using npm, the Node.js package
 manager. Type this into your terminal:
 
 ```sh
-npm install -g ember-cli@2.5
+npm install -g ember-cli@2.4
 ```
 
 Don't have npm? [Learn how to install Node.js and npm here][npm].
@@ -256,7 +256,7 @@ everyone relies on. If you're interested in deploying your app to
 production in a fast and reliable way, check out the [Ember CLI
 Deploy][ember-deploy] addon.
 
-[ember-deploy]: http://ember-cli-deploy.github.io/ember-cli-deploy/
+[ember-deploy]: http://ember-cli.github.io/ember-cli-deploy/
 
 If you deploy your application to an Apache web server, first create a new virtual host for the application. 
 To make sure all routes are handled by index.html, 
