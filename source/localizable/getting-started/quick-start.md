@@ -256,4 +256,11 @@ everyone relies on. If you're interested in deploying your app to
 production in a fast and reliable way, check out the [Ember CLI
 Deploy][ember-deploy] addon.
 
-[ember-deploy]: http://ember-cli-deploy.github.io/ember-cli-deploy/
+[ember-deploy]: http://ember-cli.github.io/ember-cli-deploy/
+
+If you deploy your application to an Apache web server, first create a new virtual host for the application. 
+To make sure all routes are handled by index.html, 
+add the following directive to the application's virtual host configuration
+```
+FallbackResource index.html
+```
