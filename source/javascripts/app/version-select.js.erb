@@ -12,4 +12,12 @@ window.GUIDE_VERSIONS.onReady(function (versions) {
 
     window.location = versions.urlFor(version);
   });
+
+  var npmInstallVersion = $('pre:contains("install -g ember-cli")');
+
+  if (currentRevision.slice(0,1) !== "C") {
+    var installVersion = versions.current.slice(1).split(".").slice(0,2).join(".");
+
+    npmInstallVersion.text("npm install -g ember-cli@" + installVersion);
+  }
 });
