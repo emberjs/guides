@@ -129,7 +129,7 @@ import JSONSerializer from 'ember-data/serializers/json';
 export default JSONSerializer.extend({});
 ```
 
-You can also define serializer for a specific model. For example, if
+You can also define a serializer for a specific model. For example, if
 you had a `post` model you could also define a `post` serializer:
 
 ```app/serializers/post.js
