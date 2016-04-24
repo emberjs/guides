@@ -1,43 +1,49 @@
 As they search for a rental, users might also want to narrow their search
- to a specific city. Let's build a component that will let them search for
-  properties within a city, and also suggest cities to them as they type.
+to a specific city. Let's build a component that will let them search for
+properties within a city, and also suggest cities to them as they type.
 
-To begin, let's generate our new component. We'll call this component 
+To begin, let's generate our new component. We'll call this component
 `filter-listing`.
 
 ```shell
 ember g component filter-listing
 ```
-As before, this creates a Handlebars template 
-(`app/templates/components/filter-listing.hbs`) and a JavaScript file 
+
+As before, this creates a Handlebars template
+(`app/templates/components/filter-listing.hbs`) and a JavaScript file
 (`app/components/filter-listing.js`).
 
 The Handlebars template looks like this:
 
 ```app/templates/components/filter-listing.hbs
-City: {{input value=filter key-up=(action 'autoComplete')}} 
-<button {{action 'search'}}>Search</button>
+City: {{input value=filter key-up=(action autoComplete filter)}}
+
+<button {{action search filter}}>Search</button>
 
 <ul>
-{{#each filteredList as |item|}}
-  <li {{action 'choose' item.city}}>{{item.city}}</li>
-{{/each}}
+  {{#each filteredList as |item|}}
+    <li {{action 'choose' item.city}}>{{item.city}}</li>
+  {{/each}}
 </ul>
 ```
-It contains an [`{{input}}`](../../templates/input-helpers) helper
-that renders as a text field where the user can type a pattern to 
-filter the list of cities used in a search. The `value` property of
+
+The template contains an [`{{input}}`](../../templates/input-helpers)
+helper that renders as a text field, in which the user can type a pattern
+to filter the list of cities used in a search. The `value` property of
 the `input` will be bound to the `filter` property in our component.
-The `key-up` property will be bound to the `autoComplete` action.
+The `key-up` property will be bound to the `autoComplete` action,
+passed in to the component from the `index` controller. The `autoComplete`
+action takes the `filter` property as the argument when invoked.
 
-It also contains a button that is bound to the `search` action in our 
-component.
+The template also contains a button that is bound to the `search` action.
+Similar to the `autoComplete` action, the `search` action is passed in from
+the `index` controller and takes the `filter` property when invoked.
 
-Lastly, it contains an unordered list that displays the `city` property
-of each item in the `filteredList` property in our component. Clicking 
-the list item will fire the `choose` action with the `city` property of
-the item as a parameter, which will then populate the `input` field with
-the name of that `city`.
+Lastly, the `filter-listing.hbs` template contains an unordered list,
+that displays the `city` property of each item in the `filteredList`
+property in our component. Clicking the list item will fire the `choose`
+action with the `city` property of the item as a parameter, which will
+then populate the `input` field with the name of that `city`.
 
 Here is what the component's JavaScript looks like:
 
@@ -45,37 +51,36 @@ Here is what the component's JavaScript looks like:
 export default Ember.Component.extend({
   filter: null,
   filteredList: null,
+
   actions: {
-    autoComplete() {
-      this.get('autoComplete')(this.get('filter'));
-    },
-    search() {
-      this.get('search')(this.get('filter'));
-    },
     choose(city) {
       this.set('filter', city);
     }
   }
 });
-
 ```
-There's a property for each of the `filter` and `filteredList`, and 
-actions as described above. What's interesting is that only the `choose` 
-action is defined by the component. The actual logic of each of the 
-`autoComplete` and `search` actions are pulled from the component's 
-properties, which  means that those actions need to be [passed]
- (../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) 
- in by the calling object, a pattern known as _closure actions_.
+
+There's a property for each of the `filter` and `filteredList`, and
+the `choose` action as described above.
+
+Only the `choose` action is defined by the `filter-listing.js` component.
+Both the `autoComplete` and `search` actions are [passed]
+(../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component)
+in by the calling object. This is a pattern known as _closure actions_.
 
 To see how this works, change your `index.hbs` template to look like this:
 
 ```app/templates/index.hbs
-<h1>Welcome to Super Rentals</h1>
+<h1> Welcome to Super Rentals </h1>
 
 We hope you find exactly what you're looking for in a place to stay.
 <br /><br />
-{{filter-listing filteredList=filteredList 
-autoComplete=(action 'autoComplete') search=(action 'search')}}
+
+{{filter-listing
+  filteredList=filteredList
+  autoComplete=(action 'autoComplete')
+  search=(action 'search')}}
+
 {{#each model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
 {{/each}}
@@ -83,13 +88,14 @@ autoComplete=(action 'autoComplete') search=(action 'search')}}
 {{#link-to 'about'}}About{{/link-to}}
 {{#link-to 'contact'}}Click here to contact us.{{/link-to}}
 ```
-We've added the `filter-listing` component to our `index.hbs` template. We 
-then pass in the functions and properties we want the `filter-listing` 
-component to use, so that the `index` page can define some of how it wants 
-the component to behave, and so the component can use those specific 
+
+We've added the `filter-listing.js` component to our `index.hbs` template.
+We then pass in the functions and properties that we want the `filter-listing`
+component to use. The `index` page defines some of the logic for
+how the component should behave, and the component uses those specific
 functions and properties.
 
-For this to work, we need to introduce a `controller` into our app. 
+For this to work, we need to introduce a `controller` into our app.
 Generate a controller for the `index` page by running the following:
 
 ```shell
@@ -113,7 +119,7 @@ export default Ember.Controller.extend({
     },
     search(param) {
       if (param !== '') {
-        this.store.query('rental', { city: param }).then((result) => this.set('model', result));
+        this.get('store').query('rental', { city: param }).then((result) => this.set('model', result));
       } else {
         this.get('store').findAll('rental').then((result) => this.set('model', result));
       }
@@ -122,22 +128,23 @@ export default Ember.Controller.extend({
 });
 ```
 
-As you can see, we define a property in the controller called 
-`filteredList`, that is referenced from within the `autoComplete` action.
- When the user types in the text field in our component, this is the 
- action that is called. This action filters the `rental` data to look for 
- records in data that match what the user has typed thus far. When this 
- action is executed, the result of the query is placed in the 
- `filteredList` property, which is used to populate the autocomplete list 
- in the component.
+As you can see, we define a property in the controller called `filteredList`,
+that is referenced from within the `filter-listing.hbs` template.
+
+When the user types in the text field in our component, the `autoComplete`
+action in the controller is called. This action takes in the `filter`
+property, and filters the `rental` data for records in data store that match
+what the user has typed thus far. The result of the query is set as the
+`filteredList` property, which is used to populate the autocomplete list
+in the component.
 
 We also define a `search` action here that is passed in to the component,
- and called when the search button is clicked. This is slightly different
-  in that the result of the query is actually used to update the `model` 
-  of the `index` route, and that changes the full rental listing on the 
-  page.
+and called when the search button is clicked. This is slightly different
+in that the result of the query is actually used to update the `model`
+of the `index` route, and that changes the full rental listing on the
+page.
 
-For these actions to work, we need to modify the Mirage `config.js` file 
+For these actions to work, we need to modify the Mirage `config.js` file
 to look like this, so that it can respond to our queries.
 
 ```mirage/config.js
@@ -191,6 +198,4 @@ export default function() {
 ```
 
 With these changes, users can search for properties in a given city, with
- a search field that provides suggestions as they type.
-
-
+a search field that provides suggestions as they type.
