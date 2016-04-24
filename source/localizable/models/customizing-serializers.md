@@ -120,7 +120,7 @@ should look like this:
 Ember Data uses the `JSONAPISerializer` by default, but you can
 override this default by defining a custom serializer. There are two
 ways to define a custom serializer. First, you can define a custom
-serializer for you entire application by defining an "application"
+serializer for your entire application by defining an "application"
 serializer.
 
 ```app/serializers/application.js
@@ -129,7 +129,7 @@ import JSONSerializer from 'ember-data/serializers/json';
 export default JSONSerializer.extend({});
 ```
 
-You can also define serializer for a specific model. For example if
+You can also define a serializer for a specific model. For example, if
 you had a `post` model you could also define a `post` serializer:
 
 ```app/serializers/post.js
