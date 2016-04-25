@@ -138,6 +138,7 @@ laravel
 li
 lifecycle
 localhost
+locator
 login
 lookup
 lookups
@@ -192,6 +193,7 @@ readme
 readonly
 recordarrays
 refactor
+refactoring
 relayout
 repo
 rerender
