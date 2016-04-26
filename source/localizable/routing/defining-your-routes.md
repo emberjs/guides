@@ -29,7 +29,7 @@ Router.map(function() {
 });
 ```
 
-If your route name has multiple works then your route should follow convention and be hyphenated. Routes with underscores in them will not be rendered.
+If your route name has multiple words then your route should follow convention and be hyphenated. Routes with underscores in them will not be rendered.
 
 ```app/router.js
 Router.map(function() {
