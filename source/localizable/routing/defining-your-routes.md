@@ -28,7 +28,16 @@ Router.map(function() {
   this.route('favorites', { path: '/favs' });
 });
 ```
-If your route name has multiple works then your route should follow convention and be hyphenated, not underscored. Routes with underscores in them will not be rendered.
+
+If your route name has multiple works then your route should follow convention and be hyphenated. Routes with underscores in them will not be rendered.
+
+```app/router.js
+Router.map(function() {
+  this.route('home');
+  this.route('long-route-name'); // will render template on route
+  this.route('long_route_name'); // will not render template
+});
+```
 
 Inside your templates, you can use [`{{link-to}}`][1] to navigate between
 routes, using the name that you provided to the `route` method.
