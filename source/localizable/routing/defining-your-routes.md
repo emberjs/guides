@@ -29,7 +29,9 @@ Router.map(function() {
 });
 ```
 
-If your route name has multiple words then your route should follow convention and be hyphenated. Routes with underscores in them will not be rendered.
+If your route name has multiple words then your route should follow
+convention and be hyphenated. Routes with underscores in them will
+not be rendered.
 
 ```app/router.js
 Router.map(function() {
@@ -39,7 +41,9 @@ Router.map(function() {
 });
 ```
 
-By default the `path` in the URL bar will be the same as your route name. If you need something other than the dasherized route in your URL bar you can use the `path` option to customize it.
+By default the path in the URL bar will be the same as your route
+name. If you need something other than the dasherized route in your
+URL bar you can use the path option to customize it.
 
 ```app/router.js
 Router.map(function() {
