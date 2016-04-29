@@ -30,7 +30,7 @@
       url: "simple-component"
     - title: "Handlebars Helper"
       url: "hbs-helper"
-    - title: "An Autocomplete Component"
+    - title: "A Complex Component"
       url: "autocomplete-component"
     - title: "Deploying"
       url: "deploying"
