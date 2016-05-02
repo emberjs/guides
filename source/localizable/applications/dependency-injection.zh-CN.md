@@ -4,7 +4,7 @@ Ember 应用程序利用 [dependency injection](https://en.wikipedia.org/wiki/De
 
 [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) 是那些通过注册工厂实例化来的对象的“所有者”。 应用程序实例提供了“查找”（即：实例化和／或检索）对象的实际能力。
 
-> *Note: Although an `Application` serves as the primary registry for an app, each `ApplicationInstance` can also serve as a registry. Instance-level registrations are useful for providing instance-level customizations, such as A/B testing of a feature.*
+> *注意：尽管 `Application` 是应用程序的主注册表，然而每个 `ApplicationInstance` 也可以兼任一个注册表。 实例级别的注册在提供实例级别的定制化时非常有用，比如说针对某功能的 A/B 测试。*
 
 ## 注册 Factory（工厂函数）
 
