@@ -1,8 +1,8 @@
 Ember 应用程序利用 [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection)（"DI"）设计模式来声明和实例化类对象以及它们之间的依赖。 每一个应用程序和应用程序实例都在 Ember 的 DI 实现中发挥着作用。
 
-[`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html) 是依赖项声明的“注册表”。 Factories (i.e. classes) are registered with an application, as well as rules about "injecting" dependencies that are applied when objects are instantiated.
+[`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html) 是依赖项声明的“注册表”。 工厂（即：类）注册于一个应用程序之中，同时依赖“注入”的相关规则在对象实例化时被应用于其上。
 
-An [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) serves as the "owner" for objects that are instantiated from registered factories. Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
+[`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) 是那些通过注册工厂实例化来的对象的“所有者”。 应用程序实例提供了“查找”（即：实例化和／或检索）对象的实际能力。
 
 > *Note: Although an `Application` serves as the primary registry for an app, each `ApplicationInstance` can also serve as a registry. Instance-level registrations are useful for providing instance-level customizations, such as A/B testing of a feature.*
 
