@@ -1,6 +1,6 @@
 Ember 的起步是很容易的。Ember 使用命令行构建工具 Ember CLI 来创建和管理项目。
 
-* Modern application asset management (including concatenation, minifying, and versioning).
+* 现代化的应用程序静态资源管理（包括文件合并、压缩，以及版本控制）。
 * Generators to help create components, routes, and more.
 * A conventional project layout, making existing Ember applications easy to approach.
 * Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
