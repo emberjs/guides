@@ -22,17 +22,17 @@ npm --version
 
 如果看到 *"command not found"* 错误或是过期版本的 Node：
 
-* Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/download/).
-* Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After installing Homebrew, run `brew install node` to install Node.js.
-* Linux users can use [this guide for Node.js installation on Linux](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
+* Windows 或者 Mac 的用户可以下载并运行 [此 Node.js 安装程序](http://nodejs.org/download/).
+* Mac 用户通常喜欢使用 [Homebrew](http://brew.sh/) 安装 Node。安装好 Homebrew 后，运行 `brew install node` 来安装 Node.js。
+* Linux 用户可以使用 [这份在 Linux 上安装 Node.js 的指南](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
 
-If you get an outdated version of npm, run `npm install -g npm`.
+如果你看到 npm 的版本过期，运行 `npm install -g npm`.
 
 ### Git
 
-Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
+Ember 需要 Git 来管理许多它依赖的东西。 Mac OS X 和大多数 Linux 发行版都带有 Git. Windows 用户可以下载并运行 [此 Git 安装程序](http://git-scm.com/download/win)。.
 
-### Watchman (optional)
+### Watchman（可选）
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
