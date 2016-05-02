@@ -34,24 +34,24 @@ Ember 需要 Git 来管理许多它依赖的东西。 Mac OS X 和大多数 Linu
 
 ### Watchman（可选）
 
-On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+在 Mac 和 Linux 上，你可以通过安装 [Watchman](https://facebook.github.io/watchman/docs/install.html) 来提高文件变化监测的性能。.
 
-### PhantomJS (optional)
+### PhantomJS（可选）
 
-You can run your tests from the command line with PhantomJS, without the need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
+PhantomJS 可以帮助你在命令行运行测试而不需要打开浏览器。请咨询 [PhantomJS 下载指南](http://phantomjs.org/download.html)。.
 
-## Installation
+## 安装
 
-Install Ember using npm:
+使用 npm 安装 Ember：
 
 ```bash
 npm install -g ember-cli
 ```
 
-To verify that your installation was successful, run:
+若要验证您的安装成功，请运行：
 
 ```bash
 ember -v
 ```
 
-If a version number is shown, you're ready to go.
+如果显示出了版本号，你就准备好了。
