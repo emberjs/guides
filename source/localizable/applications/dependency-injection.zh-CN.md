@@ -68,7 +68,7 @@ export default { name: 'notification', initialize: initialize };
     
     Once a factory is registered, it can be "injected" where it is needed.
     
-    Factories can be injected into whole "types" of factories with *type injections*. For example:
+    Factories can be injected into whole "types" of factories with *type injections*. 举个例子：
     
     ```app/initializers/logger.js
     export function initialize(application) {
@@ -159,7 +159,7 @@ export default { name: 'logger', initialize: initialize };
       getOwner
     } = Ember;
     
-    // Usage:
+    // 用法：
     //
     //   {{play-audio song=song}}
     //
