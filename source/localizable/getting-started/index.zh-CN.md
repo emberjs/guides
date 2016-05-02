@@ -1,4 +1,4 @@
-Getting started with Ember is easy. Ember projects are created and managed through our command line build tool Ember CLI. This tool provides:
+Ember 的起步是很容易的。Ember 使用命令行构建工具 Ember CLI 来创建和管理项目。
 
 * Modern application asset management (including concatenation, minifying, and versioning).
 * Generators to help create components, routes, and more.
