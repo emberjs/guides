@@ -7,20 +7,20 @@ Ember 的起步是很容易的。Ember 使用命令行构建工具 Ember CLI 来
 * 完整的 [QUnit](https://qunitjs.com/) 测试集成。
 * 通过不断增长的 Ember Addons 插件生态系统持续受益。
 
-## Dependencies
+## 依赖
 
-### Node.js and npm
+### Node.js 和 npm
 
-Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
+Ember CLI 使用 JavaScript 创建，并且需要 [Node.js](https://nodejs.org/) 运行环境的支持。 它还需要通过 [npm](https://www.npmjs.com/) 来获取依赖的模块和软件包。 npm 与 Node.js 是打包在一起的，所以如果你的计算机已经安装了 Node.js 那就一切就绪了。
 
-Ember requires Node.js 0.12 or higher and npm 2.7 or higher. If you're not sure whether you have Node.js or the right version, run this on your command line:
+Ember 需要 Node.js 0.12 或是更高版本以及 npm 2.7 及以上。若你无法确定你是否安装了 Node.js 以及版本号是否合乎要求，那就在命令行运行以下命令：
 
 ```bash
 node --version
 npm --version
 ```
 
-If you get a *"command not found"* error or an outdated version for Node:
+如果看到 *"command not found"* 错误或是过期版本的 Node：
 
 * Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/download/).
 * Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After installing Homebrew, run `brew install node` to install Node.js.
