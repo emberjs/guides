@@ -1,7 +1,7 @@
-Every Ember application is represented by a class that extends [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html). This class is used to declare and configure the many objects that make up your app.
+每一个 Ember 应用程序都是扩展（继承）自 [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html) 的类（class）。 这个类用于声明及配置构建应用程序所需的多个对象。（可视作一个高级的应用程序层级的命名空间）
 
-As your application boots, it creates an [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) that is used to manage its stateful aspects. This instance acts as the "owner" of objects instantiated for your app.
+随着应用程序的启动，它会创建一个 [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) 用于管理它具有状态化的一面。 这个实例是其它为你的应用程序所创建的实例对象的“所有者”。
 
-Essentially, the `Application` *defines your application* while the `ApplicationInstance` *manages its state*.
+本质上，`Application` *定义你的应用程序*而 `ApplicationInstance` *管理应用程序的状态*。.
 
-This separation of concerns not only clarifies the architecture of your app, it can also improve its efficiency. This is particularly true when your app needs to be booted repeatedly during testing and / or server-rendering (e.g. via [FastBoot](https://github.com/tildeio/ember-cli-fastboot)). The configuration of a single `Application` can be done once and shared among multiple stateful `ApplicationInstance` instances. These instances can be discarded once they're no longer needed (e.g. when a test has run or FastBoot request has finished).
+这种在关注点上的分离不仅仅是为了明晰应用程序的架构，同时也能提到其效率。 特别是当应用程序需要在测试和／或服务端渲染（例如，通过 [FastBoot](https://github.com/tildeio/ember-cli-fastboot)）时频繁启动的时候，这一点尤其显著。 单个 `Application` 的配置可以只做一次然后在多个状态化的 `ApplicationInstance` 实例之间共享。 一旦不再需要这些实例就可以丢弃它们（例如当测试运行结束或是 FaseBoot 请求完毕时）。
