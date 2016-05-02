@@ -225,7 +225,7 @@ The scroll happens on `didRender`, where it will scroll the component's containe
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  className: 'item-list',
+  className: 'list-item',
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -239,7 +239,7 @@ export default Ember.Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.$('.item-list').scrollTop(this.$('.selected-item').position.top);
+    this.$('.list-item').scrollTop(this.$('.selected-item').position.top);
   }
 });
 ```
