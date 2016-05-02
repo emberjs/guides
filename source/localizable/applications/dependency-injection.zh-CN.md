@@ -6,7 +6,7 @@ An [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.Applicatio
 
 > *Note: Although an `Application` serves as the primary registry for an app, each `ApplicationInstance` can also serve as a registry. Instance-level registrations are useful for providing instance-level customizations, such as A/B testing of a feature.*
 
-## Factory Registrations
+## 注册 Factory（工厂函数）
 
 A factory can represent any part of your application, like a *route*, *template*, or custom class. Every factory is registered with a particular key. For example, the index template is registered with the key `template:index`, and the application route is registered with the key `route:application`.
 
