@@ -13,7 +13,7 @@
 使用 Node.js 的包管理器 npm 只需要一条命令即可安装 Ember。在终端输入：
 
 ```sh
-npm install -g ember-cli@2.4
+npm install -g ember-cli
 ```
 
 还没有 npm 吗？[这里教你如何安装 Node.js 和 npm](https://docs.npmjs.com/getting-started/installing-node)。.
@@ -192,3 +192,7 @@ The `build` command packages up all of the assets that make up your application&
 In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
 
 The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
+
+If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+
+    FallbackResource index.html

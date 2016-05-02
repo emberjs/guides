@@ -1,6 +1,6 @@
 Los modelos son objetos que representan los datos de tu aplicación. Cada aplicación va a tener modelos únicos, dependiendo del tipo de problema.
 
-Por ejemplo, un aplicación para compartir fotos tal vez podría tener un modelo `Foto` para representar a una sola foto y un modelo `AlbumDeFotos` que representa a un grupo de fotos. Por otro lado, un aplicación de ventas en línea podría tener modelos como `Carrito`, `Nota` o `Item`.
+Por ejemplo, una aplicación para compartir fotos tal vez podría tener un modelo `Foto` para representar a una sola foto y un modelo `AlbumDeFotos` que representa a un grupo de fotos. Por otro lado, una aplicación de ventas en línea podría tener modelos como `Carrito`, `Nota` o `Item`.
 
 Los modelos suelen ser *persistentes*. Quiere decir que el usuario espera que los datos del modelo no se pierdan al cerrar la ventana del navegador. Para estar seguro de que los datos no se pierdan si el usuario realiza algún cambio a un modelo, hay que guardar los datos donde no se pierdan.
 
@@ -8,7 +8,7 @@ Por lo regular, los modelos se cargan y se guardan en un servidor que cuenta con
 
 Una vez que has cargado tus modelos del almacenamiento, los componentes interpretan los datos de los modelos en una interfaz con la cual el usuario puede interactuar. Para más información acerca de cómo los componentes obtienen los datos de los modelos, consulta la guía de [Specifying a Route's Model](../routing/specifying-a-routes-model).
 
-Ember Data, incluido de forma predeterminada cuando se crea una nueva aplicación, es una librería que se integra estrechamente con Ember para que sea fácil de extraer modelos de su servidor en formato JSON, guardar actualizaciones al servidor, y crear nuevos modelos en el navegador.
+Ember Data, incluido de forma predeterminada cuando creas una nueva aplicación, es una librería que se integra estrechamente con Ember para que sea fácil de extraer modelos de su servidor en formato JSON, guardar actualizaciones al servidor, y crear nuevos modelos en el navegador.
 
 Gracias a su uso del *adapter pattern*, se puede configurar Ember Data para que funcione con muchos tipos de backends. Hay [todo un "ecosistema" de adaptadores](http://emberobserver.com/categories/ember-data-adapters) que permite que tu aplicación de Ember comunique con diferentes tipos de servidores sin que escribir código de redes.
 
@@ -40,7 +40,7 @@ Tal vez podrás tener la idea de darle al component la responsabilidad de extrae
     </ul>
     
 
-Esto funciona muy bien para el component `list-of-drafts`. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
+Esto funciona muy bien para el component `list-of-drafts`. Sin embargo, tu aplicación probablemente tiene muchos componentes diferentes. En otra página tal vez quieres un componente para mostrar el número de borradores. Tal vez te ocurre copiar y pegar el código de `willRender` existente en el nuevo componente.
 
 ```app/components/drafts-button.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
@@ -50,43 +50,41 @@ Esto funciona muy bien para el component `list-of-drafts`. However, your app is 
     {{/link-to}}
     
 
-Unfortunately, the app will now make two separate requests for the same information. Not only is the redundant data fetching costly in terms of wasted bandwidth and affecting the perceived speed of your app, it's easy for the two values to get out-of-sync. You yourself have probably used a web application where the list of items gets out of sync with the counter in a toolbar, leading to a frustrating and inconsistent experience.
+Lastimosamente, ahora el aplicación va a enviar dos solicitudes al servidor para la misma información. No sólo es costoso solicitar los datos redundantes en términos de ancho de banda desperdiciado y en la velocidad percibida de tu aplicación, también los dos valores fácilmente pueden quedar fuera de sincronización. Probablemente has usado un aplicación web donde la lista de elementos queda fuera de sincronización con el contador en la barra de herramientas, llegando a ser una experiencia frustrante e inconsistente.
 
-There is also a *tight coupling* between your application's UI and the network code. If the url or the format of the JSON payload changes, it is likely to break all of your UI components in ways that are hard to track down.
+Hay también un *acoplamiento estrecho* entre la interfaz de usuario de la aplicación y el código de red. Si la url o el formato del objeto JSON cambia, probablemente todos los componentes de interfaz de usuario se rompen en formas que son difíciles de identificar.
 
-The SOLID principles of good design tell us that objects should have a single responsibility. The responsibility of a component should be presenting model data to the user, not fetching the model.
+Los principios SOLID de buen diseño nos dicen que los objetos deben tener una sola responsabilidad. La responsabilidad de un componente debe presentar datos del modelo al usuario, no extraer el modelo del servidor.
 
-Good Ember apps take a different approach. Ember Data gives you a single **store** that is the central repository of models in your application. Components and routes can ask the store for models, and the store is responsible for knowing how to fetch them.
+Buenas aplicaciones de Ember lo hacen de otra manera. Ember Data te da una sola **store** que es el repositorio central de los modelos en tu aplicación. Los componentes y rutas pueden pedirle los modelos del store, y el store es responsable de saber encontrarlos.
 
-It also means that the store can detect that two different components are asking for the same model, allowing your app to only fetch the data from the server once. You can think of the store as a read-through cache for your app's models. Both your components and routes have access to this shared store; when they need to display or modify a model, they first ask the store for it.
+También significa que el store puede detectar que dos componentes diferentes piden el mismo modelo, lo que permite tu app extraer los datos del servidor una sola vez. Puedes tomar el store como una caché de read-through para los modelos de tu app. Ambos tus componentes y rutas tienen acceso a este store compartido; cuando necesitan mostrar o modificar un modelo, primero lo piden del store.
 
 ## Convention Over Configuration with JSON API
 
-You can significantly reduce the amount of code you need to write and maintain by relying on Ember's conventions. Since these conventions will be shared among developers on your team, following them leads to code that is easier to maintain and understand.
+Puedes reducir significativamente la cantidad de código que necesitas escribir y mantener, apoyándose en los convenios de Ember. Dado que estas costumbres se compartirán entre los desarrolladores de tu equipo, seguirlas tiene como resultado código que es más fácil de mantener y entender.
 
-Rather than create an arbitrary set of conventions, Ember Data is designed to work out of the box with [JSON API](http://jsonapi.org). JSON API is a formal specification for building conventional, robust, and performant APIs that allow clients and servers to communicate model data.
+En lugar de crear un conjunto arbitrario de costumbres, Ember Data está diseñado para funcionar automáticamente con el [JSON API](http://jsonapi.org). JSON API es una especificación formal para construir los APIs convencionales, robustos, y de alto rendimiento que permiten a los clientes y servidores comunicarse con los datos de los modelos.
 
-JSON API standardizes how JavaScript applications talk to servers, so you decrease the coupling between your frontend and backend, and have more freedom to change pieces of your stack.
+El JSON API estandariza cómo las aplicaciones JavaScript se comunican con los servidores, para reducir el acoplamiento entre el frontend y el backend, y así tienes más libertad para intercambiar las piezas de tu stack.
 
-As an analogy, JSON API is to JavaScript apps and API servers what SQL is to server-side frameworks and databases. Popular frameworks like Ruby on Rails, Laravel, Django, Spring and more work out of the box with many different databases, like MySQL, PostgreSQL, SQL Server, and more.
+Como analogía, el JSON API es para las aplicaciones de JavaScript y servidores de API lo que SQL es para los frameworks del lado del servidor y las bases de datos. Frameworks populares como Ruby on Rails, Django, Laravel, Spring, y otros funcionan automáticamente con muchas bases de datos diferentes, como MySQL, PostgreSQL, SQL Server y otras.
 
-Frameworks (or apps built on those frameworks) don't need to write lots of custom code to add support for a new database; as long as that database supports SQL, adding support for it is relatively easy.
+Los frameworks (o los apps creadas con esos frameworks) no necesitan un montón de código personalizado para añadir soporte para una base de datos nueva; siempre que la base de datos sea compatible con SQL, añadir soporte para ella es relativamente fácil.
 
-So too with JSON API. By using JSON API to interop between your Ember app and your server, you can entirely change your backend stack without breaking your frontend. And as you add apps for other platforms, such as iOS and Android, you will be able to leverage JSON API libraries for those platforms to easily consume the same API your Ember app uses.
+Así también con el JSON API. En utilizar el JSON API para la comunicación entre tu app de Ember y tu servidor, puedes cambiar tu stack de backend totalmente sin romper tu frontend. Y al agregar apps para otras plataformas, como iOS y Android, puedes aprovechar las librerías de JSON API para esas plataformas para utilizar fácilmente la misma API usada por tu app de Ember.
 
-## Models
+## Modelos
 
-In Ember Data, each model is represented by a subclass of `Model` that defines the attributes, relationships, and behavior of the data that you present to the user.
+En Ember Data, cada modelo es representado por una subclase de `Model` que define los atributos, relaciones y comportamiento de los datos que le presentas al usuario.
 
-Models define the type of data that will be provided by your server. For example, a `Person` model might have a `firstName` attribute that is a string, and a `birthday` attribute that is a date:
+Los modelos definen el tipo de datos que será proporcionado por el servidor. Por ejemplo, un modelo de `Persona` puede tener un atributo `nombre` que es un string (tipo de dato carácter) y un atributo `cumpleaños` que es una fecha:
 
-```app/models/person.js import Model from 'ember-data/model'; import attr from 'ember-data/attr';
+'''app/models/person.js import Model from 'ember-data/model'; import attr from 'ember-data/attr';
 
-export default Model.extend({ firstName: attr('string'), birthday: attr('date') });
+export default Model.extend ({ firstName: attr('string'), birthday: attr('date') });
 
-    <br />A model also describes its relationships with other objects. For
-    example, an `order` may have many `line-items`, and a
-    `line-item` may belong to a particular `order`.
+    <br />Un modelo también describe sus relaciones con otros objetos. Por ejemplo, un «pedido» puede tener muchos «artículos» y un «artículo» puede pertenecer a un «pedido».
     
     ```app/models/order.js
     import Model from 'ember-data/model';
@@ -101,49 +99,43 @@ export default Model.extend({ firstName: attr('string'), birthday: attr('date') 
 
 export default Model.extend({ order: belongsTo('order') });
 
-    <br />Models don't have any data themselves, they define the attributes,
-    relationships and behavior of specific instances, which are called
-    **records**.
+    <br />Los modelos en sí no tienen datos, sino definen los atributos, relaciones y comportamiento de instancias específicas, que se llaman ** records**(registros).
     
-    ## Records
+    ## Records(registros)
     
-    A **record** is an instance of a model that contains data loaded from a
-    server. Your application can also create new records and save them back
-    to the server.
+    Un ** record ** es una instancia de un modelo que contiene los datos cargados desde un servidor. Tu aplicación también puede crear nuevos registros y guardarlos al servidor.
     
-    A record is uniquely identified by its model **type** and **ID**.
+    Un registro se identifica únicamente por su **tipo** de modelo y su **ID**.
     
-    For example, if you were writing a contact management app, you might
-    have a `Person` model. An individual record in your app might
-    have a type of `person` and an ID of `1` or `steve-buscemi`.
+    Por ejemplo, si escribieras un app de gestión de contactos, podrías tener un modelo de 'Persona'. Un registro de tu app podría tener un tipo de 'persona' y un ID de '1' o 'steve buscemi'.
     
     ```js
     this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
     
 
-An ID is usually assigned to a record by the server when you save it for the first time, but you can also generate IDs client-side.
+Un ID es asignado a un registro generalmente por el servidor cuando lo guardas por primera vez, pero también puedes generar los IDs del lado del cliente.
 
-## Adapter
+## Adapter(el Adaptador)
 
-An **adapter** is an object that translates requests from Ember (such as "find the user with an ID of 123") into requests to a server.
+Un **adapter** es un objeto que traduce las peticiones de Ember (como "buscar el usuario con el ID de 123") en las peticiones a un servidor.
 
-For example, if your application asks for a `Person` with an ID of `123`, how should Ember load it? Over HTTP or a WebSocket? If it's HTTP, is the URL `/person/1` or `/resources/people/1`?
+Por ejemplo, si tu aplicación solicita una `Persona` con el ID de `123`, ¿Ember cómo debería cargarla? ¿A través de HTTP o un WebSocket? Si es a través de HTTP, la URL sería ¿`/person/1`? o ¿`/resources/people/1`?
 
-The adapter is responsible for answering all of these questions. Whenever your app asks the store for a record that it doesn't have cached, it will ask the adapter for it. If you change a record and save it, the store will hand the record to the adapter to send the appropriate data to your server and confirm that the save was successful.
+El adaptador es responsable de responder a todas estas dudas. Siempre que tu app le pida al <<store>> por un registro que no se encuentra en caché, lo pide del adaptador. Si cambias un registro y lo guardas, el store le pasa el registro al adaptador para enviar los datos correspondientes al servidor y confirmar que se ha guardado correctamente.
 
-Adapters let you completely change how your API is implemented without impacting your Ember application code.
+Los adaptadores te permiten cambiar completamente la implementación de tu API sin afectar el código de tu aplicación de Ember.
 
 ## Caching
 
-The store will automatically cache records for you. If a record had already been loaded, asking for it a second time will always return the same object instance. This minimizes the number of round-trips to the server, and allows your application to render its UI to the user as fast as possible.
+El store automáticamente te almacena los registos en caché. Si un registro ya se había cargado, pedirlo otra vez siempre te devuelve la misma instancia de objeto. Esto minimiza el número de peticiones y respuestas del servidor y le permite a tu aplicación hacer el render de la interfaz de usuario lo más rápido posible.
 
-For example, the first time your application asks the store for a `person` record with an ID of `1`, it will fetch that information from your server.
+Por ejemplo, la primera vez que tu aplicación le pide un registro de una `persona` con el ID de `1` del store, el store extrae esa información del servidor.
 
-However, the next time your app asks for a `person` with ID `1`, the store will notice that it had already retrieved and cached that information from the server. Instead of sending another request for the same information, it will give your application the same record it had provided it the first time. This feature—always returning the same record object, no matter how many times you look it up—is sometimes called an *identity map*.
+Sin embargo, la próxima vez que tu app pide una `persona` con el ID `1`, el store se dará cuenta de que ya había obtenido y almacenado en caché esa información del servidor. En lugar de enviar otra petición para obtener la misma información, le dará a tu aplicación el mismo registro que había proporcionado la primera vez. Esta característica—siempre devolver el mismo objeto de registro, sin importar cuántas veces que lo pides — a veces se llama un *identity map*(mapa de identidad).
 
-Using an identity map is important because it ensures that changes you make in one part of your UI are propagated to other parts of the UI. It also means that you don't have to manually keep records in sync—you can ask for a record by ID and not have to worry about whether other parts of your application have already asked for and loaded it.
+Utilizar un identity map es importante porque asegura que los cambios realizas en una parte de la interfaz de usuario se propagan a otras partes de la interfaz. También significa que no tienes que sincronizar los registros manualmente—puedes solicitar un registro por ID y sin preocuparte de si otras partes de tu aplicación ya lo han solicitado y cargado.
 
-One downside to returning a cached record is you may find the state of the data has changed since it was first loaded into the store's identity map. In order to prevent this stale data from being a problem for long, Ember Data will automatically make a request in the background each time a cached record is returned from the store. When the new data comes in, the record is updated, and if there have been changes to the record since the initial render, the template is re-rendered with the new information.
+Una desventaja de devolver un registro de la caché es que puede que el estado del registro haya cambiado desde que se cargó en el mapa de identidad del store. Para evitar este problema de datos obsoletos, Ember Data automáticamente hará una petición en segundo plano cada vez que un registro en la memoria caché se devuelva del store. Cuando llegan los datos nuevos, el registro se actualiza, y si el registro ha sufrido cambios desde el render inicial, se vuelva a cargar la plantilla con la nueva información.
 
 ## Architecture Overview
 

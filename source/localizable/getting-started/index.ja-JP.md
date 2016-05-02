@@ -45,7 +45,7 @@ Mac 及び Linux の場合は、[Watchman](https://facebook.github.io/watchman/d
 Ember のインストールには npm を利用します。
 
 ```bash
-npm install -g ember-cli@2.4
+npm install -g ember-cli
 ```
 
 インストールが成功したことを確認するには、次のコマンドを実行します。

@@ -40,11 +40,11 @@ http://example.com/articles?sort=ASC&page=2
 
   1. もし、ユーザーが`/articles`に遷移すると、`category` は `null`となり記事はフィルタされません。
   2. ユーザーが`/articles?category=recent`へと遷移すると、`category`が`"recent"`に設定され、記事がフィルタされます。
-  3. Once inside the `articles` route, any changes to the `category` property on `controller:articles` will cause the URL to update the query param. By default, a query param property change won't cause a full router transition (i.e. it won't call `model` hooks and `setupController`, etc.); it will only update the URL.
+  3. `articles` route (ルート)内では、どのような`controller:articles`の`category`property (プロパティ) への変更も、URL の クエリ パラメーターを更新します。 デフォルトでは、クエリー パラメーターのプロパティーの変更はrouter (ルーター)のtransition (遷移)は行なわずURLのみ更新されます。 (例　`model` hooks や `setupController` などは呼び出されません);
 
-### link-to ヘルパー
+### link-to Helper (ヘルパー)
 
-The `link-to` helper supports specifying query params using the `query-params` subexpression helper.
+link-to Helper (ヘルパー)は、パラメーターの指定に`query-params` subexpression helper (ヘルパー)を利用しています。
 
 ```handlebars
 // ターゲットパラメータの明示的な設定

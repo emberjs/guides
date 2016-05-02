@@ -13,7 +13,7 @@ We'll cover these steps:
 You can install Ember with a single command using npm, the Node.js package manager. Type this into your terminal:
 
 ```sh
-npm install -g ember-cli@2.4
+npm install -g ember-cli
 ```
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
@@ -200,3 +200,7 @@ The `build` command packages up all of the assets that make up your application&
 In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
 
 The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
+
+If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+
+    FallbackResource index.html
