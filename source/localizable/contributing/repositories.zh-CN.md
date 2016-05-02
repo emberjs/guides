@@ -1,63 +1,63 @@
-Ember is made up of several libraries. If you wish to add a feature or fix a bug please file a pull request against the appropriate repository. Be sure to check the libraries listed below before making changes in the Ember repository.
+Ember 是由几个软件包组合而成的。 如果你有意添加一个特性或修复一个 bug 请在对应的代码仓库内发出 pull request 请求。 请确保在针对 Ember 代码仓库作出改变之前检查了下面列出的软件包。
 
-# Main Repositories
+# 主要代码仓库
 
-**Ember.js** - The main repository for Ember.
+**Ember.js** - Ember 的主体代码仓库。
 
 * <https://github.com/emberjs/ember.js>
 
-**Ember Data** - A data persistence library for Ember.
+**Ember Data** - Ember 的数据持久化层软件包。
 
 * <https://github.com/emberjs/data>
 
-**Ember Website** - Source for <http://emberjs.com>
+**Ember 网站** - <http://emberjs.com> 的源代码。
 
 * <https://github.com/emberjs/website>
 
-**Ember Guides** - Source for <http://guides.emberjs.com> which you are currently reading.
+**Ember 指南** - 你正在阅读的 <http://guides.emberjs.com> 的源代码。
 
 * <https://github.com/emberjs/guides>
 
-# Libraries Used By Ember
+# Ember 所用到的软件包
 
-These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
+下列软件包是 Ember 资源产出的一部分，但是它们的开发工作发生在独立的软件仓库里。
 
 ## `Backburner`
 
-* **backburner.js** - Implements the Ember run loop.
+* **backburner.js** - Ember 运行时循环的实现。
 * <https://github.com/ebryn/backburner.js>
 
 ## `DAG Map`
 
-* **dag-map** - A directed acyclic graph data structure for javascript
+* **dag-map** - 用于 JavaScript 的有向无环图数据结构实现。
 * <https://github.com/krisselden/dag-map>
 
 ## `Glimmer 2`
 
-* **glimmer** - Implements the really fast rendering engine now included in Ember
+* **glimmer** - 现已包含在 Ember 中的一个非常快速的渲染引擎实现。
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`
 
-* **htmlbars** - The syntax for templating most often used with Ember
+* **htmlbars** - Ember 中主要是用的模版语法。
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`
 
-* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
+* **morph-range** - Ember 用来操作文本节点（也称 morphs）的库，是为 HTMLBars 创建的用于追踪可变化的文本。
 * <https://github.com/krisselden/morph-range>
 
 ## `Route Recognizer`
 
-* **route-recognizer** - A lightweight JavaScript library that matches paths against registered routes.
+* **route-recognizer** - 轻量级的针对注册路由来匹配路径的 JavaScript 软件包。
 * <https://github.com/tildeio/route-recognizer>
 
 ## `router.js`
 
-* **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
+* **router.js** - 轻量级的构建于 route-recognizer 和 rsvp 之上的 JavaScript 软件包，提供了处理路由的 API。
 * <https://github.com/tildeio/router.js>
 
 ## `RSVP`
 
-* **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
+* **rsvp.js** - Ember 所使用的 Promises/A+ 规范的实现。
 * <https://github.com/tildeio/rsvp.js>
