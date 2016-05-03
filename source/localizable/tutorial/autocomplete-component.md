@@ -50,7 +50,6 @@ Here is what the component's JavaScript looks like:
 ```app/components/filter-listing.js
 export default Ember.Component.extend({
   filter: null,
-  filteredList: null,
 
   actions: {
     choose(city) {
