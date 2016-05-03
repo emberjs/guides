@@ -9,10 +9,10 @@ the return value of the Route's `model()` method.
 To define a Controller, run:
 
 ```shell
-ember generate controller my-component-name
+ember generate controller my-controller-name
 ```
 
-The value of `my-component-name` must match the name of the Route that renders
+The value of `my-controller-name` must match the name of the Route that renders
 it. So a Route named `blog-post` would have a matching Controller named
 `blog-post`.
 
