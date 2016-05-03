@@ -183,8 +183,8 @@ ember build --env production
 
 今回は Ember に`--env`フラグの元、プロダクション環境を構築するように指示しました。 こうすることで、Webホストにアップロードするために最適化された、バンドルとして作成することが可能です。 ビルドが完了すると連結され、ミニファイドされた、アセットが`dist/`ディレクトリ配下されたアセットが確認できます。
 
-Ember コミュニティはコラボレーションと、すべての人が共通で利用できるツールを作ることを高く評価します。 If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
+Ember コミュニティはコラボレーションと、すべての人が共通で利用できるツールを作ることを高く評価します。 もし、高速で信頼性の高い方法でアプリケーションをプロダクションに載せたいと持っているなら、[Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/)addon (アドオン)を確認するといいでしょう。
 
-If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+Apache web server がデプロイ対象の場合は、まずApacheでアプリケーションのためにvirtual host を設定します。 すべてのroutes (ルート)が確実にindex.htmlによって処理されるために、アプリケーションのvirtual host設定に次の設定を追加してください。
 
     FallbackResource index.html
