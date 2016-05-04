@@ -6,7 +6,7 @@ To begin, let's generate our new component. We'll call this component `filter-li
 ember g component filter-listing
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/filter-listing.hbs`) and a JavaScript file (`app/components/filter-listing.js`).
+以前と同じように、このコマンドはHandlebars template (`app/templates/components/filter-listing.hbs`) と JavaScript ファイル (`app/components/filter-listing.js`を作成します。).
 
 Handlebars template はこのようになります。
 
@@ -38,7 +38,6 @@ Handlebars template はこのようになります。
     ```app/components/filter-listing.js
     export default Ember.Component.extend({
       filter: null,
-      filteredList: null,
     
       actions: {
         choose(city) {

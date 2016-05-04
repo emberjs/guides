@@ -1,10 +1,10 @@
-Initializers provide an opportunity to configure your application as it boots.
+应用程序启动时，初始化器提供了一个配置应用程序的机会。
 
-There are two types of initializers: application initializers and application instance initializers.
+有两种类型的初始化器：应用程序初始化和应用对象实例初始化。
 
-Application initializers are run as your application boots, and provide the primary means to configure [dependency injections](../dependency-injection) in your application.
+应用程序初始器在启动应用程序时，提供了一个重要的手段，设定“依赖注入” [dependency injections](../dependency-injection) 注入对象到你的应用程序里。
 
-Application instance initializers are run as an application instance is loaded. They provide a way to configure the initial state of your application, as well as to set up dependency injections that are local to the application instance (e.g. A/B testing configurations).
+对象实例初始化器时在运行应用对象实例时加载的。 他们提供了一种方法来配置你的应用程序的初始状态，以及在本地的对象实例建立依赖注入（例如，A/B 测试配置）。
 
 Operations performed in initializers should be kept as lightweight as possible to minimize delays in loading your application. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
 

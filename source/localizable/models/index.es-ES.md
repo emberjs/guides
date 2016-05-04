@@ -137,28 +137,28 @@ Utilizar un identity map es importante porque asegura que los cambios realizas e
 
 Una desventaja de devolver un registro de la caché es que puede que el estado del registro haya cambiado desde que se cargó en el mapa de identidad del store. Para evitar este problema de datos obsoletos, Ember Data automáticamente hará una petición en segundo plano cada vez que un registro en la memoria caché se devuelva del store. Cuando llegan los datos nuevos, el registro se actualiza, y si el registro ha sufrido cambios desde el render inicial, se vuelva a cargar la plantilla con la nueva información.
 
-## Architecture Overview
+## Resumen de la Arquitectura
 
-The first time your application asks the store for a record, the store sees that it doesn't have a local copy and requests it from your adapter. Your adapter will go and retrieve the record from your persistence layer; typically, this will be a JSON representation of the record served from an HTTP server.
+La primera vez que tu aplicación le pide un registro del store, el store verifica si tiene una copia localmente, si no, lo pide del adaptador. El adaptador va a recuperar el registro de tu capa de persistencia; por lo general, esto sería una representación JSON del registro desde un servidor HTTP.
 
-![Diagram showing process for finding an unloaded record](../images/guides/models/finding-unloaded-record-step1-diagram.png)
+![Diagrama que muestra el proceso para encontrar un registro de no cargada](../images/guides/models/finding-unloaded-record-step1-diagram.png)
 
-As illustrated in the diagram above, the adapter cannot always return the requested record immediately. In this case, the adapter must make an *asynchronous* request to the server, and only when that request finishes loading can the record be created with its backing data.
+Como se muestra en el diagrama anterior, el adaptador a veces no puede devolver el registro solicitado inmediatamente. En este caso, el adaptador debe hacer una petición *asincrónica* al servidor, y sólo cuando esa petición termine de cargar se puede crear el registro con sus datos de fondo.
 
-Because of this asynchronicity, the store immediately returns a *promise* from the `find()` method. Similarly, any requests that the store makes to the adapter also return promises.
+Debido a esta asincronía, el store inmediatamente devuelve una *promesa* del método `find()`. Asimismo, las peticiones hechas por el store al adaptador también devuelven promesas.
 
-Once the request to the server returns with a JSON payload for the requested record, the adapter resolves the promise it returned to the store with the JSON.
+Una vez que la petición al servidor regresa con los datos JSON para el registro solicitado, el adaptador resuelve la promesa al store con el JSON.
 
-The store then takes that JSON, initializes the record with the JSON data, and resolves the promise returned to your application with the newly-loaded record.
+El store entonces toma ese JSON, inicializa el registro con los datos JSON y resuelve la promesa devuelta a tu aplicación con el registro recién cargado.
 
 ![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-unloaded-record-step2-diagram.png)
 
-Let's look at what happens if you request a record that the store already has in its cache.
+Miremos qué ocurre si solicitas un registro que el store ya tiene en su caché.
 
 ![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-loaded-record-diagram.png)
 
-In this case, because the store already knew about the record, it returns a promise that it resolves with the record immediately. It does not need to ask the adapter (and, therefore, the server) for a copy since it already has it saved locally.
+En este caso, dado que el store ya sabe del registro, devuelve una promesa que se resuelve inmediatamente con el registro. El store no tiene que pedirle una copia del registro del adaptador (y, por lo tanto, del servidor) puesto que ya la tiene guardado localmente.
 
 * * *
 
-Models, records, adapters and the store are the core concepts you should understand to get the most out of Ember Data. The following sections go into more depth about each of these concepts, and how to use them together.
+Los Modelos, registros, adaptadores y store son los conceptos básicos que debes entender para aprovechar Ember Data al máximo. Las siguientes secciones van más a fondo acerca de cada uno de estos conceptos y cómo utilizarlos juntos.

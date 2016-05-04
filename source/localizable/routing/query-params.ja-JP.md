@@ -54,7 +54,7 @@ link-to Helper (ヘルパー)は、パラメーターの指定に`query-params` 
 {{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
 ```
 
-In the above examples, `direction` is presumably a query param property on the `posts` controller, but it could also refer to a `direction` property on any of the controllers associated with the `posts` route hierarchy, matching the leaf-most controller with the supplied property name.
+上記の例では、`direction` は `posts` controller (コントローラー)のクエーリー　パラメーターだと推定されますが、しかし与えられた名前と先端のcontrollers (コントローラー)と関連付けられる、`posts` route (ルート) hierarchy (階層)のいずれかの`direction` property (プロパティー)にいかもしれません。
 
 The `link-to` helper takes into account query parameters when determining its "active" state, and will set the class appropriately. The active state is determined by calculating whether the query params end up the same after clicking a link. You don't have to supply all of the current, active query params for this to be true.
 

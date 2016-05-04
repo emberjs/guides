@@ -38,7 +38,6 @@ O template Handlebars parece com isso:
     ```app/components/filter-listing.js
     export default Ember.Component.extend({
       filter: null,
-      filteredList: null,
     
       actions: {
         choose(city) {
