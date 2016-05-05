@@ -57,7 +57,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 <fieldset>
   {{input name="user.name" value=name change=(action "required")}}
   {{input name="user.department" value=department change=(action "required")}}
-  {{input email="user.email" value=email change=(action "required")}}
+  {{input name="user.email" value=email change=(action "required")}}
 </fieldset>
 ```
 
