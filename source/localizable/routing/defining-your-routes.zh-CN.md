@@ -1,16 +1,14 @@
-When your application starts, the router matches the current URL to the *routes* that you've defined. The routes, in turn, are responsible for displaying templates, loading data, and otherwise setting up application state.
+应用程序启动时，路由器通过当前 URL匹配定义好的 *路由*。 接着路由负责显示模板、 加载数据，或者设置应用程序状态。
 
-## Basic Routes
+## 基本路由
 
-The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) method of your Ember application's router can be invoked to define URL mappings. When calling `map()`, you should pass a function that will be invoked with the value `this` set to an object which you can use to create routes.
+Ember应用程序路由器中的 [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) 方法可以用来定义 URL 映射。 当调用 `map()`方法时，你应该传递一个将值 `此` 设置为对象，您可以使用创建路线与调用的函数。
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
-    <br />Now, when the user visits `/about`, Ember will render the `about`
-    template. Visiting `/favs` will render the `favorites` template.
+    <br />现在，当用户访问`/about`时，Ember会渲染`about`模板。 访问`/favs`会渲染`favorites`模板
     
-    You can leave off the path if it is the same as the route
-    name. In this case, the following is equivalent to the above example:
+    如果路径地址和路由名字相同，你可以省略路径。 这种情况下, 下面的写法和上面的例子一个效果:
     
     ```app/router.js
     Router.map(function() {
@@ -19,7 +17,7 @@ The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) metho
     });
     
 
-Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) to navigate between routes, using the name that you provided to the `route` method.
+在模板里面，可以使用[`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to)在不同的路由间跳转，使用传给`route`方法的参数作为名字
 
 ```handlebars
 {{#link-to "index"}}<img class="logo">{{/link-to}}
@@ -30,20 +28,19 @@ Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classe
 </nav>
 ```
 
-The `{{link-to}}` helper will also add an `active` class to the link that points to the currently active route.
+`{{link-to}}` 还会给指向当前激活路由的链接加一个 `active` class
 
-## Nested Routes
+## 嵌套路由
 
-Often you'll want to have a template that displays inside another template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
+通常你会希望在一个模板里面显示另一个模板。 例如，在一个博客应用程序中，你可能希望在文章列表页面包含一个创建新文章的页面，而不是从文章列表页面跳转到创建新文章页面。
 
-In these cases, you can use nested routes to display one template inside of another.
+在这些情况下，你可以使用嵌套路由在一个模板里面显示另一个模板。
 
-You can define nested routes by passing a callback to `this.route`:
+您可以通过将传递一个函数给 `this.route` 来定义嵌套路由:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />And then add the `{{outlet}}` helper to your template where you want the nested
-    template to display:
+    <br />然后在你想显示嵌套模板的位置加一个`{{outlet}}`:
     
     ```templates/posts.hbs
     <h1>Posts</h1>
@@ -51,25 +48,25 @@ You can define nested routes by passing a callback to `this.route`:
     {{outlet}}
     
 
-This router creates a route for `/posts` and for `/posts/new`. When a user visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index routes](#toc_index-routes) explains an important addition to this.) When the user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into the `{{outlet}}` of the `posts` template.
+这个路由器创建一个`/posts`路由和一个 `/posts/new`路由。 当用户访问 `/posts` 时，他们只会看到 `posts.hbs` 模板。 (下面的 [index routes](#toc_index-routes) 一节有一个重要的补充)。当用户访问 `posts/new` 时，他们会看到 `posts/new.hbs` 模板渲染在`posts` 模板的`{{outlet}}`位置。
 
-A nested route's names includes the names of its ancestors. If you want to transition to a route (either via `transitionTo` or `{{#link-to}}`), make sure to use the full route name (`posts.new`, not `new`).
+嵌套路由的名字包括其父路由的名字。 如果你想跳转到一个路径 (无论是通过 `transitionTo` 或 `{{#link-to}}`)，请确保使用完整的路由名称 (`posts.new`，而不是`new`.).
 
-## The application route
+## 应用程序路由
 
-The `application` route is entered when your app first boots up. Like other routes, it will load a template with the same name (`application` in this case) by default. You should put your header, footer, and any other decorative content here. All other routes will render their templates into the `application.hbs` template's `{{outlet}}`.
+应用程序首次启动时会进入`application` 路由. 和其他路由一样，默认会加载具有相同名称 (在这种情况下的 `application`) 的模板。 你应该把你的页眉、 页脚和任何其他装饰的内容放在这里。 所有其它路由会把其模板渲染到 `application.hbs` 模板的 `{{outlet}}`位置.
 
-This route is part of every application, so you don't need to specify it in your `app/router.js`.
+所以的Ember应用都有这条路由，所以你不用在 `app/router.js`中指定.
 
-## Index Routes
+## Index路由
 
-At every level of nesting (including the top level), Ember automatically provides a route for the `/` path named `index`.
+在每个嵌套的 (包括最顶级) 的路由中，Ember都会自动提供一条 `/`path named`index`路由.
 
-For example, if you write a simple router like this:
+例如，如果您编写一个简单的路由器，像这样︰
 
 ```app/router.js Router.map(function(){ this.route('favorites'); });
 
-    <br />It is the equivalent of:
+    <br />它等效于:
     
     ```app/router.js
     Router.map(function(){
@@ -78,13 +75,13 @@ For example, if you write a simple router like this:
     });
     
 
-The `index` template will be rendered into the `{{outlet}}` in the `application` template. If the user navigates to `/favorites`, Ember will replace the `index` template with the `favorites` template.
+`index` 模板将会渲染到 `application` 模板的 `{{outlet}}` 位置。 如果在用户跳转到 `/favorites`，Ember会将 `index` 模板替换成 `favorites` 模板。
 
-A nested router like this:
+像这样的嵌套路由 ︰
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('favorites'); }); });
 
-    <br />Is the equivalent of:
+    <br />等效于：
     
     ```app/router.js
     Router.map(function(){
@@ -96,33 +93,29 @@ A nested router like this:
     });
     
 
-If the user navigates to `/posts`, the current route will be `posts.index`, and the `posts/index` template will be rendered into the `{{outlet}}` in the `posts` template.
+如果在用户跳转到 `/posts`，当前路由将会是 `posts.index`，并且 `posts/index` 模板将会渲染到`posts` 模板的 `{{outlet}}` 位置。
 
-If the user then navigates to `/posts/favorites`, Ember will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
+如果接着用户跳转到 `/favorites`，Ember会将 `posts` 模板中的 `{{outlet}}` 替换成 `favorites` 模板。
 
-## Dynamic Segments
+## 动态地址片段
 
-One of the responsibilities of a route is to load a model.
+路由的职责之一是加载模型。
 
-For example, if we have the route `this.route('posts');`, our route might load all of the blog posts for the app.
+例如，如果有一条 `this.route('posts');` 路由，它可能会加载所有发布的博客文章。
 
-Because `/posts` represents a fixed model, we don't need any additional information to know what to retrieve. However, if we want a route to represent a single post, we would not want to have to hardcode every possible post into the router.
+因为 `/posts` 表示固定的模型，我们不需要任何额外的信息就能知道要加载什么数据。 然而，如果我们想要一条路由表示一个单一的博客文章，我们不想把每一个可能的文章地址硬编码到路由器中。
 
-Enter *dynamic segments*.
+进入*动态地址片段*.
 
-A dynamic segment is a portion of a URL that starts with a `:` and is followed by an identifier.
+一个动态地址片段是 URL 中以 `:` 开头，后面跟着标识符的部分。
 
 ```app/router.js Router.map(function() { this.route('posts'); this.route('post', { path: '/post/:post_id' }); });
 
-    <br />If the user navigates to `/post/5`, the route will then have the `post_id` of
-    `5` to use to load the correct post. In the next section, [Specifying a Route's
-    Model](../specifying-a-routes-model), you will learn more about how to load a model.
+    <br />如果用户导航到 `/posts/5 `，路由将使用值为`5` 的 `post_id` 来加载正确的帖子。 在下一节，[指定路由模型](../specifying-a-routes-model)，您将学习更多关于如何加载模型的知识。
     
-    ## Wildcard / globbing routes
+    ## 通配符 / 全局路由
     
-    You can define wildcard routes that will match multiple URL segments. This could be used, for example,
-    if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed
-    by your app.
+    又可以定义匹配多个URL片段的通配符路由。 这可以很有用，例如，如果你想有一个匹配所有路径的路由，这在当用户输入你的应用没有处理的不正确的 URL 时会非常有用。
     
     ```app/router.js
     Router.map(function() {
@@ -130,6 +123,6 @@ A dynamic segment is a portion of a URL that starts with a `:` and is followed b
     });
     
 
-## Route Handlers
+## 路由处理程序
 
-To have your route do something beyond render a template with the same name, you'll need to create a route handler. The following guides will explore the different features of route handlers. For more information on routes, see the API documentation for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route handlers](http://emberjs.com/api/classes/Ember.Route.html).
+要让路由做一下渲染具有相同名称的模板之外的事情，你需要创建路由处理程序。 以下指南将探讨路由处理程序的不同特性。 更多关于路由的信息，请参阅 API 文档为 [路由器](http://emberjs.com/api/classes/Ember.Router.html) 和 [路由处理程序](http://emberjs.com/api/classes/Ember.Route.html).

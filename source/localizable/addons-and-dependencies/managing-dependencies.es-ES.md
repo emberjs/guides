@@ -12,7 +12,7 @@ Ember CLI utiliza el gestor de paquetes [Bower](http://bower.io), haciendo fáci
 
 Ember CLI observa el archivo `bower.json` para ver si ha cambiado. Así recargará tu aplicación si instalas nuevas dependencias vía `bower install <dependencies> --save`.
 
-## Otros insumos
+## Otros assets
 
 Los insumos no disponibles como un addon o un paquete de Bower deberían ser ubicados en el directorio `vendor` de tu proyecto.
 

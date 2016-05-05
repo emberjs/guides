@@ -1,6 +1,6 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them search for properties within a city, and also suggest cities to them as they type.
+ユーザーが賃貸物件を検索するとき、検索対象を特定の都市に限定に限定することもあるでしょう。 特定の都市で検索したり、入力中に検索候補を出すコンポーネントを作成しましょう。
 
-To begin, let's generate our new component. We'll call this component `filter-listing`.
+`filter-listing`という名称の新しいコンポーネントを作成しまう。.
 
 ```shell
 ember g component filter-listing
@@ -16,24 +16,15 @@ Handlebars template はこのようになります。
 
 {{#each filteredList as |item|}} <li {{action 'choose' item.city}}>{{item.city}}</li> {{/each}} 
 
-    <br />The template contains an [`{{input}}`](../../templates/input-helpers)
-    helper that renders as a text field, in which the user can type a pattern
-    to filter the list of cities used in a search. `input` の`value` property はコンポーネントの`filter` property にバインドされます。
-    The `key-up` property will be bound to the `autoComplete` action,
-    passed in to the component from the `index` controller. The `autoComplete`
-    action takes the `filter` property as the argument when invoked.
+    <br />template (テンプレート)はtext フィールドを描画する[`{{input}}`](../../templates/input-helpers) helper (ヘルパー)を含んでいます、そこにユーザーが都市名を入力すると、都市名がフィリタされます。 `input`の入力値`value`は`filter` のプロパティと関連付けされます。
+    `key-up`プロパティは`autoComplete` action (アクション)と関連付けら、`index` controller (コントローラー)のコンポーネントを渡します。 `autoComplete` action (アクション)は起動時に引数として、`filter` property (プロパティ)を受け取ります。
     
-    The template also contains a button that is bound to the `search` action.
-    Similar to the `autoComplete` action, the `search` action is passed in from
-    the `index` controller and takes the `filter` property when invoked.
+    テンプレートは`search` action (アクション)にバインドされたボタンも含まれています。
+    `autoComplete` action (アクション)と同様に、`search` action (アクション)も起動時に`index` controller (コントローラー)から渡され、`filter` property (プロパティ)を受け取ります。
     
-    Lastly, the `filter-listing.hbs` template contains an unordered list,
-    that displays the `city` property of each item in the `filteredList`
-    property in our component. Clicking the list item will fire the `choose`
-    action with the `city` property of the item as a parameter, which will
-    then populate the `input` field with the name of that `city`.
+    最後に、`filter-listing.hbs` template (テンプレート)は `city` property (プロパティ)の各項目を表示する、component (コンポーネント) に`filteredList` property (プロパティ)の順不同のリストを含んでいます。 リスト アイテムをクリックすると、その都市の名前アイテムをパラメーターとして 'input' のフィールドに入力する、 `city`プロパティの`choose`アクションが発生します。
     
-    Here is what the component's JavaScript looks like:
+    component (コンポーネント)の JavaScriptは次のようになっています :
     
     ```app/components/filter-listing.js
     export default Ember.Component.extend({

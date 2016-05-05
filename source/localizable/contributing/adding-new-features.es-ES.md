@@ -1,6 +1,6 @@
-In general, new feature development should be done on master.
+Por lo general, desarrollo de una función nueva debe realizarse en la rama maestra.
 
-Bugfixes should not introduce new APIs or break existing APIs, and do not need feature flags.
+Las correcciones de errores (bugfixes) no debería introducir APIs nuevas ni romper las APIs existentes, y así no necesitan <<feature flags>> (indicadores para nueva funcionalidad).
 
 Features can introduce new APIs, and need feature flags. They should not be applied to the release or beta branches, since SemVer requires bumping the minor version to introduce new features.
 

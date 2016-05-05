@@ -54,7 +54,7 @@ An example of this scenario in action is a profile editor component. As you are 
 <fieldset>
   {{input name="user.name" value=name change=(action "required")}}
   {{input name="user.department" value=department change=(action "required")}}
-  {{input email="user.email" value=email change=(action "required")}}
+  {{input name="user.email" value=email change=(action "required")}}
 </fieldset>
 ```
 

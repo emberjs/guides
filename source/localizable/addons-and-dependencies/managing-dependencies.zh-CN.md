@@ -1,10 +1,10 @@
-As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself, such as authentication or using SASS for your stylesheets. Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve these problems. Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
+在你开发Ember应用的过程中，你可能会碰到一些常见的Ember本身没有提到的场景，如身份验证或使用SASS作为样式格式 Ember CLI 提供了一个通用的形式叫做 [Ember 插件](#toc_addons) 来发布解决这些问题的可重用的库。 此外，您可能还希望使用一些像 CSS 框架这样的前端依赖或 Javascript 日期选择插件这样并不是特定于Ember应用的组件。 Ember CLI 通过标准的 [Bower 包管理器](#toc_bower)来安装这些软件.
 
-## Addons
+## 插件
 
-Ember Addons are installed using NPM (e.g. `npm install --save-dev ember-cli-sass`). Addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
+Ember插件通过 NPM 安装 (例如 `npm install --save-dev ember-cli-sass`)。 插件可能会通过自动修改项目的 `bower.json` 文件引入其他依赖项。
 
-You can find listings of addons on [Ember Observer](http://emberobserver.com).
+你可以在[Ember Observer](http://emberobserver.com)找到所有的插件.
 
 ## Bower
 
