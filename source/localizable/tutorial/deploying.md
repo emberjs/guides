@@ -13,7 +13,7 @@ scp -r dist/* myserver.com:/var/www/public/
 
 ## Deploying to surge.sh
 
-Surge.sh allows you to publish any folder to the web for free.
+[Surge.sh](http://surge.sh/) allows you to publish any folder to the web for free.
 To deploy an Ember application you can simply deploy the folder produced by `ember build`.
 
 You will need to have the surge cli tool installed:
