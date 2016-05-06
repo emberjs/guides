@@ -102,6 +102,8 @@ specify it in your `app/router.js`.
 
 At every level of nesting (including the top level), Ember
 automatically provides a route for the `/` path named `index`.
+To see when a new level of nesting occurs, check the router,
+whenever you see a `function`, that's a new level.
 
 For example, if you write a simple router like this:
 
