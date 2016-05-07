@@ -67,7 +67,7 @@ In our blog post component we want provide a way for the user to configure what 
 We will give them the option to specify either `markdown` or `html`.
 
 ```app/templates/index.hbs
-{{#blog-post editingStyle="markdown"}}
+{{#blog-post editStyle="markdown"}}
   <p class="author">by {{author}}</p>
   {{body}}
 {{/blog-post}}
