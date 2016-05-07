@@ -6,26 +6,31 @@ For Super Rentals, we want to be able to display a map showing where each rental
 
 We'll start by displaying the map and work our way back to using the Google Map API.
 
-
 ### Display Maps With a Component
 
 We'll start by adding a component that shows the rental's city on a map.
 
-```app/templates/components/rental-listing.hbs{+14}
-<h2>{{rental.title}}</h2>
-<p>Owner: {{rental.owner}}</p>
-<p>Type: {{rental-property-type rental.type}} - {{rental.type}}</p>
-<p>Location: {{rental.city}}</p>
-<p>Number of bedrooms: {{rental.bedrooms}}</p>
-{{#if isImageShowing}}
-  <p>
-    <img alt={{rental.type}} src={{rental.image}} width="500"/>
-  </p>
-  <button {{action "imageHide"}}>Hide image</button>
-{{else}}
-  <button {{action "imageShow"}}>Show image</button>
-{{/if}}
-{{location-map location=rental.city}}
+```app/templates/components/rental-listing.hbs{+19}
+<article class="listing">
+  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+    <img src="{{rental.image}}" alt="">
+    <small>View Larger</small>
+  </a>
+  <h3>{{rental.title}}</h3>
+  <div class="detail">
+    <span>Owner:</span> {{rental.owner}}
+  </div>
+  <div class="detail">
+    <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+  </div>
+  <div class="detail">
+    <span>Location:</span> {{rental.city}}
+  </div>
+  <div class="detail">
+    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  </div>
+  {{location-map location=rental.city}}
+</article>
 ```
 
 Next, generate the map component using Ember-CLI.
@@ -205,7 +210,6 @@ export default Ember.Service.extend({
   createMapElement() {
     let element = document.createElement('div');
     element.className = 'map';
-    element.setAttribute('style', 'width:300px;height:300px;');
     return element;
   }
 
@@ -299,5 +303,8 @@ export default Ember.Object.extend({
   }
 
 });
-
 ```
+
+We should now see some end to end maps functionality show up on our front page!
+
+![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)

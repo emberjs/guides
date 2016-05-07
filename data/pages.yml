@@ -24,6 +24,8 @@
       url: "routes-and-templates"
     - title: "The Model Hook"
       url: "model-hook"
+    - title: "Installing Addons"
+      url: "installing-addons"
     - title: "Ember Data"
       url: "ember-data"
     - title: "A Simple Component"
