@@ -381,8 +381,9 @@ The JSON should encode the relationship as an array of IDs and types:
     "relationships": {
       "comments": {
         "data": [
-          { "type": "comments", "id": "5" },
-          { "type": "comments", "id": "12" }
+          { "type": "comments", "id": "1" },
+          { "type": "comments", "id": "2" },
+          { "type": "comments", "id": "3" }
         ]
       }
     }
