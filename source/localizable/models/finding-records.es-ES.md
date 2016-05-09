@@ -34,7 +34,7 @@ It's important to note that `RecordArray` is not a JavaScript array. It is an ob
 
 ### Querying for Multiple Records
 
-Ember Data provides the ability to query for records that meet certain criteria. Calling [`store.query()`](http://emberjs.com/api/data/classes/DS.Store.html#method_query) will make a `GET` request with the passed object serialized as query params. This method returns a `PromiseArray` in the same way as `find`.
+Ember Data provides the ability to query for records that meet certain criteria. Calling [`store.query()`](http://emberjs.com/api/data/classes/DS.Store.html#method_query) will make a `GET` request with the passed object serialized as query params. This method returns a `PromiseArray` in the same way as `findAll`.
 
 For example, we could search for all `person` models who have the name of `Peter`:
 

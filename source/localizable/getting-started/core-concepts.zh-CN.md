@@ -1,57 +1,57 @@
-Before you start writing any Ember code, it's a good idea to get an overview of how an Ember application works.
+在你开始写任何 Ember 代码之前，最好概括地了解一下 Ember 应用程序的运作原理。
 
-![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
+![ember 核心概念](../../images/ember-core-concepts/ember-core-concepts.png)
 
-## Router and Route Handlers
+## 路由器和路由处理程序
 
-Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. The URL can be set in a few ways:
+想象一下我们正在为某个网站编写一个 web 应用程序，这个程序可以让用户把他们的物业发上去寻求出租。 在任意给定的时刻，我们都应该能够回答关于程序当前状态的问题，例如：*用户正在看哪些出租房？*以及*他们是否正在进行编辑？*在 Ember 中，这些问题的答案是通过 URL 来确定的。 URL 可以通过几种方式来设置：
 
-* The user loads the app for the first time.
-* The user changes the URL manually, such as by clicking the back button or by editing the address bar.
-* The user clicks a link within the app.
-* Some other event in the app causes the URL to change.
+* 用户第一次加载应用程序的时候。
+* 用户手动修改 URL，例如点击后退按钮，或者编辑地址栏。
+* 用户点击应用程序内的超链接。
+* 应用程序中其它一些导致 URL 变化的事件。
 
-No matter how the URL gets set, the first thing that happens is that the Ember router maps the URL to a route handler.
+无论 URL 如何被设置，有一件事情会首先被触发，那就是 Ember 路由器会把 URL 映射到某一个路由处理程序。
 
-The route handler then typically does two things:
+接下来，这个路由处理程序通常会做两件事：
 
-* It renders a template.
-* It loads a model that is then available to the template.
+* 渲染一个模板。
+* 加载一个数据模型并提供给模板使用。
 
-## Templates
+## 模板
 
-Ember uses templates to organize the layout of HTML in an application.
+Ember 用模板来组织应用程序中的 HTML 布局。
 
-Most templates in an Ember codebase are instantly familiar, and look like any fragment of HTML. For example:
-
-```handlebars
-<div>Hi, this is a valid Ember template!</div>
-```
-
-Ember templates use the syntax of [Handlebars](http://handlebarsjs.com) templates. Anything that is valid Handlebars syntax is valid Ember syntax.
-
-Templates can also display properties provided to them from their context, which is either a component or a route (technically, a controller presents the model from the route to the template, but this is rarely used in modern Ember apps and will be deprecated soon). For example:
+Ember 代码库中的多数模板都是大家很熟悉的，看起来就像普通的 HTML 片段。
 
 ```handlebars
-<div>Hi {{name}}, this is a valid Ember template!</div>
+<div>嗨，这是一个有效的 Ember 模板！</div>
 ```
 
-Here, `{{name}}` is a property provided by the template's context.
+Ember 模板使用 [Handlebars](http://handlebarsjs.com) 模板的语法。任何有效的 Handlebars 语法，在 Ember 中都有效。
 
-Besides properties, double curly braces (`{{}}`) may also contain helpers and components, which we'll discuss later.
+模板还可以显示来自自身语境中的数据属性，这个语境可能是一个组件，也可能是一个路由（从技术上讲，中间还要有一个控制器来把数目模型从路由传递到模板，但是在现代的 Ember 应用程序中已经很少使用控制器，并且很快将被不建议使用）。 例如：
 
-## Models
+```handlebars
+<div>嗨{{name}}，这是一个有效的 Ember 模板！</div>
+```
 
-Models represent persistent state.
+此处的`{{name}}`就是一个数据属性，由模板自身的语境提供而来。
 
-For example, a property rentals application would want to save the details of a rental when a user publishes it, and so a rental would have a model defining its details, perhaps called the *rental* model.
+除了属性以外，双大括号（`{{}}`）还可以用于表示助手和组件，这些我们稍后会讨论。
 
-A model typically persists information to a web server, although models can be configured to save to anywhere else, such as the browser's Local Storage.
+## 模型
 
-## Components
+模型代表可持久化的状态。
 
-While templates describe how a user interface looks, components control how the user interface *behaves*.
+举个例子，一个房产租赁应用程序，当用户发布一个出租房的时候，程序可能会想要保存房子的详细信息。因此一个出租房就会有一个模型来定义它的细节，通常我们可能把这个模型命名为 *rental*。
 
-Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
+一个模型通常把信息保存到一个 web 服务器上面，然而我们也可以把模型配置成储存在任何其它地方，例如浏览器的 Local Storage 中。
 
-Let's see these core concepts in action by building a property rental application in the next lesson.
+## 组件
+
+模板描述了用户界面的外观，而组件控制用户界面的*行为*。.
+
+组件由两部分组成：一个用 Handlebars 编写的模板，和一个 JavaScript 源文件来定义这个组件的行为。 比方说，我们的房产租赁应用可能会有一个组件来显示所有的出租房，叫做 `all-rentals`，还有另一个组件来显示某个特定出租房，叫做 `rental-tile`。 这个 `rental-tile` 组件可以定义一个行为，允许用户隐藏或者显示这个出租房的图片属性。
+
+下一课，我们会通过构建一个房产租赁应用程序，来了解这些核心概念是如何具体运作的。
