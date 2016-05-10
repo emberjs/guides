@@ -32,6 +32,8 @@
       url: "hbs-helper"
     - title: "An Autocomplete Component"
       url: "autocomplete-component"
+    - title: "A Service and Utility"
+      url: "service"
     - title: "Deploying"
       url: "deploying"
 
