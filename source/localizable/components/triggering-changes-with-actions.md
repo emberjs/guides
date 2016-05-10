@@ -137,7 +137,7 @@ One important thing to know about actions is that they're functions
 you can call, like any other method on your component.
 So they can be passed from one component to another like this:
 
-```app/components/user-profile.hbs
+```app/templates/components/user-profile.hbs
 {{button-with-confirmation text="Click here to delete your account." onConfirm=(action "userDidDeleteAccount")}}
 ```
 
