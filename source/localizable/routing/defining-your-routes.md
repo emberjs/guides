@@ -46,6 +46,30 @@ routes, using the name that you provided to the `route` method.
 The `{{link-to}}` helper will also add an `active` class to the link that
 points to the currently active route.
 
+Multi-word route names are conventionally dasherized, such as:
+
+```app/router.js
+Router.map(function() {
+  this.route('blog-post', { path: '/blog-post' });
+});
+```
+
+The route defined above will by default use the `blog-post.js` route handler,
+the `blog-post.hbs` template, and be referred to as `blog-post` in any
+`{{link-to}}` helpers.
+
+Multi-word route names that break this convention, such as:
+
+```app/router.js
+Router.map(function() {
+  this.route('blog_post', { path: '/blog-post' });
+});
+```
+
+will still by default use the `blog-post.js` route handler and the
+`blog-post.hbs` template, but will be referred to as `blog_post` in any
+`{{link-to}}` helpers.
+
 ## Nested Routes
 
 Often you'll want to have a template that displays inside another template.
