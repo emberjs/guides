@@ -50,7 +50,7 @@ directory `ember-quickstart` and start the development server by typing:
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 After a few seconds, you should see output that looks like this:
