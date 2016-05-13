@@ -13,7 +13,7 @@ objects in the following ways:
 
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
-  via the `observes()` or `observesBefore()` methods. Use of these methods
+  via the `observes()` method. Use of these methods
   is now discouraged and not covered in recent versions of the Guides.
 
 This is the extent to which Ember.js enhances native prototypes. We have
