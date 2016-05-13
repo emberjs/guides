@@ -48,7 +48,7 @@ irão, ainda por padrão, usar o handler `blog-post.js` e a template `blog-post.
 
 Muitas vezes você vai querer que uma template seja exibida dentro de outra template. Por exemplo, em um blog, ao invés de ir de uma lista de posts para a criação de um novo post, voce pode querer que a pagina de criação de posts seja exibida ao lado da lista.
 
-In these cases, you can use nested routes to display one template inside of another.
+Nesses casos, você pode usar rotas embutidas para exibir uma template dentro de outra.
 
 You can define nested routes by passing a callback to `this.route`:
 
