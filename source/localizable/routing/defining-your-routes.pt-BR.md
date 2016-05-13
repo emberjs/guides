@@ -2,12 +2,11 @@ Quando seu aplicativo for iniciado, o roteador compara com a URL com as *rotas* 
 
 ## Basic Routes
 
-O método [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) do roteador do seu aplicativo Ember pode ser invocado para definir mapeamentos de URL. When calling `map()`, you should pass a function that will be invoked with the value `this` set to an object which you can use to create routes.
+O método [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) do roteador do seu aplicativo Ember pode ser invocado para definir mapeamentos de URL. Ao chamar `map()`, você deve passar uma função que será invocada com o valor de `this` sendo um objeto que você pode usar para criar rotas.
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
-    <br />Now, when the user visits `/about`, Ember will render the `about`
-    template. Visiting `/favs` will render the `favorites` template.
+    <br />Agora, quando o usuario visitar `/about`, Ember vai renderizar a template`about`. Visiting `/favs` will render the `favorites` template.
     
     You can leave off the path if it is the same as the route
     name. In this case, the following is equivalent to the above example:
