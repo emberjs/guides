@@ -6,19 +6,16 @@ O método [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map)
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
-    <br />Agora, quando o usuario visitar `/about`, Ember vai renderizar a template`about`. Visiting `/favs` will render the `favorites` template.
+    <br />Agora, quando o usuario visitar `/about`, Ember vai renderizar a template`about`. Visitar `/favs` irá renderizar a template `favorites`.
     
-    You can leave off the path if it is the same as the route
-    name. In this case, the following is equivalent to the above example:
-    
-    ```app/router.js
+    Voce pode omitir path se o nome da template tem o mesmo nome da rota. ```app/router.js
     Router.map(function() {
       this.route('about');
       this.route('favorites', { path: '/favs' });
     });
     
 
-Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) to navigate between routes, using the name that you provided to the `route` method.
+Dentro de suas templates, voce pode usar [`` `{{link-to}}` ``](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) para navegar entre as rotas, usando o nome que voce definiu no método `route`.
 
 ```handlebars
 {{#link-to "index"}}<img class="logo">{{/link-to}}
