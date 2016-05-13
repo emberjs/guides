@@ -1,4 +1,4 @@
-When your application starts, the router matches the current URL to the *routes* that you've defined. The routes, in turn, are responsible for displaying templates, loading data, and otherwise setting up application state.
+Quando seu aplicativo for iniciado, o roteador compara com a URL com as *rotas* que você definiu. The routes, in turn, are responsible for displaying templates, loading data, and otherwise setting up application state.
 
 ## Basic Routes
 

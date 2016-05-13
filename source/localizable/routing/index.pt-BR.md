@@ -11,5 +11,5 @@ Independentemente de como a URL seja alterada, o router de Ember mapeia a URL pa
 
 * Renderiza uma template.
 * Carrega o model que estará eventualmente disponível para a template.
-* Ele pode redirecionar para um outro route, se o usuário não tem permissão de acessar aquela parte do aplicativo, por exemplo.
-* Ele pode lidar com ações que envolvem a mudança de um modelo ou em transição para outro route.
+* Ele pode redirecionar para uma outra rota, se o usuário não tem permissão de acessar aquela parte do aplicativo, por exemplo.
+* Ele pode lidar com ações que envolvem a mudança de um model ou transição para outra rota.
