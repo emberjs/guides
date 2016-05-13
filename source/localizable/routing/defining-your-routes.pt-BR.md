@@ -34,7 +34,7 @@ Rotas com nomes compostos por múltiplas palavras, por convenção terão endere
 
     <br />A rota definida acima, por padrão, vai utilizar o handler `blog-post.js`, a template `blog-post.hbs`, e qualquer `{{link-to}}` helper vai utilizar `blog-post` para referencia-la.
     
-    Multi-word route names that break this convention, such as:
+    Rotas com nomes composts de varias palavras quebram esta convenção, como este:
     
     ```app/router.js
     Router.map(function() {
@@ -42,11 +42,11 @@ Rotas com nomes compostos por múltiplas palavras, por convenção terão endere
     });
     
 
-will still by default use the `blog-post.js` route handler and the `blog-post.hbs` template, but will be referred to as `blog_post` in any `{{link-to}}` helpers.
+irão, ainda por padrão, usar o handler `blog-post.js` e a template `blog-post.hbs`, mas o helper `{{link-to}}` vai referencia-la como `blog_post`.
 
 ## Nested Routes
 
-Often you'll want to have a template that displays inside another template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
+Muitas vezes você vai querer que uma template seja exibida dentro de outra template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
 
 In these cases, you can use nested routes to display one template inside of another.
 
