@@ -46,7 +46,7 @@ irão, ainda por padrão, usar o handler `blog-post.js` e a template `blog-post.
 
 ## Nested Routes
 
-Muitas vezes você vai querer que uma template seja exibida dentro de outra template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
+Muitas vezes você vai querer que uma template seja exibida dentro de outra template. Por exemplo, em um blog, ao invés de ir de uma lista de posts para a criação de um novo post, voce pode querer que a pagina de criação de posts seja exibida ao lado da lista.
 
 In these cases, you can use nested routes to display one template inside of another.
 
