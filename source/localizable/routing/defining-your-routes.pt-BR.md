@@ -15,7 +15,7 @@ O método [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map)
     });
     
 
-Dentro de suas templates, voce pode usar [`` `{{link-to}}` ``](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) para navegar entre as rotas, usando o nome que voce definiu no método `route`.
+Dentro de suas templates, voce pode usar [`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) para navegar entre as rotas, usando o nome que voce definiu no método `route`.
 
 ```handlebars
 {{#link-to "index"}}<img class="logo">{{/link-to}}
@@ -26,7 +26,7 @@ Dentro de suas templates, voce pode usar [`` `{{link-to}}` ``](http://emberjs.co
 </nav>
 ```
 
-The `{{link-to}}` helper will also add an `active` class to the link that points to the currently active route.
+O helper `{{link-to}}` tambem ira adicionar a classe `active` ao link que aponta para a rota atual.
 
 Multi-word route names are conventionally dasherized, such as:
 
