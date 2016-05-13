@@ -7,10 +7,10 @@ The controller receives a single property from the Route – `model` – which i
 To define a Controller, run:
 
 ```shell
-ember generate controller my-component-name
+ember generate controller my-controller-name
 ```
 
-The value of `my-component-name` must match the name of the Route that renders it. So a Route named `blog-post` would have a matching Controller named `blog-post`.
+The value of `my-controller-name` must match the name of the Route that renders it. So a Route named `blog-post` would have a matching Controller named `blog-post`.
 
 You only need to generate a Controller if you want to customize its properties or provide any `actions`. If you have no customizations, Ember will provide a Controller instance for you at run time.
 

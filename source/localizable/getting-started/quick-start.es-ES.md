@@ -39,7 +39,7 @@ Comprobemos que todo esté funcionando correctamente. Accedamos al directorio de
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 Después de unos segundos, deberías leer en el terminal algo parecido a esto:

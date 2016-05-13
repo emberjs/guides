@@ -30,42 +30,62 @@ Dentro de tus plantillas, puedes utilizar [`{{link-to}}`](http://emberjs.com/api
 
 El ayudante `{{link-to}}` también agregará la clase `active` al enlace que señala a la ruta activa.
 
+Multi-word route names are conventionally dasherized, such as:
+
+```app/router.js Router.map(function() { this.route('blog-post', { path: '/blog-post' }); });
+
+    <br />The route defined above will by default use the `blog-post.js` route handler,
+    the `blog-post.hbs` template, and be referred to as `blog-post` in any
+    `{{link-to}}` helpers.
+    
+    Multi-word route names that break this convention, such as:
+    
+    ```app/router.js
+    Router.map(function() {
+      this.route('blog_post', { path: '/blog-post' });
+    });
+    
+
+will still by default use the `blog-post.js` route handler and the `blog-post.hbs` template, but will be referred to as `blog_post` in any `{{link-to}}` helpers.
+
 ## Rutas Anidadas
 
-A menudo desearás tener una plantilla que se muestra dentro de otra plantilla. Por ejemplo, en una aplicación de blogging, en vez de ir de una lista de blogs para crear una nueva entrada, talvez quieres que la pantalla de creación de entrada este al lado de la lista.
+Often you'll want to have a template that displays inside another template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
 
-En estos casos, puedes utilizar rutas anidadas para mostrar una plantilla dentro de otra.
+In these cases, you can use nested routes to display one template inside of another.
 
-Puedes definir rutas anidadas pasando una retrollamada a `this.route`:
+You can define nested routes by passing a callback to `this.route`:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />Y luego añade el ayudante '{{outlet}}' a tu plantilla donde deseas que la plantilla anidada sea mostrada: 
+    <br />And then add the `{{outlet}}` helper to your template where you want the nested
+    template to display:
+    
     ```templates/posts.hbs
-    <h1> Posts </h1>
-    <!--Muestra las entradas y otro contenido--> 
+    <h1>Posts</h1>
+    <!-- Display posts and other content -->
     {{outlet}}
     
 
-El router crea una ruta para `/posts` y una para `posts/new`. Cuando un usuario visita `/posts`, simplemente verá la plantilla `posts.hbs`. (En la sección, [Rutas Índice](#toc_index-routes) se explica una adición importante a esto). Cuando el usuario visita `posts/new`, verá la plantilla de `posts/new.hbs` en el `{{outlet}}` de la plantilla de `posts`.
+This router creates a route for `/posts` and for `/posts/new`. When a user visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index routes](#toc_index-routes) explains an important addition to this.) When the user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into the `{{outlet}}` of the `posts` template.
 
-El nombre de la ruta anidada incluye los nombres de sus antepasados. Si quieres hacer una transición a una ruta (ya sea usando `transitionTo` o `{{#link-to}}`), asegúrate de utilizar el nombre completo de la ruta (`posts.new`, no `new`).
+A nested route's names includes the names of its ancestors. If you want to transition to a route (either via `transitionTo` or `{{#link-to}}`), make sure to use the full route name (`posts.new`, not `new`).
 
 ## La Ruta de la Aplicación
 
-La ruta de la `aplicación` es ingresada cuando la aplicación arranca por primera vez. Como otras rutas, cargará la plantilla con el mismo nombre (`aplicación` en este caso) predeterminadamente. Debes de poner tu encabezado, pie de página y cualquier otro contenido decorativo aquí. Todas las otras rutas producirán sus plantillas en el `{{outlet}}` de la plantilla `application.hbs`.
+The `application` route is entered when your app first boots up. Like other routes, it will load a template with the same name (`application` in this case) by default. You should put your header, footer, and any other decorative content here. All other routes will render their templates into the `application.hbs` template's `{{outlet}}`.
 
-Esta ruta es parte de cada aplicación, por lo cual no necesitas especificar en tu `app/router.js`.
+This route is part of every application, so you don't need to specify it in your `app/router.js`.
 
 ## Rutas de Índice
 
-En cada nivel de anidamiento (incluyendo el nivel superior), Ember proporciona automáticamente una ruta para el camino `/` llamada `index`.
+At every level of nesting (including the top level), Ember automatically provides a route for the `/` path named `index`. To see when a new level of nesting occurs, check the router, whenever you see a `function`, that's a new level.
 
-Por ejemplo, si escribes un router simple como este:
+For example, if you write a simple router like this:
 
 ```app/router.js Router.map(function(){ this.route('favorites'); });
 
-    <br />Es el equivalente de: 
+    <br />It is the equivalent of:
     
     ```app/router.js
     Router.map(function(){
@@ -74,13 +94,13 @@ Por ejemplo, si escribes un router simple como este:
     });
     
 
-La plantilla `index` sera producida en el `{{outlet}}` de la plantilla `application`. Si el usuario navega a `/favorites`, Ember reemplazará a la plantilla de `index` con la plantilla de `favorites`.
+The `index` template will be rendered into the `{{outlet}}` in the `application` template. If the user navigates to `/favorites`, Ember will replace the `index` template with the `favorites` template.
 
-Un router anidado como este:
+A nested router like this:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('favorites'); }); });
 
-    <br />Es el equivalente de:
+    <br />Is the equivalent of:
     
     ```app/router.js
     Router.map(function(){
@@ -92,29 +112,33 @@ Un router anidado como este:
     });
     
 
-Si el usuario navega a `/posts`, la ruta actual será `posts.index`, y la plantilla `posts/index` será mostrada en el `{{outlet}}` de la plantilla de `posts`.
+If the user navigates to `/posts`, the current route will be `posts.index`, and the `posts/index` template will be rendered into the `{{outlet}}` in the `posts` template.
 
-Si el usuario luego navega a `/posts/favorites`, Ember reemplazará el `{{outlet}}` en la plantilla de `posts` con la plantilla de `posts/favorites`.
+If the user then navigates to `/posts/favorites`, Ember will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
 
 ## Segmentos Dinámicos
 
-Una de las responsabilidades de la ruta es cargar un modelo.
+One of the responsibilities of a route is to load a model.
 
-Por ejemplo, si tenemos la ruta `this.route('posts');` nuestra ruta podría cargar todos las entradas del blog para la aplicación.
+For example, if we have the route `this.route('posts');`, our route might load all of the blog posts for the app.
 
-Porque `/posts` representa un modelo determinado, no necesitamos información adicional para saber qué extraer. Sin embargo, si queremos una ruta para representar una sola entrada, no queremos tener que codificar cada posible entrada en el router.
+Because `/posts` represents a fixed model, we don't need any additional information to know what to retrieve. However, if we want a route to represent a single post, we would not want to have to hardcode every possible post into the router.
 
-Para esto usamos *segmentos dinámicos*.
+Enter *dynamic segments*.
 
-Un segmento dinámico es una porción de la dirección URL que empieza con un `:` y es seguida por un identificador.
+A dynamic segment is a portion of a URL that starts with a `:` and is followed by an identifier.
 
 ```app/router.js Router.map(function() { this.route('posts'); this.route('post', { path: '/post/:post_id' }); });
 
-    <br />Si el usuario navega a ' post/5 ', la ruta tendrá en `post_id` el valor de `5` para cargar la entrada correcta. En la siguiente sección, [Especificando el Modelo de una Ruta] (../specifying-a-routes-model), aprenderás más acerca de cómo cargar un modelo.
+    <br />If the user navigates to `/post/5`, the route will then have the `post_id` of
+    `5` to use to load the correct post. In the next section, [Specifying a Route's
+    Model](../specifying-a-routes-model), you will learn more about how to load a model.
     
-    ## Comodín / Rutas Globales
+    ## Wildcard / globbing routes
     
-    Puedes definir rutas comodín que coincidirán con varios segmentos de la URL. Esto podría utilizarse, por ejemplo, si deseas una ruta de comodín que es útil cuando el usuario introduce una URL incorrecta no gestionada por tu aplicación.
+    You can define wildcard routes that will match multiple URL segments. This could be used, for example,
+    if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed
+    by your app.
     
     ```app/router.js
     Router.map(function() {
@@ -124,4 +148,4 @@ Un segmento dinámico es una porción de la dirección URL que empieza con un `:
 
 ## Manejadores de Rutas
 
-Para que tu ruta haga algo más allá que producir una plantilla con el mismo nombre, tendrás que create un manejador de ruta. Las siguientes guías explorarán las funciones de manejadores de ruta. Para más información sobre rutas, consulte la documentación de la API para [el router](http://emberjs.com/api/classes/Ember.Router.html) y para [manejadores de ruta](http://emberjs.com/api/classes/Ember.Route.html).
+To have your route do something beyond render a template with the same name, you'll need to create a route handler. The following guides will explore the different features of route handlers. For more information on routes, see the API documentation for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route handlers](http://emberjs.com/api/classes/Ember.Route.html).

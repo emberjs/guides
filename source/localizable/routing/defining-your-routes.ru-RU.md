@@ -32,6 +32,24 @@ Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classe
 
 The `{{link-to}}` helper will also add an `active` class to the link that points to the currently active route.
 
+Multi-word route names are conventionally dasherized, such as:
+
+```app/router.js Router.map(function() { this.route('blog-post', { path: '/blog-post' }); });
+
+    <br />The route defined above will by default use the `blog-post.js` route handler,
+    the `blog-post.hbs` template, and be referred to as `blog-post` in any
+    `{{link-to}}` helpers.
+    
+    Multi-word route names that break this convention, such as:
+    
+    ```app/router.js
+    Router.map(function() {
+      this.route('blog_post', { path: '/blog-post' });
+    });
+    
+
+will still by default use the `blog-post.js` route handler and the `blog-post.hbs` template, but will be referred to as `blog_post` in any `{{link-to}}` helpers.
+
 ## Nested Routes
 
 Often you'll want to have a template that displays inside another template. For example, in a blogging application, instead of going from a list of blog posts to creating a new post, you might want to have the post creation page display next to the list.
@@ -63,7 +81,7 @@ This route is part of every application, so you don't need to specify it in your
 
 ## Index Routes
 
-At every level of nesting (including the top level), Ember automatically provides a route for the `/` path named `index`.
+At every level of nesting (including the top level), Ember automatically provides a route for the `/` path named `index`. To see when a new level of nesting occurs, check the router, whenever you see a `function`, that's a new level.
 
 For example, if you write a simple router like this:
 

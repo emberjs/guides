@@ -39,7 +39,7 @@ Emberは、あなたのWebアプリケーションがプロダクションに必
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 数秒すると、次のような出力が表示されます。

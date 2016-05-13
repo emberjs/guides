@@ -1,15 +1,15 @@
-Imagine we are writing a web app for managing a blog. At any given time, we should be able to answer questions like *What post are they looking at?* and *Are they editing it?* In Ember.js, the answer to these questions is determined by the URL.
+Imagine que estamos escrevendo um aplicativo web para gerenciar um blog. Em determinado momento, ele deve ser capaz de responder a perguntas como *que post eles estão olhando?* e *eles estão editando este post?* Em Ember.js, a resposta para estas perguntas é determinada pela URL.
 
-The URL can be set in a few ways:
+A URL pode ser definida de algumas maneiras:
 
-* The user loads the app for the first time.
-* The user changes the URL manually, such as by clicking the back button or by editing the address bar.
-* The user clicks a link within the app.
-* Some other event in the app causes the URL to change.
+* O usuário carrega o aplicativo pela primeira vez.
+* O usuário altera o URL manualmente, clicando no botão voltar ou editando a barra de endereços, por exemplo.
+* O usuário clica em um link dentro do aplicativo.
+* Algum outro evento no aplicativo faz com que a URL mude.
 
-Regardless of how the URL becomes set, the Ember router then maps the current URL to one or more route handlers. A route handler can do several things:
+Independentemente de como a URL seja alterada, o router de Ember mapeia a URL para um ou mais route handlers. Um route handler pode fazer várias coisas:
 
-* It can render a template.
-* It can load a model that is then available to the template.
-* It can redirect to a new route, such as if the user isn't allowed to visit that part of the app.
-* It can handle actions that involve changing a model or transitioning to a new route.
+* Renderiza uma template.
+* Carrega o model que estará eventualmente disponível para a template.
+* Ele pode redirecionar para um outro route, se o usuário não tem permissão de acessar aquela parte do aplicativo, por exemplo.
+* Ele pode lidar com ações que envolvem a mudança de um modelo ou em transição para outro route.

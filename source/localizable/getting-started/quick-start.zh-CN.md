@@ -39,7 +39,7 @@ ember new ember-quickstart
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 几秒钟后，你会看到如下的输出：

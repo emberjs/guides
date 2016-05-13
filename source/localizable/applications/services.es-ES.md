@@ -4,7 +4,7 @@ Los servicios son útiles para implementar funcionalidades que requieran mantene
 
 * Autenticación de la sesión de usuario.
 * Geolocalización.
-* Web Sockets.
+* WebSockets.
 * Server-sent events or notifications.
 * Server-backed API calls that may not fit Ember Data.
 * APIs de terceros.

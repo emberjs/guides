@@ -94,7 +94,7 @@ The component template will have a button and a div that shows the confirmation 
     you can call, like any other method on your component.
     So they can be passed from one component to another like this:
     
-    ```app/components/user-profile.hbs
+    ```app/templates/components/user-profile.hbs
     {{button-with-confirmation text="Click here to delete your account." onConfirm=(action "userDidDeleteAccount")}}
     
 

@@ -39,7 +39,7 @@ Vamos ver se tudo está funcionando corretamente. `cd` para o diretório de apli
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 Após alguns segundo, você deverá ver a seguinte saída:

@@ -39,7 +39,7 @@ Let's make sure everything is working properly. `cd` into the application direct
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 After a few seconds, you should see output that looks like this:

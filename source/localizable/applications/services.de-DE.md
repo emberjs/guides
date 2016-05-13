@@ -4,7 +4,7 @@ Services are useful for features that require shared state or persistent connect
 
 * User/session authentication.
 * Geolocation.
-* Web Sockets.
+* WebSockets.
 * Server-sent events or notifications.
 * Server-backed API calls that may not fit Ember Data.
 * Third-party APIs.

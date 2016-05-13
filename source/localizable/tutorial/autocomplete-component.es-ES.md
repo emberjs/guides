@@ -1,57 +1,77 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them search for properties within a city, and also suggest cities to them as they type.
+As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
 
-To begin, let's generate our new component. We'll call this component `filter-listing`.
+To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
 ```shell
-ember g component filter-listing
+ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/filter-listing.hbs`) and a JavaScript file (`app/components/filter-listing.js`).
+As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
 
-La plantilla de Handlebars se ve así:
+Let's start with writing some tests to help us think through what we are doing. The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to 2 actions: one to provide a list of all items when no filter is provided and an action to search listings by city.
 
-```app/templates/components/filter-listing.hbs City: {{input value=filter key-up=(action autoComplete filter)}}
+For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
-<button {{action search filter}}>Search</button>
+Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises. Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
 
-{{#each filteredList as |item|}} <li {{action 'choose' item.city}}>{{item.city}}</li> {{/each}} 
+```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait';
 
-    <br />The template contains an [`{{input}}`](../../templates/input-helpers)
-    helper that renders as a text field, in which the user can type a pattern
-    to filter the list of cities used in a search. La propiedad `value` del `input` se enlazará a la propiedad `filter` de nuestro componente.
-    The `key-up` property will be bound to the `autoComplete` action,
-    passed in to the component from the `index` controller. The `autoComplete`
-    action takes the `filter` property as the argument when invoked.
+moduleForComponent('list-filter', 'Integration | Component | filter listing', { integration: true });
+
+const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}]; const FILTERED_ITEMS = [{city: 'San Francisco'}];
+
+test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return Ember.RSVP.resolve(ITEMS); } else { return Ember.RSVP.resolve(FILTERED_ITEMS); } });
+
+// with an integration test, you can set up and use your component in the same way your application // will use it. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |rentals|}}
+      <ul>
+      {{#each rentals as |item|}}
+        <li class="city">
+          {{item.city}}
+        </li>
+      {{/each}}
+      </ul>
+    {{/list-filter}}`);
+
+// the wait function will return a promise that will wait for all promises // and xhr requests to resolve before running the contents of the then block. return wait().then(() => { assert.equal(this.$('.city').length, 3); assert.equal(this.$('.city').first().text().trim(), 'San Francisco'); }); });
+
+    For our second test, we'll check that typing text in the filter will actually appropriately call the filter action and update the listings shown.
     
-    The template also contains a button that is bound to the `search` action.
-    Similar to the `autoComplete` action, the `search` action is passed in from
-    the `index` controller and takes the `filter` property when invoked.
+    We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
     
-    Lastly, the `filter-listing.hbs` template contains an unordered list,
-    that displays the `city` property of each item in the `filteredList`
-    property in our component. Clicking the list item will fire the `choose`
-    action with the `city` property of the item as a parameter, which will
-    then populate the `input` field with the name of that `city`.
-    
-    Here is what the component's JavaScript looks like:
-    
-    ```app/components/filter-listing.js
-    export default Ember.Component.extend({
-      filter: null,
-    
-      actions: {
-        choose(city) {
-          this.set('filter', city);
+    ```tests/integration/components/list-filter-test.js
+    test('should update with matching listings', function (assert) {
+      this.on('filterByCity', (val) => {
+        if (val === '') {
+          return Ember.RSVP.resolve(ITEMS);
+        } else {
+          return Ember.RSVP.resolve(FILTERED_ITEMS);
         }
-      }
+      });
+    
+      this.render(hbs`
+        {{#list-filter filter=(action 'filterByCity') as |rentals|}}
+          <ul>
+          {{#each rentals as |item|}}
+            <li class="city">
+              {{item.city}}
+            </li>
+          {{/each}}
+          </ul>
+        {{/list-filter}}
+      `);
+    
+      // The keyup event here should invoke an action that will cause the list to be filtered
+      this.$('.list-filter input').val('San').keyup();
+    
+      return wait().then(() => {
+        assert.equal(this.$('.city').length, 1);
+        assert.equal(this.$('.city').text().trim(), 'San Francisco');
+      });
     });
     
+    
 
-There's a property for each of the `filter` and `filteredList`, and the `choose` action as described above.
-
-Only the `choose` action is defined by the `filter-listing.js` component. Both the `autoComplete` and `search` actions are \[passed\] (../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as *closure actions*.
-
-To see how this works, change your `index.hbs` template to look like this:
+Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
 
 ```app/templates/index.hbs 
 
@@ -61,19 +81,41 @@ We hope you find exactly what you're looking for in a place to stay.
   
 
 
-{{filter-listing filteredList=filteredList autoComplete=(action 'autoComplete') search=(action 'search')}}
+{{#list-filter filter=(action 'filterByCity') as |rentals|}} 
 
-{{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{/each}}
+{{#each rentals as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{/each}}  {{/list-filter}}
 
 {{#link-to 'about'}}About{{/link-to}} {{#link-to 'contact'}}Click here to contact us.{{/link-to}}
 
-    <br />We've added the `filter-listing.js` component to our `index.hbs` template.
-    We then pass in the functions and properties that we want the `filter-listing`
-    component to use. The `index` page defines some of the logic for
-    how the component should behave, and the component uses those specific
-    functions and properties.
+    <br />Now that we have failing tests and an idea of what we want our component contract to be, we'll implement the component.
+    We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
     
-    For this to work, we need to introduce a `controller` into our app.
+    ```app/templates/components/list-filter.hbs
+    City: {{input value=value key-up=(action 'handleFilterEntry')}}
+    {{yield rentals}}
+    
+
+The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be bound to the `value` property in our component. The `key-up` property will be bound to the `handleFilterEntry` action.
+
+Here is what the component's JavaScript looks like:
+
+```app/components/list-filter.js import Ember from 'ember';
+
+export default Ember.Component.extend({ classNames: ['list-filter'], value: '',
+
+init() { this._super(...arguments); this.get('filter')('').then((results) => this.set('rentals', results)); },
+
+actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let filterAction = this.get('filter'); filterAction(filterInputValue).then((filterResults) => this.set('rentals', filterResults)); } }
+
+});
+
+    <br />We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
+    Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
+    
+    Both the `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+    
+    To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
+    
     Generate a controller for the `index` page by running the following:
     
     ```shell
@@ -84,25 +126,13 @@ Now, define your new controller like so:
 
 ```app/controllers/index.js import Ember from 'ember';
 
-export default Ember.Controller.extend({ filteredList: null, actions: { autoComplete(param) { if (param !== '') { this.get('store').query('rental', { city: param }).then((result) => this.set('filteredList', result)); } else { this.set('filteredList', null); } }, search(param) { if (param !== '') { this.get('store').query('rental', { city: param }).then((result) => this.set('model', result)); } else { this.get('store').findAll('rental').then((result) => this.set('model', result)); } } } });
+export default Ember.Controller.extend({ actions: { filterByCity(param) { if (param !== '') { return this.get('store').query('rental', { city: param }); } else { return this.get('store').findAll('rental'); } } } });
 
-    <br />As you can see, we define a property in the controller called `filteredList`,
-    that is referenced from within the `filter-listing.hbs` template.
+    <br />When the user types in the text field in our component, the `filterByCity` action in the controller is called. 
+    This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
+    The result of the query is returned to the caller.
     
-    When the user types in the text field in our component, the `autoComplete`
-    action in the controller is called. This action takes in the `filter`
-    property, and filters the `rental` data for records in data store that match
-    what the user has typed thus far. The result of the query is set as the
-    `filteredList` property, which is used to populate the autocomplete list
-    in the component.
-    
-    We also define a `search` action here that is passed in to the component,
-    and called when the search button is clicked. This is slightly different
-    in that the result of the query is actually used to update the `model`
-    of the `index` route, and that changes the full rental listing on the
-    page.
-    
-    For these actions to work, we need to modify the Mirage `config.js` file
+    For this action to work, we need to modify the Mirage `config.js` file
     to look like this, so that it can respond to our queries.
     
     ```mirage/config.js
@@ -153,6 +183,3 @@ export default Ember.Controller.extend({ filteredList: null, actions: { autoComp
         }
       });
     }
-    
-
-With these changes, users can search for properties in a given city, with a search field that provides suggestions as they type.
