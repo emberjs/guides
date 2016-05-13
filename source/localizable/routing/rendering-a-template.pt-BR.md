@@ -1,4 +1,4 @@
-One job of a route handler is rendering the appropriate template to the screen.
+Uma das funções de um route handler é renderizar a template correta.
 
 By default, a route handler will render the template with the same name as the route. Take this router:
 
