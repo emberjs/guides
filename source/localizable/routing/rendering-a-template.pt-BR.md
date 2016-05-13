@@ -1,14 +1,12 @@
-Uma das funções de um route handler é renderizar a template correta.
+Uma das funções do handler de uma rota é renderizar a template correta.
 
-By default, a route handler will render the template with the same name as the route. Take this router:
+Por padrão, o handler de uma rota vai renderizar a template que tenha o mesmo nome da rota sendo acessada. Para fins de exemplo, considere este router:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />Here, the `posts` route will render the `posts.hbs` template, and
-    the `posts.new` route will render `posts/new.hbs`.
+    <br />Aqui, a rota `posts` vai renderizar a template `posts.hbs`, e a rota `posts.new` vai renderizar `posts/new.hbs`.
     
-    Each template will be rendered into the `{{outlet}}` of its parent route's
-    template. For example, the `posts.new` route will render its template into the
+    Cada template sera renderizado dentro do `{{outlet}}` na template da rota anterior. For example, the `posts.new` route will render its template into the
     `posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
     the `application.hbs`'s `{{outlet}}`.
     
