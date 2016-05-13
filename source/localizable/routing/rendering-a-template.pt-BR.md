@@ -6,9 +6,7 @@ Por padrão, o handler de uma rota vai renderizar a template que tenha o mesmo n
 
     <br />Aqui, a rota `posts` vai renderizar a template `posts.hbs`, e a rota `posts.new` vai renderizar `posts/new.hbs`.
     
-    Cada template sera renderizado dentro do `{{outlet}}` na template da rota anterior. For example, the `posts.new` route will render its template into the
-    `posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
-    the `application.hbs`'s `{{outlet}}`.
+    Cada template sera renderizado dentro do `{{outlet}}` na template da rota anterior na hierarquia. Por exemplo, a template da rota `posts.new` vai ser renderizada dentro do `{{outlet}}` da template `posts.hbs`, e a template da rota `posts` vai ser renderizada dentro do `{{outlet}}` da template `application.hbs`.
     
     If you want to render a template other than the default one, implement the
     [`renderTemplate()`][1] hook:
