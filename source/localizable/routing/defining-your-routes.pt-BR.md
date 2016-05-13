@@ -50,12 +50,11 @@ Muitas vezes você vai querer que uma template seja exibida dentro de outra temp
 
 Nesses casos, você pode usar rotas embutidas para exibir uma template dentro de outra.
 
-You can define nested routes by passing a callback to `this.route`:
+Você pode definir rotas embutidas passando um novo callback para `this.route`:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />And then add the `{{outlet}}` helper to your template where you want the nested
-    template to display:
+    <br />E adicionar um helper`{{outlet}}` em sua template onde você quer que a rota seja exibida:
     
     ```templates/posts.hbs
     <h1>Posts</h1>
