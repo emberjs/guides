@@ -28,13 +28,11 @@ Dentro de suas templates, voce pode usar [`{{link-to}}`](http://emberjs.com/api/
 
 O helper `{{link-to}}` tambem ira adicionar a classe `active` ao link que aponta para a rota atual.
 
-Multi-word route names are conventionally dasherized, such as:
+Rotas com nomes compostos por múltiplas palavras, por convenção terão endereços também separados por hífen, por exemplo:
 
 ```app/router.js Router.map(function() { this.route('blog-post', { path: '/blog-post' }); });
 
-    <br />The route defined above will by default use the `blog-post.js` route handler,
-    the `blog-post.hbs` template, and be referred to as `blog-post` in any
-    `{{link-to}}` helpers.
+    <br />A rota definida acima, por padrão, vai utilizar o handler `blog-post.js`, a template `blog-post.hbs`, e qualquer `{{link-to}}` helper vai utilizar `blog-post` para referencia-la.
     
     Multi-word route names that break this convention, such as:
     
