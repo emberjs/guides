@@ -4,7 +4,7 @@ By default, Ember.js will extend the prototypes of native JavaScript objects in 
 
 * `String` is extended to add convenience methods, such as `camelize()` and `w()`. You can find a list of these methods with the [Ember.String documentation](http://emberjs.com/api/classes/Ember.String.html).
 
-* `Function` is extended with methods to annotate functions as computed properties, via the `property()` method, and as observers, via the `observes()` or `observesBefore()` methods. Use of these methods is now discouraged and not covered in recent versions of the Guides.
+* `Function` is extended with methods to annotate functions as computed properties, via the `property()` method, and as observers, via the `observes()` method. Use of these methods is now discouraged and not covered in recent versions of the Guides.
 
 This is the extent to which Ember.js enhances native prototypes. We have carefully weighed the tradeoffs involved with changing these prototypes, and recommend that most Ember.js developers use them. These extensions significantly reduce the amount of boilerplate code that must be typed.
 

@@ -44,7 +44,7 @@ Rotas com nomes compostos por múltiplas palavras, por convenção terão endere
 
 irão, ainda por padrão, usar o handler `blog-post.js` e a template `blog-post.hbs`, mas o helper `{{link-to}}` vai referencia-la como `blog_post`.
 
-## Nested Routes
+## Rotas Embutidas
 
 Muitas vezes você vai querer que uma template seja exibida dentro de outra template. Por exemplo, em um blog, ao invés de ir de uma lista de posts para a criação de um novo post, voce pode querer que a pagina de criação de posts seja exibida ao lado da lista.
 
@@ -62,17 +62,17 @@ Você pode definir rotas embutidas passando um novo callback para `this.route`:
     {{outlet}}
     
 
-This router creates a route for `/posts` and for `/posts/new`. When a user visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index routes](#toc_index-routes) explains an important addition to this.) When the user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into the `{{outlet}}` of the `posts` template.
+Este router cria uma rota para `/posts` e `/posts/new`. Quando um usuario visita `/posts`, ele ve apenas a template `posts.hbs`. (Abaixo, em [index routes](#toc_index-routes) há explicação adiciona importante sobre isso.) Quando um usuário visita `posts/new`, ele vera a template `posts/new.hbs` exibida dentro do `{{outlet}}` da template de `posts`.
 
-A nested route's names includes the names of its ancestors. If you want to transition to a route (either via `transitionTo` or `{{#link-to}}`), make sure to use the full route name (`posts.new`, not `new`).
+O nome de uma rota embutida inclui o nome de suas rotas antecessoras. Se você quer fazer a transição para uma rota (via `transitionTo` ou `{{#link-to}}`), certifique-se de usar o nome completo de sua rota (`posts.new`, não é `new`).
 
-## The application route
+## A rota application
 
-The `application` route is entered when your app first boots up. Like other routes, it will load a template with the same name (`application` in this case) by default. You should put your header, footer, and any other decorative content here. All other routes will render their templates into the `application.hbs` template's `{{outlet}}`.
+A rota `application` é inserida quando seu aplicativo é inicializado. Assim como outras rotas, ela irá carregar uma template com o mesmo nome (`application` neste caso) por padrão. Você deve colocar o seu cabeçalho, rodapé e qualquer outro conteúdo decorativo nesta template. Todas as outras rotas serao exibidas dentro do `{{outlet}}` da template `application.hbs`.
 
-This route is part of every application, so you don't need to specify it in your `app/router.js`.
+Esta rota faz parte de todos os aplicativos, portanto você não precisa especifica-la em `app/router.js`.
 
-## Index Routes
+## Rotas Index
 
 At every level of nesting (including the top level), Ember automatically provides a route for the `/` path named `index`. To see when a new level of nesting occurs, check the router, whenever you see a `function`, that's a new level.
 
@@ -80,7 +80,7 @@ For example, if you write a simple router like this:
 
 ```app/router.js Router.map(function(){ this.route('favorites'); });
 
-    <br />It is the equivalent of:
+    <br />É o equivalente a:
     
     ```app/router.js
     Router.map(function(){
@@ -89,27 +89,27 @@ For example, if you write a simple router like this:
     });
     
 
-The `index` template will be rendered into the `{{outlet}}` in the `application` template. If the user navigates to `/favorites`, Ember will replace the `index` template with the `favorites` template.
+A template `index` será exibida dentro do `{{outlet}}` na template `application`. Se o usuário navega para `/favorites`, Ember substituirá a template `index` com a template `favorites`.
 
-A nested router like this:
+Um router com rotas embutidas como este:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('favorites'); }); });
 
-    <br />Is the equivalent of:
+    <br />É o equivalente a:
     
-    ```app/router.js
-    Router.map(function(){
-      this.route('index', { path: '/' });
-      this.route('posts', function() {
-        this.route('index', { path: '/' });
-        this.route('favorites');
-      });
-    });
+    ```app/router.js 
+    Router.map(function() {
+        this.route ('index', {path: '/'});   
+        this.route ('posts', function() {
+            this.route ('index', {path: '/'});
+            this.route('favorites');
+         });
+     });
     
 
 If the user navigates to `/posts`, the current route will be `posts.index`, and the `posts/index` template will be rendered into the `{{outlet}}` in the `posts` template.
 
-If the user then navigates to `/posts/favorites`, Ember will replace the `{{outlet}}` in the `posts` template with the `posts/favorites` template.
+Se o usuário navega para `/posts/favorites`, Ember vai substituir o `{{outlet}}` da template `posts`, com a template `posts/favorites`.
 
 ## Dynamic Segments
 
