@@ -8,10 +8,10 @@ Ember CLI supports installing these packages through the standard [Bower package
 
 ## Addons
 
-Most Ember Addons can be installed using NPM (e.g. `npm install --save-dev ember-cli-sass`).
-However, some addons need to perform additional processing in which case they should be installed using the Ember CLI
-(e.g. `ember install ember-electron`). When in doubt, you should install and update addons using the Ember CLI.
-Note that addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
+Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)
+(e.g. `ember install ember-cli-sass`).
+Addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
+
 
 You can find listings of addons on [Ember Observer](http://emberobserver.com).
 
