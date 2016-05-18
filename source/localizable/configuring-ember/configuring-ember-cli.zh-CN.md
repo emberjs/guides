@@ -1,6 +1,6 @@
-In addition to configuring your app itself, you can also configure Ember CLI. These configurations can be made by adding them to the `.ember-cli` file in your application's root. Many can also be made by passing them as arguments to the command line program.
+除了可以配置 app 本身以外，您也可以配置 Ember CLI。 这些配置可以在应用根目录下的`.ember-cli`文件中在添加。 很多配置也可以通过传递参数到命令行程序的方式应用。
 
-For example, a common desire is to change the port that Ember CLI serves the app from. It's possible to pass the port number from the command line with `ember server --port 8080`. To make this configuration permanent, edit your `.ember-cli` file like so:
+例如，一个常见的场景是改变 Ember CLI 为 app 提供服务的后端端口。 可以通过在命令行执行 `ember server --port 8080` 传递端口号实现。 为了保持这个配置，可以编辑`.ember-cli`文件如下：
 
 ```json
 {
@@ -8,4 +8,4 @@ For example, a common desire is to change the port that Ember CLI serves the app
 }
 ```
 
-For a full list of command line options, run `ember help`.
+运行`ember help`获取完整的命令行参数选项。.
