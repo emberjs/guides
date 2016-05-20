@@ -68,16 +68,16 @@ To start, let's move the rental display details for a single rental from the `in
 <article class="listing">
   <img src="{{rental.image}}" class="image" alt="">
   <h3>{{rental.title}}</h3>
-  <div class="detail">
+  <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
-  <div class="detail">
+  <div class="detail type">
     <span>Type:</span> {{rental.type}}
   </div>
-  <div class="detail">
+  <div class="detail location">
     <span>Location:</span> {{rental.city}}
   </div>
-  <div class="detail">
+  <div class="detail bedrooms">
     <span>Number of bedrooms:</span> {{rental.bedrooms}}
   </div>
 </article>
@@ -103,16 +103,16 @@ with our new `rental-listing` component:
   {{rental-listing rental=rentalUnit}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
-    <div class="detail">
+    <div class="detail owner">
       <span>Owner:</span> {{rental.owner}}
     </div>
-    <div class="detail">
+    <div class="detail type">
       <span>Type:</span> {{rental.type}}
     </div>
-    <div class="detail">
+    <div class="detail location">
       <span>Location:</span> {{rental.city}}
     </div>
-    <div class="detail">
+    <div class="detail bedrooms">
       <span>Number of bedrooms:</span> {{rental.bedrooms}}
     </div>
   </article>
@@ -133,16 +133,16 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
-  <div class="detail">
+  <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
-  <div class="detail">
+  <div class="detail type">
     <span>Type:</span> {{rental.type}}
   </div>
-  <div class="detail">
+  <div class="detail location">
     <span>Location:</span> {{rental.city}}
   </div>
-  <div class="detail">
+  <div class="detail bedrooms">
     <span>Number of bedrooms:</span> {{rental.bedrooms}}
   </div>
 </article>
@@ -169,16 +169,16 @@ Let's call this action `toggleImageSize`
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
-  <div class="detail">
+  <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
-  <div class="detail">
+  <div class="detail type">
     <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
   </div>
-  <div class="detail">
+  <div class="detail location">
     <span>Location:</span> {{rental.city}}
   </div>
-  <div class="detail">
+  <div class="detail bedrooms">
     <span>Number of bedrooms:</span> {{rental.bedrooms}}
   </div>
 </article>

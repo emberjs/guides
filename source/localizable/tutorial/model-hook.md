@@ -75,16 +75,16 @@ This helper will let us loop through each of the objects in our model:
 {{#each model as |rental|}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
-    <div class="detail">
+    <div class="detail owner">
       <span>Owner:</span> {{rental.owner}}
     </div>
-    <div class="detail">
+    <div class="detail type">
       <span>Type:</span> {{rental.type}}
     </div>
-    <div class="detail">
+    <div class="detail location">
       <span>Location:</span> {{rental.city}}
     </div>
-    <div class="detail">
+    <div class="detail bedrooms">
       <span>Number of bedrooms:</span> {{rental.bedrooms}}
     </div>
   </article>
@@ -93,3 +93,7 @@ This helper will let us loop through each of the objects in our model:
 
 In this template, we loop through each model object and call it _rental_.
 For each rental, we then create a listing with information about the property.
+
+Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
+
+![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)

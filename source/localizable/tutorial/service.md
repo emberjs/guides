@@ -308,3 +308,37 @@ export default Ember.Object.extend({
 We should now see some end to end maps functionality show up on our front page!
 
 ![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
+
+### Stubbing Services in Acceptance Tests
+
+Finally, we want to update our acceptance tests to account for our new service.
+While it would be great to verify that a map is displaying, we don't want to hammer the Google Maps API every time we run our acceptance test.
+For this tutorial we'll rely on our component integration tests to ensure that the map DOM is being attached to our screen.
+To avoid hitting our maps request limit, we'll stub out our Maps service in our acceptance tests.
+
+Often, services connect to third party APIs that are not desirable to include in automated tests.
+To stub these services we simply have to register a stub service that implements the same API, but does not have the dependencies that are problematic for the test suite.
+
+Add the following code after the imports to our acceptance test:
+
+```/tests/acceptance/list-rentals-test.js
+let StubMapsService = Ember.Service.extend({
+  getMapElement() {
+    return document.createElement('div');
+  }
+});
+
+moduleForAcceptance('Acceptance | list rentals', {
+  beforeEach() {
+    this.application.register('service:stubMaps', StubMapsService);
+    this.application.inject('component:location-map', 'maps', 'service:stubMaps');
+  }
+});
+```
+
+What's happening is we are adding our own stub maps service that simply creates an empty div.
+Then we are putting it in Ember's registry, and injecting it into the `location-map` component that uses it.
+That way every time that component is created, our stub map service gets injected over the Google maps service.
+Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
+
+![acceptance tests without maps](../../images/service/acceptance-without-maps.png)
