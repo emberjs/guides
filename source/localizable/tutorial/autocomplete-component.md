@@ -106,31 +106,35 @@ test('should update with matching listings', function (assert) {
 Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test.  Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
 
 ```app/templates/index.hbs
-<h1> Welcome to Super Rentals </h1>
-
-We hope you find exactly what you're looking for in a place to stay.
-<br/><br/>
+<div class="jumbo">
+  <div class="right tomster"></div>
+  <h2>Welcome!</h2>
+  <p>
+    We hope you find exactly what you're looking for in a place to stay.
+    <br>Browse our listings, or use the search box above to narrow your search.
+  </p>
+  {{#link-to 'about' class="button"}}
+    About Us
+  {{/link-to}}
+</div>
 
 {{#list-filter
    filter=(action 'filterByCity')
-  as |rentals|}}
-  <ul>
+   as |rentals|}}
+  <ul class="results">
     {{#each rentals as |rentalUnit|}}
-      {{rental-listing rental=rentalUnit}}
+      <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
 {{/list-filter}}
-
-{{#link-to 'about'}}About{{/link-to}}
-{{#link-to 'contact'}}Click here to contact us.{{/link-to}}
 ```
 
 Now that we have failing tests and an idea of what we want our component contract to be, we'll implement the component.
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
 ```app/templates/components/list-filter.hbs
-City: {{input value=value key-up=(action 'handleFilterEntry')}}
-{{yield rentals}}
+{{input value=value key-up=(action 'handleFilterEntry') class="light" placeholder="Filter By City"}}
+{{yield results}}
 ```
 
 The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
@@ -200,7 +204,7 @@ The result of the query is returned to the caller.
 For this action to work, we need to modify the Mirage `config.js` file
 to look like this, so that it can respond to our queries.
 
-```mirage/config.js
+```mirage/config.js{+2,+38,+39,+40,+41,+42,+43,+44,+45}
 export default function() {
   this.get('/rentals', function(db, request) {
     let rentals = [{
@@ -250,3 +254,6 @@ export default function() {
 }
 ```
 
+After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen, that will update the rental list as you type:
+
+![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
