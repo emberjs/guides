@@ -86,6 +86,8 @@
   pages:
     - title: "Handlebars Basics"
       url: "handlebars-basics"
+    - title: "Built-in Helpers"
+      url: "built-in-helpers"
     - title: "Conditionals"
       url: "conditionals"
     - title: "Displaying a List of Items"
