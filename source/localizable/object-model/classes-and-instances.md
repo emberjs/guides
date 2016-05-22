@@ -11,7 +11,7 @@ To define a new Ember _class_, call the [`extend()`][1] method on
 [2]: http://emberjs.com/api/classes/Ember.Object.html
 
 ```javascript
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   say(thing) {
     alert(thing);
   }
@@ -40,14 +40,13 @@ implementation of your parent class by calling the special `_super()`
 method:
 
 ```javascript
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   say(thing) {
-    var name = this.get('name');
-    alert(`${name} says: ${thing}`);
+    alert(`${this.get('name')} says: ${thing}`);
   }
 });
 
-Soldier = Person.extend({
+const Soldier = Person.extend({
   say(thing) {
     // this will call the method in the parent class (Person#say), appending
     // the string ', sir!' to the variable `thing` passed in
@@ -55,7 +54,7 @@ Soldier = Person.extend({
   }
 });
 
-var yehuda = Soldier.create({
+let yehuda = Soldier.create({
   name: 'Yehuda Katz'
 });
 
@@ -91,7 +90,14 @@ instances:
 [5]: http://emberjs.com/api/classes/Ember.Object.html#method_create
 
 ```javascript
-var person = Person.create();
+const Person = Ember.Object.extend({
+  say(thing) {
+    alert(`${this.get('name')} says: ${thing}`);
+  }
+});
+
+let person = Person.create();
+
 person.say('Hello'); // alerts " says: Hello"
 ```
 
@@ -99,13 +105,13 @@ When creating an instance, you can initialize the values of its properties
 by passing an optional hash to the `create()` method:
 
 ```javascript
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   helloWorld() {
     alert(`Hi, my name is ${this.get('name')}`);
   }
 });
 
-var tom = Person.create({
+let tom = Person.create({
   name: 'Tom Dale'
 });
 
@@ -132,10 +138,9 @@ instances:
 [6]: http://emberjs.com/api/classes/Ember.Object.html#method_init
 
 ```js
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   init() {
-    var name = this.get('name');
-    alert(`${name}, reporting for duty!`);
+    alert(`${this.get('name')}, reporting for duty!`);
   }
 });
 
@@ -154,7 +159,7 @@ setup work, and you'll see strange behavior in your application.
 Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
 
 ```js
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   shoppingList: ['eggs', 'cheese']
 });
 
@@ -179,7 +184,7 @@ Person.create({
 To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
 
 ```js
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   init() {
     this.set('shoppingList', ['eggs', 'cheese']);
   }
@@ -212,10 +217,15 @@ and [`set()`][8] accessor methods:
 [8]: http://emberjs.com/api/classes/Ember.Object.html#method_set
 
 ```js
-var person = Person.create();
+const Person = Ember.Object.extend({
+  name: 'Robert Jackson'
+});
 
-var name = person.get('name');
+let person = Person.create();
+
+person.get('name'); // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
+person.get('name'); // 'Tobias Fünke'
 ```
 
 Make sure to use these accessor methods; otherwise, computed properties won't
