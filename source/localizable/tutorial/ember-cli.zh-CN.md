@@ -34,13 +34,13 @@ testem.js
 
 **app**：这里储存所有关于数据模型、组件、路由、模板和样式表的文件夹和文件。一个 Ember 项目的大部分编码都会在这个文件夹中进行。
 
-**bower_components / bower.json**：Bower 是一个依赖管理工具。 在 Ember CLI 中，它用于管理前端插件和组件依赖（如 HTML、CSS、Javascript 等）。 所有 Bower 组件都安装在 `bower_components` 目录下。 打开 `bower.json` 即可一些已经被自动安装好的依赖，包括 Ember、JQuery、Ember Data 和用于测试的 QUnit 。 如果你添加一个新的组件例如Bootstrap，也会发现它被安装到`bower_components`目录，并在<0>bower.json</0>罗列出来。
+**bower_components / bower.json**：Bower 是一个依赖管理工具。 在 Ember CLI 中，它用于管理前端插件和组件依赖（如 HTML、CSS、Javascript 等）。 所有 Bower 组件都安装在 `bower_components` 目录下。 打开 `bower.json` 即可一些已经被自动安装好的依赖，包括 Ember、JQuery、Ember Data 和用于测试的 QUnit 。 如果我们添加一个新的前端依赖，例如 Bootstrap，我们也会发现它会列在这个文件中，并且被添加到 `bower_components` 目录。
 
-**config**：config目录包含项目的配置文件，你可以在`environment.js`设置他们。
+**config**：config 目录包含 `environment.js` 文件，你可以在这里配置你的应用程序。
 
-**dist**：用于存放构建完成的应用，可被用于部署。
+**dist**：当我们构建好用于部署的应用程序时，所有的输出文件都被创建到这里。
 
-**node_modules / package.json**：这是npm所需的目录， npm是Node.js的包管理器。 Ember本身便是用Node构建的，而且也用到了大量的Node.js模块。 `package.json`文件存储当前应用的npm包依赖，你安装过的Ember-CLI插件同样会出现在这里。 依据`package.json`，用到的包被安装到 node_modules 目录中。
+**node_modules / package.json**：这两个目录和文件来自 npm。 npm 是 Node.js 的包管理器。 Ember本身便是用Node构建的，而且也用到了大量的Node.js模块。 `package.json`文件存储当前应用的npm包依赖，你安装过的Ember-CLI插件同样会出现在这里。 依据`package.json`，用到的包被安装到 node_modules 目录中。
 
 **public**：存储图片，字体等（静态）资源。
 
