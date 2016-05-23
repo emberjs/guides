@@ -40,11 +40,11 @@ testem.js
 
 **dist**：当我们构建好用于部署的应用程序时，所有的输出文件都被创建到这里。
 
-**node_modules / package.json**：这两个目录和文件来自 npm。 npm 是 Node.js 的包管理器。 Ember本身便是用Node构建的，而且也用到了大量的Node.js模块。 `package.json`文件存储当前应用的npm包依赖，你安装过的Ember-CLI插件同样会出现在这里。 依据`package.json`，用到的包被安装到 node_modules 目录中。
+**node_modules / package.json**：这两个目录和文件来自 npm。 npm 是 Node.js 的包管理器。 Ember 本身便是用 Node 构建的，而且它的操作也用到了大量的 Node.js 模块。 `package.json` 文件维护应用程序当前的所有 npm 包依赖列表。任何你安装的 Ember-CLI 插件同样会出现在这里。 所有列在 `package.json` 中的包都会被安装到 node_modules 目录中。
 
-**public**：存储图片，字体等（静态）资源。
+**public**：这个目录下包含图片、字体等静态资源。
 
-**vendor**：包含不被Bower管理的Javascript，CSS资源。
+**vendor**：这个目录包含所有不被 Bower 管理的前端依赖，诸如 Javascript 或 CSS。
 
 **tests / testem.js**：存放自动化测试文件，另外你可以在`testem.js`配置**testem**，Ember的自动化测试工具。.
 
