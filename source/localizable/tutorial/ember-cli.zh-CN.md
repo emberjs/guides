@@ -30,11 +30,11 @@ README.md
 testem.js
 ```
 
-我们来看一下 Ember CLI 生成的这些目录和文件。
+我们来看一下 Ember CLI 生成的这些文件夹和文件。
 
 **app**：这里储存所有关于数据模型、组件、路由、模板和样式表的文件夹和文件。一个 Ember 项目的大部分编码都会在这个文件夹中进行。
 
-**bower_components / bower.json**：Bower是一个依赖管理工具。 它用于管理前端的组件依赖（HTML，CSS，Javascript等等）。 所有Bower组件都会被安装到`bower_components`文件夹。 打开`bower.json`，可以看到自动安装的组件（Ember，JQuery，Ember Data以及用于测试的QUnit），以及他们的依赖列表。 如果你添加一个新的组件例如Bootstrap，也会发现它被安装到`bower_components`目录，并在<0>bower.json</0>罗列出来。
+**bower_components / bower.json**：Bower 是一个依赖管理工具。 在 Ember CLI 中，它用于管理前端插件和组件依赖（如 HTML、CSS、Javascript 等）。 所有 Bower 组件都安装在 `bower_components` 目录下。 打开 `bower.json` 即可一些已经被自动安装好的依赖，包括 Ember、JQuery、Ember Data 和用于测试的 QUnit 。 如果你添加一个新的组件例如Bootstrap，也会发现它被安装到`bower_components`目录，并在<0>bower.json</0>罗列出来。
 
 **config**：config目录包含项目的配置文件，你可以在`environment.js`设置他们。
 
