@@ -52,7 +52,7 @@ export default Ember.Service.extend({
   },
 
   empty() {
-    this.get('items').setObjects([]);
+    this.get('items').clear();
   }
 });
 ```
