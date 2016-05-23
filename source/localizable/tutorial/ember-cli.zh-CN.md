@@ -64,12 +64,8 @@ Router.map(function() { });
 
 export default Router;
 
-    <br />Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
-    code.
-    For example, the line `import Ember from 'ember';` gives us access to the actual
-    Ember.js library as the variable `Ember`. And the `import config from
-    './config/environment';` line gives us access to our app's configuration data
-    as the variable `config`. `const` is a way to declare a read-only variable, 
+    <br />Ember CLI 使用 ECMAScript 2015（简称 ES2015，以前也叫 ES6）模块来组织应用程序代码。
+    比如说 `import Ember from 'ember';` 这一行，让我们可以通过 `Ember` 变量来访问实际的 Ember.js 库。 而 `import config from './config/environment';` 这一行则让我们可以通过 `config` 变量来访问程序的配置数据。 `const` is a way to declare a read-only variable, 
     as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
     `export default Router;` makes the `Router` variable defined in this file available 
     to other parts of the app.
