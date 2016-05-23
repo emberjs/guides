@@ -10,7 +10,7 @@ ember new super-rentals
 
 ## 目录结构
 
-`new`命令生成了如下的目录结构：
+`new` 命令生成由以下这些文件和目录构成的项目结构：
 
 ```text
 |--app
@@ -30,9 +30,9 @@ README.md
 testem.js
 ```
 
-仔细看看生成的内容：
+我们来看一下 Ember CLI 生成的这些目录和文件。
 
-**app**：这是存储models，components，routes，templates以及styles的文件夹，你的代码大部分都将在这个文件夹里。
+**app**：这里储存所有关于数据模型、组件、路由、模板和样式表的文件夹和文件。一个 Ember 项目的大部分编码都会在这个文件夹中进行。
 
 **bower_components / bower.json**：Bower是一个依赖管理工具。 它用于管理前端的组件依赖（HTML，CSS，Javascript等等）。 所有Bower组件都会被安装到`bower_components`文件夹。 打开`bower.json`，可以看到自动安装的组件（Ember，JQuery，Ember Data以及用于测试的QUnit），以及他们的依赖列表。 如果你添加一个新的组件例如Bootstrap，也会发现它被安装到`bower_components`目录，并在<0>bower.json</0>罗列出来。
 
