@@ -65,31 +65,24 @@ Router.map(function() { });
 export default Router;
 
     <br />Ember CLI 使用 ECMAScript 2015（简称 ES2015，以前也叫 ES6）模块来组织应用程序代码。
-    比如说 `import Ember from 'ember';` 这一行，让我们可以通过 `Ember` 变量来访问实际的 Ember.js 库。 而 `import config from './config/environment';` 这一行则让我们可以通过 `config` 变量来访问程序的配置数据。 `const` is a way to declare a read-only variable, 
-    as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
-    `export default Router;` makes the `Router` variable defined in this file available 
-    to other parts of the app.
+    比如说 `import Ember from 'ember';` 这一行，让我们可以通过 `Ember` 变量来访问实际的 Ember.js 库。 而 `import config from './config/environment';` 这一行则让我们可以通过 `config` 变量来访问程序的配置数据。 `const` 是一种声明只读变量的方法，以确保该变量的值不会在其它地方被误更改。 在文件的末尾，`export default Router;` 使得此文件中定义的 `Router` 变量可以从应用程序的其它地方来调用。
     
-    ## Upgrading Ember
+    ## 升级 Ember
     
-    Before continuing to the tutorial, make sure that you have the most recent
-    version of Ember installed. If the versions of `ember` and `ember-data` in
-    `bower.json` are lower than the version number in the upper-left corner of these
-    Guides, update the version numbers in `bower.json` and then run `bower install`.
+    在继续本教程之前，首先确保你安装的是最新版本的 Ember。 如果 `bower.json` 中 `ember` 和 `ember-data` 的版本号低于这篇指南左上角显示的版本号，请更新 `bower.json` 中的两个版本号，然后执行 `bower install`。
     
-    ## The Development Server
+    ## 开发服务器
     
-    Once we have a new project in place, we can confirm everything is working by
-    starting the Ember development server:
+    当我们的新项目已经准备就绪，我们可以通过启动 Ember 开发服务器来确保一切运转正常。
     
     ```shell
     ember server
     
 
-or, for short:
+也可以缩写如下：
 
 ```shell
 ember s
 ```
 
-If we navigate to `localhost:4200`, we'll see our brand new app displaying the text "Welcome to Ember".
+用浏览器打开 `localhost:4200`，就可以看到我们崭新的应用程序正在显示一行文本：“Welcome to Ember”。
