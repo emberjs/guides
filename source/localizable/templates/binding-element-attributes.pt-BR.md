@@ -36,7 +36,7 @@ If `isAdministrator` is `false`, Handlebars will produce the following:
 
 ### Adding Data Attributes
 
-By default, view helpers do not accept *data attributes*. For example
+By default, helpers and components do not accept *data attributes*. For example
 
 ```handlebars
 {{#link-to "photos" data-toggle="dropdown"}}Photos{{/link-to}}
@@ -65,7 +65,7 @@ Ember.TextField.reopen({
 });
 ```
 
-Now the same handlebars code above renders the following HTML:
+Now the same template above renders the following HTML:
 
 ```html
 <a id="ember240" class="ember-view" href="#/photos" data-toggle="dropdown">Photos</a>

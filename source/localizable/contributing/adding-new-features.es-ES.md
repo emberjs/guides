@@ -1,30 +1,30 @@
 Por lo general, desarrollo de una función nueva debe realizarse en la rama maestra.
 
-Las correcciones de errores (bugfixes) no debería introducir APIs nuevas ni romper las APIs existentes, y así no necesitan <<feature flags>> (indicadores para nueva funcionalidad).
+Las correcciones de errores (bugfixes) no deberían introducir APIs nuevas ni romper las APIs existentes, y así no necesitan <<feature flags>> (indicadores para nueva funcionalidad).
 
-Features can introduce new APIs, and need feature flags. They should not be applied to the release or beta branches, since SemVer requires bumping the minor version to introduce new features.
+Las funciones nuevas pueden introducir APIs nuevas y necesitan <<feature flags>>. No se debe aplicar a las ramas de release o beta, dado que SemVer (Versionamiento Semántico) requiere incrementar la versión menor al introducir nueva funcionalidad.
 
-Security fixes should not introduce new APIs, but may, if strictly necessary, break existing APIs. Such breakages should be as limited as possible.
+Un patch de seguridad no debe introducir nuevas APIs, pero puede, si es absolutamente necesario, romper las API existentes. Estas roturas deben ser lo más limitadas posible.
 
-### Bug Fixes
+### Bug Fixes (Arreglos de Bugs)
 
-#### Urgent Bug Fixes
+#### Bug Fixes Urgentes
 
-Urgent bugfixes are bugfixes that need to be applied to the existing release branch. If possible, they should be made on master and prefixed with [BUGFIX release].
+Los bugfixes urgentes son correcciones de errores que deben ser aplicadas a la rama actual. Si es posible, deben ser realizados en la rama maestra con el prefijo [BUGFIX release].
 
-#### Beta Bug Fixes
+#### Bug Fixes Beta
 
-Beta bugfixes are bugfixes that need to be applied to the beta branch. If possible, they should be made on master and tagged with [BUGFIX beta].
+Los bugfixes beta son correcciones de errores que deben ser aplicados a la rama beta. Si es posible, deben ser realizados en la rama maestra y etiquetados con [BUGFIX beta].
 
-#### Security Fixes
+#### Security Fixes (Fixes de Seguridad)
 
-Security fixes need to be applied to the beta branch, the current release branch, and the previous tag. If possible, they should be made on master and tagged with [SECURITY].
+Los security fixes deben ser aplicados a la rama beta, la rama actual, y la etiqueta anterior. Si es posible, los cambios deben ser aplicados en la rama maestra y etiquetados con [SECURITY].
 
-### Features
+### Features (Funcionalidades)
 
-Features must always be wrapped in a feature flag. Tests for the feature must also be wrapped in a feature flag.
+Nueva funcionalidad siempre debe ser marcada por un <<feature flag>>. Las pruebas para esta nueva funcionalidad también deben ser marcada por un <<feature flag>>.
 
-Because the build-tools will process feature-flags, flags must use precisely this format. We are choosing conditionals rather than a block form because functions change the surrounding scope and may introduce problems with early return.
+Dado que las <<build-tools>> procesa los feature flags, hay que usar los flags precisamente en esta manera. Elegimos usar condicionales en vez de un bloque porque las funciones cambian el scope y pueden introducir problemas con un <<return>> precoz.
 
 ```js
 if (Ember.FEATURES.isEnabled("feature")) {
@@ -32,7 +32,7 @@ if (Ember.FEATURES.isEnabled("feature")) {
 }
 ```
 
-Tests will always run with all features on, so make sure that any tests for the feature are passing against the current state of the feature.
+Las pruebas siempre se ejecutan con toda la funcionalidad, así que asegúrate que todas las pruebas para la funcionalidad nueva corren bien con el estado actual de la funcionalidad.
 
 #### Commits
 

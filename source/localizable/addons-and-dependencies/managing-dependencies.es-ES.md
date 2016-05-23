@@ -2,7 +2,7 @@ Mientras estás desarrollando tu aplicación de Ember, probablemente te encontra
 
 ## Addons
 
-Los addons de Ember se instalan mediante NPM (ej: `npm install --save-dev ember-cli-sass`). Los Addons pueden tener otras dependencias modificando automáticamente el archivo `bower.json` del proyecto.
+Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (e.g. `ember install ember-cli-sass`). Los Addons pueden tener otras dependencias modificando automáticamente el archivo `bower.json` del proyecto.
 
 Puedes encontrar un listado de addons en [Ember Observer](http://emberobserver.com).
 

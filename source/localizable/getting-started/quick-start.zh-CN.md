@@ -124,23 +124,19 @@ installing route-test
 
     <br />我们在这里使用了 `each` 辅助函数来遍历数组中的每一个元素（这个数组是我们从 `model()` 钩子函数中传递出来的），然后把每个元素输出到一个 `<li>` 标签内。
     
-    ## Create a UI Component
+    ## 创建一个 UI 组件
     
-    As your application grows and you notice you are sharing UI elements
-    between multiple pages (or using them multiple times on the same page),
-    Ember makes it easy to refactor your templates into reusable components.
+    随着你的程序越来越复杂，你会注意到你在多个页面上都使用了相同的 UI 元素（或者在同一个页面上使用了多次）。Ember 可以让你很容易地把模板重构为可复用的组件。
     
-    Let's create a `people-list` component that we can use
-    in multiple places to show a list of people.
+    我们来创建一个 `people-list` 组件，这个组件可以在多个不同的地方显示一个人员列表。
     
-    As usual, there's a generator that makes this easy for us. Make a new
-    component by typing:
+    跟往常一样，有一个生成器可以帮我们轻松地完成这个任务。 输入以下命令来生成一个新组件：
     
     ```sh
     ember generate component people-list
     
 
-Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+把 `scientists` 模板的内容复制粘贴到 `people-list` 组件的模板里面，然后把它编辑成如下这个样子：
 
 ```app/templates/components/people-list.hbs 
 
@@ -150,19 +146,12 @@ Copy and paste the `scientists` template into the `people-list` component's temp
 
 * {{person}} {{/each}} 
 
-    <br />Note that we've changed the title from a hard-coded string ("List of
-    Scientists") to a dynamic property (`{{title}}`). We've also renamed
-    `scientist` to the more-generic `person`, decreasing the coupling of our
-    component to where it's used.
+    <br />注意，我们把标题从一个固定的字符串（“List of Scientists”）变成了一个动态属性（`{{title}}`）。 我们还把 `scientist` 改成了更有通用性的 `person`，这样一来，我们的组件跟其使用环境之间的耦合度就降低了。
     
-    Save this template and switch back to the `scientists` template. Replace all
-    our old code with our new componentized version. Components look like
-    HTML tags but instead of using angle brackets (`<tag>`) they use double
-    curly braces (`{{component}}`). We're going to tell our component:
+    保存一下这个模板，然后切换回 `scientists` 模板。 把原有的所有代码都删除，替换成新的组件化的版本。 组件调用的语法看起来很像 HTML 标签，但是使用双花括号（`{{component}}`）括起来，而不是尖括号（`<tag>`）。 我们要告诉我们的组件：
     
-    1. What title to use, via the `title` attribute.
-    2. What array of people to use, via the `people` attribute. We'll
-       provide this route's `model` as the list of people.
+    1、 通过 `title` 属性来告知应该用什么标题。
+    2、 通过 `people` 属性来传递一个人员的数组。 我们会提供这个路由的 `model` 作为人员名单。
     
     ```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
     <h2>List of Scientists</h2>
@@ -175,24 +164,24 @@ Copy and paste the `scientists` template into the `people-list` component's temp
     {{people-list title="List of Scientists" people=model}}
     
 
-Go back to your browser and you should see that the UI looks identical. The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
+回到你的浏览器，应该看到 UI 跟原来一模一样。唯一的区别是，现在我们已经把我们的列表组件化成了一个更容易复用和维护的版本。
 
-You can see this in action if you create a new route that shows a different list of people. As an exercise for the reader, you may try to create a `programmers` route that shows a list of famous programmers. By re-using the `people-list` component, you can do it in almost no code at all.
+如果你创建一个新的路由来显示另一个人员列表，你就能看到这个组件化的效果了。 留给读者作为练习，你可以尝试创建一个 `programmers` 路由来显示一些著名程序员的列表。 通过复用 `people-list` 组件，你几乎不用写任何代码就能实现这个功能。
 
-## Building For Production
+## 构建到生产环境
 
-Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
+现在我们的程序已经写好并在开发环境中验证完毕，到了部署给用户的时候了。运行以下命令即可：
 
 ```sh
 ember build --env production
 ```
 
-The `build` command packages up all of the assets that make up your application&mdash;JavaScript, templates, CSS, web fonts, images, and more.
+这个 `build` 命令会把你程序中所包含的所有的资源打包起来。这些资源包括 JavaScript、模板、CSS、web 字体、图片，等等。
 
-In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
+这里我们通过 `--env` 参数来告知 Ember，让它为生产环境来构建。 这样会创建一个优化过的包，可以直接上传到你的 web 主机。 构建完成后，你可以在 `dist/` 目录下找到所有拼接和压缩好的资源。
 
-The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
+Ember 社群重视协作，重视打造每个人都可以依赖的常用工具。 如果你有兴趣通过快速可靠的方式来把你的应用程序部署到生产，可以看一下 [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) 这个插件。
 
-If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+如果你是要把应用程序部署到一个 Apache web 服务器上面，那么首先为其创建一个新的虚拟主机（virtual host）。 为了确保所有的路由都通过 index.html 来处理，请把以下指令添加到该应用程序的虚拟主机配置文件中：
 
     FallbackResource index.html

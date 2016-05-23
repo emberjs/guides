@@ -23,20 +23,29 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />`rental-listing`コンポーネントテンプレートを更新して、`rental.type`をヘルパーが引き渡すようにしましょう。
+    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
     
     ```app/templates/components/rental-listing.hbs
-    <h2>{{rental.title}}</h2>
-    <p>Owner: {{rental.owner}}</p>
-    <p>Type: {{rental-property-type rental.type}} - {{rental.type}}</p>
-    <p>Location: {{rental.city}}</p>
-    <p>Number of bedrooms: {{rental.bedrooms}}</p>
-    {{#if isImageShowing }}
-      <p><img src={{rental.image}} alt={{rental.type}} width="500px"></p>
-      <button {{action "imageHide"}}>Hide image</button>
-    {{else}}
-      <button {{action "imageShow"}}>Show image</button>
-    {{/if}}
+    <article class="listing">
+      <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+        <img src="{{rental.image}}" alt="">
+        <small>View Larger</small>
+      </a>
+      <h3>{{rental.title}}</h3>
+      <div class="detail">
+        <span>Owner:</span> {{rental.owner}}
+      </div>
+      <div class="detail">
+        <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+      </div>
+      <div class="detail">
+        <span>Location:</span> {{rental.city}}
+      </div>
+      <div class="detail">
+        <span>Number of bedrooms:</span> {{rental.bedrooms}}
+      </div>
+      {{location-map location=rental.city}}
+    </article>
     
 
 理想としては、最初の、賃貸物件として"Type: Standalone - Estate"が表示されます。 実際には、デフォルトのテンプレートヘルパーは`rental.type` の値を返しています。 これを更新して、ヘルパーが配列`communityPropertyTypes`を探してもしプロパティが存在したら `'Community'` または `'Standalone'`を返してようにしましょう。

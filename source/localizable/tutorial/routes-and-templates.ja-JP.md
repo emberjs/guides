@@ -1,6 +1,6 @@
 Ember アプリケーションの基本的な準備と、順序を示すために、この項目では、Super Rentalsという資産レンタルのEmber アプリケーションの構築を順を追って示していきます。 homeページ、aboutページと、contact ページから始めましょう。 その前に、ユーザーの目線でアプリケーションを見てみましょう。
 
-![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
+![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
 
 ホームページはレンタルのリストを表示しています。ここから、about ページと contact ページに遷移することができます。
 
@@ -56,14 +56,18 @@ export default Router;
     これは`app/routes/about.js` に変更しなくても、 `about.hbs` が表示されることを意味しています。
     
     ジェネレータによって必要なルーティングが完了しているので、すぐにテンプレートのコーディングが行えます。
-    `about`ページ:　このサイトに関する情報のHTMLを追加しましょう。
+    For our `about` page, we'll add some HTML that has a bit of information about the site:
     
     ```app/templates/about.hbs
-    <h2>About Super Rentals</h2>
-    
-    <p>The Super Rentals website is a delightful project created to explore Ember.
-    By building a property rental site, we can simultaneously imagine traveling
-    AND building Ember applications.</p>
+    <div class="jumbo">
+      <div class="right tomster"></div>
+      <h2>About Super Rentals</h2>
+      <p>
+        The Super Rentals website is a delightful project created to explore Ember.
+        By building a property rental site, we can simultaneously imagine traveling
+        AND building Ember applications.
+      </p>
+    </div>
     
 
 `ember serve`(省略形だと`ember s`)を実行して、シェルからEmberの開発サーバーを起動しましょう、その後ブラウザで`localhost:4200/about`を開くとアプリケーションが確認できます。
@@ -82,19 +86,28 @@ ember g route contact
 
 ```app/templates/contact.hbs 
 
-Super Rentals Representatives would love to help you choose a destination or answer any questions you may have.
-
-Contact us today:
-
-Super Rentals HQ 
-
-<address>
-  1212 Test Address Avenue<br /> Testington, OR 97233
-</address>
-
-[(503)555-1212](tel:503.555.1212)
-
-<superrentalsrep@superrentals.com>
+<div class="jumbo">
+  <div class="right tomster">
+  </div>
+  
+  <h2>
+    Contact Us
+  </h2>
+  
+  <p>
+    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
+  </p>
+  
+  <p>
+    Super Rentals HQ 
+    
+    <address>
+      1212 Test Address Avenue<br /> Testington, OR 97233
+    </address>
+    
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br /> <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </p>
+</div>
 
     <br />これで、２番目のルートが完成しました。
     該当のURL `localhost:4200/contact` にアクセスすると、contactページが表示されます。
@@ -105,41 +118,53 @@ Super Rentals HQ
     それではaboutページにcontactページへのリンク、aboutページにはcontactへのリンクを作ります。
     
     Ember には他のルートへのリンクなどの機能を提供する**ヘルパー** が組み込まれています。
-    ここではルーター間のリンクするために、 `{{link-to}}` ヘルパーを利用します:
+    Here we will use the `{{link-to}}` helper in our code to link between routes:
     
-    ```app/templates/about.hbs
-    <h2>About Super Rentals</h2>
-    
-    <p>The Super Rentals website is a delightful project created to explore Ember.<br>
-      By building a property rental site, we can simultaneously imagine traveling<br>
-      AND building Ember applications.</p>
-    
-    {{#link-to "contact"}}Click here to contact us.{{/link-to}}
+    ```app/templates/about.hbs{+9,+10,+11}
+    <div class="jumbo">
+      <div class="right tomster"></div>
+      <h2>About Super Rentals</h2>
+      <p>
+        The Super Rentals website is a delightful project created to explore Ember.
+        By building a property rental site, we can simultaneously imagine traveling
+        AND building Ember applications.
+      </p>
+      {{#link-to 'index' class="button"}}
+        Get Started!
+      {{/link-to}}
+    </div>
     
 
-`{{link-to}}` ヘルパーは、リンクする先のルーター名を引数として一つとります。この場合は`contact`がそれにあたります。 about ページを確認するとcontact ページへのリンクが機能していることが確認できます。
+The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page, we now have a working link to our contact page.
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-`contact`ページと`about` の間で移動ができるように、次は contact ページにリンクを追加します。.
+Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs 
 
-Super Rentals Representatives would love to help you choose a destination or answer any questions you may have.
-
-Contact us today:
-
-Super Rentals HQ 
-
-<address>
-  1212 Test Address Avenue<br /> Testington, OR 97233
-</address>
-
-[(503)555-1212](tel:503.555.1212)
-
-<superrentalsrep@superrentals.com>
-
-{{#link-to "about"}}About{{/link-to}}
+<div class="jumbo">
+  <div class="right tomster">
+  </div>
+  
+  <h2>
+    Contact Us
+  </h2>
+  
+  <p>
+    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
+  </p>
+  
+  <p>
+    Super Rentals HQ 
+    
+    <address>
+      1212 Test Address Avenue<br /> Testington, OR 97233
+    </address>
+    
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br /> <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </p> {{#link-to 'about' class="button"}} About {{/link-to}}
+</div>
 
     <br />## Index ルート
     
@@ -150,7 +175,7 @@ Super Rentals HQ
     ember g route index
     
 
-ルートジェネレータの出力はすでに馴染みななっているものです。
+We can see the now familiar output for the route generator:
 
 ```shell
 installing route
@@ -160,14 +185,19 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-作成してきた他のルートハンドラーとは違い、`index`ルートは特別で、ルートマッピングにエントリーは必要ありません。 どうしてエントリーの必要がないのか、に関してはネストされたEmberのルートを扱う際に詳細を説明します。
+Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at nested routes in Ember.
 
-`index.hbs`にhome ページ用のHTMLとアプリケーション内の他のルートへのリンクを追加します。
+Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
-```app/templates/index.hbs 
-
-# Welcome to Super Rentals
-
-We hope you find exactly what you're looking for in a place to stay.
-
-{{#link-to "about"}}About{{/link-to}} {{#link-to "contact"}}Click here to contact us.{{/link-to}} ```
+    app/templates/index.hbs
+    <div class="jumbo">
+      <div class="right tomster"></div>
+      <h2>Welcome!</h2>
+      <p>
+        We hope you find exactly what you're looking for in a place to stay.
+        <br>Browse our listings, or use the search box above to narrow your search.
+      </p>
+      {{#link-to 'about' class="button"}}
+        About Us
+      {{/link-to}}
+    </div>

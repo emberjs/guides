@@ -42,38 +42,14 @@ export default Model.extend({
 
 これで、モデルを Ember Data のストア内に保存しています。
 
-## Mirage を Ember Dataから利用
+### Updating the Model Hook
 
-Ember Data はいくつかの方法でデータを保存するように設定できます、しかし多くの場合それらはバックエンドのAPIサーバです。 このチュートリアルでは[Mirage](http://www.ember-cli-mirage.com)を利用します。 これにより、開発の段階では、バックエンドサーバーを模倣して、フェイクなデータを利用できるようになります。
+To use our new data store, we need to update the `model` hook in our route handler.
 
-では、Mirageのインストールから始めましょう。
+```app/routes/index.js import Ember from 'ember';
 
-```shell
-ember install ember-cli-mirage
-```
+export default Ember.Route.extend({ model() { return this.store.findAll('rental'); } }); ```
 
-もし、別のシェルで`ember serve` を実行していた場合は、ビルドにMirageを含めるために、サーバーを再起動します。
+When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`. You can read more about Ember Data in the [Models section](../../models/).
 
-では Mirage を上記で定義したレンタル品を返すように `app/mirage/config.js`を更新しましょう。
-
-```app/mirage/config.js export default function() { this.get('/rentals', function() { return { data: [{ type: 'rentals', id: 1, attributes: { title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg' } }, { type: 'rentals', id: 2, attributes: { title: 'Urban Living', owner: 'Mike Teavee', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg' } }, { type: 'rentals', id: 3, attributes: { title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg' } }] }; }); }
-
-    <br />この設定で Mirage は Ember Data が`/rentals`にGET リクエストを出すたびに、JSONでJavaScriptオブジェクトを返します。
-    
-    ### モデルフックの更新
-    
-    この新しいデータストアを利用するために、ルートハンドラの`model` フックを更新しなければいけません。
-    
-    ```app/routes/index.js
-    import Ember from 'ember';
-    
-    export default Ember.Route.extend({
-      model() {
-        return this.store.findAll('rental');
-      }
-    });
-    
-
-`this.store.findAll('rental')`を呼び出すと、 Ember Data は `/rentals`にGET リクエスを送ります。 Ember Data の詳細については[モデルセクション](../../models/)を確認してください。.
-
-開発環境では Mirage を利用しているので、Mirageは事前にMirageに提供したデータを返します。 プロダクションにアプリケーションをデプロイする際には、実際にEmber Data がやりとりをするバックエンドを構築する必要があります。
+Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.

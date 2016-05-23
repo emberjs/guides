@@ -1,6 +1,6 @@
 To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals. It will start with a homepage, an about page and a contact page. Let's take a look at the application from the user perspective before we get started.
 
-![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
+![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
 
 We arrive at the home page which shows a list of rentals. From here, we will be able to navigate to an about page and a contact page.
 
@@ -59,11 +59,15 @@ export default Router;
     For our `about` page, we'll add some HTML that has a bit of information about the site:
     
     ```app/templates/about.hbs
-    <h2>About Super Rentals</h2>
-    
-    <p>The Super Rentals website is a delightful project created to explore Ember.
-    By building a property rental site, we can simultaneously imagine traveling
-    AND building Ember applications.</p>
+    <div class="jumbo">
+      <div class="right tomster"></div>
+      <h2>About Super Rentals</h2>
+      <p>
+        The Super Rentals website is a delightful project created to explore Ember.
+        By building a property rental site, we can simultaneously imagine traveling
+        AND building Ember applications.
+      </p>
+    </div>
     
 
 Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server, and then go to `localhost:4200/about` to see our new app in action!
@@ -82,19 +86,28 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
 ```app/templates/contact.hbs 
 
-Super Rentals Representatives would love to help you choose a destination or answer any questions you may have.
-
-Contact us today:
-
-Super Rentals HQ 
-
-<address>
-  1212 Test Address Avenue<br /> Testington, OR 97233
-</address>
-
-[(503)555-1212](tel:503.555.1212)
-
-<superrentalsrep@superrentals.com>
+<div class="jumbo">
+  <div class="right tomster">
+  </div>
+  
+  <h2>
+    Contact Us
+  </h2>
+  
+  <p>
+    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
+  </p>
+  
+  <p>
+    Super Rentals HQ 
+    
+    <address>
+      1212 Test Address Avenue<br /> Testington, OR 97233
+    </address>
+    
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br /> <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </p>
+</div>
 
     <br />Now we have completed our second route.
     If we go to the URL `localhost:4200/contact`, we'll arrive on our contact page.
@@ -108,14 +121,19 @@ Super Rentals HQ
     Ember has built-in **helpers** that provide functionality such as linking to other routes.
     Here we will use the `{{link-to}}` helper in our code to link between routes:
     
-    ```app/templates/about.hbs
-    <h2>About Super Rentals</h2>
-    
-    <p>The Super Rentals website is a delightful project created to explore Ember.<br>
-      By building a property rental site, we can simultaneously imagine traveling<br>
-      AND building Ember applications.</p>
-    
-    {{#link-to "contact"}}Click here to contact us.{{/link-to}}
+    ```app/templates/about.hbs{+9,+10,+11}
+    <div class="jumbo">
+      <div class="right tomster"></div>
+      <h2>About Super Rentals</h2>
+      <p>
+        The Super Rentals website is a delightful project created to explore Ember.
+        By building a property rental site, we can simultaneously imagine traveling
+        AND building Ember applications.
+      </p>
+      {{#link-to 'index' class="button"}}
+        Get Started!
+      {{/link-to}}
+    </div>
     
 
 The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page, we now have a working link to our contact page.
@@ -126,21 +144,28 @@ Now, we'll add a link to our contact page so we can navigate from back and forth
 
 ```app/templates/contact.hbs 
 
-Super Rentals Representatives would love to help you choose a destination or answer any questions you may have.
-
-Contact us today:
-
-Super Rentals HQ 
-
-<address>
-  1212 Test Address Avenue<br /> Testington, OR 97233
-</address>
-
-[(503)555-1212](tel:503.555.1212)
-
-<superrentalsrep@superrentals.com>
-
-{{#link-to "about"}}About{{/link-to}}
+<div class="jumbo">
+  <div class="right tomster">
+  </div>
+  
+  <h2>
+    Contact Us
+  </h2>
+  
+  <p>
+    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
+  </p>
+  
+  <p>
+    Super Rentals HQ 
+    
+    <address>
+      1212 Test Address Avenue<br /> Testington, OR 97233
+    </address>
+    
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br /> <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </p> {{#link-to 'about' class="button"}} About {{/link-to}}
+</div>
 
     <br />## An Index Route
     
@@ -165,10 +190,15 @@ Unlike the other route handlers we've made so far, the `index` route is special:
 
 Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
-```app/templates/index.hbs 
-
-# Welcome to Super Rentals
-
-We hope you find exactly what you're looking for in a place to stay.
-
-{{#link-to "about"}}About{{/link-to}} {{#link-to "contact"}}Click here to contact us.{{/link-to}} ```
+    app/templates/index.hbs
+    <div class="jumbo">
+      <div class="right tomster"></div>
+      <h2>Welcome!</h2>
+      <p>
+        We hope you find exactly what you're looking for in a place to stay.
+        <br>Browse our listings, or use the search box above to narrow your search.
+      </p>
+      {{#link-to 'about' class="button"}}
+        About Us
+      {{/link-to}}
+    </div>

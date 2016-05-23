@@ -10,20 +10,26 @@ We'll start by displaying the map and work our way back to using the Google Map 
 
 We'll start by adding a component that shows the rental's city on a map.
 
-<pre><code class="app/templates/components/rental-listing.hbs{+14}">&lt;h2&gt;{{rental.title}}&lt;/h2&gt;
-&lt;p&gt;Owner: {{rental.owner}}&lt;/p&gt;
-&lt;p&gt;Type: {{rental-property-type rental.type}} - {{rental.type}}&lt;/p&gt;
-&lt;p&gt;Location: {{rental.city}}&lt;/p&gt;
-&lt;p&gt;Number of bedrooms: {{rental.bedrooms}}&lt;/p&gt;
-{{#if isImageShowing}}
-  &lt;p&gt;
-    &lt;img alt={{rental.type}} src={{rental.image}} width="500"/&gt;
-  &lt;/p&gt;
-  &lt;button {{action "imageHide"}}&gt;Hide image&lt;/button&gt;
-{{else}}
-  &lt;button {{action "imageShow"}}&gt;Show image&lt;/button&gt;
-{{/if}}
-{{location-map location=rental.city}}
+<pre><code class="app/templates/components/rental-listing.hbs{+19}">&lt;article class="listing"&gt;
+  &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
+    &lt;img src="{{rental.image}}" alt=""&gt;
+    &lt;small&gt;View Larger&lt;/small&gt;
+  &lt;/a&gt;
+  &lt;h3&gt;{{rental.title}}&lt;/h3&gt;
+  &lt;div class="detail"&gt;
+    &lt;span&gt;Owner:&lt;/span&gt; {{rental.owner}}
+  &lt;/div&gt;
+  &lt;div class="detail"&gt;
+    &lt;span&gt;Type:&lt;/span&gt; {{rental-property-type rental.type}} - {{rental.type}}
+  &lt;/div&gt;
+  &lt;div class="detail"&gt;
+    &lt;span&gt;Location:&lt;/span&gt; {{rental.city}}
+  &lt;/div&gt;
+  &lt;div class="detail"&gt;
+    &lt;span&gt;Number of bedrooms:&lt;/span&gt; {{rental.bedrooms}}
+  &lt;/div&gt;
+  {{location-map location=rental.city}}
+&lt;/article&gt;
 </code></pre>
 
 Next, generate the map component using Ember-CLI.
@@ -185,7 +191,6 @@ export default Ember.Service.extend({
   createMapElement() {
     let element = document.createElement('div');
     element.className = 'map';
-    element.setAttribute('style', 'width:300px;height:300px;');
     return element;
   }
 
@@ -272,5 +277,8 @@ export default Ember.Object.extend({
   }
 
 });
-
 </code></pre>
+
+We should now see some end to end maps functionality show up on our front page!
+
+![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)

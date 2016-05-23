@@ -131,8 +131,25 @@ A dynamic segment is a portion of a URL that starts with a `:` and is followed b
 ```app/router.js Router.map(function() { this.route('posts'); this.route('post', { path: '/post/:post_id' }); });
 
     <br />If the user navigates to `/post/5`, the route will then have the `post_id` of
-    `5` to use to load the correct post. In the next section, [Specifying a Route's
-    Model](../specifying-a-routes-model), you will learn more about how to load a model.
+    `5` to use to load the correct post.
+    Ember follows the convention of `:model-name_id` for two reasons.
+    The first reason is that Routes know how to fetch the right model by default, if you follow the convention.
+    The second is that `params` is an object, and can only have one value associated with a key.
+    To put it in code, the following will *not* work properly:
+    
+    ```app/router.js
+    Router.map(function() {
+      this.route("photo", { path: "photo/:id" }, function() {
+        this.route("comment", { path: "comment/:id" });
+      });
+    });
+    
+
+But the following will:
+
+```app/router.js Router.map(function() { this.route("photo", { path: "photo/:photo_id" }, function() { this.route("comment", { path: "comment/:comment_id" }); }); });
+
+    <br />In the next section, [Specifying a Route's Model](../specifying-a-routes-model), you will learn more about how to load a model.
     
     ## Wildcard / globbing routes
     

@@ -1,37 +1,36 @@
-Models are objects that represent the underlying data that your application presents to the user. Different apps will have very different models, depending on what problems they're trying to solve.
+モデルは、アプリケーションがユーザーに表示する情報のもとになるデータをあらわすオブジェクトです。それぞれのアプリケーションは、解こうとしている問題に応じて、まったく異なったモデルを持ちます。
 
-For example, a photo sharing application might have a `Photo` model to represent a particular photo, and a `PhotoAlbum` that represents a group of photos. In contrast, an online shopping app would probably have different models, like `ShoppingCart`, `Invoice`, or `LineItem`.
+たとえば、写真共有アプリケーションなら、個別の写真をあらわす`Photo`モデルや、写真の集合をあらわす`PhotoAlbum`モデルを持つでしょう。 あるいは、オンラインショップのアプリケーションであれば、`ShoppingCart`や`Invoice`、`LineItem`のような、まったく異なったモデルを持つはずです。.
 
-Models tend to be *persistent*. That means the user does not expect model data to be lost when they close their browser window. To make sure no data is lost, if the user makes changes to a model, you need to store the model data somewhere that it will not be lost.
+多くの場合、モデルは*永続化*されます。 つまり、ブラウザ・ウィンドウが閉じられた際に、ユーザーはモデルのデータが失われることを予期していません。 データが失われないようにするためには、ユーザーがモデルを変更した際に、その変更が失われないようモデルのデータをどこかに格納する必要があります。
 
-Typically, most models are loaded from and saved to a server that uses a database to store data. Usually you will send JSON representations of models back and forth to an HTTP server that you have written. However, Ember makes it easy to use other durable storage, such as saving to the user's hard disk with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), or hosted storage solutions that let you avoid writing and hosting your own servers.
+一般的に、ほとんどのモデルはサーバーから読み込まれ、サーバーに保存されます。そして、サーバーはデータベースを使用してデータを格納します。 HTTPサーバーとのやりとりはモデルのJSON表現を使うことが多く、サーバーは自分で用意することが多いでしょう。 しかし、Emberであれば、ほかの永続ストレージを採用することも容易です。[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)を使ってハードディスクにデータを保存したり、自分でサーバーを用意しなくてよいオンラインのストレージサービスをつかうこともできます。
 
-Once you've loaded your models from storage, components know how to translate model data into a UI that your user can interact with. For more information about how components get model data, see the [Specifying a Route's Model](../routing/specifying-a-routes-model) guide.
+ストレージからモデルが読み込まれると、コンポーネントによって、モデルのデータはユーザーが操作可能なUIへと変換されます。 コンポーネントがモデルのデータを取得する方法の詳細は、[ルートが参照するモデルの指定](../routing/specifying-a-routes-model)の項を参照してください。
 
-Ember Data, included by default when you create a new application, is a library that integrates tightly with Ember to make it easy to retrieve models from your server as JSON, save updates back to the server, and create new models in the browser.
+Ember Dataは、新しくアプリケーションを作成した際に標準で含まれている、Emberと密に統合されたライブラリです。Ember Dataを使うことで、サーバーからJSON形式でモデルを読み出したり、サーバーへ変更内容を保存したり、ブラウザ上で新しいモデルを作成することが容易になります。
 
-Thanks to its use of the *adapter pattern*, Ember Data can be configured to work with many different kinds of backends. There is [an entire ecosystem of adapters](http://emberobserver.com/categories/ember-data-adapters) that allow your Ember app to talk to different types of servers without you writing any networking code.
+Ember Dataは*Adapterパターン*を適用しており、そのおかげでさまざまなバックエンドと共に動作するように構成できます。 [アダプターのエコシステム](http://emberobserver.com/categories/ember-data-adapters)があり、通信用のコードを一切書くことなく、Emberアプリは様々な種類のサーバーと会話することができるようになっています。
 
-If you need to integrate your Ember.js app with a server that does not have an adapter available (for example, you hand-rolled an API server that does not adhere to any JSON specification), Ember Data is designed to be configurable to work with whatever data your server returns.
+どのJSON仕様も順守していないAPIサーバーとやりとりする際など、アダプターが存在しないサーバーとEmber.jsアプリを結合したい場合もあります。この場合でも、サーバーが返すデータがどんな形であれ、Ember Dataはそれらとうまく動くように構成できるようデザインされています。
 
-Ember Data is also designed to work with streaming servers, like those powered by WebSockets. You can open a socket to your server and push changes into Ember Data whenever they occur, giving your app a real-time user interface that is always up-to-date.
+Ember Dataは、WebSocketsで動いているようなストリーミングサーバーとであっても、うまく動くようデザインされています。 サーバーとソケットを開いておくことができ、変更が起きるたびに内容をEmber Dataにプッシュすることで、アプリケーションに常に最新のリアルタイムなユーザーインターフェイスを与えることができます。
 
-At first, using Ember Data may feel different than the way you're used to writing JavaScript applications. Many developers are familiar with using AJAX to fetch raw JSON data from an endpoint, which may appear easy at first. Over time, however, complexity leaks out into your application code, making it hard to maintain.
+はじめのうちは、Ember Dataを使ったときの感触と、これまでJavaScriptアプリケーションを書いてきた方法との違いに戸惑うかもしれません。 多くの開発者は、エンドポイントから生のJSONデータを取ってくる際、AJAXを使うことに慣れています。AJAXを使うのは、まず思い浮かぶ容易なやり方でしょう。 しかし、そうするとアプリケーションコードに複雑性を注入されていき、メンテナンスがじょじょに困難になっていってしまいます。
 
-With Ember Data, managing models as your application grows becomes both simple *and* easy.
+Ember Dataを使うと、アプリケーションの成長にあわせてモデルを管理していくことを、シンプル*かつ*容易に実現できます。
 
-Once you have an understanding of Ember Data, you will have a much better way to manage the complexity of data loading in your application. This will allow your code to evolve without becoming a mess.
+Ember Dataを理解したのなら、アプリケーション内のデータ読み込みに関する複雑さをうまいこと管理できるはずです。コードをめちゃくちゃにすることなしに進化させていくことができるでしょう。
 
 ## The Store and a Single Source of Truth
 
-One common way of building web applications is to tightly couple user interface elements to data fetching. For example, imagine you are writing the admin section of a blogging app, which has a feature that lists the drafts for the currently logged in user.
+Webアプリケーションを構築する一般的な方法は、ユーザーインターフェイスの要素と読み出してくるデータをしっかりと対応づけることです。 例えば、ブログアプリケーションの管理画面を開発している場面を想像してください。管理画面では、そのときログインしているユーザーが作成した下書き状態の記事を一覧する機能が必要だとします。
 
-You might be tempted to make the component responsible for fetching that data and storing it:
+このとき、そのデータの取得と保存に責務を持つコンポーネントを、以下のように作ればよいと考えたくなるかもしれません。
 
 ```app/components/list-of-drafts.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
-    <br />You could then show the list of drafts in your component's template like
-    this:
+    <br />コンポーネントのテンプレート内で下書き記事を一覧表示させるコードは、以下のようになるでしょう。
     
     ```app/templates/components/list-of-drafts.hbs
     <ul>
@@ -41,7 +40,7 @@ You might be tempted to make the component responsible for fetching that data an
     </ul>
     
 
-This works great for the `list-of-drafts` component. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
+これは`list-of-drafts`コンポーネントとしてうまく機能します。 しかし、アプリケーションは様々な異なるコンポーネントによって構成されている可能性があります。 別のページでは、下書き記事の数を表示するコンポーネントが欲しくなるかもしれません。 すると、既存の`willRender`コードを新しいコンポーネントにコピー&ペーストしたくなる誘惑にかられます。
 
 ```app/components/drafts-button.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
@@ -51,7 +50,7 @@ This works great for the `list-of-drafts` component. However, your app is likely
     {{/link-to}}
     
 
-Unfortunately, the app will now make two separate requests for the same information. Not only is the redundant data fetching costly in terms of wasted bandwidth and affecting the perceived speed of your app, it's easy for the two values to get out-of-sync. You yourself have probably used a web application where the list of items gets out of sync with the counter in a toolbar, leading to a frustrating and inconsistent experience.
+こうしてしまうと、残念ながらアプリケーションは同じ情報のために2つの別々のリクエストを発行することになってしまいます。 この冗長なデータ取得は、帯域幅の無駄使いという観点から高コストであったり、 アプリケーションの体感速度に影響を与えるだけでなく、二つの値が不整合を起こすという問題も容易に引き起こしてしまいます。 項目の一覧とツールバー内の項目数が一致していないWebアプリケーションをユーザーとして使っているところを想像してもらえば、それがイライラする一貫性のない体験を引き起こすということをわかってもらえるでしょう。
 
 There is also a *tight coupling* between your application's UI and the network code. If the url or the format of the JSON payload changes, it is likely to break all of your UI components in ways that are hard to track down.
 

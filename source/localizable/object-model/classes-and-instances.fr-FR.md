@@ -5,7 +5,7 @@ As you learn about Ember, you'll see code like `Ember.Component.extend()` and `M
 To define a new Ember *class*, call the [`extend()`](http://emberjs.com/api/classes/Ember.Object.html#method_extend) method on [`Ember.Object`](http://emberjs.com/api/classes/Ember.Object.html):
 
 ```javascript
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   say(thing) {
     alert(thing);
   }
@@ -25,14 +25,13 @@ You can also create a *subclass* from any existing class by calling its `extend(
     method:
     
     ```javascript
-    Person = Ember.Object.extend({
+    const Person = Ember.Object.extend({
       say(thing) {
-        var name = this.get('name');
-        alert(`${name} says: ${thing}`);
+        alert(`${this.get('name')} says: ${thing}`);
       }
     });
     
-    Soldier = Person.extend({
+    const Soldier = Person.extend({
       say(thing) {
         // this will call the method in the parent class (Person#say), appending
         // the string ', sir!' to the variable `thing` passed in
@@ -40,7 +39,7 @@ You can also create a *subclass* from any existing class by calling its `extend(
       }
     });
     
-    var yehuda = Soldier.create({
+    let yehuda = Soldier.create({
       name: 'Yehuda Katz'
     });
     
@@ -69,20 +68,27 @@ The above example returns the original arguments (after your customizations) bac
 Once you have defined a class, you can create new *instances* of that class by calling its [`create()`](http://emberjs.com/api/classes/Ember.Object.html#method_create) method. Any methods, properties and computed properties you defined on the class will be available to instances:
 
 ```javascript
-var person = Person.create();
+const Person = Ember.Object.extend({
+  say(thing) {
+    alert(`${this.get('name')} says: ${thing}`);
+  }
+});
+
+let person = Person.create();
+
 person.say('Hello'); // alerts " says: Hello"
 ```
 
 When creating an instance, you can initialize the values of its properties by passing an optional hash to the `create()` method:
 
 ```javascript
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   helloWorld() {
     alert(`Hi, my name is ${this.get('name')}`);
   }
 });
 
-var tom = Person.create({
+let tom = Person.create({
   name: 'Tom Dale'
 });
 
@@ -98,10 +104,9 @@ By convention, properties or variables that hold classes are PascalCased, while 
 When a new instance is created, its [`init()`](http://emberjs.com/api/classes/Ember.Object.html#method_init) method is invoked automatically. This is the ideal place to implement setup required on new instances:
 
 ```js
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   init() {
-    var name = this.get('name');
-    alert(`${name}, reporting for duty!`);
+    alert(`${this.get('name')}, reporting for duty!`);
   }
 });
 
@@ -117,7 +122,7 @@ If you are subclassing a framework class, like `Ember.Component`, and you overri
 Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
 
 ```js
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   shoppingList: ['eggs', 'cheese']
 });
 
@@ -142,7 +147,7 @@ Person.create({
 To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
 
 ```js
-Person = Ember.Object.extend({
+const Person = Ember.Object.extend({
   init() {
     this.set('shoppingList', ['eggs', 'cheese']);
   }
@@ -171,10 +176,15 @@ Person.create({
 When accessing the properties of an object, use the [`get()`](http://emberjs.com/api/classes/Ember.Object.html#method_get) and [`set()`](http://emberjs.com/api/classes/Ember.Object.html#method_set) accessor methods:
 
 ```js
-var person = Person.create();
+const Person = Ember.Object.extend({
+  name: 'Robert Jackson'
+});
 
-var name = person.get('name');
+let person = Person.create();
+
+person.get('name'); // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
+person.get('name'); // 'Tobias Fünke'
 ```
 
 Make sure to use these accessor methods; otherwise, computed properties won't recalculate, observers won't fire, and templates won't update.

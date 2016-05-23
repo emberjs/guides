@@ -2,7 +2,7 @@
 
 ## 插件
 
-Ember插件通过 NPM 安装 (例如 `npm install --save-dev ember-cli-sass`)。 插件可能会通过自动修改项目的 `bower.json` 文件引入其他依赖项。
+Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (e.g. `ember install ember-cli-sass`). 插件可能会通过自动修改项目的 `bower.json` 文件引入其他依赖项。
 
 你可以在[Ember Observer](http://emberobserver.com)找到所有的插件.
 
