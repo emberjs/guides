@@ -46,15 +46,15 @@ testem.js
 
 **vendor**：这个目录包含所有不被 Bower 管理的前端依赖，诸如 Javascript 或 CSS。
 
-**tests / testem.js**：存放自动化测试文件，另外你可以在`testem.js`配置**testem**，Ember的自动化测试工具。.
+**tests / testem.js**：自动化测试都在 `tests` 文件夹中。Ember CLI 的测试运行器 **testem** 则在 `testem.js` 文件中进行配置。.
 
-**tmp**：存放Ember CLI用到的临时文件。
+**tmp**：存放 Ember CLI 的临时文件。
 
-**ember-cli-build.js**: This file describes how Ember CLI should build our app.
+**ember-cli-build.js**：这个文件描述 Ember CLI 应该如何构建我们的应用程序。
 
-## ES6模块
+## ES6 模块
 
-If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
+如果你观察一下 `app/router.js` 文件就会发现，有些语法可能对你来说不太熟悉。
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
