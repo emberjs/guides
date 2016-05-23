@@ -1,8 +1,8 @@
-Ember CLI 是 Ember 的命令行界面。它提供了一个标准的项目结构、一套开发工具、以及一个插件系统。 这让你能更专注于应用本身，避免为一些边角的构建问题分神。 你可以通过`ember --help`命令查看帮助。 想了解特定命令的信息，可以使用`ember help <command-name>`。.
+Ember CLI 是 Ember 的命令行界面。它提供了一个标准的项目结构、一套开发工具、以及一个插件系统。 它能让 Ember 开发者更专注于构建应用程序本身，而不是花时间去构建那些为了让程序运行起来所必须的支持性结构。 在命令行环境下，你可以很简单地通过 `ember --help` 来显示 Ember CLI 所提供的所有命令。 要了解某个特定命令的详细信息，输入 `ember help <command-name>` 即可。.
 
-## 创建一个新应用
+## 创建一个新应用程序
 
-Ember CLI的`new`命令可以帮你创建一个新项目。为下一章做准备，我们来创建一个叫 `super-rentals`的应用。.
+要用 Ember CLI 创建一个新项目，可以使用 `new` 命令。为了给本教程的下一节做准备，你可以创建一个应用程序叫做 `super-rentals`。.
 
 ```shell
 ember new super-rentals
