@@ -2,7 +2,7 @@ Ahora, vamos a añadir una lista de los alquileres disponibles en la template (p
 
 Así se verá nuestra página principal cuando terminemos:
 
-![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
+![página de inicio de super rentals con lista de alquileres](../../images/models/super-rentals-index-with-list.png)
 
 En Ember, los route handlers (manejadores de ruta) son responsables de cargar la información de los modelos. Vamos a abrir `app/routes/index.js` y añadir nuestros datos hardcoded como el valor que retorne el gancho `model`:
 
@@ -21,8 +21,8 @@ export default Ember.Route.extend({ model() { return rentals; } });
     El gancho `model` retorna nuestro arreglo _rentals_ y la pasa a la template (plantilla) como la propiedad `model`.
     
     Ahora, vamos a pasar a nuestra plantilla.
-    We can use the model data to display our list of rentals.
-    Here, we'll use another common Handlebars helper called `{{each}}`.
+    Podemos utilizar los datos de los modelos para mostrar la lista de los alquileres.
+    Aquí, usaremos otro helper común de Handlebars llamado `{{each}}`.
     Este helper nos permitirá recorrer cada uno de los objetos del modelo:
     
     ```app/templates/index.hbs
@@ -57,4 +57,4 @@ export default Ember.Route.extend({ model() { return rentals; } });
     {{/each}}
     
 
-In this template, we loop through each model object and call it *rental*. For each rental, we then create a listing with information about the property.
+En esta plantilla, recorremos cada objeto del modelo y lo llamamos *alquiler*. Para cada alquiler, creamos una lista con información sobre la propiedad.
