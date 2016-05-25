@@ -23,7 +23,7 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
+    <br />Actualicemos nuestra template (plantilla) del component (componente) `rental-listing`para utilizar nuestro nuevo helper y pasarle`rental.type`:
     
     ```app/templates/components/rental-listing.hbs
     <article class="listing">
@@ -48,7 +48,7 @@ export default Ember.Helper.helper(rentalPropertyType);
     </article>
     
 
-Idealmente vamos a ver "Type: Standalone - Estate" para nuestro primer rental property. En cambio, template helper por defecto retorna los valores de `rental.type`. Vamos a actualizar nuestro helper para ver si existe una property en un arreglo de `communityPropertyTypes`, si así, retornará `'Community'` o `'Standalone'`:
+Idealmente veremos "Type: Standalone - Estate" para nuestra primera propiedad en alquiler. En cambio, template helper por defecto retorna los valores de `rental.type`. Vamos a actualizar nuestro helper para ver si existe una property en un arreglo de `communityPropertyTypes`, si así, retornará `'Community'` o `'Standalone'`:
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 

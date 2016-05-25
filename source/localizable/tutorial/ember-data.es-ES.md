@@ -42,14 +42,14 @@ export default Model.extend({
 
 Ahora tenemos un modelo en nuestro store (depósito) de Ember Data.
 
-### Updating the Model Hook
+### Actualizando el Model Hook
 
-To use our new data store, we need to update the `model` hook in our route handler.
+Para usar nuestro nuevo almacén de datos, debemos actualizar el gancho `model` en nuestro route (ruta).
 
 ```app/routes/index.js import Ember from 'ember';
 
 export default Ember.Route.extend({ model() { return this.store.findAll('rental'); } }); ```
 
-When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`. You can read more about Ember Data in the [Models section](../../models/).
+Cuando llamamos a `this.store.findAll('rental')`, Ember Data hará una petición GET a `/rentals`. Puedes leer más sobre Ember Data en la [sección de models](../../models/).
 
-Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
+Debido a que estamos Mirage en nuestro entorno de desarrollo, Mirage retornará los datos que hemos proporcionado. Cuando despleguemos nuestra aplicación en un servidor de producción, necesitamos proporcionar un backend para que Ember Data se comunique con él.
