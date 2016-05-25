@@ -123,7 +123,7 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     <br />Utilizaremos el gancho `init` para llenar nuestros listados iniciales, llamando la action (acción) `filter` con un valor vacío.
     Nuestra acción 'handleFilterEntry' llama a nuestra acción de filtro basado en el atributo `value` establecido por el helper de campo de texto.
     
-    La acción de 'filtro' es [passed] (../../ components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) en el objeto que llama. Este es un patrón llamado _closure actions_.
+    La acción de 'filtro' es [pasada](../../ components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) por el objeto que llama. Este es un patrón llamado _closure actions_.
     
     Para implementar estas acciones, crearemos el controller (controlador) index para la aplicación.  El controller (controlador) index es ejecutado cuando el usuario va a la route (ruta) base index de la aplicación.
     
@@ -140,11 +140,10 @@ Ahora bien, define tu nuevo controlador de esta manera:
 export default Ember.Controller.extend({ actions: { filterByCity(param) { if (param !== '') { return this.get('store').query('rental', { city: param }); } else { return this.get('store').findAll('rental'); } } } });
 
     <br />Cuando el usuario escribe en el campo de texto en nuestro component (componente), este es el action (acción) que se llama. 
-    This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
-    The result of the query is returned to the caller.
+    Esta acción toma la propiedad `value` y filtra los datos de `rental` para los registros en almacén de datos que coincidan con lo que el usuario ha escrito hasta ahora. 
+    El resultado de la consulta se devuelve a quien llama la función.
     
-    For this action to work, we need to modify the Mirage `config.js` file
-    to look like this, so that it can respond to our queries.
+    Para que estas action (acción) funcion, debemos modificar el archivo `config.js` de Mirage para que se vea como este y así pueda responder a nuestras consultas.
     
     ```mirage/config.js{+2,+38,+39,+40,+41,+42,+43,+44,+45}
     export default function() {
@@ -196,6 +195,6 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
     }
     
 
-After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen, that will update the rental list as you type:
+Después de actualizar la configuración de mirage, deberíamos ver los tests pasando, así como un simple filtro en la pantalla principal, que se actualizará la lista de alquiler mientras escribes:
 
-![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
+![pantalla de inicio con el componente de filtro](../../images/autocomplete-component/styled-super-rentals-filter.png)
