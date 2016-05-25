@@ -1,4 +1,4 @@
-Now, let's add a list of available rentals to the index template. We know that rentals will not be static, since eventually users will be able to add, update, and delete them. For this reason, we'll need a *rentals* model to save information about the rentals. To keep things simple at first, we'll use a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
+Ahora, vamos a añadir una lista de los alquileres disponibles en la template (plantilla) index. Sabemos que los rentals no son estáticos, debido a que eventualmente los usuarios podrán agregarlos, actualizarlos y borrarlos. For this reason, we'll need a *rentals* model to save information about the rentals. To keep things simple at first, we'll use a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
 
 Here's what our homepage will look like when we're done:
 
