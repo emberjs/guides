@@ -12,14 +12,15 @@ var rentals = [{ id: 1, title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 
 
 export default Ember.Route.extend({ model() { return rentals; } });
 
-    <br />Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
+    <br />Acá estamos usando la sintaxis corta de ES6 para la definición de métodos: `model ()` es lo mismo que escribir `model: function ()`.
     
-    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
-    The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
+    La función `model` actúa como un **gancho**, lo que significa que Ember lo llamará por nosotros durante diferentes momentos en nuestra aplicación.
     
-    The `model` hook returns our _rentals_ array and passes it to our `index` template as the `model` property.
+    El gancho del modelo que hemos agregado para nuestra route (ruta) `index` será llamado cuando un el usuario entre a la route (ruta) `index`.
     
-    Now, let's switch over to our template.
+    El gancho `model` retorna nuestro arreglo _rentals_ y la pasa a la template (plantilla) como la propiedad `model`.
+    
+    Ahora, vamos a pasar a nuestra plantilla.
     We can use the model data to display our list of rentals.
     Here, we'll use another common Handlebars helper called `{{each}}`.
     Este helper nos permitirá recorrer cada uno de los objetos del modelo:
