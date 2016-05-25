@@ -43,7 +43,7 @@ Services must extend the [`Ember.Service`](http://emberjs.com/api/classes/Ember.
       },
     
       empty() {
-        this.get('items').setObjects([]);
+        this.get('items').clear();
       }
     });
     

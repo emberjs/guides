@@ -1,18 +1,18 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
+Mientras buscan un alquiler, los usuarios también puede limitar su búsqueda a una ciudad específica. Vamos a construir un component (componente) que les permita filtrar los alquileres por ciudad.
 
-To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
+Para empezar, vamos a generar nuestro nuevo component (componente). Llamaremos a este component (componente) `list-filter`, ya que queremos que nuestro component (componente) filtre la lista de los alquileres basado en la entrada.
 
 ```shell
 ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
+Como antes, esto crea un template (plantilla) de Handlebars) (`app/templates/components/list-filter.hbs`), un archivo JavaScript (`app/components/list-filter.js`) y una test de integración del component (componente) (`tests/integration/components/list-filter-test.js`).
 
-Let's start with writing some tests to help us think through what we are doing. The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to 2 actions: one to provide a list of all items when no filter is provided and an action to search listings by city.
+Vamos a empezar a escribir algunos tests que nos permitan pensar acerca de lo que estamos realizando. El component (componente) del filtro debería generar una lista de elementos filtrados respecto a lo que se procese dentro de este, conocido como su bloque de template interno. Queremos que nuestro componente llame a 2 acciones: una para proporcionar una lista de todos los elementos cuando no se suministra ningún filtro y una acción para buscar anuncios por ciudad.
 
-For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
+Para nuestra prueba inicial, simplemente comprobamos que todas las ciudades que proveemos son renderizadas y que el object del anuncio es accesible desde el template (plantilla).
 
-Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises. Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
+Ya que planeamos utilizar Ember Data como nuestro almacén de modelos, necesitamos llamar nuestras actions (acciones) para traer los datos de forma asíncrona, por lo que retornaremos promises (promesas). Debido a que acceder a los datos persistentes por lo general se realiza de forma asíncrona, queremos utilizar el helper wait al final de nuestro test, que espera que todas las promesas se resuelvan antes de completar el test.
 
 ```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait';
 
@@ -22,7 +22,7 @@ const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}]; 
 
 test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return Ember.RSVP.resolve(ITEMS); } else { return Ember.RSVP.resolve(FILTERED_ITEMS); } });
 
-// with an integration test, you can set up and use your component in the same way your application // will use it. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |rentals|}}
+//Con un test de integración, puedes configurar y usar el componente de la misma manera que la aplicación la usará. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |rentals|}}
       <ul>
       {{#each rentals as |item|}}
         <li class="city">
@@ -32,11 +32,11 @@ test('should initially load all listings', function (assert) { // we want our ac
       </ul>
     {{/list-filter}}`);
 
-// the wait function will return a promise that will wait for all promises // and xhr requests to resolve before running the contents of the then block. return wait().then(() => { assert.equal(this.$('.city').length, 3); assert.equal(this.$('.city').first().text().trim(), 'San Francisco'); }); });
+La función esperar, retornará una promise (promesa) que esperará a que todas las promesas y peticiones XHR se resuelvan, antes de ejecutar los contenidos del bloque then. return wait().then(() => { assert.equal(this.$('.city').length, 3); assert.equal(this.$('.city').first().text().trim(), 'San Francisco'); }); });
 
-    For our second test, we'll check that typing text in the filter will actually appropriately call the filter action and update the listings shown.
+    Para el segundo test, comprobamos que escribiendo texto en el filtro realmente ejecutará la action (acción) de filtrado y actualización de la lista que se muestra.
     
-    We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
+    Forzamos la acción mediante la generación de un evento 'keyUp' en el campo input y luego nos aseguramos (assert) que sólo un elemento se renderiza.
     
     ```tests/integration/components/list-filter-test.js
     test('should update with matching listings', function (assert) {
@@ -71,7 +71,7 @@ test('should initially load all listings', function (assert) { // we want our ac
     
     
 
-Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
+A continuación, en nuestro archivo `app/templates/index.hbs`, vamos a añadir nuestro nuevo component (componente) `list-filter` de una manera similar a lo que hicimos en nuestro test. En lugar de solo mostrar la ciudad, que usaremos nuestro component (componente) `rental-listing` para mostrar detalles del alquiler.
 
 ```app/templates/index.hbs 
 
@@ -80,11 +80,11 @@ Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` com
   </div>
   
   <h2>
-    Welcome!
+    ¡Bienvenido!
   </h2>
   
   <p>
-    We hope you find exactly what you're looking for in a place to stay. <br />Browse our listings, or use the search box above to narrow your search.
+    Esperamos que encuentres exactamente lo que buscas en un lugar para quedarse. <br />Navega nuestro listado, o usa la búsqueda en la parte superior para refinar tu búsqueda.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
@@ -98,17 +98,17 @@ Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` com
   </li> {{/each}}
 </ul> {{/list-filter}}
 
-    <br />Now that we have failing tests and an idea of what we want our component contract to be, we'll implement the component.
-    We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
+    <br />Ahora que tenemos tests para los fallos y una idea de lo que el contrato del component (componente) debería ser, implementaremos el componente.
+    Queremos que el componente simplemente proporcione un campo de entrada y ceda la lista de resultados a su bloque, por lo que nuestra template (plantilla) será simple:
     
     ```app/templates/components/list-filter.hbs
     {{input value=value key-up=(action 'handleFilterEntry') class="light" placeholder="Filter By City"}}
     {{yield results}}
     
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be bound to the `value` property in our component. The `key-up` property will be bound to the `handleFilterEntry` action.
+La plantilla contiene un helper [`{{input}}`](../../templates/input-helpers) que se renderiza como un campo de texto, en donde el usuario puede escribir un patrón para filtrar la lista de ciudades utilizadas en la búsqueda. La propiedad `value` del campo `input` estará ligada a la propiedad `value` en nuestro component (componente). La propiedad `key-up` estará ligada a la acción `handleFilterEntry`.
 
-Here is what the component's JavaScript looks like:
+Así es como se ve el JavaScript del component (componente):
 
 ```app/components/list-filter.js import Ember from 'ember';
 
@@ -120,10 +120,10 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
 
 });
 
-    <br />We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
-    Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
+    <br />Utilizaremos el gancho `init` para llenar nuestros listados iniciales, llamando la action (acción) `filter` con un valor vacío.
+    Nuestra acción 'handleFilterEntry' llama a nuestra acción de filtro basado en el atributo `value` establecido por el helper de campo de texto.
     
-    Both the `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+    La acción de 'filtro' es [passed] (../../ components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) en el objeto que llama. Este es un patrón llamado _closure actions_.
     
     To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
     

@@ -1,4 +1,4 @@
-To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals. It will start with a homepage, an about page and a contact page. Let's take a look at the application from the user perspective before we get started.
+为了展现一个 Ember 应用程序的基本设置和运行过程，本节将会演示一下建立一个 Ember 应用程序的过程。这个房产租赁网站叫做 Super Rentals。 It will start with a homepage, an about page and a contact page. Let's take a look at the application from the user perspective before we get started.
 
 ![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
 

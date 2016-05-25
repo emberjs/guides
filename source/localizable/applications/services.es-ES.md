@@ -43,7 +43,7 @@ Los servicios deben extender de la clase base [`Ember.Service`](http://emberjs.c
       },
     
       empty() {
-        this.get('items').setObjects([]);
+        this.get('items').clear();
       }
     });
     
