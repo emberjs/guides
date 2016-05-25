@@ -1,10 +1,10 @@
-Ahora, vamos a añadir una lista de los alquileres disponibles en la template (plantilla) index. Sabemos que los rentals no son estáticos, debido a que eventualmente los usuarios podrán agregarlos, actualizarlos y borrarlos. For this reason, we'll need a *rentals* model to save information about the rentals. To keep things simple at first, we'll use a hard-coded array of JavaScript objects. Later, we'll switch to using Ember Data, a library for robustly managing data in our app.
+Ahora, vamos a añadir una lista de los alquileres disponibles en la template (plantilla) index. Sabemos que los rentals no son estáticos, debido a que eventualmente los usuarios podrán agregarlos, actualizarlos y borrarlos. Por esta razón, necesitaremos un model (modelo) de *rentals* para guardar información acerca de los alquileres. Para mantener las cosas simples inicialmente, usaremos un arreglo de objectos JavaScript hardcoded. Después, empezaremos a usar Ember Data, una biblioteca para manejar los datos robustamente en nuestra aplicación.
 
-Here's what our homepage will look like when we're done:
+Así se verá nuestra página principal cuando terminemos:
 
 ![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
 
-In Ember, route handlers are responsible for loading model data. Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:
+En Ember, los route handlers (manejadores de ruta) son responsables de cargar la información de los modelos. Vamos a abrir `app/routes/index.js` y añadir nuestros datos hardcoded como el valor que retorne el gancho `model`:
 
 ```app/routes/index.js import Ember from 'ember';
 
@@ -22,7 +22,7 @@ export default Ember.Route.extend({ model() { return rentals; } });
     Now, let's switch over to our template.
     We can use the model data to display our list of rentals.
     Here, we'll use another common Handlebars helper called `{{each}}`.
-    This helper will let us loop through each of the objects in our model:
+    Este helper nos permitirá recorrer cada uno de los objetos del modelo:
     
     ```app/templates/index.hbs
     <div class="jumbo">
