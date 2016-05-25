@@ -78,14 +78,14 @@ required interfaces using the convenience method `Ember.A`:
 
 ```javascript
 var islands = ['Oahu', 'Kauai'];
-islands.contains('Oahu');
-//=> TypeError: Object Oahu,Kauai has no method 'contains'
+islands.includes('Oahu');
+//=> TypeError: Object Oahu,Kauai has no method 'includes'
 
 // Convert `islands` to an array that implements the
 // Ember enumerable and array interfaces
 Ember.A(islands);
 
-islands.contains('Oahu');
+islands.includes('Oahu');
 //=> true
 ```
 
