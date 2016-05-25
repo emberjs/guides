@@ -125,21 +125,21 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     
     La acción de 'filtro' es [passed] (../../ components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) en el objeto que llama. Este es un patrón llamado _closure actions_.
     
-    To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
+    Para implementar estas acciones, crearemos el controller (controlador) index para la aplicación.  El controller (controlador) index es ejecutado cuando el usuario va a la route (ruta) base index de la aplicación.
     
-    Generate a controller for the `index` page by running the following:
+    Generar un controller (controlador) para la página `index` ejecutando lo siguiente:
     
     ```shell
     ember g controller index
     
 
-Now, define your new controller like so:
+Ahora bien, define tu nuevo controlador de esta manera:
 
 ```app/controllers/index.js import Ember from 'ember';
 
 export default Ember.Controller.extend({ actions: { filterByCity(param) { if (param !== '') { return this.get('store').query('rental', { city: param }); } else { return this.get('store').findAll('rental'); } } } });
 
-    <br />When the user types in the text field in our component, the `filterByCity` action in the controller is called. 
+    <br />Cuando el usuario escribe en el campo de texto en nuestro component (componente), este es el action (acción) que se llama. 
     This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
     The result of the query is returned to the caller.
     
