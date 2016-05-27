@@ -1,34 +1,34 @@
-Para demostrar la configuración básica y procesamiento de una aplicación de Ember, esta sección te guiará a través de una aplicación de Ember para un sitio de alquiler de propiedades llamado Super Rentals. It will start with a homepage, an about page and a contact page. Let's take a look at the application from the user perspective before we get started.
+Para demostrar la configuración básica y procesamiento de una aplicación de Ember, esta sección te guiará a través de una aplicación de Ember para un sitio de alquiler de propiedades llamado Super Rentals. Iniciará con una página, una página "acerca de" y una página de contacto. Echemos un vistazo a la aplicación desde la perspectiva del usuario antes de empezar.
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+![captura de pantalla de la página de inicio de super rentals](../../images/service/style-super-rentals-maps.png)
 
-We arrive at the home page which shows a list of rentals. From here, we will be able to navigate to an about page and a contact page.
+Llegamos a la página de inicio que muestra una lista de alquileres. Desde aquí, podremos navegar a la página "acerca de" y a la página de contacto.
 
-Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
+Vamos a asegurarnos de que tenemos una aplicación de Ember CLI fresca llamada `super-rentals` ejecutando:
 
 ```shell
 ember new super-rentals
 ```
 
-Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the `{{outlet}}` code in place. We'll talk more about the role of the `application.hbs` file after our site has a few routes.
+Antes de empezar a construir las tres páginas de nuestra aplicación, vamos a borrar el contenido del archivo `app/templates/application.hbs` y solo dejaremos el código `{{outlet}}` en su lugar. Vamos a hablar más sobre el papel del archivo `application.hbs` después de que nuestro sitio tenga algunas rutas.
 
-Now, let's start by building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, *about.js*. The route handler then loads a template.
+Ahora, vamos a empezar con la creación de nuestra página "acerca de". Recuerda, cuando se carga la URL `/about`, el router mapeará la URL al route (routa) del mismo nombre, *about.js*. La route (ruta) entonces carga una template (plantilla).
 
-## An About Route
+## Route (ruta) "acerca de"
 
-If we run `ember help generate`, we can see a variety of tools that come with Ember for automatically generating files for various Ember resources. Let's use the route generator to start our `about` route.
+Si corremos `ember help generate`, podemos ver una variedad de herramientas que vienen con Ember para generar automáticamente archivos para diferentes recursos de Ember. Vamos a usar el generador de route para iniciar con nuestra ruta `about`.
 
 ```shell
 ember generate route about
 ```
 
-or for short,
+o, para abreviar,
 
 ```shell
 ember g route about
 ```
 
-We can then see what actions were taken by the generator:
+A continuación podemos ver qué acciones fueron realizadas por el generador:
 
 ```shell
 installing route
@@ -40,9 +40,9 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-Three new files are created: one for the route handler, one for the template the route handler will render, and a test file. The fourth file that is touched is the router.
+Se crean tres archivos nuevos: uno para el route (ruta), uno para la (template) plantilla que el route (ruta) renderizará y un archivo de prueba. El cuarto archivo que se modifica es el router.
 
-When we open the router, we can see that the generator has mapped a new *about* route for us. This route will load the `about` route handler.
+Cuando abrimos el router, vemos que el generador ha asignado una nueva route (ruta) *about* para nosotros. Esta ruta carga el route (ruta) `about`.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -52,11 +52,11 @@ Router.map(function() { this.route('about'); });
 
 export default Router;
 
-    <br />By default, the `about` route handler loads the `about.hbs` template.
-    This means we don't actually have to change anything in the new `app/routes/about.js` file for the `about.hbs` template to render as we want.
+    <br />Por defecto el route (ruta) carga la template (plantilla) `about.hbs`.
+    Esto significa que realmente no tenemos que cambiar nada en el nuevo archivo 'app/routes/about.js' para que la template (plantilla) 'about.hbs' se renderice.
     
-    With all of the routing in place from the generator, we can get right to work on coding our template.
-    For our `about` page, we'll add some HTML that has a bit of information about the site:
+    Con todo el enrutamiento generado por el generador, podemos empezar a trabajar en el código de nuestra template (plantilla).
+    Para nuestra página `about` (acerca de), agregaremos HTML que tiene un poco de información acerca del sitio:
     
     ```app/templates/about.hbs
     <div class="jumbo">
@@ -70,19 +70,19 @@ export default Router;
     </div>
     
 
-Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server, and then go to `localhost:4200/about` to see our new app in action!
+¡Ejecuta `ember serve` (o más corto aún `ember s`) desde una línea de comandos para iniciar el servidor de desarrollo de Ember, y luego visita`localhost:4200/about` para ver nuestra nueva aplicación en acción!
 
-## A Contact Route
+## La ruta de contacto
 
-Let's create another route with details for contacting the company. Once again, we'll start by generating a route, a route handler, and a template.
+Vamos a crear otra ruta con los detalles para ponerse en contacto con la empresa. Una vez más, comenzaremos generando una route (ruta), su controlador y una template (plantilla).
 
 ```shell
 ember g route contact
 ```
 
-We see that our generator has created a `contact` route in the `app/router.js` file, and a corresponding route handler in `app/routes/contact.js`. Since we will be using the `contact` template, the `contact` route does not need any additional changes.
+Vemos que nuestro generador ha creado una ruta `contact` en el archivo `app/router.js` y una route (ruta) correspondiente en `app/routes/contact.js`. Debido a que estaremos usando el template (plantilla) `contact`, la route (ruta) `contact` no necesita más cambios adicionales.
 
-In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
+En `contact.hbs`, podemos agregar los datos para contactar a Super Alquiler HQ:
 
 ```app/templates/contact.hbs 
 
@@ -91,11 +91,11 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
   </div>
   
   <h2>
-    Contact Us
+    Contáctenos
   </h2>
   
   <p>
-    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
+    A los representantes de Super Rentals les gustaría <br />escoger un destino o responder cualquier pregunta que puedas tener.
   </p>
   
   <p>
@@ -109,17 +109,16 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
   </p>
 </div>
 
-    <br />Now we have completed our second route.
-    If we go to the URL `localhost:4200/contact`, we'll arrive on our contact page.
+    <br />Ahora hemos completado nuestra segunda ruta.
+    Si visitamos la URL 'localhost:4200/contact', iremos a nuestra página de contacto.
     
-    ## Navigating with Links and the {{link-to}} Helper
+    ## Navegando con enlaces y el helper {{link-to}}
     
-    We really don't want users to have to know our URLs in order to move around our site,
-    so let's add some navigational links at the bottom of each page.
-    Let's make a contact link on the about page and an about link on the contact page.
+    Realmente no queremos que nuestros usuarios conozcan nuestras URLs para navegar nuestro sitio, así que vamos a añadir algunos enlaces de navegación en la parte inferior de cada página.
+    Hagamos un enlace para la página de contacto en la página "acerca de" y un enlace para la página de "acerca de" en la página de contacto.
     
-    Ember has built-in **helpers** that provide functionality such as linking to other routes.
-    Here we will use the `{{link-to}}` helper in our code to link between routes:
+    Ember tiene incorporado **helpers (ayudantes)** que proporcionan funcionalidad como enlazarse a otras rutas.
+    Aquí utilizaremos el helper (ayudante) `{{link-to}}` en nuestro código para enlazar nuestras rutas:
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
@@ -127,8 +126,7 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
       <h2>About Super Rentals</h2>
       <p>
         The Super Rentals website is a delightful project created to explore Ember.
-        By building a property rental site, we can simultaneously imagine traveling
-        AND building Ember applications.
+        By building a property rental site, we can simultaneously imagine traveling AND building Ember applications.
       </p>
       {{#link-to 'index' class="button"}}
         Get Started!
@@ -136,11 +134,11 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
     </div>
     
 
-The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page, we now have a working link to our contact page.
+El helper (ayudante) `{{link-to}}` toma un argumento con el nombre del enlace, en este caso: `contact`. Cuando visitamos nuestra página, tenemos ahora un vínculo funcional a nuestra página de contacto.
 
-![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
+![captura de pantalla de la página "acerca de" de super rentals](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
+Ahora, vamos a añadir un enlace a nuestra página de contacto para que podamos navegar entre `acerca de` y `contacto`.
 
 ```app/templates/contact.hbs 
 
@@ -167,16 +165,16 @@ Now, we'll add a link to our contact page so we can navigate from back and forth
   </p> {{#link-to 'about' class="button"}} About {{/link-to}}
 </div>
 
-    <br />## An Index Route
+    <br />## Ruta index
     
-    With our two static pages in place, we are ready to add our home page which welcomes users to the site.
-    Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
+    Con nuestras dos páginas estáticas creadas, estamos listos para agregar nuestra página de inicio, la cual le dará la bienvenida al sitio.
+    Usando el mismo proceso que hicimos para nuestras páginas "acerca de" y "contacto", primero se genera una nueva ruta llamada `index`.
     
     ```shell
     ember g route index
     
 
-We can see the now familiar output for the route generator:
+Ahora podemos ver la salida familiar del generador de route (ruta):
 
 ```shell
 installing route
@@ -186,9 +184,9 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at nested routes in Ember.
+A diferencia de las otras routes (rutas) que hemos hecho hasta ahora, la route (ruta) `index` es especial: no requiere una entrada en el router. Aprenderemos más acerca de por qué la entrada no es necesaria cuando veamsos las rutas anidadas en Ember.
 
-Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
+Vamos a actualizar nuestra template (plantilla) `index.hbs` con el código HTML de nuestra página y nuestros enlaces a las otras rutas en nuestra aplicación:
 
     app/templates/index.hbs
     <div class="jumbo">
