@@ -181,8 +181,8 @@ El comando `build` empaqueta todos los insumos que componen tu aplicación&mdash
 
 En este caso, le decimos a Ember que compile para el entorno de producción utilizando la bandera `--env`. Esto crea un paquete optimizado, listo para subir a tu servidor web. Una vez que la compilación termine, encontrarás todos los insumos concatenados y minificados en el directorio `dist` de la aplicación.
 
-La comunidad de Ember valora la colaboración y la creación de herramientas comunes en las que todos confíen. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
+La comunidad de Ember valora la colaboración y la creación de herramientas comunes en las que todos confíen. Si estás interesado en desplegar tu aplicación en producción de una forma fácil y confiable, revisa el addon [Ember CLI](http://ember-cli-deploy.github.io/ember-cli-deploy/).
 
-If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+Si implementa la aplicación a un servidor de web Apache, primero crea un nuevo virtual host de la aplicación. Para asegurarse de que todas las rutas son atendidas por index.html, agregue la siguiente directiva a la configuración de virtual host de la aplicación
 
     FallbackResource index.html

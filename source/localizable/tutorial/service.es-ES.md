@@ -1,14 +1,14 @@
-For Super Rentals, we want to be able to display a map showing where each rental is. To implement this feature, we will take advantage of several Ember concepts:
+Para Super Rentals, queremos tener un mapa en el que se muestre donde se encuentra cada alquiler. Para implementar esta característica, utilizaremos varios conceptos de Ember:
 
-  1. A component to display a map on each rental listing.
-  2. A service to keep a cache of rendered maps to use in different places in the application.
-  3. A utility function to create a map from the Google Maps API.
+  1. Un component (componente) para mostrar un mapa en cada anuncio de alquiler.
+  2. Un servicio para mantener en caché los mapas renderizados en diferentes lugares de la aplicación.
+  3. Una función de utilidad para crear un mapa desde el API de Google Maps.
 
-We'll start by displaying the map and work our way back to using the Google Map API.
+Empezaremos mostrando el mapa y trabajaremos con lo demás usando el API de Google Maps.
 
-### Display Maps With a Component
+### Mostrar mapas con un Component (componente)
 
-We'll start by adding a component that shows the rental's city on a map.
+Empezaremos añadiendo un component (componente) que muestra la ciudad donde están los alquileres sobre un mapa.
 
 <pre><code class="app/templates/components/rental-listing.hbs{+19}">&lt;article class="listing"&gt;
   &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
@@ -32,17 +32,17 @@ We'll start by adding a component that shows the rental's city on a map.
 &lt;/article&gt;
 </code></pre>
 
-Next, generate the map component using Ember-CLI.
+A continuación, generaremos el component (componente) del mapa utilizando Ember-CLI.
 
 ```shell
 ember g component location-map
 ```
 
-Running this command generates three files: a component JavaScript file, a template, and a test file. To help think through what we want our component to do, we'll implement a test first.
+Ejecutar este comando genera tres archivos: un archivo de JavaScript para el component (componente) y una template (plantilla) y un archivo de test. Para ayudar a pensar en lo que queremos que el componente haga, implementaremos el test primero.
 
-In this case, we plan on having our Google Maps service handle map display. Our component's job will be to take the results from the map service (which is a map element) and append it to an element in the component template.
+En este caso, planeamos que nuestro service (servicio) de Google Maps se encargue de mostrar el mapa. El trabajo de nuestro component (componente) será tomar los resultados del servicio del mapa (que es un elemento de tipo mapa) y añadirlo a un elemento en la template (plantilla) del component (componente).
 
-To limit the test to validating just this behavior, we'll take advantage of the registration API to provide a stub maps service. A stub stands in place of the real object in your application and simulates its behavior. In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
+Para limitar el test solamente a validar este comportamiento, usaremos el API de registro para proveer un stub de servicio de mapas falso. El stub sustituye al objeto real en tu aplicación y simula su comportamiento. En el service (servicio) del stub, se define un método que obtendrá un mapa basado en la ubicación, llamado `getMapElement`.
 
 <pre><code class="tests/integration/components/location-map-test.js">import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -73,16 +73,16 @@ test('should append map element to container element', function(assert) {
 });
 </code></pre>
 
-In the `beforeEach` function that runs before each test, we use the implicit function `this.register` to register our stub service in place of the maps service. Registration makes an object available to your Ember application for things like loading components from templates and injecting services in this case.
+En la función `beforeEach` que se ejecuta antes de cada prueba, utilizamos la función implícita `this.register` para registrar nuestro service (servicio) stub en lugar del service (servicio) de mapas. Registrar un objeto lo pone a disposición para su aplicación de Ember para cosas como cargar componentes de plantillas e inyectar servicios en este caso.
 
-The call to the function `this.inject.service` injects the service we just registered into the context of the tests, so each test may access it through `this.get('mapsService')`. In the example we assert that `calledWithLocation` in our stub is set to the location we passed to the component.
+Llamar a la función `this.inject.service` inyecta el service (servicio) que acabas de registrar en el contexto de las pruebas, por lo que cada prueba puede acceder a él a través de `this.get('mapsService')`. En el ejemplo afirmamos (assert) que `calledWithLocation` en nuestro stub está configurado con la ubicación que pasamos al componente.
 
-To get the test to pass, add the container element to the component template.
+Para hacer que la prueba pase, añadimos el elemento contenedor a la template (plantilla) del component (componente).
 
 <pre><code class="app/templates/components/location-map.hbs">&lt;div class="map-container"&gt;&lt;/div&gt;
 </code></pre>
 
-Then update the component to append the map output to its inner container element. We'll add a maps service injection, and call the `getMapElement` function with the provided location.
+Luego actualizamos el componente para agregar el output del mapa a su elemento contenedor interno. Agregaremos una inyección del service (servicio) de mapas, y llamaremos a la función `getMapElement` con la ubicación proporcionada.
 
 We then append the map element we get back from the service by implementing `didInsertElement`, which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code). This function gets executed at render time after the component's markup gets inserted into the DOM.
 
