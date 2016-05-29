@@ -1,12 +1,12 @@
-As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision. Let's add the ability to toggle the size of the image for each rental. To do this, we'll use a component.
+Como un usuario mira a través de la lista de los alquileres, puede tener algunas opciones interactivas para ayudarle a tomar una decisión. Vamos a agregar la capacidad para cambiar el tamaño de la imagen de cada alquiler. Para ello, vamos a usar un componente.
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element, so `rental-listing` is acceptable but `rental` would not be.
+Vamos a generar un component (componente) `rental-listing` que gestionará el comportamiento de cada uno de nuestros alquileres. Un guión es necesario en cada nombre de componente para evitar conflicto con un posible elemento HTML, así que `rental-listing` es aceptable pero `Alquiler` no.
 
 ```shell
 ember g component rental-listing
 ```
 
-Ember CLI will then generate a handful of files for our component:
+Ember CLI generará entonces varios de archivos de nuestro component (componente):
 
 ```shell
 installing component
@@ -16,9 +16,9 @@ installing component-test
   create tests/integration/components/rental-listing-test.js
 ```
 
-We'll start by implementing a failing test with the image toggling behavior that we want.
+Empezaremos implementando una prueba de fallos con el comportamiento de alternar la imagen que deseamos.
 
-For our integration test, we'll create a stub rental that has all the properties that our rental model has. We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time with take the `wide` class away. Note that we find the image element using the the CSS selector `.image`.
+Para nuestra prueba de integración, vamos a crear un stub para el alquiler que tiene todas las propiedades que tiene nuestro model (modelo) de rental (alquiler). Aseguraremos que el component (componente) se renderice inicialmente sin el nombre de la clase `wide`. Hacer clic en la imagen añadirá la clase `wide` a nuestro elemento y haciendo clic una segunda vez eliminará la clase `wide`. Tenga en cuenta que encontraremos el elemento de la imagen usando el selector CSS `.image`.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -26,13 +26,13 @@ moduleForComponent('rental-listing', 'Integration | Component | rental listing',
 
 test('should toggle wide class on click', function(assert) { assert.expect(3); let stubRental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 }); this.set('rentalObj', stubRental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    <br />A component consists of two parts:
+    <br />Un componente consta de dos partes:
     
-    * A template that defines how it will look (`app/templates/components/rental-listing.hbs`)
-    * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
+    * una plantilla que define cómo se verá ('app/templates/components/rental-listing.hbs')
+    * Un archivo de código JavaScript ('app/components/rental-listing.js') que define cómo se comportará.
     
-    Our new `rental-listing` component will manage how a user sees and interacts with a rental.
-    To start, let's move the rental display details for a single rental from the `index.hbs` template into `rental-listing.hbs` and add the image field:
+    Nuestro nuevo componente 'rental-listing' gestionará cómo un usuario ve e interactúa con un alquiler.
+    Para empezar, moveremos los detalles del alquiler para un alquiler individual, de la template (plantilla) `index.hbs` a `rental-listing.hbs`y agregar el campo imagen.
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -53,7 +53,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
+En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antiguo dentro de nuestro loop `{{#each}}` con nuestro nuevo component (componente) `rental-listing`:
 
 ```app/templates/index.hbs{+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29} 
 
@@ -62,11 +62,11 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
   </div>
   
   <h2>
-    Welcome!
+    ¡Bienvenido!
   </h2>
   
   <p>
-    We hope you find exactly what you're looking for in a place to stay. <br />Browse our listings, or use the search box above to narrow your search.
+    Esperamos que encuentres exactamente lo que buscas en un lugar para quedarte. <br />Navega nuestro listado, o usa la búsqueda en la parte superior para refinar tu búsqueda.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
@@ -90,13 +90,13 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article> {{/each}}
 
-    Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+    Aquí invocamos el componente (compoente) `rental-listing` utilizando su nombre y asignamos cada `rentalUnit` como el atributo `rental` del component (componente).
     
-    ## Hiding and Showing an Image
+    ## Ocultando y mostrando una imagen 
     
-    Now we can add functionality that will show the image of a rental when requested by the user.
+    Ahora podemos añadir la funcionalidad que mostrará la imagen de un alquiler cuando sea solicitado por el usuario.
     
-    Let's use the `{{#if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
+    Vamos a usar el ayudante `{{#if}}`para mostrar nuestra imagen actual de alquiler más grande sólo cuando `isWide` se defina como true, estableciendo el nombre de la clase de elemento como `wide`. También vamos a añadir algún texto para indicar que la imagen puede cliquearse y envolverla con un enlace, dándole `image` como nombre de clase para que nuestro test puede encontrarla.
     
     ```app/templates/components/rental-listing.hbs{+2,+4,+5}
     <article class="listing">
@@ -120,14 +120,14 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
     </article>
     
 
-The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`. Since we do not want the image to be smaller at first, we will set the property to start as `false`:
+El valor de `isWide` viene del archivo JavaScript de nuestro componente, en este caso `rental-listing.js`. Ya que no queremos que la imagen sea más pequeña al principio, la propiedad inicia como `false`:
 
 ```app/components/rental-listing.js import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false });
 
-    <br />To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
-    Let's call this action `toggleImageSize`
+    <br />Para permitir al usuario ampliar la imagen, tendremos que añadir una action (acción) que cambia el valor de 'isWide'.
+    Llamemos esta action (action) `toggleImageSize`
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -151,12 +151,12 @@ export default Ember.Component.extend({ isWide: false });
     </article>
     
 
-Clicking the anchor element will send the action to the component. Ember will then go into the `actions` hash and call the `toggleImageSize` function. Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
+Hacer click al enlace, enviará la action (acción) al component (componente). Ember entonces irá al hash `actions` y llamará a la función `toggleImageSize`. Creemos la función `toggleImageSize` y cambiaremos la propiedad `isWide` en el component (componente):
 
 ```app/components/rental-listing.js{+5,+6,+7,+8,+9} import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-Now when we click the image or the `View Larger` link in our browser, we see our image show larger, or when we click the enlarged image we again see it smaller.
+Cuando hagamos clic en la imagen o el enlace `View Larger` en nuestro navegador, veremos nuestra imagen de muestra más grande, o cuando hagamos clic en la imagen ampliada otra vez la veremos más pequeña.
 
-![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
+![listado de alquileres con expandir](../../images/simple-component/styled-rental-listings.png)
