@@ -2,7 +2,7 @@ Para Super Rentals, queremos tener un mapa en el que se muestre donde se encuent
 
   1. Un component (componente) para mostrar un mapa en cada anuncio de alquiler.
   2. Un servicio para mantener en caché los mapas renderizados en diferentes lugares de la aplicación.
-  3. Una función de utilidad para crear un mapa desde el API de Google Maps.
+  3. Una función utility (utilidad) para crear un mapa desde el API de Google Maps.
 
 Empezaremos mostrando el mapa y trabajaremos con lo demás usando el API de Google Maps.
 
@@ -84,7 +84,7 @@ Para hacer que la prueba pase, añadimos el elemento contenedor a la template (p
 
 Luego actualizamos el componente para agregar el output del mapa a su elemento contenedor interno. Agregaremos una inyección del service (servicio) de mapas, y llamaremos a la función `getMapElement` con la ubicación proporcionada.
 
-We then append the map element we get back from the service by implementing `didInsertElement`, which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code). This function gets executed at render time after the component's markup gets inserted into the DOM.
+Entonces añadimos el elemento mapa que obtenemos del servicio mediante la implementación de `didInsertElement`, que es un [gancho del del ciclo de vida del component (componente)](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code). Esta función es ejecutada cuando se renderiza, después que el código del component (componente) se inserta en el DOM.
 
 <pre><code class="app/components/location-map.js">import Ember from 'ember';
 
@@ -100,26 +100,26 @@ export default Ember.Component.extend({
 });
 </code></pre>
 
-### Fetching Maps With a Service
+### Obteniendo los mapas con un service (servicio)
 
-Now we have a passing component integration test, but no maps showing up when we view our web page. To generate the maps, we'll implement the maps service.
+Ahora que tenemos un test de integración del component (componente) que aprueba, pero no se muestra ningún mapa cuando vemos nuestra página web. Para generar los mapas, implementaremos el servicio de mapas.
 
-Accessing our maps API through a service will give us several benefits
+Accedemos el API de los mapas a través de un servicio nos da varios beneficios
 
-* It is injected with a [service locator pattern](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance
-* It is lazy-loaded, meaning it won't be initialized until it is called the first time. In some cases this can reduce your app's processor load and memory consumption.
-* It is a singleton, which will allow us cache map data.
-* It follows a lifecycle, meaning we have hooks to execute cleanup code when the service stops, preventing things like memory leaks and unnecessary processing.
+* Se inyecta mediante un [patrón de localización del servicio](https://en.wikipedia.org/wiki/Service_locator_pattern), lo que significa abstraer el API de mapas del código que lo utiliza, permitiendo que refactorización y mantenimiento mucho más fáciles
+* Se inicializará únicamente hasta que se llame por primera vez. En algunos casos, esto puede reducir el uso de Cpu y memoria de la aplicación.
+* Es un singleton, lo cual nos permitirá tener en caché toda la información del mapa.
+* Utiliza un ciclo de vida, lo que significa que tendremos ganchos para ejecutar códigos de limpieza cuando el servicio se detenga, previniendo cosas como fugas de memoria y procesamiento innecesario.
 
-Let's get started creating our service by generating it through Ember-CLI, which will create the service file, as well as a unit test for it.
+Empecemos creando nuestro service (servicio) generándolo a través de Ember-CLI, quien creará el archivo del service (servicio), así como un test unitario para él.
 
 ```shell
 ember g service maps
 ```
 
-The service will keep a cache of map elements based on location. If the map element exists in the cache, the service will return it, otherwise it will create a new one and add it to the cache.
+El servicio mantiene una caché de los elementos del mapa basado en la localización. Si el elemento del mapa existe en el caché, el servicio lo retornará, de lo contrario creará uno nuevo y lo agregará al caché.
 
-To test our service, we'll want to assert that locations that have been previously loaded are fetched from cache, while new locations are created using the utility.
+Para probar nuestro servicio, lo que queremos afirmar es que lugares que han sido previamente cargados se obtienen del caché, mientras que nuevas localidades se crean mediante la utility (utilidad).
 
 <pre><code class="tests/unit/services/maps-test.js">import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
@@ -158,9 +158,9 @@ test('should use existing map if one is cached for location', function (assert) 
 });
 </code></pre>
 
-Note that the test uses a dummy object as the returned map element. This can be any object because it is only used to assert that the cache has been accessed. Also note that the location has been `camelized` in the cache object, so that it may be used as a key.
+Ten en cuenta que la prueba utiliza un objeto ficticio como el elemento mapa que retorna el service (servicio). Esto puede ser cualquier objeto debido a que solo se utiliza para afirmar que el caché ha sido accedido. También ten en cuenta que la ubicación ha sido convertida a `CamelCase` en el objeto cache, por lo que se puede utilizar como una clave.
 
-Now implement the service as follows. Note that we check if a map already exists for the given location and use that one, otherwise we call a Google Maps utility to create one. We abstract our interaction with the maps API behind an Ember utility so that we can test our service without making network requests to Google.
+Ahora implementemos el servicio de la siguiente manera. Ten en cuenta que debemos comprobar que si un mapa ya existe para la ubicación dada y utilizarla, si no llamamos a una utility (utilidad) de Google Maps para que la cree. Abstraemos nuestra interacción con la API de mapas de detrás de una utility (utilidad) de Ember para que podemos probar nuestro service (servicio) sin hacer peticiones de red a Google.
 
 ```app/services/maps.js
 import Ember from 'ember';
@@ -197,20 +197,20 @@ export default Ember.Service.extend({
 });
 ```
 
-### Making Google Maps Available
+### Haciendo Google Maps disponible
 
-Before implementing the map utility, we need to make the 3rd party map API available to our Ember app. There are several ways to include 3rd party libraries in Ember. See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/) as a starting point when you need to add one.
+Antes de implementar la utilidad del mapa, tenemos que hacer que el API de terceros se encuentre disponible para nuestra aplicación de Ember. Hay varias maneras de librerías de terceros en ember. Consulte la sección de guías acerca de la [gestión de las dependencias](../../addons-and-dependencies/managing-dependencies/) como punto de partida cuando necesites agregar una.
 
-Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
+Debido a que Google ofrece su API de mapas como un script remoto, usaremos curl para descargar en el directorio vendor de nuestro proyecto.
 
-From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.  
-`Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
+En el directorio de raíz de tu proyecto, ejecute el siguiente comando para poner el script de Google Maps en la carpeta vendor de tu proyecto como `gmaps.js`.  
+`Curl` es un comando UNIX, así que si estás en windows debes aprovechar el [soporte de bash de Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) o utilizar un método alternativo para descargar el script en el directorio vendor.
 
 ```shell
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 ```
 
-Once in the vendor directory, the script can be built into the app. We just need to tell Ember-CLI to import it using our build file:
+Una vez en el directorio vendor, el script puede ser compilado en la aplicación. Sólo necesitamos decirle a Ember-CLI que lo importe usando nuestro archivo de compilación:
 
 <pre><code class="ember-cli-build.js{+22}">/*jshint node:true*/
 /* global require, module */
@@ -239,15 +239,15 @@ module.exports = function(defaults) {
 };
 </code></pre>
 
-### Accessing the Google Maps API
+### Accediendo al API de Google Maps
 
-Now that we have the maps API available to the application, we can create our map utility. Utility files can be generated using Ember CLI.
+Ahora que tenemos la API de mapas disponible para la aplicación, podemos crear nuestra (utility) utilidad del mapa. Los archivos del utility (utilidad) pueden ser generados mediante Ember CLI.
 
 ```shell
 ember g util google-maps
 ```
 
-The CLI `generate util` command will create a utility file and a unit test. We'll delete the unit test since we don't want to test Google code. Our app needs a single function, `createMapElement`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
+El comando `generate util` de Ember CLI creará un archivo de utilidad y un test unitario. Borraremos el test unitario, ya que no queremos probar el código de Google. Nuestra aplicación necesita una sola función, `createMapElement`, que hace uso de `google.maps.Map` para crear nuestro mapa, `google.maps.Geocoder` para buscar las coordenadas de nuestra ubicación y `google.maps.Marker` para fijar nuestro mapa basado en la situación resuelta.
 
 <pre><code class="app/utils/google-maps.js">import Ember from 'ember';
 
@@ -279,6 +279,6 @@ export default Ember.Object.extend({
 });
 </code></pre>
 
-We should now see some end to end maps functionality show up on our front page!
+¡Ahora deberíamos tener alguna funcionalidad completa mostrándose en nuestra portada!
 
-![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
+![página de inicio de super rentals con mapas](../../images/service/style-super-rentals-maps.png)
