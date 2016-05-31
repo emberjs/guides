@@ -13,35 +13,26 @@ scp -r dist/* myserver.com:/var/www/public/
 
 ## Deploying to surge.sh
 
-[Surge.sh](http://surge.sh/) allows you to publish any folder to the web for free.
-To deploy an Ember application you can simply deploy the folder produced by `ember build`.
+Surge.sh allows you to publish any folder to the web for free.
 
-You will need to have the surge cli tool installed:
+You will need to install the `ember-cli-surge` addon:
 
 ```shell
-npm install -g surge
+ember install ember-cli-surge
 ```
 
-Then you can use the `surge` command to deploy your application.
-Note you will also need to provide a copy of index.html with the filename 200.html
-so that surge can support Ember's client-side routing.
+Then you can use the `ember surge` command to deploy your application.
 
 ```shell
-ember build --environment=production
-cd dist
-cp index.html 200.html
-surge
+ember surge --new-domain
 ```
 
 Press return to accept the defaults when deploying the first time.
 You will be provided with a URL in the form `funny-name.surge.sh` that you can use for repeated deployments.
 
-So to deploy to the same URL after making changes, perform the same steps, this time providing the URL for your site:
+So to deploy to the same URL after making changes:
 
 ```shell
-rm -rf dist
-ember build --environment=production
-cd dist
-cp index.html 200.html
-surge funny-name.surge.sh
+ember generate surge-domain funny-name.surge.sh
+ember surge
 ```
