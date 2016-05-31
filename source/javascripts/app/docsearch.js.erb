@@ -11,9 +11,9 @@ window.GUIDE_VERSIONS.onReady(function (versions) {
   var currentRevision = versions.current;
   var apiKey = '<%= data.search.api_key %>';
   var inputSelector = '#search-input';
-  var indexName = 'emberjs';
+  var indexName = 'emberjs_versions';
   var hitsPerPage = 10;
-  var facetFilters = '(tags:' + currentRevision  + ',tags:api)';
+  var facetFilters = '[["version:' + currentRevision  + '","tags:api"]]';
 
   $(window).load(function() {
     docsearch({
