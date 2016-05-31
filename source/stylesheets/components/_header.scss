@@ -69,19 +69,24 @@
 }
 
 .header-search {
-  .st-search-input {
-    appearance: none;
-    background: image-url("search-icon.svg") rgba(white, 0.1) 10px 10px no-repeat;
-    border: none;
-    border-radius: 35px;
-    box-shadow: none;
-    color: $white;
-    font-size: 0.9rem;
+
+  .algolia-autocomplete {
+    display: block !important; // beats `inline-block` added by DocSearch script
+  }
+  .search-input {
+    width: 100%;
     height: 35px;
-    line-height: 35px;
     margin-bottom: 0;
     padding-left: 2.5em;
-    width: 100%;
+    border: none;
+    border-radius: 35px;
+    outline: none;
+    appearance: none;
+    background: image-url("search-icon.svg") rgba(white, 0.1) 10px 10px no-repeat;
+    box-shadow: none;
+    font-size: 0.9rem;
+    line-height: 35px;
+    color: $white;
 
     @include placeholder {
       color: $white;
