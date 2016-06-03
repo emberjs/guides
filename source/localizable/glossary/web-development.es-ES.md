@@ -1,30 +1,30 @@
-Joining a web development community can be a challenge within itself, especially when all the resources you visit assume you're familiar with other technologies that you're not familiar with.
+Unirse a una comunidad de desarrollo web puede ser un desafío en sí mismo, especialmente cuando todos los recursos que visitas asumen que estás familiarizado con otras tecnologías con las que no estás familiarizado.
 
-Our goal is to help you avoid that mess and come up to speed as fast as possible; you can consider us your internet friend.
+Nuestro objetivo es ayudarte a evitar ese lío y ayudarte a acelerar tan rápido como sea posible; puedes considerarnos considerar tu amigo de internet.
 
 ## CDN
 
 Content Delivery Network
 
-This is typically a paid service you can use to get great performance for your app. Many CDNs act as caching proxies to your origin server; some require you to upload your assets to them. They give you a URL for each resource in your app. This URL will resolve differently for folks depending on where they're browsing.
+Esto es típicamente un servicio pagado que puede usar para obtener gran rendimiento para tu aplicación. Muchos CDNs actúan como proxies caché en el servidor de origen; algunos requieren subir tus assets a ellos. Estos te dan una URL para cada recurso en su aplicación. Esta URL se resuelve diferente para cada persona dependiendo de donde están navegando.
 
-Behind the scenes, the CDN will distribute your content geographically with the goal of end-users being able to fetch your content with the lowest latency possible. For example, if a user is in India, they'd likely get content served from India faster than from the United States.
+Detrás de escenas, la CDN distribuirá tu contenido geográficamente con el objetivo que los usuarios finales obtener recuperar su contenido con la menor latencia posible. Por ejemplo, si un usuario está en la India, tenían probabilidades de obtener contenido de India más rápido que el contenido de los Estados Unidos.
 
 ## CoffeeScript, TypeScript
 
-These are both languages that compile to JavaScript. You're able to write your code using the syntax they offer and when ready you compile your TypeScript or CoffeeScript into JavaScript.
+Estos son idiomas que compilan a JavaScript. Escribirás el código utilizando la sintaxis que ofrecen y cuando esté listo compilar TypeScript o CoffeeScript a Javascript.
 
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
 ## Evergreen browsers
 
-Browsers that update themselves (without user intervention).
+Navegadores que actualizan por sí mismos (sin intervención del usuario).
 
 [Evergreen Browsers](http://tomdale.net/2013/05/evergreen-browsers/)
 
 ## ES3, ES5, ES5.1, ES6 (aka ES2015), etc
 
-ES stands for ECMAScript, which is the specification that JavaScript is based on. The number that follows is the version of the specification.
+ES se refiere a ECMAScript, que es la especificación que se basa en JavaScript. El número que sigue es la versión de la especificación.
 
 Most browsers support at least ES5, and some even have ES6 (also known as ES2015) support. You can check each browser's support (including yours) here:
 

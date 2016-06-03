@@ -59,5 +59,5 @@ Estas librerías son parte de la salida de assets de Ember, pero el desarrollo d
 
 ## `RSVP`
 
-* **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
+* **rsvp.js** - implementación de la especificación Promises/A + utilizada por Ember.
 * <https://github.com/tildeio/rsvp.js>
