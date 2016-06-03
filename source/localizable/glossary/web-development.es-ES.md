@@ -83,4 +83,4 @@ Crear un "widget" o control reutilizable puede ser un buen caso de uso para esto
 
 ## Virtual DOM
 
-Not se debe confundir con Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
+Not se debe confundir con Shadow DOM. El concepto de un DOM virtual significa abstraer tu código (o en nuestro caso, Ember) del DOM del navegador a favor de un DOM "virtual" que fácilmente puede ser accedido para lectura/escritura o incluso serializado.
