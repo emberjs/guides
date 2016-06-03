@@ -53,34 +53,34 @@ Este es un concepto que significa típicamente proporciona JavaScript que prueba
 
 Las llamadas asincrónicas suelen volver una promise (promesa) (o deferred (diferido). Se trata de un objeto que tiene un estado: se le dan handlers (funciones) para cuando se cumple o rechaza.
 
-Ember makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
+Ember hace uso de ellos en lugares como el hook de modelo para una ruta. Hasta que la promesa se resuelve, Ember pone la ruta en un estado de "cargando".
 
-* [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
-* [emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
+* [Un estándar abierto para promesas interoperables](https://promisesaplus.com/)
+* [emberjs.com - Una palabra en promesas](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
 
 ## SSR
 
 Server Side Rendering
 
-[Inside FastBoot: The Road to Server-Side Rendering](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
+[Dentro de FastBoot: El camino al renderizado en el lado del servidor](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
 
 ## Transpile
 
-When related to JavaScript, this can be part of your build process which "transpiles" (converts) your ES6 syntax JavaScript to JavaScript that is supported by current browsers.
+Cuando es relacionado con JavaScript, esto puede ser parte de su proceso de compilado que "transpila" (convierte) tu sintaxis ES6 JavaScript en JavaScript que es compatible con los navegadores actuales.
 
-Besides ES6, you'll see a lot of content about compiling/transpiling CoffeeScript, a short-hand language which can "compile" to JavaScript.
+Más alla de ES6, verás una gran cantidad de contenido sobre compilar/transpilar CoffeeScript, un lenguaje que puede "compilar" a JavaScript.
 
-* Ember CLI specifically uses [Babel](https://babeljs.io/) via the [ember-cli-babel](https://github.com/babel/ember-cli-babel) plugin.
+* Ember CLI utiliza específicamente [Babel](https://babeljs.io/) mediante el plugin [ember-cli-babel](https://github.com/babel/ember-cli-babel).
 
 ## Shadow DOM
 
-Not to be confused with Virtual DOM. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
+No confundir con Virtual DOM. Shadow DOM es todavía un trabajo en progreso, pero básicamente forma propuesta para tener un DOM "aislado" y encapsulado dentro del DOM de tu aplicación.
 
-Creating a re-usable "widget" or control might be a good use-case for this. Browsers implement some of their controls using their own version of a shadow DOM.
+Crear un "widget" o control reutilizable puede ser un buen caso de uso para esto. Los navegadores implementan algunos de sus controles con su propia versión de un shadow DOM.
 
-* [W3C Working Draft](http://www.w3.org/TR/shadow-dom/)
-* [What the Heck is Shadow DOM?](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
+* [Borrador de trabajo de W3C](http://www.w3.org/TR/shadow-dom/)
+* [¿Qué diablos es Shadow DOM?](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
 
 ## Virtual DOM
 
-Not to be confused with Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
+Not se debe confundir con Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
