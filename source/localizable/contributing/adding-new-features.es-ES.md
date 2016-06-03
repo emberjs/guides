@@ -34,22 +34,19 @@ if (Ember.FEATURES.isEnabled("feature")) {
 
 Las pruebas siempre se ejecutan con toda la funcionalidad, así que asegúrate que todas las pruebas para la funcionalidad nueva corren bien con el estado actual de la funcionalidad.
 
-#### Commits
+#### Commits (cambios)
 
-Commits related to a specific feature should include a prefix like [FEATURE htmlbars]. This will allow us to quickly identify all commits for a specific feature in the future. Features will never be applied to beta or release branches. Once a beta or release branch has been cut, it contains all of the new features it will ever have.
+Los commits relacionados con una feature en particular deben incluir un prefijo como [FEATURE htmlbars]. Esto nos permitirá identificar todos los commits relacionados con una sola feature. Las features nuevas nunca se aplican a las ramas beta o release. Desde el momento en que se prepara la rama beta o release, ya contiene todas sus features.
 
-If a feature has made it into beta or release, and you make a commit to master that fixes a bug in the feature, treat it like a bugfix as described above.
+Si una feature logra ser incluida en la rama beta o release, y haces un commit a la rama maestra para arreglar un bug de esa feature, seguir el procedimiento para los bugfixes descrito arriba.
 
-#### Feature Naming Conventions
+#### Convenciones de nomenclatura de las features
 
 ```config/environment.js Ember.FEATURES['<packagename>-<feature>'] // if package specific Ember.FEATURES['container-factory-injections'] Ember.FEATURES['htmlbars']
 
-    <br />### Builds
+    <br />### Compilaciones
     
-    The Canary build, which is based off master, will include all features,
-    guarded by the conditionals in the original source. This means that
-    users of the canary build can enable whatever features they want by
-    enabling them before creating their Ember.Application.
+    La compilación canary, que está basada en master, incluye todas las características, protegidas por condicionales en el código fuente original. Esto significa que los usuarios de la compilación canary pueden habilitar cualquier características que deseen antes de crear su Ember.Application.
     
     ```config/environment.js
     module.exports = function(environment) {
@@ -65,9 +62,9 @@ If a feature has made it into beta or release, and you make a commit to master t
 
 ### `features.json`
 
-The root of the repository will contain a features.json file, which will contain a list of features that should be enabled for beta or release builds.
+La raíz del repositorio contendrá un archivo features.json, que contendrá una lista de características que deben ser habilitados para las compilaciones beta o release.
 
-This file is populated when branching, and may not gain additional features after the original branch. It may remove features.
+Este archivo se llena cuando se hace branching, y no deberá recibir características adicionales más allá que las del del branch original. Puede eliminar características.
 
 ```js
 {
@@ -75,43 +72,43 @@ This file is populated when branching, and may not gain additional features afte
 }
 ```
 
-The build process will remove any features not included in the list, and remove the conditionals for features in the list.
+El proceso de compilación removerá cualquier característica no incluida en la lista y eliminará los condicionales para las características en la lista.
 
-### Travis Testing
+### Pruebas co Travis
 
-For a new PR:
+Para un nuevo PR:
 
-  1. Travis will test against master with all feature flags on.
-  2. If a commit is tagged with [BUGFIX beta], Travis will also cherry-pick the commit into beta, and run the tests on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
-  3. If a commit is tagged with [BUGFIX release], Travis will also cherry-pick the commit into release, and run the test on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
+  1. Travis probará respecto a master con todas las banderas de características activadas.
+  2. Si un commit es etiquetado con [BUGFIX beta], Travis también escogerá el commit en beta y ejecutar las pruebas en ese branch. Si el commit no se aplica correctamente o las pruebas fallan, las pruebas fallarán.
+  3. Si un commit es etiquetado con [BUGFIX release], Travis también escogerá el commit en release y ejecutar la prueba en ese branch. Si el commit no se aplica correctamente o las pruebas fallan, las pruebas fallarán.
 
-For a new commit to master:
+Para un nuevo commit a master:
 
-  1. Travis will run the tests as described above.
-  2. If the build passes, Travis will cherry-pick the commits into the appropriate branches.
+  1. Travis ejecutará las pruebas como se describió anteriormente.
+  2. Si la construcción pasa, Travis escogerá los commits en las branches apropiadas.
 
-The idea is that new commits should be submitted as PRs to ensure they apply cleanly, and once the merge button is pressed, Travis will apply them to the right branches.
+La idea es que los nuevos commits deben presentarse como PRs para se aplican limpiamente, y una vez que se presiona el botón de merge, Travis los aplicará a las branches adecuadas.
 
-### Go/No-Go Process
+### Proceso de Go/No-Go
 
-Every six weeks, the core team goes through the following process.
+Cada seis semanas, el equipo sigue el siguiente proceso.
 
-#### Beta Branch
+#### La rama beta
 
-All remaining features on the beta branch are vetted for readiness. If any feature isn't ready, it is removed from features.json.
+Se revisa el nivel de preparación de todas las funciones restantes en la rama beta. Si alguna feature no está lista, se la quita de features.json.
 
-Once this is done, the beta branch is tagged and merged into release.
+Una vez hecho esto, se etiqueta la rama beta y se la une con la rama release.
 
-#### Master Branch
+#### La rama maestra
 
-All features on the master branch are vetted for readiness. In order for a feature to be considered "ready" at this stage, it must be ready as-is with no blockers. Features are a no-go even if they are close and additional work on the beta branch would make it ready.
+Se revisa el nivel de preparación de todas las features en la rama maestra. Una feature se considera como <<lista>> en esta etapa sólo cuando está lista tal y como es, sin ningún bloqueador. Las features son un <<no-go>> (no entran) incluso si están casi terminadas y lo único que les falta ya está en la rama beta.
 
-Because this process happens every six weeks, there will be another opportunity for a feature to make it soon enough.
+Dado que este proceso se repite cada seis semanas, siempre va a haber otra oportunidad para incluir la feature pronto.
 
-Once this is done, the master branch is merged into beta. A `features.json` file is added with the features that are ready.
+Una vez hecho esto, la rama maestra se une con la rama beta. Se agrega un archivo `features.json` con todas las features que están listas.
 
-### Beta Releases
+### Lanzamientos Beta
 
-Every week, we repeat the Go/No-Go process for the features that remain on the beta branch. Any feature that has become unready is removed from the features.json.
+Cada semana, repetimos el proceso de Go/No-Go para las características que permanecen en la branch beta. Cualquier característica que se conviertan en no listas extraen de features.json.
 
-Once this is done, a Beta release is tagged and pushed.
+Una vez hecho esto, una versión Beta es etiquetada y enviada.

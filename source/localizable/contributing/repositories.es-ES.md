@@ -1,30 +1,30 @@
-Ember is made up of several libraries. If you wish to add a feature or fix a bug please file a pull request against the appropriate repository. Be sure to check the libraries listed below before making changes in the Ember repository.
+Ember se compone de varias librerías. Si desea agregar una función o corregir un error por favor envía una pull request al repositorio correspondiente. Asegúrate de comprobar las bibliotecas siguientes antes de realizar cambios en el repositorio de Ember.
 
-# Main Repositories
+# Repositorios principales
 
-**Ember.js** - The main repository for Ember.
+**Ember.js** - el principal repositorio de Ember.
 
 * <https://github.com/emberjs/ember.js>
 
-**Ember Data** - A data persistence library for Ember.
+**Ember Data** - una biblioteca de persistencia de datos para Ember.
 
 * <https://github.com/emberjs/data>
 
-**Ember Website** - Source for <http://emberjs.com>
+**Sitio web de Ember** - fuente de <http://emberjs.com>
 
 * <https://github.com/emberjs/website>
 
-**Ember Guides** - Source for <http://guides.emberjs.com> which you are currently reading.
+**Guías de Ember** - Fuente de <http://guides.emberjs.com>, que te encuentras leyendo en este momento.
 
 * <https://github.com/emberjs/guides>
 
-# Libraries Used By Ember
+# Librerías utilizadas por Ember
 
-These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
+Estas librerías son parte de la salida de assets de Ember, pero el desarrollo de estas se lleva a cabo en un repositorio aparte.
 
 ## `Backburner`
 
-* **backburner.js** - Implements the Ember run loop.
+* **backburner.js** - Implements el run loop de Ember.
 * <https://github.com/ebryn/backburner.js>
 
 ## `DAG Map`
