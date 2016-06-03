@@ -76,7 +76,7 @@ By default, the `about` route handler loads the `about.hbs` template.
 This means we don't actually have to change anything in the new `app/routes/about.js` file for the `about.hbs` template to render as we want.
 
 With all of the routing in place from the generator, we can get right to work on coding our template.
-For our `about` page, we'll add some HTML that has a bit of information about the site:
+For our `about` page, we'll add some HTML that has a bit of information about the site.  (Please note that the `{{outlet}}` that may be here is not needed, and you can replace it fully with the HTML code below):
 
 ```app/templates/about.hbs
 <div class="jumbo">
