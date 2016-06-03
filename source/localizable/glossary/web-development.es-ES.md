@@ -26,7 +26,7 @@ Navegadores que actualizan por sí mismos (sin intervención del usuario).
 
 ES se refiere a ECMAScript, que es la especificación que se basa en JavaScript. El número que sigue es la versión de la especificación.
 
-Most browsers support at least ES5, and some even have ES6 (also known as ES2015) support. You can check each browser's support (including yours) here:
+La mayoría de los navegadores apoyan al menos ES5 y algunos incluso tienen soporte para ES6 (también conocido como ES2015). Puede consultar la ayuda de cada navegador (incluido el tuyo) aquí:
 
 * [ES5 support](http://kangax.github.io/compat-table/es5/)
 * [ES6 support](http://kangax.github.io/compat-table/es6/)
@@ -35,23 +35,23 @@ Most browsers support at least ES5, and some even have ES6 (also known as ES2015
 
 ## LESS, Sass
 
-Both LESS and Sass are types of CSS preprocessor markup intended to give you much more control over your CSS. During the build process, the LESS or Sass resources compile down to vanilla CSS (which can be executed in a browser).
+Tanto LESS como Sass son lenguajes de preprocesado CSS que te ofrecen más control sobre tu CSS. Durante la compilación, los recursos LESS o Sass se compilan a CSS puro (que puede ser ejecutado en un navegador).
 
-[Sass/Less Comparison](https://gist.github.com/chriseppstein/674726)
+[Comparación Sass/LESS](https://gist.github.com/chriseppstein/674726)
 
 ## Linter, linting, jslint, jshint
 
-A validation tool which checks for common issues in your JavaScript. You'd usually use this in your build process to enforce quality in your codebase. A great example of something to check for: *making sure you've always got your semicolons*.
+Una herramienta de validación, que comprueba problemas comunes en tu JavaScript. Sueles utilizar esto en su proceso de compilación para hacer cumplir calidad en tu código. Un gran ejemplo de algo para comprobar: *asegurándose de que siempre uses punto y comas*.
 
-[An example of some of the options you can configure](http://jshint.com/docs/options/)
+[Un ejemplo de algunas de las opciones que puedes configurar](http://jshint.com/docs/options/)
 
 ## Polyfill
 
-This is a concept that typically means providing JavaScript which tests for features that are missing (prototypes not defined, etc) and "fills" them by providing an implementation.
+Este es un concepto que significa típicamente proporciona JavaScript que prueba las características que faltan (prototipos no definidos, etc.) y los "llena" proporcionando una implementación.
 
-## Promise
+## Promise (promesa)
 
-Asynchronous calls typically return a promise (or deferred). This is an object which has a state: it can be given handlers for when it's fulfilled or rejected.
+Las llamadas asincrónicas suelen volver una promise (promesa) (o deferred (diferido). Se trata de un objeto que tiene un estado: se le dan handlers (funciones) para cuando se cumple o rechaza.
 
 Ember makes use of these in places like the model hook for a route. Until the promise resolves, Ember is able to put the route into a "loading" state.
 
