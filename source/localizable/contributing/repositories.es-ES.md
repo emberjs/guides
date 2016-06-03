@@ -29,32 +29,32 @@ Estas librerías son parte de la salida de assets de Ember, pero el desarrollo d
 
 ## `DAG Map`
 
-* **dag-map** - A directed acyclic graph data structure for javascript
+* **dag-map** - Una estructura de datos gráficos acícclica y dirigida para javascript
 * <https://github.com/krisselden/dag-map>
 
 ## `Glimmer 2`
 
-* **glimmer** - Implements the really fast rendering engine now included in Ember
+* **glimmer** - implementa el motor de renderizado muy rápido ahora incluido en Ember
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`
 
-* **htmlbars** - The syntax for templating most often used with Ember
+* **htmlbars** - la sintaxis de plantillas de usada más frecuentemente con Ember
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`
 
-* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
+* **morph-range** - utilizado por ember para manipular los nodos de texto conocidos como morphs que se crean para que HTMLBars pueda rastrear el texto que puede cambiar.
 * <https://github.com/krisselden/morph-range>
 
 ## `Route Recognizer`
 
-* **route-recognizer** - A lightweight JavaScript library that matches paths against registered routes.
+* **route-recognizer** - una librería JavaScript ligera que hace coincidir los paths contra rutas registradas.
 * <https://github.com/tildeio/route-recognizer>
 
 ## `router.js`
 
-* **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
+* **router.js** - una librería JavaScript ligera que se basa en reconocimiento de ruta y rsvp para proporcionar una API para el manejo de rutas.
 * <https://github.com/tildeio/router.js>
 
 ## `RSVP`
