@@ -20,6 +20,8 @@
   pages:
     - title: "Creating a new app"
       url: "ember-cli"
+    - title: "Acceptance Testing"
+      url: 'acceptance-test'
     - title: "Routes and Templates"
       url: "routes-and-templates"
     - title: "The Model Hook"
