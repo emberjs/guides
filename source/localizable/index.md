@@ -58,7 +58,7 @@ addressed. If you don't find an active issue, open a new one.
 
 If you have any styling questions, or about the contributing process you
 can check out our [contributing guide][gh-guides-contributing]. If your
-question persists, reach us at `#-learning` on the [Slack
+question persists, reach us at `#-team-learning` on the [Slack
 group][slackin].
 
 Good luck!
