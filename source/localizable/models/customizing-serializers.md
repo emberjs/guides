@@ -350,7 +350,7 @@ export default Model.extend({
 ```app/serializers/person.js
 import JSONSerializer from 'ember-data/serializers/json';
 
-export default JSONAPISerializer.extend({
+export default JSONSerializer.extend({
   attrs: {
     lastName: 'lastNameOfPerson'
   }
