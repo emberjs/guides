@@ -214,7 +214,7 @@ $('a').click(() => {
     // 2. schedule notices that there is no currently available run loop so it
     //    creates one. It schedules it to close and flush queues on the next
     //    turn of the JS event loop.
-    if (! Ember.run.hasOpenrunLoop()) {
+    if (! Ember.run.hasOpenRunLoop()) {
       Ember.run.start();
       nextTick(() => {
         Ember.run.end()
