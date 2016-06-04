@@ -7,7 +7,7 @@ We want our application to:
 * Link to contact information.
 * Filter the list of rentals by city.
 
-We can represent these goals as [ember acceptance tests](../../testing/acceptance/).
+We can represent these goals as [Ember acceptance tests](../../testing/acceptance/).
 Acceptance tests interact with our app like an actual person would, but can be automated, ensuring that our app doesn't break in the future.
 
 We'll start by using Ember CLI to generate a new acceptance test:
@@ -25,7 +25,7 @@ installing acceptance-test
 
 Opening the new test file will reveal some boilerplate code that will try to go to the `list-rentals` route and verify that the route is loaded.
 This boilerplate code is there to guide you into your first working acceptance test.
-Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`.
+Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`:
 
 ```javascript{-6,+7,-8,+9,-12,+13}
 import { test } from 'qunit';
@@ -68,12 +68,15 @@ test('should filter the list of rentals by city.', function (assert) {
 });
 ```
 
-These tests will fail, since Ember tests will always fail without assertions.
+These tests will fail, since Ember tests will fail if we don't test for anything
+(known as an `assertion`).
 Since we have an idea of what we want our application to look like, we can also add some details to the tests.
 
-Ember acceptance tests provide test helpers to perform common tasks, such as visiting routes, filling in fields, clicking on elements, and waiting for pages to render.
+Ember provides test helpers that we can use to perform common tasks in acceptance
+tests, such as visiting routes, filling in fields, clicking on elements, and
+waiting for pages to render.
 
-To check that rentals are listed, we'll first visit the index route and check that the results show 3 listings.
+To check that rentals are listed, we'll first visit the index route and check that the results show 3 listings:
 
 ```/tests/acceptance/list-rentals-test.js
 test('should list available rentals.', function (assert) {
@@ -88,7 +91,7 @@ The test assumes that each rental element will have a class called `listing`.
 The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
 
 The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it.
-In this case we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
+In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
 
 For the next two tests, we want to verify that clicking the about and contact page links successfully load the proper URLs.
 We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links.
@@ -111,13 +114,13 @@ test('should link to contact information', function (assert) {
   });
 });
 ```
-Note that we can call 2 [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers) in a row without needing to use `andThen` or a promise.
+Note that we can call two [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers) in a row without needing to use `andThen` or a promise.
 This is because each asynchronous test helper is made to wait until other test helpers are complete.
 
 Finally, we'll test that we can filter the list down according to a city search criteria.
 We anticipate having an input field in a container with a class of `list-filter`.
-We will fill out "Seattle" as the search criteria in that field, and send a key up event to trigger our filtering action.
-Since we control our data, we know that there is only one rental with a city of "Seattle", we assert that the number of listings is one, and that its location is "Seattle"
+We will fill out "Seattle" as the search criteria in that field and send a key up event to trigger our filtering action.
+Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle"
 
 ```/tests/acceptance/list-rentals-test.js
 test('should list 1 rental when filtering by Seattle', function (assert) {
@@ -131,7 +134,7 @@ test('should list 1 rental when filtering by Seattle', function (assert) {
 });
 ```
 
-Of course, because we have not implemented this functionality yet our tests will all fail.
+Of course because we have not implemented this functionality yet, our tests will all fail.
 Your test output should now show all failed tests, which gives us a todo list for the rest of the tutorial.
 
 ![failing tests](../../images/acceptance-test/failed-acceptance-tests.png)
