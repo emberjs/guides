@@ -1,11 +1,11 @@
 Emberでの開発を始めるの難しくはありません。Ember プロジェクトの作成や管理はコマンド ライン ビルド ツール Ember CLI を利用します。 Ember CLI は次の機能をを提供しています。
 
-* Modern application asset management (including concatenation, minification, and versioning).
+* モダンなアプリケーション資産管理 (今カテネーション、ミニフィケーション、およびバージョン管理をが含まれています。)
 * コンポーネントや、ルートなどの作成するためジェネレーター。
 * コンベンショナルなプロジェクトのレイアウトは、既存のEmberアプリケーションへのアプローチを簡単にします。
 * [Babel プロジェクト](http://babeljs.io/docs/learn-es2015/)経由で、JavaScript ES2015/ES6 をサポートします。 このガイドでも利用されている [JavaScript モジュール](http://exploringjs.com/es6/ch_modules.html) のサポートも含まれています。
 * 完全な [QUnit](https://qunitjs.com/) テスト ハーネス
-* The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
+* 勢いよく成長しているEmber生態系を活用する[Ember Addons](https://emberobserver.com/).
 
 ## 依存関係
 
