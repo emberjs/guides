@@ -50,6 +50,7 @@ article {
     padding: $base-spacing 0;
 
     a {
+      text-decoration: underline;
       &::before,
       &::after {
         display: inline-block;
