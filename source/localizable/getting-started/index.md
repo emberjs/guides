@@ -7,7 +7,7 @@ This tool provides:
 * A conventional project layout, making existing Ember applications easy to approach.
 * Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
 * A complete [QUnit](https://qunitjs.com/) test harness.
-* The ability to consume a growing ecosystem of Ember Addons.
+* The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
 
 ## Dependencies
 
