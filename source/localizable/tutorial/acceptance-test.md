@@ -24,7 +24,7 @@ installing acceptance-test
 ```
 
 Opening the new test file will reveal some boilerplate code that will try to go to the `list-rentals` route and verify that the route is loaded.
-This boiler plat code is there to guide you into your first working acceptance test.
+This boilerplate code is there to guide you into your first working acceptance test.
 Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`.
 
 ```javascript{-6,+7,-8,+9,-12,+13}
