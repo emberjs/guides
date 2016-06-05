@@ -110,9 +110,11 @@ to other parts of the app.
 ## Upgrading Ember
 
 Before continuing to the tutorial, make sure that you have the most recent
-version of Ember installed. If the versions of `ember` and `ember-data` in
-`bower.json` are lower than the version number in the upper-left corner of these
-Guides, update the version numbers in `bower.json` and then run `bower install`.
+versions of Ember and Ember Data installed. If the version of `ember` in
+`bower.json` is lower than the version number in the upper-left corner of these
+Guides, update the version number in `bower.json` and then run `bower install`.
+Similarly, if the version of `ember-data` in `package.json` is lower, update the
+version number and then run `npm install`.
 
 ## The Development Server
 
