@@ -14,7 +14,7 @@ Let's open `app/routes/index.js` and add our hard-coded data as the return value
 ```app/routes/index.js
 import Ember from 'ember';
 
-var rentals = [{
+let rentals = [{
   id: 1,
   title: 'Grand Old Mansion',
   owner: 'Veruca Salt',
