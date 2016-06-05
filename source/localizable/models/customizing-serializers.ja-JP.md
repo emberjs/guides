@@ -265,7 +265,7 @@ If the attributes returned by your server use a different convention you can use
 
 ```app/serializers/application.js import JSONSerializer from 'ember-data/serializers/json';
 
-export default JSONAPISerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
+export default JSONSerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
 
     <br />Irregular keys can be mapped with a custom serializer. The `attrs`
     object can be used to declare a simple mapping between property names
@@ -289,7 +289,7 @@ export default JSONAPISerializer.extend({ keyForAttribute: function(attr) { retu
 
 ```app/serializers/person.js import JSONSerializer from 'ember-data/serializers/json';
 
-export default JSONAPISerializer.extend({ attrs: { lastName: 'lastNameOfPerson' } });
+export default JSONSerializer.extend({ attrs: { lastName: 'lastNameOfPerson' } });
 
     <br />### Relationships
     

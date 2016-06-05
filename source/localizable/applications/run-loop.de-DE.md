@@ -138,7 +138,7 @@ Working with this API directly is not common in most Ember apps, but understandi
 
 You should begin a run loop when the callback fires.
 
-The `Ember.run` method can be used to create a runloop. In this example, jQuery and `Ember.run` are used to handle a click event and run some Ember code.
+The `Ember.run` method can be used to create a run loop. In this example, jQuery and `Ember.run` are used to handle a click event and run some Ember code.
 
 This example uses the `=>` function syntax, which is a \[new ES2015 syntax for callback functions\] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) that provides a lexical `this`. If this syntax is new, think of it as a function that has the same `this` as the context it is defined in.
 
@@ -164,7 +164,7 @@ $('a').click(() => {
 });
 ```
 
-The runloop API calls that *schedule* work i.e. [`run.schedule`](http://emberjs.com/api/classes/Ember.run.html#method_schedule), [`run.scheduleOnce`](http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce), [`run.once`](http://emberjs.com/api/classes/Ember.run.html#method_once) have the property that they will approximate a runloop for you if one does not already exist. These automatically created runloops we call *autoruns*.
+The run loop API calls that *schedule* work i.e. [`run.schedule`](http://emberjs.com/api/classes/Ember.run.html#method_schedule), [`run.scheduleOnce`](http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce), [`run.once`](http://emberjs.com/api/classes/Ember.run.html#method_once) have the property that they will approximate a run loop for you if one does not already exist. These automatically created run loops we call *autoruns*.
 
 Here is some pseudocode to describe what happens using the example above:
 
@@ -176,17 +176,17 @@ $('a').click(() => {
   console.log('Doing things...');
 
   Ember.run.schedule('actions', () => {
-    // 2. schedule notices that there is no currently available runloop so it
+    // 2. schedule notices that there is no currently available run loop so it
     //    creates one. It schedules it to close and flush queues on the next
     //    turn of the JS event loop.
-    if (! Ember.run.hasOpenRunloop()) {
+    if (! Ember.run.hasOpenRunLoop()) {
       Ember.run.start();
       nextTick(() => {
         Ember.run.end()
       }, 0);
     }
 
-    // 3. There is now a runloop available so schedule adds its item to the
+    // 3. There is now a run loop available so schedule adds its item to the
     //    given queue
     Ember.run.schedule('actions', () => {
       // Do more things
@@ -195,7 +195,7 @@ $('a').click(() => {
   });
 
   // 4. This schedule sees the autorun created by schedule above as an available
-  //    runloop and adds its item to the given queue.
+  //    run loop and adds its item to the given queue.
   Ember.run.schedule('afterRender', () => {
     // Do yet more things
   });
@@ -204,16 +204,16 @@ $('a').click(() => {
 
 Although autoruns are convenient, they are suboptimal. The current JS frame is allowed to end before the run loop is flushed, which sometimes means the browser will take the opportunity to do other things, like garbage collection. GC running in between data changing and DOM rerendering can cause visual lag and should be minimized.
 
-Relying on autoruns is not a rigorous or efficient way to use the runloop. Wrapping event handlers manually is preferred.
+Relying on autoruns is not a rigorous or efficient way to use the run loop. Wrapping event handlers manually is preferred.
 
-## How is runloop behaviour different when testing?
+## How is run loop behaviour different when testing?
 
-When your application is in *testing mode* then Ember will throw an error if you try to schedule work without an available runloop.
+When your application is in *testing mode* then Ember will throw an error if you try to schedule work without an available run loop.
 
 Autoruns are disabled in testing for several reasons:
 
-  1. Autoruns are Embers way of not punishing you in production if you forget to open a runloop before you schedule callbacks on it. While this is useful in production, these are still situations that should be revealed in testing to help you find and fix them.
-  2. Some of Ember's test helpers are promises that wait for the run loop to empty before resolving. If your application has code that runs *outside* a runloop, these will resolve too early and give erroneous test failures which are difficult to find. Disabling autoruns help you identify these scenarios and helps both your testing and your application!
+  1. Autoruns are Embers way of not punishing you in production if you forget to open a run loop before you schedule callbacks on it. While this is useful in production, these are still situations that should be revealed in testing to help you find and fix them.
+  2. Some of Ember's test helpers are promises that wait for the run loop to empty before resolving. If your application has code that runs *outside* a run loop, these will resolve too early and give erroneous test failures which are difficult to find. Disabling autoruns help you identify these scenarios and helps both your testing and your application!
 
 ## Where can I find more information?
 

@@ -180,7 +180,7 @@ ember build --env production
 
 这里我们通过 `--env` 参数来告知 Ember，让它为生产环境来构建。 这样会创建一个优化过的包，可以直接上传到你的 web 主机。 构建完成后，你可以在 `dist/` 目录下找到所有拼接和压缩好的资源。
 
-Ember 社群重视协作，重视打造每个人都可以依赖的常用工具。 如果你有兴趣通过快速可靠的方式来把你的应用程序部署到生产，可以看一下 [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) 这个插件。
+Ember 社群重视协作，重视打造每个人都可以依赖的常用工具。 If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
 如果你是要把应用程序部署到一个 Apache web 服务器上面，那么首先为其创建一个新的虚拟主机（virtual host）。 为了确保所有的路由都通过 index.html 来处理，请把以下指令添加到该应用程序的虚拟主机配置文件中：
 

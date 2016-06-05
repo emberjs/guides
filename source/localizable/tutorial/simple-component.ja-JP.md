@@ -38,16 +38,16 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     <article class="listing">
       <img src="{{rental.image}}" class="image" alt="">
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
         <span>Type:</span> {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
     </article>
@@ -74,19 +74,19 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
 
 ### {{rental.title}}
 
-<div class="detail">
+<div class="detail owner">
   <span>Owner:</span> {{rental.owner}}
 </div>
 
-<div class="detail">
+<div class="detail type">
   <span>Type:</span> {{rental.type}}
 </div>
 
-<div class="detail">
+<div class="detail location">
   <span>Location:</span> {{rental.city}}
 </div>
 
-<div class="detail">
+<div class="detail bedrooms">
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article> {{/each}}
 
@@ -105,16 +105,16 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
         <small>View Larger</small>
       </a>
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
         <span>Type:</span> {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
     </article>
@@ -136,16 +136,16 @@ export default Ember.Component.extend({ isWide: false });
         <small>View Larger</small>
       </a>
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
         <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
     </article>

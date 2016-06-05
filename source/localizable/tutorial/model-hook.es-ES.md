@@ -41,16 +41,16 @@ export default Ember.Route.extend({ model() { return rentals; } });
     {{#each model as |rental|}}
       <article class="listing">
         <h3>{{rental.title}}</h3>
-        <div class="detail">
+        <div class="detail owner">
           <span>Owner:</span> {{rental.owner}}
         </div>
-        <div class="detail">
+        <div class="detail type">
           <span>Type:</span> {{rental.type}}
         </div>
-        <div class="detail">
+        <div class="detail location">
           <span>Location:</span> {{rental.city}}
         </div>
-        <div class="detail">
+        <div class="detail bedrooms">
           <span>Number of bedrooms:</span> {{rental.bedrooms}}
         </div>
       </article>
@@ -58,3 +58,7 @@ export default Ember.Route.extend({ model() { return rentals; } });
     
 
 En esta plantilla, recorremos cada objeto del modelo y lo llamamos *alquiler*. Para cada alquiler, creamos una lista con información sobre la propiedad.
+
+Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
+
+![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)

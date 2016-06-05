@@ -134,7 +134,7 @@ En `contact.hbs`, podemos agregar los datos para contactar a Super Alquiler HQ:
     </div>
     
 
-El helper (ayudante) `{{link-to}}` toma un argumento con el nombre del enlace, en este caso: `contact`. Cuando visitamos nuestra página, tenemos ahora un vínculo funcional a nuestra página de contacto.
+El helper (ayudante) `{{link-to}}` toma un argumento con el nombre del enlace, en este caso: `contact`. When we look at our about page at `http://localhost:4200/about`, we now have a working link to our contact page.
 
 ![captura de pantalla de la página "acerca de" de super rentals](../../images/routes-and-templates/ember-super-rentals-about.png)
 
@@ -188,15 +188,59 @@ A diferencia de las otras routes (rutas) que hemos hecho hasta ahora, la route (
 
 Vamos a actualizar nuestra template (plantilla) `index.hbs` con el código HTML de nuestra página y nuestros enlaces a las otras rutas en nuestra aplicación:
 
-    app/templates/index.hbs
-    <div class="jumbo">
-      <div class="right tomster"></div>
-      <h2>Welcome!</h2>
-      <p>
-        We hope you find exactly what you're looking for in a place to stay.
-        <br>Browse our listings, or use the search box above to narrow your search.
-      </p>
-      {{#link-to 'about' class="button"}}
-        About Us
-      {{/link-to}}
-    </div>
+```app/templates/index.hbs 
+
+<div class="jumbo">
+  <div class="right tomster">
+  </div>
+  
+  <h2>
+    Welcome!
+  </h2>
+  
+  <p>
+    We hope you find exactly what you're looking for in a place to stay. <br />Browse our listings, or use the search box above to narrow your search.
+  </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
+</div>
+
+    <br />## Adding a Banner with Navigation
+    
+    In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
+    
+    When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
+    Anything you put in this template is shown for every page in the application.
+    The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an `outlet`.
+    The `outlet` defers to the router, which will render in its place the markup for the current route.
+    
+    ```app/templates/application.hbs
+    <h2 id="title">Welcome to Ember</h2>
+    
+    {{outlet}}
+    
+
+Let's replace "Welcome to Ember" with our own banner information, including links to our new routes:
+
+    app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,-19,+20,+21}
+    <h2 id="title">Welcome to Ember</h2>
+    <div class="container">
+      <div class="menu">
+        {{#link-to 'index'}}
+          <h1 class="left">
+            <em>SuperRentals</em>
+          </h1>
+        {{/link-to}}
+        <div class="left links">
+          {{#link-to 'about'}}
+            About
+          {{/link-to}}
+          {{#link-to 'contact'}}
+            Contact
+          {{/link-to}}
+        </div>
+      </div>
+      <div class="body">
+        {{outlet}}
+      </div>
+    </div> Now that we've added routes and linkages between then, the two acceptance tests we created for navigating the about and contact links will should now pass:
+
+![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

@@ -181,7 +181,7 @@ O comando `build` empacota todos seus TDK(assets) que compõem o seu aplicativo&
 
 Neste caso, nós dissemos para o Ember compilar para o ambiente de produção através da etiqueta `--env`. Isso cria um pacote otimizado que está pronto para ser enviado para o seu servidor web. Uma vez que a compilação termine, você encontrará todos os arquivos da sua aplicação concatenados e minificados no diretório `dist /`.
 
-A comunidade Ember valoriza a colaboração e construção de ferramentas comuns que todos possam contar. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
+A comunidade Ember valoriza a colaboração e construção de ferramentas comuns que todos possam contar. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
 If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
 

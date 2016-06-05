@@ -69,13 +69,19 @@ export default Router;
     './config/environment';` は、 `config` という変数でアプリケーションの環境設定を利用できるようにします。 `const`は読み込み専用の変数を宣言するためのもので、こう宣言することで、他のコードによって書き換えられることが起きないことを担保します。 ファイルの終わりの `export default Router;
     ` はこのファイルで記述したコードが、変数 `Router` としてアプリケーションの、他のパーツでも利用できるようにしています。
     
-    ## Emberのアップグレード
+    ## Upgrading Ember
     
-    チュートリアルの先に進む前に、インストールされた、Ember が最新のバージョンであることを確認してください。 もし 、`bower.json`ファイルに記載のある、`ember` や`ember-data`ガイドの左上にあるバージョン番号よりも低い場合は、`bower.json` ないのバージョン番号を、編集してから `bower install`コマンドを実行して、Emberのバージョンを更新してください。
+    Before continuing to the tutorial, make sure that you have the most recent
+    versions of Ember and Ember Data installed. If the version of `ember` in
+    `bower.json` is lower than the version number in the upper-left corner of these
+    Guides, update the version number in `bower.json` and then run `bower install`.
+    Similarly, if the version of `ember-data` in `package.json` is lower, update the
+    version number and then run `npm install`.
     
-    ## 開発サーバー
+    ## The Development Server
     
-    新規のプロジェクトが作成てきたことを確認するために、開発用サーバーを起動しましょう。
+    Once we have a new project in place, we can confirm everything is working by
+    starting the Ember development server:
     
     ```shell
     ember server

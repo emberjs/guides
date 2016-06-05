@@ -199,3 +199,5 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
 After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen, that will update the rental list as you type:
 
 ![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
+
+![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)

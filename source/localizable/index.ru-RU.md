@@ -32,6 +32,6 @@ Clicking the pencil icon will bring you to GitHub's editor for that guide so you
 
 If you wish to make a more significant contribution be sure to check our [issue tracker](https://github.com/emberjs/guides/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
 
-If you have any styling questions, or about the contributing process you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+If you have any styling questions, or about the contributing process you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
 
 Good luck!

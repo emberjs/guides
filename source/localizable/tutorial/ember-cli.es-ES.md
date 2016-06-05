@@ -67,13 +67,19 @@ export default Router;
     <br />Ember CLI utiliza módulos ECMAScript 2015 (ES2015 corto o conocido antes como ES6) para organizar el código de la aplicación.
     Por ejemplo, la línea `import Ember from 'ember';` nos da acceso a la biblioteca de Ember.js como la variable `Ember`. Y la línea `import config from './config/environment';`, nos da acceso a los datos de configuración de la aplicación como la variable `config`. `const`es una forma de declarar una variable de solo lectura, para asegurarnos que no se reasigne accidentalmente en otro lado. Al final del archivo, `export default Router;` hace que la variable `Router` definida en este archivo, esté disponible para otras partes de la aplicación.
     
-    ## Actualizando Ember 
+    ## Upgrading Ember
     
-    Antes de continuar con el tutorial, asegúrate de tener la versión más reciente de Ember instalada. Si las versiones de `ember` y `ember-data` en `bower.json` son menores que el número de versión en la esquina superior izquierda de estas guías, actualizar los números de versión en `bower.json` y luego ejecutar `bower install`.
+    Before continuing to the tutorial, make sure that you have the most recent
+    versions of Ember and Ember Data installed. If the version of `ember` in
+    `bower.json` is lower than the version number in the upper-left corner of these
+    Guides, update the version number in `bower.json` and then run `bower install`.
+    Similarly, if the version of `ember-data` in `package.json` is lower, update the
+    version number and then run `npm install`.
     
-    ## El servidor de desarrollo 
+    ## The Development Server
     
-    Una vez que tenemos un nuevo proyecto, podemos confirmar que todo funciona iniciando el servidor de desarrollo de Ember: 
+    Once we have a new project in place, we can confirm everything is working by
+    starting the Ember development server:
     
     ```shell
     ember server

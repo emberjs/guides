@@ -32,6 +32,6 @@ Ao clicar no ícone de lápis você será levado ao editor do GitHub para que vo
 
 Se você deseja fazer uma contribuição mais significativa não se esqueça de verificar o nosso [rastreador de problemas](https://github.com/emberjs/guides/issues), para ver se seu problema já está sendo abordado. Se você não encontrar um problema ativo, abra um novo.
 
-Se você tiver alguma dúvida de estilo, ou sobre o processo de contribuição você pode conferir nosso [Guia de contribuição](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+Se você tiver alguma dúvida de estilo, ou sobre o processo de contribuição você pode conferir nosso [Guia de contribuição](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
 
 Boa sorte!

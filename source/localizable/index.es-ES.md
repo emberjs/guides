@@ -32,6 +32,6 @@ Haciendo clic en el icono de lápiz te llevará al editor de GitHub para esa gu�
 
 Si deseas hacer una contribución más importante compruebe nuestro [issue tracker ](https://github.com/emberjs/guides/issues) para ver si tu problema ya se encuentra solucionándose. Si no encuentras un issue activo, abre uno nuevo.
 
-Si tienes alguna duda de estilos, o acerca el proceso de contribución puedes consultar nuestra [Guía de contribución](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). Si tu pregunta persiste, por favor contáctanos en canal `#-learning` en el [grupo de Slack](https://ember-community-slackin.herokuapp.com/).
+Si tienes alguna duda de estilos, o acerca el proceso de contribución puedes consultar nuestra [Guía de contribución](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
 
 ¡Buena suerte!

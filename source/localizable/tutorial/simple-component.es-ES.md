@@ -32,22 +32,22 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     * Un archivo de código JavaScript ('app/components/rental-listing.js') que define cómo se comportará.
     
     Nuestro nuevo componente 'rental-listing' gestionará cómo un usuario ve e interactúa con un alquiler.
-    Para empezar, moveremos los detalles del alquiler para un alquiler individual, de la template (plantilla) `index.hbs` a `rental-listing.hbs`y agregar el campo imagen.
+    To start, let's move the rental display details for a single rental from the `index.hbs` template into `rental-listing.hbs` and add the image field:
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
       <img src="{{rental.image}}" class="image" alt="">
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
         <span>Type:</span> {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
     </article>
@@ -74,19 +74,19 @@ En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antigu
 
 ### {{rental.title}}
 
-<div class="detail">
+<div class="detail owner">
   <span>Owner:</span> {{rental.owner}}
 </div>
 
-<div class="detail">
+<div class="detail type">
   <span>Type:</span> {{rental.type}}
 </div>
 
-<div class="detail">
+<div class="detail location">
   <span>Location:</span> {{rental.city}}
 </div>
 
-<div class="detail">
+<div class="detail bedrooms">
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article> {{/each}}
 
@@ -105,16 +105,16 @@ En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antigu
         <small>View Larger</small>
       </a>
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
         <span>Type:</span> {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
     </article>
@@ -127,7 +127,7 @@ El valor de `isWide` viene del archivo JavaScript de nuestro componente, en este
 export default Ember.Component.extend({ isWide: false });
 
     <br />Para permitir al usuario ampliar la imagen, tendremos que añadir una action (acción) que cambia el valor de 'isWide'.
-    Llamemos esta action (action) `toggleImageSize`
+    Let's call this action `toggleImageSize`
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -136,16 +136,16 @@ export default Ember.Component.extend({ isWide: false });
         <small>View Larger</small>
       </a>
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
         <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
     </article>
