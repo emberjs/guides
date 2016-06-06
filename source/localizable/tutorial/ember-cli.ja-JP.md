@@ -34,7 +34,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 **app**: この配下にモジュール、コンポーネント、ルート、テンプレートそしてスタイルシートが含まれています。Emberプロジェクトでのコーディングはこの中で行われます。
 
-**bower_components / bower.json**: Bower は依存関係を管理するツールです。 Ember CLI ではフロントエンドのプラグインとコンポーネント(HTML、 CSS、 JavaScript、 など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components` ディレクトリにインストールされます。 `bower.json`を開くと自動的にインストールされる、Ember、jQuery、Ember Data と QUnit (テストで利用される)が一連の依存関係を確認できます。 もし、追加のフロントエンドに関する依存関係を(例えばBootstrapなど) を追加すれば`bower_components` にリストアップされるのを確認できます。
+**bower_components / bower.json**: Bower は依存関係を管理するツールです。 Ember CLI ではフロントエンドのプラグインとコンポーネント(HTML、 CSS、 JavaScript、 など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components` ディレクトリにインストールされます。 `bower.json`を開くと、Ember、Ember CLI Shims、Ember CLI Test Loader、そしてテストのための QUnit らの自動的にインストールされる、依存関係を確認できます。 Bootstrapなどのフロントエンドの依存関係を追加すれば、それらもリストアップされ`bower_components`ディレクトリに追加されます。
 
 **config**: アプリケーションの設定を行う`environment.js` が含まれています。
 
@@ -69,19 +69,14 @@ export default Router;
     './config/environment';` は、 `config` という変数でアプリケーションの環境設定を利用できるようにします。 `const`は読み込み専用の変数を宣言するためのもので、こう宣言することで、他のコードによって書き換えられることが起きないことを担保します。 ファイルの終わりの `export default Router;
     ` はこのファイルで記述したコードが、変数 `Router` としてアプリケーションの、他のパーツでも利用できるようにしています。
     
-    ## Upgrading Ember
+    ## Emberのアップグレード
     
-    Before continuing to the tutorial, make sure that you have the most recent
-    versions of Ember and Ember Data installed. If the version of `ember` in
-    `bower.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `bower.json` and then run `bower install`.
-    Similarly, if the version of `ember-data` in `package.json` is lower, update the
-    version number and then run `npm install`.
+    チュートリアルの先に進む前に、インストールされた、Ember とEmber Dataが最新のバージョンであることを確認してください。 もし 、`bower.json`ファイルに記載のある、`ember` や`ember-data`ガイドの左上にあるバージョン番号よりも低い場合は、`bower.json` のバージョン番号を、編集してから `bower install`コマンドを実行して、バージョンを更新してください。
+    同様に、もし`package.json`内の`ember-data`のバージョンが低い場合は、バージョン番号を更新ご`npm install`コマンドを実行してください。
     
-    ## The Development Server
+    ## 開発サーバー
     
-    Once we have a new project in place, we can confirm everything is working by
-    starting the Ember development server:
+    新規のプロジェクトが作成てきたことを確認するために、開発用サーバーを起動しましょう。
     
     ```shell
     ember server

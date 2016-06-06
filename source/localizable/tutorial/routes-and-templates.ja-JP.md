@@ -242,6 +242,6 @@ Let's replace "Welcome to Ember" with our own banner information, including link
       <div class="body">
         {{outlet}}
       </div>
-    </div> Now that we've added routes and linkages between then, the two acceptance tests we created for navigating the about and contact links will should now pass:
+    </div> Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links should now pass:
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

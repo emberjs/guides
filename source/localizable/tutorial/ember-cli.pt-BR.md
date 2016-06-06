@@ -34,7 +34,7 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
-**bower_components / bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, jQuery, Ember Data and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here and added to the `bower_components` directory.
+**bower_components / bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, Ember CLI Test Loader, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
 **config**: The config directory contains the `environment.js` where you can configure settings for your app.
 

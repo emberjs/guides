@@ -1,13 +1,13 @@
-Sometimes you have a computed property whose value depends on the properties of items in an array. For example, you may have an array of todo items, and want to calculate how many remain incomplete based on their `isDone` property.
+Sometimes you have a computed property whose value depends on the properties of items in an array. For example, you may have an array of todo items, and want to calculate the incomplete todo's based on their `isDone` property.
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
 ```app/components/todos.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
 
-remaining: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false).get('length'); }) });
+incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
 
-    <br />Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings 
-    and fire observers when any of the following events occurs: 
+    <br />Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings
+    and fire observers when any of the following events occurs:
     
     1. The `isDone` property of any of the objects in the `todos` array changes.
     2. An item is added to the `todos` array.
@@ -26,34 +26,34 @@ remaining: Ember.computed('todos.@each.isDone', function() { var todos = this.ge
         Ember.Object.create({ isDone: true })
       ],
     
-      remaining: Ember.computed.filterBy('todos', 'isDone', false)
+      incomplete: Ember.computed.filterBy('todos', 'isDone', false)
     });
     
 
-In both of the examples above, the `remaining` count is `1`:
+In both of the examples above, `incomplete` is an array containing the single incomplete todo:
 
 ```javascript
 import TodosComponent from 'app/components/todos';
 
 let todosComponent = TodosComponent.create();
-todosComponent.get('remaining');
+todosComponent.get('incomplete.length');
 // 1
 ```
 
-If we change the todo's `isDone` property, the `remaining` property is updated automatically:
+If we change the todo's `isDone` property, the `incomplete` property is updated automatically:
 
 ```javascript
 let todos = todosComponent.get('todos');
 let todo = todos.objectAt(1);
 todo.set('isDone', true);
 
-todosComponent.get('remaining');
+todosComponent.get('incomplete.length');
 // 0
 
 todo = Ember.Object.create({ isDone: false });
 todos.pushObject(todo);
 
-todosComponent.get('remaining');
+todosComponent.get('incomplete.length');
 // 1
 ```
 
@@ -68,9 +68,9 @@ selectedTodo: null, indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[
     <br />Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
     to `todos`, but won't update if the value of `isDone` on a `todo` changes.
     
-    Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.html) macros 
+    Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.html) macros
     utilize the `[]` key to implement common use-cases. For instance, to
-    create a computed property that mapped properties from an array, you could use 
+    create a computed property that mapped properties from an array, you could use
     [Ember.computed.map](http://emberjs.com/api/classes/Ember.computed.html#method_map)
     or build the computed property yourself:
     

@@ -564,7 +564,7 @@ export default JSONSerializer.extend(EmbeddedRecordsMixin, { attrs: { author: { 
                { id: "2", type: 'comment' }],
       },
       relatedPosts: {
-        data: {
+        links: {
           related: "/api/v1/posts/1/related-posts/"
         }
       }
