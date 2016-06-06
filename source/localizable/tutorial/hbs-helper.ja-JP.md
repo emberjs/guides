@@ -23,7 +23,7 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
+    <br />新しい、helper (ヘルパー)と`rental.type`を利用するように `rental-listing` component template (コンポーネントテンプレート)を更新しましょう:
     
     ```app/templates/components/rental-listing.hbs
     <article class="listing">

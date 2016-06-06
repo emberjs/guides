@@ -42,9 +42,9 @@ export default Model.extend({
 
 これで、モデルを Ember Data のストア内に保存しています。
 
-### Updating the Model Hook
+### Model Hook (モデルフック)の更新
 
-To use our new data store, we need to update the `model` hook in our route handler.
+新しいデータストアを利用するには、route handler (ルートハンドラ)の `model` hook (モデルフック)を更新する必要があります。
 
 ```app/routes/index.js import Ember from 'ember';
 
