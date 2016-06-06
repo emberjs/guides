@@ -710,7 +710,7 @@ export default Model.extend({
                { id: "2", type: 'comment' }],
       },
       relatedPosts: {
-        data: {
+        links: {
           related: "/api/v1/posts/1/related-posts/"
         }
       }
