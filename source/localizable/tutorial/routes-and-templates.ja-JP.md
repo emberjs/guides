@@ -56,7 +56,7 @@ export default Router;
     これは`app/routes/about.js` に変更しなくても、 `about.hbs` が表示されることを意味しています。
     
     ジェネレータによって必要なルーティングが完了しているので、すぐにテンプレートのコーディングが行えます。
-    For our `about` page, we'll add some HTML that has a bit of information about the site:
+    `about` ページには、サイトの情報を表示するとためのHTMLを追加します:
     
     ```app/templates/about.hbs
     <div class="jumbo">
@@ -118,7 +118,7 @@ ember g route contact
     それではaboutページにcontactページへのリンク、aboutページにはcontactへのリンクを作ります。
     
     Ember には他のルートへのリンクなどの機能を提供する**ヘルパー** が組み込まれています。
-    Here we will use the `{{link-to}}` helper in our code to link between routes:
+    routes (ルート)間のリンクを表示するために`{{link-to}}` helper (ヘルパー)を利用します:
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
