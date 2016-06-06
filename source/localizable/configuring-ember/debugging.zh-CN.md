@@ -103,7 +103,7 @@ You can provide an `onerror` function that will be called with the error details
 
 ```app/app.js import Ember from 'ember'; import RSVP from 'rsvp';
 
-RSVP.on('error', function(error) { Ember.Logger.assert(false, error); });
+RSVP.on('error', function(error) { Ember.assert(false, error); });
 
     <br />#### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
     
