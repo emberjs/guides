@@ -65,7 +65,7 @@ While on the `show` route, we will also want to show additional information abou
 
 In order to do this, we need to modify the Mirage `config.js` file.
 If you need a refresher on using Mirage, visit the [Installing Addons section](./installing-addons)
-We will add a `slug` and `description` to our rentals as well as a
+We will add a `slug` and `description` to our rentals array.
 
 ```mirage/config.js{+14,+15,+28,+29,+42,+43,+53,+54,+55,+56,+57}
 export default function() {
@@ -234,69 +234,37 @@ When we call `this.store.queryRecord('rental', { slug: params.slug })`, Ember Da
 You can read more about Ember Data in the [Models section](../../models/).
 
 This means that we can access a specific rental as `model` on our template.
-Optionally, we can add a `setupController` call to rename our `model` and make our template more descriptive.
-This isn't necessary, but allows us rename `model` to `rental`, making the template easier to read.
-
-```app/routes/rentals/show.js
-export default Ember.Route.extend({
-  model(params) {
-    return this.store.queryRecord('rental', { slug: params.slug });
-  },
-
-  setupController(controller, model) {
-    Ember.set(controller, 'rental', model);
-  }
-});
-```
-
-Since we are editing the default behavior to rename our model, we should write an appropriate test to ensure we get the results we want.
-Let's open the unit test that Ember generated for us when we created our `show` route.
-
-```tests/unit/routes/rentals/show.js
-moduleFor('route:rentals/show', 'Unit | Route | rentals/show', {});
-
-test('`setupController` sets rental from our model', function(assert) {
-  assert.expect(1);
-  const route = this.subject();
-
-  const model = {
-    title: "Grand Old Mansion",
-    owner: "Veruca Salt",
-    city: "San Francisco"
-  };
-
-  const controller = {};
-
-  route.setupController(controller, model);
-
-  const expectedController = {
-    rental: model
-  };
-
-  assert.deepEqual(controller, expectedController, 'rental is added');
-});
-
-```
-
-Here, we ensure that if our model returns an object, that it is renamed to `rental` on our controller.
 
 # Adding the Rental To Our Template
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
 ```app/templates/rentals/show.hbs
-{{rental-listing rental=rental}}
-
-<article class="listing">
-  <h3>More about {{rental.title}}</h3>
-  <div class="detail">
-    {{rental.description}}
+<div class="jumbo">
+  <a href="#" class="button right up-11">Edit</a>
+  <h2 style="margin-bottom:15px">{{model.title}}</h2>
+  <div class="right" style="width:50%;padding-left:30px">
+    <div class="map right" style="background: url({{model.address}}) center center;"></div>
+    <div class="detail" style="margin-top:10px">
+      <strong>Owner:</strong> {{model.owner}}
+    </div>
+    <div class="detail">
+      <strong>Type:</strong> {{rental-property-type model.type}} - {{model.type}}
+    </div>
+    <div class="detail">
+      <strong>Location:</strong> {{model.city}}
+    </div>
+    <div class="detail">
+      <strong>Number of bedrooms:</strong> {{model.bedrooms}}
+    </div>
+    <p>&nbsp;</p>
+    <p>{{model.description}}</p>
   </div>
-</article>
+  <img src="{{model.image}}" alt="" class="" style="width:50%;height:initial;position:static">
+</div>
 ```
 
-Notice that we can access our `model` as `rental` because of the way we used `setupController`.
-We pass our `rental` to the `rental-listing` component and add a new section listing the rental's `title` and `description`.
+We pass our `model` to the `rental-listing` component and add a new section listing the rental's `title`.
 Browse to `localhost:4200/rentals/grand-old-mansion` and you should see the information listed for that specific rental.
 
 # Adding an Index Sub-route
@@ -346,8 +314,9 @@ Let's list all of our rentals on our template (`app/templates/rentals/index.hbs`
 ```app/templates/rentals/index.hbs
 <ul class="results">
   {{#each model as |rentalUnit|}}
-    {{rental-listing rental=rentalUnit}}
-    {{link-to "Select Rental" "rentals.show" rentalUnit.slug}}
+    {{#link-to "rentals.show" rentalUnit.slug}}
+      {{rental-listing rental=rentalUnit}}
+    {{/link-to}}
   {{/each}}
 </ul>
 ```
