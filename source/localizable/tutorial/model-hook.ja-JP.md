@@ -57,6 +57,6 @@ export default Ember.Route.extend({ model() { return rentals; } });
 
 このテンプレートでは、それぞれのモデルオブジェクトを*rental*と呼びます。各レンタル品のプロパティについての情報を一覧として作成します。
 
-Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
+これにより、物件を表示できるようになりました、受入テストが通るようになっているはずです。
 
 ![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)
