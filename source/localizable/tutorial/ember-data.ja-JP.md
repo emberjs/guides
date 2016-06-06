@@ -50,6 +50,6 @@ export default Model.extend({
 
 export default Ember.Route.extend({ model() { return this.store.findAll('rental'); } }); ```
 
-When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`. You can read more about Ember Data in the [Models section](../../models/).
+`this.store.findAll('rental')`を呼び出すとき、Ember Data は`/rentals`にGETリクエストを送ります。 Ember Data の詳細については[モデルセクション](../../models/)を確認してください。.
 
-Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
+開発環境では Mirage を利用しているので、Mirageは事前にMirageに提供したデータを返します。 プロダクションにアプリケーションをデプロイする際には、実際にEmber Data がやりとりをするバックエンドを構築する必要があります。
