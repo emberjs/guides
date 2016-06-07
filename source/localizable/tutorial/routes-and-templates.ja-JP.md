@@ -135,11 +135,11 @@ ember g route contact
     </div>
     
 
-The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page at `http://localhost:4200/about`, we now have a working link to our contact page.
+`{{link-to}}` helper (ヘルパー)はリンク先の route (ルーター)名を引数として受け取ります、この場合は`contact` がそれに当たります。 `http://localhost:4200/about`を開くと、コンタクトページへのリンクが機能しているのがわかります。
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
+次は`contact`ページと`about` の間で移動ができるように、contact ページにリンクを追加します。.
 
 ```app/templates/contact.hbs 
 
@@ -175,7 +175,7 @@ Now, we'll add a link to our contact page so we can navigate from back and forth
     ember g route index
     
 
-We can see the now familiar output for the route generator:
+route generator (ルートジェネレータ) の出力はすでにお馴染みだと思います:
 
 ```shell
 installing route
@@ -185,9 +185,9 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at nested routes in Ember.
+作成してきた他のルートハンドラーとは違い、`index`ルートは特別で、ルートマッピングにエントリーは必要ありません。 どうしてエントリーの必要がないのか、に関してはネストされたEmberのルートを扱う際に詳細を説明します。
 
-Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
+`index.hbs`にhome ページ用のHTMLとアプリケーション内の他のルートへのリンクを追加します。
 
 ```app/templates/index.hbs 
 
@@ -204,14 +204,14 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-    <br />## Adding a Banner with Navigation
+    <br />## ナビゲーションにバナーを追加
     
-    In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
+    アプリケーションの各ルートの、ボタンスタイルのリンクに追加して、共通のアプリケーションのタイトルと、そのメインページを表示したいと思います。
     
-    When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
-    Anything you put in this template is shown for every page in the application.
-    The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an `outlet`.
-    The `outlet` defers to the router, which will render in its place the markup for the current route.
+    これまでのように、Ember CLI をもちいて、Ember アプリケーションを作成するとき、`application.hbs`という名前のtemplate (テンプレート)が作成されます。
+    このテンプレートに追加した内容は、このアプリケーションのいずれのページにも表示されます。
+    デフォルトの`application.hbs`ファイルは、`h2`タグと "Welcome to Ember" というテキストがともに`outlet`を表示しています。
+    `outlet`はルーターに従い、そのときのカレントのルーターのマークアップを表示します。
     
     ```app/templates/application.hbs
     <h2 id="title">Welcome to Ember</h2>
@@ -242,6 +242,6 @@ Let's replace "Welcome to Ember" with our own banner information, including link
       <div class="body">
         {{outlet}}
       </div>
-    </div> Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links should now pass:
+    </div> routes (ルート)とそれらを繋ぐ、リンクを追加しました、aboutとcontactリンクのために作成した、二つの受入テストはこの段階で、通っているはずです。
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
