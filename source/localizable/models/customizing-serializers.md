@@ -318,9 +318,10 @@ payload. For example, if your backend returned attributes that are
 method like this.
 
 ```app/serializers/application.js
-import JSONSerializer from 'ember-data/serializers/json';
+import Ember from 'ember';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({
+export default JSONAPISerializer.extend({
   keyForAttribute: function(attr) {
     return Ember.String.underscore(attr);
   }
