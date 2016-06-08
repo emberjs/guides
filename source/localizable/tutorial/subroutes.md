@@ -22,7 +22,7 @@ installing route-test
   create tests/unit/routes/rentals-test.js
 ```
 
-If it is unclear what Ember is doing for us here visit the [Routes and Templates tutorial](./routes-and-templates) for more information.
+If it is unclear what Ember is doing for us here visit the [Routes and Templates tutorial](../routes-and-templates) for more information.
 
 Let's start by opening our new Handlebars template (`app/templates/rentals.hbs`).
 Ember generates route-level templates files with an `outlet`.
@@ -57,14 +57,14 @@ and then go to `localhost:4200/rentals` to see our new app in action!
 
 Next, we will want to create a sub-route that will list information for a specific rental.
 To do this, we will need to update a couple of files.
-To find a specific rental, we will want to use Ember Data's `queryRecord` function [Finding Records section](../../models/find-records/).
+To find a specific rental, we will want to use Ember Data's `queryRecord` function [Finding Records section](../../models/finding-records/).
 This means we need to be able to search by a unique key in order to return the specific rental we want.
 Many APIs return a `slug`, which is a URL-friendly string to identify a record.
 
 While on the `show` route, we will also want to show additional information about our specific rental.
 
 In order to do this, we need to modify the Mirage `config.js` file.
-If you need a refresher on using Mirage, visit the [Installing Addons section](./installing-addons)
+If you need a refresher on using Mirage, visit the [Installing Addons section](../installing-addons)
 We will add a `slug` and `description` to our rentals array.
 
 ```mirage/config.js{+14,+15,+28,+29,+42,+43,+53,+54,+55,+56,+57}
@@ -233,7 +233,52 @@ Since we added `:slug` to the `show` path in our router, we can now access `slug
 When we call `this.store.queryRecord('rental', { slug: params.slug })`, Ember Data will make a GET request to `/rentals?slug=our-slug`.
 You can read more about Ember Data in the [Models section](../../models/).
 
+To ensure this, we should write a unit test that confirms `queryRecord` is called with the correct parameters.
+Let's edit the unit test that Ember created for us when we generated our `show` route.
+
 This means that we can access a specific rental as `model` on our template.
+
+```tests/unit/routes/rentals/show-test.js
+moduleFor('route:rentals/show', 'Unit | Route | rentals/show', {});
+
+test('should query for selected rental by slug', function(assert) {
+  let store = {
+    queryRecord(path, options) {
+      assert.equal(path, 'rental', 'queryRecord calls rental path on API');
+      assert.deepEqual(options, { slug: 'rental-thing' });
+    }
+  };
+  let route = this.subject({ store });
+  route.model({ slug: 'rental-thing' });
+});
+```
+
+In our route we call `this.store.queryRecord` and pass our `slug` to query our API appropriately.
+To test this, we must stub `store.queryRecord` and pass it to our route.
+First we create a fake `store` object with a `queryRecord` function.
+
+```js
+let store = {
+  queryRecord(path, options) {
+    assert.equal(path, 'rental', 'queryRecord calls rental path on API');
+    assert.deepEqual(options, { slug: 'rental-thing' });
+  }
+};
+```
+
+Instead of making an AJAX request (the default behavior of `queryRecord`), we want to assert that the correct parameters are present.
+Secondly, we want to pass this stubbed object to our route.
+This is possible by passing a hash with our object in `this.subject`, a method available to us because of `moduleFor`.
+
+```js
+let route = this.subject({ store });
+```
+
+Finally, we call the `model` function directly, which will trigger the assertions we wrote on our stubbed `store` object.
+
+```js
+route.model({ slug: 'rental-thing' });
+```
 
 # Adding the Rental To Our Template
 
@@ -314,17 +359,40 @@ Let's list all of our rentals on our template (`app/templates/rentals/index.hbs`
 ```app/templates/rentals/index.hbs
 <ul class="results">
   {{#each model as |rentalUnit|}}
-    {{#link-to "rentals.show" rentalUnit.slug}}
-      {{rental-listing rental=rentalUnit}}
-    {{/link-to}}
+    {{rental-listing rental=rentalUnit}}
   {{/each}}
 </ul>
 ```
 
-Here we iterate over all of the items in our model and added a link to our `show` route for each rental.
-Since we need to pass a parameter to our `show` route, we add `rentalUnit.slug` to the end of our `link-to`.
-This will append it to our URL when click the "Select Rental" link.
+Here we iterate over all of the items in our model, passing each rental to the `rental-listing` component.
+However, we still want to redirect users to the new `show` route that we created.
+We can do this by editing the `title` in our component, making it a link.
+
+```app/templates/components/rental-listing.hbs{+6}
+<article class="listing">
+  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+    <img src="{{rental.image}}" alt="">
+    <small>View Larger</small>
+  </a>
+  <h3>{{link-to rental.title "rentals.show" rental.slug}}</h3>
+  <div class="detail owner">
+    <span>Owner:</span> {{rental.owner}}
+  </div>
+  <div class="detail type">
+    <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+  </div>
+  <div class="detail location">
+    <span>Location:</span> {{rental.city}}
+  </div>
+  <div class="detail bedrooms">
+    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  </div>
+  {{location-map location=rental.city}}
+</article>
+```
+Here we changed the header in the component to a link, passing the rental's `slug` as a parameter.
 
 Now if we run our app and visit `localhost:4200/rentals` we should see all of the rentals rendered in our `outlet`.
+If we click the title of any of our rentals, we will be redirected to the `show` route and able to view additional information.
 
-![sub-routes super rentals index route](../../images/sub-routes/sub-routes-super-rentals-index.png)
+![sub-routes super rentals index route](../../images/subroutes/subroutes-super-rentals-index.png)
