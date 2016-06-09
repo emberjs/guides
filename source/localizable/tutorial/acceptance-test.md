@@ -98,7 +98,7 @@ We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_cl
 After the new screen loads, we just verify that the new URL matches our expectation using the [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
 
 ```/tests/acceptance/list-rentals-test.js
-test('should link to information about the company, function (assert) {
+test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');
   andThen(function () {
@@ -123,7 +123,7 @@ We will fill out "Seattle" as the search criteria in that field and send a key u
 Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle"
 
 ```/tests/acceptance/list-rentals-test.js
-test('should list 1 rental when filtering by Seattle', function (assert) {
+test('should filter the list of rentals by city.', function (assert) {
   visit('/');
   fillIn('.list-filter input', 'seattle');
   keyEvent('.list-filter input', 'keyup', 69);
