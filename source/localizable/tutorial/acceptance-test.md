@@ -45,7 +45,7 @@ test('visiting /', function(assert) {
 });
 ```
 
-Now run your test suite with `ember t -s` from the command line and you'll see one successful acceptance test (along with a bunch of JSHint tests).
+Now run your test suite with `ember test --server` from the command line in a new window and you'll see one successful acceptance test (along with a bunch of JSHint tests).
 
 As mentioned before, this test boilerplate is just for checking the environment, so now let's replace this test with our list of goals.
 
