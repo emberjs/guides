@@ -14,8 +14,8 @@ window.GUIDE_VERSIONS.onReady(function (versions) {
   });
 
   var npmInstallVersion = $('pre:contains("install -g ember-cli")');
-
-  if (currentRevision.slice(0,1) !== "C") {
+  //only append the version if there's one specified and not one already in the content
+  if (currentRevision.slice(0,1) !== "C" && npmInstallVersion.text().indexOf("@") === -1) {
     var installVersion = versions.current.slice(1).split(".").slice(0,2).join(".");
 
     npmInstallVersion.text("npm install -g ember-cli@" + installVersion);
