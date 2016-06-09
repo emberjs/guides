@@ -231,7 +231,7 @@ The `outlet` defers to the router, which will render in its place the markup for
 
 Let's replace "Welcome to Ember" with our own banner information, including links to our new routes:
 
-```app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,-19,+20,+21}
+```app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+20,+21}
 <h2 id="title">Welcome to Ember</h2>
 <div class="container">
   <div class="menu">

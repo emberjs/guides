@@ -99,8 +99,8 @@ with our new `rental-listing` component:
   {{/link-to}}
 </div>
 
-{{#each model as |rentalUnit|}}
-  {{rental-listing rental=rentalUnit}}
+{{#each model as |rental|}}
+  {{rental-listing rental=rental}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
     <div class="detail owner">

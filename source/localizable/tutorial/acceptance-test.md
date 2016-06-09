@@ -45,7 +45,7 @@ test('visiting /', function(assert) {
 });
 ```
 
-Now run your test suite with `ember t -s` from the command line and you'll see one successful test!
+Now run your test suite with `ember t -s` from the command line and you'll see one successful acceptance test (along with a bunch of JSHint tests).
 
 As mentioned before, this test boilerplate is just for checking the environment, so now let's replace this test with our list of goals.
 
@@ -79,11 +79,11 @@ To check that rentals are listed, we'll first visit the index route and check th
 test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function () {
-    assert.equal(this.$('.results .listing').length, 3, "should see 3 listings");
+    assert.equal(this.$('.listing').length, 3, "should see 3 listings");
   });
 });
 ```
-The test assumes that we show the list of rentals in an element with class `results`, and that each rental will have an element with class `listing`.
+The test assumes that each rental element will have a class called `listing`.
 
 The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
 
@@ -95,7 +95,7 @@ We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_cl
 After the new screen loads, we just verify that the new URL matches our expectation using the [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
 
 ```/tests/acceptance/list-rentals-test.js
-test('should link to about page', function (assert) {
+test('should link to information about the company, function (assert) {
   visit('/');
   click('a:contains("About")');
   andThen(function () {
@@ -103,7 +103,7 @@ test('should link to about page', function (assert) {
   });
 });
 
-test('should link to contacts page', function (assert) {
+test('should link to contact information', function (assert) {
   visit('/');
   click('a:contains("Contact")');
   andThen(function () {
@@ -125,7 +125,7 @@ test('should list 1 rental when filtering by Seattle', function (assert) {
   fillIn('.list-filter input', 'seattle');
   keyEvent('.list-filter input', 'keyup', 69);
   andThen(function () {
-    assert.equal(this.$('.results .listing').length, 1, "should show 1 listing");
+    assert.equal(this.$('.listing').length, 1, "should show 1 listing");
     assert.equal(this.$(".listing .location:contains('Seattle')").length, 1, "should contain 1 listing with location Seattle");
   });
 });
