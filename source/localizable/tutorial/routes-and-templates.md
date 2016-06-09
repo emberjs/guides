@@ -7,12 +7,6 @@ Let's take a look at the application from the user perspective before we get sta
 We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
 
-Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
-
-```shell
-ember new super-rentals
-```
-
 Before we start building the three pages for our app,
 we are going to clear out the contents of the `app/templates/application.hbs` file
 and only leave the `{{outlet}}` code in place.
