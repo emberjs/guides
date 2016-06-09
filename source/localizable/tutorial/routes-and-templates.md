@@ -220,8 +220,8 @@ In addition to providing button-style links in each route of our application, we
 
 When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
 Anything you put in this template is shown for every page in the application.
-The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an `outlet`.
-The `outlet` defers to the router, which will render in its place the markup for the current route.
+The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
+The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
 
 ```app/templates/application.hbs
 <h2 id="title">Welcome to Ember</h2>
@@ -254,6 +254,6 @@ Let's replace "Welcome to Ember" with our own banner information, including link
   </div>
 </div>
 ```
-Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links should now pass:
+Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
