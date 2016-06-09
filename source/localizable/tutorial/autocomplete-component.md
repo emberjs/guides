@@ -47,9 +47,9 @@ test('should initially load all listings', function (assert) {
   // with an integration test, you can set up and use your component in the same way your application 
   // will use it.
   this.render(hbs`
-    {{#list-filter filter=(action 'filterByCity') as |rentals|}}
+    {{#list-filter filter=(action 'filterByCity') as |results|}}
       <ul>
-      {{#each rentals as |item|}}
+      {{#each results as |item|}}
         <li class="city">
           {{item.city}}
         </li>
@@ -81,9 +81,9 @@ test('should update with matching listings', function (assert) {
   });
 
   this.render(hbs`
-    {{#list-filter filter=(action 'filterByCity') as |rentals|}}
+    {{#list-filter filter=(action 'filterByCity') as |results|}}
       <ul>
-      {{#each rentals as |item|}}
+      {{#each results as |item|}}
         <li class="city">
           {{item.city}}
         </li>
@@ -201,10 +201,9 @@ When the user types in the text field in our component, the `filterByCity` actio
 This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
 The result of the query is returned to the caller.
 
-For this action to work, we need to modify the Mirage `config.js` file
-to look like this, so that it can respond to our queries.
+For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 
-```mirage/config.js{+2,+38,+39,+40,+41,+42,+43,+44,+45}
+```mirage/config.js
 export default function() {
   this.get('/rentals', function(db, request) {
     let rentals = [{
