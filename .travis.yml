@@ -1,9 +1,19 @@
 language: ruby
 sudo: false
 rvm:
-  - "1.9.3"
+- 1.9.3
 addons:
   apt:
     packages:
     - aspell-en
+cache: bundler
 script: bundle exec rspec spec && bundle exec middleman build --verbose
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ".travis/continuous-delivery.sh"
+  on:
+    branch: master
+env:
+  global:
+  - secure: jv3v+FUShKuRAHcs6RM5Bc+BFMPDPBdJY39dtW/K3p7UILu1R6ZyXCRBn33YTanYfJ+ujT3ktIGmOmsRX24f6ZjUOd2NT8rM+7anRW7qRrPlP25bN5Y/YMqAcuhZr7Ktd2NRZeYQw7xtYgwYAlh1GkzRAl/FjCUFj8v1hNpqRBM=
