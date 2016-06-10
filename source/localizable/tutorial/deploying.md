@@ -1,4 +1,4 @@
-To deploy an Ember application simply transfer the output from `ember build` to a web server (make sure to not build with `--enviroment=production`, as the data mocked with Mirage will only work with a development build).
+To deploy an Ember application simply transfer the output from `ember build` to a web server.
 This can be done with standard Unix file transfer tools such as `rsync` or `scp`.
 There are also services that will let you deploy easily.
 
@@ -27,7 +27,7 @@ Note you will also need to provide a copy of index.html with the filename 200.ht
 so that surge can support Ember's client-side routing.
 
 ```shell
-ember build --environment=production
+ember build --environment=development
 cd dist
 cp index.html 200.html
 surge
@@ -40,8 +40,10 @@ So to deploy to the same URL after making changes, perform the same steps, this 
 
 ```shell
 rm -rf dist
-ember build --environment=production
+ember build --environment=development
 cd dist
 cp index.html 200.html
 surge funny-name.surge.sh
 ```
+
+We use `--enviroment=development` here so that Mirage will continue to mock fake data.  However, normally we would use `ember build --environment=production` which does more to make your code ready for production.
