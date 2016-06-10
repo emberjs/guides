@@ -32,5 +32,5 @@ cd $WEBSITE_FILES
 # clean up versions in our built files
 node tasks/update-versions.js
 
-# do the deploy
-firebase deploy -f ember-guides-staging
+# do the deploy to production
+firebase deploy
