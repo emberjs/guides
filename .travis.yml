@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
     - aspell-en
+cache: bundler
 script: bundle exec rspec spec && bundle exec middleman build --verbose
 deploy:
   skip_cleanup: true
