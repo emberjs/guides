@@ -1,4 +1,4 @@
-To deploy an Ember application simply transfer the output from `ember build` to a web server.
+To deploy an Ember application simply transfer the output from `ember build` to a web server (make sure to not build with `--enviroment=production`, as the data mocked with Mirage will only work with a development build).
 This can be done with standard Unix file transfer tools such as `rsync` or `scp`.
 There are also services that will let you deploy easily.
 
