@@ -1,7 +1,8 @@
 #!/bin/bash
 REPO="https://github.com/emberjs/guides.emberjs.com.git"
-BUILT_FILES=$HOME/build/emberjs/guides/build
-DEPLOY=$HOME/deploy
+ROOT=$HOME/build/emberjs/guides
+BUILT_FILES=$ROOT/build
+DEPLOY=$ROOT/deploy
 WEBSITE_FILES=$DEPLOY/guides.emberjs.com
 
 # setup a temp folder to run things out of
@@ -26,6 +27,10 @@ cd $DEPLOY
 rm -rf $LATEST_VERSION
 cp -r $BUILT_FILES $LATEST_VERSION
 
-# start the deploy
 cd $WEBSITE_FILES
+
+# clean up versions in our built files
+node tasks/update-versions.js
+
+# do the deploy
 firebase deploy -f ember-guides-staging
