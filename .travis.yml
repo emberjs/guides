@@ -13,7 +13,7 @@ deploy:
   provider: script
   script: ".travis/continuous-delivery.sh"
   on:
-    branch: continuous-delivery-step-1
+    branch: master
 env:
   global:
   - secure: jv3v+FUShKuRAHcs6RM5Bc+BFMPDPBdJY39dtW/K3p7UILu1R6ZyXCRBn33YTanYfJ+ujT3ktIGmOmsRX24f6ZjUOd2NT8rM+7anRW7qRrPlP25bN5Y/YMqAcuhZr7Ktd2NRZeYQw7xtYgwYAlh1GkzRAl/FjCUFj8v1hNpqRBM=
