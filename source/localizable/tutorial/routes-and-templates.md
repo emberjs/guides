@@ -141,7 +141,7 @@ Here we will use the `{{link-to}}` helper in our code to link between routes:
     By building a property rental site, we can simultaneously imagine traveling
     AND building Ember applications.
   </p>
-  {{#link-to 'index' class="button"}}
+  {{#link-to 'contact' class="button"}}
     Get Started!
   {{/link-to}}
 </div>
