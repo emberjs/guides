@@ -7,9 +7,9 @@ Super Rentals アプリケーションのホームページについて何をし
 * 連絡先情報へのリンク
 * 賃貸物件リストの都市での絞り込み表示
 
-これらのゴールは、[Ember acceptance tests](../../testing/acceptance/)として表示することができます。 Acceptance tests interact with our app like an actual person would, but can be automated, ensuring that our app doesn't break in the future.
+これらのゴールは、[Ember acceptance tests](../../testing/acceptance/)として表示することができます。 Acceptance tests (受入テスト)は実際の人がアプリケーションとインタラクトするように振る舞います、さらに自動で行うことができます、こうすることえ、アプリケーションが先にわたって壊れないことを、担保することができます。
 
-We'll start by using Ember CLI to generate a new acceptance test:
+まず、Ember CLI を使って、Acceptance tests (受入テスト)を作成します。
 
 ```shell
 ember g acceptance-test list-rentals
