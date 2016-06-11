@@ -70,7 +70,7 @@ En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antigu
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-{{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} <article class="listing"> 
+{{#each model as |rental|}} {{rental-listing rental=rental}} <article class="listing"> 
 
 ### {{rental.title}}
 

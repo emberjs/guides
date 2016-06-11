@@ -1,6 +1,6 @@
-レンタル品をユーザーが閲覧している時に、ユーザーが決断できるように後押しする、いくつかのインタラクティブな選択肢があるのを望んでいるかもしれません。 Let's add the ability to toggle the size of the image for each rental. これを実現するために、コンポーネントを利用します。
+レンタル品をユーザーが閲覧している時に、ユーザーが決断できるように後押しする、いくつかのインタラクティブな選択肢があるのを望んでいるかもしれません。 各レンタル品の画像を表示したり、消したりする機能を追加してみましょう。 これを実現するために、コンポーネントを利用します。
 
-各レンタル品の、動作を管理する`rental-listing` コンポーネントを自動生成しましょう。 A dash is required in every component name to avoid conflicting with a possible HTML element, so `rental-listing` is acceptable but `rental` would not be.
+各レンタル品の、動作を管理する`rental-listing` コンポーネントを自動生成しましょう。 dash (-記号)は各コンポーネントと各HTMLとの重複を避けるために必須です、`rental-listing`は許容されますが、`rental`はそうではありません。
 
 ```shell
 ember g component rental-listing
@@ -32,7 +32,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
     
     Our new `rental-listing` component will manage how a user sees and interacts with a rental.
-    To start, let's move the rental display details for a single rental from the `index.hbs` template into `rental-listing.hbs` and add the image field:
+    まず、index.hbs` template (テンプレート)から各賃貸物件の詳細を表示する情報を`rental-listing.hbs` に移動してイメージフィールドを追加します:
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -70,7 +70,7 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-{{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} <article class="listing"> 
+{{#each model as |rental|}} {{rental-listing rental=rental}} <article class="listing"> 
 
 ### {{rental.title}}
 
@@ -127,7 +127,7 @@ The value of `isWide` comes from our component's JavaScript file, in this case `
 export default Ember.Component.extend({ isWide: false });
 
     <br />To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
-    Let's call this action `toggleImageSize`
+    `toggleImageSize`action (アクション)を呼び出します。
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">

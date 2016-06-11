@@ -23,28 +23,28 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Actualicemos nuestra template (plantilla) del component (componente) `rental-listing`para utilizar nuestro nuevo helper y pasarle`rental.type`:
+    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
     
-    ```app/templates/components/rental-listing.hbs
+    ```app/templates/components/rental-listing.hbs{-11,+12}
     <article class="listing">
       <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
         <img src="{{rental.image}}" alt="">
         <small>View Larger</small>
       </a>
       <h3>{{rental.title}}</h3>
-      <div class="detail">
+      <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
       </div>
-      <div class="detail">
+      <div class="detail type">
+        <span>Type:</span> {{rental.type}}
         <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
       </div>
-      <div class="detail">
+      <div class="detail location">
         <span>Location:</span> {{rental.city}}
       </div>
-      <div class="detail">
+      <div class="detail bedrooms">
         <span>Number of bedrooms:</span> {{rental.bedrooms}}
       </div>
-      {{location-map location=rental.city}}
     </article>
     
 

@@ -1,4 +1,4 @@
-Para desplegar una aplicación de Ember simplemente transferir la salida de `ember build` a un servidor web. Esto puede hacerse con las herramientas de transferencia de archivo de Unix estándar como `rsync` o `scp`. También hay servicios que te permitirán desplegar fácilmente.
+To deploy an Ember application simply transfer the output from `ember build` to a web server. Esto puede hacerse con las herramientas de transferencia de archivo de Unix estándar como `rsync` o `scp`. También hay servicios que te permitirán desplegar fácilmente.
 
 ## Desplegar con scp
 
@@ -22,7 +22,7 @@ npm install -g surge
 Entonces podrás utilizar el comando `surge` para desplegar tu aplicación. Ten en cuenta que también tendrás que proporcionar una copia de index.html con el nombre de archivo 200.html, así surge puede ayudar al enrutamiento desde el lado del cliente de Ember.
 
 ```shell
-ember build --environment=production
+ember build --environment=development
 cd dist
 cp index.html 200.html
 surge
@@ -34,8 +34,10 @@ Para implementar a la misma URL después de hacer cambios, realiza los mismos pa
 
 ```shell
 rm -rf dist
-ember build --environment=production
+ember build --environment=development
 cd dist
 cp index.html 200.html
 surge funny-name.surge.sh
 ```
+
+We use `--enviroment=development` here so that Mirage will continue to mock fake data. However, normally we would use `ember build --environment=production` which does more to make your code ready for production.

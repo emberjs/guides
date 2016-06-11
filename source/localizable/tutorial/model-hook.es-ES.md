@@ -23,9 +23,9 @@ export default Ember.Route.extend({ model() { return rentals; } });
     Ahora, vamos a pasar a nuestra plantilla.
     Podemos utilizar los datos de los modelos para mostrar la lista de los alquileres.
     Aquí, usaremos otro helper común de Handlebars llamado `{{each}}`.
-    Este helper nos permitirá recorrer cada uno de los objetos del modelo:
+    This helper will let us loop through each of the objects in our model:
     
-    ```app/templates/index.hbs
+    ```app/templates/index.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
     <div class="jumbo">
       <div class="right tomster"></div>
       <h2>Welcome!</h2>

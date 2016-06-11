@@ -70,7 +70,7 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-{{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} <article class="listing"> 
+{{#each model as |rental|}} {{rental-listing rental=rental}} <article class="listing"> 
 
 ### {{rental.title}}
 

@@ -1,4 +1,4 @@
-Ember アプリケーションをデプロイするには、単に出力された`ember build` をweb サーバーに転送します。 転送は標準的なUnixのファイル転送ツール、`rsync` や `scp`などで行うことが可能です。 また、他にもデプロイを簡略化してくれる、サービスも存在します。
+To deploy an Ember application simply transfer the output from `ember build` to a web server. 転送は標準的なUnixのファイル転送ツール、`rsync` や `scp`などで行うことが可能です。 また、他にもデプロイを簡略化してくれる、サービスも存在します。
 
 ## Scpコマンドでのデプロイ
 
@@ -22,7 +22,7 @@ npm install -g surge
 インストール後、`surge`コマンドでアプリケーションのデプロイが実行可能になります。 surgeがEmberのクライアントサイドでのルーティングをサポートするには、 index.html のコピーを 200.html という名称で提供する必要があることに注意してください。
 
 ```shell
-ember build --environment=production
+ember build --environment=development
 cd dist
 cp index.html 200.html
 surge
@@ -34,8 +34,10 @@ surge
 
 ```shell
 rm -rf dist
-ember build --environment=production
+ember build --environment=development
 cd dist
 cp index.html 200.html
 surge funny-name.surge.sh
 ```
+
+We use `--enviroment=development` here so that Mirage will continue to mock fake data. However, normally we would use `ember build --environment=production` which does more to make your code ready for production.

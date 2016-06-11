@@ -4,12 +4,6 @@
 
 We arrive at the home page which shows a list of rentals. From here, we will be able to navigate to an about page and a contact page.
 
-Let's make sure we have a fresh Ember CLI app called `super-rentals` by running:
-
-```shell
-ember new super-rentals
-```
-
 Before we start building the three pages for our app, we are going to clear out the contents of the `app/templates/application.hbs` file and only leave the `{{outlet}}` code in place. We'll talk more about the role of the `application.hbs` file after our site has a few routes.
 
 Now, let's start by building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, *about.js*. The route handler then loads a template.
@@ -211,8 +205,8 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
     
     When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
     Anything you put in this template is shown for every page in the application.
-    The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an `outlet`.
-    The `outlet` defers to the router, which will render in its place the markup for the current route.
+    The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
+    The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
     
     ```app/templates/application.hbs
     <h2 id="title">Welcome to Ember</h2>
@@ -222,7 +216,7 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
 
 Let's replace "Welcome to Ember" with our own banner information, including links to our new routes:
 
-    app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,-19,+20,+21}
+    app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+20,+21}
     <h2 id="title">Welcome to Ember</h2>
     <div class="container">
       <div class="menu">
@@ -243,6 +237,6 @@ Let's replace "Welcome to Ember" with our own banner information, including link
       <div class="body">
         {{outlet}}
       </div>
-    </div> Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links should now pass:
+    </div> Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

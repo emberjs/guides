@@ -22,9 +22,9 @@ const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}]; 
 
 test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return Ember.RSVP.resolve(ITEMS); } else { return Ember.RSVP.resolve(FILTERED_ITEMS); } });
 
-//Con un test de integración, puedes configurar y usar el componente de la misma manera que la aplicación la usará. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |rentals|}}
+//Con un test de integración, puedes configurar y usar el componente de la misma manera que la aplicación la usará. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |results|}}
       <ul>
-      {{#each rentals as |item|}}
+      {{#each results as |item|}}
         <li class="city">
           {{item.city}}
         </li>
@@ -49,9 +49,9 @@ La función esperar, retornará una promise (promesa) que esperará a que todas 
       });
     
       this.render(hbs`
-        {{#list-filter filter=(action 'filterByCity') as |rentals|}}
+        {{#list-filter filter=(action 'filterByCity') as |results|}}
           <ul>
-          {{#each rentals as |item|}}
+          {{#each results as |item|}}
             <li class="city">
               {{item.city}}
             </li>
@@ -114,9 +114,9 @@ Así es como se ve el JavaScript del component (componente):
 
 export default Ember.Component.extend({ classNames: ['list-filter'], value: '',
 
-init() { this._super(...arguments); this.get('filter')('').then((results) => this.set('rentals', results)); },
+init() { this._super(...arguments); this.get('filter')('').then((results) => this.set('results', results)); },
 
-actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let filterAction = this.get('filter'); filterAction(filterInputValue).then((filterResults) => this.set('rentals', filterResults)); } }
+actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let filterAction = this.get('filter'); filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults)); } }
 
 });
 
@@ -143,9 +143,9 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
     Esta acción toma la propiedad `value` y filtra los datos de `rental` para los registros en almacén de datos que coincidan con lo que el usuario ha escrito hasta ahora. 
     El resultado de la consulta se devuelve a quien llama la función.
     
-    Para que estas action (acción) funcion, debemos modificar el archivo `config.js` de Mirage para que se vea como este y así pueda responder a nuestras consultas.
+    For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
     
-    ```mirage/config.js{+2,+38,+39,+40,+41,+42,+43,+44,+45}
+    ```mirage/config.js
     export default function() {
       this.get('/rentals', function(db, request) {
         let rentals = [{
