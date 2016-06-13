@@ -1,4 +1,5 @@
 @import "mixins/hidpi";
+@import "mixins/text-adjust";
 
 body {
   @include font-feature-settings("kern", "liga", "pnum");
