@@ -63,18 +63,23 @@ Serving on http://localhost:4200/
 (To stop the server at any time, type Ctrl-C in your terminal.)
 
 Open [http://localhost:4200/](http://localhost:4200) in your browser of
-choice. You should see a page that says "Welcome to Ember" and not much
-else. Congratulations! You just created and booted your first Ember app.
+choice. You should see Tomster and a page that says "Congratulations, you 
+made it!", along with links to a few different ember resources. You just 
+created and booted your first Ember app!
 
-Switch to your editor and open `app/templates/application.hbs`. This is
-called the `application` template and it is always on screen while the
-user has your application loaded.
+Switch to your editor and open `package.json`. This file manages all the 
+local npm modules that we installed earlier when we ran `ember new ember-quickstart`.
+Scroll to the bottom of the file and remove the line that says `ember-welcome-page": "^1.0.1",`.
+Type Ctrl-C in your terminal to stop the ember server, and then type 
+`ember server` to start it back up. Now when you visit [http://localhost:4200/](http://localhost:4200)
+you should now see a blank page.
 
-In your editor, change the text inside the `<h2>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Notice that Ember detects
-the change you just made and automatically reloads the page for you in
-the background. You should see that "Welcome to Ember" has been
-replaced by "PeopleTracker".
+Next you need to create a file named `application.hbs` in `app/templates/`.
+This is called the application template and it is always on screen while 
+the user has your application loaded. Add `<h2>PeopleTracker</h2>` inside 
+of `application.hbs` and save the file. Notice that Ember detects the 
+change you just made and automatically reloads the page for you in the 
+background.
 
 ## Define a Route
 
