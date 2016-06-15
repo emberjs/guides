@@ -113,7 +113,7 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
     Let's make a contact link on the about page and an about link on the contact page.
     
     Ember has built-in **helpers** that provide functionality such as linking to other routes.
-    Here we will use the `{{link-to}}` helper in our code to link between routes:
+    ここでは routes (ルート)間のリンクを表示するために `{{link-to}}` helper (ヘルパー)を利用します:
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
