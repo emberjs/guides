@@ -2,15 +2,15 @@
 
 ## 插件
 
-Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (e.g. `ember install ember-cli-sass`). 插件可能会通过自动修改项目的 `bower.json` 文件引入其他依赖项。
+Ember插件的安装可以通过[Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)(例如：`ember install ember-cli-sass`)。 插件可能会通过自动修改项目的 `bower.json` 文件引入其他依赖项。
 
 你可以在[Ember Observer](http://emberobserver.com)找到所有的插件.
 
 ## Bower
 
-Ember CLI uses the [Bower](http://bower.io) package manager, making it easy to keep your front-end dependencies up to date. The Bower configuration file, `bower.json`, is located at the root of your Ember CLI project, and lists the dependencies for your project. Executing `bower install` will install all of the dependencies listed in `bower.json` in one step.
+Ember CLI使用[bower](http://bower.io)作为前端的依赖管理器，使你能更容易更新你的前端依赖项到最新版本。 Bower的配置文件`bower.json`位于项目的根目录，里面列出来你项目的所有依赖。 在命令行中执行`bower install`将会安装记录在`bower.json`里的前端依赖。
 
-Ember CLI watches `bower.json` for changes. Thus it reloads your app if you install new dependencies via `bower install <dependencies> --save`.
+Ember CLI会扫描`bower.json`文件的改动，因此，当你通过`bower install <dependencies> --save`安装了新的依赖时，它会自动刷新你的应用。.
 
 ## Other assets
 

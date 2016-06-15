@@ -15,14 +15,14 @@ Super Rentals アプリケーションのホームページについて何をし
 ember g acceptance-test list-rentals
 ```
 
-The command will generate the following output, showing that it created a single file called `list-rentals-test`.
+コマンドを実行すると、次のメッセージが表示され、`list-rentals-test`というファイルが一つ作成されます。.
 
 ```shell
 installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```
 
-Opening the new test file will reveal some boilerplate code that will try to go to the `list-rentals` route and verify that the route is loaded. This boilerplate code is there to guide you into your first working acceptance test. Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`:
+新しいテストファイルを開けると、`list-rentals` route (ルート)に移動して、route (ルート)が読み読まれることを確認するための、ボイラープレートコードがあります。 このボイラープレートコードは、初めての、実効的なacceptance test (受入テスト)へを導いてくれます。 ここでは index route (index ルート)つまり、`/`をテストしているので、まず`/list-rentals` を編集して `/`とします:
 
 <pre><code class="javascript{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
@@ -41,9 +41,9 @@ test('visiting /', function(assert) {
 });
 </code></pre>
 
-Now run your test suite with `ember test --server` from the command line in a new window and you'll see one successful acceptance test (along with a bunch of JSHint tests).
+では、新規のウィンドウのコマンドラインで`ember test --server`を実効して、テストスイートが(JSHintと共に) acceptance test (受入テスト)が一つ成功していることが、確認できるはずです。
 
-As mentioned before, this test boilerplate is just for checking the environment, so now let's replace this test with our list of goals.
+先に述べたように、このテスト ボイラープレートは環境をチェックするだけのためのものです、そこで、それらを、ゴールに合わせて、置き換えていきましょう。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
@@ -63,11 +63,11 @@ test('should filter the list of rentals by city.', function (assert) {
 });
 </code></pre>
 
-These tests will fail, since Ember tests will fail if we don't test for anything (known as an `assertion`). Since we have an idea of what we want our application to look like, we can also add some details to the tests.
+これらのテストは、失敗します、なぜなら、Ember tests (Ember テスト)は何もテストしない場合(`assertion`として知られる)、テストは失敗で終わるからです。 すでに、アプリケーションがどのようになるのか、アイデアがあるので、それらをもとにして詳細をテストに追加することができます。
 
-Ember provides test helpers that we can use to perform common tasks in acceptance tests, such as visiting routes, filling in fields, clicking on elements, and waiting for pages to render.
+Ember は route (ルート)へのアクセス、フィールドへの入力、要素をクリックする、ベージの描画を待つ、といったacceptance tests (受入テスト)での一般的なタスクをテストヘルパーとして提供しています。
 
-To check that rentals are listed, we'll first visit the index route and check that the results show 3 listings:
+物件が表示されているのを確認するためには、まず index route (index ルート)にアクセスして、3つの物件が表示されることを確認します。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should list available rentals.', function (assert) {
   visit('/');
@@ -77,13 +77,13 @@ To check that rentals are listed, we'll first visit the index route and check th
 });
 </code></pre>
 
-The test assumes that each rental element will have a class called `listing`.
+テストは各物件に`listing`クラスがあることを、前提としています。.
 
-The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
+[`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper (ヘルパー)は、指定されたURLの route (ルート)を読み込みます。
 
-The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it. In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
+[`andThen`](../../testing/acceptance/#toc_wait-helpers) helper (ヘルパー)はテストしている function (関数)が実行される、以前の呼び出された、テスト helper (ヘルパー)が完了するまで待機します。 この場合、`visit`で呼び出した、ページが読み込まれるまで待ちます、そうすることで、listings が表示されているか、assert (アサート)することができます。
 
-For the next two tests, we want to verify that clicking the about and contact page links successfully load the proper URLs. We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links. After the new screen loads, we just verify that the new URL matches our expectation using the [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
+次のテストでは、about と contact のページへのリンクをクリックすると、適切なURLが読み込まれることを確認します。 [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper (ヘルパー)を使って、ユーザーのクリックをシュミレートします。 新規の画面が読み込まれると、[`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper (ヘルパー)を使って、新規のURLが一致していることを、確認できます。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should link to information about the company.', function (assert) {
   visit('/');
@@ -102,9 +102,9 @@ test('should link to contact information', function (assert) {
 });
 </code></pre>
 
-Note that we can call two [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers) in a row without needing to use `andThen` or a promise. This is because each asynchronous test helper is made to wait until other test helpers are complete.
+`andThen`は使わずに、[asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers)を続けて呼び出すことが可能なことに注意してください。 各 asynchronous test helper (ヘルパー)は他のテストhelper (ヘルパー)が完了するまで待機するようにできているからです。
 
-Finally, we'll test that we can filter the list down according to a city search criteria. We anticipate having an input field in a container with a class of `list-filter`. We will fill out "Seattle" as the search criteria in that field and send a key up event to trigger our filtering action. Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle"
+最終的に、リストを、都市の検索条件で絞り込むことができることをテストします。 コンテナーが`list-filter`クラスのついた、入力フィールドがあるとしています。 その入力フィールドの検索条件には「 "Seattle" 」を入力して、フィルターアクションのトリガーとなる、キーアップイベントを送ります。 データーをコントロールしているので、都市が "Seattle" の物件が一つしかないことを知っているので、リスト内の物件の数は一つになっていて、場所は "Seattle" であるとアサートしています。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should filter the list of rentals by city.', function (assert) {
   visit('/');
@@ -117,8 +117,8 @@ Finally, we'll test that we can filter the list down according to a city search 
 });
 </code></pre>
 
-Of course because we have not implemented this functionality yet, our tests will all fail. Your test output should now show all failed tests, which gives us a todo list for the rest of the tutorial.
+当然、まだのこ機能を実装していないので、テストは失敗します。テストの出力は全て、失敗したテストになっているはずです、これでチュートリアルの残りの部分を作るためのtodoリストができました。
 
 ![failing tests](../../images/acceptance-test/failed-acceptance-tests.png)
 
-As we walk through the tutorial, we'll use our acceptance tests as a checklist of functionality. When all are green, we've accomplished our high level goals!
+チュートリアルを通して、 acceptance tests (受入テスト)を昨日の確認のために利用します。全てが緑色にすることができれば、最終的な目的の達成です!

@@ -124,7 +124,7 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
         By building a property rental site, we can simultaneously imagine traveling
         AND building Ember applications.
       </p>
-      {{#link-to 'index' class="button"}}
+      {{#link-to 'contact' class="button"}}
         Get Started!
       {{/link-to}}
     </div>
