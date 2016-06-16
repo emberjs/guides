@@ -27,6 +27,9 @@ export default Ember.Component.extend({
 });
 ```
 
+You will learn about more advanced usages in the Component's [Triggering Changes With Actions](/components/triggering-changes-with-actions/) guide,
+but you should familiarize yourself with the following basics first.
+
 ## Action Parameters
 
 You can optionally pass arguments to the action handler. Any values
