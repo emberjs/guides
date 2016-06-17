@@ -152,6 +152,17 @@ that substate (without updating the URL). The "reason" for the error
 (i.e. the exception thrown or the promise reject value) will be passed
 to that error state as its `model`.
 
+The model hooks (`beforeModel`, `model`, and `afterModel`) of an error substate
+are not called. Only the `setupController` method of the error substate is
+called with the `error` as the model. See example below:
+
+```js
+setupController: function(controller, error) {
+  Ember.Logger.debug(error.message);
+  this._super(...arguments);
+}
+```
+
 If no viable error substates can be found, an error message will be
 logged.
 
