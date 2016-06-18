@@ -310,8 +310,7 @@ in the document payload returned by your server:
 
 If the attributes returned by your server use a different convention
 you can use the serializer's
-[`keyForAttribute()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer
-.html#method_keyForAttribute)
+[`keyForAttribute()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_keyForAttribute)
 method to convert an attribute name in your model to a key in your JSON
 payload. For example, if your backend returned attributes that are
 `under_scored` instead of `dash-cased` you could override the `keyForAttribute`
