@@ -21,6 +21,8 @@ Write in complete sentences. Use a friendly tone of voice. Use American English.
 
 Be as brief as possible, but don't sacrifice clarity for brevity. If a guide is more than a couple screens of scrolling, consider breaking it into multiple pages.
 
+Only change the **source English file**, which is the one without the locale before the `.md` extension. The translations are currently managed by CrowdIn which will synchronize the necessary files.
+
 The target audience of the Guides are developers whose skills range from beginner developer with perhaps some jQuery experience, to experienced Ember developer learning about a new feature. Be sure to write content that covers both of their needs: keep explanations thorough enough for the beginner, while including more advanced topics for the experienced developer.
 
 The Guides are primarily meant to cover the "Ember happy path", and are not intended to be comprehensive. Leave edge cases and rarely-used features to the API documentation. Start each guide and each section with the simplest, most commonly-used features, and progress to the more advanced and less commonly-used features.
