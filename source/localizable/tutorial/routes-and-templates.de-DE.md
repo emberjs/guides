@@ -130,11 +130,11 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
     </div>
     
 
-The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page at `http://localhost:4200/about`, we now have a working link to our contact page.
+The `{{link-to}}` helper takes an argument with the name of the route to `{{link-to}}`, in this case: `contact`. When we look at our about page at `http://localhost:4200/about`, we now have a working link to our contact page.
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
+Now, we'll add a `{{link-to}}` our contact page so we can navigate from back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs 
 
