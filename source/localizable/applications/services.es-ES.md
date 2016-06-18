@@ -1,4 +1,4 @@
-An [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) is a long-lived Ember object that can be made available in different parts of your application.
+Un [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) es un largo vivido objeto de Ember que puede estar disponible en partes differentes de la applicacion. 
 
 Los servicios son útiles para implementar funcionalidades que requieran mantener un estado compartido a lo largo de la aplicación. Por ejemplo:
 
@@ -50,7 +50,7 @@ Los servicios deben extender de la clase base [`Ember.Service`](http://emberjs.c
 
 ### Accessing Services
 
-To access a service, you can inject it in any container-resolved object such as a component or another service using the `Ember.inject.service` function. There are 2 ways to use this function. You can either invoke it with no arguments, or you can pass it the registered name of the service. When no arguments are passed the services is loaded based in the name of the variable key. You can load the shopping cart service with no arguments like below.
+Acceder un servicio, lo puedes inyectar en algunos objeto que es resuelto como un componente o un servicio otro utilizando el función de `Ember.inject.service`. Hay dos maneras a utilizar esto función. Tampoco puedes llamarlo con ningunos parámetros, o puedes pasarlo con un nombre registrado para el servicio. Cuando no hay parámetros, los servicios convierten cargado en el nombre de la llave variable. Puedes cargar el carro de compras servicio con ningunos parámetros como la ejemplo bajo.
 
 ```app/components/cart-contents.js export default Ember.Component.extend({ //will load the service in file /app/services/shopping-cart.js shoppingCart: Ember.inject.service() });
 
@@ -63,14 +63,13 @@ To access a service, you can inject it in any container-resolved object such as 
       cart: Ember.inject.service('shopping-cart')
     });
     
+Esto inyecta el carro de compras servicio en el componente y hace disponible como la propiedad `cart`.
 
-This injects the shopping cart service into the component and makes it available as the `cart` property.
-
-Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called. Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
+Propiedads inyectados son cargado perezoso (lazy loaded); quiere decir el servicio no instanciará hasta la propiedad es llamado explícitamente. Por lo tanto necesitas acceder servicios en tu componente utilizando el función `get` de lo contrario quizas conseguirás un indefinido.
 
 Una vez cargado, un servicio existirá y mantendrá su estado hasta que se salga de la aplicación.
 
-Below we add a remove action to the `cart-contents` component. Notice that below we access the `cart` service with a call to`this.get`.
+Bajo nosotros un accion de quitar en el componente `cart-contents`. Fijarse que bajo accedemos el servicio `cart` con un llamada a`this.get`.
 
 ```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart'),
 
