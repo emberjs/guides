@@ -9,6 +9,10 @@ The source for the Ember.js Guides.
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Translations
+
+Please see [TRANSLATIONS.md](TRANSLATIONS.md).
+
 ## Project layout
 
 The Guides' content is in the `source` folder. The left nav bar is produced from
