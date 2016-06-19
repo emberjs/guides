@@ -205,7 +205,7 @@ installing route-test
     これまでのように、Ember CLI を使って、Ember アプリケーションを作成するとき、`application.hbs`という名前のtemplate (テンプレート)が作成されます。
     この template (テンプレート)に追加した内容は、アプリケーションのいずれのページにも表示されます。
     デフォルトの `application.hbs` ファイルには `h2` タグのついた "Welcome to Ember" というテキストと、 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) が含まれています。
-    The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
+    `{{outlet}}` はrouter (ルーター)に従い、そのときのカレントのrouter (ルーター)のマークアップを表示します。
     
     ```app/templates/application.hbs
     <h2 id="title">Welcome to Ember</h2>

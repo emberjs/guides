@@ -1,4 +1,4 @@
-Ember has a rich ecosystem of addons that can be easily added to projects. Addons provide a wide range of functionality to projects, often saving time and letting you focus on your project.
+Ember はプロジェクトに簡単に追加することのできる、addons (アドオン)の豊かなエコシステムを持っています。Addons (アドオン)は多くの場合、時間を節約し、あなたがあなた自身のプロジェクトに集中することのできる、幅広い機能をプロジェクトに追加します。
 
 To browse addons, visit the [Ember Observer](https://emberobserver.com/) website. It catalogs and categorizes ember addons that have been published to NPM and assigns them a score based on a variety of criteria.
 
