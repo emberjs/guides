@@ -21,6 +21,8 @@ If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.hel
     });
     
 
+You will learn about more advanced usages in the Component's [Triggering Changes With Actions](/components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
+
 ## Action Parameters
 
 You can optionally pass arguments to the action handler. Any values passed to the `{{action}}` helper after the action name will be passed to the handler as arguments.

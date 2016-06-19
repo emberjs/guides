@@ -11,17 +11,19 @@ Si agregas el helper [`{{action}}`](http://emberjs.com/api/classes/Ember.Templat
     <br />En el componente o el controlador se puede definir lo que hará la acción dentro del hook 'actions': '''app/components/single-post.js export default Ember.Component.extend ({actions: {toggleBody() {this.toggleProperty('isShowingBody');     }   } });
     
 
+You will learn about more advanced usages in the Component's [Triggering Changes With Actions](/components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
+
 ## Parámetros opcionales
 
-Opcionalmente puedes pasar argumentos a la función que ejecuta la acción. Los valores colocados tras el nombre de la acción en el helper `{{action}}` se pasarán a la función como argumentos.
+You can optionally pass arguments to the action handler. Any values passed to the `{{action}}` helper after the action name will be passed to the handler as arguments.
 
-Por ejemplo, supongamos que se pasa el argumento `post`:
+For example, if the `post` argument was passed:
 
 ```handlebars
 <p><button {{action "select" post}}>✓</button> {{post.title}}</p>
 ```
 
-Se invocará la función `select` con un solo argumento, que será el modelo de post:
+The `select` action handler would be called with a single argument containing the post model:
 
 ```app/components/single-post.js export default Ember.Component.extend({ actions: { select(post) { console.log(post.get('title')); } } });
 

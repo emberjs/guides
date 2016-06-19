@@ -21,7 +21,7 @@ export default Ember.Route.extend({ model() { return rentals; } });
     では、テンプレートを見てみましょう。　　
     モデルデータをリストの表示のために利用できます。
     ここでは、別のよく使われる、`{{each}}`と呼ばれる、Handlebarsヘルパーを利用します。
-    This helper will let us loop through each of the objects in our model:
+    helper (ヘルパー)のおかげで、 model (モデル)内の各オブジェクトをループすることができます:
     
     ```app/templates/index.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
     <div class="jumbo">

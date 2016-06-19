@@ -25,7 +25,7 @@ test('visiting /login', function(assert) { visit('/login');
     Almost every test has a pattern of visiting a route, interacting with the page
     (using the helpers), and checking for expected changes in the DOM.
     
-    For example:
+    例:
     
     ```tests/acceptance/new-post-appears-first-test.js
     test('should add new post', function(assert) {

@@ -94,11 +94,20 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
 
 上記のうち一つが見つかればルーターはすぐにそのサブステートに遷移します (URLは更新されません)。 エラーの"理由" (例　例外が投げられた、プロミスが値を拒否した)が `モデル`としてエラーステートに渡されます。.
 
-もし、実行可能なエラーサブステートが見つからない場合は、エラーメッセージは記録されます。
+The model hooks (`beforeModel`, `model`, and `afterModel`) of an error substate are not called. Only the `setupController` method of the error substate is called with the `error` as the model. See example below:
+
+```js
+setupController: function(controller, error) {
+  Ember.Logger.debug(error.message);
+  this._super(...arguments);
+}
+```
+
+If no viable error substates can be found, an error message will be logged.
 
 ### `error` イベント
 
-もし`articles.overview` ルータの `モデル` フック がプロミス拒否で返したら、(例えば、サーバーがエラーを返した、ユーザーがログインしていないなど)、そのルートから、上位のルートに向かって[`エラー`](http://emberjs.com/api/classes/Ember.Route.html#event_error) イベントが発生します。 この`エラー` イベントはログインページへのリダイレクト処理と、エラーメッセージの表示といったように利用できます。
+If the `articles.overview` route's `model` hook returns a promise that rejects (for instance the server returned an error, the user isn't logged in, etc.), an [`error`](http://emberjs.com/api/classes/Ember.Route.html#event_error) event will fire from that route and bubble upward. This `error` event can be handled and used to display an error message, redirect to a login page, etc.
 
     app/routes/articles-overview.js
     export default Ember.Route.extend({
@@ -114,4 +123,4 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
       }
     });
 
-`読み込み` イベントと同様、複数のルートに同じコードの重複を避けるために `エラー` イベントを管理できます。
+Analogous to the `loading` event, you could manage the `error` event at the application level to avoid writing the same code for multiple routes.
