@@ -24,7 +24,7 @@ installing component-test
 We'll start by implementing a failing test with the image toggling behavior that we want.
 
 For our integration test, we'll create a stub rental that has all the properties that our rental model has.
-We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time with take the `wide` class away.
+We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
 Note that we find the image element using the the CSS selector `.image`.
 
 ```tests/integration/components/rental-listing-test.js
