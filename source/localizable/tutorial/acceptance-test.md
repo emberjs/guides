@@ -95,7 +95,7 @@ In this case, we need to wait for the page to load after `visit`, so that we can
 
 For the next two tests, we want to verify that clicking the about and contact page links successfully load the proper URLs.
 We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links.
-After the new screen loads, we just verify that the new URL matches our expectation using the [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
+After the new screen loads, we just verify that the new URL matches our expectation using the [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
 
 ```/tests/acceptance/list-rentals-test.js
 test('should link to information about the company.', function (assert) {
