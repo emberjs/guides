@@ -22,6 +22,8 @@ When we open the model file, we see:
 
 ```app/models/rental.js
 import Model from 'ember-data/model';
+// import attr from 'ember-data/attr';
+// import { belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
 
@@ -34,6 +36,7 @@ _title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
 ```app/models/rental.js
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+// import { belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
   title: attr(),
