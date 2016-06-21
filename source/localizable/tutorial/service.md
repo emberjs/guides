@@ -17,16 +17,16 @@ We'll start by adding a component that shows the rental's city on a map.
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
-  <div class="detail">
+  <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
-  <div class="detail">
+  <div class="detail type">
     <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
   </div>
-  <div class="detail">
+  <div class="detail location">
     <span>Location:</span> {{rental.city}}
   </div>
-  <div class="detail">
+  <div class="detail bedrooms">
     <span>Number of bedrooms:</span> {{rental.bedrooms}}
   </div>
   {{location-map location=rental.city}}
