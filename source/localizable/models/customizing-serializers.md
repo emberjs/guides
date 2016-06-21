@@ -124,18 +124,18 @@ serializer for your entire application by defining an "application"
 serializer.
 
 ```app/serializers/application.js
-import JSONSerializer from 'ember-data/serializers/json';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({});
+export default JSONAPISerializer.extend({});
 ```
 
 You can also define a serializer for a specific model. For example, if
 you had a `post` model you could also define a `post` serializer:
 
 ```app/serializers/post.js
-import JSONSerializer from 'ember-data/serializers/json';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({});
+export default JSONAPISerializer.extend({});
 ```
 
 To change the format of the data that is sent to the backend store, you can use
@@ -177,9 +177,9 @@ But our server expects data in this format:
 Here's how you can change the data:
 
 ```app/serializers/application.js
-import JSONSerializer from 'ember-data/serializers/json';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({
+export default JSONAPISerializer.extend({
   serialize(snapshot, options) {
     var json = this._super(...arguments);
 
@@ -237,9 +237,9 @@ And so we need to change it to look like:
 Here's how we could do it:
 
 ```app/serializers/application.js
-import JSONSerializer from 'ember-data/serializers/json';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({
+export default JSONAPISerializer.extend({
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     payload.data.attributes.amount = payload.data.attributes.cost.amount;
     payload.data.attributes.currency = payload.data.attributes.cost.currency;
@@ -268,9 +268,9 @@ serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
 ```app/serializers/application.js
-import JSONSerializer from 'ember-data/serializers/json';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({
+export default JSONAPISerializer.extend({
   primaryKey: '_id'
 });
 ```
@@ -317,9 +317,10 @@ payload. For example, if your backend returned attributes that are
 method like this.
 
 ```app/serializers/application.js
-import JSONSerializer from 'ember-data/serializers/json';
+import Ember from 'ember';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({
+export default JSONAPISerializer.extend({
   keyForAttribute: function(attr) {
     return Ember.String.underscore(attr);
   }
@@ -347,7 +348,7 @@ export default Model.extend({
 ```
 
 ```app/serializers/person.js
-import JSONSerializer from 'ember-data/serializers/json';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
 export default JSONSerializer.extend({
   attrs: {
