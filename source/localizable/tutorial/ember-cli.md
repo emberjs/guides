@@ -62,7 +62,7 @@ here.
 **node_modules / package.json**: This directory and file are from npm.
 npm is the package manager for Node.js. Ember is built with Node and uses a
 variety of Node.js modules for operation. The `package.json` file maintains the
-list of current npm dependencies for the app.  Any Ember-CLI
+list of current npm dependencies for the app.  Any Ember CLI
 add-ons you install will also show up here. Packages listed in `package.json`
 are installed in the node_modules directory.
 
