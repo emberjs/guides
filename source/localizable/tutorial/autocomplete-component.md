@@ -14,7 +14,7 @@ and a component integration test (`tests/integration/components/list-filter-test
 
 Let's start with writing some tests to help us think through what we are doing.
 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block.
-We want our component to call out to two actions: one to provide a list of all items when no filter is provided and an action to search listings by city.
+We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
 For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
