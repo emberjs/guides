@@ -131,5 +131,5 @@ or, for short:
 ember s
 ```
 
-If we navigate to `localhost:4200`, we'll see our brand new app displaying
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see our brand new app displaying
 the text "Welcome to Ember".

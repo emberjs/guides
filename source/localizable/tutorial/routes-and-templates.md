@@ -85,7 +85,7 @@ For our `about` page, we'll add some HTML that has a bit of information about th
 ```
 
 Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server,
-and then go to `localhost:4200/about` to see our new app in action!
+and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new app in action!
 
 ## A Contact Route
 
@@ -121,7 +121,7 @@ In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 ```
 
 Now we have completed our second route.
-If we go to the URL `localhost:4200/contact`, we'll arrive on our contact page.
+If we go to the URL [`http://localhost:4200/contact`](http://localhost:4200/contact), we'll arrive on our contact page.
 
 ## Navigating with Links and the {{link-to}} Helper
 
@@ -148,7 +148,7 @@ Here we will use the `{{link-to}}` helper in our code to link between routes:
 ```
 
 The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`.
-When we look at our about page at `http://localhost:4200/about`, we now have a working link to our contact page.
+When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have a working link to our contact page.
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
