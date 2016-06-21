@@ -94,7 +94,7 @@ To get the test to pass, add the container element to the component template.
 Then update the component to append the map output to its inner container element.
 We'll add a maps service injection, and call the `getMapElement` function with the provided location.
 
-We then append the map element we get back from the service by implementing `didInsertElement`, 
+We then append the map element we get back from the service by implementing `didInsertElement`,
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
 This function gets executed at render time after the component's markup gets inserted into the DOM.
 
@@ -120,7 +120,7 @@ To generate the maps, we'll implement the maps service.
 
 Accessing our maps API through a service will give us several benefits
 
-* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance
+* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time.
 In some cases this can reduce your app's processor load and memory consumption.
 * It is a singleton, which will allow us cache map data.
