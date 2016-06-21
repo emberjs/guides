@@ -204,7 +204,9 @@ let post = this.store.peekRecord('post', 1);
 let comment = this.store.createRecord('comment', {
 });
 post.get('comments').pushObject(comment);
-comment.save();
+comment.save().then(function () {
+  post.save();
+});
 ```
 
 In this case the new comment's `belongsTo` relationship will be set to the parent post.
