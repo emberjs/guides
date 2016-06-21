@@ -62,7 +62,7 @@ Serving on http://localhost:4200/
 
 (To stop the server at any time, type Ctrl-C in your terminal.)
 
-Open [http://localhost:4200/](http://localhost:4200) in your browser of
+Open [`http://localhost:4200`](http://localhost:4200) in your browser of
 choice. You should see a page that says "Welcome to Ember" and not much
 else. Congratulations! You just created and booted your first Ember app.
 
@@ -116,7 +116,7 @@ the following HTML:
 ```
 
 In your browser, open
-[http://localhost:4200/scientists](http://localhost:4200/scientists). You should
+[`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
 see the `<h2>` you put in the `scientists.hbs` template, right below the
 `<h2>` from our `application.hbs` template.
 

@@ -42,7 +42,7 @@ Once installed, the addon works in 3 steps:
 The ember-cli-deprecation-workflow addon provides a command that will collect deprecations from your console and generate JavaScript code listing
 its findings.
 
-To collect deprecations, first run your in-browser test suite by starting your development server and navigating to `http://localhost:4200/tests`.  If your test suite isn't fully covering your app's functionality, you may also
+To collect deprecations, first run your in-browser test suite by starting your development server and navigating to [`http://localhost:4200/tests`](http://localhost:4200/tests).  If your test suite isn't fully covering your app's functionality, you may also
 manually exercise functionality within your app where needed.  Once you've exercised the app to your satisfaction, run the following command within
 your browser console: `deprecationWorkflow.flushDeprecations()`.  This will print to the console JavaScript code, which you should then copy to a
 new file in your project called `/config/deprecation-workflow.js`
