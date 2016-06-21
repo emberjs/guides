@@ -33,7 +33,7 @@ We'll start by adding a component that shows the rental's city on a map.
 </article>
 ```
 
-Next, generate the map component using Ember-CLI.
+Next, generate the map component using Ember CLI.
 
 ```shell
 ember g component location-map
@@ -126,7 +126,7 @@ In some cases this can reduce your app's processor load and memory consumption.
 * It is a singleton, which will allow us cache map data.
 * It follows a lifecycle, meaning we have hooks to execute cleanup code when the service stops, preventing things like memory leaks and unnecessary processing.
 
-Let's get started creating our service by generating it through Ember-CLI, which will create the service file, as well as a unit test for it.
+Let's get started creating our service by generating it through Ember CLI, which will create the service file, as well as a unit test for it.
 
 ```shell
 ember g service maps
@@ -231,7 +231,7 @@ curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 ```
 
 Once in the vendor directory, the script can be built into the app.
-We just need to tell Ember-CLI to import it using our build file:
+We just need to tell Ember CLI to import it using our build file:
 
 ```ember-cli-build.js{+22}
 /*jshint node:true*/
