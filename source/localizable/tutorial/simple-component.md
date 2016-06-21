@@ -118,7 +118,7 @@ with our new `rental-listing` component:
   </article>
 {{/each}}
 ```
-Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+Here we invoke the `rental-listing` component by name, and assign each `rental` as the `rental` attribute of the component.
 
 ## Hiding and Showing an Image
 
