@@ -169,7 +169,7 @@ export default Ember.Component.extend({
 We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
 
-Both the `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
 
 To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
 
