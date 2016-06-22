@@ -120,7 +120,7 @@ To generate the maps, we'll implement the maps service.
 
 Accessing our maps API through a service will give us several benefits
 
-* It is injected with a [service locator pattern](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance
+* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time.
 In some cases this can reduce your app's processor load and memory consumption.
 * It is a singleton, which will allow us cache map data.
