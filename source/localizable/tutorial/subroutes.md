@@ -1,4 +1,4 @@
-For Super Rentals, we want to be able to display all rentals and allow the user to view additional information for each.
+In addition to displaying a list of rentals, we want to show detailed information for individual rentals.
 To do this, we can generate `rentals` route to display all rentals and a `show` sub-route to display additional information.
 
 # A Parent Route
@@ -22,7 +22,7 @@ installing route-test
   create tests/unit/routes/rentals-test.js
 ```
 
-If it is unclear what Ember is doing for us here visit the [Routes and Templates tutorial](../routes-and-templates) for more information.
+If it is unclear what Ember is doing for us here, visit the [Routes and Templates tutorial](../routes-and-templates) for more information.
 
 Let's start by opening our new Handlebars template (`app/templates/rentals.hbs`).
 Ember generates route-level templates files with an `outlet`.
@@ -33,7 +33,7 @@ Ember generates route-level templates files with an `outlet`.
 
 Much like our application template (`app/templates/application.hbs`), the `outlet` is where our sub-routes will render.
 This means that any content on our parent route will be present as we browse down through our child routes, allowing us to add things like navigation, footers or sidebars.
-Let's start by adding welcome header and link to our About page (`app/templates/about.hbs`).
+Let's start by adding a welcome header and link to our About page (`app/templates/about.hbs`).
 
 ```app/templates/rentals.hbs
 <div class="jumbo">
@@ -57,14 +57,14 @@ and then go to `localhost:4200/rentals` to see our new app in action!
 
 Next, we will want to create a sub-route that will list information for a specific rental.
 To do this, we will need to update a couple of files.
-To find a specific rental, we will want to use Ember Data's `queryRecord` function [Finding Records section](../../models/finding-records/).
-This means we need to be able to search by a unique key in order to return the specific rental we want.
+To find a specific rental, we will want to use Ember Data's `queryRecord` function [(see "Finding Records" for more details)](../../models/finding-records/).
+The `queryRecord` function requires that we search by a unique key.
 Many APIs return a `slug`, which is a URL-friendly string to identify a record.
 
 While on the `show` route, we will also want to show additional information about our specific rental.
 
 In order to do this, we need to modify the Mirage `config.js` file.
-If you need a refresher on using Mirage, visit the [Installing Addons section](../installing-addons)
+If you need a refresher on how Mirage works, go back to the [Installing Addons section](../installing-addons)
 We will add a `slug` and `description` to our rentals array.
 
 ```mirage/config.js{+14,+15,+28,+29,+42,+43,+53,+54,+55,+56,+57}
@@ -163,10 +163,10 @@ export default DS.Model.extend({
 });
 ```
 
-# Generating a Show Routes
+# Generating a Show Route
 
 Now that our API is ready to return single records, we can generate our `show` sub-route.
-Much like generating our `rentals` route, we will use `ember g` to create a nested-route.
+Much like generating our `rentals` route, we will use `ember g` to create a nested route.
 
 ```shell
 ember g route rentals/show
@@ -230,7 +230,7 @@ export default Ember.Route.extend({
 ```
 
 Since we added `:slug` to the `show` path in our router, we can now access `slug` through the `params` in our `model` hook.
-When we call `this.store.queryRecord('rental', { slug: params.slug })`, Ember Data will make a GET request to `/rentals?slug=our-slug`.
+When we call `this.get('store').queryRecord('rental', { slug: params.slug })`, Ember Data will make a GET request to `/rentals?slug=our-slug`.
 You can read more about Ember Data in the [Models section](../../models/).
 
 To ensure this, we should write a unit test that confirms `queryRecord` is called with the correct parameters.
