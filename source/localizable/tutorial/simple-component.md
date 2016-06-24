@@ -173,7 +173,7 @@ Let's call this action `toggleImageSize`
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+    <span>Type:</span> {{rental.type}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
