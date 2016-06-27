@@ -132,6 +132,12 @@ This will tell the JSON API adapter that requests for `formula`
 should go to `/formulae/1` instead of `/formulas/1`, and that
 requests for `advice` should go to `/advice/1` instead of `/advices/1`.
 
+When specifying irregular inflection rules for compound words, only the final word or phrase should be specified. For example, to specify the plural of `redCow` as `redKine` or `red-cow` as `red-kine`, only the final word segments `cow` and `kine` should be specified:
+
+```js
+inflector.irregular('cow', 'kine');
+```
+
 #### Endpoint Path Customization
 
 The `namespace` property can be used to prefix requests with a
