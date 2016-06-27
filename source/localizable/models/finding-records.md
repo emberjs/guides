@@ -8,7 +8,7 @@ to retrieve a record by its type and ID. This will return a promise that
 fulfills with the requested record:
 
 ```javascript
-var post = this.get('store').findRecord('post', 1); // => GET /posts/1
+var blogPost = this.get('store').findRecord('blog-post', 1); // => GET /blog-posts/1
 ```
 
 Use [`store.peekRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekRecord)
@@ -16,7 +16,7 @@ to retrieve a record by its type and ID, without making a network request.
 This will return the record only if it is already present in the store:
 
 ```javascript
-var post = this.get('store').peekRecord('post', 1); // => no network request
+var blogPost = this.get('store').peekRecord('blog-post', 1); // => no network request
 ```
 
 ### Retrieving Multiple Records
@@ -25,7 +25,7 @@ Use [`store.findAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method
 to retrieve all of the records for a given type:
 
 ```javascript
-var posts = this.get('store').findAll('post'); // => GET /posts
+var blogPosts = this.get('store').findAll('blog-post'); // => GET /blog-posts
 ```
 
 Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll)
@@ -33,7 +33,7 @@ to retrieve all of the records for a given type that are already loaded into
 the store, without making a network request:
 
 ```javascript
-var posts = this.get('store').peekAll('post'); // => no network request
+var blogPosts = this.get('store').peekAll('blog-post'); // => no network request
 ```
 
 `store.findAll()` returns a `DS.PromiseArray` that fulfills to a
