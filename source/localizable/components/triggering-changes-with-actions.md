@@ -131,7 +131,7 @@ based on the value of `confirmShown`.
 ## Passing the Action to the Component
 
 Now we need to make it so that the `onConfirm()` event in the
-`button-with-confirmation()` component triggers the
+`button-with-confirmation` component triggers the
 `userDidDeleteAccount()` action in the `user-profile` component.
 One important thing to know about actions is that they're functions
 you can call, like any other method on your component.
