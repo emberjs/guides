@@ -29,7 +29,7 @@ var posts = this.get('store').findAll('post'); // => GET /posts
 ```
 
 Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll)
-to retrieve all of the records for a given type that are already loaded into 
+to retrieve all of the records for a given type that are already loaded into
 the store, without making a network request:
 
 ```javascript
@@ -58,10 +58,10 @@ For example, we could search for all `person` models who have the name of
 
 ```javascript
 // GET to /persons?filter[name]=Peter
-this.get('store').query('person', { 
-  filter: { 
-    name: 'Peter' 
-  } 
+this.get('store').query('person', {
+  filter: {
+    name: 'Peter'
+  }
 }).then(function(peters) {
   // Do something with `peters`
 });
@@ -80,10 +80,10 @@ For example, if we know that an email uniquely identifies a person, we could sea
 
 ```javascript
 // GET to /persons?filter[email]=tomster@example.com
-this.get('store').queryRecord('person', { 
+this.get('store').queryRecord('person', {
   filter: {
-    email: 'tomster@example.com' 
-  } 
+    email: 'tomster@example.com'
+  }
 }).then(function(tomster) {
   // do something with `tomster`
 });
