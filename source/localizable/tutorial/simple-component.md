@@ -86,7 +86,7 @@ To start, let's move the rental display details for a single rental from the `in
 In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
 with our new `rental-listing` component:
 
-```app/templates/index.hbs{+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29}
+```app/templates/index.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -99,8 +99,9 @@ with our new `rental-listing` component:
   {{/link-to}}
 </div>
 
+{{#each model as |rentalUnit|}}
+  {{rental-listing rental=rentalUnit}}
 {{#each model as |rental|}}
-  {{rental-listing rental=rental}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
     <div class="detail owner">
