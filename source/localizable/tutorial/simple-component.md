@@ -4,7 +4,7 @@ To do this, we'll use a component.
 
 Let's generate a `rental-listing` component that will manage the behavior for each of our rentals.
 A dash is required in every component name to avoid conflicting with a possible HTML element,
-so `rental-listing` is acceptable but `rental` would not be.
+so `rental-listing` is acceptable but `rental` isn't.
 
 ```shell
 ember g component rental-listing
@@ -150,7 +150,7 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
 ```
 
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
-Since we do not want the image to be smaller at first, we will set the property to start as `false`:
+Since we want the image to be smaller at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js
 import Ember from 'ember';
@@ -202,7 +202,7 @@ export default Ember.Component.extend({
 });
 ```
 
-Now when we click the image or the `View Larger` link in our browser, we  see our image show larger,
-or when we click the enlarged image we again see it smaller.
+Now when we click the image or the `View Larger` link in our browser, we  see our image show larger.
+When we click the enlarged image we again see it smaller.
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
