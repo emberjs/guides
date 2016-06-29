@@ -4,7 +4,7 @@ to calculate the incomplete todo's based on their `isDone` property.
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
-```app/components/todos.js
+```app/components/todo-list.js
 export default Ember.Component.extend({
   todos: [
     Ember.Object.create({ isDone: true }),
@@ -31,7 +31,7 @@ Ember also provides a computed property macro
 [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
 which is a shorter way of expressing the above computed property:
 
-```app/components/todos.js
+```app/components/todo-list.js
 export default Ember.Component.extend({
   todos: [
     Ember.Object.create({ isDone: true }),
@@ -46,10 +46,10 @@ export default Ember.Component.extend({
 In both of the examples above, `incomplete` is an array containing the single incomplete todo:
 
 ```javascript
-import TodosComponent from 'app/components/todos';
+import TodoListComponent from 'app/components/todo-list';
 
-let todosComponent = TodosComponent.create();
-todosComponent.get('incomplete.length');
+let todoListComponent = TodoListComponent.create();
+todoListComponent.get('incomplete.length');
 // 1
 ```
 
@@ -57,17 +57,17 @@ If we change the todo's `isDone` property, the `incomplete` property is updated
 automatically:
 
 ```javascript
-let todos = todosComponent.get('todos');
+let todos = todoListComponent.get('todos');
 let todo = todos.objectAt(1);
 todo.set('isDone', true);
 
-todosComponent.get('incomplete.length');
+todoListComponent.get('incomplete.length');
 // 0
 
 todo = Ember.Object.create({ isDone: false });
 todos.pushObject(todo);
 
-todosComponent.get('incomplete.length');
+todoListComponent.get('incomplete.length');
 // 1
 ```
 
@@ -79,7 +79,7 @@ case use the `[]` key instead of `@each`. Computed properties dependent on an ar
 using the `[]` key will only update if items are added to or removed from the array,
 or if the array property is set to a different array. For example:
 
-```app/components/todos.js
+```app/components/todo-list.js
 export default Ember.Component.extend({
   todos: [
     Ember.Object.create({ isDone: true }),
