@@ -18,7 +18,7 @@ Router.map(function() {
 ```app/routes/slow-model.js
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('slowModel');
+    return this.store.findAll('slow-model');
   }
 });
 ```
@@ -89,7 +89,7 @@ don't immediately resolve, a [`loading`][1] event will be fired on that route.
 ```app/routes/foo-slow-model.js
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('slowModel');
+    return this.store.findAll('slow-model');
   },
   actions: {
     loading(transition, originRoute) {
@@ -179,12 +179,12 @@ redirect to a login page, etc.
 ```app/routes/articles-overview.js
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findAll('problematicModel');
+    return this.store.findAll('problematic-model');
   },
   actions: {
     error(error, transition) {
       if (error) {
-        return this.transitionTo('errorPage');
+        return this.transitionTo('error-page');
       }
     }
   }
