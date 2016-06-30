@@ -56,12 +56,12 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('rental');
+    return this.get('store').findAll('rental');
   }
 });
 ```
 
-When we call `this.store.findAll('rental')`, Ember Data will make a GET request to `/rentals`.
+When we call `this.get('store').findAll('rental')`, Ember Data will make a GET request to `/rentals`.
 You can read more about Ember Data in the [Models section](../../models/).
 
 Since we're using Mirage in our development environment, Mirage will return the data we've provided.

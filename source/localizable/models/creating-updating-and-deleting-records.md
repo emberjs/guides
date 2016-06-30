@@ -11,7 +11,7 @@ store.createRecord('post', {
 });
 ```
 
-The store object is available in controllers and routes using `this.store`.
+The store object is available in controllers and routes using `this.get('store')`.
 
 ## Updating Records
 
@@ -19,7 +19,7 @@ Making changes to Ember Data records is as simple as setting the attribute you
 want to change:
 
 ```js
-this.store.findRecord('person', 1).then(function(tyrion) {
+this.get('store').findRecord('person', 1).then(function(tyrion) {
   // ...after the record has loaded
   tyrion.set('firstName', "Yollo");
 });

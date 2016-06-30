@@ -35,7 +35,7 @@ Its model is populated in `model` hook in the route handler:
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('post');
+    return this.get('store').findAll('post');
   }
 });
 ```
@@ -100,7 +100,7 @@ means of choosing different components for displaying different kinds of posts:
 ```app/routes/index.js
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('post');
+    return this.get('store').findAll('post');
   }
 });
 ```

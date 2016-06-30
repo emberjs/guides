@@ -3,7 +3,7 @@ Along with the records returned from your store, you'll likely need to handle so
 Pagination is a common example of using metadata. Imagine a blog with far more posts than you can display at once. You might query it like so:
 
 ```js
-let result = this.store.query('post', {
+let result = this.get('store').query('post', {
   limit: 10,
   offset: 0
 });

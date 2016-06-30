@@ -90,7 +90,7 @@ moduleForModel('user', 'Unit | Model | user', {
 });
 
 test('should own a profile', function(assert) {
-  const User = this.store().modelFor('user');
+  const User = this.get('store')().modelFor('user');
   const relationship = Ember.get(User, 'relationshipsByName').get('profile');
 
   assert.equal(relationship.key, 'profile', 'has relationship with profile');
