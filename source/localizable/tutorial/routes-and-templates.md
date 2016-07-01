@@ -8,8 +8,14 @@ We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
 
 Before we start building the three pages for our app,
-we are going to clear out the contents of the `app/templates/application.hbs` file
+we are going to create `app/templates/application.hbs` file
 and only leave the `{{outlet}}` code in place.
+Create it with 
+
+```shell
+ember generate template application
+```
+
 We'll talk more about the role of the `application.hbs` file after our site has a few routes.
 
 Now, let's start by building our "about" page.
@@ -218,14 +224,12 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
 
 In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
 
-When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
+We generated a template called `application.hbs`.
 Anything you put in this template is shown for every page in the application.
-The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
+The default `application.hbs` file contains an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
 The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
 
 ```app/templates/application.hbs
-<h2 id="title">Welcome to Ember</h2>
-
 {{outlet}}
 ```
 
