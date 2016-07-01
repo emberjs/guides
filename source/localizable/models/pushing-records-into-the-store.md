@@ -42,7 +42,7 @@ export default Model.extend({
 ```app/routes/application.js
 export default Ember.Route.extend({
   model() {
-    this.store.push({
+    this.get('store').push({
       data: [{
         id: 1,
         type: 'album',
@@ -95,7 +95,7 @@ export default RestSerializer.extend({
 ```app/routes/application.js
 export default Ember.Route.extend({
   model() {
-    this.store.pushPayload({
+    this.get('store').pushPayload({
       albums: [
         {
           id: 1,
@@ -133,7 +133,7 @@ export default Ember.Route.extend({
         method: 'POST',
         url: 'process-payment'
       }).then((digitalInventory) => {
-        this.store.pushPayload(digitalInventory);
+        this.get('store').pushPayload(digitalInventory);
         this.transitionTo('thank-you');
       });
     }

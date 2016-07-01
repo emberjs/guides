@@ -8,7 +8,7 @@ to retrieve a record by its type and ID. This will return a promise that
 fulfills with the requested record:
 
 ```javascript
-var post = this.store.findRecord('post', 1); // => GET /posts/1
+var post = this.get('store').findRecord('post', 1); // => GET /posts/1
 ```
 
 Use [`store.peekRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekRecord)
@@ -16,7 +16,7 @@ to retrieve a record by its type and ID, without making a network request.
 This will return the record only if it is already present in the store:
 
 ```javascript
-var post = this.store.peekRecord('post', 1); // => no network request
+var post = this.get('store').peekRecord('post', 1); // => no network request
 ```
 
 ### Retrieving Multiple Records
@@ -25,7 +25,7 @@ Use [`store.findAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method
 to retrieve all of the records for a given type:
 
 ```javascript
-var posts = this.store.findAll('post'); // => GET /posts
+var posts = this.get('store').findAll('post'); // => GET /posts
 ```
 
 Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll)
@@ -33,7 +33,7 @@ to retrieve all of the records for a given type that are already loaded into
 the store, without making a network request:
 
 ```javascript
-var posts = this.store.peekAll('post'); // => no network request
+var posts = this.get('store').peekAll('post'); // => no network request
 ```
 
 `store.findAll()` returns a `PromiseArray` that fulfills to a
@@ -58,7 +58,7 @@ For example, we could search for all `person` models who have the name of
 
 ```javascript
 // GET to /persons?filter[name]=Peter
-this.store.query('person', { filter: { name: 'Peter' } }).then(function(peters) {
+this.get('store').query('person', { filter: { name: 'Peter' } }).then(function(peters) {
   // Do something with `peters`
 });
 ```
@@ -76,7 +76,7 @@ For example, if we know that an email uniquely identifies a person, we could sea
 
 ```javascript
 // GET to /persons?filter[email]=tomster@example.com
-this.store.queryRecord('person', { filter: { email: 'tomster@example.com' } }).then(function(tomster) {
+this.get('store').queryRecord('person', { filter: { email: 'tomster@example.com' } }).then(function(tomster) {
   // do something with `tomster`
 });
 ```

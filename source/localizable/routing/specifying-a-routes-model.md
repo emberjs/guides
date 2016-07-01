@@ -17,7 +17,7 @@ hook in the `favoritePosts` route handler:
 ```app/routes/favorite-posts.js
 export default Ember.Route.extend({
   model() {
-    return this.store.query('post', { favorite: true });
+    return this.get('store').query('post', { favorite: true });
   }
 });
 ```
@@ -72,7 +72,7 @@ Router.map(function() {
 ```app/routes/photo.js
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord('photo', params.photo_id);
+    return this.get('store').findRecord('photo', params.photo_id);
   }
 });
 ```
@@ -101,8 +101,8 @@ the `Ember.RSVP.hash` promise resolves. For example:
 export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
-      songs: this.store.findAll('song'),
-      albums: this.store.findAll('album')
+      songs: this.get('store').findAll('song'),
+      albums: this.get('store').findAll('album')
     });
   }
 });
