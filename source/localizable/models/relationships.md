@@ -135,7 +135,7 @@ import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('string'),
-  bestFriend: belongsTo('user', { inverse: 'bestFriend' }),
+  bestFriend: belongsTo('user', { inverse: 'bestFriend' })
 });
 ```
 
