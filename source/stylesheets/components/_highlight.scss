@@ -143,10 +143,20 @@
 
     &.added {
       border-right-color: darken($highlight-green, 20%);
+      &:after {
+        content: '+';
+        position: absolute;
+        left: 32px;
+      }
     }
 
     &.removed {
-     border-right-color: darken($highlight-red, 20%);
+      border-right-color: darken($highlight-red, 20%);
+      &:after {
+        content: '-';
+        position: absolute;
+        left: 32px;
+      }
     }
   }
 }
