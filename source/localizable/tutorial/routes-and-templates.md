@@ -7,11 +7,6 @@ Let's take a look at the application from the user perspective before we get sta
 We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
 
-Before we start building the three pages for our app,
-we are going to clear out the contents of the `app/templates/application.hbs` file
-and only leave the `{{outlet}}` code in place.
-We'll talk more about the role of the `application.hbs` file after our site has a few routes.
-
 Now, let's start by building our "about" page.
 Remember, when the URL path `/about` is loaded,
 the router will map the URL to the route handler of the same name, _about.js_.
@@ -218,21 +213,17 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
 
 In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
 
-When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
-Anything you put in this template is shown for every page in the application.
-The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
-The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
+First, create the application by typing `ember g template application`.
 
-```app/templates/application.hbs
-<h2 id="title">Welcome to Ember</h2>
-
-{{outlet}}
+```shell
+installing template
+  create app/templates/application.hbs
 ```
 
-Let's replace "Welcome to Ember" with our own banner information, including links to our new routes:
+When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
 
-```app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+20,+21}
-<h2 id="title">Welcome to Ember</h2>
+
+```app/templates/application.hbs
 <div class="container">
   <div class="menu">
     {{#link-to 'index'}}
@@ -254,6 +245,9 @@ Let's replace "Welcome to Ember" with our own banner information, including link
   </div>
 </div>
 ```
+
+Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+
 Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
