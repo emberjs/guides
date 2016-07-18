@@ -55,9 +55,9 @@ method:
 
 
 ```javascript
-var food = ['Poi', 'Ono', 'Adobo Chicken'];
+let food = ['Poi', 'Ono', 'Adobo Chicken'];
 
-food.forEach(function(item, index) {
+food.forEach((item, index) => {
   console.log(`Menu Item ${index+1}: ${item}`);
 });
 
@@ -74,7 +74,7 @@ that you can bind to.
 
 
 ```javascript
-var animals = ['rooster', 'pig'];
+let animals = ['rooster', 'pig'];
 
 animals.get('lastObject');
 //=> "pig"
@@ -93,12 +93,10 @@ function on each item in the enumerable.
 
 
 ```javascript
-var words = ['goodbye', 'cruel', 'world'];
+let words = ['goodbye', 'cruel', 'world'];
 
-var emphaticWords = words.map(function(item) {
-  return item + '!';
-});
-// ["goodbye!", "cruel!", "world!"]
+let emphaticWords = words.map(item => `${item}!`);
+//=> ["goodbye!", "cruel!", "world!"]
 ```
 
 If your enumerable is composed of objects, there is a [`mapBy()`](http://emberjs.com/api/classes/Ember.Enumerable.html#method_mapBy)
@@ -107,15 +105,15 @@ in turn and return a new array:
 
 
 ```javascript
-var hawaii = Ember.Object.create({
+let hawaii = Ember.Object.create({
   capital: 'Honolulu'
 });
 
-var california = Ember.Object.create({
+let california = Ember.Object.create({
   capital: 'Sacramento'
 });
 
-var states = [hawaii, california];
+let states = [hawaii, california];
 
 states.mapBy('capital');
 //=> ["Honolulu", "Sacramento"]
@@ -133,13 +131,11 @@ final Array, and `false` or `undefined` if Ember should not.
 
 
 ```javascript
-var arr = [1,2,3,4,5];
+let arr = [1, 2, 3, 4, 5];
 
-arr.filter(function(item, index, self) {
-  return item < 4;
-});
+arr.filter((item, index, self) => item < 4);
 
-// returns [1,2,3]
+//=> [1, 2, 3]
 ```
 
 When working with a collection of Ember objects, you will often want to filter a set of objects based upon the value of some property. The [`filterBy()`](http://emberjs.com/api/classes/Ember.Enumerable.html#method_filterBy) method provides a shortcut.
@@ -151,7 +147,7 @@ Todo = Ember.Object.extend({
   isDone: false
 });
 
-todos = [
+let todos = [
   Todo.create({ title: 'Write code', isDone: true }),
   Todo.create({ title: 'Go to sleep' })
 ];
@@ -178,16 +174,14 @@ Person = Ember.Object.extend({
   isHappy: false
 });
 
-var people = [
+let people = [
   Person.create({ name: 'Yehuda', isHappy: true }),
   Person.create({ name: 'Majd', isHappy: false })
 ];
 
-people.every(function(person, index, self) {
-  return person.get('isHappy');
-});
+people.every((person, index, self) => person.get('isHappy'));
 
-// returns false
+//=> false
 ```
 
 To find out whether at least one item in an enumerable matches some condition,
@@ -195,11 +189,9 @@ you can use the [`any()`](http://emberjs.com/api/classes/Ember.Enumerable.html#m
 
 
 ```javascript
-people.any(function(person, index, self) {
-  return person.get('isHappy');
-});
+people.any((person, index, self) => person.get('isHappy'));
 
-// returns true
+//=> true
 ```
 
 Like the filtering methods, the `every()` and `any()` methods have 
