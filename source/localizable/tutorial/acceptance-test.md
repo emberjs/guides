@@ -120,7 +120,7 @@ This is because each asynchronous test helper is made to wait until other test h
 Finally, we'll test that we can filter the list down according to a city search criteria.
 We anticipate having an input field in a container with a class of `list-filter`.
 We will fill out "Seattle" as the search criteria in that field and send a key up event to trigger our filtering action.
-Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle"
+Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle".
 
 ```/tests/acceptance/list-rentals-test.js
 test('should filter the list of rentals by city.', function (assert) {
