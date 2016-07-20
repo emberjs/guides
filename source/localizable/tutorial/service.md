@@ -322,6 +322,8 @@ To stub these services we simply have to register a stub service that implements
 Add the following code after the imports to our acceptance test:
 
 ```/tests/acceptance/list-rentals-test.js
+import Ember from 'ember';
+
 let StubMapsService = Ember.Service.extend({
   getMapElement() {
     return document.createElement('div');
