@@ -69,6 +69,11 @@ Tests run using `ember server` have the environment configuration `development`,
 
 These commands run your tests using [Testem] to make testing multiple browsers very easy. You can configure Testem using the `testem.js` file in your application root.
 
+#### Choosing the Tests to Run
+
+To run a subset of your tests by title use the `--filter` option.  Quickly test your current work `ember test --filter="dashboard"`, or only run a certain type of test `ember test --filter="integration"`.
+When using QUnit it is possible to exclude tests by adding an exclamation point to the beginning of the filter `ember test --filter="!acceptance"`.
+
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
 [Testem]: https://github.com/airportyh/testem
