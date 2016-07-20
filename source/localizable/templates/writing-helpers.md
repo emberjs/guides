@@ -42,11 +42,10 @@ That file should export a function wrapped with [`Ember.Helper.helper()`][1]:
 [1]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
 
 ```app/helpers/format-currency.js
-export function formatCurrency(params) {
-  let value = params[0],
-      dollars = Math.floor(value / 100),
-      cents = value % 100,
-      sign = '$';
+export function formatCurrency([value, ...rest]) {
+  let dollars = Math.floor(value / 100);
+  let cents = value % 100;
+  let sign = '$';
 
   if (cents.toString().length === 1) { cents = '0' + cents; }
   return `${sign}${dollars}.${cents}`;
@@ -56,7 +55,7 @@ export default Ember.Helper.helper(formatCurrency);
 ```
 
 In this example, the function receives a dollar amount in cents as the first
-parameter (`params[0]`). We then use regular JavaScript to turn the
+parameter (`value`). We then use regular JavaScript to turn the
 count of cents into a formatted string, like `"$5.00"`.
 
 Whenever you use your helper in a template, Ember will call this
@@ -99,8 +98,7 @@ An array of these arguments is passed to the helper function:
 
 ```app/helpers/my-helper.js
 export default Ember.Helper.helper(function(params) {
-  let arg1 = params[0];
-  let arg2 = params[1];
+  let [arg1, arg2] = params;
 
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
@@ -153,11 +151,10 @@ to the helper function.  Here is our example from above, updated to
 support the optional `sign` option:
 
 ```app/helpers/format-currency.js
-export default Ember.Helper.helper(function(params, namedArgs) {
-  let value = params[0],
-      dollars = Math.floor(value / 100),
-      cents = value % 100,
-      sign = namedArgs.sign === undefined ? '$' : namedArgs.sign;
+export default Ember.Helper.helper(function([value, ...rest], namedArgs) {
+  let dollars = Math.floor(value / 100);
+  let cents = value % 100;
+  let sign = namedArgs.sign === undefined ? '$' : namedArgs.sign;
 
   if (cents.toString().length === 1) { cents = '0' + cents; }
   return `${sign}${dollars}.${cents}`;
@@ -243,11 +240,10 @@ into a class-based helper:
 
 ```app/helpers/format-currency.js
 export default Ember.Helper.extend({
-  compute(params, hash) {
-    let value = params[0],
-        dollars = Math.floor(value / 100),
-        cents = value % 100,
-        sign = hash.sign === undefined ? '$' : hash.sign;
+  compute([value, ...rest], hash) {
+    let dollars = Math.floor(value / 100);
+    let cents = value % 100;
+    let sign = hash.sign === undefined ? '$' : hash.sign;
 
     if (cents.toString().length === 1) { cents = '0' + cents; }
     return `${sign}${dollars}.${cents}`;
@@ -286,8 +282,8 @@ the browser will not interpret it as HTML.
 For example, here's a `make-bold` helper that returns a string containing HTML:
 
 ```app/helpers/make-bold.js
-export default Ember.Helper.helper(function(params) {
-  return `<b>${params[0]}</b>`;
+export default Ember.Helper.helper(function([param, ...rest]) {
+  return `<b>${param}</b>`;
 });
 ```
 
@@ -309,8 +305,8 @@ escape the return value (that is, that it is _safe_) by using the
 [`htmlSafe`][4] string utility:
 
 ```app/helpers/make-bold.js
-export default Ember.Helper.helper(function(params) {
-  return Ember.String.htmlSafe(`<b>${params[0]}</b>`);
+export default Ember.Helper.helper(function([param, ...rest]) {
+  return Ember.String.htmlSafe(`<b>${param}</b>`);
 });
 ```
 
@@ -342,8 +338,8 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```app/helpers/make-bold.js
-export default Ember.Helper.helper(function(params) {
-  let value = Ember.Handlebars.Utils.escapeExpression(params[0]);
+export default Ember.Helper.helper(function([param, ...rest]) {
+  let value = Ember.Handlebars.Utils.escapeExpression(param);
   return Ember.String.htmlSafe(`<b>${value}</b>`);
 });
 ```
