@@ -40,4 +40,4 @@ cp index.html 200.html
 surge funny-name.surge.sh
 ```
 
-We use `--enviroment=development` here so that Mirage will continue to mock fake data. However, normally we would use `ember build --environment=production` which does more to make your code ready for production.
+ここでは`--enviroment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 しかし、一般的には`ember build --environment=production`を利用して、プロダクションで利用できるようコードを生成します。
