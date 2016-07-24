@@ -14,7 +14,7 @@ addon (アドオン)をインストールするために、次のコマンドを
 ember install ember-cli-tutorial-style
 ```
 
-Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will incorporate the new CSS and refreshing the browser window will give you this:
+Ember addonsは npm パッケージなので `ember install`コマンドで`node_modules` ディレクトリにaddonをインストールし、`package.json` にエントリーを追加します。 必ず、アドオンが正常にインストールした後、サーバーを再起動してください。 サーバーを再起動すると、新しいCSSが組み込まれ、ブラウザウィンドを更新すると、次の事が表示されます:
 
 ![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
 
