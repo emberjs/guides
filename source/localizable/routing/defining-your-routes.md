@@ -1,6 +1,16 @@
 When your application starts, the router matches the current URL to the _routes_
 that you've defined. The routes, in turn, are responsible for displaying
-templates, loading data, and otherwise setting up application state.
+templates, loading data, and setting up application state.
+
+To define a route, run
+
+```shell
+ember generate route route-name
+```
+
+This creates a route file at `app/routes/route-name.js`, a template for the route at `app/templates/route-name.hbs`,
+and a unit test file at `tests/unit/routes/route-name-test.js`.
+It also adds the route to the router.
 
 ## Basic Routes
 
@@ -88,6 +98,12 @@ Router.map(function() {
     this.route('new');
   });
 });
+```
+
+To generate the above nested route, run:
+
+```shell
+ember generate route posts/new
 ```
 
 And then add the `{{outlet}}` helper to your template where you want the nested
