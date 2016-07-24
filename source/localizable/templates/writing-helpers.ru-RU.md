@@ -22,14 +22,14 @@ ember generate helper format-currency
 
 That file should export a function wrapped with [`Ember.Helper.helper()`](http://emberjs.com/api/classes/Ember.Helper.html):
 
-```app/helpers/format-currency.js export function formatCurrency(params) { let value = params[0], dollars = Math.floor(value / 100), cents = value % 100, sign = '$';
+```app/helpers/format-currency.js export function formatCurrency([value, ...rest]) { let dollars = Math.floor(value / 100); let cents = value % 100; let sign = '$';
 
 if (cents.toString().length === 1) { cents = '0' + cents; } return `${sign}${dollars}.${cents}`; }
 
 export default Ember.Helper.helper(formatCurrency);
 
     <br />In this example, the function receives a dollar amount in cents as the first
-    parameter (`params[0]`). We then use regular JavaScript to turn the
+    parameter (`value`). We then use regular JavaScript to turn the
     count of cents into a formatted string, like `"$5.00"`.
     
     Whenever you use your helper in a template, Ember will call this
@@ -51,7 +51,7 @@ Whenever the arguments you've passed to a helper change, whether they come from 
 
 ### Helper Names
 
-Unlike components, helpers do not require a dash (`-`) character in their name.
+Unlike [components](/components/defining-a-component/), which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples in this page.
 
 ### Helper Arguments
 
@@ -65,7 +65,7 @@ To pass multiple arguments to a helper, add them as a space-separated list after
 
 An array of these arguments is passed to the helper function:
 
-```app/helpers/my-helper.js export default Ember.Helper.helper(function(params) { let arg1 = params[0]; let arg2 = params[1](http://emberjs.com/api/classes/Ember.Helper.html);
+```app/helpers/my-helper.js export default Ember.Helper.helper(function(params) { let [arg1, arg2] = params;
 
 console.log(arg1); // => "hello" console.log(arg2); // => "world" });
 
@@ -101,7 +101,7 @@ We'd like our helper to print pounds sterling rather than US dollars:
 
 The object containing named arguments is passed as the second argument to the helper function. Here is our example from above, updated to support the optional `sign` option:
 
-```app/helpers/format-currency.js export default Ember.Helper.helper(function(params, namedArgs) { let value = params[0], dollars = Math.floor(value / 100), cents = value % 100, sign = namedArgs.sign === undefined ? '$' : namedArgs.sign;
+```app/helpers/format-currency.js export default Ember.Helper.helper(function([value, ...rest], namedArgs) { let dollars = Math.floor(value / 100); let cents = value % 100; let sign = namedArgs.sign === undefined ? '$' : namedArgs.sign;
 
 if (cents.toString().length === 1) { cents = '0' + cents; } return `${sign}${dollars}.${cents}`; });
 
@@ -163,7 +163,7 @@ To create a class-based helper, rather than exporting a simple function, you sho
 
 As an exercise, here is the above `format-currency` helper re-factored into a class-based helper:
 
-```app/helpers/format-currency.js export default Ember.Helper.extend({ compute(params, hash) { let value = params[0], dollars = Math.floor(value / 100), cents = value % 100, sign = hash.sign === undefined ? '$' : hash.sign;
+```app/helpers/format-currency.js export default Ember.Helper.extend({ compute([value, ...rest], hash) { let dollars = Math.floor(value / 100); let cents = value % 100; let sign = hash.sign === undefined ? '$' : hash.sign;
 
     if (cents.toString().length === 1) { cents = '0' + cents; }
     return `${sign}${dollars}.${cents}`;
@@ -199,7 +199,7 @@ To protect your application from cross-site scripting attacks (XSS), Ember autom
 
 For example, here's a `make-bold` helper that returns a string containing HTML:
 
-```app/helpers/make-bold.js export default Ember.Helper.helper(function(params) { return `<b>${params[0]}</b>`; });
+```app/helpers/make-bold.js export default Ember.Helper.helper(function([param, ...rest]) { return `<b>${param}</b>`; });
 
     <br />You can invoke it like this:
     
@@ -215,7 +215,7 @@ Ember will escape the HTML tags, like this:
 
 This shows the literal string `<b>Hello world</b>` to the user, rather than the text in bold as you probably intended. We can tell Ember not to escape the return value (that is, that it is *safe*) by using the [`htmlSafe`](http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe) string utility:
 
-```app/helpers/make-bold.js export default Ember.Helper.helper(function(params) { return Ember.String.htmlSafe(`<b>${params[0]}</b>`); });
+```app/helpers/make-bold.js export default Ember.Helper.helper(function([param, ...rest]) { return Ember.String.htmlSafe(`<b>${param}</b>`); });
 
     <br />If you return a `SafeString` (a string that has been wrapped in a call
     to [`htmlSafe`][4]), Ember knows that you have vouched on its behalf that it
@@ -237,7 +237,7 @@ Now a malicious user simply needs to set their `firstName` to a string containin
 
 In general, you should prefer using components if you are wrapping content in HTML. However, if you really want to include a mix of HTML and values from models in what you return from the helper, make sure you escape anything that may have come from an untrusted user with the `escapeExpression` utility:
 
-```app/helpers/make-bold.js export default Ember.Helper.helper(function(params) { let value = Ember.Handlebars.Utils.escapeExpression(params[0]); return Ember.String.htmlSafe(`<b>${value}</b>`); });
+```app/helpers/make-bold.js export default Ember.Helper.helper(function([param, ...rest]) { let value = Ember.Handlebars.Utils.escapeExpression(param); return Ember.String.htmlSafe(`<b>${value}</b>`); });
 
     <br />Now the value passed into the helper has its HTML escaped, but the trusted
     `<b>` tags that we want to wrap the value in are _not_ escaped. A

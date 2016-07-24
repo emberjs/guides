@@ -91,7 +91,7 @@ export default Model.extend({ children: hasMany('folder', { inverse: 'parent' })
     
     export default Model.extend({
       name: attr('string'),
-      bestFriend: belongsTo('user', { inverse: 'bestFriend' }),
+      bestFriend: belongsTo('user', { inverse: 'bestFriend' })
     });
     
 
@@ -134,8 +134,8 @@ export default Model.extend({ post: belongsTo('post') });
     <br />When a user comments on a post, we need to create a relationship between the two records. We can simply set the `belongsTo` relationship in our new comment:
     
     ```javascript
-    let post = this.store.peekRecord('post', 1);
-    let comment = this.store.createRecord('comment', {
+    let post = this.get('store').peekRecord('post', 1);
+    let comment = this.get('store').createRecord('comment', {
       post: post
     });
     comment.save();
@@ -146,11 +146,13 @@ This will create a new `comment` record and save it to the server. Ember Data wi
 We could have also linked the two records together by updating the post's `hasMany` relationship:
 
 ```javascript
-let post = this.store.peekRecord('post', 1);
-let comment = this.store.createRecord('comment', {
+let post = this.get('store').peekRecord('post', 1);
+let comment = this.get('store').createRecord('comment', {
 });
 post.get('comments').pushObject(comment);
-comment.save();
+comment.save().then(function () {
+  post.save();
+});
 ```
 
 In this case the new comment's `belongsTo` relationship will be set to the parent post.
@@ -160,22 +162,22 @@ Although `createRecord` is fairly straightforward, the only thing to watch out f
 For example, if you want to set the `author` property of a post, this would **not** work if the `user` with id isn't already loaded into the store:
 
 ```js
-this.store.createRecord('post', {
+this.get('store').createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
-  author: this.store.findRecord('user', 1)
+  author: this.get('store').findRecord('user', 1)
 });
 ```
 
 However, you can easily set the relationship after the promise has fulfilled:
 
 ```js
-let post = this.store.createRecord('post', {
+let post = this.get('store').createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 
-this.store.findRecord('user', 1).then(function(user) {
+this.get('store').findRecord('user', 1).then(function(user) {
   post.set('author', user);
 });
 ```
@@ -185,8 +187,8 @@ this.store.findRecord('user', 1).then(function(user) {
 Sometimes we want to set relationships on already existing records. We can simply set a `belongsTo` relationship:
 
 ```javascript
-let post = this.store.peekRecord('post', 1);
-let comment = this.store.peekRecord('comment', 1);
+let post = this.get('store').peekRecord('post', 1);
+let comment = this.get('store').peekRecord('comment', 1);
 comment.set('post', post);
 comment.save();
 ```
@@ -194,8 +196,8 @@ comment.save();
 Alternatively, we could update the `hasMany` relationship by pushing a record into the relationship:
 
 ```javascript
-let post = this.store.peekRecord('post', 1);
-let comment = this.store.peekRecord('comment', 1);
+let post = this.get('store').peekRecord('post', 1);
+let comment = this.get('store').peekRecord('comment', 1);
 post.get('comments').pushObject(comment);
 post.save();
 ```
@@ -205,7 +207,7 @@ post.save();
 To remove a `belongsTo` relationship, we can set it to `null`, which will also remove it from the `hasMany` side:
 
 ```javascript
-let comment = this.store.peekRecord('comment', 1);
+let comment = this.get('store').peekRecord('comment', 1);
 comment.set('post', null);
 comment.save();
 ```
@@ -213,8 +215,8 @@ comment.save();
 It is also possible to remove a record from a `hasMany` relationship:
 
 ```javascript
-let post = this.store.peekRecord('post', 1);
-let comment = this.store.peekRecord('comment', 1);
+let post = this.get('store').peekRecord('post', 1);
+let comment = this.get('store').peekRecord('comment', 1);
 post.get('comments').removeObject(comment);
 post.save();
 ```
@@ -228,7 +230,7 @@ While working with relationships it is important to remember that they return pr
 For example, if we were to work on a post's asynchronous comments, we would have to wait until the promise has fulfilled:
 
 ```javascript
-let post = this.store.peekRecord('post', 1);
+let post = this.get('store').peekRecord('post', 1);
 
 post.get('comments').then((comments) => {
   // now we can work with the comments
@@ -238,7 +240,7 @@ post.get('comments').then((comments) => {
 The same applies to `belongsTo` relationships:
 
 ```javascript
-let comment = this.store.peekRecord('comment', 1);
+let comment = this.get('store').peekRecord('comment', 1);
 
 comment.get('post').then((post) => {
   // the post is available here

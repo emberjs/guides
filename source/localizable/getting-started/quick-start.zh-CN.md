@@ -51,21 +51,38 @@ Serving on http://localhost:4200/
 
 （在终端中键入 Ctrl-C 可以随时终止服务器。）
 
-在浏览器中打开 <http://localhost:4200>。 你将看到一个干净的只写有 "Welcome to Ember" 的页面。 恭喜！ 你刚刚创建并运行了你的第一个 Ember 应用程序。
+Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice. You should see an Ember welcome page and not much else. 恭喜！ You just created and booted your first Ember app.
 
-切换到你的编辑器并打开 `app/templates/application.hbs` 文件。这就是 `application` 模板了，当用户打开你的应用程序时该模板会始终显示在屏幕上。
-
-在你的编辑器中，将 `<h1>` 标签里的 `Welcome to Ember` 改成 `PeopleTracker` 然后保存文件。 注意 Ember 会检测到你刚才所做的改变并在后台为你自动刷新页面。 你应该能看到 "Welcome to Ember" 已经变成了 "PeopleTracker"。
-
-## 定义路由
-
-来让我们创建一个能显示科学家列表的应用程序吧。 要做到这一点，第一步是创建一个路由。 现在，你可以把路由看作是组成你的应用程序的不同的页面。
-
-Ember 带有一个*生成器*可以为常见的任务自动创建样板代码。要生成一个路由，可以在终端中输入：
+Let's create a new template using the `ember generate` command.
 
 ```sh
-ember generate route scientists
+ember generate template application
 ```
+
+The `application` template is always on screen while the user has your application loaded. In your editor, open `app/templates/application.hbs` and add the following:
+
+```app/templates/application.hbs 
+
+## PeopleTracker
+
+{{outlet}}
+
+    <br />Notice that Ember detects the new file and automatically reloads the
+    page for you in the background. You should see that the welcome page
+    has been replaced by "PeopleTracker".
+    
+    ## Define a Route
+    
+    Let's build an application that shows a list of scientists. To do that,
+    the first step is to create a route. For now, you can think of routes as
+    being the different pages that make up your application.
+    
+    Ember comes with _generators_ that automate the boilerplate code for
+    common tasks. To generate a route, type this in your terminal:
+    
+    ```sh
+    ember generate route scientists
+    
 
 你会看到像这样的输出：
 
@@ -92,11 +109,17 @@ installing route-test
 
 ## List of Scientists
 
-    <br />在你的浏览器中打开 [http://localhost:4200/scientists](http://localhost:4200/scientists)。 你应该能看到你放在 `scientists.hbs` 模板中的那个 `<h2>`，它就紧挨在 `application.hbs` 模板里那个 `<h2>` 的后面。
+    <br />In your browser, open
+    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
+    see the `<h2>` you put in the `scientists.hbs` template, right below the
+    `<h2>` from our `application.hbs` template.
     
-    现在我们既然已经渲染出 `scientists` 模板了，那不妨再给它一些数据让它渲染。 实现的方法是，给这条路由指定一个数据模型（_model）。我们可以通过编辑 `app/routes/scientists.js` 来指定数据模型。
+    Now that we've got the `scientists` template rendering, let's give it some
+    data to render. We do that by specifying a _model_ for that route, and
+    we can specify a model by editing `app/routes/scientists.js`.
     
-    生成器已经替我们产生好了一些代码，我们只要在 `Route` 中添加一个 `model()`方法即可：
+    We'll take the code created for us by the generator and add a `model()`
+    method to the `Route`:
     
     ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
@@ -122,15 +145,20 @@ installing route-test
 
 * {{scientist}} {{/each}} 
 
-    <br />我们在这里使用了 `each` 辅助函数来遍历数组中的每一个元素（这个数组是我们从 `model()` 钩子函数中传递出来的），然后把每个元素输出到一个 `<li>` 标签内。
+    <br />Here, we use the `each` helper to loop over each item in the array we
+    provided from the `model()` hook and print it inside an `<li>` element.
     
-    ## 创建一个 UI 组件
+    ## Create a UI Component
     
-    随着你的程序越来越复杂，你会注意到你在多个页面上都使用了相同的 UI 元素（或者在同一个页面上使用了多次）。Ember 可以让你很容易地把模板重构为可复用的组件。
+    As your application grows and you notice you are sharing UI elements
+    between multiple pages (or using them multiple times on the same page),
+    Ember makes it easy to refactor your templates into reusable components.
     
-    我们来创建一个 `people-list` 组件，这个组件可以在多个不同的地方显示一个人员列表。
+    Let's create a `people-list` component that we can use
+    in multiple places to show a list of people.
     
-    跟往常一样，有一个生成器可以帮我们轻松地完成这个任务。 输入以下命令来生成一个新组件：
+    As usual, there's a generator that makes this easy for us. Make a new
+    component by typing:
     
     ```sh
     ember generate component people-list
@@ -146,12 +174,19 @@ installing route-test
 
 * {{person}} {{/each}} 
 
-    <br />注意，我们把标题从一个固定的字符串（“List of Scientists”）变成了一个动态属性（`{{title}}`）。 我们还把 `scientist` 改成了更有通用性的 `person`，这样一来，我们的组件跟其使用环境之间的耦合度就降低了。
+    <br />Note that we've changed the title from a hard-coded string ("List of
+    Scientists") to a dynamic property (`{{title}}`). We've also renamed
+    `scientist` to the more-generic `person`, decreasing the coupling of our
+    component to where it's used.
     
-    保存一下这个模板，然后切换回 `scientists` 模板。 把原有的所有代码都删除，替换成新的组件化的版本。 组件调用的语法看起来很像 HTML 标签，但是使用双花括号（`{{component}}`）括起来，而不是尖括号（`<tag>`）。 我们要告诉我们的组件：
+    Save this template and switch back to the `scientists` template. Replace all
+    our old code with our new componentized version. Components look like
+    HTML tags but instead of using angle brackets (`<tag>`) they use double
+    curly braces (`{{component}}`). We're going to tell our component:
     
-    1、 通过 `title` 属性来告知应该用什么标题。
-    2、 通过 `people` 属性来传递一个人员的数组。 我们会提供这个路由的 `model` 作为人员名单。
+    1. What title to use, via the `title` attribute.
+    2. What array of people to use, via the `people` attribute. We'll
+       provide this route's `model` as the list of people.
     
     ```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
     <h2>List of Scientists</h2>
@@ -168,7 +203,7 @@ installing route-test
 
 如果你创建一个新的路由来显示另一个人员列表，你就能看到这个组件化的效果了。 留给读者作为练习，你可以尝试创建一个 `programmers` 路由来显示一些著名程序员的列表。 通过复用 `people-list` 组件，你几乎不用写任何代码就能实现这个功能。
 
-## 构建到生产环境
+## Building For Production
 
 现在我们的程序已经写好并在开发环境中验证完毕，到了部署给用户的时候了。运行以下命令即可：
 

@@ -8,7 +8,7 @@ ember g component list-filter
 
 As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
 
-Let's start with writing some tests to help us think through what we are doing. The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to 2 actions: one to provide a list of all items when no filter is provided and an action to search listings by city.
+Let's start with writing some tests to help us think through what we are doing. The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
 For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
@@ -123,7 +123,7 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     <br />We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
     Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
     
-    Both the `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+    The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
     
     To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
     

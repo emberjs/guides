@@ -21,7 +21,7 @@ export default Model.extend({ title: attr(), artist: attr(), songCount: attr() }
     <br />```app/routes/application.js
     export default Ember.Route.extend({
       model() {
-        this.store.push({
+        this.get('store').push({
           data: [{
             id: 1,
             type: 'album',
@@ -59,7 +59,7 @@ export default RestSerializer.extend({ normalize(typeHash, hash) { hash['songCou
     <br />```app/routes/application.js
     export default Ember.Route.extend({
       model() {
-        this.store.pushPayload({
+        this.get('store').pushPayload({
           albums: [
             {
               id: 1,
@@ -90,7 +90,7 @@ The `push()` method is also important when working with complex endpoints. You m
             method: 'POST',
             url: 'process-payment'
           }).then((digitalInventory) => {
-            this.store.pushPayload(digitalInventory);
+            this.get('store').pushPayload(digitalInventory);
             this.transitionTo('thank-you');
           });
         }

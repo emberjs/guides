@@ -13,7 +13,7 @@ For example, imagine you have a `blog-post` component that is used to display a 
     ```app/routes/index.js
     export default Ember.Route.extend({
       model() {
-        return this.store.findAll('post');
+        return this.get('store').findAll('post');
       }
     });
     

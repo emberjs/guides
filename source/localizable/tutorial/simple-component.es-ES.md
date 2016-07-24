@@ -1,6 +1,6 @@
 Como un usuario mira a través de la lista de los alquileres, puede tener algunas opciones interactivas para ayudarle a tomar una decisión. Vamos a agregar la capacidad para cambiar el tamaño de la imagen de cada alquiler. Para ello, vamos a usar un componente.
 
-Vamos a generar un component (componente) `rental-listing` que gestionará el comportamiento de cada uno de nuestros alquileres. Un guión es necesario en cada nombre de componente para evitar conflicto con un posible elemento HTML, así que `rental-listing` es aceptable pero `Alquiler` no.
+Vamos a generar un component (componente) `rental-listing` que gestionará el comportamiento de cada uno de nuestros alquileres. A dash is required in every component name to avoid conflicting with a possible HTML element, so `rental-listing` is acceptable but `rental` isn't.
 
 ```shell
 ember g component rental-listing
@@ -18,7 +18,7 @@ installing component-test
 
 Empezaremos implementando una prueba de fallos con el comportamiento de alternar la imagen que deseamos.
 
-Para nuestra prueba de integración, vamos a crear un stub para el alquiler que tiene todas las propiedades que tiene nuestro model (modelo) de rental (alquiler). Aseguraremos que el component (componente) se renderice inicialmente sin el nombre de la clase `wide`. Hacer clic en la imagen añadirá la clase `wide` a nuestro elemento y haciendo clic una segunda vez eliminará la clase `wide`. Tenga en cuenta que encontraremos el elemento de la imagen usando el selector CSS `.image`.
+Para nuestra prueba de integración, vamos a crear un stub para el alquiler que tiene todas las propiedades que tiene nuestro model (modelo) de rental (alquiler). Aseguraremos que el component (componente) se renderice inicialmente sin el nombre de la clase `wide`. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away. Tenga en cuenta que encontraremos el elemento de la imagen usando el selector CSS `.image`.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -55,7 +55,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
 
 En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antiguo dentro de nuestro loop `{{#each}}` con nuestro nuevo component (componente) `rental-listing`:
 
-```app/templates/index.hbs{+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29} 
+```app/templates/index.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30} 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -70,7 +70,7 @@ En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antigu
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-{{#each model as |rental|}} {{rental-listing rental=rental}} <article class="listing"> 
+{{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{#each model as |rental|}} <article class="listing"> 
 
 ### {{rental.title}}
 
@@ -120,7 +120,7 @@ En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antigu
     </article>
     
 
-El valor de `isWide` viene del archivo JavaScript de nuestro componente, en este caso `rental-listing.js`. Ya que no queremos que la imagen sea más pequeña al principio, la propiedad inicia como `false`:
+El valor de `isWide` viene del archivo JavaScript de nuestro componente, en este caso `rental-listing.js`. Since we want the image to be smaller at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js import Ember from 'ember';
 
@@ -140,7 +140,7 @@ export default Ember.Component.extend({ isWide: false });
         <span>Owner:</span> {{rental.owner}}
       </div>
       <div class="detail type">
-        <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+        <span>Type:</span> {{rental.type}}
       </div>
       <div class="detail location">
         <span>Location:</span> {{rental.city}}
@@ -157,6 +157,6 @@ Hacer click al enlace, enviará la action (acción) al component (componente). E
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-Cuando hagamos clic en la imagen o el enlace `View Larger` en nuestro navegador, veremos nuestra imagen de muestra más grande, o cuando hagamos clic en la imagen ampliada otra vez la veremos más pequeña.
+Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image we again see it smaller.
 
 ![listado de alquileres con expandir](../../images/simple-component/styled-rental-listings.png)

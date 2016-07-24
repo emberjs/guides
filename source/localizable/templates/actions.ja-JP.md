@@ -20,7 +20,7 @@ If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.hel
     });
     
 
-You will learn about more advanced usages in the Component's [Triggering Changes With Actions](/components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
+You will learn about more advanced usages in the Component's [Triggering Changes With Actions](../../components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
 
 ## Action Parameters
 

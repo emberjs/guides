@@ -119,7 +119,7 @@ export default Model.extend({ order: belongsTo('order') });
     have a type of `person` and an ID of `1` or `steve-buscemi`.
     
     ```js
-    this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
+    this.get('store').findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
     
 
 An ID is usually assigned to a record by the server when you save it for the first time, but you can also generate IDs client-side.

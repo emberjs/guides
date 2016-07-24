@@ -1,11 +1,11 @@
 Es sencillo empezar con Ember. Un proyecto de Ember se crea y se mantiene gracias a un comando de consola llamado Ember CLI. Este herramienta proporciona:
 
-* Modern application asset management (including concatenation, minification, and versioning).
+* Una moderna gestión de recursos (incluye concatenación, mistificación y control de versiones).
 * Generadores para crear componentes, rutas y otros elementos.
 * Una estructura de proyecto genérica, lo cual facilita la comprensión de las aplicaciones ya existentes de Ember.
 * Soporte para JavaScript ES2015/ES6 gracias al proyecto [Babel](http://babeljs.io/docs/learn-es2015/). Se incluye soporte para los [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que se utilizarán a lo largo de esta guía.
 * Soporte integrado de testing con [QUnit](https://qunitjs.com/).
-* The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
+* La habilidad de consumir de un ecosistema de [Ember Addons](https://emberobserver.com/) en crecimiento.
 
 ## Dependencias
 

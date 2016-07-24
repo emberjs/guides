@@ -14,7 +14,9 @@ Ember CLI observa el archivo `bower.json` para ver si ha cambiado. Así recargar
 
 ## Otros assets
 
-Los insumos no disponibles como un addon o un paquete de Bower deberían ser ubicados en el directorio `vendor` de tu proyecto.
+Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
+
+Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
 
 ## Compilando insumos
 
@@ -81,9 +83,15 @@ Provide the asset path as the first argument:
     
     ### Other Assets
     
-    All other assets like images or fonts can also be added via `import()`.
-    By default, they
-    will be copied to `dist/` as they are.
+    All assets located in the `public/` folder will be copied as is to the final output directory, `dist/`.
+    
+    For example, a `favicon` located at `public/images/favicon.ico` will be copied to `dist/images/favicon.ico`.
+    
+    All third-party assets, included either manually in `vendor/` or via a package manager like Bower, must be added via `import()`.
+    
+    Third-party assets that are not added via `import()` will not be present in the final build.
+    
+    By default, `import`ed assets will be copied to `dist/` as they are, with the existing directory structure maintained.
     
     ```ember-cli-build.js
     app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf');

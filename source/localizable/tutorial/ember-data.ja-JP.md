@@ -48,8 +48,8 @@ export default Model.extend({
 
 ```app/routes/index.js import Ember from 'ember';
 
-export default Ember.Route.extend({ model() { return this.store.findAll('rental'); } }); ```
+export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); } }); ```
 
-`this.store.findAll('rental')`を呼び出すとき、Ember Data は`/rentals`にGETリクエストを送ります。 Ember Data の詳細については[モデルセクション](../../models/)を確認してください。.
+`this.get('store').findAll('rental')`を呼び出すとき、は`/rentals`にGETリクエストを送ります。 Ember Data の詳細については[モデルセクション](../../models/)を確認してください。.
 
 開発環境では Mirage を利用しているので、Mirageは事前にMirageに提供したデータを返します。 プロダクションにアプリケーションをデプロイする際には、実際にEmber Data がやりとりをするバックエンドを構築する必要があります。

@@ -82,7 +82,7 @@ But some query param changes necessitate loading data from the server, in which 
 
     // params has format of { category: "someValueOrJustNull" },
     // which we can forward to the server.
-    return this.store.query('article', params);
+    return this.get('store').query('article', params);
     
 
 } });

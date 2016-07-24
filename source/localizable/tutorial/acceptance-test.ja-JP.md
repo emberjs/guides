@@ -72,7 +72,7 @@ Ember は route (ルート)へのアクセス、フィールドへの入力、�
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function () {
-    assert.equal(this.$('.listing').length, 3, "should see 3 listings");
+    assert.equal(find('.listing').length, 3, 'should see 3 listings');
   });
 });
 </code></pre>
@@ -83,13 +83,13 @@ Ember は route (ルート)へのアクセス、フィールドへの入力、�
 
 [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper (ヘルパー)はテストしている function (関数)が実行される、以前の呼び出された、テスト helper (ヘルパー)が完了するまで待機します。 この場合、`visit`で呼び出した、ページが読み込まれるまで待ちます、そうすることで、listings が表示されているか、assert (アサート)することができます。
 
-次のテストでは、about と contact のページへのリンクをクリックすると、適切なURLが読み込まれることを確認します。 [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper (ヘルパー)を使って、ユーザーのクリックをシュミレートします。 新規の画面が読み込まれると、[`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper (ヘルパー)を使って、新規のURLが一致していることを、確認できます。
+次のテストでは、about と contact のページへのリンクをクリックすると、適切なURLが読み込まれることを確認します。 [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper (ヘルパー)を使って、ユーザーのクリックをシュミレートします。 新規の画面が読み込まれると、[`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper (ヘルパー)を使って、新規のURLが一致していることを、確認できます。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');
   andThen(function () {
-    assert.equal(currentURL(), '/about', "should navigate to about");
+    assert.equal(currentURL(), '/about', 'should navigate to about');
   });
 });
 
@@ -97,7 +97,7 @@ test('should link to contact information', function (assert) {
   visit('/');
   click('a:contains("Contact")');
   andThen(function () {
-    assert.equal(currentURL(), '/contact', "should navigate to contact");
+    assert.equal(currentURL(), '/contact', 'should navigate to contact');
   });
 });
 </code></pre>
@@ -111,8 +111,8 @@ test('should link to contact information', function (assert) {
   fillIn('.list-filter input', 'seattle');
   keyEvent('.list-filter input', 'keyup', 69);
   andThen(function () {
-    assert.equal(this.$('.listing').length, 1, "should show 1 listing");
-    assert.equal(this.$(".listing .location:contains('Seattle')").length, 1, "should contain 1 listing with location Seattle");
+    assert.equal(find('.listing').length, 1, 'should show 1 listing');
+    assert.equal(find('.listing .location:contains("Seattle")').length, 1, 'should contain 1 listing with location Seattle');
   });
 });
 </code></pre>

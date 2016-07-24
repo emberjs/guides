@@ -51,22 +51,38 @@ Serving on http://localhost:4200/
 
 (To stop the server at any time, type Ctrl-C in your terminal.)
 
-Open [http://localhost:4200/](http://localhost:4200) in your browser of choice. You should see a page that says "Welcome to Ember" and not much else. Congratulations! You just created and booted your first Ember app.
+Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice. You should see an Ember welcome page and not much else. Congratulations! You just created and booted your first Ember app.
 
-Switch to your editor and open `app/templates/application.hbs`. This is called the `application` template and it is always on screen while the user has your application loaded.
-
-In your editor, change the text inside the `<h2>` from `Welcome to
-Ember` to `PeopleTracker` and save the file. Notice that Ember detects the change you just made and automatically reloads the page for you in the background. You should see that "Welcome to Ember" has been replaced by "PeopleTracker".
-
-## Define a Route
-
-Let's build an application that shows a list of scientists. To do that, the first step is to create a route. For now, you can think of routes as being the different pages that make up your application.
-
-Ember comes with *generators* that automate the boilerplate code for common tasks. To generate a route, type this in your terminal:
+Let's create a new template using the `ember generate` command.
 
 ```sh
-ember generate route scientists
+ember generate template application
 ```
+
+The `application` template is always on screen while the user has your application loaded. In your editor, open `app/templates/application.hbs` and add the following:
+
+```app/templates/application.hbs 
+
+## PeopleTracker
+
+{{outlet}}
+
+    <br />Notice that Ember detects the new file and automatically reloads the
+    page for you in the background. You should see that the welcome page
+    has been replaced by "PeopleTracker".
+    
+    ## Define a Route
+    
+    Let's build an application that shows a list of scientists. To do that,
+    the first step is to create a route. For now, you can think of routes as
+    being the different pages that make up your application.
+    
+    Ember comes with _generators_ that automate the boilerplate code for
+    common tasks. To generate a route, type this in your terminal:
+    
+    ```sh
+    ember generate route scientists
+    
 
 You'll see output like this:
 
@@ -94,7 +110,7 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
 ## List of Scientists
 
     <br />In your browser, open
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). You should
+    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
     `<h2>` from our `application.hbs` template.
     

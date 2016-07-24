@@ -11,7 +11,7 @@ Si agregas el helper [`{{action}}`](http://emberjs.com/api/classes/Ember.Templat
     <br />En el componente o el controlador se puede definir lo que hará la acción dentro del hook 'actions': '''app/components/single-post.js export default Ember.Component.extend ({actions: {toggleBody() {this.toggleProperty('isShowingBody');     }   } });
     
 
-You will learn about more advanced usages in the Component's [Triggering Changes With Actions](/components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
+You will learn about more advanced usages in the Component's [Triggering Changes With Actions](../../components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
 
 ## Parámetros opcionales
 

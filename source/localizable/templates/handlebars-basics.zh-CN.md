@@ -1,22 +1,18 @@
-Ember uses the [Handlebars templating library](http://www.handlebarsjs.com) to power your app's user interface. Handlebars templates contain static HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
+Ember 使用 [Handlebars 模板引擎](http://www.handlebarsjs.com) 来增强应用的用户界面。 Handlebars 模板包含静态 HTML 和 Handlebars 表达式内部的动态内容，Handlebars 表达式的写法是两对大括号： `{{}}`.
 
-Dynamic content inside a Handlebars expression is rendered with data-binding. This means if you update a property, your usage of that property in a template will be automatically updated to the latest value.
+Handlebars 表达式内部渲染的动态内容具备数据绑定的特性。 也就是说如果更新了属性，在模版中渲染的该属性也会自动更新到最新的值。
 
-### Displaying Properties
+### 显示属性
 
-Templates are backed with a context. A context is an object from which Handlebars expressions read their properties. In Ember this is often a component. For templates rendered by a route (like `application.hbs`), the context is a controller.
+模板是由上下文对象支撑的。 上下文对象是 Handlebars 表达式读取属性的来源。 在 Ember 中上下文对象通常是一个组件。 对于直接由路由渲染的模板（比如 `application.hbs`），上下文对象是控制器。
 
-For example, this `application.hbs` template will render a first and last name:
+例如，下面的 `application.hbs` 模板将会渲染姓氏和名字：
 
 ```app/templates/application.hbs Hello, **{{firstName}} {{lastName}}**!
 
-    <br />The `firstName` and `lastName` properties are read from the
-    context (the application controller in this case), and rendered inside the
-    `<strong>` HTML tag.
+    <br />`firstName` 和 `lastName` 是从上下文对象（此处是 application 控制器）中读取到的，然后渲染在 `<strong>` HTML 标签中。
     
-    To provide a `firstName` and `lastName` to the above template, properties
-    must be added to the application controller. If you are following along with
-    an Ember CLI application, you may need to create this file:
+    为了给上面的模板提供 `firstName` 和 `lastName`，必须在 application 控制器中添加这两个属性。 如果你正在使用 Ember CLI 应用程序，你需要创建这样的文件：
     
     ```app/controllers/application.js
     import Ember from 'ember';
@@ -27,15 +23,15 @@ For example, this `application.hbs` template will render a first and last name:
     });
     
 
-The above template and controller render as the following HTML:
+上述模版和控制器将会渲染为下面的 HTML：
 
 ```html
 Hello, <strong>Trek Glowacki</strong>!
 ```
 
-Remember that `{{firstName}}` and `{{lastName}}` are bound data. That means if the value of one of those properties changes, the DOM will be updated automatically.
+记住，`{{firstName}}` 和 `{{lastName}}` 是绑定的数据。这意味着如果其中一个属性的值发生更改，将自动更新 DOM。
 
-As an application grows in size, it will have many templates backed by controllers and components.
+随着应用程序规模的增长，将会有许多由控制器和组件支撑着的模板。
 
 ### Helpers
 

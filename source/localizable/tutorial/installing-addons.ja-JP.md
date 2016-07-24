@@ -1,38 +1,38 @@
 Ember はプロジェクトに簡単に追加することのできる、addons (アドオン)の豊かなエコシステムを持っています。Addons (アドオン)は多くの場合、時間を節約し、あなたがあなた自身のプロジェクトに集中することのできる、幅広い機能をプロジェクトに追加します。
 
-To browse addons, visit the [Ember Observer](https://emberobserver.com/) website. It catalogs and categorizes ember addons that have been published to NPM and assigns them a score based on a variety of criteria.
+addons (アドオン)をブラウズするには、[Ember Observer](https://emberobserver.com/) のサイトをご覧ください。 NPMに公開されている、ember addons (アドオン)をいくつかの基準で点数付けをして、分類し一覧にしています。
 
-For Super Rentals, we'll take advantage of two addons: [ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style) and [ember-cli-mirage](http://www.ember-cli-mirage.com/).
+Super Rentals には、[ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style)と[ember-cli-mirage](http://www.ember-cli-mirage.com/)の二つのaddons (アドオン)を活用しています。.
 
 ### ember-cli-tutorial-style
 
-Instead of having you copy/paste in CSS to style Super Rentals, we've created an addon called [ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style) that instantly adds CSS to the tutorial. The addon works by creating a file called `ember-tutorial.css` and putting that file in the super-rentals `vendor` directory. As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in `vendor.css` (which is referenced in `/app/index.html`). We can make additional style tweaks to `/vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
+Super Rentalsをスタイリングするためにコピーペーストをする代わりに、チュートリアルにCSSを追加する[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)というアドオン作成しました。 addon (アドオン)は`ember-tutorial.css`というファイルを作成して、super-rentalsの`vendor`ディレクトリに置きます。 Ember CLI を実行されると、`ember-tutorial`の CSS ファイルは `vendor.css` (`/app/index.html`が参照している)に置かれます。 スタイリングを変更するために`/vendor/ember-tutorial.css`を変更することができます、アプリケーションを再起動するたびに、変更は有効になります。
 
-Run the following command to install the addon:
+addon (アドオン)をインストールするために、次のコマンドを実行します。
 
 ```shell
 ember install ember-cli-tutorial-style
 ```
 
-Starting the server will incorporate the new CSS and refreshing our browser window will give you this:
+Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will incorporate the new CSS and refreshing the browser window will give you this:
 
 ![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
 
 ### ember-cli-mirage
 
-[Mirage](http://www.ember-cli-mirage.com/) is a client HTTP stubbing library often used for Ember acceptance testing. For the case of this tutorial, we'll use mirage as our source of data. Mirage will allow us to create fake data to work with while developing our app and mimic a running backend server.
+[Mirage](http://www.ember-cli-mirage.com/)はよく利用される、Emberに受入テストを提供する、クライアントHTTPスタビングライブラリーです。 このチュートリアルにおいては、mirage をデータのソースとして使用します。 Mirageにより、開発の段階では、バックエンドサーバーを模倣して、フェイクなデータを利用できるようになります。
 
-Install the Mirage addon as follows:
+Mirage addon (アドオン)を次の手順でインストールしてください:
 
 ```shell
 ember install ember-cli-mirage
 ```
 
-If you were running `ember serve` in another shell, restart the server to include Mirage in your build.
+もし、別のシェルで`ember serve` を実行していた場合は、ビルドにMirageを含めるために、サーバーを再起動します。
 
-Let's now configure Mirage to send back our rentals that we had defined above by updating `/mirage/config.js`:
+では Mirage を上記で定義した物件情報を返すように、`/mirage/config.js`を更新しましょう。
 
-```app/mirage/config.js
+```mirage/config.js
 export default function() {
   this.get('/rentals', function() {
     return {
@@ -75,4 +75,4 @@ export default function() {
 }
 ```
 
-This configures Mirage so that whenever Ember Data makes a GET request to `/rentals`, Mirage will return this JavaScript object as JSON.
+この設定により Mirage は Ember Data が`/rentals`にGET リクエストを出すたびに、JSONでJavaScriptオブジェクトを返しますようになります。

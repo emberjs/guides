@@ -40,7 +40,7 @@ testem.js
 
 **dist**：当我们构建好用于部署的应用程序时，所有的输出文件都被创建到这里。
 
-**node_modules / package.json**：这两个目录和文件来自 npm。 npm 是 Node.js 的包管理器。 Ember 本身便是用 Node 构建的，而且它的操作也用到了大量的 Node.js 模块。 `package.json` 文件维护应用程序当前的所有 npm 包依赖列表。任何你安装的 Ember-CLI 插件同样会出现在这里。 所有列在 `package.json` 中的包都会被安装到 node_modules 目录中。
+**node_modules / package.json**：这两个目录和文件来自 npm。 npm 是 Node.js 的包管理器。 Ember 本身便是用 Node 构建的，而且它的操作也用到了大量的 Node.js 模块。 The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. 所有列在 `package.json` 中的包都会被安装到 node_modules 目录中。
 
 **public**：这个目录下包含图片、字体等静态资源。
 
@@ -91,4 +91,4 @@ export default Router;
 ember s
 ```
 
-用浏览器打开 `localhost:4200`，就可以看到我们崭新的应用程序正在显示一行文本：“Welcome to Ember”。
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see our brand new app displaying the text "Welcome to Ember".

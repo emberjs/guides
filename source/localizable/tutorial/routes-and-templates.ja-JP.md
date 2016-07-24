@@ -4,25 +4,23 @@ Ember アプリケーションの基本的な準備と、順序を示すため�
 
 ホームページはレンタルのリストを表示しています。ここから、about ページと contact ページに遷移することができます。
 
-アプリケーションの３つのページを構築する前に、 `app/templates/application.hbs` ファイルの内容を`{{outlet}}` を残して、すべて消去します。 `application.hbs` ファイルのルールについては、サイトにいくつか route (ルート)を作った後で説明します。
-
-では、まず　"about" ページを作成してみましょう。 router (ルーター)がURL `/about`が読み込まれると、URLと同じ名前の*about.js*という route handler (ルーター ハンドラー ) をマップしているということを、覚えておいてください。 その後、route handler (ルートハンドラ)が template (テンプレート)を読み込みます。
+Now, let's start by building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, *about.js*. The route handler then loads a template.
 
 ## ルートに関して
 
-`ember help generate`を実行すると、Ember とともにインストールされる、様々なEmber リソースのファイルを自動生成できるツールについて、確認ができます。 `about` route (ルート)をまずは、route generator ( ルートジェネレータ)を使って作成していきます。
+If we run `ember help generate`, we can see a variety of tools that come with Ember for automatically generating files for various Ember resources. Let's use the route generator to start our `about` route.
 
 ```shell
 ember generate route about
 ```
 
-次の省略形でも、結果は同じです。
+or for short,
 
 ```shell
 ember g route about
 ```
 
-generator (ジェネレータ)が行っていることを、確認することができます:
+We can then see what actions were taken by the generator:
 
 ```shell
 installing route
@@ -34,9 +32,9 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-３つの新しいファイルが生成されます: 一つは route handler (ルートハンドラー)、一つはroute handler (ルートハンドラー)が描画するtemplate (テンプレート)、最後の一つはテストファイル。四つ目のファイル、router (ルーター)には編集が加えられています。
+Three new files are created: one for the route handler, one for the template the route handler will render, and a test file. The fourth file that is touched is the router.
 
-router (ルーター)ファイルを開くと、generator (ジェネレータ)が自動的に*about*ルートをマップしてることが確認できます。この route (ルート)が`about`の route handler (ルートハンドラー)を読み込みます。
+When we open the router, we can see that the generator has mapped a new *about* route for us. This route will load the `about` route handler.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -64,19 +62,19 @@ export default Router;
     </div>
     
 
-コマンド `ember serve`(省略形だと`ember s`)を実行して、シェルからEmberの開発サーバーを起動します、その後ブラウザで`localhost:4200/about`を開くとアプリケーションが確認できます。
+Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server, and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new app in action!
 
 ## Contact ルート
 
-会社のコンタクト情報を記載する route (ルート)を作成しましょう。もう一度、route (ルート)、route handler (ルートハンドラー)、template (テンプレート)を自動生成することから始めます。
+Let's create another route with details for contacting the company. Once again, we'll start by generating a route, a route handler, and a template.
 
 ```shell
 ember g route contact
 ```
 
-generator (ジェネレータ)が実行され、`app/router.js`内に`contact` ルートが作成され、`app/routes/contact.js`には該当するルートが作成されます。 `contact`テンプレートを利用していくので、`contact` route (ルート)は追加で編集をする必要はありません。
+We see that our generator has created a `contact` route in the `app/router.js` file, and a corresponding route handler in `app/routes/contact.js`. Since we will be using the `contact` template, the `contact` route does not need any additional changes.
 
-`contact.hbs`には Super Rentals HQのコンタクト情報を追記します:
+In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
 ```app/templates/contact.hbs 
 
@@ -104,7 +102,7 @@ generator (ジェネレータ)が実行され、`app/router.js`内に`contact` �
 </div>
 
     <br />これで、２番目のルートが完成しました。
-    該当のURL `localhost:4200/contact` にアクセスすると、contactページが表示されます。
+    URL[`http://localhost:4200/contact`](http://localhost:4200/contact)にアクセスすると、contact pageにアクセスできます。
     
     ## リンクによるナビゲーションと {{link-to}} Helper (ヘルバー)
     
@@ -129,11 +127,11 @@ generator (ジェネレータ)が実行され、`app/router.js`内に`contact` �
     </div>
     
 
-`{{link-to}}` helper (ヘルパー)はリンク先にとなる route (ルーター)名を引数として受け取ります、この場合は`contact` がそれに当たります。 `http://localhost:4200/about`を開くと、コンタクトページへのリンクが機能しているのがわかります。
+The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`. When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have a working link to our contact page.
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-次は`contact`ページと`about` の間で移動ができるように、contact ページにリンクを追加します。.
+Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs 
 
@@ -179,9 +177,9 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-作成してきた他のルートハンドラーとは違い、`index` route (ルート)は特別で、ルートマッピングにエントリーを必要としていません。 どうしてエントリーの必要がないのかは、ネストされたEmberの routes (ルート)を扱う際に詳細を説明します。
+Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at nested routes in Ember.
 
-`index.hbs`にhome ページ用のHTMLとアプリケーション内の他の routes (ルート)へのリンクを追加します。
+Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
 ```app/templates/index.hbs 
 
@@ -202,21 +200,16 @@ installing route-test
     
     アプリケーションの各 route (ルート)の、ボタンスタイルのリンクに追加して、共通のアプリケーションのタイトルと、そのメインページを表示したいと思います。
     
-    これまでのように、Ember CLI を使って、Ember アプリケーションを作成するとき、`application.hbs`という名前のtemplate (テンプレート)が作成されます。
-    この template (テンプレート)に追加した内容は、アプリケーションのいずれのページにも表示されます。
-    デフォルトの `application.hbs` ファイルには `h2` タグのついた "Welcome to Ember" というテキストと、 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) が含まれています。
-    `{{outlet}}` はrouter (ルーター)に従い、そのときのカレントのrouter (ルーター)のマークアップを表示します。
+    First, create the application by typing `ember g template application`.
     
-    ```app/templates/application.hbs
-    <h2 id="title">Welcome to Ember</h2>
-    
-    {{outlet}}
+    ```shell
+    installing template
+      create app/templates/application.hbs
     
 
-バナー情報にに"Welcome to Ember" と新しい routes (ルート)へのリンクに置き換えます。
+When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
 
-    app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+20,+21}
-    <h2 id="title">Welcome to Ember</h2>
+    app/templates/application.hbs
     <div class="container">
       <div class="menu">
         {{#link-to 'index'}}
@@ -236,6 +229,10 @@ installing route-test
       <div class="body">
         {{outlet}}
       </div>
-    </div> routes (ルート)とそれらを繋ぐリンクを追加しました。、aboutとcontactとのナビゲーションのために作成した二つの受入テストは、この段階で通っているはずです。
+    </div>
+
+Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+
+Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

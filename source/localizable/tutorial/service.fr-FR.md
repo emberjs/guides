@@ -16,23 +16,23 @@ We'll start by adding a component that shows the rental's city on a map.
     &lt;small&gt;View Larger&lt;/small&gt;
   &lt;/a&gt;
   &lt;h3&gt;{{rental.title}}&lt;/h3&gt;
-  &lt;div class="detail"&gt;
+  &lt;div class="detail owner"&gt;
     &lt;span&gt;Owner:&lt;/span&gt; {{rental.owner}}
   &lt;/div&gt;
-  &lt;div class="detail"&gt;
+  &lt;div class="detail type"&gt;
     &lt;span&gt;Type:&lt;/span&gt; {{rental-property-type rental.type}} - {{rental.type}}
   &lt;/div&gt;
-  &lt;div class="detail"&gt;
+  &lt;div class="detail location"&gt;
     &lt;span&gt;Location:&lt;/span&gt; {{rental.city}}
   &lt;/div&gt;
-  &lt;div class="detail"&gt;
+  &lt;div class="detail bedrooms"&gt;
     &lt;span&gt;Number of bedrooms:&lt;/span&gt; {{rental.bedrooms}}
   &lt;/div&gt;
   {{location-map location=rental.city}}
 &lt;/article&gt;
 </code></pre>
 
-Next, generate the map component using Ember-CLI.
+Next, generate the map component using Ember CLI.
 
 ```shell
 ember g component location-map
@@ -94,7 +94,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
     let location = this.get('location');
-    let mapElement = this.get('maps').getMapElement(location)
+    let mapElement = this.get('maps').getMapElement(location);
     this.$('.map-container').append(mapElement);
   }
 });
@@ -106,12 +106,12 @@ Now we have a passing component integration test, but no maps showing up when we
 
 Accessing our maps API through a service will give us several benefits
 
-* It is injected with a [service locator pattern](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance
+* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time. In some cases this can reduce your app's processor load and memory consumption.
 * It is a singleton, which will allow us cache map data.
 * It follows a lifecycle, meaning we have hooks to execute cleanup code when the service stops, preventing things like memory leaks and unnecessary processing.
 
-Let's get started creating our service by generating it through Ember-CLI, which will create the service file, as well as a unit test for it.
+Let's get started creating our service by generating it through Ember CLI, which will create the service file, as well as a unit test for it.
 
 ```shell
 ember g service maps
@@ -210,7 +210,7 @@ From your project's root directory, run the following command to put the Google 
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 ```
 
-Once in the vendor directory, the script can be built into the app. We just need to tell Ember-CLI to import it using our build file:
+Once in the vendor directory, the script can be built into the app. We just need to tell Ember CLI to import it using our build file:
 
 <pre><code class="ember-cli-build.js{+22}">/*jshint node:true*/
 /* global require, module */
@@ -268,8 +268,8 @@ export default Ember.Object.extend({
   pinLocation(location, map) {
     this.get('geocoder').geocode({address: location}, (result, status) =&gt; {
       if (status === google.maps.GeocoderStatus.OK) {
-        let location = result[0].geometry.location;
-        let position = { lat: location.lat(), lng: location.lng() };
+        let geometry = result[0].geometry.location;
+        let position = { lat: geometry.lat(), lng: geometry.lng() };
         map.setCenter(position);
         new google.maps.Marker({ position, map, title: location });
       }
@@ -291,7 +291,9 @@ Often, services connect to third party APIs that are not desirable to include in
 
 Add the following code after the imports to our acceptance test:
 
-<pre><code class="/tests/acceptance/list-rentals-test.js">let StubMapsService = Ember.Service.extend({
+<pre><code class="/tests/acceptance/list-rentals-test.js">import Ember from 'ember';
+
+let StubMapsService = Ember.Service.extend({
   getMapElement() {
     return document.createElement('div');
   }

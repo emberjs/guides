@@ -48,8 +48,8 @@ Para usar nuestro nuevo almacén de datos, debemos actualizar el gancho `model` 
 
 ```app/routes/index.js import Ember from 'ember';
 
-export default Ember.Route.extend({ model() { return this.store.findAll('rental'); } }); ```
+export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); } }); ```
 
-Cuando llamamos a `this.store.findAll('rental')`, Ember Data hará una petición GET a `/rentals`. Puedes leer más sobre Ember Data en la [sección de models](../../models/).
+When we call `this.get('store').findAll('rental')`, Ember Data will make a GET request to `/rentals`. Puedes leer más sobre Ember Data en la [sección de models](../../models/).
 
 Debido a que estamos Mirage en nuestro entorno de desarrollo, Mirage retornará los datos que hemos proporcionado. Cuando despleguemos nuestra aplicación en un servidor de producción, necesitamos proporcionar un backend para que Ember Data se comunique con él.

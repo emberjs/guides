@@ -1,6 +1,6 @@
 As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision. Let's add the ability to toggle the size of the image for each rental. To do this, we'll use a component.
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element, so `rental-listing` is acceptable but `rental` would not be.
+Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element, so `rental-listing` is acceptable but `rental` isn't.
 
 ```shell
 ember g component rental-listing
@@ -18,7 +18,7 @@ installing component-test
 
 We'll start by implementing a failing test with the image toggling behavior that we want.
 
-For our integration test, we'll create a stub rental that has all the properties that our rental model has. We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time with take the `wide` class away. Note that we find the image element using the the CSS selector `.image`.
+For our integration test, we'll create a stub rental that has all the properties that our rental model has. We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away. Note that we find the image element using the the CSS selector `.image`.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -55,7 +55,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
 
 In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
 
-```app/templates/index.hbs{+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29} 
+```app/templates/index.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30} 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -70,7 +70,7 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-{{#each model as |rental|}} {{rental-listing rental=rental}} <article class="listing"> 
+{{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{#each model as |rental|}} <article class="listing"> 
 
 ### {{rental.title}}
 
@@ -120,7 +120,7 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
     </article>
     
 
-The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`. Since we do not want the image to be smaller at first, we will set the property to start as `false`:
+The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`. Since we want the image to be smaller at first, we will set the property to start as `false`:
 
 ```app/components/rental-listing.js import Ember from 'ember';
 
@@ -140,7 +140,7 @@ export default Ember.Component.extend({ isWide: false });
         <span>Owner:</span> {{rental.owner}}
       </div>
       <div class="detail type">
-        <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+        <span>Type:</span> {{rental.type}}
       </div>
       <div class="detail location">
         <span>Location:</span> {{rental.city}}
@@ -157,6 +157,6 @@ Clicking the anchor element will send the action to the component. Ember will th
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-Now when we click the image or the `View Larger` link in our browser, we see our image show larger, or when we click the enlarged image we again see it smaller.
+Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image we again see it smaller.
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)

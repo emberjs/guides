@@ -49,3 +49,7 @@ Run your tests with `ember test` on the command-line. You can re-run your tests 
 Tests can also be executed when you are running a local development server (started by running `ember server`), at the `/tests` URI which renders the `tests/index.html` template. A word of caution using this approach: Tests run using `ember server` have the environment configuration `development`, whereas tests executed under `ember test --server` are run with the configuration `test`. This could cause differences in execution, such as which libraries are loaded and available. Therefore its recommended that you use `ember test --server` for test execution.
 
 These commands run your tests using [Testem](https://github.com/airportyh/testem) to make testing multiple browsers very easy. You can configure Testem using the `testem.js` file in your application root.
+
+#### Choosing the Tests to Run
+
+To run a subset of your tests by title use the `--filter` option. Quickly test your current work `ember test --filter="dashboard"`, or only run a certain type of test `ember test --filter="integration"`. When using QUnit it is possible to exclude tests by adding an exclamation point to the beginning of the filter `ember test --filter="!acceptance"`.

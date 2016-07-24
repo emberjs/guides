@@ -12,7 +12,7 @@ For example, take this router:
     ```app/routes/favorite-posts.js
     export default Ember.Route.extend({
       model() {
-        return this.store.query('post', { favorite: true });
+        return this.get('store').query('post', { favorite: true });
       }
     });
     
@@ -58,7 +58,7 @@ The route will then set the return value from the `model` hook as the `model` pr
     });
     
 
-```app/routes/photo.js export default Ember.Route.extend({ model(params) { return this.store.findRecord('photo', params.photo_id); } });
+```app/routes/photo.js export default Ember.Route.extend({ model(params) { return this.get('store').findRecord('photo', params.photo_id); } });
 
     <br />In the `model` hook for routes with dynamic segments, it's your job to
     turn the ID (something like `47` or `post-slug`) into a model that can
@@ -84,8 +84,8 @@ The route will then set the return value from the `model` hook as the `model` pr
     export default Ember.Route.extend({
       model() {
         return Ember.RSVP.hash({
-          songs: this.store.findAll('song'),
-          albums: this.store.findAll('album')
+          songs: this.get('store').findAll('song'),
+          albums: this.get('store').findAll('album')
         });
       }
     });

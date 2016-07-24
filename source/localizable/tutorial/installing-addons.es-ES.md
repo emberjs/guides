@@ -14,7 +14,7 @@ Ejecuta el siguiente comando para instalar el addon (complemento):
 ember install ember-cli-tutorial-style
 ```
 
-Iniciar el servidor incorporará el nuevo CSS y actualizar el navegador te mostrará esto:
+Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will incorporate the new CSS and refreshing the browser window will give you this:
 
 ![página de inicio de super rentals con estilos](../../images/installing-addons/styled-super-rentals-basic.png)
 
@@ -32,7 +32,7 @@ Si te encuentras ejecutando `ember serve` en otra línea de comandos, reinicia e
 
 Vamos a configurar ahora Mirage para enviar nuestros rentals que hemos definido anteriormente actualizando `mirage/config.js`:
 
-```app/mirage/config.js
+```mirage/config.js
 export default function() {
   this.get('/rentals', function() {
     return {

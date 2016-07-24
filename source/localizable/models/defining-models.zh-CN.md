@@ -19,7 +19,7 @@ export default Model.extend({ });
     ## Defining Attributes
     
     The `person` model we generated earlier didn't have any attributes. Let's
-    add first and last name, as well as the birthday, using `attr`:
+    add first and last name, as well as the birthday, using [`attr`](http://emberjs.com/api/data/classes/DS.html#method_attr):
     
     ```app/models/person.js
     import Model from 'ember-data/model';

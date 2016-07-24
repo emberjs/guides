@@ -40,7 +40,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 **dist**: デプロイメント用のアプリケーションをビルドすると、この配下に出力されます。
 
-**node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネジャーです。 Ember は Node で書かれていて、様々なNode.js モジュールを利用しています。 `Package.json` ファイルは、アプリケーションが利用している、 npm の依存関係を管理しています。追加でインストールしたEmber-CLI add-ons があれば、それもこのリストで管理されます。 `package.json`に乗っているパッケージは、node_modules ディレクトリにインストールされます。
+**node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネジャーです。 Ember は Node で書かれていて、様々なNode.js モジュールを利用しています。 `Package.json` ファイルは、アプリケーションが利用している、 npm の依存関係を管理しています。追加でインストールしたEmber CLI add-ons があれば、それもこのリストで管理されます。 `package.json`に乗っているパッケージは、node_modules ディレクトリにインストールされます。
 
 **public**: このディレクトリには、画像ファイルやフォントなどの資産が含まれています。
 
@@ -88,4 +88,4 @@ export default Router;
 ember s
 ```
 
-ブラウザで `localhost:4200`を開くと、真新しいアプリケーションが、 "Welcome to Ember" と表示しているのが確認できるはずです。
+ブラウザで [`http://localhost:4200`](http://localhost:4200)を開くと、真新しいアプリケーションが、 "Welcome to Ember" と表示しているのが確認できるはずです。

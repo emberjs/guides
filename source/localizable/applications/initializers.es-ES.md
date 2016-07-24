@@ -6,7 +6,7 @@ Los inicializadores de la aplicación se ejecutan en el arranque y suponen el pr
 
 Los inicializadores de la instancia de la aplicación se ejecutan cuando se carga una instancia de la aplicación. Proporcionan una manera de configurar el estado inicial de la aplicación, así como las inyecciones de dependencias que pertenecen únicamente a la instancia de la aplicación (por ejemplo configuraciones de tests A/B).
 
-Las operaciones realizadas en los inicializadores deben ser tan ligeras como sea posible para minimizar un posible retraso en la carga de la aplicación. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
+Las operaciones realizadas en los inicializadores deben ser tan ligeras como sea posible para minimizar un posible retraso en la carga de la aplicación. Apesar de que hay varias técnicas avanzadas para permitir asincronía en los inicializadores de la aplication (por ejemplo `deferReadiness` and `advanceReadiness`), estas técnicas generalmente se deberían evitar. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
 
 ## Application Initializers
 

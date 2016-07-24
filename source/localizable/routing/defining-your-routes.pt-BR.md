@@ -1,6 +1,6 @@
 Quando seu aplicativo for iniciado, o roteador compara com a URL com as *rotas* que você definiu. As rotas, por sua vez, são responsáveis por renderizar as templates, carregar os dados, e definir o estado do seu aplicativo.
 
-## Basic Routes
+## Rotas básicas
 
 O método [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) do roteador do seu aplicativo Ember pode ser invocado para definir mapeamentos de URL. Ao chamar `map()`, você deve passar uma função que será invocada com o valor de `this` sendo um objeto que você pode usar para criar rotas.
 
@@ -62,7 +62,7 @@ Você pode definir rotas embutidas passando um novo callback para `this.route`:
     {{outlet}}
     
 
-Este router cria uma rota para `/posts` e `/posts/new`. Quando um usuario visita `/posts`, ele ve apenas a template `posts.hbs`. (Abaixo, em [index routes](#toc_index-routes) há explicação adiciona importante sobre isso.) Quando um usuário visita `posts/new`, ele vera a template `posts/new.hbs` exibida dentro do `{{outlet}}` da template de `posts`.
+Este router cria uma rota para `/posts` e `/posts/new`. Quando um usuario visita `/posts`, ele ve apenas a template `posts.hbs`. (Abaixo, em [index routes](#toc_index-routes) tem importante explicação adicional sobre isso.) Quando um usuário visita `posts/new`, ele verá a template `posts/new.hbs` exibida dentro do `{{outlet}}` da template de `posts`.
 
 O nome de uma rota embutida inclui o nome de suas rotas antecessoras. Se você quer fazer a transição para uma rota (via `transitionTo` ou `{{#link-to}}`), certifique-se de usar o nome completo de sua rota (`posts.new`, não é `new`).
 

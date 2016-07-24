@@ -95,17 +95,17 @@ Data that is not a part of the primary request but includes linked relationships
 
 Ember Data uses the `JSONAPISerializer` by default, but you can override this default by defining a custom serializer. There are two ways to define a custom serializer. First, you can define a custom serializer for your entire application by defining an "application" serializer.
 
-```app/serializers/application.js import JSONSerializer from 'ember-data/serializers/json';
+```app/serializers/application.js import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({});
+export default JSONAPISerializer.extend({});
 
     <br />You can also define a serializer for a specific model. For example, if
     you had a `post` model you could also define a `post` serializer:
     
     ```app/serializers/post.js
-    import JSONSerializer from 'ember-data/serializers/json';
+    import JSONAPISerializer from 'ember-data/serializers/json-api';
     
-    export default JSONSerializer.extend({});
+    export default JSONAPISerializer.extend({});
     
 
 To change the format of the data that is sent to the backend store, you can use the [`serialize()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_serialize) hook. Let's say that we have this JSON API response from Ember Data:
@@ -144,9 +144,9 @@ But our server expects data in this format:
 
 Here's how you can change the data:
 
-```app/serializers/application.js import JSONSerializer from 'ember-data/serializers/json';
+```app/serializers/application.js import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({ serialize(snapshot, options) { var json = this._super(...arguments);
+export default JSONAPISerializer.extend({ serialize(snapshot, options) { var json = this._super(...arguments);
 
     json.data.attributes.cost = {
       amount: json.data.attributes.amount,
@@ -201,9 +201,9 @@ And so we need to change it to look like:
 
 Here's how we could do it:
 
-```app/serializers/application.js import JSONSerializer from 'ember-data/serializers/json';
+```app/serializers/application.js import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({ normalizeResponse(store, primaryModelClass, payload, id, requestType) { payload.data.attributes.amount = payload.data.attributes.cost.amount; payload.data.attributes.currency = payload.data.attributes.cost.currency;
+export default JSONAPISerializer.extend({ normalizeResponse(store, primaryModelClass, payload, id, requestType) { payload.data.attributes.amount = payload.data.attributes.cost.amount; payload.data.attributes.currency = payload.data.attributes.cost.currency;
 
     delete payload.data.attributes.cost;
     
@@ -229,9 +229,9 @@ export default JSONSerializer.extend({ normalizeResponse(store, primaryModelClas
     property to `id` when serializing and deserializing data.
     
     ```app/serializers/application.js
-    import JSONSerializer from 'ember-data/serializers/json';
+    import JSONAPISerializer from 'ember-data/serializers/json-api';
     
-    export default JSONSerializer.extend({
+    export default JSONAPISerializer.extend({
       primaryKey: '_id'
     });
     
@@ -263,9 +263,9 @@ export default Model.extend({ firstName: attr('string'), lastName: attr('string'
 
 If the attributes returned by your server use a different convention you can use the serializer's [`keyForAttribute()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_keyForAttribute) method to convert an attribute name in your model to a key in your JSON payload. For example, if your backend returned attributes that are `under_scored` instead of `dash-cased` you could override the `keyForAttribute` method like this.
 
-```app/serializers/application.js import JSONSerializer from 'ember-data/serializers/json';
+```app/serializers/application.js import Ember from 'ember'; import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default JSONSerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
+export default JSONAPISerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
 
     <br />Irregular keys can be mapped with a custom serializer. The `attrs`
     object can be used to declare a simple mapping between property names
@@ -287,7 +287,7 @@ export default JSONSerializer.extend({ keyForAttribute: function(attr) { return 
     });
     
 
-```app/serializers/person.js import JSONSerializer from 'ember-data/serializers/json';
+```app/serializers/person.js import JSONAPISerializer from 'ember-data/serializers/json-api';
 
 export default JSONSerializer.extend({ attrs: { lastName: 'lastNameOfPerson' } });
 

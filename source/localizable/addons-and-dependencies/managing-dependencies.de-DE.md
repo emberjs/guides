@@ -14,15 +14,17 @@ Ember CLI überwacht `bower.json` auf Änderungen, d.h. es wird deine Anwendung 
 
 ## Andere Ressourcen
 
-Ressourcen, die nicht als Addon oder Bower-Paket verfügbar sind, solltest du im `vendor`-Verzeichnis deines Projekts ablegen.
+Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
+
+Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
 
 ## Ressourcen kompilieren
 
-Wenn du Abhängigkeiten benutzt, die nicht in einem Addon verteilt werden, musst du Ember CLI anweisen, die benötigten Ressourcen in den Build-Prozess einzubinden. Das geschieht über die Datei `ember-cli-build.js`. Du solltest nach Möglichkeit nur Ressourcen importieren, die sich in einem der Verzeichnisse `bower_components` und `vendor` befinden.
+When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
 
 ### Globale Variablen
 
-Manche externen Bibliotheken stellen globale Variablen zur Verfügung (wie `moment` im folgenden Beispiel). Es ist nicht nötig, diese globalen Variablen in den einzelnen Quelldateien zu importieren (mit `import`). Um sie in deiner Anwendung zu benutzen, musst du sie allerdings einmalig beim Build-Prozess einbinden. Im folgenden Beispiel sollte der Pfad zur Bibliothek das erste und einzige Argument sein.
+The globals provided by some assets (like `moment` in the below example) can be used in your application without the need to `import` them. Provide the asset path as the first and only argument.
 
 ```ember-cli-build.js app.import('bower_components/moment/moment.js');
 
@@ -46,11 +48,11 @@ Manche externen Bibliotheken stellen globale Variablen zur Verfügung (wie `mome
     });
     
 
-Diese können nun in deinen Anwendungsdateien mit `import` importiert werden. (z.B. `import { raw as icAjaxRaw } from 'ic-ajax';`)
+You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
 
 ### Umgebungsabhängige Ressourcen
 
-Falls du in verschiedenen Umgebungen unterschiedliche Ressourcen benutzen musst, kannst du ein Objekt als ersten Parameter spezifizieren. Die Keys dieses Objekts sind die Umgebungsnamen und die Werte sind die Ressourcen, die in den jeweiligen Umgebungen benutzt werden sollen.
+If you need to use different assets in different environments, specify an object as the first parameter. That object's key should be the environment name, and the value should be the asset to use in that environment.
 
 ```ember-cli-build.js app.import({ development: 'bower_components/ember/ember.js', production: 'bower_components/ember/ember.prod.js' });
 
@@ -71,24 +73,31 @@ Falls du in verschiedenen Umgebungen unterschiedliche Ressourcen benutzen musst,
 
 ### CSS
 
-Der Pfad zur Ressource sollte das erste Argument sein:
+Provide the asset path as the first argument:
 
 ```ember-cli-build.js app.import('bower_components/foundation/css/foundation.css');
 
     <br />Alle Stylesheet-Ressourcen, die so hinzugefügt werden, werden zusammengefügt und in die `/assets/vendor.css` geschrieben.
     
-    ### Andere Ressourcen
+    ### Other Assets
     
-    Alle anderen Ressourcen wie Bilder oder Schriftarten können auch mit `import()` hinzugefügt werden.
-    Standardmäßig werden sie unverändert nach `dist/` kopiert.
+    All assets located in the `public/` folder will be copied as is to the final output directory, `dist/`.
+    
+    For example, a `favicon` located at `public/images/favicon.ico` will be copied to `dist/images/favicon.ico`.
+    
+    All third-party assets, included either manually in `vendor/` or via a package manager like Bower, must be added via `import()`.
+    
+    Third-party assets that are not added via `import()` will not be present in the final build.
+    
+    By default, `import`ed assets will be copied to `dist/` as they are, with the existing directory structure maintained.
     
     ```ember-cli-build.js
     app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf');
     
 
-Dieses Beispiel erzeugt die Schriftart-Datei in `dist/font-awesome/fonts/fontawesome-webfont.ttf`.
+This example would create the font file in `dist/font-awesome/fonts/fontawesome-webfont.ttf`.
 
-Du kannst optional `import()` auch mitteilen, die Datei unter einem anderen Pfad zu plazieren. Das folgende Beispiel kopiert die Datei nach `dist/assets/fontawesome-webfont.ttf`.
+You can also optionally tell `import()` to place the file at a different path. The following example will copy the file to `dist/assets/fontawesome-webfont.ttf`.
 
 ```ember-cli-build.js app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf', { destDir: 'assets' });
 

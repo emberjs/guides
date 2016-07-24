@@ -51,31 +51,43 @@ Serving on http://localhost:4200/
 
 (いつでもサーバーを停止するには、ターミナルで Ctrl-C と入力してください)。
 
-好みのブラウザーで [http://localhost:4200/](http://localhost:4200) を開けてください。 「 Welcome to Ember 」とだけ表示されるページを確認できるはずです。 おめでとうございます ！ あなたは初めての Ember app を作成して、起動したのです。
+好みのブラウザーで [`http://localhost:4200`](http://localhost:4200) を開けてください。 Ember welcome page が見えるはずです。 おめでとうございます ！ あなたは初めての Ember アプリケーションを作成して、起動したのです。
 
-エディターに切り替えて、`app/templates/application.hbs` を開きます。これは `application` テンプレートと呼ばれるもので、ユーザーがあなたのアプリケーションを開いたときに、常にスクリーンに表示されるものです。
-
-エディターで `Welcome to Ember` から `PeopleTracker` と `< h2 >` 編集を行い、ファイルを保存します。 Ember はあなたが変更を行ったことを検知して、自動的にバックグラウンドでページを再読み込みしたはずです。 "Welcome to Ember" が "PeopleTracker" へと置き換わったことが、確認できるはずです。
-
-## ルートの定義
-
-では、科学者のリストを表示するアプリケーションを作ってみましょう。 そのためには、まず、ルートを作成する必要があります。 当面は、ルートはアプリケーションを構成する別のページとしての考えるといいでしょう。
-
-Emberには*generators* が含まれているので、一般的なタスクのボイラープレートコードを自動で生成することができます。ルートを生成するにはターミナルで次のコードを実行してください。
+`ember generate` コマンドを利用して新しいtemplate (テンプレート)作成しましょう。
 
 ```sh
-ember generate route scientists
+ember generate template application
 ```
+
+アプリケーションを読み込むと、スクリーンにはいつも、`application` template (テンプレート)があります。エディターで`app/templates/application.hbs` を開いて、次のコードを追加してください:
+
+```app/templates/application.hbs 
+
+## PeopleTracker
+
+{{outlet}}
+
+    <br />Ember は新しいファイルを検知して、自動的にバックグラウンドでページを再読み込んだはずです。 welcome pageが"PeopleTracker"に置き換わったのが確認できるはずです。
+    
+    ## Route (ルータ)の定義
+    
+    科学者のリストを表示するアプリケーションを作っていきましょう。 そのためには、まず、route (ルート)を作成する必要があります。 当面は、ルートはアプリケーションを構成する別のページとしての考えるといいでしょう。
+    
+    Ember はボイラープレートコードを自動生成する、_generators_ (ジェネレータ)があります。 To generate a route, type this in your terminal:
+    
+    ```sh
+    ember generate route scientists
+    
 
 次のような出力が表示されるはずです。
 
 ```text
 installing route
-   create app/routes/scientists.js
-   create app/templates/scientists.hbs
- updating router 
-  add route scientists 
-installing route-test 
+  create app/routes/scientists.js
+  create app/templates/scientists.hbs
+updating router
+  add route scientists
+installing route-test
   create tests/unit/routes/scientists-test.js
 ```
 
@@ -92,8 +104,7 @@ Ember が次のことを行ったことを意味しています。
 
 ## List of Scientists
 
-    <br />ブラウザで
-    [http://localhost:4200/scientists](http://localhost:4200/scientists) を開けてください。 `application.hbs`の`<h2>`直下に、`scientists.hbs`テンプレートに追加した、`<h2>`が確認できるはずです。
+    <br />ブラウザで[`http://localhost:4200/scientists`](http://localhost:4200/scientists)を開けてください。 `application.hbs`の`<h2>`直下に、`scientists.hbs`テンプレートに追加した、`<h2>`が確認できるはずです。
     
     `scientists`テンプテートのレンダリングが出来たので、描画するためのデータを与えましょう。 そのために、`app/routes/scientists.js`を編集してルートのための_model_を特定します。
     

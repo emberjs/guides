@@ -51,21 +51,38 @@ Serving on http://localhost:4200/
 
 (Se quiser parar o servidor, digite Ctrl-C a qualquer hora no seu terminal)
 
-Abra [http://localhost:4200/](http://localhost:4200) em seu navegador. Você deve ver uma página que diz "Welcome do Ember" e não muito mais. Parabéns! Você acabou de criar e iniciar seu primeiro aplicativo em Ember.
+Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice. You should see an Ember welcome page and not much else. Parabéns! You just created and booted your first Ember app.
 
-Alterne para o seu editor e abra `app/templates/application.hbs`. Isto se chama o template do `aplicativo` e está sempre na tela enquanto o usuário tem seu aplicativo carregado.
-
-No seu editor, altere o texto dentro do `<h2>` de `Welcome to Ember` para `PeopleTracker` e salve o arquivo. Observe que o Ember detecta a mudança que você acabou de fazer e recarrega automaticamente a página para você em segundo plano. Você verá que "Welcome to Ember" mudou para "PeopleTracker".
-
-## Definindo uma Rota
-
-Vamos construir um aplicativo que mostra uma lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por enquanto, você pode pensar em rotas como sendo diferentes páginas que compõem o seu aplicativo.
-
-Ember vem com *geradores* que automatizam o código padrão para tarefas comuns. Para gerar uma rota, digite o seguinte em seu terminal:
+Let's create a new template using the `ember generate` command.
 
 ```sh
-ember generate route scientists
+ember generate template application
 ```
+
+The `application` template is always on screen while the user has your application loaded. In your editor, open `app/templates/application.hbs` and add the following:
+
+```app/templates/application.hbs 
+
+## PeopleTracker
+
+{{outlet}}
+
+    <br />Notice that Ember detects the new file and automatically reloads the
+    page for you in the background. You should see that the welcome page
+    has been replaced by "PeopleTracker".
+    
+    ## Define a Route
+    
+    Let's build an application that shows a list of scientists. To do that,
+    the first step is to create a route. For now, you can think of routes as
+    being the different pages that make up your application.
+    
+    Ember comes with _generators_ that automate the boilerplate code for
+    common tasks. To generate a route, type this in your terminal:
+    
+    ```sh
+    ember generate route scientists
+    
 
 Você verá na saída algo assim:
 
@@ -92,14 +109,19 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
 
 ## Lista de Cientistas
 
-    <br />No seu navegador, abra
-    [http://localhost:4200/scientists](http://localhost:4200/scientists). Você deverá ver o `<h2>` que colocou no "template" `scientists.hbs`, logo abaixo do `<h1>` do nosso "template" `application.hbs`.
+    <br />In your browser, open
+    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
+    see the `<h2>` you put in the `scientists.hbs` template, right below the
+    `<h2>` from our `application.hbs` template.
     
-    Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para mostrar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
+    Now that we've got the `scientists` template rendering, let's give it some
+    data to render. We do that by specifying a _model_ for that route, and
+    we can specify a model by editing `app/routes/scientists.js`.
     
-    Vamos pegar o código criado pelo gerador e adicionar um método `model()` à `Route` (Rota):
+    We'll take the code created for us by the generator and add a `model()`
+    method to the `Route`:
     
-     ```app/routes/scientists.js{+4,+5,+6}
+    ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
     
     export default Ember.Route.extend({
@@ -123,15 +145,20 @@ Agora vamos dizer para o Ember como transformar aquele vetor ("array") de string
 
 * {{scientist}} {{/each}} 
 
-    <br />Aqui, usamos o auxiliar `each` para executar um loop sobre cada item do array que fornecemos no `model()` e imprimi-lo dentro de um elemento de `<li>`.
+    <br />Here, we use the `each` helper to loop over each item in the array we
+    provided from the `model()` hook and print it inside an `<li>` element.
     
-    # # Criar um componente UI
+    ## Create a UI Component
     
-    Com o crescimento do seu aplicativo você nota que está compartilhando elementos de interface entre várias páginas (ou usando várias vezes na mesma página), Ember facilita a refatorar seus templates em componentes reutilizáveis.
+    As your application grows and you notice you are sharing UI elements
+    between multiple pages (or using them multiple times on the same page),
+    Ember makes it easy to refactor your templates into reusable components.
     
-    Vamos criar um componente de `people-list` que podemos usar para mostrar uma lista de pessoas em vários lugares.
+    Let's create a `people-list` component that we can use
+    in multiple places to show a list of people.
     
-    Como de costume, há um gerador que faz isto fácil para nós. Fazer um novo componente digitando: 
+    As usual, there's a generator that makes this easy for us. Make a new
+    component by typing:
     
     ```sh
     ember generate component people-list
@@ -147,12 +174,19 @@ Copie e cole o template de `scientists` no template do componente `people-list` 
 
 * {{person}} {{/each}} 
 
-    <br />Note que nós mudamos o título de uma seqüência de caracteres codificada ("List of Scientists") para uma propriedade dinâmica (`{{title}}`). Nós também renomeamos `scientist` para algo mais genérico `person`, diminuindo o acoplamento do nosso componente onde ele é usado.
+    <br />Note that we've changed the title from a hard-coded string ("List of
+    Scientists") to a dynamic property (`{{title}}`). We've also renamed
+    `scientist` to the more-generic `person`, decreasing the coupling of our
+    component to where it's used.
     
-    Salve este template e volte novamente para o template de `scientists`. Substitua todo o nosso velho código com nossa nova versão componentizada. Componentes parecem com tags HTML mas em vez de usar colchetes (`<tag>`) eles usam chaves duplas (`{{component}}`). Nós vamos contar nosso componente: 
+    Save this template and switch back to the `scientists` template. Replace all
+    our old code with our new componentized version. Components look like
+    HTML tags but instead of using angle brackets (`<tag>`) they use double
+    curly braces (`{{component}}`). We're going to tell our component:
     
-    1. O título para usar, via o atributo `title`.
-    2. Qual array de pessoas usar, via o atributo `pessoas`. Nós forneceremos o `modelo` desta rota, como a lista de pessoas.
+    1. What title to use, via the `title` attribute.
+    2. What array of people to use, via the `people` attribute. We'll
+       provide this route's `model` as the list of people.
     
     ```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
     <h2>List of Scientists</h2>
@@ -169,7 +203,7 @@ Volte para o seu navegador e você verá que a interface parece idêntica. A ún
 
 Você pode ver isso em ação, se você criar uma nova rota que mostra uma lista diferente de pessoas. Como um exercício para o leitor, você pode tentar criar uma rota de `programadores` que mostra uma lista de programadores famosos. Re-usando o componente `people-list`, você pode fazer isso com praticamente nenhum código.
 
-## Compilando para produção
+## Building For Production
 
 Agora que nós escrevemos a nossa aplicação e verificamos que ela funciona em desenvolvimento, é hora de prepará-la para nossos usuários. Para fazer isso, execute o seguinte comando:
 

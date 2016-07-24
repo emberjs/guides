@@ -40,7 +40,7 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **dist**: When we build our app for deployment, the output files will be created here.
 
-**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember-CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
+**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
 
 **public**: This directory contains assets such as images and fonts.
 
@@ -98,4 +98,4 @@ or, for short:
 ember s
 ```
 
-If we navigate to `localhost:4200`, we'll see our brand new app displaying the text "Welcome to Ember".
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see our brand new app displaying the text "Welcome to Ember".

@@ -19,7 +19,7 @@ Person = Ember.Object.extend({
   })
 });
 
-var ironMan = Person.create({
+let ironMan = Person.create({
   firstName: 'Tony',
   lastName:  'Stark'
 });
@@ -27,19 +27,18 @@ var ironMan = Person.create({
 ironMan.get('fullName'); // "Tony Stark"
 ```
 
-This declares the function to be a computed property, and the arguments tell Ember that it depends on the `firstName` and `lastName` attributes.
-
-Whenever you access the `fullName` property, this function gets called, and it returns the value of the function, which simply calls `firstName` + `lastName`.
+This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on. The first time you access the `fullName` property, the function backing the computed property (i.e. the last argument) will be ran and the results will be cached. Subsequent access of `fullName` will read from the cache without calling the function. Changing any of the dependent properties causes the cache to invalidate, so that the computed function runs again on the next access.
 
 When you want to depend on a property which belongs to an object, you can setup multiple dependent keys by using brace expansion:
 
 ```javascript
-var obj = Ember.Object.extend({
+let obj = Ember.Object.extend({
   baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
 
   something: Ember.computed('baz.{foo,bar}', function() {
     return this.get('baz.foo') + ' ' + this.get('baz.bar');
   })
+});
 ```
 
 This allows you to observe both `foo` and `bar` on `baz` with much less duplication/redundancy when your dependent keys are mostly similar.
@@ -64,7 +63,7 @@ Person = Ember.Object.extend({
   })
 });
 
-var captainAmerica = Person.create({
+let captainAmerica = Person.create({
   firstName: 'Steve',
   lastName: 'Rogers',
   age: 80,
@@ -102,7 +101,7 @@ Person = Ember.Object.extend({
       return `${this.get('firstName')} ${this.get('lastName')}`;
     },
     set(key, value) {
-      var [firstName, lastName] = value.split(/\s+/);
+      let [firstName, lastName] = value.split(/\s+/);
       this.set('firstName', firstName);
       this.set('lastName',  lastName);
       return value;
@@ -111,7 +110,7 @@ Person = Ember.Object.extend({
 });
 
 
-var captainAmerica = Person.create();
+let captainAmerica = Person.create();
 captainAmerica.set('fullName', 'William Burnside');
 captainAmerica.get('firstName'); // William
 captainAmerica.get('lastName'); // Burnside

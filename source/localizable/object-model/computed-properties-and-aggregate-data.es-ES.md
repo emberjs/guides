@@ -2,7 +2,7 @@ Sometimes you have a computed property whose value depends on the properties of 
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
-```app/components/todos.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
+```app/components/todo-list.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
 
 incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
 
@@ -18,7 +18,7 @@ incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.g
     [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
     which is a shorter way of expressing the above computed property:
     
-    ```app/components/todos.js
+    ```app/components/todo-list.js
     export default Ember.Component.extend({
       todos: [
         Ember.Object.create({ isDone: true }),
@@ -33,27 +33,27 @@ incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.g
 In both of the examples above, `incomplete` is an array containing the single incomplete todo:
 
 ```javascript
-import TodosComponent from 'app/components/todos';
+import TodoListComponent from 'app/components/todo-list';
 
-let todosComponent = TodosComponent.create();
-todosComponent.get('incomplete.length');
+let todoListComponent = TodoListComponent.create();
+todoListComponent.get('incomplete.length');
 // 1
 ```
 
 If we change the todo's `isDone` property, the `incomplete` property is updated automatically:
 
 ```javascript
-let todos = todosComponent.get('todos');
+let todos = todoListComponent.get('todos');
 let todo = todos.objectAt(1);
 todo.set('isDone', true);
 
-todosComponent.get('incomplete.length');
+todoListComponent.get('incomplete.length');
 // 0
 
 todo = Ember.Object.create({ isDone: false });
 todos.pushObject(todo);
 
-todosComponent.get('incomplete.length');
+todoListComponent.get('incomplete.length');
 // 1
 ```
 
@@ -61,7 +61,7 @@ Note that `@each` only works one level deep. You cannot use nested forms like `t
 
 Sometimes you don't care if properties of individual array items change. In this case use the `[]` key instead of `@each`. Computed properties dependent on an array using the `[]` key will only update if items are added to or removed from the array, or if the array property is set to a different array. For example:
 
-```app/components/todos.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
+```app/components/todo-list.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
 
 selectedTodo: null, indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[]', function() { return this.get('todos').indexOf(this.get('selectedTodo')); }) });
 

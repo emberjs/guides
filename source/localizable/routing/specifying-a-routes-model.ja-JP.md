@@ -4,14 +4,15 @@
 
 ```app/router.js Router.map(function() { this.route('favorite-posts'); });
 
-    <br />`favoritePosts`ルートのモデルを読み込むには、`favoritePosts` ルートハンドラーで [`model()`][1] フックを設定します:
+    <br />To load a model for the `favoritePosts` route, you would use the [`model()`][1] 
+    hook in the `favoritePosts` route handler:
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
     
     ```app/routes/favorite-posts.js
     export default Ember.Route.extend({
       model() {
-        return this.store.query('post', { favorite: true });
+        return this.get('store').query('post', { favorite: true });
       }
     });
     
@@ -44,7 +45,7 @@
     });
     
 
-```app/routes/photo.js export default Ember.Route.extend({ model(params) { return this.store.findRecord('photo', params.photo_id); } });
+```app/routes/photo.js export default Ember.Route.extend({ model(params) { return this.get('store').findRecord('photo', params.photo_id); } });
 
     <br />ダイナミックセグメントがあるルートの`model` フックを、ID(例えば、`47` とか `post-slug`など)をモデルに変更して、ルートのテンプレートとして描画できるようにする必要があります。 上記の例の場合は、写真のID(`params.photo_id`) を Ember Data'sの`findRecord`
     メソッドの引数としています。
@@ -54,14 +55,14 @@
     ## 複数モデル
     
     複数モデルは、[Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash) を通じて返すことが可能です。
-    `Ember.RSVP.hash` はプロミスを返す、パラメータを受け取り、すべてのプロミスが解決されたとき `Ember.RSVP.hash` 自体のプロミスが解決されます。 例えば
+    `Ember.RSVP.hash` はプロミスを返す、パラメータを受け取り、すべてのプロミスが解決されたとき `Ember.RSVP.hash` 自体のプロミスが解決されます。 For example:
     
     ```app/routes/songs.js
     export default Ember.Route.extend({
       model() {
         return Ember.RSVP.hash({
-          songs: this.store.findAll('song'),
-          albums: this.store.findAll('album')
+          songs: this.get('store').findAll('song'),
+          albums: this.get('store').findAll('album')
         });
       }
     });

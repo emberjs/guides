@@ -11,7 +11,7 @@ Consider the following:
     <br />```app/routes/slow-model.js
     export default Ember.Route.extend({
       model() {
-        return this.store.findAll('slowModel');
+        return this.get('store').findAll('slow-model');
       }
     });
     
@@ -60,7 +60,7 @@ For nested routes, like:
     ```app/routes/foo-slow-model.js
     export default Ember.Route.extend({
       model() {
-        return this.store.findAll('slowModel');
+        return this.get('store').findAll('slow-model');
       },
       actions: {
         loading(transition, originRoute) {
@@ -120,12 +120,12 @@ If the `articles.overview` route's `model` hook returns a promise that rejects (
     app/routes/articles-overview.js
     export default Ember.Route.extend({
       model(params) {
-        return this.store.findAll('problematicModel');
+        return this.get('store').findAll('problematic-model');
       },
       actions: {
         error(error, transition) {
           if (error) {
-            return this.transitionTo('errorPage');
+            return this.transitionTo('error-page');
           }
         }
       }

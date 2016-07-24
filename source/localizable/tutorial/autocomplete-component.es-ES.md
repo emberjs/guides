@@ -8,7 +8,7 @@ ember g component list-filter
 
 Como antes, esto crea un template (plantilla) de Handlebars) (`app/templates/components/list-filter.hbs`), un archivo JavaScript (`app/components/list-filter.js`) y una test de integración del component (componente) (`tests/integration/components/list-filter-test.js`).
 
-Vamos a empezar a escribir algunos tests que nos permitan pensar acerca de lo que estamos realizando. El component (componente) del filtro debería generar una lista de elementos filtrados respecto a lo que se procese dentro de este, conocido como su bloque de template interno. Queremos que nuestro componente llame a 2 acciones: una para proporcionar una lista de todos los elementos cuando no se suministra ningún filtro y una acción para buscar anuncios por ciudad.
+Vamos a empezar a escribir algunos tests que nos permitan pensar acerca de lo que estamos realizando. El component (componente) del filtro debería generar una lista de elementos filtrados respecto a lo que se procese dentro de este, conocido como su bloque de template interno. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
 Para nuestra prueba inicial, simplemente comprobamos que todas las ciudades que proveemos son renderizadas y que el object del anuncio es accesible desde el template (plantilla).
 
@@ -123,7 +123,7 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     <br />Utilizaremos el gancho `init` para llenar nuestros listados iniciales, llamando la action (acción) `filter` con un valor vacío.
     Nuestra acción 'handleFilterEntry' llama a nuestra acción de filtro basado en el atributo `value` establecido por el helper de campo de texto.
     
-    La acción de 'filtro' es [pasada](../../ components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) por el objeto que llama. Este es un patrón llamado _closure actions_.
+    The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. Este es un patrón llamado _closure actions_.
     
     Para implementar estas acciones, crearemos el controller (controlador) index para la aplicación.  El controller (controlador) index es ejecutado cuando el usuario va a la route (ruta) base index de la aplicación.
     

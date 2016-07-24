@@ -38,7 +38,7 @@ test('visiting /login', function(assert) { visit('/login');
 
 ## Test Helpers
 
-One of the major issues in testing web applications is that all code is event-driven, therefore has the potential to be asynchronous (i.e. output can happen out of sequence from input). This has the ramification that code can be executed in any order.
+One of the major issues in testing web applications is that all code is event-driven and therefore has the potential to be asynchronous (i.e. output can happen out of sequence from input). This has the ramification that code can be executed in any order.
 
 An example may help here: Let's say a user clicks two buttons, one after another and both load data from different servers. They take different times to respond.
 

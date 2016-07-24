@@ -110,7 +110,7 @@ export default Model.extend({ order: belongsTo('order') });
     Por ejemplo, si escribieras un app de gestión de contactos, podrías tener un modelo de 'Persona'. Un registro de tu app podría tener un tipo de 'persona' y un ID de '1' o 'steve buscemi'.
     
     ```js
-    this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
+    this.get('store').findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
     
 
 Un ID es asignado a un registro generalmente por el servidor cuando lo guardas por primera vez, pero también puedes generar los IDs del lado del cliente.
