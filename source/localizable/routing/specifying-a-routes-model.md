@@ -9,8 +9,8 @@ Router.map(function() {
 });
 ```
 
-To load a model for the `favoritePosts` route, you would use the [`model()`][1] 
-hook in the `favoritePosts` route handler:
+To load a model for the `favorite-posts` route, you would use the [`model()`][1]
+hook in the `favorite-posts` route handler:
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
 
