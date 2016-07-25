@@ -4,8 +4,8 @@ For example, take this router:
 
 ```app/router.js Router.map(function() { this.route('favorite-posts'); });
 
-    <br />To load a model for the `favoritePosts` route, you would use the [`model()`][1] 
-    hook in the `favoritePosts` route handler:
+    <br />To load a model for the `favorite-posts` route, you would use the [`model()`][1]
+    hook in the `favorite-posts` route handler:
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
     

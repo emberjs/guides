@@ -102,9 +102,9 @@ export default Ember.Component.extend({
 
 ### Obteniendo los mapas con un service (servicio)
 
-Ahora que tenemos un test de integración del component (componente) que aprueba, pero no se muestra ningún mapa cuando vemos nuestra página web. Para generar los mapas, implementaremos el servicio de mapas.
+At this point we should have a passing component integration test, but our acceptance test should now fail, unable to find our maps service. In addition to our acceptance test failing, no maps show up when we view our web page. To actually generate the maps, we'll implement the maps service.
 
-Accedemos el API de los mapas a través de un servicio nos da varios beneficios
+Accessing our maps API through a [service](../../applications/services) will give us several benefits
 
 * It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
 * Se inicializará únicamente hasta que se llame por primera vez. En algunos casos, esto puede reducir el uso de Cpu y memoria de la aplicación.
