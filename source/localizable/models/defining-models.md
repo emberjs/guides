@@ -4,7 +4,7 @@ if they leave your app and come back later (or if they refresh the page)
 should be represented by a model.
 
 When you want a new model for your application you need to create a new file
-under the models folder and extend from `Model`. This is more conveniently
+under the models folder and extend from `DS.Model`. This is more conveniently
 done by using one of Ember CLI's generator commands. For instance, let's create
 a `person` model:
 
@@ -15,9 +15,7 @@ ember generate model person
 This will generate the following file:
 
 ```app/models/person.js
-import Model from 'ember-data/model';
-
-export default Model.extend({
+export default DS.Model.extend({
 });
 ```
 
@@ -28,16 +26,13 @@ and [working with records](../creating-updating-and-deleting-records) of that ty
 ## Defining Attributes
 
 The `person` model we generated earlier didn't have any attributes. Let's
-add first and last name, as well as the birthday, using [`attr`](http://emberjs.com/api/data/classes/DS.html#method_attr):
+add first and last name, as well as the birthday, using [`DS.attr`](http://emberjs.com/api/data/classes/DS.html#method_attr):
 
 ```app/models/person.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-
-export default Model.extend({
-  firstName: attr(),
-  lastName: attr(),
-  birthday: attr()
+export default DS.Model.extend({
+  firstName: DS.attr(),
+  lastName: DS.attr(),
+  birthday: DS.attr()
 });
 ```
 
@@ -50,12 +45,9 @@ computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
 ```app/models/person.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-
-export default Model.extend({
-  firstName: attr(),
-  lastName: attr(),
+export default DS.Model.extend({
+  firstName: DS.attr(),
+  lastName: DS.attr(),
 
   fullName: Ember.computed('firstName', 'lastName', function() {
     return `${this.get('firstName')} ${this.get('lastName')}`;
@@ -73,19 +65,16 @@ match the type you would like to use in your JavaScript code. Ember
 Data allows you to define simple serialization and deserialization
 methods for attribute types called transforms. You can specify that
 you would like a transform to run for an attribute by providing the
-transform name as the first argument to the `attr` method. Ember Data
+transform name as the first argument to the `DS.attr` method. Ember Data
 supports attribute types of `string`, `number`, `boolean`, and `date`,
 which coerce the value to the JavaScript type that matches its name.
 
 ```app/models/person.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-
-export default Model.extend({
-  name: attr('string'),
-  age: attr('number'),
-  admin: attr('boolean'),
-  birthday: attr('date')
+export default DS.Model.extend({
+  name: DS.attr('string'),
+  age: DS.attr('number'),
+  admin: DS.attr('boolean'),
+  birthday: DS.attr('date')
 });
 ```
 
@@ -111,9 +100,7 @@ ember generate transform dollars
 Here is a simple transform that converts values between cents and US dollars.
 
 ```app/transforms/dollars.js
-import Transform from 'ember-data/transform';
-
-export default Transform.extend({
+export default DS.Transform.extend({
   deserialize: function(serialized) {
     return serialized / 100; // returns dollars
   },
@@ -131,17 +118,14 @@ reverse and converts a value to the format expected by the persistence layer.
 You would use the custom `dollars` transform like this:
 
 ```app/models/product.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-
-export default Model.extend({
-  spent: attr('dollars')
+export default DS.Model.extend({
+  spent: DS.attr('dollars')
 });
 ```
 
 ### Options
 
-`attr` can also take a hash of options as a second parameter. At the moment
+`DS.attr` can also take a hash of options as a second parameter. At the moment
 the only option available is `defaultValue`, which can use a value or a function
 to set the default value of the attribute if one is not supplied.
 
@@ -150,14 +134,11 @@ In the following example we define that `verified` has a default value of
 creation:
 
 ```app/models/user.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-
-export default Model.extend({
-  username: attr('string'),
-  email: attr('string'),
-  verified: attr('boolean', { defaultValue: false }),
-  createdAt: attr('date', {
+export default DS.Model.extend({
+  username: DS.attr('string'),
+  email: DS.attr('string'),
+  verified: DS.attr('boolean', { defaultValue: false }),
+  createdAt: DS.attr('date', {
     defaultValue() { return new Date(); }
   })
 });
