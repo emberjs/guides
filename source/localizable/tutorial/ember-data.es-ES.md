@@ -17,26 +17,25 @@ installing model-test
 
 Cuando abrimos el archivo del model (modelo), vemos:
 
-```app/models/rental.js import Model from 'ember-data/model';
+```app/models/rental.js import DS from 'ember-data';
 
-export default Model.extend({
+export default DS.Model.extend({
 
 });
 
-    <br />Agreguemos los mismos atributos para nuestro rental que hemos utilizado previamente  en nuestro arreglo hardcoded de objetos Javascript -
-    _title_, _owner_, _city_, _type_, _image_, y _bedrooms_:
+    <br />Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
+    _title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
     
     ```app/models/rental.js
-    import Model from 'ember-data/model';
-    import attr from 'ember-data/attr';
+    import DS from 'ember-data';
     
-    export default Model.extend({
-      title: attr(),
-      owner: attr(),
-      city: attr(),
-      type: attr(),
-      image: attr(),
-      bedrooms: attr()
+    export default DS.Model.extend({
+      title: DS.attr(),
+      owner: DS.attr(),
+      city: DS.attr(),
+      type: DS.attr(),
+      image: DS.attr(),
+      bedrooms: DS.attr()
     });
     
 

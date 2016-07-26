@@ -88,4 +88,6 @@ export default Router;
 ember s
 ```
 
-ブラウザで [`http://localhost:4200`](http://localhost:4200)を開くと、真新しいアプリケーションが、 "Welcome to Ember" と表示しているのが確認できるはずです。
+ブラウザで [`http://localhost:4200`](http://localhost:4200)を開くと、デフォルトのwelcomeスクリーンが表示されているはずです。 `app/templates/application.hbs`ファイルを追加すると、welcomeスクリーンは独自のコンテンツに置き換えられます。
+
+![default welcome screen](../../images/ember-cli/default-welcome-page.png)

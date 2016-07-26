@@ -91,4 +91,6 @@ export default Router;
 ember s
 ```
 
-If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see our brand new app displaying the text "Welcome to Ember".
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen. Once we add our own `app/templates/application.hbs` file, the welcome screen will be replaced with our own content.
+
+![default welcome screen](../../images/ember-cli/default-welcome-page.png)

@@ -80,26 +80,19 @@ In Ember Data, each model is represented by a subclass of `Model` that defines t
 
 Models define the type of data that will be provided by your server. For example, a `Person` model might have a `firstName` attribute that is a string, and a `birthday` attribute that is a date:
 
-```app/models/person.js import Model from 'ember-data/model'; import attr from 'ember-data/attr';
-
-export default Model.extend({ firstName: attr('string'), birthday: attr('date') });
+```app/models/person.js export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
 
     <br />A model also describes its relationships with other objects. For
     example, an `order` may have many `line-items`, and a
     `line-item` may belong to a particular `order`.
     
     ```app/models/order.js
-    import Model from 'ember-data/model';
-    import { hasMany } from 'ember-data/relationships';
-    
-    export default Model.extend({
-      lineItems: hasMany('line-item')
+    export default DS.Model.extend({
+      lineItems: DS.hasMany('line-item')
     });
     
 
-```app/models/line-item.js import Model from 'ember-data/model'; import { belongsTo } from 'ember-data/relationships';
-
-export default Model.extend({ order: belongsTo('order') });
+```app/models/line-item.js export default DS.Model.extend({ order: DS.belongsTo('order') });
 
     <br />Models don't have any data themselves, they define the attributes,
     relationships and behavior of specific instances, which are called

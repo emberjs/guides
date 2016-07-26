@@ -18,7 +18,7 @@ installing component-test
 
 イメージをタグルする動作を作成するには、まず失敗するテストを実装します。
 
-受入テストには、賃貸物件のモデルが持っている全ての情報を持つ物件のスタブを作成します。 当初は、component (コンポーネント)が`wide` classなしで描画されるようにアサートします。 画像をクリックすると、そのエレメントに`wide` クラスが追加され、もう一度クリックすると、`wide`クラスが取り除かれます。 Note that we find the image element using the the CSS selector `.image`.
+受入テストには、賃貸物件のモデルが持っている全ての情報を持つ物件のスタブを作成します。 当初は、component (コンポーネント)が`wide` classなしで描画されるようにアサートします。 画像をクリックすると、そのエレメントに`wide` クラスが追加され、もう一度クリックすると、`wide`クラスが取り除かれます。 画像のエレメントをCSSセレクタ `.image` で見つけていることに注意してください。.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -26,12 +26,12 @@ moduleForComponent('rental-listing', 'Integration | Component | rental listing',
 
 test('should toggle wide class on click', function(assert) { assert.expect(3); let stubRental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 }); this.set('rentalObj', stubRental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    <br />A component consists of two parts:
+    <br />コンポーネントは、外見を定義するつの部分で構成されています:
     
-    * A template that defines how it will look (`app/templates/components/rental-listing.hbs`)
-    * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
+    * 外見を定義する template (テンプレート)(`app/templates/components/rental-listing.hbs`)
+    * 動作を定義するJavaScriptのソースファイル(`app/components/rental-listing.js`)
     
-    Our new `rental-listing` component will manage how a user sees and interacts with a rental.
+    新規で作成した`rental-listing` component (コンポーネント)はユーザーがレンタル品とどうインタラクションを行うかを管理します。
     まず、index.hbs` template (テンプレート)から各賃貸物件の詳細を表示する情報を`rental-listing.hbs` に移動してイメージフィールドを追加します:
     
     ```app/templates/components/rental-listing.hbs{+2}
@@ -90,11 +90,11 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article> {{/each}}
 
-    Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+    ここでは`rental-listing` component (コンポーネント)をその名称で呼び出しています、そして各`rentalUnit`をcomponent (コンポーネント)の`rental`属性として割り当てています。
     
-    ## Hiding and Showing an Image
+    ## 画像の表示と非表示
     
-    Now we can add functionality that will show the image of a rental when requested by the user.
+    これで、ユーザーの要求でレンタル品の画像を表示する機能を追加できるようになりました。
     
     Let's use the `{{#if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
     

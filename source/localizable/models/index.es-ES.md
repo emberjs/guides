@@ -80,24 +80,17 @@ En Ember Data, cada modelo es representado por una subclase de `Model` que defin
 
 Los modelos definen el tipo de datos que será proporcionado por el servidor. Por ejemplo, un modelo de `Persona` puede tener un atributo `nombre` que es un string (tipo de dato carácter) y un atributo `cumpleaños` que es una fecha:
 
-'''app/models/person.js import Model from 'ember-data/model'; import attr from 'ember-data/attr';
-
-export default Model.extend ({ firstName: attr('string'), birthday: attr('date') });
+```app/models/person.js export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
 
     <br />Un modelo también describe sus relaciones con otros objetos. Por ejemplo, un «pedido» puede tener muchos «artículos» y un «artículo» puede pertenecer a un «pedido».
     
     ```app/models/order.js
-    import Model from 'ember-data/model';
-    import { hasMany } from 'ember-data/relationships';
-    
-    export default Model.extend({
-      lineItems: hasMany('line-item')
+    export default DS.Model.extend({
+      lineItems: DS.hasMany('line-item')
     });
     
 
-```app/models/line-item.js import Model from 'ember-data/model'; import { belongsTo } from 'ember-data/relationships';
-
-export default Model.extend({ order: belongsTo('order') });
+```app/models/line-item.js export default DS.Model.extend({ order: DS.belongsTo('order') });
 
     <br />Los modelos en sí no tienen datos, sino definen los atributos, relaciones y comportamiento de instancias específicas, que se llaman ** records**(registros).
     
@@ -113,52 +106,52 @@ export default Model.extend({ order: belongsTo('order') });
     this.get('store').findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
     
 
-Un ID es asignado a un registro generalmente por el servidor cuando lo guardas por primera vez, pero también puedes generar los IDs del lado del cliente.
+An ID is usually assigned to a record by the server when you save it for the first time, but you can also generate IDs client-side.
 
 ## Adapter(el Adaptador)
 
-Un **adapter** es un objeto que traduce las peticiones de Ember (como "buscar el usuario con el ID de 123") en las peticiones a un servidor.
+An **adapter** is an object that translates requests from Ember (such as "find the user with an ID of 123") into requests to a server.
 
-Por ejemplo, si tu aplicación solicita una `Persona` con el ID de `123`, ¿Ember cómo debería cargarla? ¿A través de HTTP o un WebSocket? Si es a través de HTTP, la URL sería ¿`/person/1`? o ¿`/resources/people/1`?
+For example, if your application asks for a `Person` with an ID of `123`, how should Ember load it? Over HTTP or a WebSocket? If it's HTTP, is the URL `/person/1` or `/resources/people/1`?
 
-El adaptador es responsable de responder a todas estas dudas. Siempre que tu app le pida al <<store>> por un registro que no se encuentra en caché, lo pide del adaptador. Si cambias un registro y lo guardas, el store le pasa el registro al adaptador para enviar los datos correspondientes al servidor y confirmar que se ha guardado correctamente.
+The adapter is responsible for answering all of these questions. Whenever your app asks the store for a record that it doesn't have cached, it will ask the adapter for it. If you change a record and save it, the store will hand the record to the adapter to send the appropriate data to your server and confirm that the save was successful.
 
-Los adaptadores te permiten cambiar completamente la implementación de tu API sin afectar el código de tu aplicación de Ember.
+Adapters let you completely change how your API is implemented without impacting your Ember application code.
 
 ## Caching
 
-El store automáticamente te almacena los registos en caché. Si un registro ya se había cargado, pedirlo otra vez siempre te devuelve la misma instancia de objeto. Esto minimiza el número de peticiones y respuestas del servidor y le permite a tu aplicación hacer el render de la interfaz de usuario lo más rápido posible.
+The store will automatically cache records for you. If a record had already been loaded, asking for it a second time will always return the same object instance. This minimizes the number of round-trips to the server, and allows your application to render its UI to the user as fast as possible.
 
-Por ejemplo, la primera vez que tu aplicación le pide un registro de una `persona` con el ID de `1` del store, el store extrae esa información del servidor.
+For example, the first time your application asks the store for a `person` record with an ID of `1`, it will fetch that information from your server.
 
-Sin embargo, la próxima vez que tu app pide una `persona` con el ID `1`, el store se dará cuenta de que ya había obtenido y almacenado en caché esa información del servidor. En lugar de enviar otra petición para obtener la misma información, le dará a tu aplicación el mismo registro que había proporcionado la primera vez. Esta característica—siempre devolver el mismo objeto de registro, sin importar cuántas veces que lo pides — a veces se llama un *identity map*(mapa de identidad).
+However, the next time your app asks for a `person` with ID `1`, the store will notice that it had already retrieved and cached that information from the server. Instead of sending another request for the same information, it will give your application the same record it had provided it the first time. This feature—always returning the same record object, no matter how many times you look it up—is sometimes called an *identity map*.
 
-Utilizar un identity map es importante porque asegura que los cambios realizas en una parte de la interfaz de usuario se propagan a otras partes de la interfaz. También significa que no tienes que sincronizar los registros manualmente—puedes solicitar un registro por ID y sin preocuparte de si otras partes de tu aplicación ya lo han solicitado y cargado.
+Using an identity map is important because it ensures that changes you make in one part of your UI are propagated to other parts of the UI. It also means that you don't have to manually keep records in sync—you can ask for a record by ID and not have to worry about whether other parts of your application have already asked for and loaded it.
 
-Una desventaja de devolver un registro de la caché es que puede que el estado del registro haya cambiado desde que se cargó en el mapa de identidad del store. Para evitar este problema de datos obsoletos, Ember Data automáticamente hará una petición en segundo plano cada vez que un registro en la memoria caché se devuelva del store. Cuando llegan los datos nuevos, el registro se actualiza, y si el registro ha sufrido cambios desde el render inicial, se vuelva a cargar la plantilla con la nueva información.
+One downside to returning a cached record is you may find the state of the data has changed since it was first loaded into the store's identity map. In order to prevent this stale data from being a problem for long, Ember Data will automatically make a request in the background each time a cached record is returned from the store. When the new data comes in, the record is updated, and if there have been changes to the record since the initial render, the template is re-rendered with the new information.
 
 ## Resumen de la Arquitectura
 
-La primera vez que tu aplicación le pide un registro del store, el store verifica si tiene una copia localmente, si no, lo pide del adaptador. El adaptador va a recuperar el registro de tu capa de persistencia; por lo general, esto sería una representación JSON del registro desde un servidor HTTP.
+The first time your application asks the store for a record, the store sees that it doesn't have a local copy and requests it from your adapter. Your adapter will go and retrieve the record from your persistence layer; typically, this will be a JSON representation of the record served from an HTTP server.
 
-![Diagrama que muestra el proceso para encontrar un registro de no cargada](../images/guides/models/finding-unloaded-record-step1-diagram.png)
+![Diagram showing process for finding an unloaded record](../images/guides/models/finding-unloaded-record-step1-diagram.png)
 
-Como se muestra en el diagrama anterior, el adaptador a veces no puede devolver el registro solicitado inmediatamente. En este caso, el adaptador debe hacer una petición *asincrónica* al servidor, y sólo cuando esa petición termine de cargar se puede crear el registro con sus datos de fondo.
+As illustrated in the diagram above, the adapter cannot always return the requested record immediately. In this case, the adapter must make an *asynchronous* request to the server, and only when that request finishes loading can the record be created with its backing data.
 
-Debido a esta asincronía, el store inmediatamente devuelve una *promesa* del método `find()`. Asimismo, las peticiones hechas por el store al adaptador también devuelven promesas.
+Because of this asynchronicity, the store immediately returns a *promise* from the `find()` method. Similarly, any requests that the store makes to the adapter also return promises.
 
-Una vez que la petición al servidor regresa con los datos JSON para el registro solicitado, el adaptador resuelve la promesa al store con el JSON.
+Once the request to the server returns with a JSON payload for the requested record, the adapter resolves the promise it returned to the store with the JSON.
 
-El store entonces toma ese JSON, inicializa el registro con los datos JSON y resuelve la promesa devuelta a tu aplicación con el registro recién cargado.
+The store then takes that JSON, initializes the record with the JSON data, and resolves the promise returned to your application with the newly-loaded record.
 
 ![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-unloaded-record-step2-diagram.png)
 
-Miremos qué ocurre si solicitas un registro que el store ya tiene en su caché.
+Let's look at what happens if you request a record that the store already has in its cache.
 
 ![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-loaded-record-diagram.png)
 
-En este caso, dado que el store ya sabe del registro, devuelve una promesa que se resuelve inmediatamente con el registro. El store no tiene que pedirle una copia del registro del adaptador (y, por lo tanto, del servidor) puesto que ya la tiene guardado localmente.
+In this case, because the store already knew about the record, it returns a promise that it resolves with the record immediately. It does not need to ask the adapter (and, therefore, the server) for a copy since it already has it saved locally.
 
 * * *
 
-Los Modelos, registros, adaptadores y store son los conceptos básicos que debes entender para aprovechar Ember Data al máximo. Las siguientes secciones van más a fondo acerca de cada uno de estos conceptos y cómo utilizarlos juntos.
+Models, records, adapters and the store are the core concepts you should understand to get the most out of Ember Data. The following sections go into more depth about each of these concepts, and how to use them together.

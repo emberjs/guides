@@ -28,13 +28,13 @@ Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method
 var posts = this.get('store').peekAll('post'); // => no network request
 ```
 
-`store.findAll()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
+`store.findAll()` returns a `DS.PromiseArray` that fulfills to a `DS.RecordArray` and `store.peekAll` directly returns a `DS.RecordArray`.
 
-It's important to note that `RecordArray` is not a JavaScript array. It is an object that implements [`Ember.Enumerable`](http://emberjs.com/api/classes/Ember.Enumerable.html). This is important because, for example, if you want to retrieve records by index, the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
+It's important to note that `DS.RecordArray` is not a JavaScript array. It is an object that implements [`Ember.Enumerable`](http://emberjs.com/api/classes/Ember.Enumerable.html). This is important because, for example, if you want to retrieve records by index, the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 
 ### Querying for Multiple Records
 
-Ember Data provides the ability to query for records that meet certain criteria. Calling [`store.query()`](http://emberjs.com/api/data/classes/DS.Store.html#method_query) will make a `GET` request with the passed object serialized as query params. This method returns a `PromiseArray` in the same way as `findAll`.
+Ember Data provides the ability to query for records that meet certain criteria. Calling [`store.query()`](http://emberjs.com/api/data/classes/DS.Store.html#method_query) will make a `GET` request with the passed object serialized as query params. This method returns a `DS.PromiseArray` in the same way as `findAll`.
 
 For example, we could search for all `person` models who have the name of `Peter`:
 

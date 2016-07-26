@@ -9,49 +9,53 @@ Começar com Ember é fácil. Projetos em Ember são criados e gerenciados pelo 
 
 ## Dependências
 
-### Node. js e npm
+### Git
 
-Ember CLI é construída com JavaScript e espera o "runtime" [Node.js](https://nodejs.org/). Ela também precisa de dependências buscadas através do [npm](https://www.npmjs.com/). npm é empacotado com Node.js, então, se seu computador tem Node.js instalado, você está pronto para começar.
+Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
 
-Ember requer Node.js 0.12 ou superior e npm 2.7 ou superior. Caso não tenha certeza se tem a versão correta, execute isso na sua linha de comando:
+### Node.js and npm
+
+Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
+
+Ember requires Node.js 0.12 or higher and npm 2.7 or higher. If you're not sure whether you have Node.js or the right version, run this on your command line:
 
 ```bash
 node --version
 npm --version
 ```
 
-Se você receber um erro *"command not found"* ou tiver uma versão desatualizada de Node:
+If you get a *"command not found"* error or an outdated version for Node:
 
 * Usuários de Windows ou Mac podem baixar e executar [o instalador de Node. js](http://nodejs.org/download/).
 * Usuários de Mac podem instalar Node usando [Homebrew](http://brew.sh/). Depois de instalar o Homebrew, execute `brew install node` para instalar o Node.js.
 * Os usuários de Linux podem usar [este guia para instalação de Node.js no Linux](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
 
-Se você estiver com uma versão desatualizada do npm, execute `npm install -g npm`.
+If you get an outdated version of npm, run `npm install -g npm`.
 
-### Git
+### Bower
 
-Ember requer Git para gerenciar muitas de suas dependências. Git vem com o Mac OS X e na maioria das distribuições Linux. Usuários Windows podem baixar e executar [este instalador Git](http://git-scm.com/download/win).
+Ember requires Bower to manage additional dependencies. Bower is a command line utility that you install with npm. To install Bower run, ```npm install -g bower```
 
-### Watchman (opcional)
+### Watchman (optional)
 
-No Mac e no Linux, você pode melhorar o desempenho da observação de arquivos ("file watching") instalando [Watchman](https://facebook.github.io/watchman/docs/install.html).
+On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
-### PhantomJS (opcional)
+### PhantomJS (optional)
 
-Com PhantomJs, você pode rodar seus testes da linha de comando, sem precisar abrir um navegador. Consulte as [instruções para baixar PhantomJs](http://phantomjs.org/download.html).
+You can run your tests from the command line with PhantomJS, without the need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
 
 ## Instalação
 
-Instale o Ember CLI usando npm:
+Install Ember using npm:
 
 ```bash
 npm install -g ember-cli
 ```
 
-Para verificar se a instalação foi bem-sucedida, execute:
+To verify that your installation was successful, run:
 
 ```bash
 ember -v
 ```
 
-Se um número de versão for exibido, você está pronto para começar.
+If a version number is shown, you're ready to go.

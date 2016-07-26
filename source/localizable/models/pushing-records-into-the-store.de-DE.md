@@ -14,9 +14,7 @@ For example, imagine we want to preload some data into the store when the applic
 
 We can use the `route:application` to do so. The `route:application` is the top-most route in the route hierarchy, and its `model` hook gets called once when the app starts up.
 
-```app/models/album.js import Model from 'ember-data/model'; import attr from 'ember-data/attr';
-
-export default Model.extend({ title: attr(), artist: attr(), songCount: attr() });
+```app/models/album.js export default DS.Model.extend({ title: DS.attr(), artist: DS.attr(), songCount: DS.attr() });
 
     <br />```app/routes/application.js
     export default Ember.Route.extend({
@@ -50,9 +48,7 @@ The store's `push()` method is a low level API which accepts a JSON API document
 
 If you would like the data to be normalized by the model's default serializer before pushing it into the store, you can use the [`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
 
-```app/serializers/album.js import RestSerializer from 'ember-data/serializers/rest';
-
-export default RestSerializer.extend({ normalize(typeHash, hash) { hash['songCount'] = hash['song_count'] delete hash['song_count'] return this._super(typeHash, hash); }
+```app/serializers/album.js export default DS.RestSerializer.extend({ normalize(typeHash, hash) { hash['songCount'] = hash['song_count'] delete hash['song_count'] return this._super(typeHash, hash); }
 
 })
 
