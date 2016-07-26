@@ -1,5 +1,5 @@
 _Unit testing methods and computed properties follows previous patterns shown
-in [Unit Testing Basics] because Model extends Ember.Object._
+in [Unit Testing Basics] because DS.Model extends Ember.Object._
 
 [Ember Data] Models can be tested using the `moduleForModel` helper.
 
@@ -11,12 +11,9 @@ new `levelName` when the player reaches level 5.
 > model player`.
 
 ```app/models/player.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-
-export default Model.extend({
-  level:     attr('number', { defaultValue: 0 }),
-  levelName: attr('string', { defaultValue: 'Noob' }),
+export default DS.Model.extend({
+  level:     DS.attr('number', { defaultValue: 0 }),
+  levelName: DS.attr('string', { defaultValue: 'Noob' }),
 
   levelUp() {
     var newLevel = this.incrementProperty('level');
@@ -62,18 +59,13 @@ Assume that a `User` can own a `Profile`.
 > generate model user` and `ember generate model profile`.
 
 ```app/models/profile.js
-import Model from 'ember-data/model';
-
-export default Model.extend({
+export default DS.Model.extend({
 });
 ```
 
 ```app/models/user.js
-import Model from 'ember-data/model';
-import { belongsTo } from 'ember-data/relationships';
-
-export default Model.extend({
-  profile: belongsTo('profile')
+export default DS.Model.extend({
+  profile: DS.belongsTo('profile')
 });
 ```
 
