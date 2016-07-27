@@ -26,6 +26,8 @@ backends
 beforeeach
 belongsto
 bindingsee
+blogPost
+blogPost's
 bookmarklet
 boolean
 breakpoint

@@ -23,7 +23,7 @@ export default DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```app/models/post.js
+```app/models/blog-post.js
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
@@ -31,7 +31,7 @@ export default DS.Model.extend({
 
 ```app/models/comment.js
 export default DS.Model.extend({
-  post: DS.belongsTo('post')
+  blogPost: DS.belongsTo('blog-post')
 });
 ```
 
@@ -40,7 +40,7 @@ export default DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```app/models/post.js
+```app/models/blog-post.js
 export default DS.Model.extend({
   tags: DS.hasMany('tag')
 });
@@ -48,7 +48,7 @@ export default DS.Model.extend({
 
 ```app/models/tag.js
 export default DS.Model.extend({
-  posts: DS.hasMany('post')
+  blogPosts: DS.hasMany('blog-post')
 });
 ```
 
@@ -56,8 +56,8 @@ export default DS.Model.extend({
 
 Ember Data will do its best to discover which relationships map to one
 another. In the one-to-many code above, for example, Ember Data can figure out that
-changing the `comments` relationship should update the `post`
-relationship on the inverse because `post` is the only relationship to
+changing the `comments` relationship should update the `blogPost`
+relationship on the inverse because `blogPost` is the only relationship to
 that model.
 
 However, sometimes you may have multiple `belongsTo`/`hasMany`s for
@@ -69,14 +69,14 @@ including `{ inverse: null }`.
 
 ```app/models/comment.js
 export default DS.Model.extend({
-  onePost: DS.belongsTo('post', { inverse: null }),
-  twoPost: DS.belongsTo('post'),
-  redPost: DS.belongsTo('post'),
-  bluePost: DS.belongsTo('post')
+  onePost: DS.belongsTo('blog-post', { inverse: null }),
+  twoPost: DS.belongsTo('blog-post'),
+  redPost: DS.belongsTo('blog-post'),
+  bluePost: DS.belongsTo('blog-post')
 });
 ```
 
-```app/models/post.js
+```app/models/blog-post.js
 export default DS.Model.extend({
   comments: DS.hasMany('comment', {
     inverse: 'redPost'
@@ -131,9 +131,9 @@ extraneous models.
 
 ### Creating Records
 
-Let's assume that we have a `post` and a `comment` model, which are related to each other as follows:
+Let's assume that we have a `blog-post` and a `comment` model, which are related to each other as follows:
 
-```app/models/post.js
+```app/models/blog-post.js
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
@@ -141,44 +141,44 @@ export default DS.Model.extend({
 
 ```app/models/comment.js
 export default DS.Model.extend({
-  post: DS.belongsTo('post')
+  blogPost: DS.belongsTo('blog-post')
 });
 ```
 
-When a user comments on a post, we need to create a relationship between the two records. We can simply set the `belongsTo` relationship in our new comment:
+When a user comments on a blogPost, we need to create a relationship between the two records. We can simply set the `belongsTo` relationship in our new comment:
 
 ```javascript
-let post = this.get('store').peekRecord('post', 1);
+let blogPost = this.get('store').peekRecord('blog-post', 1);
 let comment = this.get('store').createRecord('comment', {
-  post: post
+  blogPost: blogPost
 });
 comment.save();
 ```
 
-This will create a new `comment` record and save it to the server. Ember Data will also update the post to include our newly created comment in its `comments` relationship.
+This will create a new `comment` record and save it to the server. Ember Data will also update the blogPost to include our newly created comment in its `comments` relationship.
 
-We could have also linked the two records together by updating the post's `hasMany` relationship:
+We could have also linked the two records together by updating the blogPost's `hasMany` relationship:
 
 ```javascript
-let post = this.get('store').peekRecord('post', 1);
+let blogPost = this.get('store').peekRecord('blog-post', 1);
 let comment = this.get('store').createRecord('comment', {
 });
-post.get('comments').pushObject(comment);
+blogPost.get('comments').pushObject(comment);
 comment.save().then(function () {
-  post.save();
+  blogPost.save();
 });
 ```
 
-In this case the new comment's `belongsTo` relationship will be set to the parent post.
+In this case the new comment's `belongsTo` relationship will be set to the parent blogPost.
 
 Although `createRecord` is fairly straightforward, the only thing to watch out for
 is that you cannot assign a promise as a relationship, currently.
 
-For example, if you want to set the `author` property of a post, this would **not** work
+For example, if you want to set the `author` property of a blogPost, this would **not** work
 if the `user` with id isn't already loaded into the store:
 
 ```js
-this.get('store').createRecord('post', {
+this.get('store').createRecord('blog-post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
   author: this.get('store').findRecord('user', 1)
@@ -188,13 +188,13 @@ this.get('store').createRecord('post', {
 However, you can easily set the relationship after the promise has fulfilled:
 
 ```js
-let post = this.get('store').createRecord('post', {
+let blogPost = this.get('store').createRecord('blog-post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 
 this.get('store').findRecord('user', 1).then(function(user) {
-  post.set('author', user);
+  blogPost.set('author', user);
 });
 ```
 
@@ -203,19 +203,19 @@ this.get('store').findRecord('user', 1).then(function(user) {
 Sometimes we want to set relationships on already existing records. We can simply set a `belongsTo` relationship:
 
 ```javascript
-let post = this.get('store').peekRecord('post', 1);
+let blogPost = this.get('store').peekRecord('blog-post', 1);
 let comment = this.get('store').peekRecord('comment', 1);
-comment.set('post', post);
+comment.set('blogPost', blogPost);
 comment.save();
 ```
 
 Alternatively, we could update the `hasMany` relationship by pushing a record into the relationship:
 
 ```javascript
-let post = this.get('store').peekRecord('post', 1);
+let blogPost = this.get('store').peekRecord('blog-post', 1);
 let comment = this.get('store').peekRecord('comment', 1);
-post.get('comments').pushObject(comment);
-post.save();
+blogPost.get('comments').pushObject(comment);
+blogPost.save();
 ```
 
 ### Removing Relationships
@@ -224,17 +224,17 @@ To remove a `belongsTo` relationship, we can set it to `null`, which will also r
 
 ```javascript
 let comment = this.get('store').peekRecord('comment', 1);
-comment.set('post', null);
+comment.set('blogPost', null);
 comment.save();
 ```
 
 It is also possible to remove a record from a `hasMany` relationship:
 
 ```javascript
-let post = this.get('store').peekRecord('post', 1);
+let blogPost = this.get('store').peekRecord('blog-post', 1);
 let comment = this.get('store').peekRecord('comment', 1);
-post.get('comments').removeObject(comment);
-post.save();
+blogPost.get('comments').removeObject(comment);
+blogPost.save();
 ```
 
 As in the earlier examples, the comment's `belongsTo` relationship will also be cleared by Ember Data.
@@ -243,12 +243,12 @@ As in the earlier examples, the comment's `belongsTo` relationship will also be 
 
 While working with relationships it is important to remember that they return promises.
 
-For example, if we were to work on a post's asynchronous comments, we would have to wait until the promise has fulfilled:
+For example, if we were to work on a blogPost's asynchronous comments, we would have to wait until the promise has fulfilled:
 
 ```javascript
-let post = this.get('store').peekRecord('post', 1);
+let blogPost = this.get('store').peekRecord('blog-post', 1);
 
-post.get('comments').then((comments) => {
+blogPost.get('comments').then((comments) => {
   // now we can work with the comments
 });
 ```
@@ -258,16 +258,16 @@ The same applies to `belongsTo` relationships:
 ```javascript
 let comment = this.get('store').peekRecord('comment', 1);
 
-comment.get('post').then((post) => {
-  // the post is available here
+comment.get('blogPost').then((blogPost) => {
+  // the blogPost is available here
 });
 ```
 
-Handlebars templates will automatically be updated to reflect a resolved promise. We can display a list of comments in a post like so:
+Handlebars templates will automatically be updated to reflect a resolved promise. We can display a list of comments in a blogPost like so:
 
 ```handlebars
 <ul>
-  {{#each post.comments as |comment|}}
+  {{#each blogPost.comments as |comment|}}
     <li>{{comment.id}}</li>
   {{/each}}
 </ul>
