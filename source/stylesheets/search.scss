@@ -1,0 +1,44 @@
+@import "vendor/docsearch-variables";
+@import 'vendor/docsearch';
+
+/* Algolia Docsearch CSS overrides - https://github.com/algolia/docsearch#customization
+   =========================================================================================== */
+
+.aa-dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    font-size: .8rem;
+    border-color: #aaa;
+}
+
+// fix a logo bug caused by our css specificity
+#header #nav .algolia-docsearch-footer .algolia-docsearch-footer--logo {
+    height: 16px;
+}
+
+.algolia-docsearch-suggestion--category-header {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.algolia-docsearch-footer {
+    padding-top: 0;
+}
+
+form input.search-input {
+    font-size: 12px;
+    padding: 5px 9px 5px 27px;
+    height: 18px;
+    width: 200px;
+    color: #666;
+    border: 1px solid #ccc;
+    outline: none;
+    background: #fcfcfc url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUFJREFUeNqU0j0oRWEcx/Hj3ifvlMHL7C1lY7mDwUBKkoksBjKJxWIQu7xlOybDLVGukhhMZDFbxGBS8nIjKR3E96nf0dPjuuVfn+6tc35P//P8/yYMw8CpbgygGQlcYw8H+Ai8MvotxQImgt81hk1M4cEPF2IV43jCGo7wjk5MYhhlGMKbG+7BKO4wiGPn8DO1vIN+jGA9fpjQaUksecG4zjGPL3VQ5IZb9OAw+LtO1FkjatxwUuEoTzjSbRu9/xO+0W97nnArqvXuoxve1/9p1OUIlmNGU7EX9+KGt3GKNuyiC5WoQAe2NJFP3PpzzmoR0khpxle6h3pnkeKJPCPjbtglerVFfWhSVxfqJtK4qrChTMY4XdjVm9O21aIA92LrFcv6HHtAsclxQVnxa0WfsqgDUib4X9muStCA2W8BBgDJ0EeGeFZ8WAAAAABJRU5ErkJggg==) no-repeat 7px 7px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+    -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+    box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+}
+
+//$orange-color
