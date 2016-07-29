@@ -11,7 +11,6 @@ gem "rack"
 gem "listen"
 gem "builder"
 gem "middleman-alias"
-gem "middleman-swiftype", :git => "https://github.com/LeonB/middleman-swiftype.git"
 gem "underscore-rails"
 
 source 'https://rails-assets.org' do
