@@ -6,7 +6,7 @@
 @import 'colors';
 @import 'guides';
 @import 'shared';
-@import 'vendor/swiftype.autocomplete';
+@import 'search';
 @import 'vendor/select2';
 @import 'select2';
 
@@ -442,7 +442,7 @@ p {
   }
 
   #search{
-    form input.st-search-input{
+    form input.search-input{
       margin-left: 12px;
       font-size: 100%;
       padding: 2px 9px 2px 27px;
@@ -1192,47 +1192,6 @@ a.edit-page {
 body.not-found #content {
   margin: 3em auto 0 auto;
   width: 54em;
-}
-
-
-/* Swiftype Search CSS overrides - https://swiftype.com/documentation/tutorials/custom_styles
-   =========================================================================================== */
-
-/* Change color of search dropdown text */
-.swiftype-widget .autocomplete ul li {
-  p.title {
-    color: $orange-color;
-  }
-
-  &.active {
-    background: none;
-    background-color: $orange-color;
-    border-top: 1px solid darken($orange-color, 20%);
-    border-bottom: 1px solid darken($orange-color, 20%);
-    @include box-shadow(0 1px 0 #C0242D inset);
-
-    .sections {
-      color: white;
-
-      em {
-        color: $black-color;
-        text-shadow: lighten($orange-color, 10%) 0px -1px 0px;
-      }
-    }
-  }
-}
-
-/* Changing the search result link colors */
-.st-result-listing a {
-  color: $orange-color;
-
-  &:visited {
-    color: darken($orange-color, 20%);
-  }
-
-  &:hover {
-    color: lighten($orange-color, 20%);
-  }
 }
 
 @import 'highlight';
