@@ -1,0 +1,57 @@
+window.GUIDE_VERSIONS = {
+  current: null,
+  latest: null,
+  available: [],
+
+  onReady: function(callback) {
+    if (this._ready) {
+      callback(this);
+    } else {
+      this._callbacks.push(callback);
+    }
+  },
+
+  urlFor: function(version) {
+    return window.location.href.replace(this.current, version);
+  },
+
+  _callbacks: [],
+
+  _setData: function(available) {
+    function parseVersion(version) {
+      var match = version.match(/^v(\d+)\.(\d+)\.(\d+)$/);
+      if (match) {
+        return {
+          major: match[1],
+          minor: match[2],
+          patch: match[3]
+        };
+      }
+    }
+
+    function compareVersions(a, b) {
+      a = parseVersion(a);
+      b = parseVersion(b);
+
+      if (a.major !== b.major) { return a.major - b.major; }
+      if (a.minor !== b.minor) { return a.minor - b.minor; }
+      return a.patch - b.patch;
+    }
+
+    // Sort versions and make latest appear first
+    this.available = available.sort(compareVersions).reverse();
+    this.current = 'CURRENT_REVISION_WILL_APPEAR_HERE_WHEN_DEPLOYED';
+    this.latest = this.available[0];
+    this._ready = true;
+
+    var self = this;
+    $.each(this._callbacks, function(idx, callback) {
+      callback(self);
+    });
+  }
+};
+
+$.ajax('/versions.json')
+  .done(function(data) {
+    window.GUIDE_VERSIONS._setData(data);
+  });
