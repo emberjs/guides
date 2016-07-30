@@ -1,6 +1,6 @@
-Unlike most other frameworks that include some sort of binding implementation, bindings in Ember.js can be used with any object. That said, bindings are most often used within the Ember framework itself, and for most problems Ember app developers face, computed properties are the appropriate solution.
+正如其他的框架一样，Ember也有它特有的数据绑定方式，并且可以在任何一个对象上使用绑定。 而然，数据绑定大多数情况都是使用在Ember框架本身，对于开发者最好还是使用计算属性更为简单方便。
 
-The easiest way to create a two-way binding is to use a [`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias), that specifies the path to another object.
+创建一个双向绑定的最简单方法是使用 [`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias)，指定路径到另一个对象。
 
 ```javascript
 wife = Ember.Object.create({
@@ -22,11 +22,11 @@ wife.set('householdIncome', 90000);
 husband.get('householdIncome'); // 90000
 ```
 
-Note that bindings don't update immediately. Ember waits until all of your application code has finished running before synchronizing changes, so you can change a bound property as many times as you'd like without worrying about the overhead of syncing bindings when values are transient.
+请注意，绑定不会立即更新。 Ember会等待直到程序代码完成运行完成并且是在同步改变之前，所以你可以多次改变计算属性的值。由于绑定是很短暂的所以也不需要担心开销问题。
 
-## One-Way Bindings
+## 单向绑定
 
-A one-way binding only propagates changes in one direction, using [`computed.oneWay()`](http://emberjs.com/api/classes/Ember.computed.html#method_oneWay). Often, one-way bindings are a performance optimization and you can safely use a two-way binding (which are de facto one-way bindings if you only ever change one side). Sometimes one-way bindings are useful to achieve specific behaviour such as a default that is the same as another property but can be overridden (e.g. a shipping address that starts the same as a billing address but can later be changed)
+单向绑定只会在一个方向上传播变化，使用 [`computed.oneWay()`](http://emberjs.com/api/classes/Ember.computed.html#method_oneWay)方法实现单向绑定。 通常，单向绑定是一种性能优化，您可以安全地使用一个双向绑定 (这是事实上的单向绑定，如果你只改变一侧)。 有时候单向绑定用于实现特定行为的时候是非常有用的，比如一个可修改的属性与默认属性相同的时候(比如，一个可更改的送货地址生成账单的时候可以与账单地址相同)。
 
 ```javascript
 user = Ember.Object.create({

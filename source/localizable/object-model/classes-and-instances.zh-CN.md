@@ -1,6 +1,6 @@
-As you learn about Ember, you'll see code like `Ember.Component.extend()` and `DS.Model.extend()`. Here, you'll learn about this `extend()` method, as well as other major features of the Ember object model.
+当你学了Ember之后，您会看到类似 `Ember.Component.extend()`和 `DS。Model.extend()` 的代码。 在这里，您将了解方法 `extend()` ，以及其他主要Ember对象模型特性。
 
-### Defining Classes
+### 定义类
 
 To define a new Ember *class*, call the [`extend()`](http://emberjs.com/api/classes/Ember.Object.html#method_extend) method on [`Ember.Object`](http://emberjs.com/api/classes/Ember.Object.html):
 
