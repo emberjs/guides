@@ -16,7 +16,7 @@ Emberは Node.jsのパッケージマネージャー npmを使えば、コマン
 npm install -g ember-cli
 ```
 
-npm がないですか?[このリンク先から、Node.js とnpmをインストールできます](https://docs.npmjs.com/getting-started/installing-node)。.
+Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node). For a full list of dependencies necessary for an Ember CLI project, consult our [Installing Ember](https://guides.emberjs.com/v2.7.0/getting-started/) guide.
 
 ## 新しいアプリケーションの作成
 
