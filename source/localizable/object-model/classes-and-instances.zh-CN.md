@@ -2,7 +2,7 @@
 
 ### 定义类
 
-To define a new Ember *class*, call the [`extend()`](http://emberjs.com/api/classes/Ember.Object.html#method_extend) method on [`Ember.Object`](http://emberjs.com/api/classes/Ember.Object.html):
+在*Ember.Object*上调用[`extend()`](http://emberjs.com/api/classes/Ember.Object.html#method_extend)方法即可定义一个Ember类。比如下面的代码：
 
 ```javascript
 const Person = Ember.Object.extend({
@@ -12,17 +12,15 @@ const Person = Ember.Object.extend({
 });
 ```
 
-This defines a new `Person` class with a `say()` method.
+定义了一个`Person`类，这个类有一个`say()`方法。
 
-You can also create a *subclass* from any existing class by calling its `extend()` method. For example, you might want to create a subclass of Ember's built-in [`Ember.Component`](http://emberjs.com/api/classes/Ember.Component.html) class:
+此外可以通过调用 *extend()* 方法，从任何现有的类中创建一个 `subclass`。 例如，您可能想要创建一个Ember内置 [`Ember.Component`](http://emberjs.com/api/classes/Ember.Component.html) 类的子类︰
 
 ```app/components/todo-item.js export default Ember.Component.extend({ classNameBindings: ['isUrgent'], isUrgent: true });
 
-    <br />### Overriding Parent Class Methods
+    <br />### 重写父类的方法
     
-    When defining a subclass, you can override methods but still access the
-    implementation of your parent class by calling the special `_super()`
-    method:
+    在子类重写父类的方法，并在方法里调用_super()方法来调用父类中对应的方法触发父类方法的行为。
     
     ```javascript
     const Person = Ember.Object.extend({
@@ -46,13 +44,13 @@ You can also create a *subclass* from any existing class by calling its `extend(
     yehuda.say('Yes'); // alerts "Yehuda Katz says: Yes, sir!"
     
 
-In certain cases, you will want to pass arguments to `_super()` before or after overriding.
+在某些情况下，在重写父类方法前后可以通过调用`_super()`方法传递参数到父类。
 
-This allows the original method to continue operating as it normally would.
+这样做的好处是可以保持父类方法原始的行为不被改变。
 
-One common example is when overriding the [`normalizeResponse()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse) hook in one of Ember-Data's serializers.
+一个常见的例子是重写Ember Data序列化方法[`normalizeResponse()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse) 。
 
-A handy shortcut for this is to use a "spread operator", like `...arguments`:
+一种传递操作的快捷使用方式，如`...arguments`。
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
@@ -61,11 +59,11 @@ normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
 }
 ```
 
-The above example returns the original arguments (after your customizations) back to the parent class, so it can continue with its normal operations.
+上面的示例中将原始参数 (在你的自定义代码前返回) 返回给父类，使得父类的其他行为得以正常执行。
 
-### Creating Instances
+### 创建类实例
 
-Once you have defined a class, you can create new *instances* of that class by calling its [`create()`](http://emberjs.com/api/classes/Ember.Object.html#method_create) method. Any methods, properties and computed properties you defined on the class will be available to instances:
+类定义之后，你可以通过调用*create()*方法创建一个[`类实例`](http://emberjs.com/api/classes/Ember.Object.html#method_create)。 任何方法、 属性和计算属性都可以在类内部定义︰
 
 ```javascript
 const Person = Ember.Object.extend({
@@ -79,7 +77,7 @@ let person = Person.create();
 person.say('Hello'); // alerts " says: Hello"
 ```
 
-When creating an instance, you can initialize the values of its properties by passing an optional hash to the `create()` method:
+当创建实例时，可以通过向 `create()` 方法传递一个可选的哈希来初始化其属性的值︰
 
 ```javascript
 const Person = Ember.Object.extend({
@@ -95,13 +93,13 @@ let tom = Person.create({
 tom.helloWorld(); // alerts "Hi, my name is Tom Dale"
 ```
 
-Note that for performance reasons, while calling `create()` you cannot redefine an instance's computed properties and should not redefine existing or define new methods. You should only set simple properties when calling `create()`. If you need to define or redefine methods or computed properties, create a new subclass and instantiate that.
+请注意，出于性能方面的考虑，同时调用 `create()` 你不能重新定义实例的计算属性和不应该重新定义现有或定义新的方法。 在调用 `create()`方法 时，您应该只设置简单属性。 如果您需要定义或重新定义方法或计算属性，你应该创建一个新的子类并实例化它。
 
-By convention, properties or variables that hold classes are PascalCased, while instances are not. So, for example, the variable `Person` would point to a class, while `person` would point to an instance (usually of the `Person` class). You should stick to these naming conventions in your Ember applications.
+按照惯例，属性或变量应该使用驼峰式命名，而不是实例。 所以，变量`Person`应该指的是一个类，而`person`应该指的是一个类的实例(通常类`Person`的实例)。 你应该在Ember的应用程序中坚守这些命名约定。
 
-### Initializing Instances
+### 初始化实例
 
-When a new instance is created, its [`init()`](http://emberjs.com/api/classes/Ember.Object.html#method_init) method is invoked automatically. This is the ideal place to implement setup required on new instances:
+当一个新的实例被创建时，会自动调用[`init()`](http://emberjs.com/api/classes/Ember.Object.html#method_init)方法。 当你想在类实例化时候执行某些逻辑在init方法里处理是非常好的方法。
 
 ```js
 const Person = Ember.Object.extend({
@@ -117,9 +115,9 @@ Person.create({
 // alerts "Stefan Penner, reporting for duty!"
 ```
 
-If you are subclassing a framework class, like `Ember.Component`, and you override the `init()` method, make sure you call `this._super(...arguments)`! If you don't, a parent class may not have an opportunity to do important setup work, and you'll see strange behavior in your application.
+如果一个类是Ember框架的子类，比如`Ember.Component`的子类，并且在子类中重写了`init()`方法，此时请务必确保调用了`this._super(...arguments)`方法。 如果你不这样做，父类不能完成重要的初始化工作，在您的应用程序中，你会出现一些不可预知的行为。
 
-Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
+对象的所有实例可以共享定义在`Ember.Object`上的任何数组和对象。
 
 ```js
 const Person = Ember.Object.extend({
@@ -139,12 +137,10 @@ Person.create({
     this.get('shoppingList').pushObject('sausage');
   }
 });
-
-// Stefan and Robert both trigger their addItem.
 // They both end up with: ['eggs', 'cheese', 'bacon', 'sausage']
 ```
 
-To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
+为了避免这种行为，Ember鼓励在 `init()`中初始化这些数组和对象属性。这样做可以确保每个实例是唯一。
 
 ```js
 const Person = Ember.Object.extend({
@@ -166,14 +162,11 @@ Person.create({
     this.get('shoppingList').pushObject('sausage');
   }
 });
-
-// Stefan ['eggs', 'cheese', 'bacon']
-// Robert ['eggs', 'cheese', 'sausage']
 ```
 
-### Accessing Object Properties
+### 访问对象属性
 
-When accessing the properties of an object, use the [`get()`](http://emberjs.com/api/classes/Ember.Object.html#method_get) and [`set()`](http://emberjs.com/api/classes/Ember.Object.html#method_set) accessor methods:
+访问对象的属性时，可以使用 [`get ()`](http://emberjs.com/api/classes/Ember.Object.html#method_get) 和 [`set()`](http://emberjs.com/api/classes/Ember.Object.html#method_set) 的访问器方法︰
 
 ```js
 const Person = Ember.Object.extend({
@@ -187,4 +180,4 @@ person.set('name', 'Tobias Fünke');
 person.get('name'); // 'Tobias Fünke'
 ```
 
-Make sure to use these accessor methods; otherwise, computed properties won't recalculate, observers won't fire, and templates won't update.
+访问对象属性时请使用这2个访问器方法；否则，属性不会重新计算、 观察器不会被触发，模板不会更新。
