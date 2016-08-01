@@ -11,42 +11,42 @@ Emberでの開発を始めるの難しくはありません。Ember プロジェ
 
 ### Git
 
-Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
+Ember は、多くの依存関係の管理で Git を利用しています。 Git は Mac OS X と 多くのLinux ディストリビューションすでに含まれています。 Windows ユーザーは、[この Git のインストーラー](http://git-scm.com/download/win) ダウンロードすることで、実行できます。.
 
-### Node.js and npm
+### Node.js とnpm
 
-Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
+Ember CLI は JavaScript、で作られており、 [Node.js](https://nodejs.org/)のランタイムを必要としています。 また、依存関係の取得のために、[npm](https://www.npmjs.com/) が必要です。 npmは、Node.js とともにインストールされるので、すでに、Node.js があなたのコンピューターにインストールされている場合は、次に進む準備ができています。
 
-Ember requires Node.js 0.12 or higher and npm 2.7 or higher. If you're not sure whether you have Node.js or the right version, run this on your command line:
+Ember は Node.js 0.12 または、それ以上 npm 2.7 または、それ以上 が必要です。 Node.js がインストールされているかわからない、またはバージョンが不明な場合は、コマンドラインで、次のコマンドを実行してください。
 
 ```bash
 node --version
 npm --version
 ```
 
-If you get a *"command not found"* error or an outdated version for Node:
+もし、 *"command not found"* エラー、または Node のバージョンが古い時は
 
 * Windows または Mac のユーザーの場合は [この Node.js インストーラー](http://nodejs.org/download/) を実行することができます。.
 * Mac ユーザーは[ Homebrew ](http://brew.sh/) を使用してノードをインストールするのを好むことがあります。Homebrewをインストールした後、Node.js をインストールするには `brew install node` を実行します。
 * Linux ユーザの場合はは、この[ガイド](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) を使用できます。.
 
-If you get an outdated version of npm, run `npm install -g npm`.
+もし npm が古い場合は、`npm install -g npm` を実行してください。.
 
 ### Bower
 
-Ember requires Bower to manage additional dependencies. Bower is a command line utility that you install with npm. To install Bower run, ```npm install -g bower```
+Emberは追加の依存関係を管理するためにBower を利用しています。Bowerは npm でインストール可能なコマンドラインのユーティリティです。Bowerをインストールするために次のコマンドを実行してください。 ```npm install -g bower```
 
 ### Watchman (optional)
 
-On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+Mac 及び Linux の場合は、[Watchman](https://facebook.github.io/watchman/docs/install.html) をインストールすることで、ファイルウォッチングのパフォーマンスを向上することができます。.
 
-### PhantomJS (optional)
+### PhantomJS (オプション)
 
-You can run your tests from the command line with PhantomJS, without the need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
+テストをPhantomJS とともにコマンドラインから実行することで、ブラウザを開く必要が必要がなくなります。[PhantomJS ダウンロードの手順](http://phantomjs.org/download.html) を参照にしてください。.
 
 ## インストール
 
-Install Ember using npm:
+Ember のインストールには npm を利用します。
 
 ```bash
 npm install -g ember-cli
@@ -58,4 +58,4 @@ To verify that your installation was successful, run:
 ember -v
 ```
 
-If a version number is shown, you're ready to go.
+バージョンナンバーが表示されたら、次に進む準備が整いました。

@@ -53,7 +53,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
+`index.hbs` template (テンプレート)でそれまでのHTMLマークアップを`rental-listing` component (コンポーネント)　の`{{#each}}` ループを置き換えます。
 
 ```app/templates/index.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30} 
 
