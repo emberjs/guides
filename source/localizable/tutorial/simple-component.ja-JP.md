@@ -96,7 +96,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     
     これで、ユーザーの要求でレンタル品の画像を表示する機能を追加できるようになりました。
     
-    Let's use the `{{#if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
+    `isWide`がtrueのときだけ大きな画像を表示する`wide`クラスを設定する`{{#if}}` helper (ヘルパー)を利用します。 イメージがクリック可能だと示すテキストも追加します、そしてその両方をテストが見つけることができるようにアンカー要素でまとめて、`image`クラスを与えます。
     
     ```app/templates/components/rental-listing.hbs{+2,+4,+5}
     <article class="listing">
@@ -120,13 +120,13 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`. Since we want the image to be smaller at first, we will set the property to start as `false`:
+`isWide`の値は、component (コンポーネント)のJavaScriptフィイルから、この場合は`rental-listing.js`からきています。 起動時点では画像は小さいものにしたいので、プロパティーは`false`にします:
 
 ```app/components/rental-listing.js import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false });
 
-    <br />To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
+    <br />ユーザーが画像を拡大できるように、`isWide`を付加するアクションを追加する必要があります。
     `toggleImageSize` action (アクション)を呼び出しましょう
     
     ```app/templates/components/rental-listing.hbs{+2}
@@ -151,12 +151,12 @@ export default Ember.Component.extend({ isWide: false });
     </article>
     
 
-Clicking the anchor element will send the action to the component. Ember will then go into the `actions` hash and call the `toggleImageSize` function. Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
+このアンカー要素をクリックすると、コンポーネントにこのアクションが送られます。 Emberは、`actions`ハッシュに移動し、`toggleImageSize`関数を呼び出します。 `toggleImageSize`関数を作成して、component (コンポーネント)の`isWide` プロパティーを切り替えられるようにしましょう:
 
 ```app/components/rental-listing.js{+5,+6,+7,+8,+9} import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image we again see it smaller.
+これで、ブラウザーのリンク`View Larger`をクリックすると、画像が拡大されます、拡大された画像をクリックすると、画像が小さくなります。
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
