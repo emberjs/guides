@@ -26,6 +26,7 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';
+import RSVP from 'rsvp';
 
 moduleForComponent('list-filter', 'Integration | Component | filter listing', {
   integration: true
@@ -38,9 +39,9 @@ test('should initially load all listings', function (assert) {
   // we want our actions to return promises, since they are potentially fetching data asynchronously
   this.on('filterByCity', (val) => {
     if (val === '') {
-      return Ember.RSVP.resolve(ITEMS);
+      return RSVP.resolve(ITEMS);
     } else {
-      return Ember.RSVP.resolve(FILTERED_ITEMS);
+      return RSVP.resolve(FILTERED_ITEMS);
     }
   });
   
@@ -74,9 +75,9 @@ We force the action by generating a `keyUp` event on our input field, and then a
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
-      return Ember.RSVP.resolve(ITEMS);
+      return RSVP.resolve(ITEMS);
     } else {
-      return Ember.RSVP.resolve(FILTERED_ITEMS);
+      return RSVP.resolve(FILTERED_ITEMS);
     }
   });
 
