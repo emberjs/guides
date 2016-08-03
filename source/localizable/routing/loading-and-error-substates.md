@@ -16,6 +16,8 @@ Router.map(function() {
 ```
 
 ```app/routes/slow-model.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return this.get('store').findAll('slow-model');
@@ -87,6 +89,8 @@ don't immediately resolve, a [`loading`][1] event will be fired on that route.
 [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
 
 ```app/routes/foo-slow-model.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return this.get('store').findAll('slow-model');
@@ -107,6 +111,8 @@ route, providing the `application` route the opportunity to manage it.
 When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
 
 ```app/routes/foo-slow-model.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   ...
   actions: {
@@ -177,6 +183,8 @@ redirect to a login page, etc.
 [1]: http://emberjs.com/api/classes/Ember.Route.html#event_error
 
 ```app/routes/articles-overview.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model(params) {
     return this.get('store').findAll('problematic-model');

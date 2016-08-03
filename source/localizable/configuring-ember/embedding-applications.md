@@ -14,6 +14,8 @@ You can tell the application to append the application template to a
 different element by specifying its `rootElement` property:
 
 ```app/app.js
+import Ember from 'ember';
+
 export default Ember.Application.extend({
   rootElement: '#app'
 });

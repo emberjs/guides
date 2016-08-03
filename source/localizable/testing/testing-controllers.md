@@ -13,6 +13,8 @@ sets one of those properties, and an action named `setProps`.
 > controller posts`.
 
 ```app/controllers/posts.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   propA: 'You need to write tests',
   propB: 'And write one for me too',
@@ -76,12 +78,16 @@ accomplished by injecting one controller into another. For example, here are two
 > controller post`, and `ember generate controller comments`.
 
 ```app/controllers/post.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   title: Ember.computed.alias('model.title')
 });
 ```
 
 ```app/controllers/comments.js
+import Ember from 'ember';
+
 export default Ember.Controller.extend({
   post: Ember.inject.controller(),
   title: Ember.computed.alias('post.title')

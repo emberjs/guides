@@ -6,6 +6,8 @@ with your application.
 #### Log router transitions
 
 ```app/app.js
+import Ember from 'ember';
+
 export default Ember.Application.extend({
   // Basic logging, e.g. "Transitioned into 'post'"
   LOG_TRANSITIONS: true,
@@ -62,6 +64,8 @@ It's useful for understanding which objects Ember is finding when it does a look
 and which it is generating automatically for you.
 
 ```app/app.js
+import Ember from 'ember';
+
 export default Ember.Application.extend({
   LOG_RESOLVER: true
 });
@@ -115,6 +119,8 @@ but a common practice is to call `console.assert` to dump the error to the
 console.
 
 ```app/app.js
+import Ember from 'ember';
+
 Ember.RSVP.on('error', function(error) {
   Ember.Logger.assert(false, error);
 });

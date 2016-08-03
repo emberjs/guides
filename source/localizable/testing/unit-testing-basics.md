@@ -17,6 +17,8 @@ Let's start by creating an object that has a `computedFoo` computed property
 based on a `foo` property.
 
 ```app/models/some-thing.js
+import Ember from 'ember';
+
 export default Ember.Object.extend({
   foo: 'bar',
 
@@ -58,6 +60,8 @@ the `testMethod` method alters some internal state of the object (by updating
 the `foo` property).
 
 ```app/models/some-thing.js
+import Ember from 'ember';
+
 export default Ember.Object.extend({
   foo: 'bar',
   testMethod() {
@@ -83,6 +87,8 @@ return value is calculated correctly. Suppose our object has a `calc` method
 that returns a value based on some internal state.
 
 ```app/models/some-thing.js
+import Ember from 'ember';
+
 export default Ember.Object.extend({
   count: 0,
   calc() {
@@ -108,6 +114,8 @@ test('should return incremented count on calc', function(assert) {
 Suppose we have an object that has a property and a method observing that property.
 
 ```app/models/some-thing.js
+import Ember from 'ember';
+
 export default Ember.Object.extend({
   foo: 'bar',
   other: 'no',

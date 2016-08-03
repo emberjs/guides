@@ -14,6 +14,8 @@ Let's implement `double-clickable` such that when it is
 clicked, an alert is displayed:
 
 ```app/components/double-clickable.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   doubleClick() {
     alert("DoubleClickableComponent was clicked!");
@@ -26,6 +28,8 @@ in succession. To enable bubbling `return true;` from the event handler method
 in your component.
 
 ```app/components/double-clickable.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   doubleClick() {
     Ember.Logger.info("DoubleClickableComponent was clicked!");
@@ -52,6 +56,8 @@ And if you need to, you may also stop events from bubbling, by using
 `return false;`.
 
 ```app/components/drop-target.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   attributeBindings: ['draggable'],
   draggable: 'true',

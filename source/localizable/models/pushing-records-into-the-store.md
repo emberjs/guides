@@ -29,6 +29,8 @@ the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
 ```app/models/album.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   title: DS.attr(),
   artist: DS.attr(),
@@ -37,6 +39,8 @@ export default DS.Model.extend({
 ```
 
 ```app/routes/application.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     this.get('store').push({
@@ -77,6 +81,8 @@ serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
 
 ```app/serializers/album.js
+import DS from 'ember-data';
+
 export default DS.RestSerializer.extend({
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
@@ -88,6 +94,8 @@ export default DS.RestSerializer.extend({
 ```
 
 ```app/routes/application.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     this.get('store').pushPayload({
@@ -120,6 +128,8 @@ so it can be accessed by other parts of your application.
 
 
 ```app/routes/confirm-payment.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   actions: {
     confirm: function(data) {

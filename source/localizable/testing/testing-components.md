@@ -8,6 +8,8 @@ component is bound to its `style` property.
 > component pretty-color`.
 
 ```app/components/pretty-color.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   attributeBindings: ['style'],
 
@@ -89,6 +91,8 @@ clicked on:
 > component magic-title`.
 
 ```app/components/magic-title.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   title: 'Hello World',
 
@@ -138,6 +142,8 @@ For example, imagine you have a comment form component that invokes a
 > component comment-form`.
 
 ```app/components/comment-form.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   comment: '',
 
@@ -194,6 +200,8 @@ and country of your current location:
 > component location-indicator`.
 
 ```app/components/location-indicator.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   locationService: Ember.inject.service('location-service'),
 
@@ -286,6 +294,8 @@ to limit requests to the server, and you want to verify that results are display
 > component delayed-typeahead`.
 
 ```app/components/delayed-typeahead.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   actions: {
     handleTyping() {

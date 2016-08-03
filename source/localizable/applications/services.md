@@ -27,6 +27,8 @@ Services must extend the [`Ember.Service`][1] base class:
 [1]: http://emberjs.com/api/classes/Ember.Service.html
 
 ```app/services/shopping-cart.js
+import Ember from 'ember';
+
 export default Ember.Service.extend({
 });
 ```
@@ -35,6 +37,8 @@ Like any Ember object, a service is initialized and can have properties and meth
 Below the shopping cart service manages an items array that represents the items currently in the shopping cart.
 
 ```app/services/shopping-cart.js
+import Ember from 'ember';
+
 export default Ember.Service.extend({
   items: null,
 
@@ -67,6 +71,8 @@ When no arguments are passed, the service is loaded based on the name of the var
 You can load the shopping cart service with no arguments like below.
 
 ```app/components/cart-contents.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   //will load the service in file /app/services/shopping-cart.js
   shoppingCart: Ember.inject.service()
@@ -76,6 +82,8 @@ export default Ember.Component.extend({
 The other way to inject a service is to provide the name of the service as the argument.
 
 ```app/components/cart-contents.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   //will load the service in file /app/services/shopping-cart.js
   cart: Ember.inject.service('shopping-cart')
@@ -93,6 +101,8 @@ Below we add a remove action to the `cart-contents` component.
 Notice that below we access the `cart` service with a call to`this.get`.
 
 ```app/components/cart-contents.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
 

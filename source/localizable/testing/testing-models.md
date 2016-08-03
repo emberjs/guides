@@ -11,6 +11,8 @@ new `levelName` when the player reaches level 5.
 > model player`.
 
 ```app/models/player.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   level:     DS.attr('number', { defaultValue: 0 }),
   levelName: DS.attr('string', { defaultValue: 'Noob' }),
@@ -59,11 +61,15 @@ Assume that a `User` can own a `Profile`.
 > generate model user` and `ember generate model profile`.
 
 ```app/models/profile.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
 });
 ```
 
 ```app/models/user.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });

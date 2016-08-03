@@ -154,6 +154,8 @@ For creating your own test helper, run `ember generate test-helper
 shouldHaveElementWithCount`:
 
 ```tests/helpers/should-have-element-with-count.js
+import Ember from 'ember';
+
 export default Ember.Test.registerAsyncHelper(
     'shouldHaveElementWithCount', function(app) {
 });
@@ -176,6 +178,8 @@ first parameter. Other parameters, such as assert, need to be provided when call
 Here is an example of a non-async helper:
 
 ```tests/helpers/should-have-element-with-count.js
+import Ember from 'ember';
+
 export default Ember.Test.registerHelper('shouldHaveElementWithCount',
   function(app, assert, selector, n, context) {
     const el = findWithAssert(selector, context);
@@ -190,6 +194,8 @@ export default Ember.Test.registerHelper('shouldHaveElementWithCount',
 Here is an example of an async helper:
 
 ```tests/helpers/dblclick.js
+import Ember from 'ember';
+
 export default Ember.Test.registerAsyncHelper('dblclick',
   function(app, assert, selector, context) {
     let $el = findWithAssert(selector, context);
@@ -204,6 +210,8 @@ Async helpers also come in handy when you want to group interaction
 into one helper. For example:
 
 ```tests/helpers/add-contact.js
+import Ember from 'ember';
+
 export default Ember.Test.registerAsyncHelper('addContact',
   function(app, name) {
     fillIn('#name', name);

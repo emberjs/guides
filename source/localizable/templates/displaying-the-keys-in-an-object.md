@@ -4,6 +4,8 @@ JavaScript object in your template, you can use the
 helper:
 
 ```/app/components/store-categories.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   willRender() {
     // Set the "categories" property to a JavaScript object
@@ -65,6 +67,8 @@ helper **does not observe property changes** to the object passed into it. In
  automatically update.
 
 ```/app/components/store-categories.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   willRender() {
     this.set('categories', {
@@ -90,6 +94,8 @@ property on the component again, or manually trigger a re-render of the
 component via [`rerender()`](http://emberjs.com/api/classes/Ember.Component.html#method_rerender):
 
 ```/app/components/store-categories.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   willRender() {
     this.set('categories', {

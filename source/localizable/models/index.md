@@ -74,6 +74,8 @@ You might be tempted to make the component responsible for fetching that
 data and storing it:
 
 ```app/components/list-of-drafts.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
@@ -101,6 +103,8 @@ tempted to copy and paste your existing `willRender` code into the new
 component.
 
 ```app/components/drafts-button.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
@@ -189,6 +193,8 @@ example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```app/models/person.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   birthday:  DS.attr('date')
@@ -200,12 +206,15 @@ example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
 ```app/models/order.js
+import DS from 'ember-data';
 export default DS.Model.extend({
   lineItems: DS.hasMany('line-item')
 });
 ```
 
 ```app/models/line-item.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   order: DS.belongsTo('order')
 });

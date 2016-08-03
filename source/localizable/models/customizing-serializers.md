@@ -268,6 +268,8 @@ serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
 ```app/serializers/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPISerializer.extend({
   primaryKey: '_id'
 });
@@ -279,6 +281,8 @@ In Ember Data the convention is to camelize attribute names on a
 model. For example:
 
 ```app/models/person.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
@@ -313,6 +317,8 @@ method like this.
 
 ```app/serializers/application.js
 import Ember from 'ember';
+import DS from 'ember-data';
+
 export default DS.JSONAPISerializer.extend({
   keyForAttribute: function(attr) {
     return Ember.String.underscore(attr);
@@ -332,12 +338,16 @@ desired attribute name is simply `lastName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
 ```app/models/person.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   lastName: DS.attr('string')
 });
 ```
 
 ```app/serializers/person.js
+import DS from 'ember-data';
+
 export default DS.JSONAPISerializer.extend({
   attrs: {
     lastName: 'lastNameOfPerson'
@@ -351,6 +361,8 @@ References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
 ```app/models/post.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   comments: DS.hasMany('comment', { async: true })
 });
@@ -385,6 +397,8 @@ dasherized version of the property's name. For example, if you have
 a model:
 
 ```app/models/comment.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   originalPost: DS.belongsTo('post')
 });
@@ -411,6 +425,8 @@ the
 method.
 
 ```app/serializers/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPISerializer.extend({
   keyForRelationship: function(key, relationship) {
     return key + 'Ids';
@@ -429,6 +445,8 @@ Ember Data can have new JSON transforms
 registered for use as attributes:
 
 ```app/transforms/coordinate-point.js
+import DS from 'ember-data';
+
 export default DS.Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
@@ -440,6 +458,8 @@ export default DS.Transform.extend({
 ```
 
 ```app/models/cursor.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   position: DS.attr('coordinate-point')
 });
@@ -481,6 +501,8 @@ To use it in your application you will need to define an
 `serializer:application` that extends the `JSONSerializer`.
 
 ```app/serializers/application.js
+import DS from 'ember-data';
+
 export default DS.JSONSerializer.extend({
   // ...
 });
@@ -556,6 +578,8 @@ that looks similar to this:
 You would define your relationship like this:
 
 ```app/serializers/post.js
+import DS from 'ember-data';
+
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     authors: {
@@ -571,6 +595,8 @@ embedded relationship you can use the shorthand option of `{ embedded:
 'always' }`. The following example and the one above are equivalent.
 
 ```app/serializers/post.js
+import DS from 'ember-data';
+
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     authors: { embedded: 'always' }
@@ -591,6 +617,8 @@ serializing the record. This is possible by using the `serialize:
 setting `serialize: false`.
 
 ```app/serializers/post.js
+import DS from 'ember-data';
+
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     author: {
@@ -645,6 +673,8 @@ relationship properties on the Model.
 For Example: given this `post` model.
 
 ```app/models/post.js
+import DS from 'ember-data';
+
 export default DS.Model.extend({
   title: DS.attr('string'),
   tag: DS.attr('string'),

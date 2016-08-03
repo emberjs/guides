@@ -19,6 +19,8 @@ sub-routes and controllers.
 > we will answer 'n'.
 
 ```app/routes/application.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   actions: {
     displayAlert(text) {

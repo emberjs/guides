@@ -14,6 +14,8 @@ display a blog post:
 Now imagine we have the following template and route:
 
 ```app/routes/index.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return this.get('store').findAll('post');
@@ -69,6 +71,8 @@ set the [`positionalParams`][1] attribute in your component class.
 [1]: http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams
 
 ```app/components/blog-post.js
+import Ember from 'ember';
+
 const BlogPostComponent = Ember.Component.extend({});
 
 BlogPostComponent.reopenClass({
@@ -90,6 +94,8 @@ setting `positionalParams` to a string, e.g. `positionalParams: 'params'`. This
 will allow you to access those params as an array like so:
 
 ```app/components/blog-post.js
+import Ember from 'ember';
+
 const BlogPostComponent = Ember.Component.extend({
   title: Ember.computed('params.[]', function(){
     return this.get('params')[0];

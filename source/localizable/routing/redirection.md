@@ -24,6 +24,8 @@ Router.map(function() {
 ```
 
 ```app/routes/index.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   beforeModel() {
     this.transitionTo('posts');
@@ -51,6 +53,8 @@ Router.map(function() {
 ```
 
 ```app/routes/posts.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   afterModel(model, transition) {
     if (model.get('length') === 1) {
@@ -88,6 +92,8 @@ transition validated, and not cause the parent route's hooks to fire again:
 [5]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
 
 ```app/routes/posts.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   redirect(model, transition) {
     if (model.get('length') === 1) {

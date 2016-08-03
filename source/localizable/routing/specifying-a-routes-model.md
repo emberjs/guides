@@ -15,6 +15,8 @@ hook in the `favorite-posts` route handler:
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
 
 ```app/routes/favorite-posts.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return this.get('store').query('post', { favorite: true });
@@ -70,6 +72,8 @@ Router.map(function() {
 ```
 
 ```app/routes/photo.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model(params) {
     return this.get('store').findRecord('photo', params.photo_id);
@@ -98,6 +102,8 @@ parameters that return promises, and when all parameter promises resolve, then
 the `Ember.RSVP.hash` promise resolves. For example:
 
 ```app/routes/songs.js
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({

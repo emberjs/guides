@@ -75,6 +75,8 @@ We'll implement an action on the parent component called
 `deleteUser()` method.
 
 ```app/components/user-profile.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   login: Ember.inject.service(),
 
@@ -95,6 +97,8 @@ Next, let's implement the logic to confirm that the user wants to take
 the action from the component:
 
 ```app/components/button-with-confirmation.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
 
   actions: {
@@ -155,6 +159,8 @@ Now, we can use `onConfirm` in the child component to invoke the action on the
 parent:
 
 ```app/components/button-with-confirmation.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
 
   actions: {
@@ -202,6 +208,8 @@ This is accomplished by expecting a promise to be returned from `onConfirm`.
 Upon resolution of the promise, we set a property used to indicate the visibility of the confirmation modal.
 
 ```app/components/button-with-confirmation.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   actions: {
     launchConfirmDialog() {
@@ -271,6 +279,8 @@ The `send-message` component provides an input as block content to the `button-w
 Now when the `submitConfirm` action is invoked, we call it with the value provided by our yielded input.
 
 ```app/components/button-with-confirmation.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   actions: {
     launchConfirmDialog() {
@@ -296,6 +306,8 @@ and the message value provided in the component JavaScript.
 
 
 ```app/components/send-message.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   actions: {
     sendMessage(messageType, messageText) {
@@ -311,6 +323,8 @@ Actions can be invoked on objects other than the component directly from the tem
 `send-message` component we might include a service that processes the `sendMessage` logic.
 
 ```app/components/send-message.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   messaging: Ember.inject.service(),
 
@@ -333,6 +347,8 @@ By supplying the `target` attribute, the action helper will look to invoke the `
 service, saving us from writing code on the component that just passes the action along to the service.
 
 ```app/services/messaging.js
+import Ember from 'ember';
+
 export default Ember.Service.extend({
   actions: {
     sendMessage(messageType, text) {
@@ -351,6 +367,8 @@ user's account was deleted, and passes along with it the full user profile objec
 
 
 ```app/components/user-profile.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   login: Ember.inject.service(),
 
@@ -374,6 +392,8 @@ object to pull out only what it needs.
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
 
 ```app/components/system-preferences-editor.js
+import Ember from 'ember';
+
 export default Ember.Component.extend({
   actions: {
     userDeleted(idStr) {

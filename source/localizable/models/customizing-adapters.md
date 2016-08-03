@@ -25,6 +25,8 @@ the default Adapter, however it will still be superseded by model
 specific Adapters.
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   // Application specific overrides go here
 });
@@ -37,6 +39,8 @@ For example, running `ember generate adapter post` will create the
 following file:
 
 ```app/adapters/post.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   namespace: 'api/v1'
 });
@@ -140,6 +144,8 @@ The `namespace` property can be used to prefix requests with a
 specific url namespace.
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   namespace: 'api/1'
 });
@@ -155,6 +161,8 @@ like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -174,6 +182,8 @@ underscore_case instead of camelCase you could override the
 `pathForType` method like this:
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   pathForType: function(type) {
     return Ember.String.underscore(type);
@@ -191,6 +201,8 @@ headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
 object and Ember Data will send them along with each ajax request.
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   headers: {
     'API_KEY': 'secret key',
@@ -204,6 +216,8 @@ headers. In the example below, the headers are generated with a computed
 property dependent on the `session` service.
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   session: Ember.inject.service('session'),
   headers: Ember.computed('session.authToken', function() {
@@ -223,6 +237,8 @@ function to set the property into a non-cached mode causing the headers to
 be recomputed with every request.
 
 ```app/adapters/application.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   headers: Ember.computed(function() {
     return {
@@ -246,6 +262,8 @@ ensure Ember does the right thing in the case a user of your adapter
 does not specify an `serializer:application`.
 
 ```app/adapters/my-custom-adapter.js
+import DS from 'ember-data';
+
 export default DS.JSONAPIAdapter.extend({
   defaultSerializer: '-default'
 });
