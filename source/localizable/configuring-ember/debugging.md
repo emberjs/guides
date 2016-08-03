@@ -120,8 +120,9 @@ console.
 
 ```app/app.js
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
-Ember.RSVP.on('error', function(error) {
+RSVP.on('error', function(error) {
   Ember.Logger.assert(false, error);
 });
 ```

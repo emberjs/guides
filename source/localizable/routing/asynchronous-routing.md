@@ -82,10 +82,11 @@ A basic example:
 
 ```app/routes/tardy.js
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
   model() {
-    return new Ember.RSVP.Promise(function(resolve) {
+    return new RSVP.Promise(function(resolve) {
       Ember.run.later(function() {
         resolve({ msg: 'Hold Your Horses' });
       }, 3000);
@@ -124,10 +125,11 @@ along the way, e.g.:
 
 ```app/routes/good-for-nothing.js
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
   model() {
-    return Ember.RSVP.reject("FAIL");
+    return RSVP.reject("FAIL");
   },
 
   actions: {
