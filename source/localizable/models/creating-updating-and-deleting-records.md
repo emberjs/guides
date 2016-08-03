@@ -151,14 +151,12 @@ deletion can then be persisted using `save()`.  Alternatively, you can use
 the `destroyRecord` method to delete and persist at the same time.
 
 ```js
-store.findRecord('post', 1).then(function(post) {
-  post.deleteRecord();
-  post.get('isDeleted'); // => true
-  post.save(); // => DELETE to /posts/1
-});
+let post = store.peekRecord('post', 1);
+post.deleteRecord();
+post.get('isDeleted'); // => true
+post.save(); // => DELETE to /posts/1
 
 // OR
-store.findRecord('post', 2).then(function(post) {
-  post.destroyRecord(); // => DELETE to /posts/2
-});
+let post = store.peekRecord('post', 2);
+post.destroyRecord(); // => DELETE to /posts/2
 ```
