@@ -4,7 +4,9 @@ Ember provides several configuration options that can help you debug problems wi
 
 #### Log router transitions
 
-```app/app.js export default Ember.Application.extend({ // Basic logging, e.g. "Transitioned into 'post'" LOG_TRANSITIONS: true,
+```app/app.js import Ember from 'ember';
+
+export default Ember.Application.extend({ // Basic logging, e.g. "Transitioned into 'post'" LOG_TRANSITIONS: true,
 
 // Extremely detailed logging, highlighting every internal // step made while transitioning into a route, including // `beforeModel`, `model`, and `afterModel` hooks, and // information about redirects and aborted transitions LOG_TRANSITIONS_INTERNAL: true });
 
@@ -51,6 +53,8 @@ Ember.keys(Ember.TEMPLATES)
     and which it is generating automatically for you.
     
     ```app/app.js
+    import Ember from 'ember';
+    
     export default Ember.Application.extend({
       LOG_RESOLVER: true
     });
@@ -97,7 +101,9 @@ There are times when dealing with promises that it seems like any errors are bei
 
 You can provide an `onerror` function that will be called with the error details if any errors occur within your promise. This function can be anything, but a common practice is to call `console.assert` to dump the error to the console.
 
-```app/app.js Ember.RSVP.on('error', function(error) { Ember.Logger.assert(false, error); });
+```app/app.js import Ember from 'ember';
+
+Ember.RSVP.on('error', function(error) { Ember.Logger.assert(false, error); });
 
     <br />#### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
     

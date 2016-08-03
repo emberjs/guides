@@ -45,7 +45,9 @@ Let's look at the parent component's JavaScript file. In this example, imagine w
 
 We'll implement an action on the parent component called `userDidDeleteAccount()` that, when called, gets a hypothetical `login` [service](../../applications/services/) and calls the service's `deleteUser()` method.
 
-```app/components/user-profile.js export default Ember.Component.extend({ login: Ember.inject.service(),
+```app/components/user-profile.js import Ember from 'ember';
+
+export default Ember.Component.extend({ login: Ember.inject.service(),
 
 actions: { userDidDeleteAccount() { this.get('login').deleteUser(); } } });
 
@@ -58,6 +60,8 @@ actions: { userDidDeleteAccount() { this.get('login').deleteUser(); } } });
     the action from the component:
     
     ```app/components/button-with-confirmation.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
     
       actions: {
@@ -108,6 +112,8 @@ We can do a similar thing for our `send-message` component:
     parent:
     
     ```app/components/button-with-confirmation.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
     
       actions: {
@@ -141,7 +147,9 @@ Often actions perform asynchronous tasks, such as making an ajax request to a se
 
 In our user `button-with-confirmation` component we want to leave the confirmation modal open until we know that the operation has completed successfully. This is accomplished by expecting a promise to be returned from `onConfirm`. Upon resolution of the promise, we set a property used to indicate the visibility of the confirmation modal.
 
-```app/components/button-with-confirmation.js export default Ember.Component.extend({ actions: { launchConfirmDialog() { this.set('confirmShown', true); },
+```app/components/button-with-confirmation.js import Ember from 'ember';
+
+export default Ember.Component.extend({ actions: { launchConfirmDialog() { this.set('confirmShown', true); },
 
     submitConfirm() {
       //call onConfirm with the value of the input field as an argument
@@ -195,7 +203,9 @@ Action arguments curry, meaning that you can provide partial arguments to the ac
 
 Now when the `submitConfirm` action is invoked, we call it with the value provided by our yielded input.
 
-```app/components/button-with-confirmation.js export default Ember.Component.extend({ actions: { launchConfirmDialog() { this.set("confirmShown", true); },
+```app/components/button-with-confirmation.js import Ember from 'ember';
+
+export default Ember.Component.extend({ actions: { launchConfirmDialog() { this.set("confirmShown", true); },
 
     submitConfirm() {
       //call onConfirm with the value of the input field as an argument
@@ -217,6 +227,8 @@ Now when the `submitConfirm` action is invoked, we call it with the value provid
     
     
     ```app/components/send-message.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       actions: {
         sendMessage(messageType, messageText) {
@@ -230,7 +242,9 @@ Now when the `submitConfirm` action is invoked, we call it with the value provid
 
 Actions can be invoked on objects other than the component directly from the template. For example, in our `send-message` component we might include a service that processes the `sendMessage` logic.
 
-```app/components/send-message.js export default Ember.Component.extend({ messaging: Ember.inject.service(),
+```app/components/send-message.js import Ember from 'ember';
+
+export default Ember.Component.extend({ messaging: Ember.inject.service(),
 
 // component implementation });
 
@@ -247,7 +261,9 @@ Actions can be invoked on objects other than the component directly from the tem
 
 By supplying the `target` attribute, the action helper will look to invoke the `sendMessage` action directly on the messaging service, saving us from writing code on the component that just passes the action along to the service.
 
-```app/services/messaging.js export default Ember.Service.extend({ actions: { sendMessage(messageType, text) { //handle message send and return a promise } } });
+```app/services/messaging.js import Ember from 'ember';
+
+export default Ember.Service.extend({ actions: { sendMessage(messageType, text) { //handle message send and return a promise } } });
 
     <br />## Destructuring Objects Passed as Action Arguments
     
@@ -258,6 +274,8 @@ By supplying the `target` attribute, the action helper will look to invoke the `
     
     
     ```app/components/user-profile.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       login: Ember.inject.service(),
     
@@ -277,6 +295,8 @@ All our `system-preferences-editor` component really needs to process a user del
     <br />Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
     
     ```app/components/system-preferences-editor.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       actions: {
         userDeleted(idStr) {

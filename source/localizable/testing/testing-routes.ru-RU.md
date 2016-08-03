@@ -6,7 +6,9 @@ That being said, sometimes it is important to unit test your routes. For example
 
 > By default, Ember CLI does not generate a file for its application route. To extend the behavior of the ember application route we will run the command `ember generate route application`. Ember CLI does however generate an application template, so when asked whether we want to overwrite `app/templates/application.hbs` we will answer 'n'.
 
-```app/routes/application.js export default Ember.Route.extend({ actions: { displayAlert(text) { this._displayAlert(text); } },
+```app/routes/application.js import Ember from 'ember';
+
+export default Ember.Route.extend({ actions: { displayAlert(text) { this._displayAlert(text); } },
 
 _displayAlert(text) { alert(text); } });
 

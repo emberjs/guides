@@ -4,9 +4,13 @@ Ember Data includes several built-in relationship types to help you define how y
 
 To declare a one-to-one relationship between two models, use `DS.belongsTo`:
 
-```app/models/user.js export default DS.Model.extend({ profile: DS.belongsTo('profile') });
+```app/models/user.js import DS from 'ember-data';
+
+export default DS.Model.extend({ profile: DS.belongsTo('profile') });
 
     <br />```app/models/profile.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       user: DS.belongsTo('user')
     });
@@ -16,9 +20,13 @@ To declare a one-to-one relationship between two models, use `DS.belongsTo`:
 
 To declare a one-to-many relationship between two models, use `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```app/models/blog-post.js export default DS.Model.extend({ comments: DS.hasMany('comment') });
+```app/models/blog-post.js import DS from 'ember-data';
+
+export default DS.Model.extend({ comments: DS.hasMany('comment') });
 
     <br />```app/models/comment.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       blogPost: DS.belongsTo('blog-post')
     });
@@ -28,9 +36,13 @@ To declare a one-to-many relationship between two models, use `DS.belongsTo` in 
 
 To declare a many-to-many relationship between two models, use `DS.hasMany`:
 
-```app/models/blog-post.js export default DS.Model.extend({ tags: DS.hasMany('tag') });
+```app/models/blog-post.js import DS from 'ember-data';
+
+export default DS.Model.extend({ tags: DS.hasMany('tag') });
 
     <br />```app/models/tag.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       blogPosts: DS.hasMany('blog-post')
     });
@@ -42,9 +54,13 @@ Ember Data will do its best to discover which relationships map to one another. 
 
 However, sometimes you may have multiple `belongsTo`/`hasMany`s for the same type. You can specify which property on the related model is the inverse using `DS.belongsTo` or `DS.hasMany`'s `inverse` option. Relationships without an inverse can be indicated as such by including `{ inverse: null }`.
 
-```app/models/comment.js export default DS.Model.extend({ onePost: DS.belongsTo('blog-post', { inverse: null }), twoPost: DS.belongsTo('blog-post'), redPost: DS.belongsTo('blog-post'), bluePost: DS.belongsTo('blog-post') });
+```app/models/comment.js import DS from 'ember-data';
+
+export default DS.Model.extend({ onePost: DS.belongsTo('blog-post', { inverse: null }), twoPost: DS.belongsTo('blog-post'), redPost: DS.belongsTo('blog-post'), bluePost: DS.belongsTo('blog-post') });
 
     <br />```app/models/blog-post.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       comments: DS.hasMany('comment', {
         inverse: 'redPost'
@@ -58,11 +74,15 @@ When you want to define a reflexive relation (a model that has a relationship to
 
 Here's an example of a one-to-many reflexive relationship:
 
-```app/models/folder.js export default DS.Model.extend({ children: DS.hasMany('folder', { inverse: 'parent' }), parent: DS.belongsTo('folder', { inverse: 'children' }) });
+```app/models/folder.js import DS from 'ember-data';
+
+export default DS.Model.extend({ children: DS.hasMany('folder', { inverse: 'parent' }), parent: DS.belongsTo('folder', { inverse: 'children' }) });
 
     <br />Here's an example of a one-to-one reflexive relationship:
     
     ```app/models/user.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       name: DS.attr('string'),
       bestFriend: DS.belongsTo('user', { inverse: 'bestFriend' }),
@@ -71,7 +91,9 @@ Here's an example of a one-to-many reflexive relationship:
 
 You can also define a reflexive relationship that doesn't have an inverse:
 
-```app/models/folder.js export default DS.Model.extend({ parent: DS.belongsTo('folder', { inverse: null }) });
+```app/models/folder.js import DS from 'ember-data';
+
+export default DS.Model.extend({ parent: DS.belongsTo('folder', { inverse: null }) });
 
     <br />### Readonly Nested Data
     
@@ -91,12 +113,16 @@ You can also define a reflexive relationship that doesn't have an inverse:
     Let's assume that we have a `blog-post` and a `comment` model, which are related to each other as follows:
     
     ```app/models/blog-post.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       comments: DS.hasMany('comment')
     });
     
 
-```app/models/comment.js export default DS.Model.extend({ blogPost: DS.belongsTo('blog-post') });
+```app/models/comment.js import DS from 'ember-data';
+
+export default DS.Model.extend({ blogPost: DS.belongsTo('blog-post') });
 
     <br />When a user comments on a blogPost, we need to create a relationship between the two records. We can simply set the `belongsTo` relationship in our new comment:
     

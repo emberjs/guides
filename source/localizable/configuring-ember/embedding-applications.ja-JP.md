@@ -8,7 +8,9 @@ By default, your application will render the [application template](../../routin
 
 You can tell the application to append the application template to a different element by specifying its `rootElement` property:
 
-```app/app.js export default Ember.Application.extend({ rootElement: '#app' });
+```app/app.js import Ember from 'ember';
+
+export default Ember.Application.extend({ rootElement: '#app' });
 
     <br />This property can be specified as either an element or a
     [jQuery-compatible selector

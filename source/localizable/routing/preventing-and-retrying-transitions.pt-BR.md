@@ -8,7 +8,9 @@ Imagine your app is in a route that's displaying a complex form for the user to 
 
 Here's one way this situation could be handled:
 
-```app/routes/form.js export default Ember.Route.extend({ actions: { willTransition(transition) { if (this.controller.get('userHasEnteredData') && !confirm('Are you sure you want to abandon progress?')) { transition.abort(); } else { // Bubble the `willTransition` action so that // parent routes can decide whether or not to abort. return true; } } } });
+```app/routes/form.js import Ember from 'ember';
+
+export default Ember.Route.extend({ actions: { willTransition(transition) { if (this.controller.get('userHasEnteredData') && !confirm('Are you sure you want to abandon progress?')) { transition.abort(); } else { // Bubble the `willTransition` action so that // parent routes can decide whether or not to abort. return true; } } } });
 
     <br />When the user clicks on a `{{link-to}}` helper, or when the app initiates a
     transition by using `transitionTo`, the transition will be aborted and the URL
@@ -26,6 +28,8 @@ Here's one way this situation could be handled:
     destination routes to abort attempted transitions.
     
     ```app/routes/disco.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       beforeModel(transition) {
         if (new Date() > new Date('January 1, 1980')) {
@@ -40,9 +44,13 @@ Here's one way this situation could be handled:
 
 Aborted transitions can be retried at a later time. A common use case for this is having an authenticated route redirect the user to a login page, and then redirecting them back to the authenticated route once they've logged in.
 
-```app/routes/some-authenticated.js export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { var loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
+```app/routes/some-authenticated.js import Ember from 'ember';
+
+export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { var loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
 
     <br />```app/controllers/login.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       actions: {
         login() {

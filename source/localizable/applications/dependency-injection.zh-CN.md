@@ -18,7 +18,9 @@ Ember 应用程序利用 [dependency injection](https://en.wikipedia.org/wiki/De
 
 例如，用一个应用程序初始程序注册一个键名为 `logger:main` 的 `Logger` 工厂：
 
-```app/initializers/logger.js export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
+```app/initializers/logger.js import Ember from 'ember';
+
+export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
 
 application.register('logger:main', Logger); }
 
@@ -50,13 +52,15 @@ export default { name: 'logger', initialize: initialize };
 
 ### 注册单例 vs. 非单例
 
-默认情况下，注册行为是“单例”模式的。 也就是说只在第一次检索到时才创建实例对象，这个实例对象将会被缓存起来并在后续的检索中被返回。
+By default, registrations are treated as "singletons". This simply means that an instance will be created when it is first looked up, and this same instance will be cached and returned from subsequent lookups.
 
-若你想要在每次被检索到时都返回一个新对象，就要用 `singleton: false` 选项将你的工厂注册为非单例。
+When you want fresh objects to be created for every lookup, register your factories as non-singletons using the `singleton: false` option.
 
-在下面的例子里：`Message` 类被注册为一个非单例：
+In the following example, the `Message` class is registered as a non-singleton:
 
-```app/initializers/notification.js export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
+```app/initializers/notification.js import Ember from 'ember';
+
+export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
 
 application.register('notification:message', Message, { singleton: false }); }
 
@@ -66,9 +70,11 @@ export default { name: 'notification', initialize: initialize };
     
     一旦工厂注册好了，它可以在需要它的地方“注入”使用。
     
-    工厂可以*类型注入*的方式注入到某种”类型“的全部工厂之中。 举个例子：
+    工厂可以*类型注入*的方式注入到某种”类型“的全部工厂之中。 For example:
     
     ```app/initializers/logger.js
+    import Ember from 'ember';
+    
     export function initialize(application) {
       var Logger = Ember.Object.extend({
         log(m) {
@@ -86,11 +92,13 @@ export default { name: 'notification', initialize: initialize };
     };
     
 
-像这种类型注入的方式，所有类型是 `route` 的工厂在实例化时都会被注入 `logger` 属性。 而 `logger` 的值将会来自于名为 `logger:main` 的工厂。.
+As a result of this type injection, all factories of the type `route` will be instantiated with the property `logger` injected. The value of `logger` will come from the factory named `logger:main`.
 
-在此示例应用程序中的路由可以访问注入的 logger：
+Routes in this example application can now access the injected logger:
 
-```app/routes/index.js export default Ember.Route.extend({ activate() { // The logger property is injected into all routes this.get('logger').log('Entered the index route!'); } });
+```app/routes/index.js import Ember from 'ember';
+
+export default Ember.Route.extend({ activate() { // The logger property is injected into all routes this.get('logger').log('Entered the index route!'); } });
 
     <br />注入也可以通过使用它的完整键名来作用于某个特定的工厂：
     
@@ -98,9 +106,9 @@ export default { name: 'notification', initialize: initialize };
     application.inject('route:index', 'logger', 'logger:main');
     
 
-在这种情况下，logger 只会被注入到 index 路由。
+In this case, the logger will only be injected on the index route.
 
-注入可作用于任何需要实例化的类。这包括了所有在 Ember 主体框架里的类，诸如 components，helpers，routes，以及 router。
+Injections can be made onto any class that requires instantiation. This includes all of Ember's major framework classes, such as components, helpers, routes, and the router.
 
 ### Ad Hoc Injections
 
@@ -108,12 +116,16 @@ Dependency injections can also be declared directly on Ember classes using `Embe
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
-```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
+```app/components/cart-contents.js import Ember from 'ember';
+
+export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
 
     <br />If you'd like to inject a service with the same name as the property,
     simply leave off the service name (the dasherized version of the name will be used):
     
     ```app/components/cart-contents.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       shoppingCart: Ember.inject.service()
     });

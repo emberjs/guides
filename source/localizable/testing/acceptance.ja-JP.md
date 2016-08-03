@@ -116,6 +116,8 @@ The `andThen` helper will wait for all preceding asynchronous helpers to complet
     shouldHaveElementWithCount`:
     
     ```tests/helpers/should-have-element-with-count.js
+    import Ember from 'ember';
+    
     export default Ember.Test.registerAsyncHelper(
         'shouldHaveElementWithCount', function(app) {
     });
@@ -127,13 +129,17 @@ The helper method will always be called with the current Application as the firs
 
 Here is an example of a non-async helper:
 
-```tests/helpers/should-have-element-with-count.js export default Ember.Test.registerHelper('shouldHaveElementWithCount', function(app, assert, selector, n, context) { const el = findWithAssert(selector, context); const count = el.length; assert.equal(n, count, `found ${count} times`); } );
+```tests/helpers/should-have-element-with-count.js import Ember from 'ember';
+
+export default Ember.Test.registerHelper('shouldHaveElementWithCount', function(app, assert, selector, n, context) { const el = findWithAssert(selector, context); const count = el.length; assert.equal(n, count, `found ${count} times`); } );
 
 // shouldHaveElementWithCount(assert, 'ul li', 3);
 
     <br />Here is an example of an async helper:
     
     ```tests/helpers/dblclick.js
+    import Ember from 'ember';
+    
     export default Ember.Test.registerAsyncHelper('dblclick',
       function(app, assert, selector, context) {
         let $el = findWithAssert(selector, context);
@@ -146,7 +152,9 @@ Here is an example of a non-async helper:
 
 Async helpers also come in handy when you want to group interaction into one helper. For example:
 
-```tests/helpers/add-contact.js export default Ember.Test.registerAsyncHelper('addContact', function(app, name) { fillIn('#name', name); click('button.create'); } );
+```tests/helpers/add-contact.js import Ember from 'ember';
+
+export default Ember.Test.registerAsyncHelper('addContact', function(app, name) { fillIn('#name', name); click('button.create'); } );
 
 // addContact('Bob'); // addContact('Dan');
 

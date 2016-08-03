@@ -1,4 +1,4 @@
-You don't need to define a class all at once. You can reopen a class and define new properties using the [`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass) method.
+一个类只需要定义一次即可。 你可以重新扩展一个类或者使用[`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass)方法定义新的属性。
 
 ```javascript
 Person.reopen({
@@ -8,7 +8,7 @@ Person.reopen({
 Person.create().get('isPerson'); // true
 ```
 
-When using `reopen()`, you can also override existing methods and call `this._super`.
+在使用 `reopen()` 时，你也可以重写现有方法并调用 `this._super`.
 
 ```javascript
 Person.reopen({
@@ -19,9 +19,9 @@ Person.reopen({
 });
 ```
 
-`reopen()` is used to add instance methods and properties that are shared across all instances of a class. It does not add methods and properties to a particular instance of a class as in vanilla JavaScript (without using prototype).
+`reopen()` 用于添加所有实例之间共享的实例方法和类属性。 `reopen`方法不能往一个类的实例新增属性或方法(不使用原型)。
 
-But when you need to add static methods or static properties to the class itself you can use [`reopenClass()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass).
+但当您需要将静态方法或静态属性添加到类本身时你可以使用 [`reopenClass()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass).
 
 ```javascript
 // add static property to class

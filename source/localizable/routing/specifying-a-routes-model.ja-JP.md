@@ -10,6 +10,8 @@
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
     
     ```app/routes/favorite-posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return this.get('store').query('post', { favorite: true });
@@ -45,7 +47,9 @@
     });
     
 
-```app/routes/photo.js export default Ember.Route.extend({ model(params) { return this.get('store').findRecord('photo', params.photo_id); } });
+```app/routes/photo.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model(params) { return this.get('store').findRecord('photo', params.photo_id); } });
 
     <br />ダイナミックセグメントがあるルートの`model` フックを、ID(例えば、`47` とか `post-slug`など)をモデルに変更して、ルートのテンプレートとして描画できるようにする必要があります。 上記の例の場合は、写真のID(`params.photo_id`) を Ember Data'sの`findRecord`
     メソッドの引数としています。
@@ -58,6 +62,8 @@
     `Ember.RSVP.hash` はプロミスを返す、パラメータを受け取り、すべてのプロミスが解決されたとき `Ember.RSVP.hash` 自体のプロミスが解決されます。 For example:
     
     ```app/routes/songs.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return Ember.RSVP.hash({
@@ -68,7 +74,7 @@
     });
     
 
-この`songs` テンプレートでは、`{{#each}}`で利用する、曲モデルと、アルバムモデルの両方を指定して、利用することができます。
+In the `songs` template, we can specify both models and use the `{{#each}}` helper to display each record in the song model and album model:
 
 ```app/templates/songs.hbs 
 

@@ -39,7 +39,9 @@ Ember gives you the ability to [write your own helpers](../writing-helpers/), to
 
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
-```app/helpers/sum.js export function sum(params) { return params.reduce((a, b) => { return a + b; }); };
+```app/helpers/sum.js import Ember from 'ember';
+
+export function sum(params) { return params.reduce((a, b) => { return a + b; }); };
 
 export default Ember.Helper.helper(sum);
 

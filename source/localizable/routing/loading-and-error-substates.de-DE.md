@@ -9,6 +9,8 @@ Consider the following:
 ```app/router.js Router.map(function() { this.route('slow-model'); });
 
     <br />```app/routes/slow-model.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return this.get('store').findAll('slow-model');
@@ -58,6 +60,8 @@ For nested routes, like:
     [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
     
     ```app/routes/foo-slow-model.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return this.get('store').findAll('slow-model');
@@ -75,7 +79,9 @@ If the `loading` handler is not defined at the specific route, the event will co
 
 When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
 
-```app/routes/foo-slow-model.js export default Ember.Route.extend({ ... actions: { loading(transition, originRoute) { let controller = this.controllerFor('foo'); controller.set('currentlyLoading', true); transition.promise.finally(function() { controller.set('currentlyLoading', false); }); } } });
+```app/routes/foo-slow-model.js import Ember from 'ember';
+
+export default Ember.Route.extend({ ... actions: { loading(transition, originRoute) { let controller = this.controllerFor('foo'); controller.set('currentlyLoading', true); transition.promise.finally(function() { controller.set('currentlyLoading', false); }); } } });
 
     <br />## `error` substates
     
@@ -117,18 +123,8 @@ If no viable error substates can be found, an error message will be logged.
 
 If the `articles.overview` route's `model` hook returns a promise that rejects (for instance the server returned an error, the user isn't logged in, etc.), an [`error`](http://emberjs.com/api/classes/Ember.Route.html#event_error) event will fire from that route and bubble upward. This `error` event can be handled and used to display an error message, redirect to a login page, etc.
 
-    app/routes/articles-overview.js
-    export default Ember.Route.extend({
-      model(params) {
-        return this.get('store').findAll('problematic-model');
-      },
-      actions: {
-        error(error, transition) {
-          if (error) {
-            return this.transitionTo('error-page');
-          }
-        }
-      }
-    });
+```app/routes/articles-overview.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model(params) { return this.get('store').findAll('problematic-model'); }, actions: { error(error, transition) { if (error) { return this.transitionTo('error-page'); } } } }); ```
 
 Analogous to the `loading` event, you could manage the `error` event at the application level to avoid writing the same code for multiple routes.

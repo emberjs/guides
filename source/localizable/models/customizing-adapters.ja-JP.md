@@ -6,7 +6,9 @@ Extending Adapters is a natural process in Ember Data. Ember takes the position 
 
 If your backend has some consistent rules you can define an `adapter:application`. The `adapter:application` will get priority over the default Adapter, however it will still be superseded by model specific Adapters.
 
-```app/adapters/application.js export default DS.JSONAPIAdapter.extend({ // Application specific overrides go here });
+```app/adapters/application.js import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({ // Application specific overrides go here });
 
     <br />If you have one model that has exceptional rules for communicating
     with its backend than the others you can create a Model specific
@@ -15,6 +17,8 @@ If your backend has some consistent rules you can define an `adapter:application
     following file:
     
     ```app/adapters/post.js
+    import DS from 'ember-data';
+    
     export default DS.JSONAPIAdapter.extend({
       namespace: 'api/v1'
     });
@@ -161,7 +165,9 @@ inflector.irregular('cow', 'kine');
 
 The `namespace` property can be used to prefix requests with a specific url namespace.
 
-```app/adapters/application.js export default DS.JSONAPIAdapter.extend({ namespace: 'api/1' });
+```app/adapters/application.js import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({ namespace: 'api/1' });
 
     <br />Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
     
@@ -173,6 +179,8 @@ The `namespace` property can be used to prefix requests with a specific url name
     property on the adapter.
     
     ```app/adapters/application.js
+    import DS from 'ember-data';
+    
     export default DS.JSONAPIAdapter.extend({
       host: 'https://api.example.com'
     });
@@ -186,7 +194,9 @@ By default the `JSONAPIAdapter` will attempt to pluralize and dasherize the mode
 
 For example, if you did not want to pluralize model names and needed underscore_case instead of camelCase you could override the `pathForType` method like this:
 
-```app/adapters/application.js export default DS.JSONAPIAdapter.extend({ pathForType: function(type) { return Ember.String.underscore(type); } });
+```app/adapters/application.js import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({ pathForType: function(type) { return Ember.String.underscore(type); } });
 
     <br />Requests for `person` would now target `/person/1`.
     Requests for `user-profile` would now target `/user_profile/1`.
@@ -198,6 +208,8 @@ For example, if you did not want to pluralize model names and needed underscore_
     object and Ember Data will send them along with each ajax request.
     
     ```app/adapters/application.js
+    import DS from 'ember-data';
+    
     export default DS.JSONAPIAdapter.extend({
       headers: {
         'API_KEY': 'secret key',
@@ -208,7 +220,9 @@ For example, if you did not want to pluralize model names and needed underscore_
 
 `headers` can also be used as a computed property to support dynamic headers. In the example below, the headers are generated with a computed property dependent on the `session` service.
 
-```app/adapters/application.js export default DS.JSONAPIAdapter.extend({ session: Ember.inject.service('session'), headers: Ember.computed('session.authToken', function() { return { 'API_KEY': this.get('session.authToken'), 'ANOTHER_HEADER': 'Some header value' }; }) });
+```app/adapters/application.js import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({ session: Ember.inject.service('session'), headers: Ember.computed('session.authToken', function() { return { 'API_KEY': this.get('session.authToken'), 'ANOTHER_HEADER': 'Some header value' }; }) });
 
     <br />In some cases, your dynamic headers may require data from some
     object outside of Ember's observer system (for example
@@ -218,6 +232,8 @@ For example, if you did not want to pluralize model names and needed underscore_
     be recomputed with every request.
     
     ```app/adapters/application.js
+    import DS from 'ember-data';
+    
     export default DS.JSONAPIAdapter.extend({
       headers: Ember.computed(function() {
         return {
@@ -234,10 +250,9 @@ The `defaultSerializer` property can be used to specify the serializer that will
 
 In an application, it is often easier to specify an `serializer:application`. However, if you are the author of a community adapter it is important to remember to set this property to ensure Ember does the right thing in the case a user of your adapter does not specify an `serializer:application`.
 
-    app/adapters/my-custom-adapter.js
-    export default DS.JSONAPIAdapter.extend({
-      defaultSerializer: '-default'
-    });
+```app/adapters/my-custom-adapter.js import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({ defaultSerializer: '-default' }); ```
 
 ## Community Adapters
 

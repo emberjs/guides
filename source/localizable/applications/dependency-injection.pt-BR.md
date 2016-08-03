@@ -18,7 +18,9 @@ Factory registrations must be performed either in application or application ins
 
 For example, an application initializer could register a `Logger` factory with the key `logger:main`:
 
-```app/initializers/logger.js export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
+```app/initializers/logger.js import Ember from 'ember';
+
+export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
 
 application.register('logger:main', Logger); }
 
@@ -58,7 +60,9 @@ When you want fresh objects to be created for every lookup, register your factor
 
 In the following example, the `Message` class is registered as a non-singleton:
 
-```app/initializers/notification.js export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
+```app/initializers/notification.js import Ember from 'ember';
+
+export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
 
 application.register('notification:message', Message, { singleton: false }); }
 
@@ -71,6 +75,8 @@ export default { name: 'notification', initialize: initialize };
     Factories can be injected into whole "types" of factories with *type injections*. For example:
     
     ```app/initializers/logger.js
+    import Ember from 'ember';
+    
     export function initialize(application) {
       var Logger = Ember.Object.extend({
         log(m) {
@@ -92,7 +98,9 @@ As a result of this type injection, all factories of the type `route` will be in
 
 Routes in this example application can now access the injected logger:
 
-```app/routes/index.js export default Ember.Route.extend({ activate() { // The logger property is injected into all routes this.get('logger').log('Entered the index route!'); } });
+```app/routes/index.js import Ember from 'ember';
+
+export default Ember.Route.extend({ activate() { // The logger property is injected into all routes this.get('logger').log('Entered the index route!'); } });
 
     <br />Injections can also be made on a specific factory by using its full key:
     
@@ -110,12 +118,16 @@ Dependency injections can also be declared directly on Ember classes using `Embe
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
-```app/components/cart-contents.js export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
+```app/components/cart-contents.js import Ember from 'ember';
+
+export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
 
     <br />If you'd like to inject a service with the same name as the property,
     simply leave off the service name (the dasherized version of the name will be used):
     
     ```app/components/cart-contents.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       shoppingCart: Ember.inject.service()
     });

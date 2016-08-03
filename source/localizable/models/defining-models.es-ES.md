@@ -8,7 +8,9 @@ ember generate model person
 
 This will generate the following file:
 
-```app/models/person.js export default DS.Model.extend({ });
+```app/models/person.js import DS from 'ember-data';
+
+export default DS.Model.extend({ });
 
     <br />After you have defined a model class, you can start [finding](../finding-records)
     and [working with records](../creating-updating-and-deleting-records) of that type.
@@ -20,6 +22,8 @@ This will generate the following file:
     add first and last name, as well as the birthday, using [`DS.attr`](http://emberjs.com/api/data/classes/DS.html#method_attr):
     
     ```app/models/person.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       firstName: DS.attr(),
       lastName: DS.attr(),
@@ -31,7 +35,9 @@ Attributes are used when turning the JSON payload returned from your server into
 
 You can use attributes like any other property, including as part of a computed property. Frequently, you will want to define computed properties that combine or transform primitive attributes.
 
-```app/models/person.js export default DS.Model.extend({ firstName: DS.attr(), lastName: DS.attr(),
+```app/models/person.js import DS from 'ember-data';
+
+export default DS.Model.extend({ firstName: DS.attr(), lastName: DS.attr(),
 
 fullName: Ember.computed('firstName', 'lastName', function() { return `${this.get('firstName')} ${this.get('lastName')}`; }) });
 
@@ -50,6 +56,8 @@ fullName: Ember.computed('firstName', 'lastName', function() { return `${this.ge
     which coerce the value to the JavaScript type that matches its name.
     
     ```app/models/person.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       name: DS.attr('string'),
       age: DS.attr('number'),
@@ -74,7 +82,9 @@ ember generate transform dollars
 
 Here is a simple transform that converts values between cents and US dollars.
 
-```app/transforms/dollars.js export default DS.Transform.extend({ deserialize: function(serialized) { return serialized / 100; // returns dollars },
+```app/transforms/dollars.js import DS from 'ember-data';
+
+export default DS.Transform.extend({ deserialize: function(serialized) { return serialized / 100; // returns dollars },
 
 serialize: function(deserialized) { return deserialized * 100; // returns cents } });
 
@@ -85,6 +95,8 @@ serialize: function(deserialized) { return deserialized * 100; // returns cents 
     You would use the custom `dollars` transform like this:
     
     ```app/models/product.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       spent: DS.attr('dollars')
     });
@@ -96,12 +108,6 @@ serialize: function(deserialized) { return deserialized * 100; // returns cents 
 
 In the following example we define that `verified` has a default value of `false` and `createdAt` defaults to the current date at the time of the model's creation:
 
-    app/models/user.js
-    export default DS.Model.extend({
-      username: DS.attr('string'),
-      email: DS.attr('string'),
-      verified: DS.attr('boolean', { defaultValue: false }),
-      createdAt: DS.attr('date', {
-        defaultValue() { return new Date(); }
-      })
-    });
+```app/models/user.js import DS from 'ember-data';
+
+export default DS.Model.extend({ username: DS.attr('string'), email: DS.attr('string'), verified: DS.attr('boolean', { defaultValue: false }), createdAt: DS.attr('date', { defaultValue() { return new Date(); } }) }); ```

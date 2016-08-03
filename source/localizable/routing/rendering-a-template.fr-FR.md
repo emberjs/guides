@@ -18,6 +18,8 @@ By default, a route handler will render the template with the same name as the r
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
     
     ```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       renderTemplate() {
         this.render('favoritePosts');

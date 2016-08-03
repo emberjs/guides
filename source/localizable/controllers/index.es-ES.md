@@ -72,11 +72,6 @@ Your template would bind to these properties in the `blog-post` template:
 
 You can then define what the action does within the `actions` hook of the controller, as you would with a component:
 
-    app/controllers/blog-post.js
-    export default Ember.Controller.extend({
-      actions: {
-        toggleBody() {
-          this.toggleProperty('isExpanded');
-        }
-      }
-    });
+```app/controllers/blog-post.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ actions: { toggleBody() { this.toggleProperty('isExpanded'); } } }); ```

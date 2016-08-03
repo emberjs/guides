@@ -1,12 +1,12 @@
-## What are Computed Properties?
+## 计算属性是什么？
 
-In a nutshell, computed properties let you declare functions as properties. You create one by defining a computed property as a function, which Ember will automatically call when you ask for the property. You can then use it the same way you would any normal, static property.
+简而言之，计算属性让你声明的函数作为属性。 你可以创建一个函数作为计算属性，当你获取计算属性值的时候此函数会自动被Ember调用。 你可以像普通的静态属性那样使用计算属性。
 
-It's super handy for taking one or more normal properties and transforming or manipulating their data to create a new value.
+计算属性用于获取一个或多个普通属性值以及用于改变或操作他们的数据来创建新值都是非常方便的。
 
-### Computed properties in action
+### 在`action`中计算的属性
 
-We'll start with a simple example:
+我们将从一个简单的例子开始︰
 
 ```javascript
 Person = Ember.Object.extend({
@@ -27,9 +27,9 @@ let ironMan = Person.create({
 ironMan.get('fullName'); // "Tony Stark"
 ```
 
-This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on. The first time you access the `fullName` property, the function backing the computed property (i.e. the last argument) will be ran and the results will be cached. Subsequent access of `fullName` will read from the cache without calling the function. Changing any of the dependent properties causes the cache to invalidate, so that the computed function runs again on the next access.
+上述代码声明了计算属性`fullName`，并且这个计算属性依赖于普通属性 `firstName` 和 `lastName` 第一次你访问 计算属性`fullName` ，计算的属性上的函数将被执行(最后一个参数，也是一个函数)并把函数的结果返回，同时这个结果还会被缓存起来。 `FullName` 的后续访问将从缓存中读取，而无需调用该函数。 更改依赖项属性的任何导致缓存失效，因此计算属性函数在下次访问时再次运行以获取最新的值。
 
-When you want to depend on a property which belongs to an object, you can setup multiple dependent keys by using brace expansion:
+当你想要依赖于属于一个对象的属性时，您可以通过使用大括号扩展设置多个相关的参数︰
 
 ```javascript
 let obj = Ember.Object.extend({
@@ -41,11 +41,11 @@ let obj = Ember.Object.extend({
 });
 ```
 
-This allows you to observe both `foo` and `bar` on `baz` with much less duplication/redundancy when your dependent keys are mostly similar.
+请看上述代码，计算属性还允许你监测一个对象 `baz`的多个属性`foo` 和`bar`，当计算属性依赖对象的多个属性时这种方式非常实用。
 
-### Chaining computed properties
+### 计算属性链
 
-You can use computed properties as values to create new computed properties. Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
+可以用计算属性的值来创建新的计算属性。 Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
 
 ```javascript
 Person = Ember.Object.extend({

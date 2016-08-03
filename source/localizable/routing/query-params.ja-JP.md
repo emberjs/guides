@@ -12,13 +12,18 @@ http://example.com/articles?sort=ASC&page=2
 
 まだ、「人気のある」という`'category'`に未だに分類されていない、ポストを指定するためにの`controller:article`の`queryParams`パラメータとして`'category'`を指定します。
 
-```app/controllers/articles.js export default Ember.Controller.extend({ queryParams: ['category'], category: null });
+```app/controllers/articles.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ queryParams: ['category'], category: null });
 
     <br />これは、URLの`category`クエリーパラメーターと`controller:articles`の`category`プロパティの間をバインドします。 言い換えると、一度`articles`ルートが入力されると、URLのあらゆる`category`クエーリーパラメーターは`controller:articles`の`category`を更新します、逆も同様です。
     
-    次は`articles` テンプレートが描画するためのカタログフィルタ配列のコンピュートプロパティを定義する必要があります:
+    Now we need to define a computed property of our category-filtered
+    array that the `articles` template will render:
     
     ```app/controllers/articles.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       queryParams: ['category'],
       category: null,
@@ -36,7 +41,7 @@ http://example.com/articles?sort=ASC&page=2
     });
     
 
-このコードで、次の動作を確立しています。
+With this code, we have established the following behaviors:
 
   1. もし、ユーザーが`/articles`に遷移すると、`category` は `null`となり記事はフィルタされません。
   2. ユーザーが`/articles?category=recent`へと遷移すると、`category`が`"recent"`に設定され、記事がフィルタされます。
@@ -44,7 +49,7 @@ http://example.com/articles?sort=ASC&page=2
 
 ### link-to Helper (ヘルパー)
 
-link-to Helper (ヘルパー)は、パラメーターの指定に`query-params` subexpression helper (ヘルパー)を利用しています。
+The `link-to` helper supports specifying query params using the `query-params` subexpression helper.
 
 ```handlebars
 // ターゲットパラメータの明示的な設定
@@ -54,7 +59,7 @@ link-to Helper (ヘルパー)は、パラメーターの指定に`query-params` 
 {{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
 ```
 
-上記の例では、`direction` は `posts` controller (コントローラー)のクエーリー　パラメーターだと推定されますが、しかし与えられた名前と先端のcontrollers (コントローラー)と関連付けられる、`posts` route (ルート) hierarchy (階層)のいずれかの`direction` property (プロパティー)にいかもしれません。
+In the above examples, `direction` is presumably a query param property on the `posts` controller, but it could also refer to a `direction` property on any of the controllers associated with the `posts` route hierarchy, matching the leaf-most controller with the supplied property name.
 
 The `link-to` helper takes into account query parameters when determining its "active" state, and will set the class appropriately. The active state is determined by calculating whether the query params end up the same after clicking a link. You don't have to supply all of the current, active query params for this to be true.
 
@@ -64,7 +69,7 @@ The `link-to` helper takes into account query parameters when determining its "a
 
 ```app/routes/some-route.js this.transitionTo('post', object, { queryParams: { showDetails: true }}); this.transitionTo('posts', { queryParams: { sort: 'title' }});
 
-// もしルートを変更せずにクエーリパラメーターを遷移したい場合は this.transitionTo({ queryParams: { direction: 'asc' }});
+// if you want to transition the query parameters without changing the route this.transitionTo({ queryParams: { direction: 'asc' }});
 
     <br />URL の遷移に関しても、クエーリパラメーターを追加することができます:
     
@@ -78,7 +83,9 @@ Arguments provided to `transitionTo` or `link-to` only correspond to a change in
 
 But some query param changes necessitate loading data from the server, in which case it is desirable to opt into a full-on transition. To opt into a full transition when a controller query param property changes, you can use the optional `queryParams` configuration hash on the `Route` associated with that controller, and set that query param's `refreshModel` config property to `true`:
 
-```app/routes/articles.js export default Ember.Route.extend({ queryParams: { category: { refreshModel: true } }, model(params) { // 上記の`refreshModel:true` のクエーリパラメーターを設定することで、初めて'articles' ルートが呼び出されます。
+```app/routes/articles.js import Ember from 'ember';
+
+export default Ember.Route.extend({ queryParams: { category: { refreshModel: true } }, model(params) { // This gets called upon entering 'articles' route // for the first time, and we opt into refiring it upon // query param changes by setting `refreshModel:true` above.
 
     // params has format of { category: "someValueOrJustNull" },
     // which we can forward to the server.
@@ -88,6 +95,8 @@ But some query param changes necessitate loading data from the server, in which 
 } });
 
     <br />```app/controllers/articles.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       queryParams: ['category'],
       category: null
@@ -98,7 +107,9 @@ But some query param changes necessitate loading data from the server, in which 
 
 By default, Ember will use `pushState` to update the URL in the address bar in response to a controller query param property change, but if you would like to use `replaceState` instead (which prevents an additional item from being added to your browser's history), you can specify this on the `Route`'s `queryParams` config hash, e.g. (continued from the example above):
 
-```app/routes/articles.js export default Ember.Route.extend({ queryParams: { category: { replace: true } } });
+```app/routes/articles.js import Ember from 'ember';
+
+export default Ember.Route.extend({ queryParams: { category: { replace: true } } });
 
     <br />Note that the name of this config property and its default value of
     `false` is similar to the `link-to` helper's, which also lets
@@ -107,9 +118,13 @@ By default, Ember will use `pushState` to update the URL in the address bar in r
     ### Map a controller's property to a different query param key
     
     By default, specifying `foo` as a controller query param property will
-    bind to a query param whose key is `foo`, e.g. `?foo=123`. 次の設定シンタックスで、コントローラプロパティを他のクエーリパラメーターキー にマップすることも可能です:
+    bind to a query param whose key is `foo`, e.g. `?foo=123`. You can also map
+    a controller property to a different query param key using the
+    following configuration syntax:
     
     ```app/controllers/articles.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       queryParams: {
         category: 'articles_category'
@@ -122,7 +137,9 @@ This will cause changes to the `controller:articles`'s `category` property to up
 
 Note that query params that require additional customization can be provided along with strings in the `queryParams` array.
 
-```app/controllers/articles.js export default Ember.Controller.extend({ queryParams: ['page', 'filter', { category: 'articles_category' }], category: null, page: 1, filter: 'recent' });
+```app/controllers/articles.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ queryParams: ['page', 'filter', { category: 'articles_category' }], category: null, page: 1, filter: 'recent' });
 
     <br />### Default values and deserialization
     
@@ -130,6 +147,8 @@ Note that query params that require additional customization can be provided alo
     considered to have a default value of `1`.
     
     ```app/controllers/articles.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       queryParams: 'page',
       page: 1
@@ -170,14 +189,19 @@ If you wish to reset a query param, you have two options:
 
 In the following example, the controller's `page` query param is reset to 1, *while still scoped to the pre-transition `ArticlesRoute` model*. The result of this is that all links pointing back into the exited route will use the newly reset value `1` as the value for the `page` query param.
 
-```app/routes/articles.js export default Ember.Route.extend({ resetController(controller, isExiting, transition) { if (isExiting) { // isExiting would be false if only the route's model was changing controller.set('page', 1); } } });
+```app/routes/articles.js import Ember from 'ember';
+
+export default Ember.Route.extend({ resetController(controller, isExiting, transition) { if (isExiting) { // isExiting would be false if only the route's model was changing controller.set('page', 1); } } });
 
     <br />In some cases, you might not want the sticky query param value to be
     scoped to the route's model but would rather reuse a query param's value
-    even as a route's model changes. `"controller"`に`scope` オプションと`queryParams`
-    コンフィグレーションハッシュを設定することで達成することができます:
+    even as a route's model changes. This can be accomplished by setting the
+    `scope` option to `"controller"` within the controller's `queryParams`
+    config hash:
     
     ```app/controllers/articles.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       queryParams: [{
         showMagnifyingGlass: {
@@ -187,16 +211,8 @@ In the following example, the controller's `page` query param is reset to 1, *wh
     });
     
 
-次の例は、スコープとURLのクエリーパラメーターキーをシングルるコントローラークエーリパラメータで上書きできることを示しています。
+The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
 
-    app/controllers/articles.js
-    export default Ember.Controller.extend({
-      queryParams: ['page', 'filter',
-        {
-          showMagnifyingGlass: {
-            scope: 'controller',
-            as: 'glass'
-          }
-        }
-      ]
-    });
+```app/controllers/articles.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ queryParams: ['page', 'filter', { showMagnifyingGlass: { scope: 'controller', as: 'glass' } } ] }); ```

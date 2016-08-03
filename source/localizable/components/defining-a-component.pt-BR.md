@@ -28,7 +28,9 @@ Edit title: {{input type="text" value=title}}</article>
 
 Its model is populated in `model` hook in the route handler:
 
-```app/routes/index.js export default Ember.Route.extend({ model() { return this.get('store').findAll('post'); } });
+```app/routes/index.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model() { return this.get('store').findAll('post'); } });
 
     <br />Each component, under the hood, is backed by an element. By default
     Ember will use a `<div>` element to contain your component's template.
@@ -91,6 +93,8 @@ Its model is populated in `model` hook in the route handler:
 </div>
 
     <br />```app/routes/index.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return this.get('store').findAll('post');

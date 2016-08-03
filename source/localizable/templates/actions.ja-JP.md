@@ -8,9 +8,12 @@ If you add the [`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.hel
 
 {{{body}}} {{/if}}
 
-    <br />component (コンポーネント) や controller (コントローラー) では`actions` hook (`アクション` フック) のアクションを定義することができます。
+    <br />In the component or controller, you can then define what the action does within
+    the `actions` hook:
     
     ```app/components/single-post.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       actions: {
         toggleBody() {
@@ -34,7 +37,9 @@ For example, if the `post` argument was passed:
 
 The `select` action handler would be called with a single argument containing the post model:
 
-```app/components/single-post.js export default Ember.Component.extend({ actions: { select(post) { console.log(post.get('title')); } } });
+```app/components/single-post.js import Ember from 'ember';
+
+export default Ember.Component.extend({ actions: { select(post) { console.log(post.get('title')); } } });
 
     <br />## Specifying the Type of Event
     

@@ -28,7 +28,9 @@ Una manera común de construir aplicaciones web es acoplar los elementos de la i
 
 Tal vez podrás tener la idea de darle al component la responsabilidad de extraer los datos y guardarlos:
 
-```app/components/list-of-drafts.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
+```app/components/list-of-drafts.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
     <br />Entonces podrías mostrar la lista de borradores en la plantilla de su component así: 
     
@@ -40,9 +42,11 @@ Tal vez podrás tener la idea de darle al component la responsabilidad de extrae
     </ul>
     
 
-Esto funciona muy bien para el component `list-of-drafts`. Sin embargo, tu aplicación probablemente tiene muchos componentes diferentes. En otra página tal vez quieres un componente para mostrar el número de borradores. Tal vez te ocurre copiar y pegar el código de `willRender` existente en el nuevo componente.
+This works great for the `list-of-drafts` component. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
 
-```app/components/drafts-button.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
+```app/components/drafts-button.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
     <br />```app/templates/components/drafts-button.hbs
     {{#link-to 'drafts' tagName="button"}}
@@ -50,47 +54,52 @@ Esto funciona muy bien para el component `list-of-drafts`. Sin embargo, tu aplic
     {{/link-to}}
     
 
-Lastimosamente, ahora el aplicación va a enviar dos solicitudes al servidor para la misma información. No sólo es costoso solicitar los datos redundantes en términos de ancho de banda desperdiciado y en la velocidad percibida de tu aplicación, también los dos valores fácilmente pueden quedar fuera de sincronización. Probablemente has usado un aplicación web donde la lista de elementos queda fuera de sincronización con el contador en la barra de herramientas, llegando a ser una experiencia frustrante e inconsistente.
+Unfortunately, the app will now make two separate requests for the same information. Not only is the redundant data fetching costly in terms of wasted bandwidth and affecting the perceived speed of your app, it's easy for the two values to get out-of-sync. You yourself have probably used a web application where the list of items gets out of sync with the counter in a toolbar, leading to a frustrating and inconsistent experience.
 
-Hay también un *acoplamiento estrecho* entre la interfaz de usuario de la aplicación y el código de red. Si la url o el formato del objeto JSON cambia, probablemente todos los componentes de interfaz de usuario se rompen en formas que son difíciles de identificar.
+There is also a *tight coupling* between your application's UI and the network code. If the url or the format of the JSON payload changes, it is likely to break all of your UI components in ways that are hard to track down.
 
-Los principios SOLID de buen diseño nos dicen que los objetos deben tener una sola responsabilidad. La responsabilidad de un componente debe presentar datos del modelo al usuario, no extraer el modelo del servidor.
+The SOLID principles of good design tell us that objects should have a single responsibility. The responsibility of a component should be presenting model data to the user, not fetching the model.
 
-Buenas aplicaciones de Ember lo hacen de otra manera. Ember Data te da una sola **store** que es el repositorio central de los modelos en tu aplicación. Los componentes y rutas pueden pedirle los modelos del store, y el store es responsable de saber encontrarlos.
+Good Ember apps take a different approach. Ember Data gives you a single **store** that is the central repository of models in your application. Components and routes can ask the store for models, and the store is responsible for knowing how to fetch them.
 
-También significa que el store puede detectar que dos componentes diferentes piden el mismo modelo, lo que permite tu app extraer los datos del servidor una sola vez. Puedes tomar el store como una caché de read-through para los modelos de tu app. Ambos tus componentes y rutas tienen acceso a este store compartido; cuando necesitan mostrar o modificar un modelo, primero lo piden del store.
+It also means that the store can detect that two different components are asking for the same model, allowing your app to only fetch the data from the server once. You can think of the store as a read-through cache for your app's models. Both your components and routes have access to this shared store; when they need to display or modify a model, they first ask the store for it.
 
 ## Convention Over Configuration with JSON API
 
-Puedes reducir significativamente la cantidad de código que necesitas escribir y mantener, apoyándose en los convenios de Ember. Dado que estas costumbres se compartirán entre los desarrolladores de tu equipo, seguirlas tiene como resultado código que es más fácil de mantener y entender.
+You can significantly reduce the amount of code you need to write and maintain by relying on Ember's conventions. Since these conventions will be shared among developers on your team, following them leads to code that is easier to maintain and understand.
 
-En lugar de crear un conjunto arbitrario de costumbres, Ember Data está diseñado para funcionar automáticamente con el [JSON API](http://jsonapi.org). JSON API es una especificación formal para construir los APIs convencionales, robustos, y de alto rendimiento que permiten a los clientes y servidores comunicarse con los datos de los modelos.
+Rather than create an arbitrary set of conventions, Ember Data is designed to work out of the box with [JSON API](http://jsonapi.org). JSON API is a formal specification for building conventional, robust, and performant APIs that allow clients and servers to communicate model data.
 
-El JSON API estandariza cómo las aplicaciones JavaScript se comunican con los servidores, para reducir el acoplamiento entre el frontend y el backend, y así tienes más libertad para intercambiar las piezas de tu stack.
+JSON API standardizes how JavaScript applications talk to servers, so you decrease the coupling between your frontend and backend, and have more freedom to change pieces of your stack.
 
-Como analogía, el JSON API es para las aplicaciones de JavaScript y servidores de API lo que SQL es para los frameworks del lado del servidor y las bases de datos. Frameworks populares como Ruby on Rails, Django, Laravel, Spring, y otros funcionan automáticamente con muchas bases de datos diferentes, como MySQL, PostgreSQL, SQL Server y otras.
+As an analogy, JSON API is to JavaScript apps and API servers what SQL is to server-side frameworks and databases. Popular frameworks like Ruby on Rails, Laravel, Django, Spring and more work out of the box with many different databases, like MySQL, PostgreSQL, SQL Server, and more.
 
-Los frameworks (o los apps creadas con esos frameworks) no necesitan un montón de código personalizado para añadir soporte para una base de datos nueva; siempre que la base de datos sea compatible con SQL, añadir soporte para ella es relativamente fácil.
+Frameworks (or apps built on those frameworks) don't need to write lots of custom code to add support for a new database; as long as that database supports SQL, adding support for it is relatively easy.
 
-Así también con el JSON API. En utilizar el JSON API para la comunicación entre tu app de Ember y tu servidor, puedes cambiar tu stack de backend totalmente sin romper tu frontend. Y al agregar apps para otras plataformas, como iOS y Android, puedes aprovechar las librerías de JSON API para esas plataformas para utilizar fácilmente la misma API usada por tu app de Ember.
+So too with JSON API. By using JSON API to interop between your Ember app and your server, you can entirely change your backend stack without breaking your frontend. And as you add apps for other platforms, such as iOS and Android, you will be able to leverage JSON API libraries for those platforms to easily consume the same API your Ember app uses.
 
 ## Modelos
 
-En Ember Data, cada modelo es representado por una subclase de `Model` que define los atributos, relaciones y comportamiento de los datos que le presentas al usuario.
+In Ember Data, each model is represented by a subclass of `Model` that defines the attributes, relationships, and behavior of the data that you present to the user.
 
-Los modelos definen el tipo de datos que será proporcionado por el servidor. Por ejemplo, un modelo de `Persona` puede tener un atributo `nombre` que es un string (tipo de dato carácter) y un atributo `cumpleaños` que es una fecha:
+Models define the type of data that will be provided by your server. For example, a `Person` model might have a `firstName` attribute that is a string, and a `birthday` attribute that is a date:
 
-```app/models/person.js export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
+```app/models/person.js import DS from 'ember-data';
+
+export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
 
     <br />Un modelo también describe sus relaciones con otros objetos. Por ejemplo, un «pedido» puede tener muchos «artículos» y un «artículo» puede pertenecer a un «pedido».
     
     ```app/models/order.js
+    import DS from 'ember-data';
     export default DS.Model.extend({
       lineItems: DS.hasMany('line-item')
     });
     
 
-```app/models/line-item.js export default DS.Model.extend({ order: DS.belongsTo('order') });
+```app/models/line-item.js import DS from 'ember-data';
+
+export default DS.Model.extend({ order: DS.belongsTo('order') });
 
     <br />Los modelos en sí no tienen datos, sino definen los atributos, relaciones y comportamiento de instancias específicas, que se llaman ** records**(registros).
     

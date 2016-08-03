@@ -8,7 +8,19 @@ Si agregas el helper [`{{action}}`](http://emberjs.com/api/classes/Ember.Templat
 
 {{{body}}} {{/If}}
 
-    <br />En el componente o el controlador se puede definir lo que hará la acción dentro del hook 'actions': '''app/components/single-post.js export default Ember.Component.extend ({actions: {toggleBody() {this.toggleProperty('isShowingBody');     }   } });
+    <br />In the component or controller, you can then define what the action does within
+    the `actions` hook:
+    
+    ```app/components/single-post.js
+    import Ember from 'ember';
+    
+    export default Ember.Component.extend({
+      actions: {
+        toggleBody() {
+          this.toggleProperty('isShowingBody');
+        }
+      }
+    });
     
 
 You will learn about more advanced usages in the Component's [Triggering Changes With Actions](../../components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
@@ -25,7 +37,9 @@ For example, if the `post` argument was passed:
 
 The `select` action handler would be called with a single argument containing the post model:
 
-```app/components/single-post.js export default Ember.Component.extend({ actions: { select(post) { console.log(post.get('title')); } } });
+```app/components/single-post.js import Ember from 'ember';
+
+export default Ember.Component.extend({ actions: { select(post) { console.log(post.get('title')); } } });
 
     <br />## Specifying the Type of Event
     

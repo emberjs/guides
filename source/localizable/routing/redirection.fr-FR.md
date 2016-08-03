@@ -9,6 +9,8 @@ If you want to redirect from one route to another, you can do the transition in 
 ```app/router.js Router.map(function() { this.route('posts'); });
 
     <br />```app/routes/index.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       beforeModel() {
         this.transitionTo('posts');
@@ -25,6 +27,8 @@ If you need information about the current model in order to decide about redirec
 ```app/router.js Router.map(function() { this.route('posts'); this.route('post', { path: '/post/:post_id' }); });
 
     <br />```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       afterModel(model, transition) {
         if (model.get('length') === 1) {
@@ -54,6 +58,8 @@ Let's change the router above to use a nested route, like this:
     [5]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
     
     ```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       redirect(model, transition) {
         if (model.get('length') === 1) {

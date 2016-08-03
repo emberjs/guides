@@ -6,7 +6,9 @@ As it is the basic object type in Ember, being able to test a simple [`Ember.Obj
 
 Let's start by creating an object that has a `computedFoo` computed property based on a `foo` property.
 
-```app/models/some-thing.js export default Ember.Object.extend({ foo: 'bar',
+```app/models/some-thing.js import Ember from 'ember';
+
+export default Ember.Object.extend({ foo: 'bar',
 
 computedFoo: Ember.computed('foo', function() { const foo = this.get('foo'); return `computed ${foo}`; }) });
 
@@ -34,7 +36,9 @@ See that we have used `moduleFor`, one of the several unit-test helpers provided
 
 Next let's look at testing logic found within an object's method. In this case the `testMethod` method alters some internal state of the object (by updating the `foo` property).
 
-```app/models/some-thing.js export default Ember.Object.extend({ foo: 'bar', testMethod() { this.set('foo', 'baz'); } });
+```app/models/some-thing.js import Ember from 'ember';
+
+export default Ember.Object.extend({ foo: 'bar', testMethod() { this.set('foo', 'baz'); } });
 
     <br />To test it, we create an instance of our class `SomeThing` as defined above,
     call the `testMethod` method and assert that the internal state is correct as a
@@ -50,7 +54,9 @@ Next let's look at testing logic found within an object's method. In this case t
 
 In the event the object's method returns a value you can simply assert that the return value is calculated correctly. Suppose our object has a `calc` method that returns a value based on some internal state.
 
-```app/models/some-thing.js export default Ember.Object.extend({ count: 0, calc() { this.incrementProperty('count'); let count = this.get('count'); return `count: ${count}`; } });
+```app/models/some-thing.js import Ember from 'ember';
+
+export default Ember.Object.extend({ count: 0, calc() { this.incrementProperty('count'); let count = this.get('count'); return `count: ${count}`; } });
 
     <br />The test would call the `calc` method and assert it gets back the correct value.
     
@@ -66,7 +72,9 @@ In the event the object's method returns a value you can simply assert that the 
 
 Suppose we have an object that has a property and a method observing that property.
 
-```app/models/some-thing.js export default Ember.Object.extend({ foo: 'bar', other: 'no', doSomething: Ember.observer('foo', function() { this.set('other', 'yes'); }) });
+```app/models/some-thing.js import Ember from 'ember';
+
+export default Ember.Object.extend({ foo: 'bar', other: 'no', doSomething: Ember.observer('foo', function() { this.set('other', 'yes'); }) });
 
     <br />In order to test the `doSomething` method we create an instance of `SomeThing`,
     update the observed property (`foo`), and assert that the expected effects are present.

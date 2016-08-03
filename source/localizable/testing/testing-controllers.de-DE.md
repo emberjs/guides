@@ -9,7 +9,9 @@ Here we have a controller `PostsController` with two properties, a method that s
 > You can follow along by generating your own controller with `ember generate
   controller posts`.
 
-```app/controllers/posts.js export default Ember.Controller.extend({ propA: 'You need to write tests', propB: 'And write one for me too',
+```app/controllers/posts.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ propA: 'You need to write tests', propB: 'And write one for me too',
 
 setPropB(str) { this.set('propB', str); },
 
@@ -46,12 +48,16 @@ Next we use `this.subject()` to get an instance of the `PostsController` and wri
     > controller post`, and `ember generate controller comments`.
     
     ```app/controllers/post.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       title: Ember.computed.alias('model.title')
     });
     
 
-```app/controllers/comments.js export default Ember.Controller.extend({ post: Ember.inject.controller(), title: Ember.computed.alias('post.title') });
+```app/controllers/comments.js import Ember from 'ember';
+
+export default Ember.Controller.extend({ post: Ember.inject.controller(), title: Ember.computed.alias('post.title') });
 
     <br />This time when we setup our `moduleFor` we need to pass an options object as
     our third argument that has the controller's `needs`.

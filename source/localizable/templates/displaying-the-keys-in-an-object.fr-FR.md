@@ -1,6 +1,8 @@
 If you need to display all of the keys or values of a JavaScript object in your template, you can use the [`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in) helper:
 
-```/app/components/store-categories.js export default Ember.Component.extend({ willRender() { // Set the "categories" property to a JavaScript object // with the category name as the key and the value a list // of products. this.set('categories', { 'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'], 'Ryes': ['WhistlePig', 'High West'] }); } });
+```/app/components/store-categories.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { // Set the "categories" property to a JavaScript object // with the category name as the key and the value a list // of products. this.set('categories', { 'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'], 'Ryes': ['WhistlePig', 'High West'] }); } });
 
     <br />```/app/templates/components/store-categories.hbs
     <ul>
@@ -42,7 +44,9 @@ The above example will print a list like this:
 
 The [`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in) helper **does not observe property changes** to the object passed into it. In the above example, if you were to add a key to the component's `categories` property after the component had rendered, the template would **not** automatically update.
 
-```/app/components/store-categories.js export default Ember.Component.extend({ willRender() { this.set('categories', { 'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'], 'Ryes': ['WhistlePig', 'High West'] }); },
+```/app/components/store-categories.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { this.set('categories', { 'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'], 'Ryes': ['WhistlePig', 'High West'] }); },
 
 actions: { addCategory(category) { // This won't work! let categories = this.get('categories'); categories[category] = []; } } });
 
@@ -53,6 +57,8 @@ actions: { addCategory(category) { // This won't work! let categories = this.get
     component via [`rerender()`](http://emberjs.com/api/classes/Ember.Component.html#method_rerender):
     
     ```/app/components/store-categories.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       willRender() {
         this.set('categories', {

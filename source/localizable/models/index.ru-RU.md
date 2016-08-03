@@ -28,7 +28,9 @@ One common way of building web applications is to tightly couple user interface 
 
 You might be tempted to make the component responsible for fetching that data and storing it:
 
-```app/components/list-of-drafts.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
+```app/components/list-of-drafts.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
     <br />You could then show the list of drafts in your component's template like
     this:
@@ -43,7 +45,9 @@ You might be tempted to make the component responsible for fetching that data an
 
 This works great for the `list-of-drafts` component. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
 
-```app/components/drafts-button.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
+```app/components/drafts-button.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
     <br />```app/templates/components/drafts-button.hbs
     {{#link-to 'drafts' tagName="button"}}
@@ -81,19 +85,24 @@ In Ember Data, each model is represented by a subclass of `Model` that defines t
 
 Models define the type of data that will be provided by your server. For example, a `Person` model might have a `firstName` attribute that is a string, and a `birthday` attribute that is a date:
 
-```app/models/person.js export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
+```app/models/person.js import DS from 'ember-data';
+
+export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
 
     <br />A model also describes its relationships with other objects. For
     example, an `order` may have many `line-items`, and a
     `line-item` may belong to a particular `order`.
     
     ```app/models/order.js
+    import DS from 'ember-data';
     export default DS.Model.extend({
       lineItems: DS.hasMany('line-item')
     });
     
 
-```app/models/line-item.js export default DS.Model.extend({ order: DS.belongsTo('order') });
+```app/models/line-item.js import DS from 'ember-data';
+
+export default DS.Model.extend({ order: DS.belongsTo('order') });
 
     <br />Models don't have any data themselves, they define the attributes,
     relationships and behavior of specific instances, which are called

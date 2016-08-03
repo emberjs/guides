@@ -8,11 +8,14 @@
     
     それぞれのテンプレートは親ルールのテンプレとにある`{{outlet}}`内に描画されます。 例えば`posts.new` ルートは`posts.hbs`の`{{outlet}}`に、 `posts` ルートは`application.hbs`'の`{{outlet}}`にそれぞれ、描画します。
     
-    デフォルトのテンプレート以外を描画したい場合は[`renderTemplate()`][1] フックをインプリメントしてください:
+    If you want to render a template other than the default one, implement the
+    [`renderTemplate()`][1] hook:
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
     
     ```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       renderTemplate() {
         this.render('favoritePosts');

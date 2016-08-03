@@ -7,7 +7,9 @@ Let's assume we have a `Player` model that has `level` and `levelName` attribute
 > You can follow along by generating your own model with `ember generate
   model player`.
 
-```app/models/player.js export default DS.Model.extend({ level: DS.attr('number', { defaultValue: 0 }), levelName: DS.attr('string', { defaultValue: 'Noob' }),
+```app/models/player.js import DS from 'ember-data';
+
+export default DS.Model.extend({ level: DS.attr('number', { defaultValue: 0 }), levelName: DS.attr('string', { defaultValue: 'Noob' }),
 
 levelUp() { var newLevel = this.incrementProperty('level'); if (newLevel === 5) { this.set('levelName', 'Professional'); } } });
 
@@ -44,9 +46,13 @@ Assume that a `User` can own a `Profile`.
 > You can follow along by generating your own user and profile models with `ember
   generate model user` and `ember generate model profile`.
 
-```app/models/profile.js export default DS.Model.extend({ });
+```app/models/profile.js import DS from 'ember-data';
+
+export default DS.Model.extend({ });
 
     <br />```app/models/user.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       profile: DS.belongsTo('profile')
     });

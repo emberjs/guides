@@ -9,6 +9,8 @@
 ```app/router.js Router.map(function() { this.route('posts'); });
 
     <br />```app/routes/index.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       beforeModel() {
         this.transitionTo('posts');
@@ -25,6 +27,8 @@
 ```app/router.js Router.map(function() { this.route('posts'); this.route('post', { path: '/post/:post_id' }); });
 
     <br />```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       afterModel(model, transition) {
         if (model.get('length') === 1) {
@@ -44,11 +48,14 @@
 
     <br />`afterModel` フックで`posts.post` にリダイレクトしたとき`afterModel`は基本的にこのルートに入ることを無効化します。 そうすることで`posts`ルートは`beforeModel`、`model`そして `afterModel` フックが再度、新規のリダイレクトされた遷移で起動されます。 これはリダイレクトの直前で起こるため、効率的ではありません。
     
-    その代わりに [`redirect()`][5] メソッドを利用することができます、これは本来の遷移を有効なまま、親ルートフックが再度呼ばれることもありません。
+    Instead, we can use the [`redirect()`][5] method, which will leave the original
+    transition validated, and not cause the parent route's hooks to fire again:
     
     [5]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
     
     ```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       redirect(model, transition) {
         if (model.get('length') === 1) {

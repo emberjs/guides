@@ -8,11 +8,14 @@ Por padrão, o handler de uma rota vai renderizar a template que tenha o mesmo n
     
     Cada template sera renderizado dentro do `{{outlet}}` na template da rota anterior na hierarquia. Por exemplo, a template da rota `posts.new` vai ser renderizada dentro do `{{outlet}}` da template `posts.hbs`, e a template da rota `posts` vai ser renderizada dentro do `{{outlet}}` da template `application.hbs`.
     
-    Se você quer renderizar uma template diferente da que seria utilizada por padrão, você precisa implementar o método [1] ['renderTemplate ()']: 
+    If you want to render a template other than the default one, implement the
+    [`renderTemplate()`][1] hook:
     
     [1]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
     
     ```app/routes/posts.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       renderTemplate() {
         this.render('favoritePosts');

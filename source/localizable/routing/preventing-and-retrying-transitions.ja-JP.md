@@ -8,7 +8,9 @@
 
 次の例がこの状況を処理する一つの方法です。
 
-```app/routes/form.js export default Ember.Route.extend({ actions: { willTransition(transition) { if (this.controller.get('userHasEnteredData') && !confirm('Are you sure you want to abandon progress?')) { transition.abort(); } else { // Bubble the `willTransition` action so that // parent routes can decide whether or not to abort. return true; } } } });
+```app/routes/form.js import Ember from 'ember';
+
+export default Ember.Route.extend({ actions: { willTransition(transition) { if (this.controller.get('userHasEnteredData') && !confirm('Are you sure you want to abandon progress?')) { transition.abort(); } else { // Bubble the `willTransition` action so that // parent routes can decide whether or not to abort. return true; } } } });
 
     <br />ユーザーが`{{link-to}}` ヘルパーをクリッスしたとき、または、アプリケーションが`transitionTo`を使って遷移を行っているとき、遷移は中断され URL は変化されずそのまま残ります。 一方で、ブラウザの戻るボタンを使って、`route:form`から離れる操作を行った、もしくはユーザーが手動でURLを書き換え、`willTransition` アクションが呼ばれる前に新しいURLに移動したとき。 この結果、`willTransition`が`transition.abort()`を呼び出しても、ブラウザは新しいURLを表示します。
     
@@ -17,6 +19,8 @@
     [Asynchronous Routing](../asynchronous-routing)で説明のある、`model`、`beforeModel`、`afterModel`フックはそれぞれ遷移オブジェクトから呼び出されます。 これにより遷移先のルートが遷移を中断することが可能になります。
     
     ```app/routes/disco.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       beforeModel(transition) {
         if (new Date() > new Date('January 1, 1980')) {
@@ -29,11 +33,15 @@
 
 ### 遷移の保存と再挑戦
 
-中断された遷移はその後、再挑戦することが可能です。 この一般的な使用例としては、認証済ルートがユーザーをログインページにリダイレクトし、その後ユーザーが再度、ログイン後認証済ルートのもどってくるといったケースです。
+Aborted transitions can be retried at a later time. A common use case for this is having an authenticated route redirect the user to a login page, and then redirecting them back to the authenticated route once they've logged in.
 
-```app/routes/some-authenticated.js export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { var loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
+```app/routes/some-authenticated.js import Ember from 'ember';
+
+export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { var loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
 
     <br />```app/controllers/login.js
+    import Ember from 'ember';
+    
     export default Ember.Controller.extend({
       actions: {
         login() {

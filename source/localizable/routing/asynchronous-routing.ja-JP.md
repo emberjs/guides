@@ -44,7 +44,9 @@ promise (プロミス) が成功した場合、 transition (遷移) が中断し
 
 簡単な例:
 
-```app/routes/tardy.js export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
+```app/routes/tardy.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
 
 setupController(controller, model) { console.log(model.msg); // "Hold Your Horses" } });
 
@@ -58,9 +60,14 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     
     デフォルトで、transition (遷移)中に、model promise (モデル プロミス)がリジェクトされると、transition (遷移)は中止されます、新しく対象のroute templates (ルート テンプレート)が描画されることはありません、そしてコンソールにエラーが出力されます。
     
-    この、エラーハンドリングのロジックは、route (ルート)の`actions` hash (アクションハッシュ)の`error` handler (エラーハンドラー)経由で設定できます。 プロミスが拒否すると、ルートで`error` イベントが発生しカスタムエラーハンドラーで処理しないがぎり、`route:application`'のデフォルトのエラーハンドラーまで遡ります、例:
+    この、エラーハンドリングのロジックは、route (ルート)の`actions` hash (アクションハッシュ)の`error` handler (エラーハンドラー)経由で設定できます。 When a promise rejects, an `error` event
+    will be fired on that route and bubble up to `route:application`'s
+    default error handler unless it is handled by a custom error handler
+    along the way, e.g.:
     
     ```app/routes/good-for-nothing.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return Ember.RSVP.reject("FAIL");
@@ -80,19 +87,12 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     });
     
 
-上記の例では、error event (エラーイベント)は`route:good-for-nothing`の error handler (エラーハンドラー)で止まり、上昇していくのは止まります。 `route:application`まで、イベントの上昇を続けるにはerror handler (エラーハンドラー)からtrueを返すことで可能になります。
+In the above example, the error event would stop right at `route:good-for-nothing`'s error handler and not continue to bubble. To make the event continue bubbling up to `route:application`, you can return true from the error handler.
 
 ### リジェクトからの回復
 
-モデルのプロミスがリジェクトされた場合遷移は中断されますが、プロミスは連結することができため、プロミスのリジェクトを`モデル`フック自身で受け取り、遷移を中断しない成功として遷移の中断が発生しないように成功に変換することができます。
+Rejected model promises halt transitions, but because promises are chainable, you can catch promise rejects within the `model` hook itself and convert them into fulfills that won't halt the transition.
 
-    app/routes/funky.js
-    export default Ember.Route.extend({
-      model() {
-        return iHopeThisWorks().catch(function() {
-          // Promise rejected, fulfill with some default value to
-          // use as the route's model and continue on with the transition
-          return { msg: 'Recovered from rejected promise' };
-        });
-      }
-    });
+```app/routes/funky.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model() { return iHopeThisWorks().catch(function() { // Promise rejected, fulfill with some default value to // use as the route's model and continue on with the transition return { msg: 'Recovered from rejected promise' }; }); } }); ```

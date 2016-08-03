@@ -9,6 +9,8 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
 ```app/router.js Router.map(function() { this.route('slow-model'); });
 
     <br />```app/routes/slow-model.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return this.get('store').findAll('slow-model');
@@ -53,6 +55,8 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
     [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
     
     ```app/routes/foo-slow-model.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return this.get('store').findAll('slow-model');
@@ -70,7 +74,9 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
 
 この`読み込み` ハンドラーを利用する場合、遷移プロミスを利用して、いつ読み込みイベントが完了したかを把握することができます:
 
-```app/routes/foo-slow-model.js export default Ember.Route.extend({ ... actions: { loading(transition, originRoute) { let controller = this.controllerFor('foo'); controller.set('currentlyLoading', true); transition.promise.finally(function() { controller.set('currentlyLoading', false); }); } } });
+```app/routes/foo-slow-model.js import Ember from 'ember';
+
+export default Ember.Route.extend({ ... actions: { loading(transition, originRoute) { let controller = this.controllerFor('foo'); controller.set('currentlyLoading', true); transition.promise.finally(function() { controller.set('currentlyLoading', false); }); } } });
 
     <br />## `エラー` サブステート
     
@@ -86,13 +92,13 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
     });
     
 
-`loading` サブステートと同様、`articles.overview`ルートの`モデル`フックか(もしくは`beforeModel` または `afterModel`)らエラーを投げるまたは、プロミスが帰ってこなかった、場合あ Ember はエラーテンプレートまたは次の順番で、ルートを探します。
+As with the `loading` substate, on a thrown error or rejected promise returned from the `articles.overview` route's `model` hook (or `beforeModel` or `afterModel`) Ember will look for an error template or route in the following order:
 
   1. `articles.overview-error`
   2. `articles.error` または `articles-error`
   3. `error` または `application-error`
 
-上記のうち一つが見つかればルーターはすぐにそのサブステートに遷移します (URLは更新されません)。 エラーの"理由" (例　例外が投げられた、プロミスが値を拒否した)が `モデル`としてエラーステートに渡されます。.
+If one of the above is found, the router will immediately transition into that substate (without updating the URL). The "reason" for the error (i.e. the exception thrown or the promise reject value) will be passed to that error state as its `model`.
 
 The model hooks (`beforeModel`, `model`, and `afterModel`) of an error substate are not called. Only the `setupController` method of the error substate is called with the `error` as the model. See example below:
 
@@ -109,18 +115,8 @@ If no viable error substates can be found, an error message will be logged.
 
 If the `articles.overview` route's `model` hook returns a promise that rejects (for instance the server returned an error, the user isn't logged in, etc.), an [`error`](http://emberjs.com/api/classes/Ember.Route.html#event_error) event will fire from that route and bubble upward. This `error` event can be handled and used to display an error message, redirect to a login page, etc.
 
-    app/routes/articles-overview.js
-    export default Ember.Route.extend({
-      model(params) {
-        return this.get('store').findAll('problematic-model');
-      },
-      actions: {
-        error(error, transition) {
-          if (error) {
-            return this.transitionTo('error-page');
-          }
-        }
-      }
-    });
+```app/routes/articles-overview.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model(params) { return this.get('store').findAll('problematic-model'); }, actions: { error(error, transition) { if (error) { return this.transitionTo('error-page'); } } } }); ```
 
 Analogous to the `loading` event, you could manage the `error` event at the application level to avoid writing the same code for multiple routes.

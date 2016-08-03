@@ -28,7 +28,9 @@ Webアプリケーションを構築する一般的な方法は、ユーザー�
 
 このとき、そのデータの取得と保存に責務を持つコンポーネントを、以下のように作ればよいと考えたくなるかもしれません。
 
-```app/components/list-of-drafts.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
+```app/components/list-of-drafts.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
     <br />コンポーネントのテンプレート内で下書き記事を一覧表示させるコードは、以下のようになるでしょう。
     
@@ -40,9 +42,11 @@ Webアプリケーションを構築する一般的な方法は、ユーザー�
     </ul>
     
 
-これは`list-of-drafts`コンポーネントとしてうまく機能します。 しかし、アプリケーションは様々な異なるコンポーネントによって構成されている可能性があります。 別のページでは、下書き記事の数を表示するコンポーネントが欲しくなるかもしれません。 すると、既存の`willRender`コードを新しいコンポーネントにコピー&ペーストしたくなる誘惑にかられます。
+This works great for the `list-of-drafts` component. However, your app is likely made up of many different components. On another page you may want a component to display the number of drafts. You may be tempted to copy and paste your existing `willRender` code into the new component.
 
-```app/components/drafts-button.js export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
+```app/components/drafts-button.js import Ember from 'ember';
+
+export default Ember.Component.extend({ willRender() { $.getJSON('/drafts').then(data => { this.set('drafts', data); }); } });
 
     <br />```app/templates/components/drafts-button.hbs
     {{#link-to 'drafts' tagName="button"}}
@@ -50,15 +54,15 @@ Webアプリケーションを構築する一般的な方法は、ユーザー�
     {{/link-to}}
     
 
-こうしてしまうと、残念ながらアプリケーションは同じ情報のために2つの別々のリクエストを発行することになってしまいます。 この冗長なデータ取得は、帯域幅の無駄使いという観点から高コストであったり、 アプリケーションの体感速度に影響を与えるだけでなく、二つの値が不整合を起こすという問題も容易に引き起こしてしまいます。 項目の一覧とツールバー内の項目数が一致していないWebアプリケーションをユーザーとして使っているところを想像してもらえば、それがイライラする一貫性のない体験を引き起こすということをわかってもらえるでしょう。
+Unfortunately, the app will now make two separate requests for the same information. Not only is the redundant data fetching costly in terms of wasted bandwidth and affecting the perceived speed of your app, it's easy for the two values to get out-of-sync. You yourself have probably used a web application where the list of items gets out of sync with the counter in a toolbar, leading to a frustrating and inconsistent experience.
 
-また、アプリケーションのUIとデータ通信のコードが*密に結びついている*という問題もあります。 JSONペイロードの形式を変更したとすると、追跡困難なすべてのUIコンポーネントは壊れることになってしまうでしょう。
+There is also a *tight coupling* between your application's UI and the network code. If the url or the format of the JSON payload changes, it is likely to break all of your UI components in ways that are hard to track down.
 
-より良い設計の指針であるSOLID原則では、オブジェクトの責務は単一にすべきだと言われています。コンポーネントの責務はユーザーにモデルのデータを示すことです。モデルのデータを取得することではありません。
+The SOLID principles of good design tell us that objects should have a single responsibility. The responsibility of a component should be presenting model data to the user, not fetching the model.
 
-よくできたEmberアプリは別のアプローチを取ります。 Ember Dataは、アプリケーションの中でモデルの中央リポジトリとなる単一の**記憶装置**を提供します。 コンポーネントとルートは、モデルのことは記憶装置に尋ねます。そして、記憶装置はそれらを取得する方法についての責務を持ちます。
+Good Ember apps take a different approach. Ember Data gives you a single **store** that is the central repository of models in your application. Components and routes can ask the store for models, and the store is responsible for knowing how to fetch them.
 
-また、記憶装置は二つの異なるコンポーネントが同じモデルについて尋ねてきたかどうかについても検知します。これによって、アプリケーションは一度だけサーバーからデータを取得してくればよいようになっています。 この記憶装置は、アプリケーションで使うモデル用のリードスルーキャッシュと考えることができます。 コンポーネントとルートは、この共有記憶装置へのアクセスを持ちます。モデルを表示したり編集する必要があれば、コンポーネントとルートはまず最初にモデルについて記憶装置に尋ねます。
+It also means that the store can detect that two different components are asking for the same model, allowing your app to only fetch the data from the server once. You can think of the store as a read-through cache for your app's models. Both your components and routes have access to this shared store; when they need to display or modify a model, they first ask the store for it.
 
 ## JSON APIによる「設定よりも規約」
 
@@ -80,19 +84,24 @@ In Ember Data, each model is represented by a subclass of `Model` that defines t
 
 Models define the type of data that will be provided by your server. For example, a `Person` model might have a `firstName` attribute that is a string, and a `birthday` attribute that is a date:
 
-```app/models/person.js export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
+```app/models/person.js import DS from 'ember-data';
+
+export default DS.Model.extend({ firstName: DS.attr('string'), birthday: DS.attr('date') });
 
     <br />A model also describes its relationships with other objects. For
     example, an `order` may have many `line-items`, and a
     `line-item` may belong to a particular `order`.
     
     ```app/models/order.js
+    import DS from 'ember-data';
     export default DS.Model.extend({
       lineItems: DS.hasMany('line-item')
     });
     
 
-```app/models/line-item.js export default DS.Model.extend({ order: DS.belongsTo('order') });
+```app/models/line-item.js import DS from 'ember-data';
+
+export default DS.Model.extend({ order: DS.belongsTo('order') });
 
     <br />Models don't have any data themselves, they define the attributes,
     relationships and behavior of specific instances, which are called

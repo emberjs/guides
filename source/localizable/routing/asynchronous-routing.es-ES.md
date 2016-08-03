@@ -44,7 +44,9 @@ If the promise fulfills, the transition will pick up where it left off and begin
 
 A basic example:
 
-```app/routes/tardy.js export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
+```app/routes/tardy.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
 
 setupController(controller, model) { console.log(model.msg); // "Hold Your Horses" } });
 
@@ -73,6 +75,8 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     along the way, e.g.:
     
     ```app/routes/good-for-nothing.js
+    import Ember from 'ember';
+    
     export default Ember.Route.extend({
       model() {
         return Ember.RSVP.reject("FAIL");
@@ -98,13 +102,6 @@ In the above example, the error event would stop right at `route:good-for-nothin
 
 Rejected model promises halt transitions, but because promises are chainable, you can catch promise rejects within the `model` hook itself and convert them into fulfills that won't halt the transition.
 
-    app/routes/funky.js
-    export default Ember.Route.extend({
-      model() {
-        return iHopeThisWorks().catch(function() {
-          // Promise rejected, fulfill with some default value to
-          // use as the route's model and continue on with the transition
-          return { msg: 'Recovered from rejected promise' };
-        });
-      }
-    });
+```app/routes/funky.js import Ember from 'ember';
+
+export default Ember.Route.extend({ model() { return iHopeThisWorks().catch(function() { // Promise rejected, fulfill with some default value to // use as the route's model and continue on with the transition return { msg: 'Recovered from rejected promise' }; }); } }); ```

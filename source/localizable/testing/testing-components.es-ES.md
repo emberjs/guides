@@ -5,7 +5,9 @@ Let's assume we have a component with a `style` property that is updated wheneve
 > You can follow along by generating your own component with `ember generate
   component pretty-color`.
 
-```app/components/pretty-color.js export default Ember.Component.extend({ attributeBindings: ['style'],
+```app/components/pretty-color.js import Ember from 'ember';
+
+export default Ember.Component.extend({ attributeBindings: ['style'],
 
 style: Ember.computed('name', function() { const name = this.get('name'); return `color: ${name}`; }) });
 
@@ -70,6 +72,8 @@ assert.equal(this.$().text().trim(), 'Pretty Color: green', 'text switches to gr
     > component magic-title`.
     
     ```app/components/magic-title.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       title: 'Hello World',
     
@@ -114,7 +118,9 @@ For example, imagine you have a comment form component that invokes a `submitCom
 > You can follow along by generating your own component with `ember generate
   component comment-form`.
 
-```app/components/comment-form.js export default Ember.Component.extend({ comment: '',
+```app/components/comment-form.js import Ember from 'ember';
+
+export default Ember.Component.extend({ comment: '',
 
 actions: { submitComment() { this.get('submitComment')({ comment: this.get('comment') }); } } });
 
@@ -152,6 +158,8 @@ this.render(hbs`{{comment-form submitComment=(action externalAction)}}`);
     > component location-indicator`.
     
     ```app/components/location-indicator.js
+    import Ember from 'ember';
+    
     export default Ember.Component.extend({
       locationService: Ember.inject.service('location-service'),
     
@@ -234,7 +242,9 @@ Imagine you have a typeahead component that uses [`Ember.run.debounce`](http://e
 > You can follow along by generating your own component with `ember generate
   component delayed-typeahead`.
 
-```app/components/delayed-typeahead.js export default Ember.Component.extend({ actions: { handleTyping() { //the fetchResults function is passed into the component from its parent Ember.run.debounce(this, this.get('fetchResults'), this.get('searchValue'), 250); } } });
+```app/components/delayed-typeahead.js import Ember from 'ember';
+
+export default Ember.Component.extend({ actions: { handleTyping() { //the fetchResults function is passed into the component from its parent Ember.run.debounce(this, this.get('fetchResults'), this.get('searchValue'), 250); } } });
 
     <br />```app/templates/components/delayed-typeahead.hbs
     {{input value=searchValue key-up=(action 'handleTyping')}}

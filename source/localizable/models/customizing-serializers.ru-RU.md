@@ -229,6 +229,8 @@ export default DS.JSONAPISerializer.extend({ normalizeResponse(store, primaryMod
     property to `id` when serializing and deserializing data.
     
     ```app/serializers/application.js
+    import DS from 'ember-data';
+    
     export default DS.JSONAPISerializer.extend({
       primaryKey: '_id'
     });
@@ -238,7 +240,9 @@ export default DS.JSONAPISerializer.extend({ normalizeResponse(store, primaryMod
 
 In Ember Data the convention is to camelize attribute names on a model. For example:
 
-```app/models/person.js export default DS.Model.extend({ firstName: DS.attr('string'), lastName: DS.attr('string'), isPersonOfTheYear: DS.attr('boolean') });
+```app/models/person.js import DS from 'ember-data';
+
+export default DS.Model.extend({ firstName: DS.attr('string'), lastName: DS.attr('string'), isPersonOfTheYear: DS.attr('boolean') });
 
     <br />However, the `JSONAPISerializer` expects attributes to be dasherized
     in the document payload returned by your server:
@@ -259,7 +263,9 @@ In Ember Data the convention is to camelize attribute names on a model. For exam
 
 If the attributes returned by your server use a different convention you can use the serializer's [`keyForAttribute()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_keyForAttribute) method to convert an attribute name in your model to a key in your JSON payload. For example, if your backend returned attributes that are `under_scored` instead of `dash-cased` you could override the `keyForAttribute` method like this.
 
-```app/serializers/application.js import Ember from 'ember'; export default DS.JSONAPISerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
+```app/serializers/application.js import Ember from 'ember'; import DS from 'ember-data';
+
+export default DS.JSONAPISerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
 
     <br />Irregular keys can be mapped with a custom serializer. The `attrs`
     object can be used to declare a simple mapping between property names
@@ -273,12 +279,16 @@ If the attributes returned by your server use a different convention you can use
     Serializer for the model and override the `attrs` property.
     
     ```app/models/person.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       lastName: DS.attr('string')
     });
     
 
-```app/serializers/person.js export default DS.JSONAPISerializer.extend({ attrs: { lastName: 'lastNameOfPerson' } });
+```app/serializers/person.js import DS from 'ember-data';
+
+export default DS.JSONAPISerializer.extend({ attrs: { lastName: 'lastNameOfPerson' } });
 
     <br />### Relationships
     
@@ -286,6 +296,8 @@ If the attributes returned by your server use a different convention you can use
     have a model with a `hasMany` relationship:
     
     ```app/models/post.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       comments: DS.hasMany('comment', { async: true })
     });
@@ -315,7 +327,9 @@ The JSON should encode the relationship as an array of IDs and types:
 
 Any `belongsTo` relationships in the JSON representation should be the dasherized version of the property's name. For example, if you have a model:
 
-```app/models/comment.js export default DS.Model.extend({ originalPost: DS.belongsTo('post') });
+```app/models/comment.js import DS from 'ember-data';
+
+export default DS.Model.extend({ originalPost: DS.belongsTo('post') });
 
     <br />The JSON should encode the relationship as an ID to another record:
     
@@ -335,7 +349,9 @@ Any `belongsTo` relationships in the JSON representation should be the dasherize
 
 If needed these naming conventions can be overwritten by implementing the [`keyForRelationship()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_keyForRelationship) method.
 
-```app/serializers/application.js export default DS.JSONAPISerializer.extend({ keyForRelationship: function(key, relationship) { return key + 'Ids'; } });
+```app/serializers/application.js import DS from 'ember-data';
+
+export default DS.JSONAPISerializer.extend({ keyForRelationship: function(key, relationship) { return key + 'Ids'; } });
 
     <br /><br />## Creating Custom Transformations
     
@@ -347,6 +363,8 @@ If needed these naming conventions can be overwritten by implementing the [`keyF
     registered for use as attributes:
     
     ```app/transforms/coordinate-point.js
+    import DS from 'ember-data';
+    
     export default DS.Transform.extend({
       serialize: function(value) {
         return [value.get('x'), value.get('y')];
@@ -357,7 +375,9 @@ If needed these naming conventions can be overwritten by implementing the [`keyF
     });
     
 
-```app/models/cursor.js export default DS.Model.extend({ position: DS.attr('coordinate-point') });
+```app/models/cursor.js import DS from 'ember-data';
+
+export default DS.Model.extend({ position: DS.attr('coordinate-point') });
 
     <br />When `coordinatePoint` is received from the API, it is
     expected to be an array:
@@ -386,7 +406,9 @@ Not all APIs follow the conventions that the `JSONAPISerializer` uses with a dat
 
 To use it in your application you will need to define an `serializer:application` that extends the `JSONSerializer`.
 
-```app/serializers/application.js export default DS.JSONSerializer.extend({ // ... });
+```app/serializers/application.js import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend({ // ... });
 
     <br />For requests that are only expected to return 1 record
     (e.g. `store.findRecord('post', 1)`) the `JSONSerializer` expects the response
@@ -443,13 +465,17 @@ For example if your `post` model contained an embedded `author` record that look
 
 You would define your relationship like this:
 
-```app/serializers/post.js export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, { attrs: { authors: { serialize: 'records', deserialize: 'records' } } });
+```app/serializers/post.js import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, { attrs: { authors: { serialize: 'records', deserialize: 'records' } } });
 
     <br />If you find yourself needing to both serialize and deserialize the
     embedded relationship you can use the shorthand option of `{ embedded:
     'always' }`. The following example and the one above are equivalent.
     
     ```app/serializers/post.js
+    import DS from 'ember-data';
+    
     export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
       attrs: {
         authors: { embedded: 'always' }
@@ -462,7 +488,9 @@ The `serialize` and `deserialize` keys support 3 options. - `records` is used to
 For example you may find that you want to read an embedded record when extracting a JSON payload but only include the relationship's id when serializing the record. This is possible by using the `serialize:
 'ids'` option. You can also opt out of serializing a relationship by setting `serialize: false`.
 
-```app/serializers/post.js export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, { attrs: { author: { serialize: false, deserialize: 'records' }, comments: { deserialize: 'records', serialize: 'ids' } } });
+```app/serializers/post.js import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, { attrs: { author: { serialize: false, deserialize: 'records' }, comments: { deserialize: 'records', serialize: 'ids' } } });
 
     <br />### EmbeddedRecordsMixin Defaults
     
@@ -504,6 +532,8 @@ For example you may find that you want to read an embedded record when extractin
     For Example: given this `post` model.
     
     ```app/models/post.js
+    import DS from 'ember-data';
+    
     export default DS.Model.extend({
       title: DS.attr('string'),
       tag: DS.attr('string'),
