@@ -52,7 +52,7 @@ It's important to note that the template scope inside the component block is the
 
 ## Sharing Component Data with its Wrapped Content
 
-There is also a way to share data within your blog post component with the content it is wrapping. In our blog post component we want provide a way for the user to configure what type of style they want to write their post in. We will give them the option to specify either `markdown` or `html`.
+There is also a way to share data within your blog post component with the content it is wrapping. In our blog post component we want to provide a way for the user to configure what type of style they want to write their post in. We will give them the option to specify either `markdown` or `html`.
 
 ```app/templates/index.hbs {{#blog-post editStyle="markdown"}} 
 

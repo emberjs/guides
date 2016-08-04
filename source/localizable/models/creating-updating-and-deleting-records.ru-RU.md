@@ -135,3 +135,5 @@ store.findRecord('post', 2, { backgroundReload: false }).then(function(post) {
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```
+
+The `backgroundReload` option is used to prevent the fetching of the destroyed record, since [`findRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord) automatically schedules a fetch of the record from the adapter.

@@ -231,8 +231,8 @@ installing route-test
       </div>
     </div>
 
-Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) は、ルーターに従い、その時のルートによって描画されます、つまり私たちが開発するアプリケーションのそれぞれのルートは、そこに生成されます。
 
-Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
+routes (ルート)とそれらを繋ぐリンクを追加しました。、aboutとcontactとのナビゲーションのために作成した二つの受入テストは、この段階で通っているはずです。
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
