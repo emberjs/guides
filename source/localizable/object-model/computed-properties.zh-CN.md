@@ -45,7 +45,7 @@ let obj = Ember.Object.extend({
 
 ### 计算属性链
 
-可以用计算属性的值来创建新的计算属性。 Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
+可以用计算属性的值来创建新的计算属性。 前面的示例中添加一个计算属性`description`，使用现有 `fullName` 属性以及添加一些其他属性︰
 
 ```javascript
 Person = Ember.Object.extend({
@@ -73,9 +73,9 @@ let captainAmerica = Person.create({
 captainAmerica.get('description'); // "Steve Rogers; Age: 80; Country: USA"
 ```
 
-### Dynamic updating
+### 动态更新
 
-Computed properties, by default, observe any changes made to the properties they depend on and are dynamically updated when they're called. Let's use computed properties to dynamically update.
+默认情况下，计算的属性观察他们所依赖的所有属性（包括计算属性），当所依赖的属性发生变化之后会自动触发计算属性的更新，比如下面的代码：
 
 ```javascript
 captainAmerica.set('firstName', 'William');
@@ -83,13 +83,13 @@ captainAmerica.set('firstName', 'William');
 captainAmerica.get('description'); // "William Rogers; Age: 80; Country: USA"
 ```
 
-So this change to `firstName` was observed by `fullName` computed property, which was itself observed by the `description` property.
+所以，当属性`firstName`发生改变被计算属性`fullName`观察到使得计算属性值自动更新，由于计算属性`fullName`发生改变又被<0>description</0>观察到，同样的会使得这个计算属性值也自动更新。
 
-Setting any dependent property will propagate changes through any computed properties that depend on them, all the way down the chain of computed properties you've created.
+设置任意依赖的属性导致的改变，将按照创建的计算属性链，一路向下传播，到所有依赖他们的计算属性。
 
-### Setting Computed Properties
+### 设置计算属性
 
-You can also define what Ember should do when setting a computed property. If you try to set a computed property, it will be invoked with the key (property name), and the value you want to set it to. You must return the new intended value of the computed property from the setter function.
+你还以自定义计算属性的`set`方法，在方法内增加自己的处理逻辑。 如果尝试设置一个计算属性，需要在调用的时候传入键值(属性名)，以及将被设置的值。 你必须从 setter 函数返回新的计算属性预定值。
 
 ```javascript
 Person = Ember.Object.extend({
@@ -108,19 +108,13 @@ Person = Ember.Object.extend({
     }
   })
 });
-
-
-let captainAmerica = Person.create();
-captainAmerica.set('fullName', 'William Burnside');
-captainAmerica.get('firstName'); // William
-captainAmerica.get('lastName'); // Burnside
 ```
 
-### Computed property macros
+### 计算属性宏
 
-Some types of computed properties are very common. Ember provides a number of computed property macros, which are shorter ways of expressing certain types of computed property.
+某些类型的计算属性是很常见的。Ember提供大量的计算属性宏(通用方法)，用这些宏处理计算属性非常的简便。
 
-In this example, the two computed properties are equivalent:
+在此示例中，提供两种方式判断计算属性值是否于某个值相等︰
 
 ```javascript
 Person = Ember.Object.extend({
@@ -134,4 +128,4 @@ Person = Ember.Object.extend({
 });
 ```
 
-To see the full list of computed property macros, have a look at [the API documentation](http://emberjs.com/api/classes/Ember.computed.html)
+若要了解更多计算属性宏，请看 [API 文档](http://emberjs.com/api/classes/Ember.computed.html)详细的介绍。

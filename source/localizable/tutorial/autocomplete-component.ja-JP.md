@@ -14,13 +14,13 @@ For our initial test, we'll simply check that all the cities we provide are rend
 
 Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises. Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
 
-```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait';
+```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait'; import RSVP from 'rsvp';
 
 moduleForComponent('list-filter', 'Integration | Component | filter listing', { integration: true });
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}]; const FILTERED_ITEMS = [{city: 'San Francisco'}];
 
-test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return Ember.RSVP.resolve(ITEMS); } else { return Ember.RSVP.resolve(FILTERED_ITEMS); } });
+test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return RSVP.resolve(ITEMS); } else { return RSVP.resolve(FILTERED_ITEMS); } });
 
 // with an integration test, you can set up and use your component in the same way your application // will use it. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |results|}}
       <ul>
@@ -42,9 +42,9 @@ test('should initially load all listings', function (assert) { // we want our ac
     test('should update with matching listings', function (assert) {
       this.on('filterByCity', (val) => {
         if (val === '') {
-          return Ember.RSVP.resolve(ITEMS);
+          return RSVP.resolve(ITEMS);
         } else {
-          return Ember.RSVP.resolve(FILTERED_ITEMS);
+          return RSVP.resolve(FILTERED_ITEMS);
         }
       });
     

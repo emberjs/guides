@@ -56,17 +56,21 @@ export default Ember.Route.extend({ model(params) { return this.get('store').fin
     
     注意: ダイナミックセグメントがあるルートは、URLの入力があったときだけ呼び出された場合のみ、`model`フックを呼び出します。 遷移によりルートの入力があった場合は(例 [link-to](../../templates/links)Handlebarsヘルパーを利用しているときなど ) モデルのコンテキストはすでに与えられているため、フックは実行されません。 ダイナミック セグメントのないルートは常にモデル フックを実行します。
     
-    ## 複数モデル
+    ## Multiple Models
     
-    複数モデルは、[Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash) を通じて返すことが可能です。
-    `Ember.RSVP.hash` はプロミスを返す、パラメータを受け取り、すべてのプロミスが解決されたとき `Ember.RSVP.hash` 自体のプロミスが解決されます。 For example:
+    Multiple models can be returned through an
+    [RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+    The `RSVP.hash` takes
+    parameters that return promises, and when all parameter promises resolve, then
+    the `RSVP.hash` promise resolves. For example:
     
     ```app/routes/songs.js
     import Ember from 'ember';
+    import RSVP from 'rsvp';
     
     export default Ember.Route.extend({
       model() {
-        return Ember.RSVP.hash({
+        return RSVP.hash({
           songs: this.get('store').findAll('song'),
           albums: this.get('store').findAll('album')
         });

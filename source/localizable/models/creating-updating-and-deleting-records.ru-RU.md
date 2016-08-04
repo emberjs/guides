@@ -124,14 +124,14 @@ post.save().then(transitionToPost).catch(failure);
 Deleting records is as straightforward as creating records. Call [`deleteRecord()`](http://emberjs.com/api/data/classes/DS.Model.html#method_deleteRecord) on any instance of `DS.Model`. This flags the record as `isDeleted`. The deletion can then be persisted using `save()`. Alternatively, you can use the `destroyRecord` method to delete and persist at the same time.
 
 ```js
-store.findRecord('post', 1).then(function(post) {
+store.findRecord('post', 1, { backgroundReload: false }).then(function(post) {
   post.deleteRecord();
   post.get('isDeleted'); // => true
   post.save(); // => DELETE to /posts/1
 });
 
 // OR
-store.findRecord('post', 2).then(function(post) {
+store.findRecord('post', 2, { backgroundReload: false }).then(function(post) {
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```

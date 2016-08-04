@@ -14,13 +14,13 @@ Para nuestra prueba inicial, simplemente comprobamos que todas las ciudades que 
 
 Ya que planeamos utilizar Ember Data como nuestro almacén de modelos, necesitamos llamar nuestras actions (acciones) para traer los datos de forma asíncrona, por lo que retornaremos promises (promesas). Debido a que acceder a los datos persistentes por lo general se realiza de forma asíncrona, queremos utilizar el helper wait al final de nuestro test, que espera que todas las promesas se resuelvan antes de completar el test.
 
-```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait';
+```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait'; import RSVP from 'rsvp';
 
 moduleForComponent('list-filter', 'Integration | Component | filter listing', { integration: true });
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}]; const FILTERED_ITEMS = [{city: 'San Francisco'}];
 
-test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return Ember.RSVP.resolve(ITEMS); } else { return Ember.RSVP.resolve(FILTERED_ITEMS); } });
+test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return RSVP.resolve(ITEMS); } else { return RSVP.resolve(FILTERED_ITEMS); } });
 
 //Con un test de integración, puedes configurar y usar el componente de la misma manera que la aplicación la usará. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |results|}}
       <ul>
@@ -42,9 +42,9 @@ La función esperar, retornará una promise (promesa) que esperará a que todas 
     test('should update with matching listings', function (assert) {
       this.on('filterByCity', (val) => {
         if (val === '') {
-          return Ember.RSVP.resolve(ITEMS);
+          return RSVP.resolve(ITEMS);
         } else {
-          return Ember.RSVP.resolve(FILTERED_ITEMS);
+          return RSVP.resolve(FILTERED_ITEMS);
         }
       });
     

@@ -79,17 +79,18 @@ export default Ember.Route.extend({ model(params) { return this.get('store').fin
     ## Multiple Models
     
     Multiple models can be returned through an
-    [Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
-    The `Ember.RSVP.hash` takes
+    [RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+    The `RSVP.hash` takes
     parameters that return promises, and when all parameter promises resolve, then
-    the `Ember.RSVP.hash` promise resolves. For example:
+    the `RSVP.hash` promise resolves. For example:
     
     ```app/routes/songs.js
     import Ember from 'ember';
+    import RSVP from 'rsvp';
     
     export default Ember.Route.extend({
       model() {
-        return Ember.RSVP.hash({
+        return RSVP.hash({
           songs: this.get('store').findAll('song'),
           albums: this.get('store').findAll('album')
         });

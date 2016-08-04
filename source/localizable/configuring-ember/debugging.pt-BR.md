@@ -101,9 +101,9 @@ There are times when dealing with promises that it seems like any errors are bei
 
 You can provide an `onerror` function that will be called with the error details if any errors occur within your promise. This function can be anything, but a common practice is to call `console.assert` to dump the error to the console.
 
-```app/app.js import Ember from 'ember';
+```app/app.js import Ember from 'ember'; import RSVP from 'rsvp';
 
-Ember.RSVP.on('error', function(error) { Ember.Logger.assert(false, error); });
+RSVP.on('error', function(error) { Ember.Logger.assert(false, error); });
 
     <br />#### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
     

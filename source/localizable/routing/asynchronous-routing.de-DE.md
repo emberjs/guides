@@ -44,9 +44,9 @@ If the promise fulfills, the transition will pick up where it left off and begin
 
 A basic example:
 
-```app/routes/tardy.js import Ember from 'ember';
+```app/routes/tardy.js import Ember from 'ember'; import RSVP from 'rsvp';
 
-export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
+export default Ember.Route.extend({ model() { return new RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
 
 setupController(controller, model) { console.log(model.msg); // "Hold Your Horses" } });
 
@@ -76,10 +76,11 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     
     ```app/routes/good-for-nothing.js
     import Ember from 'ember';
+    import RSVP from 'rsvp';
     
     export default Ember.Route.extend({
       model() {
-        return Ember.RSVP.reject("FAIL");
+        return RSVP.reject("FAIL");
       },
     
       actions: {

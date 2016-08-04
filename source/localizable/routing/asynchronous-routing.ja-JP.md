@@ -44,9 +44,9 @@ promise (プロミス) が成功した場合、 transition (遷移) が中断し
 
 簡単な例:
 
-```app/routes/tardy.js import Ember from 'ember';
+```app/routes/tardy.js import Ember from 'ember'; import RSVP from 'rsvp';
 
-export default Ember.Route.extend({ model() { return new Ember.RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
+export default Ember.Route.extend({ model() { return new RSVP.Promise(function(resolve) { Ember.run.later(function() { resolve({ msg: 'Hold Your Horses' }); }, 3000); }); },
 
 setupController(controller, model) { console.log(model.msg); // "Hold Your Horses" } });
 
@@ -67,10 +67,11 @@ setupController(controller, model) { console.log(model.msg); // "Hold Your Horse
     
     ```app/routes/good-for-nothing.js
     import Ember from 'ember';
+    import RSVP from 'rsvp';
     
     export default Ember.Route.extend({
       model() {
-        return Ember.RSVP.reject("FAIL");
+        return RSVP.reject("FAIL");
       },
     
       actions: {
