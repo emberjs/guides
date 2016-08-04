@@ -63,7 +63,7 @@ outside the component, it is also available inside the component block.
 ## Sharing Component Data with its Wrapped Content
 
 There is also a way to share data within your blog post component with the content it is wrapping.
-In our blog post component we want provide a way for the user to configure what type of style they want to write their post in.
+In our blog post component we want to provide a way for the user to configure what type of style they want to write their post in.
 We will give them the option to specify either `markdown` or `html`.
 
 ```app/templates/index.hbs
