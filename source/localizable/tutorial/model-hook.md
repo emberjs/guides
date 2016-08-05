@@ -9,9 +9,9 @@ Here's what our homepage will look like when we're done:
 ![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading model data.
-Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:
+Let's open `app/routes/rentals.js` and add our hard-coded data as the return value of the `model` hook:
 
-```app/routes/index.js
+```app/routes/rentals.js
 import Ember from 'ember';
 
 let rentals = [{
@@ -50,16 +50,16 @@ export default Ember.Route.extend({
 Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
 
 The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
-The model hook we've added to our `index` route handler will be called when a user enters the `index` route.
+The model hook we've added to our `rentals` route handler will be called when a user enters the `rentals` route.
 
-The `model` hook returns our _rentals_ array and passes it to our `index` template as the `model` property.
+The `model` hook returns our _rentals_ array and passes it to our `rentals` template as the `model` property.
 
 Now, let's switch over to our template.
 We can use the model data to display our list of rentals.
 Here, we'll use another common Handlebars helper called `{{each}}`.
 This helper will let us loop through each of the objects in our model:
 
-```app/templates/index.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
+```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
