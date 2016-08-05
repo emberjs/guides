@@ -82,7 +82,7 @@ Ember provides test helpers that we can use to perform common tasks in acceptanc
 tests, such as visiting routes, filling in fields, clicking on elements, and
 waiting for pages to render.
 
-We want our the main focus of our site to be selecting rentals, so we plan to redirect traffic going to the roote URL `/`, to our `rentals` route.
+We want the main focus of our site to be selecting rentals, so we plan to redirect traffic going to the root URL `/`, to our `rentals` route.
 We can create a simple test using our test helpers to verify this:
 
 ```/tests/acceptnace/list-rentals-test.js

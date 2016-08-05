@@ -50,9 +50,9 @@ Having a parent route means that any content on our parent route template will b
 ## Generating a Nested Index Route
 
 The first nested route to generate will be the index route.
-An index subroute works similarly to the base index route.
+An index nested route works similarly to the base index route.
 It is the default route that renders when no route is provided.
-Therefore in our case, when we navigate to `/rentals`, Ember will attempt to load the rentals index route as a subroute.
+Therefore in our case, when we navigate to `/rentals`, Ember will attempt to load the rentals index route as a nested route.
 
 To create an index nested route, run the following command:
 
@@ -255,7 +255,7 @@ Router.map(function() {
 You will notice that `this.route('show')` is nested within our `rentals` route.
 This tells Ember that it is a sub-route and must be accessed through `localhost:4200/rentals/show`.
 
-In order for us to tell the application which rental we want to access, we need to replace the `show` route path with the ID of the retnal listing you are viewing.
+In order for us to tell the application which rental we want to access, we need to replace the `show` route path with the ID of the rental listing you are viewing.
 In addition, we will want to simplify the URL for the user so that they can access the information for a specific rental by browsing to `localhost:4200/rentals/id-for-rental`.
 
 To do this, we modify our router as follows:
@@ -382,7 +382,7 @@ Browse to `localhost:4200/rentals/grand-old-mansion` and you should see the info
 
 ![Rental Page Nested Show Route](../../images/subroutes/subroutes-super-rentals-show.png)
 
-## Linking to a Specific Rental Subroute
+## Linking to a Specific Rental
 
 Now that we can load pages for individual rentals, we'll provide a `link-to` within our `rental-listing` component to navigate there from our main rentals page.
 Clicking on the rental title will load the detail page for the given rental.
