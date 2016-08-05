@@ -304,8 +304,7 @@ export default Ember.Object.extend({
 
 });
 ```
-
-We should now see some end to end maps functionality show up on our front page!
+After we restart the server we should now see some end to end maps functionality show up on our front page!
 
 ![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
 
