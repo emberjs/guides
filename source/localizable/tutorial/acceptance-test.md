@@ -55,6 +55,9 @@ import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptan
 
 moduleForAcceptance('Acceptance | homepage');
 
+test('should redirect to rentals route', function (assert) {
+});
+
 test('should list available rentals.', function (assert) {
 });
 
@@ -66,6 +69,9 @@ test('should link to contact information.', function (assert) {
 
 test('should filter the list of rentals by city.', function (assert) {
 });
+
+test('should show details for a specific rental', function (assert) {
+});
 ```
 
 These tests will fail, since Ember tests will fail if we don't test for anything
@@ -75,6 +81,24 @@ Since we have an idea of what we want our application to look like, we can also 
 Ember provides test helpers that we can use to perform common tasks in acceptance
 tests, such as visiting routes, filling in fields, clicking on elements, and
 waiting for pages to render.
+
+We want the main focus of our site to be selecting rentals, so we plan to redirect traffic going to the root URL `/`, to our `rentals` route.
+We can create a simple test using our test helpers to verify this:
+
+```/tests/acceptnace/list-rentals-test.js
+test('should redirect to rentals route', function (assert) {
+  visit('/');
+  andThen(function() {
+    assert.equal(currentURL(), '/rentals', 'should redirect automatically');
+  });
+});
+```
+A few helpers are in play in this test: 
+
+* The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
+* The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it.
+In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
+* [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) returns the URL that test application is currently visiting.
 
 To check that rentals are listed, we'll first visit the index route and check that the results show 3 listings:
 
@@ -86,12 +110,7 @@ test('should list available rentals.', function (assert) {
   });
 });
 ```
-The test assumes that each rental element will have a class called `listing`.
-
-The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
-
-The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it.
-In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
+The test assumes that each rental element will have a CSS class called `listing`.
 
 For the next two tests, we want to verify that clicking the about and contact page links successfully load the proper URLs.
 We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links.
@@ -117,7 +136,7 @@ test('should link to contact information', function (assert) {
 Note that we can call two [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers) in a row without needing to use `andThen` or a promise.
 This is because each asynchronous test helper is made to wait until other test helpers are complete.
 
-Finally, we'll test that we can filter the list down according to a city search criteria.
+After testing URLs, we'll drill down on our main rental page to test that we can filter the list down according to a city search criteria.
 We anticipate having an input field in a container with a class of `list-filter`.
 We will fill out "Seattle" as the search criteria in that field and send a key up event to trigger our filtering action.
 Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle".
@@ -130,6 +149,21 @@ test('should filter the list of rentals by city.', function (assert) {
   andThen(function () {
     assert.equal(find('.listing').length, 1, 'should show 1 listing');
     assert.equal(find('.listing .location:contains("Seattle")').length, 1, 'should contain 1 listing with location Seattle');
+  });
+});
+```
+
+Finally, we want to verify that we can click on a specific rental and load a detailed view to the page.
+We'll click on the title and validate that an expanded description of the rental is shown.
+
+```/tests/acceptance/list-rentals-test.js
+test('should show details for a specific rental', function (assert) {
+  visit('/rentals');
+  click('a:contains("Grand Old Mansion")');
+  andThen(function() {
+    assert.equal(currentURL(), '/rentals/grand-old-mansion', "should navigate to show route");
+    assert.equal(find('.rental-detail h2').text(), "Grand Old Mansion", 'should list rental title');
+    assert.equal(find('.description').length, 1, 'should list a description of the property');
   });
 });
 ```

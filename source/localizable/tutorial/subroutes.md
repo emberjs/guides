@@ -1,171 +1,227 @@
-In addition to displaying a list of rentals, we want to show detailed information for individual rentals.
-To do this, we can generate `rentals` route to display all rentals and a `show` sub-route to display additional information.
+Up to this point, we've generated four top level routes.
 
-# A Parent Route
+* An `about` route, that gives information on our application.
+* A `contact` route, with information on how to contact the company.
+* A `rentals` route, where we will allow users to browse rental properties.
+* and the `index` route, which we've set up to redirect to the `rentals` route.
 
-To begin, let's generate our new route.
-We'll call this `rentals`, since it will list all of our current rental properties.
+Our `rentals` route is going to serve multiple functions.
+From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as also to see detailed information for individual rentals.
+To satisfy our requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
 
-```shell
-ember g route rentals
-```
+By the end of this section we want to have created the following new routes:
 
-You will see output like this:
+* A `rentals/index` route that displays the rentals page's general information, and also lists available rentals.
+The index nested route is shown by default when the user visits to the `rentals` URL.
+* A `rentals/show` route that still displays the rental page's general information, additionally showing detailed information about a selected rental.
+The `show` route will get substituted with the id of the rental being shown. (for example `rentals/grand-old-mansion`).
 
-```text
-installing route
-  create app/routes/rentals.js
-  create app/templates/rentals.hbs
-updating router
-  add route rentals
-installing route-test
-  create tests/unit/routes/rentals-test.js
-```
+## The Parent Route
 
-If it is unclear what Ember is doing for us here, visit the [Routes and Templates tutorial](../routes-and-templates) for more information.
+Previously, in the [Routes and Templates tutorial](../routes-and-templates), we set up a `rentals` route. 
 
-Let's start by opening our new Handlebars template (`app/templates/rentals.hbs`).
-Ember generates route-level templates files with an `outlet`.
-
-```app/templates/rentals.hbs
-{{outlet}}
-```
-
-Much like our application template (`app/templates/application.hbs`), the `outlet` is where our sub-routes will render.
-This means that any content on our parent route will be present as we browse down through our child routes, allowing us to add things like navigation, footers or sidebars.
-Let's start by adding a welcome header and link to our About page (`app/templates/about.hbs`).
+Opening the template for this route reveals an outlet underneath the route's general page information.
+At the bottom of the template, you'll notice an `{{outlet}}` helper.
+This is where the active nested route will be rendered.
 
 ```app/templates/rentals.hbs
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
-  <p>
-    We hope you find exactly what you're looking for in a place to stay.
-  </p>
+  <p>We hope you find exactly what you're looking for in a place to stay.</p>
   {{#link-to 'about' class="button"}}
     About Us
   {{/link-to}}
 </div>
-
+{{#list-filter
+   filter=(action 'filterByCity')
+   as |rentals|}}
+  <ul class="results">
+    {{#each rentals as |rentalUnit|}}
+      <li>{{rental-listing rental=rentalUnit}}</li>
+    {{/each}}
+  </ul>
+{{/list-filter}}
 {{outlet}}
 ```
 
-Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server,
-and then go to `localhost:4200/rentals` to see our new app in action!
+Having a parent route means that any content on our parent route template will be present as we browse down through our child routes, allowing us to add things like common instructions, navigation, footers or sidebars.
 
-# Creating a Sub-route
+## Generating a Nested Index Route
+
+The first nested route to generate will be the index route.
+An index nested route works similarly to the base index route.
+It is the default route that renders when no route is provided.
+Therefore in our case, when we navigate to `/rentals`, Ember will attempt to load the rentals index route as a nested route.
+
+To create an index nested route, run the following command:
+
+```shell
+ember g route rentals/index
+```
+
+If you open up your Router (`app/router`) you may notice that nothing has updated.
+
+```app/router.js
+Router.map(function() {
+  this.route('about');
+  this.route('contact');
+  this.route('rentals');
+});
+```
+
+Much like how our application's `index` route doesn't appear in our Router, `index` routes on sub-routes won't explicitly appear in the Router either.
+Ember knows that the default action is to take the user to the `index` route.
+However, you can add the `index` route if you want to customize it.
+For example, you can modify the `index` route's path by specifying `this.route('index', { path: '/custom-path'})`.
+
+In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals. 
+Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
+
+```app/routes/rentals.hbs{-2,-3,-4}
+export default Ember.Route.extend({
+  model() {
+    return this.store.findAll('rental');
+  }
+});
+```
+
+```app/routes/rentals/index.js{+2,+3,+4}
+export default Ember.Route.extend({
+  model() {
+    return this.store.findAll('rental');
+  }
+});
+```
+
+Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
+
+```app/templates/rentals.hbs{-9,-10,-11,-12,-13,-14,-15,-16,-17}
+<div class="jumbo">
+  <div class="right tomster"></div>
+  <h2>Welcome!</h2>
+  <p>We hope you find exactly what you're looking for in a place to stay.</p>
+  {{#link-to 'about' class="button"}}
+    About Us
+  {{/link-to}}
+</div>
+{{#list-filter
+   filter=(action 'filterByCity')
+   as |rentals|}}
+  <ul class="results">
+    {{#each rentals as |rentalUnit|}}
+      <li>{{rental-listing rental=rentalUnit}}</li>
+    {{/each}}
+  </ul>
+{{/list-filter}}
+{{outlet}}
+```
+
+```app/templates/rentals/index.hbs{+1,+2,+3,+4,+5,+6,+7,+8,+9}
+{{#list-filter
+   filter=(action 'filterByCity')
+   as |rentals|}}
+  <ul class="results">
+    {{#each rentals as |rentalUnit|}}
+      <li>{{rental-listing rental=rentalUnit}}</li>
+    {{/each}}
+  </ul>
+{{/list-filter}}
+{{outlet}}
+```
+
+Finally, we need to make our controller that has our filter action available to the new nested index route.
+Instead of moving the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of the route's `controllerName` property to just point at our existing `rentals` controller.
+
+```app/routes/rentals/index.js{+2}
+export default Ember.Route.extend({
+  controllerName: 'rentals',
+  model() {
+    return this.store.findAll('rental');
+  }
+});
+```
+
+## Setting up Data for the Nested Detail Route
 
 Next, we will want to create a sub-route that will list information for a specific rental.
 To do this, we will need to update a couple of files.
-To find a specific rental, we will want to use Ember Data's `queryRecord` function [(see "Finding Records" for more details)](../../models/finding-records/).
-The `queryRecord` function requires that we search by a unique key.
-Many APIs return a `slug`, which is a URL-friendly string to identify a record.
+To find a specific rental, we will want to use Ember Data's `findRecord` function [(see "Finding Records" for more details)](../../models/finding-records/).
+The `findRecord` function requires that we search by a unique key.
 
 While on the `show` route, we will also want to show additional information about our specific rental.
 
 In order to do this, we need to modify the Mirage `config.js` file.
 If you need a refresher on how Mirage works, go back to the [Installing Addons section](../installing-addons)
-We will add a `slug` and `description` to our rentals array.
+We will add a new route handler to mirage to handle when the http request comes in to fetch a rental.
 
-```mirage/config.js{+14,+15,+28,+29,+42,+43,+53,+54,+55,+56,+57}
+```mirage/config.js{+55,+56,+57,+58}
 export default function() {
-  this.get('/rentals', function(db, request) {
-    let rentals = [
-      {
-        type: 'rentals',
-        id: 1,
-        attributes: {
-          "title": "Grand Old Mansion",
-          "owner": "Veruca Salt",
-          "city": "San Francisco",
-          "type": "Estate",
-          "bedrooms": 15,
-          "image": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg",
-          "slug": "grand-old-mansion",
-          "description": "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
-        }
-      },
-      {
-        type: 'rentals',
-        "id": 2,
-        attributes: {
-          "title": "Urban Living",
-          "owner": "Mike Teavee",
-          "city": "Seattle",
-          "type": "Condo",
-          "bedrooms": 1,
-          "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg",
-          "slug": "urban-living",
-          "description": "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
-        }
-      },
-      {
-        type: 'rentals',
-        "id": 3,
-        attributes: {
-          "title": "Downtown Charm",
-          "owner": "Violet Beauregarde",
-          "city": "Portland",
-          "type": "Apartment",
-          "bedrooms": 3,
-          "image": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg",
-          "slug": "downtown-charm",
-          "description": "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
-        }
+  let rentals = [
+    {
+      type: 'rentals',
+      id: 'grand-old-mansion',
+      attributes: {
+        title: "Grand Old Mansion",
+        owner: "Veruca Salt",
+        city: "San Francisco",
+        type: "Estate",
+        bedrooms: 15,
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg",
+        description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
       }
-    ];
+    },
+    {
+      type: 'rentals',
+      id: 'urban-living',
+      attributes: {
+        title: "Urban Living",
+        owner: "Mike Teavee",
+        city: "Seattle",
+        type: "Condo",
+        bedrooms: 1,
+        image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg",
+        description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
+      }
+    },
+    {
+      type: 'rentals',
+      id: 'downtown-charm',
+      attributes: {
+        title: "Downtown Charm",
+        owner: "Violet Beauregarde",
+        city: "Portland",
+        type: "Apartment",
+        bedrooms: 3,
+        image: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg",
+        description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+      }
+    }
+  ];
 
+  this.get('/rentals', function(db, request) {
     if (request.queryParams.city !== undefined) {
       let filteredRentals = rentals.filter(function (i) {
         return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
       });
       return { data: filteredRentals };
-    } else if (request.queryParams.slug !== undefined) {
-      const selectedRental = rentals.find(function(rental) {
-       return rental.attributes.slug === request.queryParams.slug;
-      });
-      return { data: selectedRental };
     } else {
       return { data: rentals };
     }
   });
-}
-```
 
-Let's quickly highlight the change made to the bottom, where we return our rental.
-
-```mirage/config.js
-else if (request.queryParams.slug !== undefined) {
-  const selectedRental = rentals.find(function(rental) {
-   return rental.attributes.slug === request.queryParams.slug;
+  this.get('/rentals/:id', function (db, request) {
+    //Finds and returns the provided rental from our rental list
+    return { data: rentals.find((rental) => request.params.id === rental.id) };
   });
-  return { data: selectedRental };
-}
+
+};
+
 ```
 
-Our `show` sub-route only expects to show one rental.
-This is why we will use `queryRecord` instead of `query` as we expect a single response.
-This means that we cannot return an array (like we do with a normal get response to our Mirage file).
-We search all of our rentals until we find the one that matches the slug passed in our `queryParams`.
+## Generating a Nested Detail Route
 
-Since our API is now returning two additional fields, we need to update our `rentals` model, so we can access them in our application.
-
-```app/models/rental.js
-export default DS.Model.extend({
-  title: DS.attr(),
-  owner: DS.attr(),
-  city: DS.attr(),
-  type: DS.attr(),
-  image: DS.attr(),
-  bedrooms: DS.attr(),
-  slug: DS.attr(),
-  description: DS.attr()
-});
-```
-
-# Generating a Show Route
-
-Now that our API is ready to return single records, we can generate our `show` sub-route.
+Now that our API is ready to return individual rentals, we can generate our `show` sub-route.
 Much like generating our `rentals` route, we will use `ember g` to create a nested route.
 
 ```shell
@@ -199,88 +255,100 @@ Router.map(function() {
 You will notice that `this.route('show')` is nested within our `rentals` route.
 This tells Ember that it is a sub-route and must be accessed through `localhost:4200/rentals/show`.
 
-In order for us to tell the application which rental we want to access, we need to pass the `slug` to our `show` route.
-In addition, we will want to simplify the URL for the user so that they can access the information for a specific rental by browsing to `localhost:4200/rentals/slug-for-rental`.
-To do this, we modify our router.
+In order for us to tell the application which rental we want to access, we need to replace the `show` route path with the ID of the rental listing you are viewing.
+In addition, we will want to simplify the URL for the user so that they can access the information for a specific rental by browsing to `localhost:4200/rentals/id-for-rental`.
 
-```app/router.js
+To do this, we modify our router as follows:
+
+```app/router.js{+5}
 Router.map(function() {
   this.route('about');
   this.route('contact');
   this.route('rentals', function() {
-    this.route('show', { path: '/:slug' });
+    this.route('show', { path: '/:rental_id' });
   });
 });
 ```
 
 We have modified the `path` for the `show` route.
-It no longer defaults to `/rentals/show` but instead `/rentals/:slug`.
-This means we can now access the `slug` on the route itself.
+It no longer defaults to `/rentals/show` but instead `/rentals/:rental_id`.
+This means we can now access the `rental_id` on the route itself.
 
-# Querying by Slug
+
+## Finding By ID
 
 Next, we will want to edit our `show` route to return the specific rental we want.
 
-```app/routes/rentals/show.js
+```app/routes/rentals/show.js{+2,+3,+4}
 export default Ember.Route.extend({
   model(params) {
-    return this.store.queryRecord('rental', { slug: params.slug });
+    return this.store.findRecord('rental', params.rental_id);
   }
 });
 ```
 
-Since we added `:slug` to the `show` path in our router, we can now access `slug` through the `params` in our `model` hook.
-When we call `this.get('store').queryRecord('rental', { slug: params.slug })`, Ember Data will make a GET request to `/rentals?slug=our-slug`.
-You can read more about Ember Data in the [Models section](../../models/).
+Since we added `:rental_id` to the `show` path in our router, we can now access `rental_id` through the `params` in our `model` hook.
+When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data makes an HTTP GET request to `/rentals/our-id`.
+You can read more about Ember Data in the [Models section](../../models/) of the guides, 
+and read about the `findRecord` method of the Ember Data store service in the [API Documentation](http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord).
 
-To ensure this, we should write a unit test that confirms `queryRecord` is called with the correct parameters.
-Let's edit the unit test that Ember created for us when we generated our `show` route.
+To ensure that we are properly interfacing with Ember Data, we'll write a unit test that confirms `findRecord` is called with the correct parameters.
+Since we are already leveraging ember-cli-mirage for our app persistence in this tutorial, we'll leverage it for our route test to act as a stub for the HTTP request that gets generated when we fetch our rental.
 
-This means that we can access a specific rental as `model` on our template.
+Mirage will automatically start when the app starts for an acceptance test, but since we are writing a unit test, the same application start logic is not executed.
+Therefore we need to [start Mirage manually within our test](http://www.ember-cli-mirage.com/docs/v0.2.x/manually-starting-mirage/). 
+
+Create an ember test helper by running the following command:
+
+```shell
+ember g test-helper setup-mirage-for-unit-test
+```
+
+The command creates a test helper file in your `tests/helpers` directory.
+Test helpers are utilities that can be shared between test cases.
+Update the file contents as shown below:
+
+```tests/helpers/setup-mirage-for-unit-test.js
+import mirageInitializer from '../../initializers/ember-cli-mirage';
+
+export default function startMirage(container) {
+  mirageInitializer.initialize(container);
+}
+```
+
+Now let's edit the unit test that Ember created for us when we generated our `show` route.
 
 ```tests/unit/routes/rentals/show-test.js
-moduleFor('route:rentals/show', 'Unit | Route | rentals/show', {});
+import { moduleFor, test } from 'ember-qunit';
+import startMirage from '../../../helpers/setup-mirage-for-unit-test';
+import Ember from 'ember';
 
-test('should query for selected rental by slug', function(assert) {
-  let store = {
-    queryRecord(path, options) {
-      assert.equal(path, 'rental', 'queryRecord calls rental path on API');
-      assert.deepEqual(options, { slug: 'rental-thing' });
-    }
-  };
-  let route = this.subject({ store });
-  route.model({ slug: 'rental-thing' });
+moduleFor('route:rentals/show', 'Unit | Route | rentals/show', {
+  needs: ['model:rental'],
+  beforeEach() {
+    startMirage(this.container);
+  },
+  afterEach() {
+    window.server.shutdown();
+  }
+});
+
+test('should load rental by id', function(assert) {
+  let route = this.subject();
+  Ember.run(() => {
+    route.model({ rental_id: 'grand-old-mansion'}).then((result) => {
+      assert.equal(result.get('title'), "Grand Old Mansion");
+    });
+  });
 });
 ```
 
-In our route we call `this.store.queryRecord` and pass our `slug` to query our API appropriately.
-To test this, we must stub `store.queryRecord` and pass it to our route.
-First we create a fake `store` object with a `queryRecord` function.
+In the above unit test we are directly calling the `model` hook method with our rental_id as an argument.
+We then process the resulting promise by asserting that the result has the appropriate title, validating that the correct record was returned.
 
-```js
-let store = {
-  queryRecord(path, options) {
-    assert.equal(path, 'rental', 'queryRecord calls rental path on API');
-    assert.deepEqual(options, { slug: 'rental-thing' });
-  }
-};
-```
+Also note that in the `beforeEach` hook, we are starting Mirage using the helper we just created, and in the `afterEach` hook we shut down the mirage instance created during start.
 
-Instead of making an AJAX request (the default behavior of `queryRecord`), we want to assert that the correct parameters are present.
-Secondly, we want to pass this stubbed object to our route.
-This is possible by passing a hash with our object in `this.subject`, a method available to us because of `moduleFor`.
-
-```js
-let route = this.subject({ store });
-```
-
-Finally, we call the `model` function directly, which will trigger the assertions we wrote on our stubbed `store` object.
-
-```js
-route.model({ slug: 'rental-thing' });
-```
-
-# Adding the Rental To Our Template
+## Adding the Rental To Our Template
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
@@ -303,7 +371,7 @@ Next, we can update the template for our show route (`app/templates/rentals/show
       <strong>Number of bedrooms:</strong> {{model.bedrooms}}
     </div>
     <p>&nbsp;</p>
-    <p>{{model.description}}</p>
+    <p>{{nmodel.description}}</p>
   </div>
   <img src="{{model.image}}" alt="" class="" style="width:50%;height:initial;position:static">
 </div>
@@ -312,61 +380,13 @@ Next, we can update the template for our show route (`app/templates/rentals/show
 We pass our `model` to the `rental-listing` component and add a new section listing the rental's `title`.
 Browse to `localhost:4200/rentals/grand-old-mansion` and you should see the information listed for that specific rental.
 
-# Adding an Index Sub-route
+![Rental Page Nested Show Route](../../images/subroutes/subroutes-super-rentals-show.png)
 
-One of the first things you may notice is that if you browse directly to `localhost:4200/rentals`,
-all we see are the items from our parent route (`app/template/rentals.hbs`).
-This is because we do not have an `index` sub-route.
-Much like how our application defaults to the `index` route,
-our `rentals` route defaults to `index` and tries to render it in our `outlet`.
+## Linking to a Specific Rental
 
-We will want to generate an `index` route and use it to list all of our rentals and allow the user to select one to view additional information.
-
-```shell
-ember g route rentals/index
-```
-
-If you open up your Router (`app/router`) you may notice that nothing has updated.
-
-```app/router.js
-Router.map(function() {
-  this.route('about');
-  this.route('contact');
-  this.route('rentals', function() {
-    this.route('show', { path: '/:slug' });
-  });
-});
-```
-
-Much like how our applications `index` route doesn't appear in our Router, `index` routes on sub-routes won't explicitly appear in the Router either.
-Ember knows that the default action is to take the user to the `index` route.
-However, you can modify the `index` route if needed.
-For example, you can modify the `path` much like we do with our `show` route by adding `this.route('index', { path: '/custom-path'})`.
-
-Next, let's modify the our `index` route.
-
-```app/routes/rentals/index.js
-export default Ember.Route.extend({
-  model() {
-    return this.store.findAll('rental');
-  }
-});
-```
-
-This will return all of our rentals.
-Let's list all of our rentals on our template (`app/templates/rentals/index.hbs`).
-
-```app/templates/rentals/index.hbs
-<ul class="results">
-  {{#each model as |rentalUnit|}}
-    {{rental-listing rental=rentalUnit}}
-  {{/each}}
-</ul>
-```
-
-Here we iterate over all of the items in our model, passing each rental to the `rental-listing` component.
-However, we still want to redirect users to the new `show` route that we created.
-We can do this by editing the `title` in our component, making it a link.
+Now that we can load pages for individual rentals, we'll provide a `link-to` within our `rental-listing` component to navigate there from our main rentals page.
+Clicking on the rental title will load the detail page for the given rental.
+Note that passing the `rental` model object to the `link-to` helper will by default route to the model's `id` property.
 
 ```app/templates/components/rental-listing.hbs{+6}
 <article class="listing">
@@ -374,7 +394,7 @@ We can do this by editing the `title` in our component, making it a link.
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{link-to rental.title "rentals.show" rental.slug}}</h3>
+  <h3>{{link-to rental.title "rentals.show" rental}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
@@ -390,9 +410,14 @@ We can do this by editing the `title` in our component, making it a link.
   {{location-map location=rental.city}}
 </article>
 ```
-Here we changed the header in the component to a link, passing the rental's `slug` as a parameter.
+![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
-Now if we run our app and visit `localhost:4200/rentals` we should see all of the rentals rendered in our `outlet`.
-If we click the title of any of our rentals, we will be redirected to the `show` route and able to view additional information.
+## Final Check
 
-![sub-routes super rentals index route](../../images/subroutes/subroutes-super-rentals-index.png)
+At this point all our tests should pass, including our [battery of acceptance tests](../acceptance-test) we created as our beginning requirements. 
+
+![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
+
+At this point you can go to [deployment](../deploying) and share your Super Rentals application to the world, 
+or you can use this as a base to explore other Ember features and addons.
+Regardless, we hoped this has helped you get started with creating your own ambitious applications with Ember!
