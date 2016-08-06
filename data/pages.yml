@@ -38,6 +38,8 @@
       url: "autocomplete-component"
     - title: "Services and Utilities"
       url: "service"
+    - title: "Adding Subroutes"
+      url: "subroutes"
     - title: "Deploying"
       url: "deploying"
 
