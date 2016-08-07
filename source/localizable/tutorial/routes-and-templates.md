@@ -214,7 +214,7 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
 
 In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
 
-First, create the global template for the application by typing `ember g template application`.
+First, create the application template for the application by typing `ember g template application`.
 
 ```shell
 installing template
