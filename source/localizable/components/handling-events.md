@@ -48,7 +48,7 @@ various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
 ```hbs
-{{drop-target action="didDrop"}}
+{{drop-target action=(action "didDrop")}}
 ```
 
 You can define the component's event handlers to manage the drop event.
@@ -68,7 +68,7 @@ export default Ember.Component.extend({
 
   drop(event) {
     let id = event.dataTransfer.getData('text/data');
-    this.sendAction('action', id);
+    this.get('action')(id);
   }
 });
 ```
