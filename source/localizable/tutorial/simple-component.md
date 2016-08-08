@@ -66,7 +66,7 @@ To start, let's move the rental display details for a single rental from the `in
 
 ```app/templates/components/rental-listing.hbs{+2}
 <article class="listing">
-  <img src="{{rental.image}}" class="image" alt="">
+  <img src="{{rental.image}}" alt="">
   <h3>{{rental.title}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
