@@ -14,7 +14,7 @@ For our initial test, we'll simply check that all the cities we provide are rend
 
 Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises. Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
 
-```tests/integration/components/list-filter-test.js import Ember from 'ember'; import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait'; import RSVP from 'rsvp';
+```tests/integration/components/list-filter-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait'; import RSVP from 'rsvp';
 
 moduleForComponent('list-filter', 'Integration | Component | filter listing', { integration: true });
 

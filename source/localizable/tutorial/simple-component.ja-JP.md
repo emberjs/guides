@@ -32,11 +32,11 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     * 動作を定義するJavaScriptのソースファイル(`app/components/rental-listing.js`)
     
     新規で作成した`rental-listing` component (コンポーネント)はユーザーがレンタル品とどうインタラクションを行うかを管理します。
-    まず、index.hbs` template (テンプレート)から各賃貸物件の詳細を表示する情報を`rental-listing.hbs` に移動してイメージフィールドを追加します:
+    まず、`index.hbs` template (テンプレート)から各賃貸物件の詳細を表示する情報を`rental-listing.hbs` に移動してイメージフィールドを追加します:
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
-      <img src="{{rental.image}}" class="image" alt="">
+      <img src="{{rental.image}}" alt="">
       <h3>{{rental.title}}</h3>
       <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
@@ -122,7 +122,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
 
 `isWide`の値は、component (コンポーネント)のJavaScriptフィイルから、この場合は`rental-listing.js`からきています。 起動時点では画像は小さいものにしたいので、プロパティーは`false`にします:
 
-```app/components/rental-listing.js import Ember from 'ember';
+```app/components/rental-listing.js{+4} import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false });
 

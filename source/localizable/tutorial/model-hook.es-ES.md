@@ -31,7 +31,7 @@ export default Ember.Route.extend({ model() { return rentals; } });
       <h2>Welcome!</h2>
       <p>
         We hope you find exactly what you're looking for in a place to stay.
-        <br>Browse our listings, or use the search box above to narrow your search.
+        <br>Browse our listings, or use the search box below to narrow your search.
       </p>
       {{#link-to 'about' class="button"}}
         About Us
