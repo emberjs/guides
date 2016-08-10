@@ -18,7 +18,7 @@ The `show` route will get substituted with the id of the rental being shown. (fo
 
 ## The Parent Route
 
-Previously, in the [Routes and Templates tutorial](../routes-and-templates), we set up a `rentals` route. 
+Previously, in the [Routes and Templates tutorial](../routes-and-templates), we set up a `rentals` route.
 
 Opening the template for this route reveals an outlet underneath the route's general page information.
 At the bottom of the template, you'll notice an `{{outlet}}` helper.
@@ -75,7 +75,7 @@ Ember knows that the default action is to take the user to the `index` route.
 However, you can add the `index` route if you want to customize it.
 For example, you can modify the `index` route's path by specifying `this.route('index', { path: '/custom-path'})`.
 
-In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals. 
+In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
 ```app/routes/rentals.hbs{-2,-3,-4}
@@ -155,8 +155,10 @@ In order to do this, we need to modify the Mirage `config.js` file.
 If you need a refresher on how Mirage works, go back to the [Installing Addons section](../installing-addons)
 We will add a new route handler to mirage to handle when the http request comes in to fetch a rental.
 
-```mirage/config.js{+55,+56,+57,+58}
+```mirage/config.js{+57,+58,+59,+60}
 export default function() {
+  this.namespace = '/api';
+
   let rentals = [
     {
       type: 'rentals',
@@ -289,14 +291,14 @@ export default Ember.Route.extend({
 
 Since we added `:rental_id` to the `show` path in our router, we can now access `rental_id` through the `params` in our `model` hook.
 When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data makes an HTTP GET request to `/rentals/our-id`.
-You can read more about Ember Data in the [Models section](../../models/) of the guides, 
+You can read more about Ember Data in the [Models section](../../models/) of the guides,
 and read about the `findRecord` method of the Ember Data store service in the [API Documentation](http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord).
 
 To ensure that we are properly interfacing with Ember Data, we'll write a unit test that confirms `findRecord` is called with the correct parameters.
 Since we are already leveraging ember-cli-mirage for our app persistence in this tutorial, we'll leverage it for our route test to act as a stub for the HTTP request that gets generated when we fetch our rental.
 
 Mirage will automatically start when the app starts for an acceptance test, but since we are writing a unit test, the same application start logic is not executed.
-Therefore we need to [start Mirage manually within our test](http://www.ember-cli-mirage.com/docs/v0.2.x/manually-starting-mirage/). 
+Therefore we need to [start Mirage manually within our test](http://www.ember-cli-mirage.com/docs/v0.2.x/manually-starting-mirage/).
 
 Create an ember test helper by running the following command:
 
@@ -414,10 +416,10 @@ Note that passing the `rental` model object to the `link-to` helper will by defa
 
 ## Final Check
 
-At this point all our tests should pass, including our [battery of acceptance tests](../acceptance-test) we created as our beginning requirements. 
+At this point all our tests should pass, including our [battery of acceptance tests](../acceptance-test) we created as our beginning requirements.
 
 ![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
 
-At this point you can go to [deployment](../deploying) and share your Super Rentals application to the world, 
+At this point you can go to [deployment](../deploying) and share your Super Rentals application to the world,
 or you can use this as a base to explore other Ember features and addons.
 Regardless, we hoped this has helped you get started with creating your own ambitious applications with Ember!
