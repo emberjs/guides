@@ -514,10 +514,10 @@ to be a JSON object that looks similar to this:
 
 ```json
 {
-    "id": "1",
-    "title": "Rails is omakase",
-    "tag": "rails",
-    "comments": ["1", "2"]
+  "id": "1",
+  "title": "Rails is omakase",
+  "tag": "rails",
+  "comments": ["1", "2"]
 }
 ```
 
@@ -563,15 +563,15 @@ that looks similar to this:
 
 ```json
 {
-    "id": "1",
-    "title": "Rails is omakase",
-    "tag": "rails",
-    "authors": [
-        {
-            "id": "2",
-            "name": "Steve"
-        }
-    ]
+  "id": "1",
+  "title": "Rails is omakase",
+  "tag": "rails",
+  "authors": [
+    {
+      "id": "2",
+      "name": "Steve"
+    }
+  ]
 }
 ```
 
