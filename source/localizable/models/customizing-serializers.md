@@ -145,13 +145,13 @@ hook. Let's say that we have this JSON API response from Ember Data:
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product",
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "amount": 100,
       "currency": "SEK"
-    },
-    "type": "product"
+    }
   }
 }
 ```
@@ -161,15 +161,15 @@ But our server expects data in this format:
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product"
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "cost": {
         "amount": 100,
         "currency": "SEK"
       }
-    },
-    "type": "product"
+    }
   }
 }
 ```
@@ -205,15 +205,15 @@ like:
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product",
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "cost": {
         "amount": 100,
         "currency": "SEK"
       }
-    },
-    "type": "product"
+    }
   }
 }
 ```
@@ -223,13 +223,13 @@ And so we need to change it to look like:
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product",
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "amount": 100,
       "currency": "SEK"
-    },
-    "type": "product"
+    }
   }
 }
 ```
