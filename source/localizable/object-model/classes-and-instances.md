@@ -1,5 +1,5 @@
 As you learn about Ember, you'll see code like `Ember.Component.extend()` and
-`Model.extend()`. Here, you'll learn about this `extend()` method, as well
+`DS.Model.extend()`. Here, you'll learn about this `extend()` method, as well
 as other major features of the Ember object model.
 
 ### Defining Classes
