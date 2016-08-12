@@ -42,6 +42,8 @@ Let's now configure Mirage to send back our rentals that we had defined above by
 
 ```mirage/config.js
 export default function() {
+  this.namespace = '/api';
+
   this.get('/rentals', function() {
     return {
       data: [{
@@ -83,5 +85,25 @@ export default function() {
 }
 ```
 
-This configures Mirage so that whenever Ember Data makes a GET request to `/rentals`, Mirage will return this JavaScript object as JSON.
+This configures Mirage so that whenever Ember Data makes a GET request to `/api/rentals`, Mirage will return this JavaScript object as JSON.
+In order for this to work, we need our application to default to making requests to the namespace of `/api`.
+Otherwise, we wouldn't be able later make a `rentals` route in our application, as Mirage would be using it.
 
+To do this, we want to generate an application adapter.
+
+```shell
+ember generate adapter application
+```
+
+This adapter will extend the [`JSONAPIAdapter`][1] base class from Ember Data:
+
+[1]: http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html
+
+```app/adapters/application.js
+import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({
+  namespace: 'api'
+});
+
+```

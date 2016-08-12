@@ -1,15 +1,15 @@
-As they search for a rental, users might also want to narrow their search to a specific city. 
+As they search for a rental, users might also want to narrow their search to a specific city.
 Let's build a component that will let them filter rentals by city.
 
-To begin, let's generate our new component. 
+To begin, let's generate our new component.
 We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
 ```shell
 ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), 
-a JavaScript file (`app/components/list-filter.js`), 
+As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`),
+a JavaScript file (`app/components/list-filter.js`),
 and a component integration test (`tests/integration/components/list-filter-test.js`).
 
 Let's start with writing some tests to help us think through what we are doing.
@@ -43,8 +43,8 @@ test('should initially load all listings', function (assert) {
       return RSVP.resolve(FILTERED_ITEMS);
     }
   });
-  
-  // with an integration test, you can set up and use your component in the same way your application 
+
+  // with an integration test, you can set up and use your component in the same way your application
   // will use it.
   this.render(hbs`
     {{#list-filter filter=(action 'filterByCity') as |results|}}
@@ -58,7 +58,7 @@ test('should initially load all listings', function (assert) {
     {{/list-filter}}
   `);
 
-  // the wait function will return a promise that will wait for all promises 
+  // the wait function will return a promise that will wait for all promises
   // and xhr requests to resolve before running the contents of the then block.
   return wait().then(() => {
     assert.equal(this.$('.city').length, 3);
@@ -91,7 +91,7 @@ test('should update with matching listings', function (assert) {
       </ul>
     {{/list-filter}}
   `);
-  
+
   // The keyup event here should invoke an action that will cause the list to be filtered
   this.$('.list-filter input').val('San').keyup();
 
@@ -136,7 +136,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
+The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
 The `value` property of the `input` will be bound to the `value` property in our component.
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
@@ -196,14 +196,16 @@ export default Ember.Controller.extend({
 });
 ```
 
-When the user types in the text field in our component, the `filterByCity` action in the controller is called. 
-This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
+When the user types in the text field in our component, the `filterByCity` action in the controller is called.
+This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far.
 The result of the query is returned to the caller.
 
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 
 ```mirage/config.js
 export default function() {
+  this.namespace = '/api';
+
   let rentals = [{
       type: 'rentals',
       id: 1,
