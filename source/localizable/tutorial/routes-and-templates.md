@@ -148,7 +148,7 @@ When we look at our about page at [`http://localhost:4200/about`](http://localho
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
+Now, we'll add a link to our contact page so we can navigate back and forth between `about` and `contact`.
 
 ```app/templates/contact.hbs
 <div class="jumbo">
