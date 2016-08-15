@@ -85,7 +85,7 @@ waiting for pages to render.
 We want the main focus of our site to be selecting rentals, so we plan to redirect traffic going to the root URL `/`, to our `rentals` route.
 We can create a simple test using our test helpers to verify this:
 
-```/tests/acceptnace/list-rentals-test.js
+```/tests/acceptance/list-rentals-test.js
 test('should redirect to rentals route', function (assert) {
   visit('/');
   andThen(function() {

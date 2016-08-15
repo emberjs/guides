@@ -15,7 +15,7 @@ Let's open `app/routes/rentals.js` and add our hard-coded data as the return val
 import Ember from 'ember';
 
 let rentals = [{
-  id: 1,
+  id: 'grand-old-mansion',
   title: 'Grand Old Mansion',
   owner: 'Veruca Salt',
   city: 'San Francisco',
@@ -23,7 +23,7 @@ let rentals = [{
   bedrooms: 15,
   image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
 }, {
-  id: 2,
+  id: 'urban-living',
   title: 'Urban Living',
   owner: 'Mike TV',
   city: 'Seattle',
@@ -31,7 +31,7 @@ let rentals = [{
   bedrooms: 1,
   image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
 }, {
-  id: 3,
+  id: 'downtown-charm',
   title: 'Downtown Charm',
   owner: 'Violet Beauregarde',
   city: 'Portland',
