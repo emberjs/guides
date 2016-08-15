@@ -180,7 +180,7 @@ ember g route rentals
 ```
 
 Let's update the newly generated `rentals.hbs` with some basic markup to seed our rentals list page.
-We'll come back to this page later to hook in the actual rental properties.
+We'll come back to this page later to add in the actual rental properties.
 
 ```app/templates/rentals.hbs
 <div class="jumbo">

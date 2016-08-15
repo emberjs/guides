@@ -6,14 +6,14 @@ Up to this point, we've generated four top level routes.
 * and the `index` route, which we've set up to redirect to the `rentals` route.
 
 Our `rentals` route is going to serve multiple functions.
-From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as also to see detailed information for individual rentals.
-To satisfy our requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
+From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
+To satisfy that requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
 
 By the end of this section we want to have created the following new routes:
 
-* A `rentals/index` route that displays the rentals page's general information, and also lists available rentals.
-The index nested route is shown by default when the user visits to the `rentals` URL.
-* A `rentals/show` route that still displays the rental page's general information, additionally showing detailed information about a selected rental.
+* A `rentals/index` route that displays the rental page's general information, and also lists available rentals.
+The index nested route is shown by default when the user visits the `rentals` URL.
+* A `rentals/show` route that still displays the rental page's general information, while also showing detailed information about a selected rental.
 The `show` route will get substituted with the id of the rental being shown. (for example `rentals/grand-old-mansion`).
 
 ## The Parent Route

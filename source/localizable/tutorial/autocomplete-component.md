@@ -208,7 +208,7 @@ export default function() {
 
   let rentals = [{
       type: 'rentals',
-      id: 1,
+      id: 'grand-old-mansion',
       attributes: {
         title: 'Grand Old Mansion',
         owner: 'Veruca Salt',
@@ -219,7 +219,7 @@ export default function() {
       }
     }, {
       type: 'rentals',
-      id: 2,
+      id: 'urban-living',
       attributes: {
         title: 'Urban Living',
         owner: 'Mike Teavee',
@@ -230,7 +230,7 @@ export default function() {
       }
     }, {
       type: 'rentals',
-      id: 3,
+      id: 'downtown-charm',
       attributes: {
         title: 'Downtown Charm',
         owner: 'Violet Beauregarde',
