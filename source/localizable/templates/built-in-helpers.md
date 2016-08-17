@@ -28,11 +28,11 @@ if the `part` computed property returns "zip", this will display the result of
 
 In the last section it was discussed that helpers can be nested.
 This can be combined with these sorts of dynamic helpers.
-For example, the [`{{concat}}`][1] helper makes it easy to dynamically send
+For example, the [`{{concat}}`][2] helper makes it easy to dynamically send
 a number of parameters to a component or helper as a single parameter in the
 format of a concatenated string.
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_concat
+[2]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_concat
 
 ```handlebars
 {{get "foo" (concat "item" index)}}

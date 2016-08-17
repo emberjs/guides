@@ -20,11 +20,11 @@ The `{{log}}` helper also accepts primitive types such as strings or numbers.
 
 ### Adding a breakpoint
 
-The [``{{debugger}}``][1] helper provides a handlebars equivalent to JavaScript's
+The [``{{debugger}}``][2] helper provides a handlebars equivalent to JavaScript's
 `debugger` keyword.  It will halt execution inside the debugger helper and give
 you the ability to inspect the current rendering context:
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_debugger
+[2]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_debugger
 
 ```handlebars
 {{debugger}}
