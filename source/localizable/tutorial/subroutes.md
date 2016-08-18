@@ -290,72 +290,15 @@ export default Ember.Route.extend({
 Since we added `:rental_id` to the `show` path in our router, `rental_id` is now available in our `model` hook.
 When we call `this.store.findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../../models/)).
 
-To make sure that our model hook is working properly, we'll write a unit test that confirms `findRecord` is called with the correct parameters.
-Since we are already leveraging ember-cli-mirage for our app persistence in this tutorial, we'll leverage it for our route test to act as a stub for the HTTP request that gets generated when we fetch our rental.
-
-Mirage will automatically start when the app starts for an acceptance test, but since we are writing a unit test, the same application start logic is not executed.
-Therefore we need to [start Mirage manually within our test](http://www.ember-cli-mirage.com/docs/v0.2.x/manually-starting-mirage/).
-
-Create an ember test helper by running the following command:
-
-```shell
-ember g test-helper setup-mirage-for-unit-test
-```
-
-The command creates a test helper file in your `tests/helpers` directory.
-Test helpers are utilities that can be shared between test cases.
-Update the file contents as shown below:
-
-```tests/helpers/setup-mirage-for-unit-test.js
-import mirageInitializer from '../../initializers/ember-cli-mirage';
-
-export default function startMirage(container) {
-  mirageInitializer.initialize(container);
-}
-```
-
-Now let's edit the unit test that Ember created for us when we generated our `show` route.
-
-```tests/unit/routes/rentals/show-test.js
-import { moduleFor, test } from 'ember-qunit';
-import startMirage from '../../../helpers/setup-mirage-for-unit-test';
-import Ember from 'ember';
-
-moduleFor('route:rentals/show', 'Unit | Route | rentals/show', {
-  needs: ['model:rental'],
-  beforeEach() {
-    startMirage(this.container);
-  },
-  afterEach() {
-    window.server.shutdown();
-  }
-});
-
-test('should load rental by id', function(assert) {
-  let route = this.subject();
-  Ember.run(() => {
-    route.model({ rental_id: 'grand-old-mansion'}).then((result) => {
-      assert.equal(result.get('title'), "Grand Old Mansion");
-    });
-  });
-});
-```
-
-In the above unit test we are directly calling the `model` hook method with our rental_id as an argument.
-We then process the resulting promise by asserting that the result has the appropriate title, validating that the correct record was returned.
-
-Also note that in the `beforeEach` hook, we are starting Mirage using the helper we just created, and in the `afterEach` hook we shut down the mirage instance created during start.
-
 ## Adding the Rental To Our Template
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
 ```app/templates/rentals/show.hbs
-<div class="jumbo">
-  <h2 style="margin-bottom:15px">{{model.title}}</h2>
-  <div class="right" style="width:50%;padding-left:30px">
-    <div class="map right" style="background: url({{model.address}}) center center;"></div>
-    <div class="detail" style="margin-top:10px">
+<div class="jumbo show-listing">
+  <h2 class="title">{{model.title}}</h2>
+  <div class="right detail-section">
+    <div class="detail owner">
       <strong>Owner:</strong> {{model.owner}}
     </div>
     <div class="detail">
@@ -367,21 +310,20 @@ Next, we can update the template for our show route (`app/templates/rentals/show
     <div class="detail">
       <strong>Number of bedrooms:</strong> {{model.bedrooms}}
     </div>
-    <p>&nbsp;</p>
-    <p>{{nmodel.description}}</p>
+    <p>{{model.description}}</p>
   </div>
-  <img src="{{model.image}}" alt="" class="" style="width:50%;height:initial;position:static">
+  <img src="{{model.image}}" class="rental-pic">
 </div>
 ```
 
-We pass our `model` to the `rental-listing` component and add a new section listing the rental's `title`.
-Browse to `localhost:4200/rentals/grand-old-mansion` and you should see the information listed for that specific rental.
+Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the information listed for that specific rental.
 
 ![Rental Page Nested Show Route](../../images/subroutes/subroutes-super-rentals-show.png)
 
 ## Linking to a Specific Rental
 
 Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages.
+Passing the `rental` model object to the link to will allow it to serialize the rental ID to the URL.
 Clicking on the title will load the detail page for that rental.
 
 ```app/templates/components/rental-listing.hbs{+6}
@@ -390,7 +332,7 @@ Clicking on the title will load the detail page for that rental.
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{link-to rental.title "rentals.show" rental.id}}</h3>
+  <h3>{{link-to rental.title "rentals.show" rental}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
