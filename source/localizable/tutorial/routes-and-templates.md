@@ -196,8 +196,8 @@ We'll come back to this page later to add in the actual rental properties.
 ## An Index Route
 
 With our two static pages in place, we are ready to add our home page which welcomes users to the site.
-At this point our main page in our application is our rentals page, which we've already created a route for, 
-so we want or index route to simply forward to the `rentals` route we've already created.
+At this point our main page in our application is our rentals page, which we've already created a route for. 
+So we want our index route to simply forward to the `rentals` route we've already created.
 
 Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
 
@@ -217,11 +217,11 @@ installing route-test
 
 Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
-We'll learn more about why the entry isn't required when we look at nested routes in Ember.
+We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
 
 We can start by implementing the unit test for index.
-Since all we want to do is transition to rentals our unit test will just verify that the route's `transitionTo` method is called with the desired route.
-We'll verify this by stubbing the `transitionTo` method for the route and asserting that the `rentals.index` route is passed when called.
+Since all we want to do is transition to `rentals.index`, our unit test will make sure that the route's `transitionTo` method is called with the desired route.
+We'll verify that by stubbing the `transitionTo` method for the route and asserting that the `rentals.index` route is passed when called.
 
 ```tests/unit/routes/index-test.js
 import { moduleFor, test } from 'ember-qunit';
@@ -251,7 +251,7 @@ export default Ember.Route.extend({
 });
 ```
 
-Now any visitation to the root route `/` will result in the `/rentals` URL loading.
+Now visiting the root route `/` will result in the `/rentals` URL loading.
 
 ## Adding a Banner with Navigation
 

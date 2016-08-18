@@ -151,9 +151,9 @@ The `findRecord` function requires that we search by a unique key.
 
 While on the `show` route, we will also want to show additional information about our specific rental.
 
-In order to do this, we need to modify the Mirage `config.js` file.
-If you need a refresher on how Mirage works, go back to the [Installing Addons section](../installing-addons)
-We will add a new route handler to mirage to handle when the http request comes in to fetch a rental.
+In order to do this, we will need to modify the Mirage `config.js` file that we added
+back in the [Installing Addons section](../installing-addons). We will add a new route
+handler to return a specific rental:
 
 ```mirage/config.js{+57,+58,+59,+60}
 export default function() {
@@ -212,8 +212,8 @@ export default function() {
     }
   });
 
+  // Find and return the provided rental from our rental list above
   this.get('/rentals/:id', function (db, request) {
-    //Finds and returns the provided rental from our rental list
     return { data: rentals.find((rental) => request.params.id === rental.id) };
   });
 
@@ -244,7 +244,7 @@ installing route-test
 
 Let's start by looking at the changes to our Router (`app/router.js`).
 
-```app/router.js
+```app/router.js{+5}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -254,13 +254,13 @@ Router.map(function() {
 });
 ```
 
-You will notice that `this.route('show')` is nested within our `rentals` route.
-This tells Ember that it is a sub-route and must be accessed through `localhost:4200/rentals/show`.
+Our new route is nested within our `rentals` route.
+This tells Ember that it is a sub-route and will be accessed through `localhost:4200/rentals/show`.
 
-In order for us to tell the application which rental we want to access, we need to replace the `show` route path with the ID of the rental listing you are viewing.
-In addition, we will want to simplify the URL for the user so that they can access the information for a specific rental by browsing to `localhost:4200/rentals/id-for-rental`.
+To tell the application which rental we want to access, we need to replace the `show` route path with the ID of the rental listing.
+We also want to simplify the URL so that it looks more like this: `localhost:4200/rentals/id-for-rental`.
 
-To do this, we modify our router as follows:
+To do that, we modify our route as follows:
 
 ```app/router.js{+5}
 Router.map(function() {
@@ -272,14 +272,12 @@ Router.map(function() {
 });
 ```
 
-We have modified the `path` for the `show` route.
-It no longer defaults to `/rentals/show` but instead `/rentals/:rental_id`.
-This means we can now access the `rental_id` on the route itself.
+The `rental_id` will now be passed to the route.
 
 
 ## Finding By ID
 
-Next, we will want to edit our `show` route to return the specific rental we want.
+Next, we want to edit our `show` route to retrieve the requested rental:
 
 ```app/routes/rentals/show.js{+2,+3,+4}
 export default Ember.Route.extend({
@@ -289,12 +287,10 @@ export default Ember.Route.extend({
 });
 ```
 
-Since we added `:rental_id` to the `show` path in our router, we can now access `rental_id` through the `params` in our `model` hook.
-When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data makes an HTTP GET request to `/rentals/our-id`.
-You can read more about Ember Data in the [Models section](../../models/) of the guides,
-and read about the `findRecord` method of the Ember Data store service in the [API Documentation](http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord).
+Since we added `:rental_id` to the `show` path in our router, `rental_id` is now available in our `model` hook.
+When we call `this.store.findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../../models/)).
 
-To ensure that we are properly interfacing with Ember Data, we'll write a unit test that confirms `findRecord` is called with the correct parameters.
+To make sure that our model hook is working properly, we'll write a unit test that confirms `findRecord` is called with the correct parameters.
 Since we are already leveraging ember-cli-mirage for our app persistence in this tutorial, we'll leverage it for our route test to act as a stub for the HTTP request that gets generated when we fetch our rental.
 
 Mirage will automatically start when the app starts for an acceptance test, but since we are writing a unit test, the same application start logic is not executed.
@@ -356,7 +352,6 @@ Next, we can update the template for our show route (`app/templates/rentals/show
 
 ```app/templates/rentals/show.hbs
 <div class="jumbo">
-  <a href="#" class="button right up-11">Edit</a>
   <h2 style="margin-bottom:15px">{{model.title}}</h2>
   <div class="right" style="width:50%;padding-left:30px">
     <div class="map right" style="background: url({{model.address}}) center center;"></div>
@@ -386,9 +381,8 @@ Browse to `localhost:4200/rentals/grand-old-mansion` and you should see the info
 
 ## Linking to a Specific Rental
 
-Now that we can load pages for individual rentals, we'll provide a `link-to` within our `rental-listing` component to navigate there from our main rentals page.
-Clicking on the rental title will load the detail page for the given rental.
-Note that passing the `rental` model object to the `link-to` helper will by default route to the model's `id` property.
+Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages.
+Clicking on the title will load the detail page for that rental.
 
 ```app/templates/components/rental-listing.hbs{+6}
 <article class="listing">
@@ -396,7 +390,7 @@ Note that passing the `rental` model object to the `link-to` helper will by defa
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{link-to rental.title "rentals.show" rental}}</h3>
+  <h3>{{link-to rental.title "rentals.show" rental.id}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
@@ -416,10 +410,10 @@ Note that passing the `rental` model object to the `link-to` helper will by defa
 
 ## Final Check
 
-At this point all our tests should pass, including our [battery of acceptance tests](../acceptance-test) we created as our beginning requirements.
+At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
 
 ![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
 
-At this point you can go to [deployment](../deploying) and share your Super Rentals application to the world,
+At this point you can do a [deployment](../deploying) and share your Super Rentals application to the world
 or you can use this as a base to explore other Ember features and addons.
-Regardless, we hoped this has helped you get started with creating your own ambitious applications with Ember!
+Regardless, we hope this has helped you get started with creating your own ambitious applications with Ember!
