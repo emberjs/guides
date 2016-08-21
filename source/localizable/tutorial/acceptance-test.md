@@ -53,7 +53,7 @@ As mentioned before, this test boilerplate is just for checking the environment,
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | homepage');
+moduleForAcceptance('Acceptance | list-rentals');
 
 test('should list available rentals.', function (assert) {
 });
