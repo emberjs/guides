@@ -3,7 +3,7 @@ Up to this point, we've generated four top level routes.
 * An `about` route, that gives information on our application.
 * A `contact` route, with information on how to contact the company.
 * A `rentals` route, where we will allow users to browse rental properties.
-* and the `index` route, which we've set up to redirect to the `rentals` route.
+* The `index` route, which we've set up to redirect to the `rentals` route.
 
 Our `rentals` route is going to serve multiple functions.
 From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
@@ -14,7 +14,7 @@ By the end of this section we want to have created the following new routes:
 * A `rentals/index` route that displays the rental page's general information, and also lists available rentals.
 The index nested route is shown by default when the user visits the `rentals` URL.
 * A `rentals/show` route that still displays the rental page's general information, while also showing detailed information about a selected rental.
-The `show` route will get substituted with the id of the rental being shown. (for example `rentals/grand-old-mansion`).
+The `show` route will get substituted with the id of the rental being shown (for example `rentals/grand-old-mansion`).
 
 ## The Parent Route
 
@@ -323,7 +323,10 @@ Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the 
 ## Linking to a Specific Rental
 
 Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages.
-Passing the `rental` model object to the link to will allow it to serialize the rental ID to the URL.
+Here, the `link-to` helper takes the route name and the rental model object as arguments.
+When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](http://emberjs.com/api/classes/Ember.Route.html#method_serialize) the object to the ID of the model into the URL. 
+Alternately, you may just pass `rental.id` for clarity.
+
 Clicking on the title will load the detail page for that rental.
 
 ```app/templates/components/rental-listing.hbs{+6}
@@ -332,7 +335,7 @@ Clicking on the title will load the detail page for that rental.
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{link-to rental.title "rentals.show" rental}}</h3>
+  <h3>{{#link-to "rentals.show" rental}}rental.title{{/link-to}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>

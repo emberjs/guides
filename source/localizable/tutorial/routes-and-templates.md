@@ -196,7 +196,7 @@ We'll come back to this page later to add in the actual rental properties.
 ## An Index Route
 
 With our two static pages in place, we are ready to add our home page which welcomes users to the site.
-At this point our main page in our application is our rentals page, which we've already created a route for. 
+At this point our main page in our application is our rentals page, for which we've already created a route.
 So we want our index route to simply forward to the `rentals` route we've already created.
 
 Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
