@@ -220,8 +220,10 @@ it does NOT require an entry in the router's mapping.
 We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
 
 We can start by implementing the unit test for index.
-Since all we want to do is transition to `rentals.index`, our unit test will make sure that the route's `transitionTo` method is called with the desired route.
-We'll verify that by stubbing the `transitionTo` method for the route and asserting that the `rentals.index` route is passed when called.
+Since all we want to do is transition to `rentals.index`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
+`replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
+Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
+We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals.index` route is passed when called.
 
 ```tests/unit/routes/index-test.js
 import { moduleFor, test } from 'ember-qunit';
@@ -230,15 +232,15 @@ moduleFor('route:index', 'Unit | Route | index');
 
 test('should transition to rentals route', function(assert) {
   let route = this.subject({
-    transitionTo(routeName) {
-      assert.equal(routeName, 'rentals.index', 'transition to route name rentals.index');
+    replaceWith(routeName) {
+      assert.equal(routeName, 'rentals.index', 'replace with route name rentals.index');
     }
   });
   route.beforeModel();
 });
 ```
 
-In our index route, we simply add the `transitionTo` invocation.
+In our index route, we simply add the `replaceWith` invocation.
 
 ```app/routes/index.js
 import Ember from 'ember';
@@ -246,7 +248,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   beforeModel() {
     this._super(...arguments);
-    this.transitionTo('rentals.index');
+    this.replaceWith('rentals.index');
   }
 });
 ```
