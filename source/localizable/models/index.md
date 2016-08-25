@@ -246,10 +246,10 @@ the first time, but you can also generate IDs client-side.
 ## Adapter
 
 An **adapter** is an object that translates requests from Ember (such as
-"find the user with an ID of 123") into requests to a server.
+"find the user with an ID of 1") into requests to a server.
 
 For example, if your application asks for a `Person` with an ID of
-`123`, how should Ember load it? Over HTTP or a WebSocket?  If
+`1`, how should Ember load it? Over HTTP or a WebSocket?  If
 it's HTTP, is the URL `/person/1` or `/resources/people/1`?
 
 The adapter is responsible for answering all of these questions.
