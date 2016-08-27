@@ -19,7 +19,7 @@
     });
     
 
-通常`model`フックは[Ember Data](../../models/)のレコードを返しますが、[プロミス](https://www.promisejs.org/)オブジェクト(Ember Dataオブジェクトまたはプロミス)を返すことも、純粋なJavaScriptのオブジェクトや配列を返すこともできます。 Ember はテンプレートを描画する前に、データが読み込まれる (プロミスが解決される) まで待機します。
+Typically, the `model` hook should return an [Ember Data](../../models/) record, but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises), or a plain JavaScript object or array. Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
 
 そしてルートは`モデル`フックの戻り値をコントローラの`モデル`プロパティとします。 そうすることで、テンプレートの`model`プロパティとしてアクセス可能にまります。
 
@@ -54,7 +54,34 @@ export default Ember.Route.extend({ model(params) { return this.get('store').fin
     <br />ダイナミックセグメントがあるルートの`model` フックを、ID(例えば、`47` とか `post-slug`など)をモデルに変更して、ルートのテンプレートとして描画できるようにする必要があります。 上記の例の場合は、写真のID(`params.photo_id`) を Ember Data'sの`findRecord`
     メソッドの引数としています。
     
-    注意: ダイナミックセグメントがあるルートは、URLの入力があったときだけ呼び出された場合のみ、`model`フックを呼び出します。 遷移によりルートの入力があった場合は(例 [link-to](../../templates/links)Handlebarsヘルパーを利用しているときなど ) モデルのコンテキストはすでに与えられているため、フックは実行されません。 ダイナミック セグメントのないルートは常にモデル フックを実行します。
+    Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
+    If the route is entered through a transition (e.g. when using the [link-to](../../templates/links) Handlebars helper),
+    and a model context is provided (second argument to `link-to`), then the hook is not executed.
+    If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
+    
+    For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `link-to`
+    was passed a model):
+    
+    ```app/templates/photos.hbs
+    <h1>Photos</h1>
+    {{#each model as |photo|}}
+      <p>
+        {{#link-to 'photo' photo}}
+          <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+        {{/link-to}}
+      </p>
+    {{/each}}
+    
+
+while transitioning this way will cause the `model` hook to be executed (because `link-to` was passed `photo.id`, an identifier, instead):
+
+```app/templates/photos.hbs 
+
+# Photos {{#each model as |photo|}} 
+
+{{#link-to 'photo' photo.id}} ![{{photo.title}}]({{photo.thumbnailUrl}}) {{/link-to}}  {{/each}}
+
+    <br />Routes without dynamic segments will always execute the model hook.
     
     ## Multiple Models
     

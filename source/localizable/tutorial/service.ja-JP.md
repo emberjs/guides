@@ -221,8 +221,7 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
+  //  `app.import`を使って出力ファイルにライブラリーを追加します。 to add additional 
   //
   // If you need to use different assets in different
   // environments, specify an object as the first parameter. That

@@ -24,7 +24,7 @@ installing acceptance-test
 
 Opening the new test file will reveal some boilerplate code that will try to go to the `list-rentals` route and verify that the route is loaded. This boilerplate code is there to guide you into your first working acceptance test. Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`:
 
-<pre><code class="javascript{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
+<pre><code class="/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | list-rentals');
@@ -48,7 +48,7 @@ As mentioned before, this test boilerplate is just for checking the environment,
 <pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | homepage');
+moduleForAcceptance('Acceptance | list-rentals');
 
 test('should list available rentals.', function (assert) {
 });

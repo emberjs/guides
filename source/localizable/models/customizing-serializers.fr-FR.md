@@ -113,13 +113,13 @@ To change the format of the data that is sent to the backend store, you can use 
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product",
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "amount": 100,
       "currency": "SEK"
-    },
-    "type": "product"
+    }
   }
 }
 ```
@@ -129,15 +129,15 @@ But our server expects data in this format:
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product"
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "cost": {
         "amount": 100,
         "currency": "SEK"
       }
-    },
-    "type": "product"
+    }
   }
 }
 ```
@@ -170,15 +170,15 @@ export default DS.JSONAPISerializer.extend({ serialize(snapshot, options) { var 
     ```json
     {
       "data": {
+        "id": "1",
+        "type": "product",
         "attributes": {
-          "id": "1",
           "name": "My Product",
           "cost": {
             "amount": 100,
             "currency": "SEK"
           }
-        },
-        "type": "product"
+        }
       }
     }
     
@@ -188,13 +188,13 @@ And so we need to change it to look like:
 ```json
 {
   "data": {
+    "id": "1",
+    "type": "product",
     "attributes": {
-      "id": "1",
       "name": "My Product",
       "amount": 100,
       "currency": "SEK"
-    },
-    "type": "product"
+    }
   }
 }
 ```
@@ -416,10 +416,10 @@ export default DS.JSONSerializer.extend({ // ... });
     
     ```json
     {
-        "id": "1",
-        "title": "Rails is omakase",
-        "tag": "rails",
-        "comments": ["1", "2"]
+      "id": "1",
+      "title": "Rails is omakase",
+      "tag": "rails",
+      "comments": ["1", "2"]
     }
     
 
@@ -451,15 +451,15 @@ For example if your `post` model contained an embedded `author` record that look
 
 ```json
 {
-    "id": "1",
-    "title": "Rails is omakase",
-    "tag": "rails",
-    "authors": [
-        {
-            "id": "2",
-            "name": "Steve"
-        }
-    ]
+  "id": "1",
+  "title": "Rails is omakase",
+  "tag": "rails",
+  "authors": [
+    {
+      "id": "2",
+      "name": "Steve"
+    }
+  ]
 }
 ```
 

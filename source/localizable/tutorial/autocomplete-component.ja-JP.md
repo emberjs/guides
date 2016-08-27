@@ -1,14 +1,14 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
+ユーザーが物件を検索するとき、特定の都市に絞って検索したいかもしれません。都市別にフィルタできるようにする、コンポーネントを作っていきましょう。
 
-To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
+まず、新しい component (コンポーネント)を作成します。component (コンポーネント)に求めているのは、入力によって賃貸のリストをフィルタすることなので、このcomponent (コンポーネント)を`list-filter`と呼ぶことにします。
 
 ```shell
 ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
+以前と同様、このコマンドは次のファイルを生成します。　Handlebar の template (テンプレート) (`app/templates/components/list-filter.hbs`)、JavaScriptファイル(`app/components/list-filter.js`)、component (コンポーネント)インテグレーションテストファイル(`tests/integration/components/list-filter-test.js`).
 
-Let's start with writing some tests to help us think through what we are doing. The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
+まず、テストを書いて何をしているのか考えることにします。 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
 For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
 

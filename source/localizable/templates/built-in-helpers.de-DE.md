@@ -4,7 +4,7 @@ In the last section you learned how to write a helper. A helper is usually a sim
 
 ### Using a helper to get a property dynamically
 
-The [`{{get}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_concat) helper makes it easy to dynamically send the value of a variable to another helper or component. This can be useful if you want to output one of several values based on the result of a computed property.
+The [`{{get}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_get) helper makes it easy to dynamically send the value of a variable to another helper or component. This can be useful if you want to output one of several values based on the result of a computed property.
 
 ```handlebars
 {{get address part}}

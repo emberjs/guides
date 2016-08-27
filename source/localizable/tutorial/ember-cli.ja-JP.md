@@ -34,7 +34,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 **app**: この配下にモジュール、コンポーネント、ルート、テンプレートそしてスタイルシートが含まれています。Emberプロジェクトでのコーディングはこの中で行われます。
 
-**bower_components / bower.json**: Bower は依存関係を管理するツールです。 Ember CLI ではフロントエンドのプラグインとコンポーネント(HTML、 CSS、 JavaScript、 など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components` ディレクトリにインストールされます。 `bower.json`を開くと、Ember、Ember CLI Shims、Ember CLI Test Loader、そしてテストのための QUnit らの自動的にインストールされる、依存関係を確認できます。 Bootstrapなどのフロントエンドの依存関係を追加すれば、それらもリストアップされ`bower_components`ディレクトリに追加されます。
+**bower_components / bower.json**: Bower は依存関係を管理するツールです。 Ember CLI ではフロントエンドのプラグインとコンポーネント(HTML、 CSS、 JavaScript、 など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components` ディレクトリにインストールされます。 `bower.json`を開くと自動的にインストールされる、Ember、Ember CLI Shimsと QUnit (テストで利用される)が一連の依存関係を確認できます。 Bootstrapなどのフロントエンドの依存関係を追加すれば、それらもリストアップされ`bower_components`ディレクトリに追加されます。
 
 **config**: アプリケーションの設定を行う`environment.js` が含まれています。
 

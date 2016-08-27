@@ -70,11 +70,34 @@ export default Ember.Route.extend({ model(params) { return this.get('store').fin
     photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
     method.
     
-    Note: A route with a dynamic segment will only have its `model` hook called
-    when it is entered via the URL. If the route is entered through a transition
-    (e.g. when using the [link-to](../../templates/links) Handlebars helper), then a model context is
-    already provided and the hook is not executed. Routes without dynamic segments
-    will always execute the model hook.
+    Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
+    If the route is entered through a transition (e.g. when using the [link-to](../../templates/links) Handlebars helper),
+    and a model context is provided (second argument to `link-to`), then the hook is not executed.
+    If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
+    
+    For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `link-to`
+    was passed a model):
+    
+    ```app/templates/photos.hbs
+    <h1>Photos</h1>
+    {{#each model as |photo|}}
+      <p>
+        {{#link-to 'photo' photo}}
+          <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+        {{/link-to}}
+      </p>
+    {{/each}}
+    
+
+while transitioning this way will cause the `model` hook to be executed (because `link-to` was passed `photo.id`, an identifier, instead):
+
+```app/templates/photos.hbs 
+
+# Photos {{#each model as |photo|}} 
+
+{{#link-to 'photo' photo.id}} ![{{photo.title}}]({{photo.thumbnailUrl}}) {{/link-to}}  {{/each}}
+
+    <br />Routes without dynamic segments will always execute the model hook.
     
     ## Multiple Models
     

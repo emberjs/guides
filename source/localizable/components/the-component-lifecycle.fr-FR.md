@@ -45,7 +45,7 @@ An example of this scenario in action is a profile editor component. As you are 
 
 `/app/templates/components/profile-editor.hbs`
 
-```js
+```hbs
 <ul class="errors">
   {{#each errors as |error|}}
     <li>{{error.message}}</li>

@@ -24,7 +24,7 @@ installing acceptance-test
 
 新しいテストファイルを開けると、`list-rentals` route (ルート)に移動して、route (ルート)が読み読まれることを確認するための、ボイラープレートコードがあります。 このボイラープレートコードは、初めての、実効的なacceptance test (受入テスト)へを導いてくれます。 ここでは index route (index ルート)つまり、`/`をテストしているので、まず`/list-rentals` を編集して `/`とします:
 
-<pre><code class="javascript{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
+<pre><code class="/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | list-rentals');
@@ -48,7 +48,7 @@ test('visiting /', function(assert) {
 <pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | homepage');
+moduleForAcceptance('Acceptance | list-rentals');
 
 test('should list available rentals.', function (assert) {
 });
