@@ -106,7 +106,7 @@ If the backend server returns validation errors after trying to save, they will
 be available on the `errors` property of your model. Here's how you might display
 the errors from saving a blog post in your template:
 
-```hbs
+```handlebars
 {{#each post.errors.title as |error|}}
   <div class="error">{{error.message}}</div>
 {{/each}}
