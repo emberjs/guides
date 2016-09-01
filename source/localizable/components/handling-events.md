@@ -48,7 +48,7 @@ various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
 ```hbs
-{{drop-target action="didDrop"}}
+{{drop-target action=(action "didDrop")}}
 ```
 
 You can define the component's event handlers to manage the drop event.
@@ -68,10 +68,61 @@ export default Ember.Component.extend({
 
   drop(event) {
     let id = event.dataTransfer.getData('text/data');
-    this.sendAction('action', id);
+    this.get('action')(id);
   }
 });
 ```
+
+In the above component, `didDrop` is the `action` passed in. This action is
+called from the `drop` event handler and passes one argument to the action -
+the `id` value found through the `drop` event object.
+
+
+Another way to preserve native event behaviors and use an action, is to
+assign a (closure) action to an inline event handler. Consider the
+template below which includes an `onclick` handler on a `button` element:
+
+```hbs
+<button onclick={{action 'signUp'}}>Sign Up</button>
+```
+
+The `signUp` action is simply a function defined on the `actions` hash
+of a component. Since the action is assigned to an inline handler, the
+function definition can define the event object as its first parameter.
+
+```js
+actions: {
+  signUp: function(event){ 
+  	// Only when assigning the action to an inline handler, the event object
+    // is passed to the action as the first parameter.
+  }
+}
+```
+
+The normal behavior for a function defined in `actions` does not receive the
+browser event as an argument. So, the function definition for the action cannot
+define an event parameter. The following example demonstrates the
+default behavior using an action.
+
+```hbs
+<button {{action 'signUp'}}>Sign Up</button>
+```
+
+```js
+actions: {
+  signUp: function(){
+    // No event object is passed to the action.
+  }
+}
+```
+
+To utilize an `event` object as a function parameter: 
+
+- Define the event handler in the component (which is designed to receive the
+  browser event object).
+- Or, assign an action to an inline event handler in the template (which
+  creates a closure action and does receive the event object as an argument).
+
 
 ## Event Names
 

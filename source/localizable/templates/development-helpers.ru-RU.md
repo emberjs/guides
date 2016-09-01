@@ -4,7 +4,7 @@ Handlebars and Ember come with a few helpers that can make developing your templ
 
 ### Logging
 
-The [`{{log}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_debugger) helper makes it easy to output variables or expressions in the current rendering context into your browser's console:
+The [`{{log}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_log) helper makes it easy to output variables or expressions in the current rendering context into your browser's console:
 
 ```handlebars
 {{log 'Name is:' name}}

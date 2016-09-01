@@ -27,7 +27,7 @@ Opening the new test file will reveal some boilerplate code that will try to go 
 This boilerplate code is there to guide you into your first working acceptance test.
 Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`:
 
-```javascript{-6,+7,-8,+9,-12,+13}
+```/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
@@ -53,7 +53,7 @@ As mentioned before, this test boilerplate is just for checking the environment,
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | homepage');
+moduleForAcceptance('Acceptance | list-rentals');
 
 test('should redirect to rentals route', function (assert) {
 });

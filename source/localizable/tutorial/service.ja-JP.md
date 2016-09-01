@@ -221,8 +221,7 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
+  //  `app.import`を使って出力ファイルにライブラリーを追加します。 to add additional 
   //
   // If you need to use different assets in different
   // environments, specify an object as the first parameter. That
@@ -279,7 +278,7 @@ export default Ember.Object.extend({
 });
 </code></pre>
 
-We should now see some end to end maps functionality show up on our front page!
+After we restart the server we should now see some end to end maps functionality show up on our front page!
 
 ![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
 

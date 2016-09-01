@@ -25,7 +25,7 @@ We'll start by implementing a failing test with the image toggling behavior that
 
 For our integration test, we'll create a stub rental that has all the properties that our rental model has.
 We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
-Note that we find the image element using the the CSS selector `.image`.
+Note that we find the image element using the CSS selector `.image`.
 
 ```tests/integration/components/rental-listing-test.js
 import { moduleForComponent, test } from 'ember-qunit';
@@ -66,7 +66,7 @@ To start, let's move the rental display details for a single rental from the `in
 
 ```app/templates/components/rental-listing.hbs{+2}
 <article class="listing">
-  <img src="{{rental.image}}" class="image" alt="">
+  <img src="{{rental.image}}" alt="">
   <h3>{{rental.title}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
@@ -151,7 +151,7 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
 Since we want the image to be smaller at first, we will set the property to start as `false`:
 
-```app/components/rental-listing.js
+```app/components/rental-listing.js{+4}
 import Ember from 'ember';
 
 export default Ember.Component.extend({

@@ -16,7 +16,7 @@ Ember lässt sich mit einem npm-Befehl installieren (npm ist der Node.js-Paketma
 npm install -g ember-cli
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node). For a full list of dependencies necessary for an Ember CLI project, consult our [Installing Ember](https://guides.emberjs.com/v2.7.0/getting-started/) guide.
+Kein npm installiert? [Lerne hier wie Node.js und npm installiert werden kann](https://docs.npmjs.com/getting-started/installing-node). Für eine vollständige Liste aller Abhängigkeiten die für ein Ember CLI Projekt benötigt werden, schaue in unsere Anleitung [Ember installieren](https://guides.emberjs.com/v2.7.0/getting-started/).
 
 ## Eine neue Anwendung erstellen
 

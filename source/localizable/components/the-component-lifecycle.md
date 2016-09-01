@@ -48,7 +48,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 
 `/app/templates/components/profile-editor.hbs`
 
-```js
+```hbs
 <ul class="errors">
   {{#each errors as |error|}}
     <li>{{error.message}}</li>

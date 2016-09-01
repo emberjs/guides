@@ -36,7 +36,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
-      <img src="{{rental.image}}" class="image" alt="">
+      <img src="{{rental.image}}" alt="">
       <h3>{{rental.title}}</h3>
       <div class="detail owner">
         <span>Owner:</span> {{rental.owner}}
@@ -122,7 +122,7 @@ In our `index.hbs` template, let's replace the old HTML markup within our `{{#ea
 
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`. Since we want the image to be smaller at first, we will set the property to start as `false`:
 
-```app/components/rental-listing.js import Ember from 'ember';
+```app/components/rental-listing.js{+4} import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false });
 

@@ -127,9 +127,9 @@ An ID is usually assigned to a record by the server when you save it for the fir
 
 ## Adapter
 
-An **adapter** is an object that translates requests from Ember (such as "find the user with an ID of 123") into requests to a server.
+An **adapter** is an object that translates requests from Ember (such as "find the user with an ID of 1") into requests to a server.
 
-For example, if your application asks for a `Person` with an ID of `123`, how should Ember load it? Over HTTP or a WebSocket? If it's HTTP, is the URL `/person/1` or `/resources/people/1`?
+For example, if your application asks for a `Person` with an ID of `1`, how should Ember load it? Over HTTP or a WebSocket? If it's HTTP, is the URL `/person/1` or `/resources/people/1`?
 
 The adapter is responsible for answering all of these questions. Whenever your app asks the store for a record that it doesn't have cached, it will ask the adapter for it. If you change a record and save it, the store will hand the record to the adapter to send the appropriate data to your server and confirm that the save was successful.
 

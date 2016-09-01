@@ -200,7 +200,7 @@ installing route-test
     
     アプリケーションの各 route (ルート)の、ボタンスタイルのリンクに追加して、共通のアプリケーションのタイトルと、そのメインページを表示したいと思います。
     
-    まず、`ember g template application`と入力して、アプリケーションを作成します。
+    まず、`ember g template application`と入力して、アプリケーション template (テンプレート)を作成します。
     
     ```shell
     installing template

@@ -36,7 +36,7 @@ See the list of event names at the end of this page. Any event can be defined as
 In some cases your component needs to define event handlers, perhaps to support various draggable behaviors. For example, a component may need to send an `id` when it receives a drop event:
 
 ```hbs
-{{drop-target action="didDrop"}}
+{{drop-target action=(action "didDrop")}}
 ```
 
 You can define the component's event handlers to manage the drop event. And if you need to, you may also stop events from bubbling, by using `return false;`.
@@ -47,7 +47,7 @@ export default Ember.Component.extend({ attributeBindings: ['draggable'], dragga
 
 dragOver() { return false; },
 
-drop(event) { let id = event.dataTransfer.getData('text/data'); this.sendAction('action', id); } }); ```
+drop(event) { let id = event.dataTransfer.getData('text/data'); this.get('action')(id); } }); ```
 
 ## Event Names
 

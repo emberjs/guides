@@ -89,5 +89,17 @@ export default {
 };
 ```
 
+```app/initializers/asset-init.js
+export function initialize(application) {
+  // ... your code ...
+};
+
+export default {
+  name: 'assetInit',
+  after: ['configReader', 'websocketInit'],
+  initialize: initialize
+};
+``
+
 Note that ordering only applies to initializers of the same type (i.e. application or application instance).
 Application initializers will always run before application instance initializers.
