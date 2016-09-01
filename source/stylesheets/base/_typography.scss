@@ -54,8 +54,7 @@ a {
     color: darken($action-color, 15%);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     outline: none;
   }
 }
