@@ -18,7 +18,7 @@ We want our component to call out to two actions: one action to provide a list o
 
 For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
-Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises.
+Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronously, so we'll return promises.
 Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
 
 ```tests/integration/components/list-filter-test.js
