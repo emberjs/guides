@@ -105,7 +105,7 @@ JSON API adapter:
 
 To facilitate pluralizing model names when generating route urls Ember
 Data comes bundled with
-[Ember Inflector](https://github.com/stefanpenner/ember-inflector), a
+[Ember Inflector](https://github.com/stefanpenner/ember-inflector), an
 ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
