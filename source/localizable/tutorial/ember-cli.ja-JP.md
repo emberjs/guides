@@ -58,7 +58,7 @@ Ember CLI が作成した、ファイルとディレクトリを確認してみ�
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
-const Router = Ember.Router.extend({ location: config.locationType });
+const Router = Ember.Router.extend({ location: config.locationType, rootURL: config.rootURL });
 
 Router.map(function() { });
 

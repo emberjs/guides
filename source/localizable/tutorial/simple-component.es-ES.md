@@ -18,7 +18,7 @@ installing component-test
 
 Empezaremos implementando una prueba de fallos con el comportamiento de alternar la imagen que deseamos.
 
-Para nuestra prueba de integración, vamos a crear un stub para el alquiler que tiene todas las propiedades que tiene nuestro model (modelo) de rental (alquiler). Aseguraremos que el component (componente) se renderice inicialmente sin el nombre de la clase `wide`. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away. Tenga en cuenta que encontraremos el elemento de la imagen usando el selector CSS `.image`.
+Para nuestra prueba de integración, vamos a crear un stub para el alquiler que tiene todas las propiedades que tiene nuestro model (modelo) de rental (alquiler). Aseguraremos que el component (componente) se renderice inicialmente sin el nombre de la clase `wide`. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away. Note that we find the image element using the CSS selector `.image`.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 

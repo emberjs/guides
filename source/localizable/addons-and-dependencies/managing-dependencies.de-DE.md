@@ -28,7 +28,8 @@ The globals provided by some assets (like `moment` in the below example) can be 
 
 ```ember-cli-build.js app.import('bower_components/moment/moment.js');
 
-    <br />Es ist nötig, `"moment": true` zum `predef`-Abschnitt der `.jshintrc` hinzuzufügen, um Fehlermeldungen zu unterdrücken, dass eine undefinierte Variable benutzt werde.
+    <br />You will need to add `"moment"` to the `predef` section in `.jshintrc` to prevent JSHint errors
+    about using an undefined variable.
     
     ### AMD-Javascript-Module
     

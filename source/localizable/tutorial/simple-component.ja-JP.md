@@ -18,7 +18,7 @@ installing component-test
 
 イメージをタグルする動作を作成するには、まず失敗するテストを実装します。
 
-受入テストには、賃貸物件のモデルが持っている全ての情報を持つ物件のスタブを作成します。 当初は、component (コンポーネント)が`wide` classなしで描画されるようにアサートします。 画像をクリックすると、そのエレメントに`wide` クラスが追加され、もう一度クリックすると、`wide`クラスが取り除かれます。 画像のエレメントをCSSセレクタ `.image` で見つけていることに注意してください。.
+受入テストには、賃貸物件のモデルが持っている全ての情報を持つ物件のスタブを作成します。 当初は、component (コンポーネント)が`wide` classなしで描画されるようにアサートします。 画像をクリックすると、そのエレメントに`wide` クラスが追加され、もう一度クリックすると、`wide`クラスが取り除かれます。 画像をCSSセレクタ `.image` で見つけていることに注目してください。.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 

@@ -1,19 +1,19 @@
-Ember 的起步是很容易的。Ember 使用命令行构建工具 Ember CLI 来创建和管理项目。
+Ember 的起步是很容易的。Ember 使用命令行构建工具 Ember CLI 来创建和管理项目。 该构建工具有如下特性：
 
-* Modern application asset management (including concatenation, minification, and versioning).
+* 现代化静态资源管理(包括文件合并、压缩，以及版本控制)。
 * 帮助创建组件、路由及更多的生成器。
 * 常规的项目结构使得既有的 Ember 应用程序也很容易套用。
 * 通过 [Babel](http://babeljs.io/docs/learn-es2015/) 项目支持 ES2015／ES6 JavaScript。 这也包含了对于 [Javascript 模块](http://exploringjs.com/es6/ch_modules.html)的支持，本指南将通篇使用这一特性。
 * 完整的 [QUnit](https://qunitjs.com/) 测试集成。
-* The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
+* 强健的[Ember Addons](https://emberobserver.com/)插件生态.
 
 ## 依赖
 
 ### Git
 
-Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
+Ember 需要 Git 来管理许多它依赖的东西。 Mac OS X 和大多数 Linux 发行版都自带有 Git. Windows 用户可以下载并运行 [this Git installer](http://git-scm.com/download/win)来安装Git。.
 
-### Node.js and npm
+### Node.js 和 npm
 
 Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
 

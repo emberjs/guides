@@ -71,7 +71,7 @@ La función esperar, retornará una promise (promesa) que esperará a que todas 
     
     
 
-A continuación, en nuestro archivo `app/templates/index.hbs`, vamos a añadir nuestro nuevo component (componente) `list-filter` de una manera similar a lo que hicimos en nuestro test. En lugar de solo mostrar la ciudad, que usaremos nuestro component (componente) `rental-listing` para mostrar detalles del alquiler.
+A continuación, en nuestro archivo `app/templates/index.hbs`, vamos a añadir nuestro nuevo component (componente) `list-filter` de una manera similar a lo que hicimos en nuestro test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
 
 ```app/templates/index.hbs 
 

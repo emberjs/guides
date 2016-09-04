@@ -16,7 +16,7 @@
 
 * **HTML，CSS，JavaScript**——创建 web 页面的基石。 你可以在 [Mozilla 开发者网络（Mozilla Developer Network）](https://developer.mozilla.org/en-US/docs/Web)找到这些技术的相关文档。.
 * **Promises**——用于在 JavaScript 代码中处理异步编程的原生机制。 参阅 [Mozilla 开发者网络（Mozilla Developer Network）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)的相关部分。
-* **ES2015 模块**——如果你熟悉 [ES6 JavaScript Modules](http://jsmodules.io/) 的话就更容易理解 Ember CLI 的项目结构及模块导入路径。.
+* **ES2015 modules**——如果你熟悉 [ES6 JavaScript Modules](https://ember-cli.com/) 的话就更容易理解 [Ember CLI's](http://jsmodules.io/)的项目结构及模块导入路径..
 * **ES2015 语法**—— Ember CLI 默认配备了 Babel.js，于是你可以直接享用诸如箭头函数，模版字符串，解构等最新的语言特性。 这部分的内容你可以查看 [Babel.js 文档](https://babeljs.io/docs/learn-es2015/)或阅读在线书籍[理解 ECMAScript 6](https://leanpub.com/understandinges6/read)。
 
 ## 报告问题
@@ -26,12 +26,12 @@
 常见的报告问题方式包括：
 
 * 点击每页右上角的铅笔图标
-* 通过 [GitHub 仓库](https://github.com/emberjs/guides/)开始一个 issue/pull request
+* 在 [the GitHub repository](https://github.com/emberjs/guides/)提交issue 或者pull request。
 
 点击铅笔图标将会带你进入指南在 Github 上的编辑器，于是你可以使用 Markdown 标记语言直接开始编辑。 这是用于纠正错别字，补充内容缺漏或修正代码示例中错误的最快捷方式。
 
 如果你想要提供更明确的贡献，请事先检索我们的[问题更踪器](https://github.com/emberjs/guides/issues)以确保不要提交重复的问题。 如果没有正在处理中的问题那就可以开一个新的。
 
-如果你有关于样式的问题，或是关于贡献流程的问题可以参考我们的[贡献指南](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)。 If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+如果你有关于样式的问题，或是关于贡献流程的问题可以参考我们的[contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)。 如果问题得不到解决，请通过 [Slack group](https://ember-community-slackin.herokuapp.com/)中的 `#-team-learning` 频道联络我们。.
 
 祝你好运！

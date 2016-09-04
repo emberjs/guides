@@ -34,7 +34,7 @@ testem.js
 
 **app**：这里储存所有关于数据模型、组件、路由、模板和样式表的文件夹和文件。一个 Ember 项目的大部分编码都会在这个文件夹中进行。
 
-**bower_components / bower.json**：Bower 是一个依赖管理工具。 在 Ember CLI 中，它用于管理前端插件和组件依赖（如 HTML、CSS、Javascript 等）。 所有 Bower 组件都安装在 `bower_components` 目录下。 If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower_components / bower.json**：Bower 是一个依赖管理工具。 在 Ember CLI 中，它用于管理前端插件和组件依赖（如 HTML、CSS、Javascript 等）。 所有 Bower 组件都安装在 `bower_components` 目录下。 打开 `bower.json`你可以看到自动安装好的依赖，包括 Ember、Ember CLI Shims和用于测试的 QUnit 。 如果我们添加一个新的前端依赖，例如 Bootstrap，我们也会发现它会列在这个文件中，并且被添加到 `bower_components` 目录。
 
 **config**：config 目录包含 `environment.js` 文件，你可以在这里配置你的应用程序。
 
@@ -58,7 +58,7 @@ testem.js
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
-const Router = Ember.Router.extend({ location: config.locationType });
+const Router = Ember.Router.extend({ location: config.locationType, rootURL: config.rootURL });
 
 Router.map(function() { });
 
@@ -67,19 +67,14 @@ export default Router;
     <br />Ember CLI 使用 ECMAScript 2015（简称 ES2015，以前也叫 ES6）模块来组织应用程序代码。
     比如说 `import Ember from 'ember';` 这一行，让我们可以通过 `Ember` 变量来访问实际的 Ember.js 库。 而 `import config from './config/environment';` 这一行则让我们可以通过 `config` 变量来访问程序的配置数据。 `const` 是一种声明只读变量的方法，以确保该变量的值不会在其它地方被误更改。 在文件的末尾，`export default Router;` 使得此文件中定义的 `Router` 变量可以从应用程序的其它地方来调用。
     
-    ## Upgrading Ember
+    ## 升级 Ember
     
-    Before continuing to the tutorial, make sure that you have the most recent
-    versions of Ember and Ember Data installed. If the version of `ember` in
-    `bower.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `bower.json` and then run `bower install`.
-    Similarly, if the version of `ember-data` in `package.json` is lower, update the
-    version number and then run `npm install`.
+    在继续本教程之前，首先确保你安装的是最新版本的 Ember和Ember Data。 如果 `bower.json` 中 `ember` 和 `ember-data` 的版本号低于这篇指南左上角显示的版本号，请更新 `bower.json` 中的两个版本号，然后执行 `bower install`升级。
+    同样，如果`ember-data`在`package.json`是较低版本，则更改版本号，然后运行 `npm install`升级。
     
-    ## The Development Server
+    ## 开发模式启动服务器
     
-    Once we have a new project in place, we can confirm everything is working by
-    starting the Ember development server:
+    当我们的新项目已经准备就绪，我们可以通过下面的命令启动服务器来确保一切运转正常。
     
     ```shell
     ember server
@@ -91,6 +86,6 @@ export default Router;
 ember s
 ```
 
-If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen. Once we add our own `app/templates/application.hbs` file, the welcome screen will be replaced with our own content.
+在浏览器打开[`http://localhost:4200`](http://localhost:4200)，我们会看到默认的欢迎页面。 只要你在文件`app/templates/application.hbs`里添加你的代码 ，新增加的代码就会显示在欢迎页面上。
 
-![default welcome screen](../../images/ember-cli/default-welcome-page.png)
+![默认的欢迎页面。](../../images/ember-cli/default-welcome-page.png)
