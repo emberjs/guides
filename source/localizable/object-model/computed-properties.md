@@ -29,7 +29,7 @@ ironMan.get('fullName'); // "Tony Stark"
 
 This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on. The
 first time you access the `fullName` property, the function backing the computed property (i.e. the last argument) will
-be ran and the results will be cached. Subsequent access of `fullName` will read from the cache without calling the
+be run and the results will be cached. Subsequent access of `fullName` will read from the cache without calling the
 function.  Changing any of the dependent properties causes the cache to invalidate, so that the computed function runs
 again on the next access.
 
