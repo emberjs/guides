@@ -131,15 +131,15 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 ```
 
 Finally, we need to make our controller that has our filter action available to the new nested index route.
-Instead of moving the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of the route's `controllerName` property to just point at our existing `rentals` controller.
 
-```app/routes/rentals/index.js{+2}
-export default Ember.Route.extend({
-  controllerName: 'rentals',
-  model() {
-    return this.store.findAll('rental');
-  }
-});
+Start by running `ember g controller rentals/index` to create an index controller for our nested route.
+
+Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
+
+```app/controller/rentals/index.js
+import RentalsController from '../rentals';
+
+export default RentalsController;
 ```
 
 ## Setting up Data for the Nested Detail Route
