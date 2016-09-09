@@ -1,15 +1,15 @@
-As they search for a rental, users might also want to narrow their search to a specific city. 
+As they search for a rental, users might also want to narrow their search to a specific city.
 Let's build a component that will let them filter rentals by city.
 
-To begin, let's generate our new component. 
+To begin, let's generate our new component.
 We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
 ```shell
 ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), 
-a JavaScript file (`app/components/list-filter.js`), 
+As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`),
+a JavaScript file (`app/components/list-filter.js`),
 and a component integration test (`tests/integration/components/list-filter-test.js`).
 
 Let's start with writing some tests to help us think through what we are doing.
@@ -43,8 +43,8 @@ test('should initially load all listings', function (assert) {
       return RSVP.resolve(FILTERED_ITEMS);
     }
   });
-  
-  // with an integration test, you can set up and use your component in the same way your application 
+
+  // with an integration test, you can set up and use your component in the same way your application
   // will use it.
   this.render(hbs`
     {{#list-filter filter=(action 'filterByCity') as |results|}}
@@ -58,7 +58,7 @@ test('should initially load all listings', function (assert) {
     {{/list-filter}}
   `);
 
-  // the wait function will return a promise that will wait for all promises 
+  // the wait function will return a promise that will wait for all promises
   // and xhr requests to resolve before running the contents of the then block.
   return wait().then(() => {
     assert.equal(this.$('.city').length, 3);
@@ -91,7 +91,7 @@ test('should update with matching listings', function (assert) {
       </ul>
     {{/list-filter}}
   `);
-  
+
   // The keyup event here should invoke an action that will cause the list to be filtered
   this.$('.list-filter input').val('San').keyup();
 
@@ -103,15 +103,14 @@ test('should update with matching listings', function (assert) {
 
 ```
 
-Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test.  Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
+Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test.  Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
 
-```app/templates/index.hbs
+```app/templates/rentals.hbs
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
   <p>
     We hope you find exactly what you're looking for in a place to stay.
-    <br>Browse our listings, or use the search box above to narrow your search.
   </p>
   {{#link-to 'about' class="button"}}
     About Us
@@ -137,7 +136,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
+The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
 The `value` property of the `input` will be bound to the `value` property in our component.
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
@@ -176,12 +175,12 @@ To implement these actions, we'll create the index controller for the applicatio
 Generate a controller for the `index` page by running the following:
 
 ```shell
-ember g controller index
+ember g controller rentals
 ```
 
 Now, define your new controller like so:
 
-```app/controllers/index.js
+```app/controllers/rentals.js
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -197,50 +196,52 @@ export default Ember.Controller.extend({
 });
 ```
 
-When the user types in the text field in our component, the `filterByCity` action in the controller is called. 
-This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
+When the user types in the text field in our component, the `filterByCity` action in the controller is called.
+This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far.
 The result of the query is returned to the caller.
 
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 
 ```mirage/config.js
 export default function() {
-  this.get('/rentals', function(db, request) {
-    let rentals = [{
-        type: 'rentals',
-        id: 1,
-        attributes: {
-          title: 'Grand Old Mansion',
-          owner: 'Veruca Salt',
-          city: 'San Francisco',
-          type: 'Estate',
-          bedrooms: 15,
-          image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
-        }
-      }, {
-        type: 'rentals',
-        id: 2,
-        attributes: {
-          title: 'Urban Living',
-          owner: 'Mike Teavee',
-          city: 'Seattle',
-          type: 'Condo',
-          bedrooms: 1,
-          image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
-        }
-      }, {
-        type: 'rentals',
-        id: 3,
-        attributes: {
-          title: 'Downtown Charm',
-          owner: 'Violet Beauregarde',
-          city: 'Portland',
-          type: 'Apartment',
-          bedrooms: 3,
-          image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
-        }
-      }];
+  this.namespace = '/api';
 
+  let rentals = [{
+      type: 'rentals',
+      id: 'grand-old-mansion',
+      attributes: {
+        title: 'Grand Old Mansion',
+        owner: 'Veruca Salt',
+        city: 'San Francisco',
+        type: 'Estate',
+        bedrooms: 15,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
+      }
+    }, {
+      type: 'rentals',
+      id: 'urban-living',
+      attributes: {
+        title: 'Urban Living',
+        owner: 'Mike Teavee',
+        city: 'Seattle',
+        type: 'Condo',
+        bedrooms: 1,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+      }
+    }, {
+      type: 'rentals',
+      id: 'downtown-charm',
+      attributes: {
+        title: 'Downtown Charm',
+        owner: 'Violet Beauregarde',
+        city: 'Portland',
+        type: 'Apartment',
+        bedrooms: 3,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+      }
+    }];
+
+  this.get('/rentals', function(db, request) {
     if(request.queryParams.city !== undefined) {
       let filteredRentals = rentals.filter(function(i) {
         return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
