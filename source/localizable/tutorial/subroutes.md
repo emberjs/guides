@@ -78,7 +78,7 @@ For example, you can modify the `index` route's path by specifying `this.route('
 In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
-```app/routes/rentals.hbs{-2,-3,-4}
+```app/routes/rentals.js{-2,-3,-4}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('rental');
@@ -324,7 +324,7 @@ Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the 
 
 Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages.
 Here, the `link-to` helper takes the route name and the rental model object as arguments.
-When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](http://emberjs.com/api/classes/Ember.Route.html#method_serialize) the object to the ID of the model into the URL. 
+When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](http://emberjs.com/api/classes/Ember.Route.html#method_serialize) the object to the ID of the model into the URL.
 Alternately, you may just pass `rental.id` for clarity.
 
 Clicking on the title will load the detail page for that rental.
