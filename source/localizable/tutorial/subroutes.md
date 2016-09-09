@@ -78,7 +78,7 @@ For example, you can modify the `index` route's path by specifying `this.route('
 In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
-```app/routes/rentals.hbs{-2,-3,-4}
+```app/routes/rentals.js{-2,-3,-4}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('rental');
