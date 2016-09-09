@@ -220,10 +220,10 @@ it does NOT require an entry in the router's mapping.
 We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
 
 We can start by implementing the unit test for index.
-Since all we want to do is transition to `rentals.index`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
+Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
 `replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
-We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals.index` route is passed when called.
+We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
 
 ```tests/unit/routes/index-test.js
 import { moduleFor, test } from 'ember-qunit';
@@ -233,7 +233,7 @@ moduleFor('route:index', 'Unit | Route | index');
 test('should transition to rentals route', function(assert) {
   let route = this.subject({
     replaceWith(routeName) {
-      assert.equal(routeName, 'rentals.index', 'replace with route name rentals.index');
+      assert.equal(routeName, 'rentals', 'replace with route name rentals');
     }
   });
   route.beforeModel();
@@ -248,7 +248,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   beforeModel() {
     this._super(...arguments);
-    this.replaceWith('rentals.index');
+    this.replaceWith('rentals');
   }
 });
 ```
