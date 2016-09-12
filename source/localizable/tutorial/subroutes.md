@@ -335,7 +335,7 @@ Clicking on the title will load the detail page for that rental.
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{#link-to "rentals.show" rental}}rental.title{{/link-to}}</h3>
+  <h3>{{#link-to "rentals.show" rental}}{{rental.title}}{{/link-to}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
