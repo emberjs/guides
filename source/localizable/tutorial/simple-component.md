@@ -100,7 +100,7 @@ with our new `rental-listing` component:
 
 {{#each model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
-{{#each model as |rental|}}
+{{/each}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
     <div class="detail owner">
