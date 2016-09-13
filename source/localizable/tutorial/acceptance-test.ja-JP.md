@@ -87,7 +87,7 @@ A few helpers are in play in this test:
 
 * The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
 * The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it. In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
-* [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) returns the URL that test application is currently visiting.
+* [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) returns the URL that test application is currently visiting.
 
 To check that rentals are listed, we'll first visit the index route and check that the results show 3 listings:
 
