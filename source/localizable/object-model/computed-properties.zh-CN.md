@@ -27,7 +27,7 @@ let ironMan = Person.create({
 ironMan.get('fullName'); // "Tony Stark"
 ```
 
-上述代码声明了计算属性`fullName`，并且这个计算属性依赖于普通属性 `firstName` 和 `lastName` 第一次你访问 计算属性`fullName` ，计算的属性上的函数将被执行(最后一个参数，也是一个函数)并把函数的结果返回，同时这个结果还会被缓存起来。 `FullName` 的后续访问将从缓存中读取，而无需调用该函数。 更改依赖项属性的任何导致缓存失效，因此计算属性函数在下次访问时再次运行以获取最新的值。
+上述代码声明了计算属性`fullName`，并且这个计算属性依赖于普通属性 `firstName` 和 `lastName` The first time you access the `fullName` property, the function backing the computed property (i.e. the last argument) will be run and the results will be cached. `FullName` 的后续访问将从缓存中读取，而无需调用该函数。 更改依赖项属性的任何导致缓存失效，因此计算属性函数在下次访问时再次运行以获取最新的值。
 
 当你想要依赖于属于一个对象的属性时，您可以通过使用大括号扩展设置多个相关的参数︰
 

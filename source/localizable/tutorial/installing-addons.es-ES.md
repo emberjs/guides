@@ -34,11 +34,13 @@ Vamos a configurar ahora Mirage para enviar nuestros rentals que hemos definido 
 
 ```mirage/config.js
 export default function() {
+  this.namespace = '/api';
+
   this.get('/rentals', function() {
     return {
       data: [{
         type: 'rentals',
-        id: 1,
+        id: 'grand-old-mansion',
         attributes: {
           title: 'Grand Old Mansion',
           owner: 'Veruca Salt',
@@ -49,7 +51,7 @@ export default function() {
         }
       }, {
         type: 'rentals',
-        id: 2,
+        id: 'urban-living',
         attributes: {
           title: 'Urban Living',
           owner: 'Mike Teavee',
@@ -60,7 +62,7 @@ export default function() {
         }
       }, {
         type: 'rentals',
-        id: 3,
+        id: 'downtown-charm',
         attributes: {
           title: 'Downtown Charm',
           owner: 'Violet Beauregarde',
@@ -75,4 +77,21 @@ export default function() {
 }
 ```
 
-Esto configura Mirage para que cada vez que Ember Data hace una petición GET a `/rentals`, Mirage retornará este objeto JavaScript como JSON.
+This configures Mirage so that whenever Ember Data makes a GET request to `/api/rentals`, Mirage will return this JavaScript object as JSON. In order for this to work, we need our application to default to making requests to the namespace of `/api`. Without this change, navigation to `/rentals` in our application would conflict with Mirage.
+
+To do this, we want to generate an application adapter.
+
+```shell
+ember generate adapter application
+```
+
+This adapter will extend the [`JSONAPIAdapter`](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html) base class from Ember Data:
+
+```app/adapters/application.js
+import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({
+  namespace: 'api'
+});
+
+```

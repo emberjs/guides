@@ -1,12 +1,12 @@
-ユーザーが物件を検索するとき、特定の都市に絞って検索したいかもしれません。都市別にフィルタできるようにする、コンポーネントを作っていきましょう。
+As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
 
-まず、新しい component (コンポーネント)を作成します。component (コンポーネント)に求めているのは、入力によって賃貸のリストをフィルタすることなので、このcomponent (コンポーネント)を`list-filter`と呼ぶことにします。
+To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
 ```shell
 ember g component list-filter
 ```
 
-以前と同様、このコマンドは次のファイルを生成します。　Handlebar の template (テンプレート) (`app/templates/components/list-filter.hbs`)、JavaScriptファイル(`app/components/list-filter.js`)、component (コンポーネント)インテグレーションテストファイル(`tests/integration/components/list-filter-test.js`).
+As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
 
 まず、テストを書いて何をしているのか考えることにします。 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
@@ -71,9 +71,9 @@ test('should initially load all listings', function (assert) { // we want our ac
     
     
 
-Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
+Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
 
-```app/templates/index.hbs 
+```app/templates/rentals.hbs 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -84,7 +84,7 @@ Next, in our `app/templates/index.hbs` file, we'll add our new `list-filter` com
   </h2>
   
   <p>
-    We hope you find exactly what you're looking for in a place to stay. <br />Browse our listings, or use the search box above to narrow your search.
+    We hope you find exactly what you're looking for in a place to stay.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
@@ -130,59 +130,61 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     Generate a controller for the `index` page by running the following:
     
     ```shell
-    ember g controller index
+    ember g controller rentals
     
 
 Now, define your new controller like so:
 
-```app/controllers/index.js import Ember from 'ember';
+```app/controllers/rentals.js import Ember from 'ember';
 
 export default Ember.Controller.extend({ actions: { filterByCity(param) { if (param !== '') { return this.get('store').query('rental', { city: param }); } else { return this.get('store').findAll('rental'); } } } });
 
-    <br />When the user types in the text field in our component, the `filterByCity` action in the controller is called. 
-    This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far. 
+    <br />When the user types in the text field in our component, the `filterByCity` action in the controller is called.
+    This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far.
     The result of the query is returned to the caller.
     
     For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
     
     ```mirage/config.js
     export default function() {
-      this.get('/rentals', function(db, request) {
-        let rentals = [{
-            type: 'rentals',
-            id: 1,
-            attributes: {
-              title: 'Grand Old Mansion',
-              owner: 'Veruca Salt',
-              city: 'San Francisco',
-              type: 'Estate',
-              bedrooms: 15,
-              image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
-            }
-          }, {
-            type: 'rentals',
-            id: 2,
-            attributes: {
-              title: 'Urban Living',
-              owner: 'Mike Teavee',
-              city: 'Seattle',
-              type: 'Condo',
-              bedrooms: 1,
-              image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
-            }
-          }, {
-            type: 'rentals',
-            id: 3,
-            attributes: {
-              title: 'Downtown Charm',
-              owner: 'Violet Beauregarde',
-              city: 'Portland',
-              type: 'Apartment',
-              bedrooms: 3,
-              image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
-            }
-          }];
+      this.namespace = '/api';
     
+      let rentals = [{
+          type: 'rentals',
+          id: 'grand-old-mansion',
+          attributes: {
+            title: 'Grand Old Mansion',
+            owner: 'Veruca Salt',
+            city: 'San Francisco',
+            type: 'Estate',
+            bedrooms: 15,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
+          }
+        }, {
+          type: 'rentals',
+          id: 'urban-living',
+          attributes: {
+            title: 'Urban Living',
+            owner: 'Mike Teavee',
+            city: 'Seattle',
+            type: 'Condo',
+            bedrooms: 1,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+          }
+        }, {
+          type: 'rentals',
+          id: 'downtown-charm',
+          attributes: {
+            title: 'Downtown Charm',
+            owner: 'Violet Beauregarde',
+            city: 'Portland',
+            type: 'Apartment',
+            bedrooms: 3,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+          }
+        }];
+    
+      this.get('/rentals', function(db, request) {
         if(request.queryParams.city !== undefined) {
           let filteredRentals = rentals.filter(function(i) {
             return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;

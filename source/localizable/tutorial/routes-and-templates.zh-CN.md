@@ -159,9 +159,37 @@ Now, we'll add a link to our contact page so we can navigate back and forth betw
   </p> {{#link-to 'about' class="button"}} About {{/link-to}}
 </div>
 
+    <br />## A Rentals Route
+    We want our application to show a list of rentals that users can browse.
+    To make this happen we'll add a third route and call it `rentals`.
+    
+    ```shell
+    ember g route rentals
+    
+
+Let's update the newly generated `rentals.hbs` with some basic markup to seed our rentals list page. We'll come back to this page later to add in the actual rental properties.
+
+```app/templates/rentals.hbs 
+
+<div class="jumbo">
+  <div class="right tomster">
+  </div>
+  
+  <h2>
+    Welcome!
+  </h2>
+  
+  <p>
+    We hope you find exactly what you're looking for in a place to stay.
+  </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
+</div>
+
     <br />## An Index Route
     
     With our two static pages in place, we are ready to add our home page which welcomes users to the site.
+    At this point our main page in our application is our rentals page, for which we've already created a route.
+    So we want our index route to simply forward to the `rentals` route we've already created.
+    
     Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
     
     ```shell
@@ -178,35 +206,41 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at nested routes in Ember.
+Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
 
-Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
+We can start by implementing the unit test for index. Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route. `replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function. We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
 
-```app/templates/index.hbs 
+```tests/unit/routes/index-test.js import { moduleFor, test } from 'ember-qunit';
 
-<div class="jumbo">
-  <div class="right tomster">
-  </div>
-  
-  <h2>
-    Welcome!
-  </h2>
-  
-  <p>
-    We hope you find exactly what you're looking for in a place to stay. <br />Browse our listings, or use the search box above to narrow your search.
-  </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
-</div>
+moduleFor('route:index', 'Unit | Route | index');
 
-    <br />## Adding a Banner with Navigation
+test('should transition to rentals route', function(assert) { let route = this.subject({ replaceWith(routeName) { assert.equal(routeName, 'rentals', 'replace with route name rentals'); } }); route.beforeModel(); });
+
+    <br />In our index route, we simply add the `replaceWith` invocation.
     
-    In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
+    ```app/routes/index.js
+    import Ember from 'ember';
     
-    First, create the application template by typing `ember g template application`.
+    export default Ember.Route.extend({
+      beforeModel() {
+        this._super(...arguments);
+        this.replaceWith('rentals');
+      }
+    });
     
-    ```shell
-    installing template
-      create app/templates/application.hbs
-    
+
+Now visiting the root route `/` will result in the `/rentals` URL loading.
+
+## Adding a Banner with Navigation
+
+In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
+
+First, create the application template by typing `ember g template application`.
+
+```shell
+installing template
+  create app/templates/application.hbs
+```
 
 When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
 
@@ -234,6 +268,6 @@ When `application.hbs` exists, anything you put in it is shown for every page in
 
 Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
 
-Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
+Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes will now pass.
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

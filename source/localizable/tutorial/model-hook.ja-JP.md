@@ -4,26 +4,27 @@ index テンプレートに利用可能なレンタル品のリストを追加�
 
 ![スーパー レンタルのレンタル リストとホームページ](../../images/models/super-rentals-index-with-list.png)
 
-Emberではルートハンドラが、モデルデータの読み込みを担っています。`app/routes/index.js` を開けて、`model` フックとしてハードコードデータを追加します。
+In Ember, route handlers are responsible for loading model data. Let's open `app/routes/rentals.js` and add our hard-coded data as the return value of the `model` hook:
 
-```app/routes/index.js import Ember from 'ember';
+```app/routes/rentals.js import Ember from 'ember';
 
-let rentals = [{ id: 1, title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg' }, { id: 2, title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg' }, { id: 3, title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg' }];
+let rentals = [{ id: 'grand-old-mansion', title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg' }, { id: 'urban-living', title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg' }, { id: 'downtown-charm', title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg' }];
 
 export default Ember.Route.extend({ model() { return rentals; } });
 
     <br />ここでは、`model: function()`と同意義のES6メソッド 簡略構文の `model()`で書いています。
     
-    `model`ファンクションは**hook**として機能します、つまりアプリケーションの様々なときに、 Ember が呼び出しをすることを意味しています。`index` ルートに追加されたモデルフックは、ユーザーが`index` ルートを入力するたびに呼び出されます。
+    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
+    The model hook we've added to our `rentals` route handler will be called when a user enters the `rentals` route.
     
-    `model` フックは　配列 our _rentals_ array を`model` プロパティとして`index` テンプレートに渡します。
+    The `model` hook returns our _rentals_ array and passes it to our `rentals` template as the `model` property.
     
     では、テンプレートを見てみましょう。　　
     モデルデータをリストの表示のために利用できます。
     ここでは、別のよく使われる、`{{each}}`と呼ばれる、Handlebarsヘルパーを利用します。
-    helper (ヘルパー)のおかげで、 model (モデル)内の各オブジェクトをループすることができます:
+    This helper will let us loop through each of the objects in our model:
     
-    ```app/templates/index.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
+    ```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
     <div class="jumbo">
       <div class="right tomster"></div>
       <h2>Welcome!</h2>

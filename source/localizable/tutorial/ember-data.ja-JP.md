@@ -1,4 +1,4 @@
-現在、アプリケーションは、`index`ルートハンドラの*rentals* を扱うモデルを設定するため、ハードコードされた、データを使用しています。 アプリケーションが大きくなるにつれ、新たなレンタル品を扱ったり、更新をしたり、削除をして、それらの変更をバックエンドのサーバーに保存したいとするでしょう。 この問題を解決するために、Ember は Ember Data という、データの管理を行うライブラリと統合されています。
+現在、アプリケーションは、`rentals`ルートハンドラの*rentals* を扱うモデルを設定するため、ハードコードされた、データを使用しています。 アプリケーションが大きくなるにつれ、新たなレンタル品を扱ったり、更新をしたり、削除をして、それらの変更をバックエンドのサーバーに保存したいとするでしょう。 この問題を解決するために、Ember は Ember Data という、データの管理を行うライブラリと統合されています。
 
 では、最初のEmber Data モデル`rental`を作成していきましょう。
 
@@ -45,7 +45,7 @@ export default DS.Model.extend({
 
 新しいデータストアを利用するには、route handler (ルートハンドラ)の `model` hook (モデルフック)を更新する必要があります。
 
-```app/routes/index.js import Ember from 'ember';
+```app/routes/rentals.js import Ember from 'ember';
 
 export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); } }); ```
 

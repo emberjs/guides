@@ -1,12 +1,12 @@
-Mientras buscan un alquiler, los usuarios también puede limitar su búsqueda a una ciudad específica. Vamos a construir un component (componente) que les permita filtrar los alquileres por ciudad.
+As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
 
-Para empezar, vamos a generar nuestro nuevo component (componente). Llamaremos a este component (componente) `list-filter`, ya que queremos que nuestro component (componente) filtre la lista de los alquileres basado en la entrada.
+To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
 ```shell
 ember g component list-filter
 ```
 
-Como antes, esto crea un template (plantilla) de Handlebars) (`app/templates/components/list-filter.hbs`), un archivo JavaScript (`app/components/list-filter.js`) y una test de integración del component (componente) (`tests/integration/components/list-filter-test.js`).
+As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
 
 Vamos a empezar a escribir algunos tests que nos permitan pensar acerca de lo que estamos realizando. El component (componente) del filtro debería generar una lista de elementos filtrados respecto a lo que se procese dentro de este, conocido como su bloque de template interno. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
@@ -22,7 +22,7 @@ const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}]; 
 
 test('should initially load all listings', function (assert) { // we want our actions to return promises, since they are potentially fetching data asynchronously this.on('filterByCity', (val) => { if (val === '') { return RSVP.resolve(ITEMS); } else { return RSVP.resolve(FILTERED_ITEMS); } });
 
-//Con un test de integración, puedes configurar y usar el componente de la misma manera que la aplicación la usará. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |results|}}
+// with an integration test, you can set up and use your component in the same way your application // will use it. this.render(hbs`{{#list-filter filter=(action 'filterByCity') as |results|}}
       <ul>
       {{#each results as |item|}}
         <li class="city">
@@ -32,7 +32,7 @@ test('should initially load all listings', function (assert) { // we want our ac
       </ul>
     {{/list-filter}}`);
 
-La función esperar, retornará una promise (promesa) que esperará a que todas las promesas y peticiones XHR se resuelvan, antes de ejecutar los contenidos del bloque then. return wait().then(() => { assert.equal(this.$('.city').length, 3); assert.equal(this.$('.city').first().text().trim(), 'San Francisco'); }); });
+// the wait function will return a promise that will wait for all promises // and xhr requests to resolve before running the contents of the then block. return wait().then(() => { assert.equal(this.$('.city').length, 3); assert.equal(this.$('.city').first().text().trim(), 'San Francisco'); }); });
 
     Para el segundo test, comprobamos que escribiendo texto en el filtro realmente ejecutará la action (acción) de filtrado y actualización de la lista que se muestra.
     
@@ -71,9 +71,9 @@ La función esperar, retornará una promise (promesa) que esperará a que todas 
     
     
 
-A continuación, en nuestro archivo `app/templates/index.hbs`, vamos a añadir nuestro nuevo component (componente) `list-filter` de una manera similar a lo que hicimos en nuestro test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
+Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
 
-```app/templates/index.hbs 
+```app/templates/rentals.hbs 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -84,7 +84,7 @@ A continuación, en nuestro archivo `app/templates/index.hbs`, vamos a añadir n
   </h2>
   
   <p>
-    Esperamos que encuentres exactamente lo que buscas en un lugar para quedarse. <br />Navega nuestro listado, o usa la búsqueda en la parte superior para refinar tu búsqueda.
+    We hope you find exactly what you're looking for in a place to stay.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
@@ -127,62 +127,64 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     
     Para implementar estas acciones, crearemos el controller (controlador) index para la aplicación.  El controller (controlador) index es ejecutado cuando el usuario va a la route (ruta) base index de la aplicación.
     
-    Generar un controller (controlador) para la página `index` ejecutando lo siguiente:
+    Generate a controller for the `index` page by running the following:
     
     ```shell
-    ember g controller index
+    ember g controller rentals
     
 
 Ahora bien, define tu nuevo controlador de esta manera:
 
-```app/controllers/index.js import Ember from 'ember';
+```app/controllers/rentals.js import Ember from 'ember';
 
 export default Ember.Controller.extend({ actions: { filterByCity(param) { if (param !== '') { return this.get('store').query('rental', { city: param }); } else { return this.get('store').findAll('rental'); } } } });
 
-    <br />Cuando el usuario escribe en el campo de texto en nuestro component (componente), este es el action (acción) que se llama. 
-    Esta acción toma la propiedad `value` y filtra los datos de `rental` para los registros en almacén de datos que coincidan con lo que el usuario ha escrito hasta ahora. 
+    <br />Cuando el usuario escribe en el campo de texto en nuestro component (componente), este es el action (acción) que se llama.
+    Esta acción toma la propiedad `value` y filtra los datos de `rental` para los registros en almacén de datos que coincidan con lo que el usuario ha escrito hasta ahora.
     El resultado de la consulta se devuelve a quien llama la función.
     
     For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
     
     ```mirage/config.js
     export default function() {
-      this.get('/rentals', function(db, request) {
-        let rentals = [{
-            type: 'rentals',
-            id: 1,
-            attributes: {
-              title: 'Grand Old Mansion',
-              owner: 'Veruca Salt',
-              city: 'San Francisco',
-              type: 'Estate',
-              bedrooms: 15,
-              image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
-            }
-          }, {
-            type: 'rentals',
-            id: 2,
-            attributes: {
-              title: 'Urban Living',
-              owner: 'Mike Teavee',
-              city: 'Seattle',
-              type: 'Condo',
-              bedrooms: 1,
-              image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
-            }
-          }, {
-            type: 'rentals',
-            id: 3,
-            attributes: {
-              title: 'Downtown Charm',
-              owner: 'Violet Beauregarde',
-              city: 'Portland',
-              type: 'Apartment',
-              bedrooms: 3,
-              image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
-            }
-          }];
+      this.namespace = '/api';
     
+      let rentals = [{
+          type: 'rentals',
+          id: 'grand-old-mansion',
+          attributes: {
+            title: 'Grand Old Mansion',
+            owner: 'Veruca Salt',
+            city: 'San Francisco',
+            type: 'Estate',
+            bedrooms: 15,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
+          }
+        }, {
+          type: 'rentals',
+          id: 'urban-living',
+          attributes: {
+            title: 'Urban Living',
+            owner: 'Mike Teavee',
+            city: 'Seattle',
+            type: 'Condo',
+            bedrooms: 1,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+          }
+        }, {
+          type: 'rentals',
+          id: 'downtown-charm',
+          attributes: {
+            title: 'Downtown Charm',
+            owner: 'Violet Beauregarde',
+            city: 'Portland',
+            type: 'Apartment',
+            bedrooms: 3,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+          }
+        }];
+    
+      this.get('/rentals', function(db, request) {
         if(request.queryParams.city !== undefined) {
           let filteredRentals = rentals.filter(function(i) {
             return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;

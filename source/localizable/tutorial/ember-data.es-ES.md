@@ -1,4 +1,4 @@
-Actualmente, nuestra aplicación está utilizando datos hardcoded para *rentals* en el route (ruta) `Índice` para establecer el modelo. A medida que crece nuestra aplicación, queremos ser capaces de crear nuevos rentals, realizar actualizaciones en ellos, borrarlos y guardar estos cambios en un servidor back-end. Ember utiliza una librería de gestión de datos llamada Ember Data para ayudar a resolver este problema.
+Currently, our app is using hard-coded data for *rentals* in the `rentals` route handler to set the model. A medida que crece nuestra aplicación, queremos ser capaces de crear nuevos rentals, realizar actualizaciones en ellos, borrarlos y guardar estos cambios en un servidor back-end. Ember utiliza una librería de gestión de datos llamada Ember Data para ayudar a resolver este problema.
 
 Vamos a generar nuestro primer model (modelo) en Ember Data llamado `rental`:
 
@@ -45,7 +45,7 @@ Ahora tenemos un modelo en nuestro store (depósito) de Ember Data.
 
 Para usar nuestro nuevo almacén de datos, debemos actualizar el gancho `model` en nuestro route (ruta).
 
-```app/routes/index.js import Ember from 'ember';
+```app/routes/rentals.js import Ember from 'ember';
 
 export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); } }); ```
 

@@ -53,9 +53,9 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antiguo dentro de nuestro loop `{{#each}}` con nuestro nuevo component (componente) `rental-listing`:
+In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
 
-```app/templates/index.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30} 
+```app/templates/rentals.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30} 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -66,7 +66,7 @@ En nuestra template (plantilla) `index.hbs`, reemplacemos el código HTML antigu
   </h2>
   
   <p>
-    Esperamos que encuentres exactamente lo que buscas en un lugar para quedarte. <br />Navega nuestro listado, o usa la búsqueda en la parte superior para refinar tu búsqueda.
+    We hope you find exactly what you're looking for in a place to stay.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 

@@ -34,11 +34,13 @@ ember install ember-cli-mirage
 
 ```mirage/config.js
 export default function() {
+  this.namespace = '/api';
+
   this.get('/rentals', function() {
     return {
       data: [{
         type: 'rentals',
-        id: 1,
+        id: 'grand-old-mansion',
         attributes: {
           title: 'Grand Old Mansion',
           owner: 'Veruca Salt',
@@ -49,7 +51,7 @@ export default function() {
         }
       }, {
         type: 'rentals',
-        id: 2,
+        id: 'urban-living',
         attributes: {
           title: 'Urban Living',
           owner: 'Mike Teavee',
@@ -60,7 +62,7 @@ export default function() {
         }
       }, {
         type: 'rentals',
-        id: 3,
+        id: 'downtown-charm',
         attributes: {
           title: 'Downtown Charm',
           owner: 'Violet Beauregarde',
@@ -75,4 +77,21 @@ export default function() {
 }
 ```
 
-この設定により Mirage は Ember Data が`/rentals`にGET リクエストを出すたびに、JSONでJavaScriptオブジェクトを返しますようになります。
+この設定により Mirage は Ember Data が`/api/rentals`にGET リクエストを出すたびに、JSONでJavaScriptオブジェクトを返しますようになります。 In order for this to work, we need our application to default to making requests to the namespace of `/api`. Without this change, navigation to `/rentals` in our application would conflict with Mirage.
+
+To do this, we want to generate an application adapter.
+
+```shell
+ember generate adapter application
+```
+
+このアダプターは、Ember Data から [`JSONAPIAdapter`](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html) 基本クラスを拡張します。
+
+```app/adapters/application.js
+import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({
+  namespace: 'api'
+});
+
+```

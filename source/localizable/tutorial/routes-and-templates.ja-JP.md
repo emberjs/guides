@@ -158,30 +158,17 @@ generator (ジェネレータ)が実行され、`app/router.js`内に`contact` �
   </p> {{#link-to 'about' class="button"}} About {{/link-to}}
 </div>
 
-    <br />## Index Route(ルート)
-    
-    静的なページがが二つ完成したので、サイトに来たユーザーを迎える home を追加する準備ができました。
-    about ページと contact ページの手順と同様に、`index`という名前の route (ルート)を生成することから始めます。
+    <br />## A Rentals Route
+    We want our application to show a list of rentals that users can browse.
+    To make this happen we'll add a third route and call it `rentals`.
     
     ```shell
-    ember g route index
+    ember g route rentals
     
 
-見慣れた、route (ルート)ジェネレーターの結果が出力されます。
+Let's update the newly generated `rentals.hbs` with some basic markup to seed our rentals list page. We'll come back to this page later to add in the actual rental properties.
 
-```shell
-installing route
-  create app/routes/index.js
-  create app/templates/index.hbs
-installing route-test
-  create tests/unit/routes/index-test.js
-```
-
-作成してきた他のルートハンドラーとは違い、`index` route (ルート)は特別で、ルートマッピングにエントリーを必要としていません。 どうしてエントリーの必要がないのかは、ネストされたEmberの routes (ルート)を扱う際に詳細を説明します。
-
-`index.hbs`にhome ページ用のHTMLとアプリケーション内の他の routes (ルート)へのリンクを追加します。
-
-```app/templates/index.hbs 
+```app/templates/rentals.hbs 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -192,22 +179,69 @@ installing route-test
   </h2>
   
   <p>
-    We hope you find exactly what you're looking for in a place to stay. <br />Browse our listings, or use the search box above to narrow your search.
+    We hope you find exactly what you're looking for in a place to stay.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-    <br />## ナビゲーションの有るバナーを追加
+    <br />## An Index Route
     
-    アプリケーションの各 route (ルート)の、ボタンスタイルのリンクに追加して、共通のアプリケーションのタイトルと、そのメインページを表示したいと思います。
+    With our two static pages in place, we are ready to add our home page which welcomes users to the site.
+    At this point our main page in our application is our rentals page, for which we've already created a route.
+    So we want our index route to simply forward to the `rentals` route we've already created.
     
-    まず、`ember g template application`と入力して、アプリケーション template (テンプレート)を作成します。
+    Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
     
     ```shell
-    installing template
-      create app/templates/application.hbs
+    ember g route index
     
 
-`application.hbs`が存在する場合、そこに追加したものは、アプリケーションの全てのページで表示されます。次のナビゲーション用のバナーマークアップを追加します:
+We can see the now familiar output for the route generator:
+
+```shell
+installing route
+  create app/routes/index.js
+  create app/templates/index.hbs
+installing route-test
+  create tests/unit/routes/index-test.js
+```
+
+Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
+
+We can start by implementing the unit test for index. Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route. `replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function. We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+
+```tests/unit/routes/index-test.js import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('route:index', 'Unit | Route | index');
+
+test('should transition to rentals route', function(assert) { let route = this.subject({ replaceWith(routeName) { assert.equal(routeName, 'rentals', 'replace with route name rentals'); } }); route.beforeModel(); });
+
+    <br />In our index route, we simply add the `replaceWith` invocation.
+    
+    ```app/routes/index.js
+    import Ember from 'ember';
+    
+    export default Ember.Route.extend({
+      beforeModel() {
+        this._super(...arguments);
+        this.replaceWith('rentals');
+      }
+    });
+    
+
+Now visiting the root route `/` will result in the `/rentals` URL loading.
+
+## Adding a Banner with Navigation
+
+In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
+
+First, create the application template by typing `ember g template application`.
+
+```shell
+installing template
+  create app/templates/application.hbs
+```
+
+When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
 
     app/templates/application.hbs
     <div class="container">
@@ -231,8 +265,8 @@ installing route-test
       </div>
     </div>
 
-`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) は、ルーターに従い、その時のルートによって描画されます、つまり私たちが開発するアプリケーションのそれぞれのルートは、そこに生成されます。
+Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
 
-routes (ルート)とそれらを繋ぐリンクを追加しました。、aboutとcontactとのナビゲーションのために作成した二つの受入テストは、この段階で通っているはずです。
+Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes will now pass.
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

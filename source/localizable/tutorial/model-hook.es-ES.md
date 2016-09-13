@@ -4,28 +4,27 @@ Así se verá nuestra página principal cuando terminemos:
 
 ![página de inicio de super rentals con lista de alquileres](../../images/models/super-rentals-index-with-list.png)
 
-En Ember, los route handlers (manejadores de ruta) son responsables de cargar la información de los modelos. Vamos a abrir `app/routes/index.js` y añadir nuestros datos hardcoded como el valor que retorne el gancho `model`:
+In Ember, route handlers are responsible for loading model data. Let's open `app/routes/rentals.js` and add our hard-coded data as the return value of the `model` hook:
 
-```app/routes/index.js import Ember from 'ember';
+```app/routes/rentals.js import Ember from 'ember';
 
-let rentals = [{ id: 1, title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg' }, { id: 2, title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg' }, { id: 3, title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg' }];
+let rentals = [{ id: 'grand-old-mansion', title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg' }, { id: 'urban-living', title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg' }, { id: 'downtown-charm', title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg' }];
 
 export default Ember.Route.extend({ model() { return rentals; } });
 
     <br />Acá estamos usando la sintaxis corta de ES6 para la definición de métodos: `model ()` es lo mismo que escribir `model: function ()`.
     
-    La función `model` actúa como un **gancho**, lo que significa que Ember lo llamará por nosotros durante diferentes momentos en nuestra aplicación.
+    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
+    The model hook we've added to our `rentals` route handler will be called when a user enters the `rentals` route.
     
-    El gancho del modelo que hemos agregado para nuestra route (ruta) `index` será llamado cuando un el usuario entre a la route (ruta) `index`.
-    
-    El gancho `model` retorna nuestro arreglo _rentals_ y la pasa a la template (plantilla) como la propiedad `model`.
+    The `model` hook returns our _rentals_ array and passes it to our `rentals` template as the `model` property.
     
     Ahora, vamos a pasar a nuestra plantilla.
     Podemos utilizar los datos de los modelos para mostrar la lista de los alquileres.
     Aquí, usaremos otro helper común de Handlebars llamado `{{each}}`.
     This helper will let us loop through each of the objects in our model:
     
-    ```app/templates/index.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
+    ```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
     <div class="jumbo">
       <div class="right tomster"></div>
       <h2>Welcome!</h2>

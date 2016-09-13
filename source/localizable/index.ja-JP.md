@@ -1,23 +1,23 @@
-Ember.jsガイドへようこそ! このドキュメントはあなたを完全なビギナーからEmberのエキスパートへ案内します。
+Ember.jsガイドへようこそ! このドキュメントは、あなたをまったくの初心者からEmberのエキスパートにご案内します。
 
 ## 構成
 
-カイド内の各ページ左側には目次があり、広げることでそれぞれがカバーする項目を表示することができます。 各セクションとそれに含まれる項目は、基本的なコンセプトから、より高度なコンセプトへと順に並んでいます。
+各ガイドのページ左側は目次です。目次はセクションに分かれています。各セクションは扱っているトピックを表示するために展開できます。 セクションとセクション内のトピックはそれぞれ、基本的なコンセプトから、より高度なコンセプトへと順に並んでいます。
 
-このガイドは、Ember.js の最も広く使用される機能に焦点を当て、Emberでアプリケーションを作成する実用的な説明をめざしています。 Emberの機能とAPI の完全なドキュメントについては、[Ember.js API のドキュメント](http://emberjs.com/api/) を参照してください。.
+このガイドは、Emberアプリを作成する実用的な説明をめざしていて、もっとも広く使用される Ember.js の機能に焦点を当てています。 Emberの機能とAPI の完全なドキュメントについては、[Ember.js API のドキュメント](http://emberjs.com/api/) を参照してください。.
 
-このガイドは、まず、Emberをどのように利用するのかという説明から始まり、初めてのEmberアプリケーションの作り方のチュートリアルが続きます。もし、あなたが完全にEmberが初めてならこれらの二つのセクションから始めることをお薦めします。
+このガイドは、どのようにEmberに取り掛かり始めたらよいかという説明から始まります。そして、初めてのEmberアプリを作成するチュートリアルが続きます。もしEmberを使うのがまったくの初めてなら、これらの二つのセクションから始めることをお薦めします。
 
 ## 前提
 
-ガイドが初心者にとっても優しいものであるように、最大限の努力をしますが、Ember.js の機能について焦点を絞るにはベースラインを決める必要があります。 私たちは概念を導入するたびに、適切なドキュメントへのリンク提供するつもりです。
+初心者にとって易しいガイドとなるように最大限の努力をします。と同時に、Ember.js の機能に集中できるよう基礎を確立しなければなりません。 ですので、コンセプトを紹介した時はすぐに適切なドキュメントへのリンクを提供するつもりです。
 
-このガイドを最大限に活用するために、次の事柄についてある程度の知識が必要です。
+このガイドを最大限に活用するためには、次の事柄についてある程度の知識が必要です。
 
-* **HTML、CSS、JavaScript** - web ページの作るための要素です。 それぞれの要素について[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)で情報を得ることができます。.
-* **Promises** - JavaScriptのコードで非同期を扱うためのネイティブな方法。 [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)該当セクションを参照してください。
-* **ES2015 modules** - [ES6 JavaScript Modules](http://jsmodules.io/)に慣れ親しんでいる方が、[Ember CLI's](https://ember-cli.com/) プロジェクトの構造やインポートパスについてより理解しやすいでしょう。.
-* **ES2015 syntax** - Ember CLI はデフォルトでBabel.js を含んでいますので、アローファンクション、テンプレートストリング、destructuring (ディストゥラクチャリング)などの新しい、（JavaScriptの）構文が活用できます。 [Babel.js ドキュメント](https://babeljs.io/docs/learn-es2015/) あるいは[Understanding ECMAScript 6](https://leanpub.com/understandinges6/read)をオンンラインで読むことが可能です。
+* **HTML、CSS、JavaScript** - Web ページの作るための要素です。 それぞれの要素について[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)で情報を得ることができます。.
+* **Promises** - JavaScriptのコードで非同期処理を行うための方法。 [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)の該当セクションを参照してください。
+* **ES2015 modules** - [ES6 JavaScript モジュール](http://jsmodules.io/)に慣れ親しんでいるほうが、[Ember CLI](https://ember-cli.com/)のプロジェクト構造やインポートのパスを理解しやすいでしょう。.
+* **ES2015構文** - Ember CLI はデフォルトでBabel.js を含んでいます。そのためアロー関数式、テンプレート文字列、分割代入のようなJavaScriptの新しい言語機能を活用できます。 [Babel.js のドキュメント](https://babeljs.io/docs/learn-es2015/)あるいは[Understanding ECMAScript 6](https://leanpub.com/understandinges6/read)をオンンラインで読むことが可能です。
 
 ## 問題の報告
 
