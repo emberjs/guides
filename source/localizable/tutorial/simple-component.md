@@ -62,7 +62,7 @@ A component consists of two parts:
 * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
 
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.
-To start, let's move the rental display details for a single rental from the `index.hbs` template into `rental-listing.hbs` and add the image field:
+To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
 
 ```app/templates/components/rental-listing.hbs{+2}
 <article class="listing">
