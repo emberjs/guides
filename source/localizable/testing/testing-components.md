@@ -42,6 +42,8 @@ We can test that changing the component's `name` property updates the
 component's `style` attribute and is reflected in the  rendered HTML:
 
 ```tests/integration/components/pretty-color-test.js
+import hbs from 'htmlbars-inline-precompile';
+
 test('should change colors', function(assert) {
   assert.expect(2);
 
