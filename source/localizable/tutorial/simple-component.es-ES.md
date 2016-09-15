@@ -32,7 +32,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     * Un archivo de código JavaScript ('app/components/rental-listing.js') que define cómo se comportará.
     
     Nuestro nuevo componente 'rental-listing' gestionará cómo un usuario ve e interactúa con un alquiler.
-    To start, let's move the rental display details for a single rental from the `index.hbs` template into `rental-listing.hbs` and add the image field:
+    To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -55,7 +55,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
 
 In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
 
-```app/templates/rentals.hbs{+13,+14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30} 
+```app/templates/rentals.hbs{+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29} 
 
 <div class="jumbo">
   <div class="right tomster">

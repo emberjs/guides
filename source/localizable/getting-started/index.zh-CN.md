@@ -28,7 +28,7 @@ If you get a *"command not found"* error or an outdated version for Node:
 
 * Windows 或者 Mac 的用户可以下载并运行 [此 Node.js 安装程序](http://nodejs.org/download/).
 * Mac 用户通常喜欢使用 [Homebrew](http://brew.sh/) 安装 Node。安装好 Homebrew 后，运行 `brew install node` 来安装 Node.js。
-* Linux 用户可以使用 [这份在 Linux 上安装 Node.js 的指南](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
+* Linux users can use [this guide for Node.js installation on Linux](https://nodejs.org/en/download/package-manager/).
 
 If you get an outdated version of npm, run `npm install -g npm`.
 

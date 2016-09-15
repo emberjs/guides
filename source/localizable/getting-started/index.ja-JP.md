@@ -1,36 +1,36 @@
-Emberでの開発を始めるの難しくはありません。Ember プロジェクトの作成や管理はコマンド ライン ビルド ツール Ember CLI を利用します。 Ember CLI は次の機能をを提供しています。
+Emberでの開発を始めるの難しくはありません。Emberプロジェクトの作成や管理はコマンドライン ビルドツールEmber CLIを利用します。 Ember CLIは、次の機能を提供しています。
 
-* モダンなアプリケーション資産管理 (今カテネーション、ミニフィケーション、およびバージョン管理をが含まれています。)
-* コンポーネントや、ルートなどの作成するためジェネレーター。
-* コンベンショナルなプロジェクトのレイアウトは、既存のEmberアプリケーションへのアプローチを簡単にします。
-* [Babel プロジェクト](http://babeljs.io/docs/learn-es2015/)経由で、JavaScript ES2015/ES6 をサポートします。 このガイドでも利用されている [JavaScript モジュール](http://exploringjs.com/es6/ch_modules.html) のサポートも含まれています。
-* 完全な [QUnit](https://qunitjs.com/) テスト ハーネス
-* 勢いよく成長しているEmber生態系を活用する[Ember Addons](https://emberobserver.com/).
+* モダンなアプリケーションアセット管理 (結合、ミニフィケーション、バージョン管理など)。
+* コンポーネントやルートなどを作成するためのジェネレーター。
+* 慣習的なプロジェクトレイアウトは、既存のEmberアプリケーションへの対処を容易にします。
+* [Babel](http://babeljs.io/docs/learn-es2015/)プロジェクトをとおしてJavaScript ES2015/ES6 をサポートします。 これには、このガイドでも利用されている[JavaScript モジュール](http://exploringjs.com/es6/ch_modules.html)のサポートも含まれています。
+* 完全な [QUnit](https://qunitjs.com/) テストハーネス。
+* 急成長する[Ember Addons](https://emberobserver.com/)エコシステムを活用する機能。.
 
 ## 依存関係
 
 ### Git
 
-Ember は、多くの依存関係の管理で Git を利用しています。 Git は Mac OS X と 多くのLinux ディストリビューションすでに含まれています。 Windows ユーザーは、[この Git のインストーラー](http://git-scm.com/download/win) ダウンロードすることで、実行できます。.
+Emberは依存関係の多くを管理するのにGitを利用しています。 GitはMac OS Xおよび多くのLinuxディストリビューションにすでに含まれています。 Windows ユーザーは、[この Git のインストーラー](http://git-scm.com/download/win)をダウンロード、実行できます。.
 
 ### Node.js とnpm
 
-Ember CLI は JavaScript、で作られており、 [Node.js](https://nodejs.org/)のランタイムを必要としています。 また、依存関係の取得のために、[npm](https://www.npmjs.com/) が必要です。 npmは、Node.js とともにインストールされるので、すでに、Node.js があなたのコンピューターにインストールされている場合は、次に進む準備ができています。
+Ember CLIはJavaScriptで作られていて、実行には[Node.js](https://nodejs.org/)ランタイムが必要となります。 また、[npm](https://www.npmjs.com/)を通して依存関係のあるライブラリを取得する必要があります。 npmはNode.jsとともにインストールされます。ですので、Node.jsがすでにインストール済みでしたら、あなたは先に進む準備ができています。
 
-Ember は Node.js 0.12 または、それ以上 npm 2.7 または、それ以上 が必要です。 Node.js がインストールされているかわからない、またはバージョンが不明な場合は、コマンドラインで、次のコマンドを実行してください。
+EmberはNode.js 0.12かそれ以上、npm 2.7かそれ以上を必要とします。もしNode.jsがインストールされているかわからない、あるいはバージョンが不明な場合は、コマンドライン上で以下を実行してください。
 
 ```bash
 node --version
 npm --version
 ```
 
-もし、 *"command not found"* エラー、または Node のバージョンが古い時は
+もし、*"command not found"*エラーだった場合、またはNodeのバージョンが古かった場合には、次を行ってください。
 
-* Windows または Mac のユーザーの場合は [この Node.js インストーラー](http://nodejs.org/download/) を実行することができます。.
-* Mac ユーザーは[ Homebrew ](http://brew.sh/) を使用してノードをインストールするのを好むことがあります。Homebrewをインストールした後、Node.js をインストールするには `brew install node` を実行します。
-* Linux ユーザの場合はは、この[ガイド](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) を使用できます。.
+* WindowsあるいはMacのユーザーは[この Node.js インストーラー](http://nodejs.org/download/)を実行できます。.
+* あなたがMacユーザーで、もしNodeのインストールに[Homebrew](http://brew.sh/)を使うのを好むようでしたら、Homebrewをインストールした後で`brew install node`を実行し、Node.jsをインストールしてください。
+* Linuxユーザーは[このLinuxへのNode.jsインストールガイド](https://nodejs.org/en/download/package-manager/)を参照できます。.
 
-もし npm が古い場合は、`npm install -g npm` を実行してください。.
+もしnpmが古い場合には、`npm install -g npm`を実行してください。.
 
 ### Bower
 

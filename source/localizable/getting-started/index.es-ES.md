@@ -28,7 +28,7 @@ If you get a *"command not found"* error or an outdated version for Node:
 
 * Los usuarios de Windows o Mac pueden descargar y ejecutar [este instalador de Node.js](http://nodejs.org/download/).
 * Los usuarios de Mac a veces prefieren instalar Node mediante [Homebrew](http://brew.sh/). Después de instalar Homebrew, hay que ejecutar `brew install node` para instalar Node.js.
-* Los usuarios de Linux pueden utilizar [esta guía para instalar Node.js en Linux](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
+* Linux users can use [this guide for Node.js installation on Linux](https://nodejs.org/en/download/package-manager/).
 
 If you get an outdated version of npm, run `npm install -g npm`.
 
