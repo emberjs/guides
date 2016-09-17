@@ -36,6 +36,8 @@ and the `category` property on `controller:articles`. In other words,
 once the `articles` route has been entered, any changes to the
 `category` query param in the URL will update the `category` property
 on `controller:articles`, and vice versa.
+Note that you can't bind `queryParams` to computed properties, they
+have to be values.
 
 Now we need to define a computed property of our category-filtered
 array that the `articles` template will render:
