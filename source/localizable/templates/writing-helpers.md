@@ -81,7 +81,7 @@ helper again with the new values and keep the page up-to-date.
 
 ### Helper Names
 
-Unlike [components](/components/defining-a-component/), which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples in this page.
+Unlike [components](/components/defining-a-component/), which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples on this page.
 
 ### Helper Arguments
 
