@@ -6,7 +6,7 @@
 @import 'colors';
 @import 'guides';
 @import 'shared';
-@import 'vendor/swiftype.autocomplete';
+@import 'search';
 @import 'select2';
 
 /* Calculated page dimensions. */
@@ -271,7 +271,6 @@ p {
           display: block;
           text-transform: none;
           color: #d84a32;
-          font-size: 13px;
           &:hover {
             background-color: #f2d1cb;
             color: black;
@@ -436,7 +435,7 @@ p {
   }
 
   #search{
-    form input.st-search-input{
+    form input.search-input{
       margin-left: 12px;
       font-size: 100%;
       padding: 2px 9px 2px 27px;
@@ -795,6 +794,12 @@ a.toc-anchor {
     th, td {
       padding: 5px 10px;
     }
+
+    &.specific {
+      th, td {
+        padding: 5px 6px;
+      }
+    }
   }
 
   .note {
@@ -812,20 +817,6 @@ a.toc-anchor {
 
 .next-guide {
   float: right;
-}
-
-.guides_getting-started {
-  .jsbin-embed {
-    /**
-      height of TodoMVC with three sample todos
-      after rendering. JSBin calculates height
-      before ember has a chance to render.
-
-      This style is !important to get around
-      the inline style on .jsbin-embed
-    **/
-    min-height: 519px !important;
-  }
 }
 
 /**
@@ -1219,47 +1210,6 @@ body.not-found #content {
 
 .more_caution {
   color: black;
-}
-
-
-/* Swiftype Search CSS overrides - https://swiftype.com/documentation/tutorials/custom_styles
-   =========================================================================================== */
-
-/* Change color of search dropdown text */
-.swiftype-widget .autocomplete ul li {
-  p.title {
-    color: $orange-color;
-  }
-
-  &.active {
-    background: none;
-    background-color: $orange-color;
-    border-top: 1px solid darken($orange-color, 20%);
-    border-bottom: 1px solid darken($orange-color, 20%);
-    @include box-shadow(0 1px 0 #C0242D inset);
-
-    .sections {
-      color: white;
-
-      em {
-        color: $black-color;
-        text-shadow: lighten($orange-color, 10%) 0px -1px 0px;
-      }
-    }
-  }
-}
-
-/* Changing the search result link colors */
-.st-result-listing a {
-  color: $orange-color;
-
-  &:visited {
-    color: darken($orange-color, 20%);
-  }
-
-  &:hover {
-    color: lighten($orange-color, 20%);
-  }
 }
 
 @import 'highlight';
