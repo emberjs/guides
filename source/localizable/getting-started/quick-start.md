@@ -79,7 +79,7 @@ application loaded. In your editor, open
 `app/templates/application.hbs` and add the following:
 
 ```app/templates/application.hbs
-<h2>PeopleTracker</h2>
+<h1>PeopleTracker</h1>
 
 {{outlet}}
 ```
@@ -130,7 +130,7 @@ the following HTML:
 In your browser, open
 [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
 see the `<h2>` you put in the `scientists.hbs` template, right below the
-`<h2>` from our `application.hbs` template.
+`<h1>` from our `application.hbs` template.
 
 Now that we've got the `scientists` template rendering, let's give it some
 data to render. We do that by specifying a _model_ for that route, and
