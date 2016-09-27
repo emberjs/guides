@@ -310,7 +310,7 @@ Next, we can update the template for our show route (`app/templates/rentals/show
     <div class="detail">
       <strong>Number of bedrooms:</strong> {{model.bedrooms}}
     </div>
-    <p>{{model.description}}</p>
+    <p class="description">{{model.description}}</p>
   </div>
   <img src="{{model.image}}" class="rental-pic">
 </div>
@@ -324,7 +324,7 @@ Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the 
 
 Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages.
 Here, the `link-to` helper takes the route name and the rental model object as arguments.
-When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](http://emberjs.com/api/classes/Ember.Route.html#method_serialize) the object to the ID of the model into the URL. 
+When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](http://emberjs.com/api/classes/Ember.Route.html#method_serialize) the object to the ID of the model into the URL.
 Alternately, you may just pass `rental.id` for clarity.
 
 Clicking on the title will load the detail page for that rental.
