@@ -497,7 +497,7 @@ resource or an array of serialized records. The `JSONSerializer` is a
 serializer that ships with Ember Data that can be used along side the
 `RESTAdapter` to serialize these simpler APIs.
 
-To use it in your application you will need to define an
+To use it in your application you will need to define a
 `serializer:application` that extends the `JSONSerializer`.
 
 ```app/serializers/application.js
