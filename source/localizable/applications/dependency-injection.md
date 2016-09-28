@@ -162,7 +162,7 @@ application.inject('route:index', 'logger', 'logger:main');
 
 In this case, the logger will only be injected on the index route.
 
-Injections can be made onto any class that requires instantiation.
+Injections can be made into any class that requires instantiation.
 This includes all of Ember's major framework classes, such as components, helpers, routes, and the router.
 
 ### Ad Hoc Injections
