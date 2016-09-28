@@ -175,7 +175,7 @@ To implement these actions, we'll create the index controller for the applicatio
 Generate a controller for the `index` page by running the following:
 
 ```shell
-ember g controller rentals
+ember g controller index
 ```
 
 Now, define your new controller like so:
