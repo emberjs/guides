@@ -270,8 +270,8 @@ Deploy][ember-deploy] addon.
 
 [ember-deploy]: http://ember-cli-deploy.com/
 
-If you deploy your application to an Apache web server, first create a new virtual host for the application. 
-To make sure all routes are handled by index.html, 
+If you deploy your application to an Apache web server, first create a new virtual host for the application.
+To make sure all routes are handled by index.html,
 add the following directive to the application's virtual host configuration
 ```
 FallbackResource index.html

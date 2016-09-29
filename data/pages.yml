@@ -194,6 +194,8 @@
 - title: "Ember Inspector"
   url: "ember-inspector"
   pages:
+    - title: "Introduction"
+      url: "index"
     - title: "Installing the Inspector"
       url: "installation"
     - title: "Object Inspector"
