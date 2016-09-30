@@ -92,7 +92,8 @@ islands.contains('Oahu');
 ### Strings
 
 Strings will no longer have the convenience methods described in the
-[Ember.String API reference.](http://emberjs.com/api/classes/Ember.String.html). Instead,
+[`Ember.String` API reference](http://emberjs.com/api/classes/Ember.String.html).
+Instead,
 you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
 
