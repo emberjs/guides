@@ -172,10 +172,10 @@ The `filter` action is [passed](../../components/triggering-changes-with-actions
 
 To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
 
-Generate a controller for the `index` page by running the following:
+Generate a controller for the `rentals` page by running the following:
 
 ```shell
-ember g controller index
+ember g controller rentals
 ```
 
 Now, define your new controller like so:
