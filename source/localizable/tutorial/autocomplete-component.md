@@ -170,9 +170,10 @@ Our `handleFilterEntry` action calls our filter action based on the `value` attr
 
 The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
 
-To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
+To implement these actions, we'll create a `rentals` controller.
+Controllers can contain actions and properties available to the template of its corresponding route.
 
-Generate a controller for the `rentals` page by running the following:
+Generate a controller for the `rentals` route by running the following:
 
 ```shell
 ember g controller rentals
