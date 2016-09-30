@@ -180,7 +180,7 @@ ember g controller index
 
 Now, define your new controller like so:
 
-```app/controllers/rentals.js
+```app/controllers/index.js
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
