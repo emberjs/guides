@@ -43,6 +43,22 @@ article {
     @extend %default-ol;
   }
 
+  .video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    margin-top: 2em;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   footer {
     @include clearfix;
     border-top: $base-border;
