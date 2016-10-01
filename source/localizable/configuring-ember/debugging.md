@@ -111,7 +111,7 @@ Ember = {
 There are times when dealing with promises that it seems like any errors
 are being 'swallowed', and not properly raised. This makes it extremely
 difficult to track down where a given issue is coming from. Thankfully,
-`RSVP` has a solution for this problem built in.
+`RSVP` has a solution for this problem built-in.
 
 You can provide an `onerror` function that will be called with the error
 details if any errors occur within your promise. This function can be anything,
