@@ -437,7 +437,7 @@ export default DS.JSONAPISerializer.extend({
 
 ## Creating Custom Transformations
 
-In some circumstances, the built in attribute types of `string`,
+In some circumstances, the built-in attribute types of `string`,
 `number`, `boolean`, and `date` may be inadequate. For example, a
 server may return a non-standard date format.
 
