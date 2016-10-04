@@ -74,7 +74,7 @@ test('should show details for a specific rental', function (assert) {
 });
 ```
 
-These tests will fail, since Ember tests will fail if we don't test for anything
+Running `ember test --server` will show a total of 6 failed tests.  Each will fail if we don't test for anything
 (known as an `assertion`).
 Since we have an idea of what we want our application to look like, we can also add some details to the tests.
 
@@ -161,7 +161,7 @@ test('should show details for a specific rental', function (assert) {
   visit('/rentals');
   click('a:contains("Grand Old Mansion")');
   andThen(function() {
-    assert.equal(currentURL(), '/rentals/grand-old-mansion', "should navigate to show route");
+    assert.equal(currentURL(), '/rentals/grand-old-mansion', 'should navigate to show route');
     assert.equal(find('.show-listing h2').text(), "Grand Old Mansion", 'should list rental title');
     assert.equal(find('.description').length, 1, 'should list a description of the property');
   });
@@ -169,7 +169,7 @@ test('should show details for a specific rental', function (assert) {
 ```
 
 Of course because we have not implemented this functionality yet, our tests will all fail.
-Your test output should now show all failed tests, which gives us a todo list for the rest of the tutorial.
+So, your test output should now show all failed tests when running `ember test --server`, which gives us a todo list for the rest of the tutorial.
 
 ![failing tests](../../images/acceptance-test/failed-acceptance-tests.png)
 
