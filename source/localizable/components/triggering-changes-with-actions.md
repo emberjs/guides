@@ -131,7 +131,6 @@ based on the value of `confirmShown`.
 {{/if}}
 ```
 
-
 ## Passing the Action to the Component
 
 Now we need to make it so that the `onConfirm()` event in the
@@ -179,7 +178,6 @@ export default Ember.Component.extend({
   }
 });
 ```
-
 
 `this.get('onConfirm')` will return the function passed from the parent as the
 value of `onConfirm`, and the following `()` will invoke the function.
@@ -300,6 +298,7 @@ export default Ember.Component.extend({
   }
 });
 ```
+
 This action will call our bound `sendMessage` function with both the message type we provided earlier, and the template
 and the message value provided in the component JavaScript.
 
@@ -409,7 +408,8 @@ Using the action helper, parent components can pass actions to child components 
 
 For example, say we want move account deletion from the `user-profile` component to its parent `system-preferences-editor` to be handled.
 
-First we would move the `deleteUser` action from `user-profile.js` to the actions object on `system-preferences-editor.`
+First we would move the `deleteUser` action from `user-profile.js` to the actions object on `system-preferences-editor`.
+
 ```app/components/system-preferences-editor.js
 import Ember from 'ember';
 
@@ -422,12 +422,14 @@ export default Ember.Component.extend({
   }
 });
 ```
+
 Then our `system-preferences-editor` template passes its local `deleteUser` action into the `user-profile` as that
 component's `deleteCurrentUser` property.
 
 ```app/templates/components/system-preferences-editor.hbs
 {{user-profile deleteCurrentUser=(action 'deleteUser' login.currentUser.id)}}
 ```
+
 The action `deleteUser` is in quotes, since `system-preferences-editor` is where the action is defined now. Quotes indicate that the action should be looked for in `actions` local to that component, rather than in those that have been passed from a parent.
 
 In our `user-profile.hbs` template we change our action to call `deleteCurrentUser` as passed above.
@@ -440,4 +442,3 @@ In our `user-profile.hbs` template we change our action to call `deleteCurrentUs
 Note that `deleteCurrentUser` is no longer in quotes here as opposed to [previously](#toc_passing-the-action-to-the-component). Quotes are used to initially pass the action down the component tree, but at every subsequent level you are instead passing the actual function reference (without quotes) in the action helper.
 
 Now when you confirm deletion, the action goes straight to the `system-preferences-editor` to be handled in its local context.
-
