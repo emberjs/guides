@@ -16,10 +16,9 @@ Let's start with writing some tests to help us think through what we are doing.
 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block.
 We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
-For our initial test, we'll simply check that all the cities we provide are rendered and that the listing object is accessible from the template.
+For our initial test, we can check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
-Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises.
-Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
+Since we plan to use Ember Data as our model store, and accessing persisted data is typically done asynchronously, we'll need to be sure of a few things. Our action calls (to fetch data) need to be asynchronous. To ensure this, we can return promises, and then we can use the wait helper at the end of our test. This will wait for all promises to resolve before completing the test.
 
 ```tests/integration/components/list-filter-test.js
 import { moduleForComponent, test } from 'ember-qunit';
