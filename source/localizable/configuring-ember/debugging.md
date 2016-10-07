@@ -123,7 +123,7 @@ import Ember from 'ember';
 import RSVP from 'rsvp';
 
 RSVP.on('error', function(error) {
-  Ember.Logger.assert(false, error);
+  Ember.assert(false, error);
 });
 ```
 
