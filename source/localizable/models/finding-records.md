@@ -107,4 +107,4 @@ store.queryRecord('user', {}).then(function(user) {
 ```
 As in the case of `store.query()`, a query object can also be passed to `store.queryRecord()` and is available for the adapter's `queryRecord()` to use to qualify the request. However the adapter must return a single model object, not an array containing one element, otherwise Ember Data will throw an exception.
 
-Note that Ember's default [json-api adapter](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html) does not provide the functionality needed to support `queryRecord()` directly as it relies on RESTful request definitions that return result data in the form of an array.
+Note that Ember's default [json-api adapter](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html) does not provide the functionality needed to support `queryRecord()` directly as it relies on REST request definitions that return result data in the form of an array.
