@@ -105,7 +105,7 @@ test('should update with matching listings', function (assert) {
 
 ```
 
-Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test.  Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
+Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test.  Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
 
 ```app/templates/rentals.hbs
 <div class="jumbo">
