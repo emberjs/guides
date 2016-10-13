@@ -1,3 +1,10 @@
+To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals.
+It will start with a homepage, an about page and a contact page.
+
+Here's a look at the desired application before we get started.
+
+![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+
 Let's think through what we want to do on the home page of our Super Rentals application.
 
 We want our application to:
