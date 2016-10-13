@@ -7,6 +7,8 @@ Let's take a look at the application from the user perspective before we get sta
 We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
 
+Keep in mind that generating the routes will break the main route until its added back in index route section, and means that navigating to [`http://localhost:4200/`](http://localhost:4200/) yields an loading an empty white page. 
+
 Now, let's start by building our "about" page.
 Remember, when the URL path `/about` is loaded,
 the router will map the URL to the route handler of the same name, _about.js_.
