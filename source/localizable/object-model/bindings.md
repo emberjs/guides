@@ -7,23 +7,23 @@ The easiest way to create a two-way binding is to use a [`computed.alias()`](htt
 that specifies the path to another object.
 
 ```javascript
-wife = Ember.Object.create({
-  householdIncome: 80000
+husband = Ember.Object.create({
+  pets: 0
 });
 
-Husband = Ember.Object.extend({
-  householdIncome: Ember.computed.alias('wife.householdIncome')
+Wife = Ember.Object.extend({
+  pets: Ember.computed.alias('husband.pets')
 });
 
-husband = Husband.create({
-  wife: wife
+wife = Wife.create({
+  husband: husband
 });
 
-husband.get('householdIncome'); // 80000
+wife.get('pets'); // 0
 
-// Someone gets raise.
-wife.set('householdIncome', 90000);
-husband.get('householdIncome'); // 90000
+// Someone gets a pet.
+husband.set('pets', 1);
+wife.get('pets'); // 1
 ```
 
 Note that bindings don't update immediately. Ember waits until all of your
