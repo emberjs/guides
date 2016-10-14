@@ -145,3 +145,8 @@ export default Ember.Route.extend({
   }
 });
 ```
+
+Properties that are defined on the model but are omitted in the
+normalized JSON API document object will not be updated. Properties
+that are included in the normalized JSON API document object but not
+defined on the Model will be ignored.
