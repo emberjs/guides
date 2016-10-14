@@ -684,17 +684,17 @@ Second, attribute and relationship names in the JSON API document
 should exactly match the name and casing of the `DS.attr()`,
 `DS.belongsTo()` and `DS.hasMany()`, properties defined on the
 Model. By convention these property names are camelCase in on Ember
-Data models. As with the type names this is different from the example
+Data models. As with the `type` names, this is different from the example
 attribute and relationship names shown in the
 [JSON API spec](http://jsonapi.org/format/). The examples in the spec
-use dash-case for attribute and relationship names, however, the spec
+use dash-case for attribute and relationship names, however the spec
 does not require attribute or relationship names to follow any
 specific casing convention. If you are using Ember Data's own
 `JSONAPISerializer` it will assume the attribute and relationship
 names from your api are dash-case and automatically transform them to
 be camelCase when it creates the normalized JSON object.
 
-Other then these two restrictions Ember Data's normalized JSON object
+Other then these two restrictions, Ember Data's normalized JSON object
 follows the [JSON API](http://jsonapi.org/) specification.
 
 Example: given this `post` model.
