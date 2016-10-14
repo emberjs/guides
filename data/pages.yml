@@ -184,6 +184,8 @@
       url: "unit-testing-basics"
     - title: "Testing Components"
       url: "testing-components"
+    - title: "Testing Helpers"
+      url: "testing-helpers"
     - title: "Testing Controllers"
       url: "testing-controllers"
     - title: "Testing Routes"
