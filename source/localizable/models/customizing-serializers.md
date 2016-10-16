@@ -657,13 +657,15 @@ extending the `DS.Serializer` base class.
 
 
 A serializer in Ember Data is responsible for normalizing a payload
-from an adapter into the format that Ember Data understand. It is also
+from an adapter into the format that Ember Data understands. It is also
 responsible for transforming a snapshot of a record into the payload
 that an adapter will send to the backend.
 
-A serializer has two main roles in Ember Data. First it is
-responsible for taking a response from an adapter and serializing it
-into the "normalized" JSON format that Ember Data understands.
+A serializer has two main roles in Ember Data. First it is responsible
+for taking a response from an adapter and serializing it into the
+"normalized" JSON format that Ember Data understands. Secondly, it
+transforms snapshots of records into a payload the adapter will send
+to the server when creating, updating or deleting a record.
 
 #### Ember Data's Normalized JSON Format
 
@@ -676,18 +678,18 @@ in the normalized JSON object exactly matches the filename of the
 model defined for this record type. By convention Model names are
 singular in Ember Data, however, the example type names shown in the
 [JSON API spec](http://jsonapi.org/format/) are pluralized. The JSON
-API spec itself is agnostic about inflection rules, however Ember
+API spec itself is agnostic about inflection rules, however, Ember
 Data's own `JSONAPISerializer` assumes types are plural and it will
 automatically singularize the types.
 
 Second, attribute and relationship names in the JSON API document
 should exactly match the name and casing of the `DS.attr()`,
 `DS.belongsTo()` and `DS.hasMany()`, properties defined on the
-Model. By convention these property names are camelCase in on Ember
+Model. By convention these property names are camelCase in Ember
 Data models. As with the `type` names, this is different from the example
 attribute and relationship names shown in the
 [JSON API spec](http://jsonapi.org/format/). The examples in the spec
-use dash-case for attribute and relationship names, however the spec
+use dash-case for attribute and relationship names, however, the spec
 does not require attribute or relationship names to follow any
 specific casing convention. If you are using Ember Data's own
 `JSONAPISerializer` it will assume the attribute and relationship
