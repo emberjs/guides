@@ -682,7 +682,7 @@ example type names shown in the
 [JSON API spec](http://jsonapi.org/format/) are pluralized.
 The JSON API spec itself is agnostic about inflection rules, however,
 Ember Data's own `JSONAPISerializer` assumes types are plural and it
-will automatically singularise the types.
+will automatically singularize the types.
 
 Second, attribute and relationship names in the JSON API document
 should exactly match the name and casing of the `DS.attr()`,

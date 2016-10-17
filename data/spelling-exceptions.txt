@@ -221,6 +221,7 @@ sideload
 sideloaded
 sideloading
 sidenote
+singularize
 spellcheck
 sql
 stacktraces
