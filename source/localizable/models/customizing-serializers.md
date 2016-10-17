@@ -654,22 +654,20 @@ those to match your needs. However, if your payload is extremely
 different from one of these serializers you can create your own by
 extending the `DS.Serializer` base class.
 
-
-
 A serializer in Ember Data is responsible for normalizing a payload
-from an adapter into the format that Ember Data understands. It is also
-responsible for transforming a snapshot of a record into the payload
-that an adapter will send to the backend.
+from an adapter into the format that Ember Data understands.
+It is also responsible for transforming a snapshot of a record into
+the payload that an adapter will send to the backend.
 
 A serializer has two main roles in Ember Data. First it is responsible
 for taking a response from an adapter and serializing it into the
-"normalized" JSON format that Ember Data understands. Secondly, it
+normalized JSON format that Ember Data understands. Secondly, it
 transforms snapshots of records into a payload the adapter will send
 to the server when creating, updating or deleting a record.
 
 #### Ember Data's Normalized JSON Format
 
-The "normalized" JSON format that Ember Data expects is a
+The normalized JSON format that Ember Data expects is a
 [JSON API](http://jsonapi.org/) document with a couple additional
 restrictions.
 
@@ -680,7 +678,7 @@ singular in Ember Data, however, the example type names shown in the
 [JSON API spec](http://jsonapi.org/format/) are pluralized. The JSON
 API spec itself is agnostic about inflection rules, however, Ember
 Data's own `JSONAPISerializer` assumes types are plural and it will
-automatically singularize the types.
+automatically singularise the types.
 
 Second, attribute and relationship names in the JSON API document
 should exactly match the name and casing of the `DS.attr()`,
@@ -693,10 +691,10 @@ use dash-case for attribute and relationship names, however, the spec
 does not require attribute or relationship names to follow any
 specific casing convention. If you are using Ember Data's own
 `JSONAPISerializer` it will assume the attribute and relationship
-names from your api are dash-case and automatically transform them to
+names from your API are dash-case and automatically transform them to
 be camelCase when it creates the normalized JSON object.
 
-Other then these two restrictions, Ember Data's normalized JSON object
+Other than these two restrictions, Ember Data's normalized JSON object
 follows the [JSON API](http://jsonapi.org/) specification.
 
 Example: given this `post` model.
@@ -713,7 +711,7 @@ export default DS.Model.extend({
 ```
 
 The normalized JSON object that Ember Data expects a serializer to
-return look like this:
+return looks like this:
 
 ```js
 {
@@ -744,12 +742,12 @@ Note that the type is `"post"` to match the post model and the
 
 #### Normalizing adapter responses
 
-When creating a custom serializer you will need define a
+When creating a custom serializer you will need to define a
 [normalizeResponse](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalizeResponse)
 method to transform the response from the adapter into the normalized
 JSON object described above. This method receives the `store`, the
 Model class for the request, the payload payload, the id of the record
-request (or null if there is no id associated with the request) and
+request (or `null` if there is no id associated with the request) and
 the request type (a string with the possible values of: `'findRecord'`,
 `'queryRecord'`, `'findAll'`, `'findBelongsTo'`, `'findHasMany'`,
 `'findMany'`, `'query'`, `'createRecord'`, `'deleteRecord'` and
