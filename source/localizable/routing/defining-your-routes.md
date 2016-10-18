@@ -100,7 +100,7 @@ Router.map(function() {
 });
 ```
 
-To generate the above nested route, run:
+Assuming you have already generated the `posts` route, to generate the above nested route you would run:
 
 ```shell
 ember generate route posts/new
