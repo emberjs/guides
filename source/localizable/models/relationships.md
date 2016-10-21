@@ -236,8 +236,7 @@ include those related records in the response returned to the client.
 The value of the parameter should be a comma-separated list of names of the
 relationships required.
 
-If you are using an adapter that supports JSON API, such as Ember's default
-[`JSONAPIAdapter`](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html),
+If you are using an adapter that supports JSON API, such as Ember's default [`JSONAPIAdapter`](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html),
 you can easily add the `include` parameter to the server requests created by
 the `findRecord()`, `findAll()`,
 `query()` and `queryRecord()` methods.
@@ -257,8 +256,7 @@ export default Ember.Route.extend({
 ```
 The post's comments would then be available in your template as `model.comments`.
 
-Nested relationships can be specified in the `include` parameter as a dot-separated
-sequence of relationship names.
+Nested relationships can be specified in the `include` parameter as a dot-separated sequence of relationship names.
 So to request both the post's comments and the authors of those comments the request
 would look like this:
 
