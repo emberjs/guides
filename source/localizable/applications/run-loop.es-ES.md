@@ -45,8 +45,8 @@ bar.style.height = '400px' // write
 baz.style.height = '200px' // write
 
 foo.offsetHeight // read (recalculate style, layout, expensive!)
-bar.offsetHeight // read (fast since style and layout is already known)
-baz.offsetHeight // read (fast since style and layout is already known)
+bar.offsetHeight // read (fast since style and layout are already known)
+baz.offsetHeight // read (fast since style and layout are already known)
 ```
 
 Interestingly, this pattern holds true for many other types of work. Essentially, batching similar work allows for better pipelining, and further optimization.
@@ -204,7 +204,7 @@ $('a').click(() => {
 
 Although autoruns are convenient, they are suboptimal. The current JS frame is allowed to end before the run loop is flushed, which sometimes means the browser will take the opportunity to do other things, like garbage collection. GC running in between data changing and DOM rerendering can cause visual lag and should be minimized.
 
-Relying on autoruns is not a rigorous or efficient way to use the run loop. Wrapping event handlers manually is preferred.
+Relying on autoruns is not a rigorous or efficient way to use the run loop. Wrapping event handlers manually are preferred.
 
 ## How is run loop behaviour different when testing?
 

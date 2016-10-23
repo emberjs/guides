@@ -355,7 +355,7 @@ export default DS.JSONAPISerializer.extend({ keyForRelationship: function(key, r
 
     <br /><br />## Creating Custom Transformations
     
-    In some circumstances, the built in attribute types of `string`,
+    In some circumstances, the built-in attribute types of `string`,
     `number`, `boolean`, and `date` may be inadequate. For example, a
     server may return a non-standard date format.
     
@@ -404,7 +404,7 @@ If `position` is modified and saved, it will pass through the `serialize` functi
 
 Not all APIs follow the conventions that the `JSONAPISerializer` uses with a data namespace and sideloaded relationship records. Some legacy APIs may return a simple JSON payload that is just the requested resource or an array of serialized records. The `JSONSerializer` is a serializer that ships with Ember Data that can be used along side the `RESTAdapter` to serialize these simpler APIs.
 
-To use it in your application you will need to define an `serializer:application` that extends the `JSONSerializer`.
+To use it in your application you will need to define a `serializer:application` that extends the `JSONSerializer`.
 
 ```app/serializers/application.js import DS from 'ember-data';
 

@@ -11,51 +11,51 @@ Ember 的起步是很容易的。Ember 使用命令行构建工具 Ember CLI 来
 
 ### Git
 
-Ember 需要 Git 来管理许多它依赖的东西。 Mac OS X 和大多数 Linux 发行版都自带有 Git. Windows 用户可以下载并运行 [this Git installer](http://git-scm.com/download/win)来安装Git。.
+Ember 需要 Git 来管理许多它依赖的东西。 Mac OS X 和大多数 Linux 发行版都自带有 Git. Windows 用户可以下载并运行 [this Git installer](http://git-scm.com/download/win)来安装Git.
 
 ### Node.js 和 npm
 
-Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
+Ember CLI 使用 JavaScript 编写，并且需要 [Node.js](https://nodejs.org/) 运行环境的支持。 它还需要通过 [npm](https://www.npmjs.com/) 来获取依赖的模块和软件包。 npm 是打包在 Node.js 中的，所以如果你的电脑只需要安装 Node.js 就可以了。
 
-Ember requires Node.js 0.12 or higher and npm 2.7 or higher. If you're not sure whether you have Node.js or the right version, run this on your command line:
+Ember 需要 Node.js 0.12 或是更高版本以及 npm 2.7 及以上版本。若你无法确定你是否安装了 Node.js 以及版本号是否合乎要求，那就在命令行运行以下命令：
 
 ```bash
 node --version
 npm --version
 ```
 
-If you get a *"command not found"* error or an outdated version for Node:
+如果看到 *"command not found"* 错误或是过期版本的 Node：
 
 * Windows 或者 Mac 的用户可以下载并运行 [此 Node.js 安装程序](http://nodejs.org/download/).
 * Mac 用户通常喜欢使用 [Homebrew](http://brew.sh/) 安装 Node。安装好 Homebrew 后，运行 `brew install node` 来安装 Node.js。
 * Linux users can use [this guide for Node.js installation on Linux](https://nodejs.org/en/download/package-manager/).
 
-If you get an outdated version of npm, run `npm install -g npm`.
+如果你看到 npm 是过期版本，运行命令 `npm install -g npm`重新安装.
 
 ### Bower
 
-Ember requires Bower to manage additional dependencies. Bower is a command line utility that you install with npm. To install Bower run, ```npm install -g bower```
+Ember需要使用Bower管理更多的依赖包。Bower是一个使用npm安装的命令行工具。安装命令如下： ```npm install -g ember-cli```
 
-### Watchman (optional)
+### Watchman(可选)
 
-On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+在 Mac 和 Linux 上，你可以通过安装 [Watchman](https://facebook.github.io/watchman/docs/install.html) 来提高文件变化监测的性能。.
 
-### PhantomJS (optional)
+### PhantomJS(可选)
 
-You can run your tests from the command line with PhantomJS, without the need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
+PhantomJS 可以帮助你在命令行运行测试而不需要打开浏览器。详细请查看 [PhantomJS 下载指南](http://phantomjs.org/download.html)。.
 
 ## 安装
 
-Install Ember using npm:
+使用 npm 安装 Ember：
 
 ```bash
 npm install -g ember-cli
 ```
 
-To verify that your installation was successful, run:
+若要验证是否安装成功，请运行下面的命令：
 
 ```bash
 ember -v
 ```
 
-If a version number is shown, you're ready to go.
+如果显示出了版本号，说明你安装成功了。

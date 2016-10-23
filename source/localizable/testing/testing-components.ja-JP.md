@@ -27,6 +27,8 @@ The `moduleForComponent` helper will find the component by name (`pretty-color`)
     component's `style` attribute and is reflected in the  rendered HTML:
     
     ```tests/integration/components/pretty-color-test.js
+    import hbs from 'htmlbars-inline-precompile';
+    
     test('should change colors', function(assert) {
       assert.expect(2);
     

@@ -1,26 +1,24 @@
-Ember アプリケーションの基本的な準備と、順序を示すために、この項目では、Super Rentalsという資産レンタルのEmber アプリケーションの構築を順を追って示していきます。 homeページ、aboutページと、contact ページから始めましょう。 その前に、ユーザーの目線でアプリケーションを見てみましょう。
+Emberは、アプリケーション内で論理的かつ指定可能なページを定義するために、route (ルート)を使用します。
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+Super Rentalsでは、homeページを開くと賃貸物件の一覧を閲覧でき、そこからaboutページやcontactページへと遷移するようにしたいです。
 
-ホームページはレンタルのリストを表示しています。ここから、about ページと contact ページに遷移することができます。
-
-では、まず　"about" ページを作成するところから始めます。 URL `/about`が読み込まれると、router (ルーター)がURLと同じ名前の*about.js*という route handler (ルート ハンドラー ) をマップしているということを、覚えておいてください。 その後、route handler (ルートハンドラ)が template (テンプレート)を読み込みます。
+それでは、まず"about"ページの作成から始めましょう。 `/about`というURLが読み込まれると、router (ルーター)は、URLと同じ名前のroute handler (ルート ハンドラー )、*about.js*を対応づけるということを覚えておいてください。 その後、route handler (ルートハンドラ)がテンプレートを読み込みます。
 
 ## ルートに関して
 
-`ember help generate`を実行すると、Ember とともにインストールされ、様々なEmber リソースのファイルを自動生成できるツールについて、確認ができます。 まずは、route generator ( ルートジェネレータ)を使って、`about` route (ルート)を作成していきます。
+`ember help generate`を実行すると、Emberに付属する、さまざまなリソースを自動生成するツール群を確認できます。 では、route generator ( ルートジェネレータ)を使って、`about` route (ルート)を作成していきましょう。
 
 ```shell
 ember generate route about
 ```
 
-次の省略形でも、結果は同じです。
+コマンドは次のように省略することもできます。
 
 ```shell
 ember g route about
 ```
 
-generator (ジェネレータ)が行っていることを、確認することができます:
+実行すると表示される以下の内容から、generator (ジェネレータ)が行っていることを確認できます。
 
 ```shell
 installing route
@@ -32,9 +30,9 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-３つの新しいファイルが生成されます: 一つは route handler (ルートハンドラー)、一つはroute handler (ルートハンドラー)が描画するtemplate (テンプレート)、最後の一つはテストファイル。四つ目のファイル、router (ルーター)には編集が加えられています。
+3つの新しいファイルが生成されます。一つはroute handler (ルートハンドラー)、一つはroute handler (ルートハンドラー)が描画するtemplate (テンプレート)、最後はテストファイルです。第4のファイル、router (ルーター)には編集が加えられています。
 
-router (ルーター)ファイルを開くと、generator (ジェネレータ)が自動的に*about*ルートをマップしてることが確認できます。この route (ルート)が`about`の route handler (ルートハンドラー)を読み込みます。
+router (ルーター)を開くと、generator (ジェネレータ)が自動的に*about*ルートを対応付けてくれていることを確認できます。この route (ルート)が、`about`の route handler (ルートハンドラー)を読み込みます。
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -44,11 +42,11 @@ Router.map(function() { this.route('about'); });
 
 export default Router;
 
-    <br />デフォルトで、`about` route handler (ルートハンドラー)は`about.hbs`  template (テンプレート)を読み込みます。
-    これは`app/routes/about.js` を書き換えなくても、 `about.hbs` が表示されることを意味しています。
+    <br />デフォルトで、`about` route handler (ルートハンドラー)は`about.hbs` template (テンプレート)を読み込みます。
+    これは、わざわざ`app/routes/about.js`を書き換えなくても、`about.hbs`が表示されることを意味しています。
     
     generator (ジェネレータ)によって必要なルーティングが完了しているので、すぐに template (テンプレート)の編集が行えます。
-    For our `about` page, we'll add some HTML that has a bit of information about the site:
+    `about`ページ用に、サイトについてのちょっとした情報を示すHTMLを追加しましょう。
     
     ```app/templates/about.hbs
     <div class="jumbo">
@@ -62,19 +60,19 @@ export default Router;
     </div>
     
 
-コマンド `ember serve`(省略形だと`ember s`)を実行して、シェルからEmberの開発サーバーを起動します、その後ブラウザで[`http://localhost:4200/about`](http://localhost:4200/about) を開くとアプリケーションが確認できます。
+コマンド `ember serve`(省略形だと`ember s`)を実行して、シェルからEmberの開発サーバーを起動してください。そして、ブラウザで[`http://localhost:4200/about`](http://localhost:4200/about)を開いて、新しいアプリケーションの動きを確認しましょう。
 
 ## Contact ルート
 
-会社のコンタクト情報を記載する route (ルート)を作成しましょう。もう一度、route (ルート)、route handler (ルートハンドラー)、template (テンプレート)を自動生成することから始めます。
+次に、会社のコンタクト情報を記載する route (ルート)を作成します。もう一度、route (ルート)、route handler (ルートハンドラー)、template (テンプレート)を自動生成することから始めます。
 
 ```shell
 ember g route contact
 ```
 
-generator (ジェネレータ)が実行され、`app/router.js`内に`contact` ルートが作成され、`app/routes/contact.js`には該当するルートが作成されます。 `contact`テンプレートを利用していくので、`contact` route (ルート)は追加で編集をする必要はありません。
+generator (ジェネレータ)が`app/router.js`内に`contact` route (ルート)を作成し、そして`app/routes/contact.js`に該当するroute handler (ルートハンドラー)を作成するのを確認します。 `contact`テンプレートを利用していくので、`contact` route (ルート)は特に編集する必要はありません。
 
-`contact.hbs`には Super Rentals HQのコンタクト情報を追記します:
+`contact.hbs`にSuper Rentals HQのコンタクト情報を追記します。
 
 ```app/templates/contact.hbs 
 
@@ -101,16 +99,16 @@ generator (ジェネレータ)が実行され、`app/router.js`内に`contact` �
   </p>
 </div>
 
-    <br />これで、２番目のルートが完成しました。
-    URL[`http://localhost:4200/contact`](http://localhost:4200/contact)にアクセスすると、contact pageにアクセスできます。
+    <br />これで、２番目のroute (ルート)が完成しました。
+    URL[`http://localhost:4200/contact`](http://localhost:4200/contact)にアクセスすると、コンタクトページにアクセスできます。
     
     ## リンクによるナビゲーションと {{link-to}} Helper (ヘルバー)
     
-    アプリケーション内を遷移するのに、ユーザーがURLを知る必要があるようなことは、望んでません、そこで各ページの下部にナビゲーション用のリンクを追加しましょう。
-    それではaboutページにcontactページへのリンク、aboutページにはcontactへのリンクを作ります。
+    URLを知らないとサイト内を自由に動き回れないようなアプリケーションには、もちろんしたくありません。各ページの下部にナビゲーション用のリンクを追加しましょう。
+    aboutページにcontactページへのリンク、contactページにはaboutページへのリンクを作ります。
     
-    Ember には他のルートへのリンクなどの機能を提供する**helpers (ヘルパー)** が組み込まれています。
-    ここでは routes (ルート)間のリンクを表示するために `{{link-to}}` helper (ヘルパー)を利用します:
+    Emberには、他のroute(ルート)にリンクするような機能を提供する、組み込みの**helpers (ヘルパー)**を持っています。
+    ここでは`{{link-to}}` helper (ヘルパー)を利用し、routes (ルート)間をリンクさせます。
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
@@ -127,11 +125,11 @@ generator (ジェネレータ)が実行され、`app/router.js`内に`contact` �
     </div>
     
 
-`{{link-to}}` helper (ヘルパー)はリンク先にとなる route (ルーター)名を引数として受け取ります、この場合は`contact` がそれに当たります。 [`http://localhost:4200/about`](http://localhost:4200/about),を開くと、コンタクトページへのリンクが機能しているのがわかります。
+`{{link-to}}` helper (ヘルパー)は、リンク先となるroute (ルート)名を引数として受け取ります。この場合は、`contact` がそれに当たります。 [`http://localhost:4200/about`](http://localhost:4200/about)を開くと、contactページへのリンクが機能していることがわかります。
 
 ![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-次は`contact`ページと`about` の間で移動ができるように、contact ページにリンクを追加します。.
+`about`と`contact`を行ったり来たりできるように、次はcontactページにリンクを追加します。.
 
 ```app/templates/contact.hbs 
 
@@ -158,15 +156,13 @@ generator (ジェネレータ)が実行され、`app/router.js`内に`contact` �
   </p> {{#link-to 'about' class="button"}} About {{/link-to}}
 </div>
 
-    <br />## A Rentals Route
-    We want our application to show a list of rentals that users can browse.
-    To make this happen we'll add a third route and call it `rentals`.
+    <br />## 賃貸物件のroute (ルート)
     
-    ```shell
-    ember g route rentals
+    ユーザーが閲覧できる賃貸物件の一覧を表示するアプリケーションが欲しいです。
+    これを実現するために、第3のroute (ルート)を追加します。名前は`rentals`としましょう。
     
 
-Let's update the newly generated `rentals.hbs` with some basic markup to seed our rentals list page. We'll come back to this page later to add in the actual rental properties.
+新しく生成された`rentals.hbs`に賃貸物件を一覧していくために、ベースとなるマークアップを行いましょう。 実際の賃貸物件を追加した後で、またこのページに戻って来ます。
 
 ```app/templates/rentals.hbs 
 
@@ -183,19 +179,19 @@ Let's update the newly generated `rentals.hbs` with some basic markup to seed ou
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-    <br />## An Index Route
+    <br />## インデックス route (ルート)
     
-    With our two static pages in place, we are ready to add our home page which welcomes users to the site.
-    At this point our main page in our application is our rentals page, for which we've already created a route.
-    So we want our index route to simply forward to the `rentals` route we've already created.
+    静的なページも2つ完成しましたし、サイトを訪れたユーザーを迎えるhome ページを追加するにはいい頃合いでしょう。
+    この時点でアプリケーションのメインページになるのは、すでにroute (ルート)を作成済みの賃貸物件一覧ページです。
+    つまりここでは、インデックスroute (ルート)をすでに作成済みの`rentals` route (ルート)に単に転送したいものとします。
     
-    Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
+    aboutページとcontactページでやったのと同じように、まずは`index`という名前の新しいroute (ルート) を作成します。
     
     ```shell
     ember g route index
     
 
-We can see the now familiar output for the route generator:
+コマンドを実行すると、見慣れたroute (ルート) ジェネレータの結果を確認できます。
 
 ```shell
 installing route
@@ -205,9 +201,11 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
+これまで作成してきたroute (ルート)ハンドラーと異なり、`index<0> route (ルート)は特別です。router (ルーター)での対応付けは必要ありません。
+どうして対応付けが必要ないかは、Emberで<a href="../subroutes">入れ子になったroute (ルート)</a>を扱う際に詳しく説明します。</p>
 
-We can start by implementing the unit test for index. Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route. `replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function. We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+<p>index用のユニットテストを実装するところから始めましょう。
+やりたいことは<code>rentals`に遷移することなので、ユニットテストではroute (ルート)の[`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith)メソッドが期待するroute (ルート)を呼び出すことを確認します。 `replaceWith`はroute (ルート)の`transitionTo`関数と似たようなものです。`transitionTo`がブラウザーのヒストリーに現在のURLを追加するのに対し、`replaceWith`は現在のURLを置き換えるという違いがあります。 `rentals` route (ルート)をhomeページとして使いたいので、ここでは`replaceWith`関数を使用します。 route (ルート) 用の`replaceWith`メソッドをスタブし、呼び出された際に`rentals` route (ルート)が渡されるかを検証することで、これを確認します。
 
 ```tests/unit/routes/index-test.js import { moduleFor, test } from 'ember-qunit';
 
@@ -215,7 +213,7 @@ moduleFor('route:index', 'Unit | Route | index');
 
 test('should transition to rentals route', function(assert) { let route = this.subject({ replaceWith(routeName) { assert.equal(routeName, 'rentals', 'replace with route name rentals'); } }); route.beforeModel(); });
 
-    <br />In our index route, we simply add the `replaceWith` invocation.
+    <br />index route (ルート)に`replaceWith`呼び出しを単に追加します。
     
     ```app/routes/index.js
     import Ember from 'ember';
@@ -228,20 +226,20 @@ test('should transition to rentals route', function(assert) { let route = this.s
     });
     
 
-Now visiting the root route `/` will result in the `/rentals` URL loading.
+これでroot route (ルート)`/<code>は<0>/rentals`というURL を読み込むようになりました。
 
-## Adding a Banner with Navigation
+## ナビゲーション付きのバナーを追加する
 
-In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
+アプリケーションの各route (ルート)に置いたボタンスタイルのリンクに追加して、共通のバナーを用意したいと思います。バナーにはアプリケーションのタイトルとメインページへのナビゲーションを表示します。
 
-First, create the application template by typing `ember g template application`.
+まず、 `ember g template application`と入力し、アプリケーション用のtemplate (テンプレート)を作成します。.
 
 ```shell
 installing template
   create app/templates/application.hbs
 ```
 
-When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
+`application.hbs`が存在すると、そこに記述したものはアプリケーションのすべてのページで表示されます。ここでは、以下のようにナビゲーション・バナーのマークアップを追加します。
 
     app/templates/application.hbs
     <div class="container">
@@ -265,8 +263,8 @@ When `application.hbs` exists, anything you put in it is shown for every page in
       </div>
     </div>
 
-Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet)の内容はrouter (ルーター)に委ねられます。router (ルーター)は、その時のroute (ルート)用のマークアップをそこに描画します。つまり、私たちが開発するアプリケーションのそれぞれのroute (ルート)が、そこに描画されます。
 
-Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes will now pass.
+ここまでで、route (ルート)とそれらを繋ぐリンクを追加しました。route (ルート)へのナビゲーション用に作成した三つの受入テストは、この段階で通っているはずです。
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

@@ -1,8 +1,10 @@
-Ember CLI 是 Ember 的命令行界面。它提供了一个标准的项目结构、一套开发工具、以及一个插件系统。 它能让 Ember 开发者更专注于构建应用程序本身，而不是花时间去构建那些为了让程序运行起来所必须的支持性结构。 在命令行环境下，你可以很简单地通过 `ember --help` 来显示 Ember CLI 所提供的所有命令。 要了解某个特定命令的详细信息，输入 `ember help <command-name>` 即可。.
+Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember concepts while creating a professional looking application. If you get stuck at any point during the tutorial feel free to visit <https://github.com/ember-learn/super-rentals> for a working example of the completed app.
+
+Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## 创建一个新应用程序
 
-要用 Ember CLI 创建一个新项目，可以使用 `new` 命令。为了给本教程的下一节做准备，你可以创建一个应用程序叫做 `super-rentals`。.
+To create a new project using Ember CLI, use the `new` command. In preparation for the tutorial in the next section, you can make an app called `super-rentals`.
 
 ```shell
 ember new super-rentals
@@ -10,7 +12,7 @@ ember new super-rentals
 
 ## 目录结构
 
-`new` 命令生成由以下这些文件和目录构成的项目结构：
+The `new` command generates a project structure with the following files and directories:
 
 ```text
 |--app
@@ -30,31 +32,31 @@ README.md
 testem.js
 ```
 
-我们来看一下 Ember CLI 生成的这些文件夹和文件。
+Let's take a look at the folders and files Ember CLI generates.
 
-**app**：这里储存所有关于数据模型、组件、路由、模板和样式表的文件夹和文件。一个 Ember 项目的大部分编码都会在这个文件夹中进行。
+**app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
-**bower_components / bower.json**：Bower 是一个依赖管理工具。 在 Ember CLI 中，它用于管理前端插件和组件依赖（如 HTML、CSS、Javascript 等）。 所有 Bower 组件都安装在 `bower_components` 目录下。 打开 `bower.json`你可以看到自动安装好的依赖，包括 Ember、Ember CLI Shims和用于测试的 QUnit 。 如果我们添加一个新的前端依赖，例如 Bootstrap，我们也会发现它会列在这个文件中，并且被添加到 `bower_components` 目录。
+**bower_components / bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
-**config**：config 目录包含 `environment.js` 文件，你可以在这里配置你的应用程序。
+**config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
-**dist**：当我们构建好用于部署的应用程序时，所有的输出文件都被创建到这里。
+**dist**: When we build our app for deployment, the output files will be created here.
 
-**node_modules / package.json**：这两个目录和文件来自 npm。 npm 是 Node.js 的包管理器。 Ember 本身便是用 Node 构建的，而且它的操作也用到了大量的 Node.js 模块。 The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. 所有列在 `package.json` 中的包都会被安装到 node_modules 目录中。
+**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
 
-**public**：这个目录下包含图片、字体等静态资源。
+**public**: This directory contains assets such as images and fonts.
 
-**vendor**：这个目录包含所有不被 Bower 管理的前端依赖，诸如 Javascript 或 CSS。
+**vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
 
-**tests / testem.js**：自动化测试都在 `tests` 文件夹中。Ember CLI 的测试运行器 **testem** 则在 `testem.js` 文件中进行配置。.
+**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
-**tmp**：存放 Ember CLI 的临时文件。
+**tmp**: Ember CLI temporary files live here.
 
-**ember-cli-build.js**：这个文件描述 Ember CLI 应该如何构建我们的应用程序。
+**ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
 ## ES6 模块
 
-如果你观察一下 `app/router.js` 文件就会发现，有些语法可能对你来说不太熟悉。
+If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -80,12 +82,12 @@ export default Router;
     ember server
     
 
-也可以缩写如下：
+or, for short:
 
 ```shell
 ember s
 ```
 
-在浏览器打开[`http://localhost:4200`](http://localhost:4200)，我们会看到默认的欢迎页面。 只要你在文件`app/templates/application.hbs`里添加你的代码 ，新增加的代码就会显示在欢迎页面上。
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen. Once we add our own `app/templates/application.hbs` file, the welcome screen will be replaced with our own content.
 
-![默认的欢迎页面。](../../images/ember-cli/default-welcome-page.png)
+![default welcome screen](../../images/ember-cli/default-welcome-page.png)

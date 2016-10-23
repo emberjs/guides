@@ -1,8 +1,8 @@
-Before you start writing any Ember code, it's a good idea to get an overview of how an Ember application works.
+Перед началом написания кода на Ember, было бы не плохо получить представление о том, как работает Ember приложение.
 
 ![ember core concepts](../../images/ember-core-concepts/ember-core-concepts.png)
 
-## Router and Route Handlers
+## Маршрутизатор и обработчики маршрута
 
 Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like *What rental are they looking at?* and *Are they editing it?* In Ember, the answer to these questions is determined by the URL. The URL can be set in a few ways:
 

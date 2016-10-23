@@ -63,7 +63,7 @@ The `application` template is always on screen while the user has your applicati
 
 ```app/templates/application.hbs 
 
-## PeopleTracker
+# PeopleTracker
 
 {{outlet}}
 
@@ -112,7 +112,7 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
     <br />In your browser, open
     [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h2>` from our `application.hbs` template.
+    `<h1>` from our `application.hbs` template.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. We do that by specifying a _model_ for that route, and

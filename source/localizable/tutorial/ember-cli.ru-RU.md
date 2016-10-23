@@ -1,3 +1,5 @@
+Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember concepts while creating a professional looking application. If you get stuck at any point during the tutorial feel free to visit <https://github.com/ember-learn/super-rentals> for a working example of the completed app.
+
 Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## Creating a New App

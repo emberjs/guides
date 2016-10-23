@@ -60,7 +60,7 @@ EmberはPromisをルートもモデルフックなどで利用します。Promis
 
 ## SSR
 
-サーバーサイドレンダリング
+Server-Side Rendering
 
 [Inside FastBoot: The Road to Server-Side Rendering](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
 

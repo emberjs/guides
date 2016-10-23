@@ -54,10 +54,18 @@ export default { name: 'logger', initialize: initialize };
 
 ```app/initializers/websocket-init.js export function initialize(application) { // ... your code ... };
 
-export default { name: 'websocketInit', after: 'configReader', initialize: initialize }; ```
+export default { name: 'websocketInit', after: 'configReader', initialize: initialize };
 
-```app/initializers/asset-init.js export function initialize(application) { // ... your code ... };
-
-export default { name: 'assetInit', after: ['configReader', 'websocketInit'], initialize: initialize }; ``
+    <br />```app/initializers/asset-init.js
+    export function initialize(application) {
+      // ... your code ...
+    };
+    
+    export default {
+      name: 'assetInit',
+      after: ['configReader', 'websocketInit'],
+      initialize: initialize
+    };
+    
 
 Note that ordering only applies to initializers of the same type (i.e. application or application instance). Application initializers will always run before application instance initializers.

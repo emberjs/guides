@@ -63,7 +63,7 @@ The `application` template is always on screen while the user has your applicati
 
 ```app/templates/application.hbs 
 
-## PeopleTracker
+# PeopleTracker
 
 {{outlet}}
 
@@ -112,7 +112,7 @@ installing route-test
     <br />In your browser, open
     [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h2>` from our `application.hbs` template.
+    `<h1>` from our `application.hbs` template.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. We do that by specifying a _model_ for that route, and
@@ -217,6 +217,6 @@ ember build --env production
 
 Ember 社群重视协作，重视打造每个人都可以依赖的常用工具。 如果你对将你的应用快速稳定地部署到生产环境中有兴趣，可以查阅[Ember CLI Deploy](http://ember-cli-deploy.com/)这个插件
 
-如果你是要把应用程序部署到一个 Apache web 服务器上面，那么首先为其创建一个新的虚拟主机（virtual host）。 为了确保所有的路由都通过 index.html 来处理，请把以下指令添加到该应用程序的虚拟主机配置文件中：
+如果你是要把应用程序部署到一个 Apache web 服务器上面，那么首先为其创建一个新的虚拟主机（virtual host）。 To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
 
     FallbackResource index.html

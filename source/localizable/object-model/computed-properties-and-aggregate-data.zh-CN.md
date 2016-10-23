@@ -2,7 +2,9 @@
 
 为了完成这个需求，Ember提供了`@each`，如下代码段：
 
-```app/components/todo-list.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
+```app/components/todo-list.js export default Ember.Component.extend({ todos: null,
+
+init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
 incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
 
@@ -14,21 +16,27 @@ incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.g
     3. 往todos数组新增元素的时候；
     4. 在组件中todos数组被改变为其他的数组的时候；
     
-    Ember提供了计算属性宏[`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy)，这是Ember封装好的用于处理计算属性的方法，此方法可以简单的处理上述4点的变化。
+    Ember also provides a computed property macro
+    [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
+    which is a shorter way of expressing the above computed property:
     
     ```app/components/todo-list.js
     export default Ember.Component.extend({
-      todos: [
-        Ember.Object.create({ isDone: true }),
-        Ember.Object.create({ isDone: false }),
-        Ember.Object.create({ isDone: true })
-      ],
+      todos: null,
+    
+      init() {
+        this.set('todos', [
+          Ember.Object.create({ isDone: true }),
+          Ember.Object.create({ isDone: false }),
+          Ember.Object.create({ isDone: true }),
+        ]);
+      },
     
       incomplete: Ember.computed.filterBy('todos', 'isDone', false)
     });
     
 
-在上述的例子中，`incomplete`是一个包含了一个未完成todo项（`isDone`为`false`）的数组。
+In both of the examples above, `incomplete` is an array containing the single incomplete todo:
 
 ```javascript
 import TodoListComponent from 'app/components/todo-list';
@@ -38,7 +46,7 @@ todoListComponent.get('incomplete.length');
 // 结果为 1
 ```
 
-如果我们改变 todo的 `isDone` 属性，计算属性`incomplete`会自动更新 ︰
+If we change the todo's `isDone` property, the `incomplete` property is updated automatically:
 
 ```javascript
 let todos = todoListComponent.get('todos');
@@ -55,11 +63,13 @@ todoListComponent.get('incomplete.length');
 // 结果为1
 ```
 
-请注意，`@each` 仅适用单层属性。比如如 `todos.@each.owner.name` 或 `todos.@each.owner.@each.name`这些用法都是不允许的。.
+Note that `@each` only works one level deep. You cannot use nested forms like `todos.@each.owner.name` or `todos.@each.owner.@each.name`.
 
-有时如果你不在乎的各个数组项的属性更改。 在这种情况下使用 `[]` 键而不是 `@each`。 如果计算属性依赖于数组元素个数，可以使用键 `[]`， 只有往数组中添加新元素或从数组中删除元素或数组属性设置为另一个数组时才会出发计算属性变化。 例如：
+Sometimes you don't care if properties of individual array items change. In this case use the `[]` key instead of `@each`. Computed properties dependent on an array using the `[]` key will only update if items are added to or removed from the array, or if the array property is set to a different array. For example:
 
-```app/components/todo-list.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
+```app/components/todo-list.js export default Ember.Component.extend({ todos: null,
+
+init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
 selectedTodo: null, indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[]', function() { return this.get('todos').indexOf(this.get('selectedTodo')); }) });
 
@@ -85,7 +95,7 @@ selectedTodo: null, indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[
     hamster.get('excitingChores'); // ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!', 'CHORE 3: REVIEW CODE!']
     
 
-相比之下，使用计算的宏还有其他方式︰
+By comparison, using the computed macro abstracts some of this away:
 
 ```javascript
 const Hamster = Ember.Object.extend({
@@ -95,4 +105,4 @@ const Hamster = Ember.Object.extend({
 });
 ```
 
-计算的宏希望你能在数组中是用，所以没有必要在这些情况下使用 `[]` 键。 然而，如果是创建自定义计算属性则需要告诉 Ember.js，让Ember监测数组的变化，此时 `[]` 键就派上用场了。
+The computed macros expect you to use an array, so there is no need to use the `[]` key in these cases. However, building your own custom computed property requires you to tell Ember.js that it is watching for array changes, which is where the `[]` key comes in handy.

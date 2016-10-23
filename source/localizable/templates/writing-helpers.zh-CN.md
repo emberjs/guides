@@ -53,7 +53,7 @@ Whenever the arguments you've passed to a helper change, whether they come from 
 
 ### Helper Names
 
-Unlike [components](/components/defining-a-component/), which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples in this page.
+Unlike [components](/components/defining-a-component/), which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples on this page.
 
 ### Helper Arguments
 

@@ -110,7 +110,7 @@ export default Ember.Route.extend({ activate() { // The logger property is injec
 
 In this case, the logger will only be injected on the index route.
 
-Injections can be made onto any class that requires instantiation. This includes all of Ember's major framework classes, such as components, helpers, routes, and the router.
+Injections can be made into any class that requires instantiation. This includes all of Ember's major framework classes, such as components, helpers, routes, and the router.
 
 ### Ad Hoc Injections
 

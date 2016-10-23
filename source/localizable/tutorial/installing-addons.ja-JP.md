@@ -6,7 +6,7 @@ Super Rentals には、[ember-cli-tutorial-style](https://github.com/toddjordan/
 
 ### ember-cli-tutorial-style
 
-Super Rentalsをスタイリングするためにコピーペーストをする代わりに、チュートリアルにCSSを追加する[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)というアドオン作成しました。 addon (アドオン)は`ember-tutorial.css`というファイルを作成して、super-rentalsの`vendor`ディレクトリに置きます。 Ember CLI を実行されると、`ember-tutorial`の CSS ファイルは `vendor.css` (`/app/index.html`が参照している)に置かれます。 スタイリングを変更するために`/vendor/ember-tutorial.css`を変更することができます、アプリケーションを再起動するたびに、変更は有効になります。
+Super Rentalsをスタイリングするためにコピーペーストをする代わりに、チュートリアルにCSSを追加する[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)というアドオン作成しました。 addon (アドオン)は`ember-tutorial.css`というファイルを作成して、super-rentalsの`vendor`ディレクトリに置きます。 As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in `vendor.css` (which is referenced in `app/index.html`). We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
 
 addon (アドオン)をインストールするために、次のコマンドを実行します。
 
@@ -30,7 +30,7 @@ ember install ember-cli-mirage
 
 もし、別のシェルで`ember serve` を実行していた場合は、ビルドにMirageを含めるために、サーバーを再起動します。
 
-では Mirage を上記で定義した物件情報を返すように、`/mirage/config.js`を更新しましょう。
+Let's now configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
 ```mirage/config.js
 export default function() {

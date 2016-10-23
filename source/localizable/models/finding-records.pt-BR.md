@@ -30,7 +30,7 @@ var blogPosts = this.get('store').peekAll('blog-post'); // => no network request
 
 `store.findAll()` returns a `DS.PromiseArray` that fulfills to a `DS.RecordArray` and `store.peekAll` directly returns a `DS.RecordArray`.
 
-It's important to note that `DS.RecordArray` is not a JavaScript array. It is an object that implements [`Ember.Enumerable`](http://emberjs.com/api/classes/Ember.Enumerable.html). This is important because, for example, if you want to retrieve records by index, the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
+It's important to note that `DS.RecordArray` is not a JavaScript array, it's an object that implements [`Ember.Enumerable`](http://emberjs.com/api/classes/Ember.Enumerable.html). This is important because, for example, if you want to retrieve records by index, the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 
 ### Querying for Multiple Records
 
@@ -51,17 +51,48 @@ this.get('store').query('person', {
 
 ### Querying for A Single Record
 
-If you know your query will return only one result Ember Data provides a convenience method that will return a promise that resolves with a single record. Calling [`store.queryRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_queryRecord) will make a `GET` request with the passed object serialized as query params.
+If you are using an adapter that supports server requests capable of returning a single model object, Ember Data provides a convenience method [`store.queryRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_queryRecord)that will return a promise that resolves with that single record. The request is made via a method `queryRecord()` defined by the adapter.
 
-For example, if we know that an email uniquely identifies a person, we could search for a `person` model that has an email address of `tomster@example.com`:
+For example, if your server API provides an endpoint for the currently logged in user:
+
+```text
+// GET /api/current_user
+{
+  user: {
+    id: 1234,
+    username: 'admin'
+  }
+}
+```
+
+and the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
+
+```app/adapters/user.js // app/adapters/user.js import DS from "ember-data";
+
+export default DS.Adapter.extend({ queryRecord(modelName, query) { return Ember.$.getJSON("/api/current_user"); } });
+
+    <br />then calling [`store.queryRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_queryRecord) will retrieve that object from the server:
+    
+    ```javascript
+    store.queryRecord('user', {}).then(function(user) {
+      let username = user.get('username');
+      console.log(`Currently logged in as ${username}`);
+    });
+    
+
+As in the case of `store.query()`, a query object can also be passed to `store.queryRecord()` and is available for the adapter's `queryRecord()` to use to qualify the request. However the adapter must return a single model object, not an array containing one element, otherwise Ember Data will throw an exception.
+
+Note that Ember's default [JSON API adapter](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html) does not provide the functionality needed to support `queryRecord()` directly as it relies on REST request definitions that return result data in the form of an array.
+
+If your server API or your adapter only provides array responses but you wish to retrieve just a single record, you can alternatively use the `query()` method as follows:
 
 ```javascript
-// GET to /persons?filter[email]=tomster@example.com
-this.get('store').queryRecord('person', {
+// GET to /users?filter[email]=tomster@example.com
+tom = store.query('user', {
   filter: {
     email: 'tomster@example.com'
   }
-}).then(function(tomster) {
-  // do something with `tomster`
+}).then(function(users) {
+  return users.get("firstObject");
 });
 ```

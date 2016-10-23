@@ -246,7 +246,7 @@ Now that we have the maps API available to the application, we can create our ma
 ember g util google-maps
 ```
 
-The CLI `generate util` command will create a utility file and a unit test. We'll delete the unit test since we don't want to test Google code. Our app needs a single function, `createMapElement`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
+The CLI `generate util` command will create a utility file and a unit test. We'll delete the unit test since we don't want to test Google code. Our app needs a single function, `createMap`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
 
 <pre><code class="app/utils/google-maps.js">import Ember from 'ember';
 

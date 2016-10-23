@@ -3,23 +3,23 @@
 创建一个双向绑定的最简单方法是使用 [`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias)，指定路径到另一个对象。
 
 ```javascript
-wife = Ember.Object.create({
-  householdIncome: 80000
+husband = Ember.Object.create({
+  pets: 0
 });
 
-Husband = Ember.Object.extend({
-  householdIncome: Ember.computed.alias('wife.householdIncome')
+Wife = Ember.Object.extend({
+  pets: Ember.computed.alias('husband.pets')
 });
 
-husband = Husband.create({
-  wife: wife
+wife = Wife.create({
+  husband: husband
 });
 
-husband.get('householdIncome'); // 80000
+wife.get('pets'); // 0
 
-// Someone gets raise.
-wife.set('householdIncome', 90000);
-husband.get('householdIncome'); // 90000
+// Someone gets a pet.
+husband.set('pets', 1);
+wife.get('pets'); // 1
 ```
 
 请注意，绑定不会立即更新。 Ember会等待直到程序代码完成运行完成并且是在同步改变之前，所以你可以多次改变计算属性的值。由于绑定是很短暂的所以也不需要担心开销问题。

@@ -1,10 +1,8 @@
-To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals. It will start with a homepage, an about page and a contact page. Let's take a look at the application from the user perspective before we get started.
+Ember uses routes to define logical, addressable pages within our application.
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+In Super Rentals we want to arrive at a home page which shows a list of rentals. From there, we should be able to navigate to an about page and a contact page.
 
-We arrive at the home page which shows a list of rentals. From here, we will be able to navigate to an about page and a contact page.
-
-Now, let's start by building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, *about.js*. The route handler then loads a template.
+Let's start by building our "about" page. Remember, when the URL path `/about` is loaded, the router will map the URL to the route handler of the same name, *about.js*. The route handler then loads a template.
 
 ## An About Route
 

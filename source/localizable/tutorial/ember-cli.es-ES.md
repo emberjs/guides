@@ -1,8 +1,10 @@
-Ember CLI, la interfaz de línea de comando de Ember, proporciona una estructura de proyecto estándar, un conjunto de herramientas de desarrollo y un sistema de addons. Esto permite a los desarrolladores de Ember enfocarse en la construcción de aplicaciones en vez de desarrollar las estructuras de apoyo que las hacen funcionar. De una línea de comandos, escribir `ember --help` muestra los comandos que Ember CLI proporciona. Para obtener más información acerca de un comando específico, escribe `ember help <command-name>`.
+Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember concepts while creating a professional looking application. If you get stuck at any point during the tutorial feel free to visit <https://github.com/ember-learn/super-rentals> for a working example of the completed app.
+
+Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## Crear una nueva aplicación
 
-Para crear un nuevo proyecto utilizando Ember CLI, utiliza el comando `new`. En preparación para el tutorial en la siguiente sección, puedes crear una aplicación llamada `super-rentals`.
+To create a new project using Ember CLI, use the `new` command. In preparation for the tutorial in the next section, you can make an app called `super-rentals`.
 
 ```shell
 ember new super-rentals
@@ -10,7 +12,7 @@ ember new super-rentals
 
 ## Estructura de directorios
 
-El comando `new` genera una estructura de proyecto con los siguientes archivos y directorios:
+The `new` command generates a project structure with the following files and directories:
 
 ```text
 |--app
@@ -30,31 +32,31 @@ README.md
 testem.js
 ```
 
-Vamos a echar un vistazo a las carpetas y archivos que Ember CLI genera.
+Let's take a look at the folders and files Ember CLI generates.
 
-**app**: es donde se almacenan las carpetas y archivos para los models (modelos), components (componentes), routes (rutas), templates (plantillas) y styles (estilos). La mayoría del código que escribirás en tu proyecto de Ember será en esta carpeta.
+**app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
-**bower_components / bower.json**: Bower es una herramienta de gestión de dependencias. Es utilizada en Ember CLI para gestionar plugins de front-end y dependencias de las partes de la aplicación (HTML, CSS, JavaScript, etc.). Todos los componentes de Bower se instalan en el directorio `bower_components`. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower_components / bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
-**config**: el directorio de configuración contiene el archivo `environment.js` donde puede configurar los ajustes de su aplicación.
+**config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
-**dist**: Cuando compilamos nuestra aplicación para su implementación, los archivos se crean aquí.
+**dist**: When we build our app for deployment, the output files will be created here.
 
-**node_modules / package.json**: este directorio y archivo son de npm. npm es el gestor de paquetes para Node.js. Ember está hecho con Node y utiliza una variedad de módulos de Node.js para su funcionamiento. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Los paquetes listados `package.json` se instalan en el directorio node_modules.
+**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
 
-**public**: este directorio contiene insumos como imágenes y fuentes.
+**public**: This directory contains assets such as images and fonts.
 
-**vendor**: este directorio es donde van las dependencias front-end (como JavaScript o CSS) que no son gestionadas por Bower.
+**vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
 
-**tests / testem.js**: las pruebas automatizadas para nuestra aplicación van en la carpeta de `tests`, y el ejecutador de pruebas de Ember CLI **testem** es configurado en `testem.js`.
+**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
-**tmp**: los archivos temporales de Ember CLI van aquí.
+**tmp**: Ember CLI temporary files live here.
 
-**ember-cli-build.js**: este archivo describe cómo Ember CLI debe compilar nuestra aplicación.
+**ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
 ## Módulos ES6
 
-Si miras `app/router.js`, notarás alguna sintaxis que puede parecerte extraña.
+If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -85,7 +87,7 @@ export default Router;
     ember server
     
 
-o, para abreviar:
+or, for short:
 
 ```shell
 ember s

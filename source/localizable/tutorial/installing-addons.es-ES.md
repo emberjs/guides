@@ -6,7 +6,7 @@ Para Super Rentals, utilizaremos dos addons: [ember-cli-tutorial-style](https://
 
 ### ember-cli-tutorial-style
 
-En lugar de tener que copiar/pegar el CSS de Super Rentals, hemos creado un addon (complemento) llamado [ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style) que inmediatamente añadirá el CSS para el tutorial. El addon (complemento) funciona creando un archivo llamado `ember-tutorial.css` y poner ese archivo en el directorio `vendor` de super-rentals. Cuando Ember CLI se ejecuta, toma el archivo CSS de `ember-tutorial` y lo pone en `vendor.css` (que es referenciado en `/app/index.html`). We can make additional style tweaks to `/vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
+En lugar de tener que copiar/pegar el CSS de Super Rentals, hemos creado un addon (complemento) llamado [ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style) que inmediatamente añadirá el CSS para el tutorial. El addon (complemento) funciona creando un archivo llamado `ember-tutorial.css` y poner ese archivo en el directorio `vendor` de super-rentals. As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in `vendor.css` (which is referenced in `app/index.html`). We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
 
 Ejecuta el siguiente comando para instalar el addon (complemento):
 
@@ -30,7 +30,7 @@ ember install ember-cli-mirage
 
 Si te encuentras ejecutando `ember serve` en otra línea de comandos, reinicia el servidor para incluir Mirage en tu compilación.
 
-Vamos a configurar ahora Mirage para enviar nuestros rentals que hemos definido anteriormente actualizando `mirage/config.js`:
+Let's now configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
 ```mirage/config.js
 export default function() {

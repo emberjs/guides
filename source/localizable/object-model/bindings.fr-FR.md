@@ -3,23 +3,23 @@ Unlike most other frameworks that include some sort of binding implementation, b
 The easiest way to create a two-way binding is to use a [`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias), that specifies the path to another object.
 
 ```javascript
-wife = Ember.Object.create({
-  householdIncome: 80000
+husband = Ember.Object.create({
+  pets: 0
 });
 
-Husband = Ember.Object.extend({
-  householdIncome: Ember.computed.alias('wife.householdIncome')
+Wife = Ember.Object.extend({
+  pets: Ember.computed.alias('husband.pets')
 });
 
-husband = Husband.create({
-  wife: wife
+wife = Wife.create({
+  husband: husband
 });
 
-husband.get('householdIncome'); // 80000
+wife.get('pets'); // 0
 
-// Someone gets raise.
-wife.set('householdIncome', 90000);
-husband.get('householdIncome'); // 90000
+// Someone gets a pet.
+husband.set('pets', 1);
+wife.get('pets'); // 1
 ```
 
 Note that bindings don't update immediately. Ember waits until all of your application code has finished running before synchronizing changes, so you can change a bound property as many times as you'd like without worrying about the overhead of syncing bindings when values are transient.

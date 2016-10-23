@@ -68,7 +68,7 @@ You can define nested routes by passing a callback to `this.route`:
 
 ```app/router.js Router.map(function() { this.route('posts', function() { this.route('new'); }); });
 
-    <br />To generate the above nested route, run:
+    <br />Assuming you have already generated the `posts` route, to generate the above nested route you would run:
     
     ```shell
     ember generate route posts/new

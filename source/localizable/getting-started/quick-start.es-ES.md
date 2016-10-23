@@ -63,7 +63,7 @@ La template `application` simpre esta en la pantalla mientra el usuario tenga tu
 
 ```app/templates/application.hbs 
 
-## PeopleTracker
+# PeopleTracker
 
 {{outlet}}
 
@@ -107,7 +107,7 @@ Abre la plantilla recién creada en `app/templates/scientists.hbs` y agrega el s
 
     <br />En tu navegador web, abre [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
     see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h2>` from our `application.hbs` template.
+    `<h1>` from our `application.hbs` template.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. Podemos logrando al especificar un _model_ para esa route, y podemos especificar un modelo editando `app/routes/scientists.js`.
@@ -203,6 +203,6 @@ En este caso, le decimos a Ember que compile para el entorno de producción util
 
 La comunidad de Ember valora la colaboración y la creación de herramientas comunes en las que todos confíen. Si estas interesado en desplegar tu aplicaciin a produccion de manera rapida y confiable, cheque el addon (complemento) [Ember CLI Deploy](http://ember-cli-deploy.com/).
 
-Si implementa la aplicación a un servidor de web Apache, primero crea un nuevo virtual host de la aplicación. Para asegurarse de que todas las rutas son atendidas por index.html, agregue la siguiente directiva a la configuración de virtual host de la aplicación
+Si implementa la aplicación a un servidor de web Apache, primero crea un nuevo virtual host de la aplicación. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
 
     FallbackResource index.html

@@ -17,6 +17,8 @@ http://example.com/articles?sort=ASC&page=2
 export default Ember.Controller.extend({ queryParams: ['category'], category: null });
 
     <br />これは、URLの`category`クエリーパラメーターと`controller:articles`の`category`プロパティの間をバインドします。 言い換えると、一度`articles`ルートが入力されると、URLのあらゆる`category`クエーリーパラメーターは`controller:articles`の`category`を更新します、逆も同様です。
+    Note that you can't bind `queryParams` to computed properties, they
+    have to be values.
     
     Now we need to define a computed property of our category-filtered
     array that the `articles` template will render:

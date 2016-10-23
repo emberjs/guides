@@ -34,28 +34,28 @@ npm --version
 
 ### Bower
 
-Emberは追加の依存関係を管理するためにBower を利用しています。Bowerは npm でインストール可能なコマンドラインのユーティリティです。Bowerをインストールするために次のコマンドを実行してください。 ```npm install -g bower```
+Emberは追加の依存関係を管理するためにBowerを利用しています。Bowerはnpmでインストール可能なコマンドラインのユーティリティです。Bowerをインストールするには以下を実行してください。 ```npm install -g bower```
 
-### Watchman (optional)
+### Watchman (オプション)
 
-Mac 及び Linux の場合は、[Watchman](https://facebook.github.io/watchman/docs/install.html) をインストールすることで、ファイルウォッチングのパフォーマンスを向上することができます。.
+Mac及びLinuxの場合は、[Watchman](https://facebook.github.io/watchman/docs/install.html)をインストールすることで、ファイル監視のパフォーマンスを向上できます。.
 
 ### PhantomJS (オプション)
 
-テストをPhantomJS とともにコマンドラインから実行することで、ブラウザを開く必要が必要がなくなります。[PhantomJS ダウンロードの手順](http://phantomjs.org/download.html) を参照にしてください。.
+PhantomJSを使えば、コマンドラインからテストを実行できます。ブラウザを開く必要はありません。[PhantomJS のダウンロード手順](http://phantomjs.org/download.html)を参照してください。.
 
 ## インストール
 
-Ember のインストールには npm を利用します。
+Emberをインストールするにはnpmを利用します。
 
 ```bash
 npm install -g ember-cli
 ```
 
-To verify that your installation was successful, run:
+インストールが成功したことを確認するには、以下を実行します。
 
 ```bash
 ember -v
 ```
 
-バージョンナンバーが表示されたら、次に進む準備が整いました。
+バージョン番号が表示されたなら、次に進む準備は完了です。

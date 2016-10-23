@@ -2,7 +2,9 @@ Sometimes you have a computed property whose value depends on the properties of 
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
-```app/components/todo-list.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
+```app/components/todo-list.js export default Ember.Component.extend({ todos: null,
+
+init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
 incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
 
@@ -20,11 +22,15 @@ incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.g
     
     ```app/components/todo-list.js
     export default Ember.Component.extend({
-      todos: [
-        Ember.Object.create({ isDone: true }),
-        Ember.Object.create({ isDone: false }),
-        Ember.Object.create({ isDone: true })
-      ],
+      todos: null,
+    
+      init() {
+        this.set('todos', [
+          Ember.Object.create({ isDone: true }),
+          Ember.Object.create({ isDone: false }),
+          Ember.Object.create({ isDone: true }),
+        ]);
+      },
     
       incomplete: Ember.computed.filterBy('todos', 'isDone', false)
     });
@@ -61,7 +67,9 @@ Note that `@each` only works one level deep. You cannot use nested forms like `t
 
 Sometimes you don't care if properties of individual array items change. In this case use the `[]` key instead of `@each`. Computed properties dependent on an array using the `[]` key will only update if items are added to or removed from the array, or if the array property is set to a different array. For example:
 
-```app/components/todo-list.js export default Ember.Component.extend({ todos: [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }) ],
+```app/components/todo-list.js export default Ember.Component.extend({ todos: null,
+
+init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
 selectedTodo: null, indexOfSelectedTodo: Ember.computed('selectedTodo', 'todos.[]', function() { return this.get('todos').indexOf(this.get('selectedTodo')); }) });
 

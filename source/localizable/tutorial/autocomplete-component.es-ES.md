@@ -10,9 +10,11 @@ As before, this creates a Handlebars template (`app/templates/components/list-fi
 
 Vamos a empezar a escribir algunos tests que nos permitan pensar acerca de lo que estamos realizando. El component (componente) del filtro debería generar una lista de elementos filtrados respecto a lo que se procese dentro de este, conocido como su bloque de template interno. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
-Para nuestra prueba inicial, simplemente comprobamos que todas las ciudades que proveemos son renderizadas y que el object del anuncio es accesible desde el template (plantilla).
+For our initial test, we will check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
-Ya que planeamos utilizar Ember Data como nuestro almacén de modelos, necesitamos llamar nuestras actions (acciones) para traer los datos de forma asíncrona, por lo que retornaremos promises (promesas). Debido a que acceder a los datos persistentes por lo general se realiza de forma asíncrona, queremos utilizar el helper wait al final de nuestro test, que espera que todas las promesas se resuelvan antes de completar el test.
+Our action call to filter by city will be made asynchronously and we will have to accommodate for this in our test. We will leverage [actions](../../components/triggering-changes-with-actions/#toc_handling-action-completion) here to handle asynchronous action completion from our `filterByCity` call by returning a promise from our stubbed action.
+
+Note that we also need to add a `wait` call at the end of our test to assert the results. Ember's [`wait` helper](../../testing/testing-components/#toc_waiting-on-asynchronous-behavior) waits for all promises to resolve before running the given function callback and finishing the test.
 
 ```tests/integration/components/list-filter-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait'; import RSVP from 'rsvp';
 
@@ -71,7 +73,7 @@ test('should initially load all listings', function (assert) { // we want our ac
     
     
 
-Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
+Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
 
 ```app/templates/rentals.hbs 
 
@@ -80,7 +82,7 @@ Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` c
   </div>
   
   <h2>
-    ¡Bienvenido!
+    Welcome!
   </h2>
   
   <p>
@@ -106,9 +108,9 @@ Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` c
     {{yield results}}
     
 
-La plantilla contiene un helper [`{{input}}`](../../templates/input-helpers) que se renderiza como un campo de texto, en donde el usuario puede escribir un patrón para filtrar la lista de ciudades utilizadas en la búsqueda. La propiedad `value` del campo `input` estará ligada a la propiedad `value` en nuestro component (componente). La propiedad `key-up` estará ligada a la acción `handleFilterEntry`.
+The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be bound to the `value` property in our component. The `key-up` property will be bound to the `handleFilterEntry` action.
 
-Así es como se ve el JavaScript del component (componente):
+Here is what the component's JavaScript looks like:
 
 ```app/components/list-filter.js import Ember from 'ember';
 
@@ -125,15 +127,16 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     
     The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. Este es un patrón llamado _closure actions_.
     
-    Para implementar estas acciones, crearemos el controller (controlador) index para la aplicación.  El controller (controlador) index es ejecutado cuando el usuario va a la route (ruta) base index de la aplicación.
+    To implement these actions, we'll create a `rentals` controller.
+    Controllers can contain actions and properties available to the template of its corresponding route.
     
-    Generate a controller for the `index` page by running the following:
+    Generate a controller for the `rentals` route by running the following:
     
     ```shell
     ember g controller rentals
     
 
-Ahora bien, define tu nuevo controlador de esta manera:
+Now, define your new controller like so:
 
 ```app/controllers/rentals.js import Ember from 'ember';
 
@@ -158,7 +161,8 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             city: 'San Francisco',
             type: 'Estate',
             bedrooms: 15,
-            image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
+            image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+            description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
           }
         }, {
           type: 'rentals',
@@ -169,7 +173,8 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             city: 'Seattle',
             type: 'Condo',
             bedrooms: 1,
-            image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+            image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
+            description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
           }
         }, {
           type: 'rentals',
@@ -180,7 +185,8 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             city: 'Portland',
             type: 'Apartment',
             bedrooms: 3,
-            image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+            image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+            description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
           }
         }];
     
@@ -197,8 +203,8 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
     }
     
 
-Después de actualizar la configuración de mirage, deberíamos ver los tests pasando, así como un simple filtro en la pantalla principal, que se actualizará la lista de alquiler mientras escribes:
+After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen, that will update the rental list as you type:
 
-![pantalla de inicio con el componente de filtro](../../images/autocomplete-component/styled-super-rentals-filter.png)
+![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
 
 ![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)

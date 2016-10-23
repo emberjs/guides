@@ -1,3 +1,9 @@
+To demonstrate the basic setup and processing of an Ember application, this section will walk through building an Ember application for a property rental site called Super Rentals. It will start with a homepage, an about page and a contact page.
+
+Here's a look at the desired application before we get started.
+
+![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+
 Let's think through what we want to do on the home page of our Super Rentals application.
 
 We want our application to:
@@ -69,7 +75,7 @@ test('should show details for a specific rental', function (assert) {
 });
 </code></pre>
 
-These tests will fail, since Ember tests will fail if we don't test for anything (known as an `assertion`). Since we have an idea of what we want our application to look like, we can also add some details to the tests.
+Running `ember test --server` will show a total of 6 failed tests. Each will fail if we don't test for anything (known as an `assertion`). Since we have an idea of what we want our application to look like, we can also add some details to the tests.
 
 Ember provides test helpers that we can use to perform common tasks in acceptance tests, such as visiting routes, filling in fields, clicking on elements, and waiting for pages to render.
 
@@ -141,14 +147,14 @@ Finally, we want to verify that we can click on a specific rental and load a det
   visit('/rentals');
   click('a:contains("Grand Old Mansion")');
   andThen(function() {
-    assert.equal(currentURL(), '/rentals/grand-old-mansion', "should navigate to show route");
+    assert.equal(currentURL(), '/rentals/grand-old-mansion', 'should navigate to show route');
     assert.equal(find('.show-listing h2').text(), "Grand Old Mansion", 'should list rental title');
     assert.equal(find('.description').length, 1, 'should list a description of the property');
   });
 });
 </code></pre>
 
-Of course because we have not implemented this functionality yet, our tests will all fail. Your test output should now show all failed tests, which gives us a todo list for the rest of the tutorial.
+Of course because we have not implemented this functionality yet, our tests will all fail. So, your test output should now show all failed tests when running `ember test --server`, which gives us a todo list for the rest of the tutorial.
 
 ![failing tests](../../images/acceptance-test/failed-acceptance-tests.png)
 

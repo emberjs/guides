@@ -23,8 +23,8 @@ export default DS.Model.extend({
 
 });
 
-    <br />JavaScript オブジェクトにハードコーディングされたレンタル物件の要素を配列
-    _title_, _owner_, _city_, _type_, _image_, and _bedrooms_と同様の要素を追加しましょう:
+    <br />Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
+    _title_, _owner_, _city_, _type_, _image_, _bedrooms_ and _description_:
     
     ```app/models/rental.js
     import DS from 'ember-data';
@@ -35,7 +35,8 @@ export default DS.Model.extend({
       city: DS.attr(),
       type: DS.attr(),
       image: DS.attr(),
-      bedrooms: DS.attr()
+      bedrooms: DS.attr(),
+      description: DS.attr()
     });
     
 

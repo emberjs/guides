@@ -1,8 +1,10 @@
-Ember CLIはEmberのコマンドラインインターフェイスです。標準的なプロジェクトの構造、一連の開発ツール、それにアドオンのシステムを提供しています。 これにより、Ember 開発者はアプリケーションを実行するための構造を開発するのではなく、アプリケーションそのものの開発に焦点を絞ることができます。 コマンドラインで、 `ember --help`を実行するとEmber CLI が提供しているコマンドが表示されます。 さらに、特定のコマンドについて情報確認したい場合は、`ember help <command-name>`と実行してください。.
+Emberチュートリアルへようこそ！ このチュートリアルでは、基本的なEmberの概念を紹介するために、本格的な見た目のアプリケーションを作成していきます。 万が一チュートリアル中に立ち往生する部分があれば、<https://github.com/ember-learn/super-rentals>を参照して完成版アプリの動作例を参照してください。
+
+Ember CLIは、Emberのコマンドライン・インターフェイスです。標準的なプロジェクト構造、一連の開発ツール、そしてアドオンのシステムを提供しています。 おかげで、Ember開発者はアプリケーションそのものの開発に集中することができます。アプリケーションを実行するサポート環境の構築に手間をかける必要はありません。 コマンドラインで `ember --help` と実行すると、Ember CLIが提供しているコマンド一覧が表示されます。 コマンド毎にさらに詳しい情報を確認したければ、`ember help <command-name>` と実行してください。.
 
 ## 新規アプリケーションの作成
 
-Ember CLI を使って新規のプロジェクトを作るには、`new`コマンドを使います。チュートリアルの次のセクションので利用するために、`super-rentals`を作ります。.
+Ember CLIを使って新規にプロジェクトを作成するには、`new`コマンドを使います。次のセクションで行うチュートリアルの準備として、`super-rentals`という名前のアプリケーションを作成しておきましょう。.
 
 ```shell
 ember new super-rentals
@@ -10,7 +12,7 @@ ember new super-rentals
 
 ## ディレクトリ構造
 
-`new` コマンドは次のファイルとディレクトリ構造を含んだ、プロジェクトを作成します。
+`new`コマンドは、次に示すファイルやディレクトリから構成される、プロジェクトを作成します。
 
 ```text
 |--app
@@ -30,31 +32,31 @@ README.md
 testem.js
 ```
 
-Ember CLI が作成した、ファイルとディレクトリを確認してみましょう。
+Ember CLIが作成したファイルやディレクトリを見てみましょう。
 
-**app**: この配下にモジュール、コンポーネント、ルート、テンプレートそしてスタイルシートが含まれています。Emberプロジェクトでのコーディングはこの中で行われます。
+**app**: この配下に、モジュールやコンポーネント、ルート、テンプレート、スタイルシート用のディレクトリやファイルが含まれています。Emberプロジェクトにおけるコーディングの大半は、この中で行われます。
 
-**bower_components / bower.json**: Bower は依存関係を管理するツールです。 Ember CLI ではフロントエンドのプラグインとコンポーネント(HTML、 CSS、 JavaScript、 など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components` ディレクトリにインストールされます。 `bower.json`を開くと自動的にインストールされる、Ember、Ember CLI Shimsと QUnit (テストで利用される)が一連の依存関係を確認できます。 Bootstrapなどのフロントエンドの依存関係を追加すれば、それらもリストアップされ`bower_components`ディレクトリに追加されます。
+**bower_components / bower.json**: Bowerは依存関係を管理するツールです。 Ember CLIでは、フロントエンドのプラグインやコンポーネントの依存性(HTML、 CSS、 JavaScript など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components`ディレクトリにインストールされます。 `bower.json`を開くと、EmberやEmber CLI Shims、(テストで利用される)QUnitなどを含む、自動的にインストールされる依存関係のリストを確認できます。 Bootstrapなど、フロントエンドの依存関係を新たに追加した場合、それらはここにリストされます。そして、それらは`bower_components`ディレクトリに追加されます。
 
-**config**: アプリケーションの設定を行う`environment.js` が含まれています。
+**config**: 設定ファイル用のディレクトリです。ここには、アプリケーションの設定を行う`environment.js` が含まれています。
 
-**dist**: デプロイメント用のアプリケーションをビルドすると、この配下に出力されます。
+**dist**: デプロイ用にアプリケーションをビルドすると、出力ファイルはこの配下に作成されます。
 
-**node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネジャーです。 Ember は Node で書かれていて、様々なNode.js モジュールを利用しています。 `Package.json` ファイルは、アプリケーションが利用している、 npm の依存関係を管理しています。追加でインストールしたEmber CLI add-ons があれば、それもこのリストで管理されます。 `package.json`に乗っているパッケージは、node_modules ディレクトリにインストールされます。
+**node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネージャーです。 EmberはNodeで構築されていて、動作に様々なNode.jsモジュールを利用しています。 `package.json`ファイルは、アプリケーションのnpmの依存関係のリストを管理しています。追加でインストールしたEmber CLIアドオンがあれば、それもこのリストで管理されます。 `package.json`内にリストされているパッケージは、node_modulesディレクトリにインストールされます。
 
-**public**: このディレクトリには、画像ファイルやフォントなどの資産が含まれています。
+**public**: このディレクトリには、画像ファイルやフォントなどのアセットが含まれています。
 
-**vendor**: このディレクトリはBower によって管理されていないフロント エンド (JavaScript、CSS など) の依存関係が行きます。
+**vendor**: このディレクトリには、Bowerによって管理されないフロントエンドの依存関係 (JavaScript、CSS など) を配置します。
 
-**tests / testem.js**: アプリケーションの自動テストファイルは`tests` フォルダに、 そしてEmber CLIのテストランナー**testem** は`testem.js`に設定されます。.
+**tests / testem.js**: アプリケーションの自動テストは`tests`ディレクトリ配下に配置します。Ember CLIのテストランナー**testem**は、`testem.js`によって設定されます。.
 
-**tmp**: Ember CLI の一時ファイルはここにあります。
+**tmp**: Ember CLIの一時ファイルがここに置かれます。
 
-**ember-cli-build.js**: このファイルには、Ember CLIがどのようにアプリケーションをビルドすべきかが記載されています。
+**ember-cli-build.js**: このファイルには、Ember CLIがアプリケーションをどのようにビルドすべきかを記載します。
 
 ## ES6 モジュール
 
-`app/router.js`を見るとすぐに、あまり馴染みのないコードに気がつくかもしれません。
+`app/router.js`に目を通すと、見慣れない構文が使われてることに気がつくはずです。
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -64,30 +66,30 @@ Router.map(function() { });
 
 export default Router;
 
-    <br />Ember CLI は ECMAScript 2015 (省略してES2015、または、ES6とも呼ばれる。) モジュールを、コードの整理のために利用しています。
-    例えば、`import Ember from 'ember';` という行は、Ember.js ライブラリーを `Ember`という変数で利用できるようにします。 また`import config from
-    './config/environment';` は、 `config` という変数でアプリケーションの環境設定を利用できるようにします。 `const`は読み込み専用の変数を宣言するためのもので、こう宣言することで、他のコードによって書き換えられることが起きないことを担保します。 ファイルの終わりの `export default Router;
-    ` はこのファイルで記述したコードが、変数 `Router` としてアプリケーションの、他のパーツでも利用できるようにしています。
+    <br />Ember CLIは、ECMAScript 2015 (省略してES2015、またはES6とも呼ばれます) モジュールを使って、アプリケーションコードを構造化します。
+    例えば、`import Ember from 'ember';` という行は、Ember.jsライブラリを`Ember`という変数で利用できるようにしています。 また、`import config from
+    './config/environment';`という行は、アプリケーションの設定データを`config`という変数で利用できるようにしています。 `const`は読み込み専用の変数を宣言するためのものです。`const`を使って変数を宣言することで、他のコードで書き換えられないことが担保されます。 ファイルの終わりには`export default Router;
+    `という行があります。この行は、このファイル内で定義された変数`Router`を、アプリケーションの他の部分でも利用できるようにしています。
     
     ## Emberのアップグレード
     
-    チュートリアルの先に進む前に、インストールされた、Ember とEmber Dataが最新のバージョンであることを確認してください。 もし 、`bower.json`ファイルに記載のある、`ember` や`ember-data`ガイドの左上にあるバージョン番号よりも低い場合は、`bower.json` のバージョン番号を、編集してから `bower install`コマンドを実行して、バージョンを更新してください。
-    同様に、もし`package.json`内の`ember-data`のバージョンが低い場合は、バージョン番号を更新ご`npm install`コマンドを実行してください。
+    チュートリアルを先に進める前に、インストール済みのEmberとEmber Dataが最新のバージョンであることを確認してください。 もし、`bower.json`にある`ember`のバージョンがこのガイドの左上にあるバージョン番号よりも古い場合には、`bower.json`内のバージョン番号を更新し、`bower install`を実行してください。
+    同様に、もし`package.json`内の`ember-data`のバージョンが古かった場合は、`package.json`内のバージョン番号を更新し、`npm install`コマンドを実行してください。
     
     ## 開発サーバー
     
-    新規のプロジェクトが作成てきたことを確認するために、開発用サーバーを起動しましょう。
+    新規のプロジェクトを作成したら、うまく動いていることを確認するために、以下のようにEmberの開発サーバーを起動します。
     
     ```shell
     ember server
     
 
-または、省略された
+コマンドは次のように省略することもできます。
 
 ```shell
 ember s
 ```
 
-ブラウザで [`http://localhost:4200`](http://localhost:4200)を開くと、デフォルトのwelcomeスクリーンが表示されているはずです。 `app/templates/application.hbs`ファイルを追加すると、welcomeスクリーンは独自のコンテンツに置き換えられます。
+ブラウザで[`http://localhost:4200`](http://localhost:4200)を開くと、デフォルトのウェルカムページが表示されているはずです。 いったん`app/templates/application.hbs`ファイルを追加すると、ウェルカムページは独自のコンテンツに置き換えられます。
 
 ![default welcome screen](../../images/ember-cli/default-welcome-page.png)

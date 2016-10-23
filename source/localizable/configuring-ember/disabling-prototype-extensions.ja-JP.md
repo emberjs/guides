@@ -44,20 +44,20 @@ You can manually coerce a native array into an array that implements the require
 
 ```javascript
 var islands = ['Oahu', 'Kauai'];
-islands.contains('Oahu');
-//=> TypeError: Object Oahu,Kauai has no method 'contains'
+islands.includes('Oahu');
+//=> TypeError: Object Oahu,Kauai has no method 'includes'
 
 // Convert `islands` to an array that implements the
 // Ember enumerable and array interfaces
 Ember.A(islands);
 
-islands.contains('Oahu');
+islands.includes('Oahu');
 //=> true
 ```
 
 ### Strings
 
-Strings will no longer have the convenience methods described in the [Ember.String API reference.](http://emberjs.com/api/classes/Ember.String.html). Instead, you can use the similarly-named methods of the `Ember.String` object and pass the string to use as the first parameter:
+Strings will no longer have the convenience methods described in the [`Ember.String` API reference](http://emberjs.com/api/classes/Ember.String.html). Instead, you can use the similarly-named methods of the `Ember.String` object and pass the string to use as the first parameter:
 
 ```javascript
 "my_cool_class".camelize();

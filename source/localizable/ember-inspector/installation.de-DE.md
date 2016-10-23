@@ -1,5 +1,3 @@
-The Ember Inspector is a browser add-on designed to help you understand and debug your Ember applications.
-
 You can install the Inspector on Google Chrome, Firefox, other browsers (via a bookmarklet), and on mobile devices by following the steps below.
 
 ### Google Chrome

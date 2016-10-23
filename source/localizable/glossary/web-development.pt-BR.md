@@ -60,7 +60,7 @@ Ember faz uso disso em lugares como na chamada de um model em uma rota. Até que
 
 ## SSR
 
-Server Side Rendering
+Server-Side Rendering
 
 [Por dentro do FastBoot: A estrada para o processamento do lado do servidor (em inglês)](http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html)
 
