@@ -1,6 +1,7 @@
 # Troubleshooting
 
 ## Bundle command fails to install on OS X El Capitan
+
 `bundle` command fails to install successfully on OS X 10.11 (El Capitan). gem `eventmachine` fails to install.
 
 El Capitan no longer includes Open SSL headers by default. OpenSSL must be install manually (via homebrew or similar).
@@ -23,6 +24,7 @@ For Windows developers using [RubyInstaller](http://rubyinstaller.org/), you'll 
 https://github.com/oneclick/rubyinstaller/wiki/Development-Kit
 
 After you have a proper install, you can then run:
+
 ```sh
 gem install bundler wdm tzinfo-data
 gem update listen middleman
@@ -40,4 +42,4 @@ Unable to download data from https://rubygems.org/ - SSL_connect returned=1 errn
 4. Try again
 5. If the error still happens, try running ```gem update --system```
 
-After these workarounds, you should finally be able to run `bundle exec middleman`. You may be prompted by Windows Firewall; Click "Allow access" and you'll be in business!
+After these workarounds, you should finally be able to run `bundle exec middleman`. You may be prompted by Windows Firewall. Click "Allow access," and you'll be in business!
