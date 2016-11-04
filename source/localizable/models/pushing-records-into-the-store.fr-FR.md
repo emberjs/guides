@@ -88,3 +88,5 @@ The `push()` method is also important when working with complex endpoints. You m
 ```app/routes/confirm-payment.js import Ember from 'ember';
 
 export default Ember.Route.extend({ actions: { confirm: function(data) { $.ajax({ data: data, method: 'POST', url: 'process-payment' }).then((digitalInventory) => { this.get('store').pushPayload(digitalInventory); this.transitionTo('thank-you'); }); } } }); ```
+
+Properties that are defined on the model but are omitted in the normalized JSON API document object will not be updated. Properties that are included in the normalized JSON API document object but not defined on the Model will be ignored.

@@ -175,16 +175,44 @@ this.get('store').findRecord('user', 1).then(function(user) {
 });
 ```
 
-### Updating Existing Records
+### Retrieving Related Records
 
-Sometimes we want to set relationships on already existing records. We can simply set a `belongsTo` relationship:
+When you request data from the server for a model that has relationships with one or more others, you may want to retrieve records corresponding to those related models at the same time. For example, when retrieving a blog post, you may need to access the comments associated with the post as well. The [JSON API specification allows](http://jsonapi.org/format/#fetching-includes) servers to accept a query parameter with the key `include` as a request to include those related records in the response returned to the client. The value of the parameter should be a comma-separated list of names of the relationships required.
 
-```javascript
-let blogPost = this.get('store').peekRecord('blog-post', 1);
-let comment = this.get('store').peekRecord('comment', 1);
-comment.set('blogPost', blogPost);
-comment.save();
-```
+If you are using an adapter that supports JSON API, such as Ember's default [`JSONAPIAdapter`](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html), you can easily add the `include` parameter to the server requests created by the `findRecord()`, `findAll()`, `query()` and `queryRecord()` methods.
+
+`findRecord()` and `findAll()` each take an `options` argument in which you can specify the `include` parameter. For example, given a `post` model that has a `hasMany` relationship with a `comment` model, when retrieving a specific post we can have the server also return that post's comments as follows:
+
+```app/routes/post.js export default Ember.Route.extend({ model(params) { return this.store.findRecord('post', params.post_id, {include: 'comments'}); } });
+
+    The post's comments would then be available in your template as `model.comments`.
+    
+    Nested relationships can be specified in the `include` parameter as a dot-separated sequence of relationship names.
+    So to request both the post's comments and the authors of those comments the request
+    would look like this:
+    
+    ```app/routes/post.js
+    export default Ember.Route.extend({
+      model(params) {
+       return this.store.findRecord('post', params.post_id, {include: 'comments,comments.author'});
+      }
+    });
+    
+
+The `query()` and `queryRecord()` methods each take a `query` argument that is serialized directly into the URL query string and the `include` parameter may form part of that argument. For example:
+
+```app/routes/adele.js export default Ember.Route.extend({ model() { // GET to /artists?filter[name]=Adele&include=albums this.store.query('artist', { filter: {name: 'Adele'}, include: 'albums' }).then(function(artists) { return artists.get('firstObject'); }); } });
+
+    <br />### Updating Existing Records
+    
+    Sometimes we want to set relationships on already existing records. We can simply set a `belongsTo` relationship:
+    
+    ```javascript
+    let blogPost = this.get('store').peekRecord('blog-post', 1);
+    let comment = this.get('store').peekRecord('comment', 1);
+    comment.set('blogPost', blogPost);
+    comment.save();
+    
 
 Alternatively, we could update the `hasMany` relationship by pushing a record into the relationship:
 

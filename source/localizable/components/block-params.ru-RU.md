@@ -3,7 +3,7 @@ Components can have properties passed in ([Passing Properties to a Component](..
 ### Return values from a component with `yield`
 
 ```app/templates/index.hbs
-{{{blog-post post=model}}}
+{{blog-post post=model}}
 ```
 
 <pre><code class="app/templates/components/blog-post.hbs">{{yield post.title post.body post.author}}
