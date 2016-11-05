@@ -1,10 +1,10 @@
-index テンプレートに利用可能なレンタル品のリストを追加してみましょう。 ユーザーがレンタル品の追加、更新、削除などを行うので、レンタルが静的なものではないことは、すでに分かっています。 そのためにレンタル品の情報を保存する*rentals*モデルが必要です。 最初はシンプルに、JavaScript オブジェクトの配列をハードコードします。 のちにアプリケーションのデーターを管理する、Ember Dataを利用して置き換えいきます。
+それでは、index テンプレートに利用可能な賃貸物件のリストを追加していきましょう。 賃貸物件はゆくゆくはユーザーが追加、更新、削除できるようにするので、静的なものにはなりません。 そのため、*rentals*モデルを用意し、そこに賃貸物件の情報を保存しておく必要があります。 まずはシンプルに、ハードコードした JavaScript オブジェクトの配列を使用します。 その後で、アプリケーションのデータをしっかりと管理するよう、Ember Dataを利用する形に置き換えいきます。
 
-次に示すのが、ホームページが完成した時の姿です。
+完成したホームページは次のようになります。
 
 ![スーパー レンタルのレンタル リストとホームページ](../../images/models/super-rentals-index-with-list.png)
 
-In Ember, route handlers are responsible for loading model data. Let's open `app/routes/rentals.js` and add our hard-coded data as the return value of the `model` hook:
+Emberでは、route (ルート) ハンドラがモデルのデータを読み込む責務を担います。`app/routes/index.js` を開いて、`model`フックの値を返すように、ハードコードデータを追加しましょう。
 
 ```app/routes/rentals.js import Ember from 'ember';
 
@@ -14,15 +14,15 @@ export default Ember.Route.extend({ model() { return rentals; } });
 
     <br />ここでは、`model: function()`と同意義のES6メソッド 簡略構文の `model()`で書いています。
     
-    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
-    The model hook we've added to our `rentals` route handler will be called when a user enters the `rentals` route.
+    `model`関数は **フック** として機能します。これは、Emberがアプリケーションの様々な場面でそれを呼び出すことを意味しています。
+    `rentals` route (ルート)に追加した model (モデル)フックは、ユーザーが`rentals` route (ルート)に入った時に呼び出されます。
     
-    The `model` hook returns our _rentals_ array and passes it to our `rentals` template as the `model` property.
+    `model`フックは_rentals_配列を返します。そして、`model`属性としてその配列を`rentals`テンプレートに渡します。
     
     では、テンプレートを見てみましょう。　　
     モデルデータをリストの表示のために利用できます。
     ここでは、別のよく使われる、`{{each}}`と呼ばれる、Handlebarsヘルパーを利用します。
-    This helper will let us loop through each of the objects in our model:
+    このヘルパーはモデルの各オブジェクトをループするのに役立ちます。
     
     ```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
     <div class="jumbo">
