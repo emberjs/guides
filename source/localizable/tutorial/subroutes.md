@@ -81,7 +81,7 @@ Let's implement our newly generated `rentals/index` route by moving this `findAl
 ```app/routes/rentals.js{-2,-3,-4}
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('rental');
+    return this.get('store').findAll('rental');
   }
 });
 ```
@@ -89,7 +89,7 @@ export default Ember.Route.extend({
 ```app/routes/rentals/index.js{+2,+3,+4}
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('rental');
+    return this.get('store').findAll('rental');
   }
 });
 ```
@@ -282,13 +282,13 @@ Next, we want to edit our `show` route to retrieve the requested rental:
 ```app/routes/rentals/show.js{+2,+3,+4}
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord('rental', params.rental_id);
+    return this.get('store').findRecord('rental', params.rental_id);
   }
 });
 ```
 
 Since we added `:rental_id` to the `show` path in our router, `rental_id` is now available in our `model` hook.
-When we call `this.store.findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../../models/)).
+When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../../models/)).
 
 ## Adding the Rental To Our Template
 
