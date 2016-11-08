@@ -1,8 +1,8 @@
-Ember はプロジェクトに簡単に追加することのできる、addons (アドオン)の豊かなエコシステムを持っています。Addons (アドオン)は多くの場合、時間を節約し、あなたがあなた自身のプロジェクトに集中することのできる、幅広い機能をプロジェクトに追加します。
+Emberは、プロジェクトに簡単に追加できる、豊富なaddons (アドオン)のエコシステムを持っています。addons (アドオン)は幅広い機能をプロジェクトに追加することで、多くの場合、時間を節約し、あなたをあなた自身のプロジェクトに集中できるようにしてくれます。
 
-addons (アドオン)をブラウズするには、[Ember Observer](https://emberobserver.com/) のサイトをご覧ください。 NPMに公開されている、ember addons (アドオン)をいくつかの基準で点数付けをして、分類し一覧にしています。
+addon (アドオン)のリストを閲覧するには、[Ember Observer](https://emberobserver.com/) のWebサイトへ行ってください。 サイトへ行くと、NPMに公開されている ember addon (アドオン)が分類されて閲覧できるようになっています。addon (アドオン)は、いくつかの基準で点数付けがされています。
 
-Super Rentals には、[ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style)と[ember-cli-mirage](http://www.ember-cli-mirage.com/)の二つのaddons (アドオン)を活用しています。.
+Super Rentals では、[ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style)と[ember-cli-mirage](http://www.ember-cli-mirage.com/)という、二つのaddon (アドオン)を活用します。.
 
 ### ember-cli-tutorial-style
 

@@ -23,13 +23,13 @@ Si agregas el helper [`{{action}}`](http://emberjs.com/api/classes/Ember.Templat
     });
     
 
-You will learn about more advanced usages in the Component's [Triggering Changes With Actions](../../components/triggering-changes-with-actions/) guide, but you should familiarize yourself with the following basics first.
+Usted aprenderá acerca de usos mas avanzados de los componentes en la guía [Desencadenando cambios con Acciones](../../components/triggering-changes-with-actions/), pero primero debería familiarizarse con los siguientes conceptos básicos.
 
 ## Parámetros opcionales
 
-You can optionally pass arguments to the action handler. Any values passed to the `{{action}}` helper after the action name will be passed to the handler as arguments.
+Opcionalmente, usted puede pasar argumentos al manejador de acciones. Cualquier valor pasado al helper `{{action}}` después del nombre de la acción se pasara al manejador como argumento.
 
-For example, if the `post` argument was passed:
+Por ejemplo, si el argumento `post` es pasado:
 
 ```handlebars
 <p><button {{action "select" post}}>✓</button> {{post.title}}</p>

@@ -28,7 +28,7 @@ npm --version
 
 * Windows 或者 Mac 的用户可以下载并运行 [此 Node.js 安装程序](http://nodejs.org/download/).
 * Mac 用户通常喜欢使用 [Homebrew](http://brew.sh/) 安装 Node。安装好 Homebrew 后，运行 `brew install node` 来安装 Node.js。
-* Linux users can use [this guide for Node.js installation on Linux](https://nodejs.org/en/download/package-manager/).
+* Linux用户可参考[使用Nodejs安装手册](https://nodejs.org/en/download/package-manager/).
 
 如果你看到 npm 是过期版本，运行命令 `npm install -g npm`重新安装.
 

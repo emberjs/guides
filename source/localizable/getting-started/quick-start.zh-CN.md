@@ -16,7 +16,7 @@
 npm install -g ember-cli
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node). For a full list of dependencies necessary for an Ember CLI project, consult our [Installing Ember](../../getting-started/) guide.
+没有安装npm? [学习如何安装Node.js和npm](https://docs.npmjs.com/getting-started/installing-node) 获取所有Ember CLI项目依赖，参考 [Ember安装手册](../../getting-started/)
 
 ## 创建一个新的应用程序
 
@@ -51,15 +51,15 @@ Serving on http://localhost:4200/
 
 （在终端中键入 Ctrl-C 可以随时终止服务器。）
 
-Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice. You should see an Ember welcome page and not much else. 恭喜！ You just created and booted your first Ember app.
+浏览器中打开[`http://localhost:4200`](http://localhost:4200) 你可以看到Ember的欢迎页面。 恭喜！ 你成功的创建和运行了你的第一个Ember程序。
 
-Let's create a new template using the `ember generate` command.
+接下来我们使用 `ember generate`来创建新模板。
 
 ```sh
 ember generate template application
 ```
 
-The `application` template is always on screen while the user has your application loaded. In your editor, open `app/templates/application.hbs` and add the following:
+用户加载完应用后， `application` 模板始终存在与用户界面，打开`app/templates/application.hbs` 添加如下内容：
 
 ```app/templates/application.hbs 
 
@@ -67,19 +67,13 @@ The `application` template is always on screen while the user has your applicati
 
 {{outlet}}
 
-    <br />Notice that Ember detects the new file and automatically reloads the
-    page for you in the background. You should see that the welcome page
-    has been replaced by "PeopleTracker".
+    <br />注意，Ember会检测新增文件并在后台自动更新页面。 因此我们可以看到欢迎页面变成 “PeopleTracker”。
     
-    ## Define a Route
+    ## 定义路由
     
-    Let's build an application that shows a list of scientists. To do that,
-    the first step is to create a route. For now, you can think of routes as
-    being the different pages that make up your application.
+    我们来创建一个显示科学家列表的页面。 第一步，我们创建一个路由。 在这里我们可以路由看作组成应用程序的不同页面。
     
-    Ember comes with _generators_ that automate the boilerplate code for
-    common tasks. To generate a route, type this in your terminal:
-    
+    Ember _生成器_ 只为普通任务生成了空白模版（不包含路由）。 生成路由，在你的终端里输入：
     ```sh
     ember generate route scientists
     
@@ -109,14 +103,10 @@ installing route-test
 
 ## List of Scientists
 
-    <br />In your browser, open
-    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h1>` from our `application.hbs` template.
+    <br />浏览器中打开
+    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). 你可以看到你放在 `scientists.hbs` 的 `<h2>` 位于 `application.hbs` `<h1>` 的下方。
     
-    Now that we've got the `scientists` template rendering, let's give it some
-    data to render. We do that by specifying a _model_ for that route, and
-    we can specify a model by editing `app/routes/scientists.js`.
+    现在我们渲染了`scientists`模板, 下面我们为它渲染一些数据。 通过指定路由的 _model_ 来实现, 我们来编辑一下`app/routes/scientists.js`.
     
     We'll take the code created for us by the generator and add a `model()`
     method to the `Route`:
