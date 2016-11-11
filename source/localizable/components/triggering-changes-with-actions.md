@@ -42,7 +42,7 @@ We'll also want to use the component elsewhere, perhaps like this:
 
 ## Designing the Action
 
-When implementing an action on a component, you need to break it down into two steps:
+When implementing an action on a component that will be handled outside the component, you need to break it down into two steps:
 
 1. In the parent component, decide how you want to react to the action.
    Here, we want to have the action delete the user's account in one place, and
