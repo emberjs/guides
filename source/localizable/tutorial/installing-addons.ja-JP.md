@@ -6,7 +6,7 @@ Super Rentals では、[ember-cli-tutorial-style](https://github.com/toddjordan/
 
 ### ember-cli-tutorial-style
 
-Super Rentalsをスタイリングするためにコピーペーストをする代わりに、チュートリアルにCSSを追加する[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)というアドオン作成しました。 addon (アドオン)は`ember-tutorial.css`というファイルを作成して、super-rentalsの`vendor`ディレクトリに置きます。 As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in `vendor.css` (which is referenced in `app/index.html`). We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
+Super RentalsにスタイルをあてるためにCSSをコピーペーストをする代わりに、私たちは[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)という addon (アドオン) を作成し、チュートリアルにすぐにCSSを追加できるようにしました。 addon (アドオン)は、`ember-tutorial.css`というファイルを作成し、super-rentalsの`vendor`ディレクトリの下にそのファイルを置きます。 Ember CLI は実行されると、`ember-tutorial` CSS ファイルを(`/app/index.html`が参照している)`vendor.css`に差し込みます。 追加のスタイルを微調整するには、`vendor/ember-tutorial.css`を変更します。変更はアプリケーションを再起動することで有効になります。
 
 addon (アドオン)をインストールするために、次のコマンドを実行します。
 
@@ -14,13 +14,13 @@ addon (アドオン)をインストールするために、次のコマンドを
 ember install ember-cli-tutorial-style
 ```
 
-Ember addonsは npm パッケージなので `ember install`コマンドで`node_modules` ディレクトリにaddonをインストールし、`package.json` にエントリーを追加します。 必ず、アドオンが正常にインストールした後、サーバーを再起動してください。 サーバーを再起動すると、新しいCSSが組み込まれ、ブラウザウィンドを更新すると、次の事が表示されます:
+Ember addon (アドオン) は npm パッケージです。なので、`ember install`コマンドをすると、`node_modules` ディレクトリにインストールされ、`package.json` にエントリーが追加されます。 addon (アドオン)のインストールに成功したら、必ずサーバーを再起動してください。 サーバーを再起動すると、新しいCSSが組み込まれます。ブラウザのウィンドウを更新すると、次のような表示になるはずです。
 
 ![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
 
 ### ember-cli-mirage
 
-[Mirage](http://www.ember-cli-mirage.com/)はよく利用される、Emberに受入テストを提供する、クライアントHTTPスタビングライブラリーです。 このチュートリアルにおいては、mirage をデータのソースとして使用します。 Mirageにより、開発の段階では、バックエンドサーバーを模倣して、フェイクなデータを利用できるようになります。
+[Mirage](http://www.ember-cli-mirage.com/)は、クライアントHTTPスタブライブラリーで、Emberの受入テストでよく利用されます。 このチュートリアルでは、データソースとして Mirage を使用します。 Mirageを使い、開発中のアプリケーション用に偽のデータを生成し、バックエンドサーバーを模倣します。
 
 Mirage addon (アドオン)を次の手順でインストールしてください:
 

@@ -108,8 +108,7 @@ installing route-test
     
     现在我们渲染了`scientists`模板, 下面我们为它渲染一些数据。 通过指定路由的 _model_ 来实现, 我们来编辑一下`app/routes/scientists.js`.
     
-    We'll take the code created for us by the generator and add a `model()`
-    method to the `Route`:
+    我们来改一下有生成器生成的模版，在`Route`中使用`model()`
     
     ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
@@ -135,20 +134,15 @@ installing route-test
 
 * {{scientist}} {{/each}} 
 
-    <br />Here, we use the `each` helper to loop over each item in the array we
-    provided from the `model()` hook and print it inside an `<li>` element.
+    <br />我们使用`each`去遍历数据，数据则是通过`model()`设置，最终将数据渲染到`<li>`元素。
     
-    ## Create a UI Component
+    ## 创建UI组件
     
-    As your application grows and you notice you are sharing UI elements
-    between multiple pages (or using them multiple times on the same page),
-    Ember makes it easy to refactor your templates into reusable components.
+    随着应用程序的增长，我们需要共享一些UI元素给不同的页面(或者一个页面内的多次调用) Ember的可重用组件很方便的解决这个问题。
     
-    Let's create a `people-list` component that we can use
-    in multiple places to show a list of people.
+    我们来创建一个 `people-list` 组件，这个组件可以在多个不同的地方显示一个人员列表。
     
-    As usual, there's a generator that makes this easy for us. Make a new
-    component by typing:
+    跟往常一样，有一个生成器可以帮我们轻松地完成这个任务。 输入以下命令来生成一个新组件：
     
     ```sh
     ember generate component people-list
@@ -164,15 +158,9 @@ installing route-test
 
 * {{person}} {{/each}} 
 
-    <br />Note that we've changed the title from a hard-coded string ("List of
-    Scientists") to a dynamic property (`{{title}}`). We've also renamed
-    `scientist` to the more-generic `person`, decreasing the coupling of our
-    component to where it's used.
+    <br />注意，我们把标题从一个固定的字符串（“List of Scientists”）变成了一个动态属性（`{{title}}`）。 我们还把 `scientist` 改成了更有通用性的 `person`，这样一来，我们的组件跟其使用环境之间的耦合度就降低了。
     
-    Save this template and switch back to the `scientists` template. Replace all
-    our old code with our new componentized version. Components look like
-    HTML tags but instead of using angle brackets (`<tag>`) they use double
-    curly braces (`{{component}}`). We're going to tell our component:
+    保存一下这个模板，然后切换回 `scientists` 模板。 把原有的代码都删除，替换成新的组件化的版本。 组件调用的语法看起来很像 HTML 标签，但是使用双花括号（`{{component}}`）括起来，而不是尖括号（`<tag>`）。 We're going to tell our component:
     
     1. What title to use, via the `title` attribute.
     2. What array of people to use, via the `people` attribute. We'll

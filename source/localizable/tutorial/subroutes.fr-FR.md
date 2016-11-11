@@ -269,7 +269,7 @@ Since we added `:rental_id` to the `show` path in our router, `rental_id` is now
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
-```app/templates/rentals/show.hbs{+16}
+```app/templates/rentals/show.hbs
 <div class="jumbo show-listing">
   <h2 class="title">{{model.title}}</h2>
   <div class="right detail-section">

@@ -32,7 +32,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     * 動作を定義するJavaScriptのソースファイル(`app/components/rental-listing.js`)
     
     新規で作成した`rental-listing` component (コンポーネント)はユーザーがレンタル品とどうインタラクションを行うかを管理します。
-    To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
+    最初に、それぞれの賃貸物件の物件詳細を`rentals.hbs` テンプレートから `rental-listing.hbs`に移動しましょう。そして、画像のフィールドを追加しましょう。
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
