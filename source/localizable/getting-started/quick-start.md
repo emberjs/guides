@@ -132,6 +132,8 @@ In your browser, open
 see the `<h2>` you put in the `scientists.hbs` template, right below the
 `<h1>` from our `application.hbs` template.
 
+Templates are rendered into the {{outlet}} of its parent route's template.
+
 Now that we've got the `scientists` template rendering, let's give it some
 data to render. We do that by specifying a _model_ for that route, and
 we can specify a model by editing `app/routes/scientists.js`.
