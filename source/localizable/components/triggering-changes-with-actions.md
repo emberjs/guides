@@ -93,8 +93,8 @@ want this action to be triggered, which is the next step.
 
 ## Designing the Child Component
 
-Next, let's implement the logic to confirm that the user wants to take
-the action from the component:
+Next,
+in the child component we will implement the logic to confirm that the user wants to take the action they indicated by clicking the button:
 
 ```app/components/button-with-confirmation.js
 import Ember from 'ember';
