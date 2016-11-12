@@ -133,20 +133,18 @@ based on the value of `confirmShown`.
 
 ## Passing the Action to the Component
 
-Now we need to make it so that the `onConfirm()` event in the
-`button-with-confirmation` component triggers the
-`userDidDeleteAccount()` action in the `user-profile` component.
-One important thing to know about actions is that they're functions
-you can call like any other method on your component.
-They can be passed from one component to another like this:
+Now we need to make it so that the `userDidDeleteAccount()` action defined in the parent component `user-profile` can be triggered from within `button-with-confirmation`.
+We'll do this by passing the action to the child component in exactly the same way that we pass other properties.
+This is possible since actions are simply functions, just like any other method on a component,
+and they can therefore be passed from one component to another like this:
 
 ```app/templates/components/user-profile.hbs
 {{button-with-confirmation text="Click here to delete your account." onConfirm=(action "userDidDeleteAccount")}}
 ```
 
-This snippet says "take the `userDidDeleteAccount` action from the
-parent and make it available on the child component as
-`onConfirm`."
+This snippet says "take the `userDidDeleteAccount` action from the parent and make it available on the child component as the property `onConfirm`."
+Note the use here of the `action` helper,
+which serves to return the function named `"userDidDeleteAccount"` that we are passing to the component.
 
 We can do a similar thing for our `send-message` component:
 
