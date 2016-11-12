@@ -28,9 +28,9 @@ Mirage addon (アドオン)を次の手順でインストールしてくださ�
 ember install ember-cli-mirage
 ```
 
-もし、別のシェルで`ember serve` を実行していた場合は、ビルドにMirageを含めるために、サーバーを再起動します。
+別のシェルで`ember serve` を実行していた場合には、ビルドにMirageを含めるために、サーバーを再起動してください。
 
-Let's now configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
+それでは、定義した賃貸物件を返すようにMirageを設定しましょう。次のように`mirage/config.js`を更新してください。
 
 ```mirage/config.js
 export default function() {
@@ -77,9 +77,9 @@ export default function() {
 }
 ```
 
-この設定により Mirage は Ember Data が`/api/rentals`にGET リクエストを出すたびに、JSONでJavaScriptオブジェクトを返しますようになります。 In order for this to work, we need our application to default to making requests to the namespace of `/api`. Without this change, navigation to `/rentals` in our application would conflict with Mirage.
+この設定により、Ember Data が`/api/rentals`にGET リクエストを出すたびに、Mirage はJSON形式でJavaScriptオブジェクトを返しますようになります。 これを機能させるには、アプリケーションが発行するリクエストのデフォルトのネームスペースを`/api`にする必要があります。 この変更をせずに`/rentals`へ遷移してしまうと、Mirageと競合してしまうことになります。
 
-To do this, we want to generate an application adapter.
+デフォルトのネームスペースを変更するには、アプリケーションアダプターを生成します。
 
 ```shell
 ember generate adapter application

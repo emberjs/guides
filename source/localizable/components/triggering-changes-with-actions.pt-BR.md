@@ -28,9 +28,9 @@ We'll plan to use the component in a template something like this:
 
 ## Designing the Action
 
-When implementing an action on a component, you need to break it down into two steps:
+When implementing an action on a component that will be handled outside the component, you need to break it down into two steps:
 
-  1. In the parent component, decide how you want to react to the action. Here, we want to have the action delete the user's account in one place, and send a message in another place.
+  1. In the parent component, decide how you want to react to the action. Here, we want to have the action delete the user's account when it's used in one place, and send a message when used in another place.
   2. In the component, determine when something has happened, and when to tell the outside world. Here, we want to trigger the outside action (deleting the account or sending the message) after the user clicks the button and then confirms.
 
 Let's take it step by step.
@@ -56,8 +56,8 @@ actions: { userDidDeleteAccount() { this.get('login').deleteUser(); } } });
     
     ## Designing the Child Component
     
-    Next, let's implement the logic to confirm that the user wants to take
-    the action from the component:
+    Next,
+    in the child component we will implement the logic to confirm that the user wants to take the action they indicated by clicking the button:
     
     ```app/components/button-with-confirmation.js
     import Ember from 'ember';
