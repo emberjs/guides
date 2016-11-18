@@ -57,7 +57,7 @@ Let's take it step by step.
 ## Implementing the Action
 
 In the parent component, let's first define what we want to happen when the
-user clicks the button and then confirms. In this case, we'll find the user's
+user clicks the button and then confirms. In the first case, we'll find the user's
 account and delete it.
 
 In Ember, each component can
