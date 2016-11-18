@@ -86,7 +86,8 @@ application loaded. In your editor, open
 
 Notice that Ember detects the new file and automatically reloads the
 page for you in the background. You should see that the welcome page
-has been replaced by "PeopleTracker".
+has been replaced by "PeopleTracker". You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
+
 
 ## Define a Route
 
@@ -131,8 +132,6 @@ In your browser, open
 [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
 see the `<h2>` you put in the `scientists.hbs` template, right below the
 `<h1>` from our `application.hbs` template.
-
-Templates are rendered into the {{outlet}} of its parent route's template.
 
 Now that we've got the `scientists` template rendering, let's give it some
 data to render. We do that by specifying a _model_ for that route, and
