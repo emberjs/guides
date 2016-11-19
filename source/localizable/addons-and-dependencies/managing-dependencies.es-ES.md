@@ -2,7 +2,7 @@ Mientras estás desarrollando tu aplicación de Ember, probablemente te encontra
 
 ## Addons
 
-Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (e.g. `ember install ember-cli-sass`). Los Addons pueden tener otras dependencias modificando automáticamente el archivo `bower.json` del proyecto.
+Los Addons de Ember pueden ser instalados utilizando la [Línea de Comandos de Ember](http://ember-cli.com/extending/#developing-addons-and-blueprints) (p.ej. `ember install ember-cli-sass`). Los Addons pueden tener otras dependencias modificando automáticamente el archivo `bower.json` del proyecto.
 
 Puedes encontrar un listado de addons en [Ember Observer](http://emberobserver.com).
 
@@ -14,7 +14,7 @@ Ember CLI observa el archivo `bower.json` para ver si ha cambiado. Así recargar
 
 ## Otros assets
 
-Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
+El JavaScript de terceros no disponible como addon o paquete de Bower debería ser colocado en el directorio `vendor` dentro de tu proyecto.
 
 Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
 

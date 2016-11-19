@@ -1,6 +1,6 @@
-Components can have properties passed in ([Passing Properties to a Component](../passing-properties-to-a-component/)), but they can also return output to be used in a block expression.
+Los componentes pueden recibir propiedades ([Pasando Propiedades a un Componente](../passing-properties-to-a-component/)), pero pueden también retornar output para ser utilizado en una expresión de bloque.
 
-### Return values from a component with `yield`
+### Retornando valores desde un componente con `yield`
 
 ```app/templates/index.hbs
 {{blog-post post=model}}
@@ -9,11 +9,11 @@ Components can have properties passed in ([Passing Properties to a Component](..
 <pre><code class="app/templates/components/blog-post.hbs">{{yield post.title post.body post.author}}
 </code></pre>
 
-Here an entire blog post model is being passed to the component as a single component property. In turn the component is returning values using `yield`. In this case the yielded values are pulled from the post being passed in but anything that the component has access to can be yielded, such as an internal property or something from a service.
+Aquí un modelo completo de una publicación de un blog está siendo pasado al componente como una propiedad única de componente. A su vez, el componente está devolviendo valores utilizando `yield`. En este caso, los valores concedidos son traídos desde la publicación que se está pasando, pero también lo que sea que el componente tenga acceso puede ser concedido, como una propiedad interna o algo desde un servicio.
 
-### Consuming yielded values with block params
+### Consumiendo valores concedidos con parámetros de bloque
 
-The block expression can then use block params to bind names to any yielded values for use in the block. This allows for template customization when using a component, where the markup is provided by the consuming template, but any event handling behavior implemented in the component is retained such as `click()` handlers.
+La expresión de bloque puede usar parámetros de bloque para enlazar nombres a cualquier valor concedido para uso en el bloque. Esto permite la personalización de la plantilla cuando se usa un componente, donde el formato es proporcionado por la plantilla para consumo, pero cualquier comportamiento de manejo de evento implementado en el componente es retenido, como los manejos de `click()`.
 
 ```app/templates/index.hbs
 {{#blog-post post=model as |title body author|}}
@@ -23,11 +23,11 @@ The block expression can then use block params to bind names to any yielded valu
 {{/blog-post}}
 ```
 
-The names are bound in the order that they are passed to `yield` in the component template.
+Los nombres son enlazados en el orden en que son pasados a `yield` en la plantilla de componente.
 
-### Supporting both block and non-block component usage in one template
+### Utilizando los modos block y non-block de un componente en una plantilla
 
-It is possible to support both block and non-block usage of a component from a single component template using the `hasBlock` property.
+Es posible el uso de un componente en ambas formas, block y non-block desde una plantilla única de componente utilizando la propiedad `hasBlock`.
 
 <pre><code class="app/templates/components/blog-post.hbs">{{#if hasBlock}}
   {{yield post.title}}
@@ -40,4 +40,4 @@ It is possible to support both block and non-block usage of a component from a s
 {{/if}}
 </code></pre>
 
-This has the effect of providing a default template when using a component in the non-block form but providing yielded values for use with block params when using a block expression.
+Esto tiene el efecto de proporcionar una plantilla predeterminada cuando se utiliza un componente en la forma non-block mientras proporciona valores concedidos para uso con los parámetros de bloque cuando se usa una expresión de bloque.

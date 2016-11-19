@@ -6,43 +6,43 @@ Los inicializadores de la aplicación se ejecutan en el arranque y suponen el pr
 
 Los inicializadores de la instancia de la aplicación se ejecutan cuando se carga una instancia de la aplicación. Proporcionan una manera de configurar el estado inicial de la aplicación, así como las inyecciones de dependencias que pertenecen únicamente a la instancia de la aplicación (por ejemplo configuraciones de tests A/B).
 
-Las operaciones realizadas en los inicializadores deben ser tan ligeras como sea posible para minimizar un posible retraso en la carga de la aplicación. Apesar de que hay varias técnicas avanzadas para permitir asincronía en los inicializadores de la aplication (por ejemplo `deferReadiness` and `advanceReadiness`), estas técnicas generalmente se deberían evitar. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
+Las operaciones realizadas en los inicializadores deben ser tan ligeras como sea posible para minimizar un posible retraso en la carga de la aplicación. Apesar de que hay varias técnicas avanzadas para permitir asincronía en los inicializadores de la aplication (por ejemplo `deferReadiness` and `advanceReadiness`), estas técnicas generalmente se deberían evitar. Cualquier condición de carga asíncrona (p.ej. autorización de usuario) son casi siempre mejor manejadas en las conexiones de ruta de tu aplicación, lo que permite la interacción del DOM mientras esperas a que las condiciones se resuelvan.
 
-## Application Initializers
+## Inicializadores de Aplicación
 
-Application initializers can be created with Ember CLI's `initializer` generator:
+Los inicializadores de aplicación pueden crearse con el generador `initializer` de la CLI de Ember:
 
 ```bash
 ember generate initializer shopping-cart
 ```
 
-Let's customize the `shopping-cart` initializer to inject a `cart` property into all the routes in your application:
+Personalicemos el inicializador `shopping-cart` para inyectar una propiedad `cart` en todas las rutas en tu aplicación:
 
 ```app/initializers/shopping-cart.js export function initialize(application) { application.inject('route', 'cart', 'service:shopping-cart'); };
 
 export default { name: 'shopping-cart', initialize: initialize };
 
-    <br />## Application Instance Initializers
+    <br />## Inicializadores de Instance de Aplicación
     
-    Application instance initializers can be created with Ember CLI's `instance-initializer` generator:
+    Los inicializadores de instancia de aplicación pueden ser creados con el generador `instance-initializer`de la CLI de Ember:
     
     ```bash
     ember generate instance-initializer logger
     
 
-Let's add some simple logging to indicate that the instance has booted:
+Agreguemos un registro simple para indicar que la instancia ha arrancado:
 
 ```app/instance-initializers/logger.js export function initialize(applicationInstance) { var logger = applicationInstance.lookup('logger:main'); logger.log('Hello from the instance initializer!'); }
 
 export default { name: 'logger', initialize: initialize };
 
-    <br />## Specifying Initializer Order
+    <br />## Especificando el Orden del Inicializador
     
-    If you'd like to control the order in which initializers run, you can use the `before` and/or `after` options:
+    Si te gustaría controlar el orden en el que el inicializador se ejecuta, puedes utilizar las opciones `antes` y/o `después`:
     
     ```app/initializers/config-reader.js
     export function initialize(application) {
-      // ... your code ...
+      // ... tu código ...
     };
     
     export default {
@@ -68,4 +68,4 @@ export default { name: 'websocketInit', after: 'configReader', initialize: initi
     };
     
 
-Note that ordering only applies to initializers of the same type (i.e. application or application instance). Application initializers will always run before application instance initializers.
+Toma en cuenta que el ordenamiento sólo aplica a los inicializadores del mismo tipo (p.ej.: aplicación o instancia de aplicación). Los inicializadores de aplicación siempre funcionarán antes de los inicializadores de instancia de aplicación.

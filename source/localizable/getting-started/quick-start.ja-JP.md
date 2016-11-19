@@ -67,13 +67,16 @@ ember generate template application
 
 {{outlet}}
 
-    <br />Emberは新しいファイルを検知し、バックグラウンドでページを自動的にリロードしたはずです。 ウェルカムページが"PeopleTracker"に置き換わったのが確認できるはずです。
+    <br />Emberは新しいファイルを検知し、バックグラウンドでページを自動的にリロードしたはずです。 ウェルカムページが"PeopleTracker"に置き換わったのが確認できるはずです。 You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
     
-    ## route（ルート）の定義
+    ## Define a Route
     
-    では、科学者のリストを表示するアプリケーションを作っていきましょう。 そのためには、まずroute（ルート）を作成する必要があります。 当面は、ルートはアプリケーションを構成する別のページと考えるといいでしょう。
+    Let's build an application that shows a list of scientists. To do that,
+    the first step is to create a route. For now, you can think of routes as
+    being the different pages that make up your application.
     
-    Emberには定型コードを自動生成する、_generators_（ジェネレータ）があります。 ルートを生成するには、ターミナルで次のように入力します。
+    Ember comes with _generators_ that automate the boilerplate code for
+    common tasks. To generate a route, type this in your terminal:
     
     ```sh
     ember generate route scientists

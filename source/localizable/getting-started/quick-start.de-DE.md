@@ -69,7 +69,7 @@ The `application` template is always on screen while the user has your applicati
 
     <br />Notice that Ember detects the new file and automatically reloads the
     page for you in the background. You should see that the welcome page
-    has been replaced by "PeopleTracker".
+    has been replaced by "PeopleTracker". You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
     
     ## Define a Route
     

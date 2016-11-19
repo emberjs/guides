@@ -67,13 +67,17 @@ ember generate template application
 
 {{outlet}}
 
-    <br />注意，Ember会检测新增文件并在后台自动更新页面。 因此我们可以看到欢迎页面变成 “PeopleTracker”。
+    <br />注意，Ember会检测新增文件并在后台自动更新页面。 因此我们可以看到欢迎页面变成 “PeopleTracker”。 You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
     
-    ## 定义路由
+    ## Define a Route
     
-    我们来创建一个显示科学家列表的页面。 第一步，我们创建一个路由。 在这里我们可以路由看作组成应用程序的不同页面。
+    Let's build an application that shows a list of scientists. To do that,
+    the first step is to create a route. For now, you can think of routes as
+    being the different pages that make up your application.
     
-    Ember _生成器_ 只为普通任务生成了空白模版（不包含路由）。 生成路由，在你的终端里输入：
+    Ember comes with _generators_ that automate the boilerplate code for
+    common tasks. To generate a route, type this in your terminal:
+    
     ```sh
     ember generate route scientists
     

@@ -1,12 +1,12 @@
-レンタル品をユーザーが閲覧している時に、ユーザーが決断できるように後押しする、いくつかのインタラクティブな選択肢があるのを望んでいるかもしれません。 各レンタル品の画像を表示したり、消したりする機能を追加してみましょう。 これを実現するために、コンポーネントを利用します。
+賃貸物件のリストを閲覧している際、ユーザーはインタラクティブな選択肢を使って、意思決定に役立てたいと思うかもしれません。 各賃貸物件の画像のサイズを切り替える機能を追加することにしましょう。 これを実現するために、コンポーネントを利用します。
 
-各レンタル品の、動作を管理する`rental-listing` コンポーネントを自動生成しましょう。 dash (-記号)は各コンポーネントと各HTMLとの重複を避けるために必須です、`rental-listing`は許容されますが、`rental`は許容されません。
+それでは、各賃貸物件の動作を管理する、`rental-listing`コンポーネントを生成していきましょう。 コンポーネント名のdash (-記号)は、HTML要素名との重複を避けるために必須のものです。そのため、`rental-listing`は許容されますが、`rental`は許容されません。
 
 ```shell
 ember g component rental-listing
 ```
 
-Ember CLI はコンポーネントのための、いくつかのファイルを自動生成します。
+コマンドを実行すると、Ember CLI はコンポーネント用のファイルをほんのわずか生成します。
 
 ```shell
 installing component
@@ -16,9 +16,9 @@ installing component-test
   create tests/integration/components/rental-listing-test.js
 ```
 
-イメージをタグルする動作を作成するには、まず失敗するテストを実装します。
+画像サイズの切り替えに失敗するテストを実装するところから、始めることにしましょう。
 
-受入テストには、賃貸物件のモデルが持っている全ての情報を持つ物件のスタブを作成します。 当初は、component (コンポーネント)が`wide` classなしで描画されるようにアサートします。 画像をクリックすると、そのエレメントに`wide` クラスが追加され、もう一度クリックすると、`wide`クラスが取り除かれます。 画像をCSSセレクタ `.image` で見つけていることに注目してください。.
+受入テスト用に、賃貸物件のモデルが持っている全ての属性を持つ物件のスタブを作成します。 コンポーネントが最初は`wide`クラス属性なしで描画されることを、アサートするようにします。 そして、画像をクリックすると、その要素に`wide` クラスが追加され、もう一度クリックすると、`wide`クラスが取り除かれるようにします。 画像をCSSセレクタ `.image` で見つけていることに注目してください。.
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -26,12 +26,12 @@ moduleForComponent('rental-listing', 'Integration | Component | rental listing',
 
 test('should toggle wide class on click', function(assert) { assert.expect(3); let stubRental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 }); this.set('rentalObj', stubRental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    <br />コンポーネントは、外見を定義するつの部分で構成されています:
+    <br />コンポーネントは、次の二つの部分で構成されています。
     
-    * 外見を定義する template (テンプレート)(`app/templates/components/rental-listing.hbs`)
-    * 動作を定義するJavaScriptのソースファイル(`app/components/rental-listing.js`)
+    * 見た目を定義する template (テンプレート)(`app/templates/components/rental-listing.hbs`)
+    * 振る舞いを定義するJavaScriptのソースファイル(`app/components/rental-listing.js`)
     
-    新規で作成した`rental-listing` component (コンポーネント)はユーザーがレンタル品とどうインタラクションを行うかを管理します。
+    作成した`rental-listing` component (コンポーネント)は、ユーザーが賃貸物件をどのように見て、どう相互作用するかを管理します。
     最初に、それぞれの賃貸物件の物件詳細を`rentals.hbs` テンプレートから `rental-listing.hbs`に移動しましょう。そして、画像のフィールドを追加しましょう。
     
     ```app/templates/components/rental-listing.hbs{+2}
@@ -53,7 +53,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-`rentals.hbs` template (テンプレート)でそれまでのHTMLマークアップを`rental-listing` component (コンポーネント)　の`{{#each}}` ループを置き換えます。
+それでは、`rentals.hbs` template (テンプレート)にこれまであったHTMLマークアップを、`rental-listing` component (コンポーネント)の`{{#each}}` ループに置き換えます。
 
 ```app/templates/rentals.hbs{+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29} 
 
@@ -90,13 +90,13 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article> {{/each}}
 
-    ここでは`rental-listing` component (コンポーネント)をその名称で呼び出しています、そして各`rentalUnit`をcomponent (コンポーネント)の`rental`属性として割り当てています。
+    ここでは、`rental-listing` component (コンポーネント)を名前で呼び出しています。そして、各`rentalUnit`をcomponent (コンポーネント)の`rental`属性として割り当てています。
     
     ## 画像の表示と非表示
     
-    これで、ユーザーの要求でレンタル品の画像を表示する機能を追加できるようになりました。
+    これで、ユーザーからの要求によって賃貸物件画像を表示する機能を追加できるようになりました。
     
-    `isWide`がtrueのときだけ大きな画像を表示する`wide`クラスを設定する`{{#if}}` helper (ヘルパー)を利用します。 イメージがクリック可能だと示すテキストも追加します、そしてその両方をテストが見つけることができるようにアンカー要素でまとめて、`image`クラスを与えます。
+    `{{#if}}` helper (ヘルパー)を使って、`isWide`がtrueのときだけ`wide`クラスを設定することで、現在の賃貸物件画像を大きく表示するようにしてみましょう。 イメージがクリック可能だと示すテキストも追加します。そして、それらをアンカー要素でまとめ`image`クラスを与えることで、テストがそれを見つけられるようにします。
     
     ```app/templates/components/rental-listing.hbs{+2,+4,+5}
     <article class="listing">
@@ -120,14 +120,14 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-`isWide`の値は、component (コンポーネント)のJavaScriptフィイルから、この場合は`rental-listing.js`からきています。 起動時点では画像は小さいものにしたいので、プロパティーは`false`にします:
+`isWide`の値は、component (コンポーネント)のJavaScriptファイルから与えられます。この場合は、`rental-listing.js`から与えられることになります。 最初は画像は小さい状態にしたいので、属性は`false`に設定します。
 
 ```app/components/rental-listing.js{+4} import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false });
 
-    <br />ユーザーが画像を拡大できるように、`isWide`を付加するアクションを追加する必要があります。
-    `toggleImageSize` action (アクション)を呼び出しましょう
+    <br />ユーザーが画像を拡大できるようにするには、`isWide`を付加するアクションを追加する必要があります。
+    `toggleImageSize` アクションを呼び出しましょう。
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">

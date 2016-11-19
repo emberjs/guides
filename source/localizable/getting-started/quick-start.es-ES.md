@@ -68,13 +68,16 @@ La template `application` simpre esta en la pantalla mientra el usuario tenga tu
 {{outlet}}
 
     <br />Observe que Ember detecta el nuevo archivo y automáticamente recarga la pagina para ti en segundo plano. You should see that the welcome page
-    has been replaced by "PeopleTracker".
+    has been replaced by "PeopleTracker". You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
     
-    ##Define una Route (ruta)
+    ## Define a Route
     
-    Construyamos una aplicación que muestre una lista de científicos. Para hacerlo, el primer paso es crear una route. Por ahora, puedes pensar en las routes como paginas diferentes que componen tu aplicación.
+    Let's build an application that shows a list of scientists. To do that,
+    the first step is to create a route. For now, you can think of routes as
+    being the different pages that make up your application.
     
-    Ember viene con _generators_ que automatizan el código repetitivo para tareas comunes. To generate a route, type this in your terminal:
+    Ember comes with _generators_ that automate the boilerplate code for
+    common tasks. To generate a route, type this in your terminal:
     
     ```sh
     ember generate route scientists
