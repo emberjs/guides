@@ -1,10 +1,10 @@
-Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember concepts while creating a professional looking application. If you get stuck at any point during the tutorial feel free to visit <https://github.com/ember-learn/super-rentals> for a working example of the completed app.
+Bem-vindo ao Tutorial de Ember! Este tutorial destina-se a introduzir os conceitos básicos de Ember ao criar um aplicativo de aparência profissional. Se você ficar preso em algum ponto durante o tutorial, sinta-se livre para visitar <https://github.com/ember-learn/super-rentals> para um exemplo funcional do aplicativo concluído.
 
-Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
+Ember CLI, a interface de linha de comando do Ember, fornece uma estrutura de projeto padrão, um conjunto de ferramentas de desenvolvimento e um sistema de addon. Isto permite aos desenvolvedores Ember focar criando aplicativos ao invés de construir as estruturas de apoio que os fazem funcionar. Sua linha de comando, um rápido `ember --help` mostra os comandos que o Ember CLI fornece. Para obter mais informações sobre um comando específico, digite `ember help <nome-do-comando>`.
 
-## Creating a New App
+## Criando um novo aplicativo
 
-To create a new project using Ember CLI, use the `new` command. In preparation for the tutorial in the next section, you can make an app called `super-rentals`.
+Para criar um novo projeto usando o Ember CLI, use o comando `new`. Para preparar para o tutorial na próxima seção, você pode fazer um app chamado `super-rentals`.
 
 ```shell
 ember new super-rentals
@@ -32,7 +32,7 @@ README.md
 testem.js
 ```
 
-Let's take a look at the folders and files Ember CLI generates.
+Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
 **app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
@@ -50,9 +50,9 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
-**tmp**: Ember CLI temporary files live here.
+**tmp**: arquivos temporários do Ember CLI ficam aqui.
 
-**ember-cli-build.js**: This file describes how Ember CLI should build our app.
+**ember-cli-build.js**: este arquivo descreve como Ember CLI deve construir nosso aplicativo.
 
 ## ES6 Modules
 

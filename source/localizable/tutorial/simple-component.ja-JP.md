@@ -151,12 +151,12 @@ export default Ember.Component.extend({ isWide: false });
     </article>
     
 
-このアンカー要素をクリックすると、コンポーネントにこのアクションが送られます。 Emberは、`actions`ハッシュに移動し、`toggleImageSize`関数を呼び出します。 `toggleImageSize`関数を作成して、component (コンポーネント)の`isWide` プロパティーを切り替えられるようにしましょう:
+アンカー要素をクリックすると、コンポーネントにアクションが送られます。 すると、Emberは`actions`ハッシュへと移動し、`toggleImageSize`関数を呼び出します。 `toggleImageSize`関数を作成して、component (コンポーネント)の`isWide`プロパティを切り替えられるようにしましょう。
 
 ```app/components/rental-listing.js{+5,+6,+7,+8,+9} import Ember from 'ember';
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-これで、ブラウザーのリンク`View Larger`をクリックすると、画像が拡大されます、拡大された画像をクリックすると、画像が小さくなります。
+これで、ブラウザー上のの`View Larger`リンクをクリックすると、画像が拡大されます。そして、拡大された画像をクリックすれば、画像はまた小さくなります。
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)

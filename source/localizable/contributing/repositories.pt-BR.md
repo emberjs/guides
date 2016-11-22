@@ -1,4 +1,4 @@
-Ember é composto de várias bibliotecas. Se você deseja adicionar uma funcionalidade ou corrigir um bug, por favor, envie um pull request para o repositório apropriado. Be sure to check the libraries listed below before making changes in the Ember repository.
+Ember é composto de várias bibliotecas. Se você deseja adicionar uma funcionalidade ou corrigir um bug, por favor, envie um pull request para o repositório apropriado. Certifique-se de verificar as bibliotecas listadas abaixo antes de fazer alterações no repositório Ember.
 
 # Principais repositórios
 
@@ -20,7 +20,7 @@ Ember é composto de várias bibliotecas. Se você deseja adicionar uma funciona
 
 # Bibliotecas usadas pelo Ember
 
-These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
+Essas bibliotecas são usadas pelo Ember, mas o desenvolvimento delas ocorre em um repositório separado.
 
 ## `Backburner`
 
@@ -34,12 +34,12 @@ These libraries are part of the Ember asset output, but development of them take
 
 ## `Glimmer 2`
 
-* **glimmer** - Implements the really fast rendering engine now included in Ember
+* **glimmer** - implementa um mecanismo rápido de renderização, incluído no Ember
 * <https://github.com/tildeio/glimmer>
 
 ## `HTMLBars`
 
-* **htmlbars** - The syntax for templating most often used with Ember
+* **htmlbars** - sintaxe usada para os templates muito usada no Ember
 * <https://github.com/tildeio/htmlbars>
 
 ## `morph-range`
@@ -54,10 +54,10 @@ These libraries are part of the Ember asset output, but development of them take
 
 ## `router.js`
 
-* **router.js** - uma leve biblioteca JavaScript que baseia-se no route-recognizer e rsvp para fornecer uma API para tratamento de rotas.
+* **router.js** - uma biblioteca JavaScript leve que baseia-se no route-recognizer e rsvp para fornecer uma API para tratamento de rotas.
 * <https://github.com/tildeio/router.js>
 
 ## `RSVP`
 
-* **rsvp.js** - implementação de promessas / + uma especificação utilizada pelo Ember.
+* **rsvp.js** - uma biblioteca que implementa promises para ser usada em conjunto com Ember.
 * <https://github.com/tildeio/rsvp.js>

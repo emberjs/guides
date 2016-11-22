@@ -1,22 +1,22 @@
-Ember's internals and most of the code you will write in your applications takes place in a run loop. The run loop is used to batch, and order (or reorder) work in a way that is most effective and efficient.
+El interior de Ember y la mayoría de código que escribirás en tus aplicaciones ocurre en un bucle de ejecución. El bucle de ejecución es utilizado para el procesamiento por lotes y ordenar (o reordenar) el trabajo en una manera que más efectiva.
 
-It does so by scheduling work on specific queues. These queues have a priority, and are processed to completion in priority order.
+Se hace agendando el trabajo en colas específicas. Esas colas tienen una prioridad y son procesadas hasta terminar en orden de prioridad.
 
-For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop directly.
+Para los escenarios básicos de desarrollo de una aplicación basada en Ember, no necesitas entender el bucle de ejecución o usarlo directamente. Todas las rutas comunes están preparadas para ti y no requieres trabajar con el bucle de ejecución directamente.
 
-The most common case for using the run loop is integrating with a non-Ember API that includes some sort of asynchronous callback. For example:
+El caso más común para usar el bucle de ejecución es la integración con una API no-Ember que incluya algún tipo de llamadas asíncronas. Por ejemplo:
 
-* DOM update and event callbacks
-* `setTimeout` and `setInterval` callbacks
-* `postMessage` and `messageChannel` event handlers
-* AJAX callbacks
-* Websocket callbacks
+* Actualizaciones del DOM y retornos de llamadas desde eventos
+* Los retornos de llamada `setTimeout` y `setInterval`
+* Los manejadores de eventos de `postMessage` y `messageChannel`
+* Retorno de llamadas de AJAX
+* Retorno de llamada de WebSocket
 
-## Why is the run loop useful?
+## ¿Por qué es útil el bucle de ejecución?
 
-Very often, batching similar work has benefits. Web browsers do something quite similar by batching changes to the DOM.
+A menudo, procesar en lotes el trabajo similar tiene beneficios. Los navegadores Web hacen algo muy parecido al procesar en lotes los cambios al DOM.
 
-Consider the following HTML snippet:
+Considera el siguiente fragmento de código HTML:
 
 ```html
 <div id="foo"></div>
@@ -24,7 +24,7 @@ Consider the following HTML snippet:
 <div id="baz"></div>
 ```
 
-and executing the following code:
+y ahora ejecuta el siguiente código:
 
 ```javascript
 foo.style.height = '500px' // write
@@ -37,21 +37,21 @@ baz.style.height = '200px' // write
 baz.offsetHeight // read (recalculate style, layout, expensive!)
 ```
 
-In this example, the sequence of code forced the browser to recalculate style, and relayout after each step. However, if we were able to batch similar jobs together, the browser would have only needed to recalculate the style and layout once.
+En este ejemplo, la secuencia de código forzó al navegador a recalcular el estilo y redistribuir después de cada etapa. Sin embargo, si fuéramos capaces de procesar en lote trabajos similares juntos, el navegador tendría que recalcular el estilo y la distribución una sola vez.
 
 ```javascript
-foo.style.height = '500px' // write
-bar.style.height = '400px' // write
-baz.style.height = '200px' // write
+foo.style.height = '500px' // escritura
+bar.style.height = '400px' // escritura
+baz.style.height = '200px' // escritura
 
-foo.offsetHeight // read (recalculate style, layout, expensive!)
-bar.offsetHeight // read (fast since style and layout are already known)
-baz.offsetHeight // read (fast since style and layout are already known)
+foo.offsetHeight // lectura (recalcular estilo, distribución, ¡elevado en memoria!)
+bar.offsetHeight // lectura (rápido ya que el estilo y la distribución ya se conocen)
+baz.offsetHeight // lectura (rápido ya que el estilo y la distribución ya se conocen)
 ```
 
-Interestingly, this pattern holds true for many other types of work. Essentially, batching similar work allows for better pipelining, and further optimization.
+Interesantemente, este patrón se mantiene válido para muchos otros tipos de trabajo. Esencialmente, procesando en lote trabajo similar permite una mejor canalización y una posterior optimización.
 
-Let's look at a similar example that is optimized in Ember, starting with a `User` object:
+Veamos un ejemplo similar que está optimizado en Ember, comenzando con un objeto `User`:
 
 ```javascript
 var User = Ember.Object.extend({
@@ -63,14 +63,14 @@ var User = Ember.Object.extend({
 });
 ```
 
-and a template to display its attributes:
+y una plantilla para mostrar sus atributos:
 
 ```handlebars
 {{firstName}}
 {{fullName}}
 ```
 
-If we execute the following code without the run loop:
+Si ejecutamos el siguiente código sin el bucle de ejecución:
 
 ```javascript
 var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
@@ -81,9 +81,9 @@ user.set('lastName', 'Katz');
 // {{lastName}} y {{fullName}} son actualizados
 ```
 
-We see that the browser will rerender the template twice.
+Vemos que el navegador procesará la plantilla 2 veces.
 
-However, if we have the run loop in the above code, the browser will only rerender the template once the attributes have all been set.
+En tanto, si tenemos el bucle de ejecución en el código anterior, el navegador sólo procesará la plantilla una vez que los atributos hayan sido colocados por completo.
 
 ```javascript
 var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
@@ -93,24 +93,24 @@ user.set('firstName', 'Tom');
 user.set('lastName', 'Huda');
 ```
 
-In the above example with the run loop, since the user's attributes end up at the same values as before execution, the template will not even rerender!
+En el código anterior con el bucle de ejecución, ya que los atributos del usuario terminan con los mismos valores que antes de la ejecución, ¡incluso la plantilla no se volverá a procesar!
 
-It is of course possible to optimize these scenarios on a case-by-case basis, but getting them for free is much nicer. Using the run loop, we can apply these classes of optimizations not only for each scenario, but holistically app-wide.
+Por supuesto es posible optimizar estos escenarios caso por caso, pero conseguirlo gratis es mucho mejor. Utilizando el bucle de ejecución, podemos aplicar esta clase de optimizaciones no sólo para cada escenario, sino holísticamente para toda la aplicación.
 
-## How does the Run Loop work in Ember?
+## ¿Cómo funciona el Bucle de Ejecución en Ember?
 
-As mentioned earlier, we schedule work (in the form of function invocations) on queues, and these queues are processed to completion in priority order.
+Como se mencionó anteriormente, agendamos trabajo (en la forma de invocaciones funcionales) en colas y, esas colas, son procesadas por completo por orden de prioridad.
 
-What are the queues, and what is their priority order?
+¿Qué son las colas y cuál es su orden de prioridad?
 
 ```javascript
 Ember.run.queues
 // => ["sync", "actions", "routerTransitions", "render", "afterRender", "destroy"]
 ```
 
-Because the priority is first to last, the "sync" queue has higher priority than the "render" or "destroy" queue.
+Ya que la prioridad es del primero al último, la cola de "sincronización" tiene una prioridad más alta que las colas de "procesamiento" o "destrucción".
 
-## What happens in these queues?
+## ¿Qué ocurre en esas colas?
 
 * The `sync` queue contains binding synchronization jobs.
 * The `actions` queue is the general work queue and will typically contain scheduled tasks e.g. promises.
