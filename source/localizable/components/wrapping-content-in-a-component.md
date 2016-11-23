@@ -64,10 +64,10 @@ outside the component, it is also available inside the component block.
 
 There is also a way to share data within your blog post component with the content it is wrapping.
 In our blog post component we want to provide a way for the user to configure what type of style they want to write their post in.
-We will give them the option to specify either `markdown` or `html`.
+We will give them the option to specify either `markdown-style` or `html-style`.
 
 ```app/templates/index.hbs
-{{#blog-post editStyle="markdown"}}
+{{#blog-post editStyle="markdown-style"}}
   <p class="author">by {{author}}</p>
   {{body}}
 {{/blog-post}}
@@ -84,7 +84,7 @@ To load a different body component based on editing style, you can yield the com
 Once yielded the data can be accessed within wrapped content by referencing the `as` variable.
 
 ```app/templates/index.hbs
-{{#blog-post editStyle="markdown" as |post|}}
+{{#blog-post editStyle="markdown-style" as |post|}}
   <p class="author">by {{author}}</p>
   {{post.body}}
 {{/blog-post}}
@@ -103,9 +103,9 @@ In this case we'll add a text style option which will dictate the style of body 
 When `{{post.body}}` is instantiated, it will have both the edit style and the `postData` given by its wrapping component.
 
 ```app/templates/index.hbs
-{{#blog-post editStyle="markdown" as |post|}}
+{{#blog-post editStyle="markdown-style" as |post|}}
   <p class="author">by {{author}}</p>
-  {{post.body editStyle="compact"}}
+  {{post.body editStyle="compact-style"}}
 {{/blog-post}}
 ```
 Sharing components this way is commonly referred to as "Contextual Components",
