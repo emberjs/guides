@@ -26,7 +26,7 @@ Typos, missing words, and code samples with errors are all considered documentat
 Algumas das formas mais comuns de relatar um problema com os guias são:
 
 * Usando o ícone de lápis na parte superior direita de cada página do guia
-* Opening an issue or pull request to [the GitHub repository](https://github.com/emberjs/guides/)
+* Abrindo uma issue ou pull request para [o repositório no GitHub](https://github.com/emberjs/guides/)
 
 Ao clicar no ícone de lápis você será levado ao editor do GitHub para que você possa editar imediatamente, usando a linguagem de marcação Markdown. Esta é a maneira mais rápida de corrigir um erro de digitação, uma palavra que falta ou um erro em um exemplo de código.
 

@@ -12,7 +12,7 @@ ember new super-rentals
 
 ## Directory Structure
 
-The `new` command generates a project structure with the following files and directories:
+O coman `new` gera uma estrutura de projeto com os seguintes arquivos e diretórios:
 
 ```text
 |--app

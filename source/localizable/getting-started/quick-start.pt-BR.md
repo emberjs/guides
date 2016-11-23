@@ -16,7 +16,7 @@ Você pode instalar o Ember com um único comando usando npm, o gerenciador de p
 npm install -g ember-cli
 ```
 
-Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node). For a full list of dependencies necessary for an Ember CLI project, consult our [Installing Ember](../../getting-started/) guide.
+Não tenho npm? [Aprenda a instalar o Node.js e npm aqui](https://docs.npmjs.com/getting-started/installing-node). Para obter uma lista completa das dependências necessárias para um projeto de Ember CLI, consulte o nosso guia de [Instalação de Ember](../../getting-started/).
 
 ## Criando um novo aplicativo
 
@@ -51,9 +51,9 @@ Serving on http://localhost:4200/
 
 (Se quiser parar o servidor, digite Ctrl-C a qualquer hora no seu terminal)
 
-Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice. You should see an Ember welcome page and not much else. Parabéns! You just created and booted your first Ember app.
+Abra [http://localhost:4200/](http://localhost:4200) em seu navegador. Você deverá ver uma página de boas-vindas de Ember. Parabéns! Você acabou de criar seu primeiro aplicativo em Ember.
 
-Let's create a new template using the `ember generate` command.
+Vamos criar um novo template, usando o comando `ember generate`.
 
 ```sh
 ember generate template application

@@ -127,7 +127,7 @@ The value of `isWide` comes from our component's JavaScript file, in this case `
 export default Ember.Component.extend({ isWide: false });
 
     <br />To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
-    Let's call this action `toggleImageSize`
+    Vamos chamar esta action de `toggleImageSize`
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
