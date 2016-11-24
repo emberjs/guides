@@ -108,9 +108,7 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
     [`http://localhost:4200/scientists`](http://localhost:4200/scientists). Você deve ver o elemento `<h2>` que você colocou no `scientists.hbs` template, logo abaixo
     `<h1>` do nosso `application.hbs` template.
     
-    Now that we've got the `scientists` template rendering, let's give it some
-    data to render. We do that by specifying a _model_ for that route, and
-    we can specify a model by editing `app/routes/scientists.js`.
+    Agora que temos o "template" `scientists` sendo apresentado, vamos dar a ele alguns dados para mostrar. Para isso, especificamos um _model_ (modelo) para aquela rota, editando `app/routes/scientists.js`.
     
     Vamos pegar o código gerado para nós pelo gerador e adicionar um método`model()`
     ao `Route`:
@@ -163,19 +161,12 @@ Copie e cole o template de `scientists` no template do componente `people-list` 
 
 * {{person}} {{/each}} 
 
-    <br />Note that we've changed the title from a hard-coded string ("List of
-    Scientists") to a dynamic property (`{{title}}`). We've also renamed
-    `scientist` to the more-generic `person`, decreasing the coupling of our
-    component to where it's used.
+    <br />Observer que mudamos o título de uma string fixa ("Lista de Cientistas") para uma propriedade dinâmica (`{{title}}`). Nos também alteramos o nome de `scientist`para um mais genérico `person`, diminuindo o acoplamento do nosso componente onde ele é usado.
     
-    Save this template and switch back to the `scientists` template. Replace all
-    our old code with our new componentized version. Components look like
-    HTML tags but instead of using angle brackets (`<tag>`) they use double
-    curly braces (`{{component}}`). We're going to tell our component:
+    Salve esse template and volte novamente para o template de `scientists`. Troque todo o nosso código anterior para nossa nova versão componentizada. Components são como HTML tags, mas em vez de usarem colchetes (`<tag>`) eles usam chaves duplas (`{{component}}`). Nós vamos definir em nosso component:
     
-    1. What title to use, via the `title` attribute.
-    2. What array of people to use, via the `people` attribute. We'll
-       provide this route's `model` as the list of people.
+    1. Qual o título usar, através do atributo `title`.
+    2. Qual array de pessoas usar, através do atributo `people`. Nós iremos passar o `model` desta rota, como uma lista de pessoas.
     
     ```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
     <h2>List of Scientists</h2>

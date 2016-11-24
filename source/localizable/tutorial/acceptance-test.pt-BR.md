@@ -47,9 +47,9 @@ test('visiting /', function(assert) {
 });
 </code></pre>
 
-Now run your test suite with `ember test --server` from the command line in a new window and you'll see one successful acceptance test (along with a bunch of JSHint tests).
+Agora rode todos os testes com `ember test --server` na linha de comando em uma nova janela e você verá que o teste de aceitação está passando (junto com um monte de testes JSHint).
 
-As mentioned before, this test boilerplate is just for checking the environment, so now let's replace this test with our list of goals.
+Conforme dito anteriormente, esse teste simples é apenas para verificar o ambiente, então agora vamos substituir este teste com nossa lista de objetivos.
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';

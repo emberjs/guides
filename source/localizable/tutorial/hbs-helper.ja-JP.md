@@ -60,6 +60,6 @@ return 'Standalone'; }
 
 export default Ember.Helper.helper(rentalPropertyType); ```
 
-Handlebars はヘルパーにテンプレートから配列を引数として渡します。 ES2015 のDestructuring assignmentを使って、配列の最初の項目を取り出して、`type`という名称にしています。 これによって、配列`communityPropertyTypes`に`type`が存在するか確認ができるようになります。
+Handlebars はテンプレートからヘルパーに引数の配列を渡します。 ES2015 の分割代入を使い、配列の最初の項目を取り出して、`type`という名称にしています。 これによって、`communityPropertyTypes`配列に`type`が存在するか確認できるようになります。
 
-ブラウザで確認をすると、最初のレンタル品は"Standalone"として他の2つの項目が"Community"として表示されてるはずです。
+ブラウザで確認すると、最初の賃貸物件は"Standalone"、他の2つの物件が"Community"と表示されているはずです。
