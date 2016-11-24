@@ -52,9 +52,9 @@ It's important to note that the template scope inside the component block is the
 
 ## Sharing Component Data with its Wrapped Content
 
-There is also a way to share data within your blog post component with the content it is wrapping. In our blog post component we want to provide a way for the user to configure what type of style they want to write their post in. We will give them the option to specify either `markdown` or `html`.
+There is also a way to share data within your blog post component with the content it is wrapping. In our blog post component we want to provide a way for the user to configure what type of style they want to write their post in. We will give them the option to specify either `markdown-style` or `html-style`.
 
-```app/templates/index.hbs {{#blog-post editStyle="markdown"}} 
+```app/templates/index.hbs {{#blog-post editStyle="markdown-style"}} 
 
 <p class="author">
   by {{author}}
@@ -70,7 +70,7 @@ There is also a way to share data within your blog post component with the conte
 
 Once yielded the data can be accessed within wrapped content by referencing the `as` variable.
 
-```app/templates/index.hbs {{#blog-post editStyle="markdown" as |post|}} 
+```app/templates/index.hbs {{#blog-post editStyle="markdown-style" as |post|}} 
 
 <p class="author">
   by {{author}}
@@ -87,7 +87,7 @@ Once yielded the data can be accessed within wrapped content by referencing the 
 Since the component isn't instantiated until the component block content is rendered, we can add additional arguments within the block. In this case we'll add a text style option which will dictate the style of body text we want in our post. When `{{post.body}}` is instantiated, it will have both the edit style and the `postData` given by its wrapping component.
 
     app/templates/index.hbs
-    {{#blog-post editStyle="markdown" as |post|}}
+    {{#blog-post editStyle="markdown-style" as |post|}}
       <p class="author">by {{author}}</p>
-      {{post.body editStyle="compact"}}
+      {{post.body editStyle="compact-style"}}
     {{/blog-post}} Sharing components this way is commonly referred to as "Contextual Components", because the component is shared only with the context of the parent component's block area.

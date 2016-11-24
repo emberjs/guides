@@ -6,7 +6,7 @@ Nosso objetivo é ajudá-lo a evitar essa confusão e destravá-lo o mais rápid
 
 Content Delivery Network (Rede de Fornecimento de Conteúdo)
 
-Normalmente é um serviço pago, usado para que seu aplicativo obtenha alto desempenho. Muitos CDNs agem como proxies de cache do seu servidor origem; alguns requerem que os ativos de desenvolvimento (assets) sejam armazenados neles. Eles dão uma URL para cada recurso no seu aplicativo. Essa URL irá resolver de forma diferente para cada um, dependendo de onde, fisicamente, eles estão navegando.
+Normalmente é um serviço pago, usado para que seu aplicativo obtenha alto desempenho. Muitos CDNs agem como proxies de cache do seu servidor origem; alguns requerem que os ativos de desenvolvimento (assets) sejam armazenados neles. Eles dão uma URL para cada recurso no seu aplicativo. Essa URL irá resolver de forma diferente para cada usuário, dependendo de onde, fisicamente, eles estão navegando.
 
 Por trás dos panos, o CDN vai distribuir o seu conteúdo geograficamente com o objetivo de fazer com que os usuários finais possam baixar seu conteúdo com a menor latência possível. Por exemplo, se um usuário está na Índia, eles provavelmente terão conteúdo servido da Índia mais rapidamente do que dos Estados Unidos.
 
@@ -55,8 +55,8 @@ Chamadas assíncronas normalmente retornam uma promessa (ou deferido). Este é u
 
 Ember faz uso disso em lugares como na chamada de um model em uma rota. Até que a promise finalize, Ember é capaz de colocar a rota em um estado de "carregando".
 
-* [An open standard for sound, interoperable JavaScript promises](https://promisesaplus.com/)
-* [emberjs.com - A word on promises](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
+* [Especificação completa das Promises/A+ no JavaScript](https://promisesaplus.com/)
+* [emberjs.com - Recursos avançados para lidar com Promise em seu aplicativo](http://emberjs.com/guides/routing/asynchronous-routing/#toc_a-word-on-promises)
 
 ## SSR
 

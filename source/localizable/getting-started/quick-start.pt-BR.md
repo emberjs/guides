@@ -16,7 +16,7 @@ Você pode instalar o Ember com um único comando usando npm, o gerenciador de p
 npm install -g ember-cli
 ```
 
-Não tenho npm? [Aprenda a instalar o Node.js e npm aqui](https://docs.npmjs.com/getting-started/installing-node). Para obter uma lista completa das dependências necessárias para um projeto de Ember CLI, consulte o nosso guia de [Instalação de Ember](../../getting-started/).
+Não tem npm? [Aprenda a instalar o Node.js e npm aqui](https://docs.npmjs.com/getting-started/installing-node). Para obter uma lista completa das dependências necessárias para um projeto de Ember CLI, consulte o nosso guia de [Instalação de Ember](../../getting-started/).
 
 ## Criando um novo aplicativo
 
@@ -59,7 +59,7 @@ Vamos criar um novo template, usando o comando `ember generate`.
 ember generate template application
 ```
 
-The `application` template is always on screen while the user has your application loaded. In your editor, open `app/templates/application.hbs` and add the following:
+O template `application` estará sempre na tela, enquanto o usuário tiver com aplicação carregada. No seu editor, abra `app/templates/application.hbs` e adicione o seguinte:
 
 ```app/templates/application.hbs 
 
@@ -67,18 +67,13 @@ The `application` template is always on screen while the user has your applicati
 
 {{outlet}}
 
-    <br />Notice that Ember detects the new file and automatically reloads the
-    page for you in the background. You should see that the welcome page
-    has been replaced by "PeopleTracker". You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
+    <br />Observe que o Ember detecta o novo arquivo e automaticamente recarrega a página para você em segundo plano. Você verá que a página de boas-vindas foi substituída por "PeopleTracker". Você também adicionou um `{{outlet}}` para esta página, o que significa que qualquer rota aninhada será processada neste local.
     
-    ## Define a Route
+    ## Definindo a rota
     
-    Let's build an application that shows a list of scientists. To do that,
-    the first step is to create a route. For now, you can think of routes as
-    being the different pages that make up your application.
+    Vamos fazer uma aplicação que mostra a lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por hora, você pode pensar Routes como sendo diferentes páginas que compõe sua aplicação.
     
-    Ember comes with _generators_ that automate the boilerplate code for
-    common tasks. To generate a route, type this in your terminal:
+    Ember possui _generators_ que automatizam códigos que são usados repetidamente em tarefas comum. Para criar a rota, escreva isso no seu terminal:
     
     ```sh
     ember generate route scientists
@@ -109,17 +104,16 @@ Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seg
 
 ## Lista de Cientistas
 
-    <br />In your browser, open
-    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h1>` from our `application.hbs` template.
+    <br />No seu navegador, abra
+    [`http://localhost:4200/scientists`](http://localhost:4200/scientists). Você deve ver o elemento `<h2>` que você colocou no `scientists.hbs` template, logo abaixo
+    `<h1>` do nosso `application.hbs` template.
     
     Now that we've got the `scientists` template rendering, let's give it some
     data to render. We do that by specifying a _model_ for that route, and
     we can specify a model by editing `app/routes/scientists.js`.
     
-    We'll take the code created for us by the generator and add a `model()`
-    method to the `Route`:
+    Vamos pegar o código gerado para nós pelo gerador e adicionar um método`model()`
+    ao `Route`:
     
     ```app/routes/scientists.js{+4,+5,+6}
     import Ember from 'ember';
@@ -145,20 +139,15 @@ Agora vamos dizer para o Ember como transformar aquele vetor ("array") de string
 
 * {{scientist}} {{/each}} 
 
-    <br />Here, we use the `each` helper to loop over each item in the array we
-    provided from the `model()` hook and print it inside an `<li>` element.
+    <br />Aqui, usamos o auxiliar `each` para executar um loop sobre cada item do array que fornecemos no `model()` e imprimi-lo dentro de um elemento de `<li>`.
     
-    ## Create a UI Component
+    ## Criando um Componente UI
     
-    As your application grows and you notice you are sharing UI elements
-    between multiple pages (or using them multiple times on the same page),
-    Ember makes it easy to refactor your templates into reusable components.
+    Conforme sua aplicação cresce e você percebe que está repetindo elementos de interface em diversas páginas (ou usando o mesmo elementos várias vezes na mesma página), Ember facilita a criação de componentes reutilizáveis.
     
-    Let's create a `people-list` component that we can use
-    in multiple places to show a list of people.
+    Vamos criar um componente `people-list` que podemos usar para mostrar uma lista de pessoas em vários lugares.
     
-    As usual, there's a generator that makes this easy for us. Make a new
-    component by typing:
+    Como de costume, há um gerador que faz isto fácil para nós. Faça um novo componente digitando:
     
     ```sh
     ember generate component people-list
@@ -203,7 +192,7 @@ Volte para o seu navegador e você verá que a interface parece idêntica. A ún
 
 Você pode ver isso em ação, se você criar uma nova rota que mostra uma lista diferente de pessoas. Como um exercício para o leitor, você pode tentar criar uma rota de `programadores` que mostra uma lista de programadores famosos. Re-usando o componente `people-list`, você pode fazer isso com praticamente nenhum código.
 
-## Building For Production
+## Compilando para produção
 
 Agora que nós escrevemos a nossa aplicação e verificamos que ela funciona em desenvolvimento, é hora de prepará-la para nossos usuários. Para fazer isso, execute o seguinte comando:
 
@@ -215,8 +204,8 @@ O comando `build` empacota todos seus TDK(assets) que compõem o seu aplicativo&
 
 Neste caso, nós dissemos para o Ember compilar para o ambiente de produção através da etiqueta `--env`. Isso cria um pacote otimizado que está pronto para ser enviado para o seu servidor web. Uma vez que a compilação termine, você encontrará todos os arquivos da sua aplicação concatenados e minificados no diretório `dist /`.
 
-A comunidade Ember valoriza a colaboração e construção de ferramentas comuns que todos possam contar. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
+A comunidade Ember valoriza a colaboração e construção de ferramentas comuns que todos possam contar. Se você está interessado em publicar seu aplicativo em produção de forma rápida e confiável, confira o plugin [Ember CLI Deploy](http://ember-cli-deploy.com/).
 
-If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+Se o deploy de sua aplicação for em um servidor Apache, primeiro crie um novo host virtual para aplicação. Para ter certeza que todas as rotas serão controladas pelo index.html, adicione a seguinte diretiva na configuração do host virtual
 
     FallbackResource index.html

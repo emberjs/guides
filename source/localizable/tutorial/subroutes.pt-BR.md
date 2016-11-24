@@ -209,7 +209,7 @@ Now that our API is ready to return individual rentals, we can generate our `sho
 ember g route rentals/show
 ```
 
-You will see output like this:
+Você verá uma saída como esta:
 
 ```shell
 installing route
@@ -325,7 +325,7 @@ Clicking on the title will load the detail page for that rental.
 
 ![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
-## Final Check
+## Verificação final
 
 At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
 

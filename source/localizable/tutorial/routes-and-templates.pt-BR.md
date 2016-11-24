@@ -1,4 +1,4 @@
-Ember uses routes to define logical, addressable pages within our application.
+Ember usa rotas (routes) para definir páginas lógicas e endereçáveis dentro de nosso aplicativo.
 
 In Super Rentals we want to arrive at a home page which shows a list of rentals. From there, we should be able to navigate to an about page and a contact page.
 
@@ -12,7 +12,7 @@ If we run `ember help generate`, we can see a variety of tools that come with Em
 ember generate route about
 ```
 
-or for short,
+ou, para abreviar,
 
 ```shell
 ember g route about

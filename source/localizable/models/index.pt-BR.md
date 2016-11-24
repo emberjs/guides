@@ -1,14 +1,14 @@
-Models are objects that represent the underlying data that your application presents to the user. Different apps will have very different models, depending on what problems they're trying to solve.
+Models são objetos que representam os dados subjacentes que seu aplicativo apresenta para o usuário. Apps diferentes terão modelos diferentes, dependendo de quais os problemas que estão tentando resolver.
 
-For example, a photo sharing application might have a `Photo` model to represent a particular photo, and a `PhotoAlbum` that represents a group of photos. In contrast, an online shopping app would probably have different models, like `ShoppingCart`, `Invoice`, or `LineItem`.
+Por exemplo, um aplicativo de compartilhamento de fotos pode ter um modelo `Photo` para representar uma foto em especial e um `PhotoAlbum` que representa um grupo de fotos. Em contraste, um ecommerce provavelmente teria modelos diferentes, como `ShoppingCart`, `Invoice` ou `LineItem`.
 
-Models tend to be *persistent*. That means the user does not expect model data to be lost when they close their browser window. To make sure no data is lost, if the user makes changes to a model, you need to store the model data somewhere that it will not be lost.
+Models tendem a ser *persistentes*. Isso significa que o usuário não espera que os dados sejam perdidos após fechar a janela do navegador. Para garantir que nenhum dado seja perdido, se o usuário faz alterações para um model, você precisa armazenar os dados deste model em algum lugar que não seja perdido.
 
-Typically, most models are loaded from and saved to a server that uses a database to store data. Usually you will send JSON representations of models back and forth to an HTTP server that you have written. However, Ember makes it easy to use other durable storage, such as saving to the user's hard disk with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), or hosted storage solutions that let you avoid writing and hosting your own servers.
+Normalmente, a maioria dos models são carregados e salvos em um servidor que usa um banco de dados para armazenar dados. Geralmente, você enviará dados em formato JSON dos models para um servidor HTTP que você tenha escrito. However, Ember makes it easy to use other durable storage, such as saving to the user's hard disk with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), or hosted storage solutions that let you avoid writing and hosting your own servers.
 
-Once you've loaded your models from storage, components know how to translate model data into a UI that your user can interact with. For more information about how components get model data, see the [Specifying a Route's Model](../routing/specifying-a-routes-model) guide.
+Uma vez que você tiver carregado seus models de um armazenamento, components sabem como traduzir o modelo de dados em uma interface que o usuário pode interagir. Para obter mais informações sobre como components obtém dados de models, consulte o guia [Specifying a Route's Model](../routing/specifying-a-routes-model).
 
-Ember Data, included by default when you create a new application, is a library that integrates tightly with Ember to make it easy to retrieve models from your server as JSON, save updates back to the server, and create new models in the browser.
+Ember Data, incluído por padrão ao criar um novo aplicativo, é uma biblioteca que integra-se fortemente com Ember para tornar mais fácil de recuperar os models de seu servidor como JSON, salva as atualizações de volta para o servidor e cria novos models no navegador.
 
 Thanks to its use of the *adapter pattern*, Ember Data can be configured to work with many different kinds of backends. There is [an entire ecosystem of adapters](http://emberobserver.com/categories/ember-data-adapters) that allow your Ember app to talk to different types of servers without you writing any networking code.
 

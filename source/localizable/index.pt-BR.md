@@ -2,7 +2,7 @@ Bem vindo ao guia de Ember.js! Esse guia irá te levar de iniciante a perito em 
 
 ## Organização
 
-On the left side of each Guides page is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from basic to advanced concepts.
+Ao lado esquerdo de cada página dos Guias há uma tabela de conteúdo, organizado em seções, que podem ser expandidas para mostrar os tópicos que eles cobrem. Ambas seções e os tópicos dentro de cada seção são ordenados dos conceitos mais básicos para os mais avançados.
 
 Os guias tem o objetivo de conter explicações práticas de como construir aplicativos em Ember, enfocando os recursos mais utilizados do Ember.js. Para documentação detalhada de todos os recursos de Ember e da API, consulte a [documentação da API Ember.js](http://emberjs.com/api/).
 
@@ -16,12 +16,12 @@ Para tirar o máximo de proveito dos guias, você deve ter conhecimento básico 
 
 * **HTML, CSS, JavaScript** - a base para construção de páginas web. Você pode encontrar a documentação de cada uma destas tecnologias em [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
 * **Promises** - a maneira nativa para lidar com assincronia no seu código JavaScript. Consulte a seção relevante do [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-* **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [ES6 JavaScript Modules](http://jsmodules.io/).
+* **Módulos ES2015** - você vai entender melhor a estrutura de projeto do [Ember CLI](https://ember-cli.com/) e caminhos de importação, se você estiver confortável com [Módulos de JavaScript ES6](http://jsmodules.io/).
 * **ES2015 sintaxe** - Ember CLI vem com Babel.js por padrão, então você pode tirar proveito dos novos recursos de linguagem, como funções de seta, template strings, desestruturação e mais. Você pode verificar a [documentação de Babel.js](https://babeljs.io/docs/learn-es2015/) ou ler [compreendendo ECMAScript 6](https://leanpub.com/understandinges6/read) on-line.
 
 ## Relatar um problema
 
-Typos, missing words, and code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
+Erros de digitação, falta de palavras e exemplos de código com erros são todos considerados bugs de documentação. Se você detectar um deles, ou desejar melhorar os guias existentes, ficamos felizes em te ajudar a nos ajudar!
 
 Algumas das formas mais comuns de relatar um problema com os guias são:
 
@@ -32,6 +32,6 @@ Ao clicar no ícone de lápis você será levado ao editor do GitHub para que vo
 
 Se você deseja fazer uma contribuição mais significativa não se esqueça de verificar o nosso [rastreador de problemas](https://github.com/emberjs/guides/issues), para ver se seu problema já está sendo abordado. Se você não encontrar um problema ativo, abra um novo.
 
-If you have any questions about styling or the contributing process, you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
+Se você tiver dúvidas sobre o estilo ou o processo de contribuição, você pode conferir nosso [guia de contribuição](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). Caso suas dúvidas persistam, fale conosco no canal `#-team-learning` no [grupo de Slack](https://ember-community-slackin.herokuapp.com/).
 
 Boa sorte!

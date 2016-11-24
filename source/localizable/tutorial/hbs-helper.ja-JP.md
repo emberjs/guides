@@ -15,7 +15,7 @@ installing helper-test
   create tests/unit/helpers/rental-property-type-test.js
 ```
 
-この新しいヘルパーは、ジェネレーターが自動生成したコードから始まります。
+私たちの新しいヘルパーは、ジェネレータが生成した定型コードから始まります。
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
@@ -23,7 +23,7 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />`rental.type`を渡すように新しい helper (ヘルパー)を使うように`rental-listing` component templateを更新します:
+    <br />`rental-listing` component (コンポーネント) のテンプレートを更新して、新しいhelper (ヘルパー)を使うようにし、`rental.type`を渡しましょう。
     
     ```app/templates/components/rental-listing.hbs{-11,+12}
     <article class="listing">
@@ -48,7 +48,7 @@ export default Ember.Helper.helper(rentalPropertyType);
     </article>
     
 
-理想としては、最初の、賃貸物件として"Type: Standalone - Estate"が表示されます。 実際には、デフォルトのテンプレートヘルパーは`rental.type` の値を返しています。 これを更新して、ヘルパーが配列`communityPropertyTypes`を探してもしプロパティが存在したら `'Community'` または `'Standalone'`を返してようにしましょう。
+理想としては、最初の賃貸物件に"Type: Standalone - Estate"と表示されます。 ですが実際には、デフォルトのテンプレートヘルパーは`rental.type`の値を返しています。 ヘルパーを更新して、プロパティが配列`communityPropertyTypes`の中に存在するか調べ、もし存在したら`'Community'`または`'Standalone'`を返すようにしましょう。
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 

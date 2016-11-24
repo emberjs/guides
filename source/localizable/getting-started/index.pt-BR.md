@@ -1,10 +1,10 @@
 Começar com Ember é fácil. Projetos em Ember são criados e gerenciados pelo Ember CLI, nossa ferramenta de linha de comando. Com essa ferramenta você tem:
 
-* Aplicação moderna gestão de activos (incluindo concatenação minificação e controle de versão).
+* Gerenciamento automático dos assets (incluindo concatenação minificação e controle de versão).
 * Geradores para ajudar a criar componentes, rotas e muito mais.
 * Uma estrutura de projeto padrão, tornando mais fácil entender aplicações Ember existentes.
 * Suporte a Javascript ES2015/ES6 através do projeto [Babel](http://babeljs.io/docs/learn-es2015/). Isso inclui suporte para [módulos de JavaScript](http://exploringjs.com/es6/ch_modules.html), que são usados ao longo deste guia.
-* Uma estrutura completa de testes automatizado com [QUnit](https://qunitjs.com/).
+* Uma estrutura completa de testes automatizados com [QUnit](https://qunitjs.com/).
 * A habilidade de usufruir de um crescente ecossistema de [Ember Addons](https://emberobserver.com/).
 
 ## Dependências
@@ -15,7 +15,7 @@ Ember requer que o Git esteja instalado para gerenciar muitas de suas dependênc
 
 ### Node.js e npm
 
-Ember CLI é construído com JavaScript e espera [Node.js](https://nodejs.org/) esteja disponível. Ele também precisa de dependências disponível através do [npm](https://www.npmjs.com/). npm são pacotes construídos com Node.js, então, se seu computador tem Node.js instalado, você está pronto para começar.
+Ember CLI é construído com JavaScript e espera [Node.js](https://nodejs.org/) esteja disponível. Ele também precisa de dependências disponíveis através do [npm](https://www.npmjs.com/). npm são pacotes construídos com Node.js, então, se seu computador tem Node.js instalado, você está pronto para começar.
 
 Ember requer Node.js 0.12 ou superior e npm 2.7 ou superior. Caso não tenha certeza se tem a versão correta, execute isso na sua linha de comando:
 
@@ -34,7 +34,7 @@ Se você estiver com uma versão desatualizada do npm, execute `npm install -g n
 
 ### Bower
 
-Ember requer Bower para gerenciar dependências adicionais. Bower é um utilitário de linha de comando que você instalar com npm. Para instalar o Bower execute, ```npm install -g bower```
+Ember requer Bower para gerenciar dependências adicionais. Bower é um utilitário de linha de comando que você instala com npm. Para instalar o Bower execute, ```npm install -g bower```
 
 ### Watchman (opcional)
 

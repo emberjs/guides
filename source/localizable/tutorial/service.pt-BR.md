@@ -4,9 +4,9 @@ For Super Rentals, we want to be able to display a map showing where each rental
   2. A service to keep a cache of rendered maps to use in different places in the application.
   3. A utility function to create a map from the Google Maps API.
 
-We'll start by displaying the map and work our way back to using the Google Map API.
+Vamos começar exibindo o mapa e depois trabalhar para usar a API do Google Maps.
 
-### Display Maps With a Component
+### Exibir mapas em um componente
 
 We'll start by adding a component that shows the rental's city on a map.
 
@@ -163,7 +163,7 @@ Note that the test uses a dummy object as the returned map element. This can be 
 Now implement the service as follows. Note that we check if a map already exists for the given location and use that one, otherwise we call a Google Maps utility to create one. We abstract our interaction with the maps API behind an Ember utility so that we can test our service without making network requests to Google.
 
 ```app/services/maps.js
-import Ember from 'ember';
+mport Ember from 'ember';
 import MapUtil from '../utils/google-maps';
 
 export default Ember.Service.extend({
@@ -239,7 +239,7 @@ module.exports = function(defaults) {
 };
 </code></pre>
 
-### Accessing the Google Maps API
+### Acessando a API do Google Maps
 
 Now that we have the maps API available to the application, we can create our map utility. Utility files can be generated using Ember CLI.
 

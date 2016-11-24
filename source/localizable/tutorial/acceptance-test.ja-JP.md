@@ -28,7 +28,7 @@ installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```
 
-新しいテストファイルを開くと、`list-rentals` route (ルート)に移動して、route (ルート)が読み読まれることを確認するボイラープレートコードが現れます。 このボイラープレートコードは、初めての動作するacceptance test (受入テスト)へとあなたを導いてくれます。 ここではindex route (ルート)、つまり`/`をテストしているので、まず`/list-rentals`を編集して`/`とします。
+新しいテストファイルを開くと、`list-rentals` route (ルート)に移動して、route (ルート)が読み読まれることを確認する定型コードが現れます。 このボイラープレートコードは、初めての動作するacceptance test (受入テスト)へとあなたを導いてくれます。 ここではindex route (ルート)、つまり`/`をテストしているので、まず`/list-rentals`を編集して`/`とします。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
@@ -49,7 +49,7 @@ test('visiting /', function(assert) {
 
 では、新しいコマンドラインウィンドウを立ち上げ、そこで`ember test --server`と打ってテストスイートを実行してください。JSHintの束と共に、acceptance test (受入テスト)が成功することを確認できるはずです。
 
-先に述べたように、このボイラープレートなテストコードは環境をチェックするだけのためのものです。それでは、私たちのゴールに合わせて、このテストを置き換えていきましょう。
+先に述べたように、この定型のテストコードは環境をチェックするだけのためのものです。それでは、私たちのゴールに合わせて、このテストを置き換えていきましょう。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';

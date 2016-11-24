@@ -1,25 +1,25 @@
-To deploy an Ember application simply transfer the output from `ember build` to a web server. This can be done with standard Unix file transfer tools such as `rsync` or `scp`. There are also services that will let you deploy easily.
+Para publicar um aplicativo Ember simplesmente transfira a saída do comando `ember build` para um servidor web. Isso pode ser feito com ferramentas de transferência de arquivos padrões do Unix como `rsync` ou `scp`. Existem também serviços que lhe permitem publicar facilmente.
 
-## Deploying with scp
+## Publicando com scp
 
-You can deploy your application to any web server by copying the output from `ember build` to any web server:
+Você pode publicar seu aplicativo para qualquer servidor copiando a saída do comando `ember build` para qualquer servidor web:
 
 ```shell
 ember build
 scp -r dist/* myserver.com:/var/www/public/
 ```
 
-## Deploying to surge.sh
+## Publicando para o surge.sh
 
-[Surge.sh](http://surge.sh/) allows you to publish any folder to the web for free. To deploy an Ember application you can simply deploy the folder produced by `ember build`.
+[Surge.sh](http://surge.sh/) permite que você publique qualquer pasta na web gratuitamente. Para publicar um aplicativo Ember, você simplesmente pode publicar a pasta produzida pelo comando `ember build`.
 
-You will need to have the surge cli tool installed:
+Você precisará ter o programa de linha de comando surge cli instalado:
 
 ```shell
 npm install -g surge
 ```
 
-Then you can use the `surge` command to deploy your application. Note you will also need to provide a copy of index.html with the filename 200.html so that surge can support Ember's client-side routing.
+Então você pode usar o comando de `surge` para publicar seu aplicativo. Note que você também precisará fornecer uma cópia do arquivo index.html com o nome 200.html para que o surge dê suporte às rotas no lado do cliente (client-side routing) do Ember.
 
 ```shell
 ember build --environment=development
@@ -28,9 +28,9 @@ cp index.html 200.html
 surge
 ```
 
-Press return to accept the defaults when deploying the first time. You will be provided with a URL in the form `funny-name.surge.sh` that you can use for repeated deployments.
+Aparte a tecla "Enter" para aceitar as conficurações padrões ao publicar pela primeira vez. Será fornecida uma URL no formato `funny-name.surge.sh` que você pode usar para publicar repetidas vezes.
 
-So to deploy to the same URL after making changes, perform the same steps, this time providing the URL for your site:
+Então para publicar para uma mesma URL depois de fazer alterações, siga as mesmas etapas, desta vez fornecendo a URL para seu site:
 
 ```shell
 rm -rf dist
@@ -40,4 +40,4 @@ cp index.html 200.html
 surge funny-name.surge.sh
 ```
 
-We use `--enviroment=development` here so that Mirage will continue to mock fake data. However, normally we would use `ember build --environment=production` which does more to make your code ready for production.
+We use `--enviroment=development` here so that Mirage will continue to mock fake data. No entanto, normalmente nós usaríamos `ember build --environment=production` que faz mais para tornar seu código pronto para produção.
