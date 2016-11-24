@@ -13,7 +13,7 @@ Getting started with Ember is easy. Ember projects are created and managed throu
 
 Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
 
-### Node.js and npm
+### Nodes.js et npm
 
 Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/) runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js installed you are ready to go.
 

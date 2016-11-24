@@ -1,4 +1,4 @@
-Ember provides several configuration options that can help you debug problems with your application.
+Ember fornece vários opções de configuração que podem ajudar a debuggar problemas com seu aplicativo.
 
 ## Routing
 
@@ -18,7 +18,7 @@ export default Ember.Application.extend({ // Basic logging, e.g. "Transitioned i
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     
 
-#### View all registered templates
+#### Ver todos os templates registrados
 
 ```javascript
 Ember.keys(Ember.TEMPLATES)

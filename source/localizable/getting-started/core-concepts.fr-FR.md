@@ -40,7 +40,7 @@ Here, `{{name}}` is a property provided by the template's context.
 
 Besides properties, double curly braces (`{{}}`) may also contain helpers and components, which we'll discuss later.
 
-## Models
+## Modèles
 
 Models represent persistent state.
 

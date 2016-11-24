@@ -5,7 +5,7 @@ Nós vamos cobrir estas etapas:
   1. Instalando o Ember.
   2. Criando um novo aplicativo.
   3. Definindo uma rota.
-  4. Escrevendo um componente de UI (Interface com usuário).
+  4. Escrevendo um componente de UI (User Interface / Interface do Usuário).
   5. Construindo seu aplicativo para ser instalado ("deployed") em produção.
 
 ## Instalando o Ember
@@ -35,14 +35,14 @@ Este comando irá criar um novo diretório chamado `ember-quickstart` e configur
 
 Ao fornecer, em um pacote integrado, tudo que você precisa para construir aplicações web prontas para produção, Ember faz com que seja uma moleza começar novos projetos.
 
-Vamos ver se tudo está funcionando corretamente. `cd` para o diretório de aplicativo `ember-quickstart` e iniciar o servidor de desenvolvimento, digitando:
+Vamos ver se tudo está funcionando corretamente. No seu terminal acesse o diretório da aplicação criada e inicie o servidor de desenvolvimento, digitando:
 
 ```sh
 cd ember-quickstart
 ember server
 ```
 
-Após alguns segundo, você deverá ver a seguinte saída:
+Após alguns segundos, você deverá ver a seguinte saída:
 
 ```text
 Livereload server on http://localhost:49152
@@ -71,7 +71,7 @@ O template `application` estará sempre na tela, enquanto o usuário tiver com a
     
     ## Definindo a rota
     
-    Vamos fazer uma aplicação que mostra a lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por hora, você pode pensar Routes como sendo diferentes páginas que compõe sua aplicação.
+    Vamos fazer uma aplicação que mostra a lista de cientistas. Para isso, o primeiro passo é criar uma rota. Por hora, você pode pensar em Routes como sendo diferentes páginas que compõe sua aplicação.
     
     Ember possui _generators_ que automatizam códigos que são usados repetidamente em tarefas comum. Para criar a rota, escreva isso no seu terminal:
     

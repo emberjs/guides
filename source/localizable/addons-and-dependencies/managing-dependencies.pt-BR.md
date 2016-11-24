@@ -2,9 +2,9 @@ Como você está desenvolvendo seu app de Ember, você provavelmente vai encontr
 
 ## Addons
 
-Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (e.g. `ember install ember-cli-sass`). Addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
+Ember Addons podem ser instalando usando [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (por exemplo, `ember install ember-cli-sass`). Addons podem trazer outras dependências mudando automaticamente o arquivo `bower.json` de seu projeto.
 
-You can find listings of addons on [Ember Observer](http://emberobserver.com).
+Você pode encontrar uma lista de addons no [Ember Observer](http://emberobserver.com).
 
 ## Bower
 
@@ -12,13 +12,13 @@ Ember CLI uses the [Bower](http://bower.io) package manager, making it easy to k
 
 Ember CLI watches `bower.json` for changes. Thus it reloads your app if you install new dependencies via `bower install <dependencies> --save`.
 
-## Other assets
+## Outros assets
 
-Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
+JavaScript de terceiros não disponíveis como addon ou via Bower devem ser colocados na pasta `vendor/` do seu projeto.
 
-Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
+Seus próprios assets (como `robots.txt`, `favicon`, arquivos fonts específicos, etc) devem ser colocados na pasta `public/` do seu projeto.
 
-## Compiling Assets
+## Compilando Assets
 
 When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
 
@@ -49,7 +49,7 @@ The globals provided by some assets (like `moment` in the below example) can be 
     });
     
 
-You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
+Agora você pode importá-los para seu aplicativo. (por exemplo, `import { raw as icAjaxRaw } from 'ic-ajax';`)
 
 ### Environment Specific Assets
 

@@ -1,4 +1,4 @@
-Currently, our app is using hard-coded data for *rentals* in the `rentals` route handler to set the model. As our application grows, we will want to be able to create new rentals, make updates to them, delete them, and save these changes to a backend server. Ember integrates with a data management library called Ember Data to help solve this problem.
+Atualmente, nosso app está usando dados estáticos para *rentals* no gerenciamento de rotas (Router) `rentals` para definir o modelo. Conforme nossa aplicação vai crescendo, queremos ser capazes de criar, atualizar, excluir e salvar essas alterações de rentals em um servidor back-end. Ember integrates with a data management library called Ember Data to help solve this problem.
 
 Let's generate our first Ember Data model called `rental`:
 
