@@ -28,7 +28,7 @@ cp index.html 200.html
 surge
 ```
 
-Aparte a tecla "Enter" para aceitar as conficurações padrões ao publicar pela primeira vez. Será fornecida uma URL no formato `funny-name.surge.sh` que você pode usar para publicar repetidas vezes.
+Aperte a tecla "Enter" para aceitar as configurações padrões ao publicar pela primeira vez. Será fornecida uma URL no formato `funny-name.surge.sh` que você pode usar para publicar repetidas vezes.
 
 Então para publicar para uma mesma URL depois de fazer alterações, siga as mesmas etapas, desta vez fornecendo a URL para seu site:
 
@@ -40,4 +40,4 @@ cp index.html 200.html
 surge funny-name.surge.sh
 ```
 
-We use `--enviroment=development` here so that Mirage will continue to mock fake data. No entanto, normalmente nós usaríamos `ember build --environment=production` que faz mais para tornar seu código pronto para produção.
+No exemplo acima, nós usamos `--enviroment=development` então o Mirage continuará fornecendo mock de fake data. No entanto, normalmente nós usaríamos `ember build --environment=production` que faz mais para tornar seu código pronto para produção.

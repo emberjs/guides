@@ -10,9 +10,9 @@ Para criar um novo projeto usando o Ember CLI, use o comando `new`. Para prepara
 ember new super-rentals
 ```
 
-## Directory Structure
+## Estrutura de diretórios (pastas)
 
-O coman `new` gera uma estrutura de projeto com os seguintes arquivos e diretórios:
+O comando `new` gera uma estrutura de projeto com os seguintes arquivos e diretórios:
 
 ```text
 |--app
@@ -34,9 +34,9 @@ testem.js
 
 Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
-**app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
+**app**: Aqui é onde as pastas e arquivos de models, components, routes, templates e styles são armazenados. A maior parte de codificação em um projeto Ember acontece nessa pasta.
 
-**bower_components / bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower_components / bower.json**: Bower é uma ferramenta de gerenciamento de dependência. É utilizado no Ember CLI para gerenciar plugins front-end e dependências de componentes (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. Se abrirmos o arquivo `bower.json`, nós vemos a lista de dependências que são instaladas automaticamente, incluindo Ember, Ember CLI Shims, e QUnit (para testes). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
 **config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
