@@ -81,7 +81,7 @@ To load a different body component based on editing style, you can yield the com
 <div class="body">{{yield (hash body=(component editStyle))}}</div>
 ```
 
-Once yielded the data can be accessed within wrapped content by referencing the `as` variable.
+Once yielded the data can be accessed within wrapped content by referencing the `as` variable. Now a component called `markdown-style` will be rendered in `{{post.body}}`.
 
 ```app/templates/index.hbs
 {{#blog-post editStyle="markdown-style" as |post|}}
@@ -92,6 +92,14 @@ Once yielded the data can be accessed within wrapped content by referencing the 
 
 Finally we want to share the model of the data a user fills out for the post within our `blog-post` and body components.
 To share the `postData` object with the new body component, you can add arguments to the component helper.
+
+```app/components/blog-post.js
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  postData: '...'
+});
+```
 
 ```app/templates/components/blog-post.hbs
 <h2>{{title}}</h2>
@@ -105,9 +113,26 @@ When `{{post.body}}` is instantiated, it will have both the edit style and the `
 ```app/templates/index.hbs
 {{#blog-post editStyle="markdown-style" as |post|}}
   <p class="author">by {{author}}</p>
-  {{post.body editStyle="compact-style"}}
+  {{post.body bodyStyle="compact-style"}}
 {{/blog-post}}
 ```
+
+Alternatively, `postData` can be passed to `blog-post` at the block level if it was made available outside the component block as `myText`.
+
+```app/templates/index.hbs
+{{#blog-post editStyle="markdown-style" postData=myText as |post|}}
+  <p class="author">by {{author}}</p>
+  {{post.body bodyStyle="compact-style"}}
+{{/blog-post}}
+```
+
+And `postData` is yielded to the body component with the hash helper as before:
+
+```app/templates/components/blog-post.hbs
+<h2>{{title}}</h2>
+<div class="body">{{yield (hash body=(component editStyle postData=postData))}}</div>
+```
+
 Sharing components this way is commonly referred to as "Contextual Components",
 because the component is shared only with the context of the parent component's block area.
 
