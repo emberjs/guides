@@ -1,4 +1,4 @@
-Ember fornece vários opções de configuração que podem ajudar a debuggar problemas com seu aplicativo.
+Ember fornece várias opções de configuração que podem ajudar a debugar problemas com seu aplicativo.
 
 ## Routing
 

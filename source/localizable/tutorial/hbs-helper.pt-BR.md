@@ -1,12 +1,12 @@
-Até o momento, nossa aplicação está exibindo os dados de usuário diretamente do nosso model através do Ember Data. Conforme nossa aplicação cresce, vamos querer manipular dados adicionais antes de apresentá-lo aos nossos usuários. Por esta razão, Ember oferece templates helpers em Handlebars para nos ajudar a tratar dados em nossos templates. Let's use a handlebars helper to allow our users to quickly see if a property is "standalone" or part of a "Community".
+Até o momento, nossa aplicação está exibindo os dados de usuário diretamente do nosso model através do Ember Data. Conforme nossa aplicação cresce, vamos querer manipular dados adicionais antes de apresentá-lo aos nossos usuários. Por esta razão, Ember oferece templates helpers em Handlebars para nos ajudar a tratar dados em nossos templates. Vamos usar um handlebars helper para permitir que nossos usuários possam, rapidamente, ver se uma propriedade é "standalone" ou parte de uma "Community".
 
-To get started, let's generate a helper for `rental-property-type`:
+Para começar, vamos gerar um helper para `rental-property-type`:
 
 ```shell
 ember g helper rental-property-type
 ```
 
-This will create two files, our helper and its related test:
+Isso irá criar dois arquivos, nosso helper e seu arquivo test relacionado:
 
 ```shell
 installing helper
@@ -15,7 +15,7 @@ installing helper-test
   create tests/unit/helpers/rental-property-type-test.js
 ```
 
-Our new helper starts out with some boilerplate code from the generator:
+Nosso novo helper vem com um código padrão do generator:
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
@@ -23,27 +23,27 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
+    <br />Vamos atualizar nosso component template `rental-listing` para usar nosso novo helper e passar para o helper o parâmetro `rental.type`:
     
     ```app/templates/components/rental-listing.hbs{-11,+12}
     <article class="listing">
       <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
         <img src="{{rental.image}}" alt="">
-        <small>View Larger</small>
+        <small>Ampliar</small>
       </a>
       <h3>{{rental.title}}</h3>
       <div class="detail owner">
-        <span>Owner:</span> {{rental.owner}}
+        <span>Proprietário:</span> {{rental.owner}}
       </div>
       <div class="detail type">
-        <span>Type:</span> {{rental.type}}
-        <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+        <span>Tipo:</span> {{rental.type}}
+        <span>Tipo:</span> {{rental-property-type rental.type}} - {{rental.type}}
       </div>
       <div class="detail location">
-        <span>Location:</span> {{rental.city}}
+        <span>Localização:</span> {{rental.city}}
       </div>
       <div class="detail bedrooms">
-        <span>Number of bedrooms:</span> {{rental.bedrooms}}
+        <span>Número de quartos:</span> {{rental.bedrooms}}
       </div>
     </article>
     
