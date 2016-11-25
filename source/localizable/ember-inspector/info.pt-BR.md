@@ -12,4 +12,4 @@ Ember.libraries.register(libraryName, libraryVersion);
 
 #### Ember Cli
 
-If you're using the [ember-cli-app-version](https://github.com/embersherpa/ember-cli-app-version) addon, your application's name and version will be added to the list automatically.
+Se você estiver usando o add-on [ember-cli-app-version](https://github.com/embersherpa/ember-cli-app-version), o nome da sua aplicação e versão vão ser adicionados à lista automaticamente.

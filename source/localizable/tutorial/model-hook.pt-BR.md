@@ -1,4 +1,4 @@
-Agora, vamos adicionar uma lista de alugueres ao template index. Sabemos que os alugueres não vão ser estáticos, visto que eventualmente os utilizadores vão poder adicionar, atualizar e apagar. Por esta razão, precisaremos de um modelo *rentals* para guardar a informação sobre os alugueres. Para manter as coisas simples no início, usaremos um array hard-coded com objetos JavaScript. Mais tarde, passaremos a usar Ember Data, uma biblioteca para gerir robustamente os dados na nossa aplicação.
+Agora, vamos adicionar uma lista de aluguéis ao template index. Sabemos que os aluguéis não vão ser estáticos, visto que eventualmente os usuários vão poder adicionar, atualizar e apagar. Por esta razão, precisaremos de um modelo *rentals* para guardar a informação sobre os aluguéis. Para manter as coisas simples no início, usaremos um array hard-coded com objetos JavaScript. Mais tarde, passaremos a usar Ember Data, uma biblioteca para gerir robustamente os dados na nossa aplicação.
 
 Aqui está como a nossa homepage parecerá quando acabarmos:
 
@@ -22,7 +22,7 @@ export default Ember.Route.extend({ model() { return rentals; } });
     Agora, mudemos para o nosso template.
     Podemos usar os dados do modelo para mostrar uma lista de alugueres.
     Aqui, usaremos outro helper Handlebars comum chamado `{{each}}`.
-    This helper will let us loop through each of the objects in our model:
+    Isso irá nos ajudar a percorrer cada objeto em nosso modelo (model):
     
     ```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
     <div class="jumbo">

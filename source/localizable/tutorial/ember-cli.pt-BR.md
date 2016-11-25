@@ -54,7 +54,7 @@ Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
 **ember-cli-build.js**: este arquivo descreve como Ember CLI deve construir nosso aplicativo.
 
-## ES6 Modules
+## Módulo ES6
 
 Se você der uma olhada no arquivo `app/router.js`, você verá uma sintaxe que pode não ser familiar para você.
 
