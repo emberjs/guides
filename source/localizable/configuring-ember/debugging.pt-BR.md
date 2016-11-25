@@ -60,7 +60,7 @@ Ember.keys(Ember.TEMPLATES)
     });
     
 
-#### Dealing with deprecations
+#### Lidando com deprecations
 
 ```javascript
 Ember.ENV.RAISE_ON_DEPRECATION = true

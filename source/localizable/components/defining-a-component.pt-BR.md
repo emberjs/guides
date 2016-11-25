@@ -4,7 +4,7 @@ Para definir um componente, execute:
 ember generate component my-component-name
 ```
 
-Components must have at least one dash in their name. So `blog-post` is an acceptable name, and so is `audio-player-controls`, but `post` is not. This prevents clashes with current or future HTML element names, aligns Ember components with the W3C [Custom Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) spec, and ensures Ember detects the components automatically.
+Componentes devem ter pelo menos um traço (-) em seu nome. Portanto, `blog-post` é um nome de componente aceitável e o mesmo para `audio-player-controls`, mas `post` não é um nome aceitável para componentes. Isso evita conflitos com o atual ou futuro nome de elementos HTML, alinha os Ember components com a especificação de [Custom Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) da W3C e garante que o Ember detecte os componentes automaticamente.
 
 A sample component template could look like this:
 

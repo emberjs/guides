@@ -36,19 +36,19 @@ Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
 **app**: Aqui é onde as pastas e arquivos de models, components, routes, templates e styles são armazenados. A maior parte de codificação em um projeto Ember acontece nessa pasta.
 
-**bower_components / bower.json**: Bower é uma ferramenta de gerenciamento de dependência. É utilizado no Ember CLI para gerenciar plugins front-end e dependências de componentes (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. Se abrirmos o arquivo `bower.json`, nós vemos a lista de dependências que são instaladas automaticamente, incluindo Ember, Ember CLI Shims, e QUnit (para testes). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower_components / bower.json**: Bower é uma ferramenta de gerenciamento de dependência. É utilizado no Ember CLI para gerenciar plugins front-end e dependências de componentes (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. Se abrirmos o arquivo `bower.json`, nós vemos a lista de dependências que são instaladas automaticamente, incluindo Ember, Ember CLI Shims, e QUnit (para testes). Se adicionarmos dependências front-end adicionais, tais como Bootstrap, veremos essas dependências listadas aqui e adicionada ao diretório `bower_components`.
 
-**config**: The config directory contains the `environment.js` where you can configure settings for your app.
+**config**: O diretório de config contém o arquivo `environment.js` onde você pode definir as configurações da sua aplicação.
 
-**dist**: When we build our app for deployment, the output files will be created here.
+**dist**: Quando publicamos (deploy) nossa aplicação, os arquivos de saída serão criados aqui.
 
-**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
+**node_modules / package.json**: Esse diretório e arquivo são do npm. npm é o gerenciador de pacotes Node.js. Ember é construído com Node usa uma variedade de módulos Node.js para funcionar. O arquivo `package.json` mantém a lista atual de dependências npm da aplicação. Qualquer Ember CLI add-ons que você instalar, também vão aparecer aqui. Os packages listados em `package.json` são instalados no diretório node_modules.
 
-**public**: This directory contains assets such as images and fonts.
+**public**: Esse diretório contém os assets como imagens e fontes.
 
-**vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
+**vendor**: Esse diretório é onde vai as dependências front-end (como JavaScript ou CSS) que não são gerenciadas pelo Bower.
 
-**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
+**tests / testem.js**: Os testes automatizados da nossa aplicação vão na pasta `tests`, e o Ember CLI's test runner **testem** é configurado no arquivo `testem.js`.
 
 **tmp**: arquivos temporários do Ember CLI ficam aqui.
 
@@ -56,7 +56,7 @@ Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
 ## ES6 Modules
 
-If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
+Se você der uma olhada no arquivo `app/router.js`, você verá uma sintaxe que pode não ser familiar para você.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -66,40 +66,31 @@ Router.map(function() { });
 
 export default Router;
 
-    <br />Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
-    code.
-    For example, the line `import Ember from 'ember';` gives us access to the actual
-    Ember.js library as the variable `Ember`. And the `import config from
-    './config/environment';` line gives us access to our app's configuration data
-    as the variable `config`. `const` is a way to declare a read-only variable, 
-    as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
-    `export default Router;` makes the `Router` variable defined in this file available 
-    to other parts of the app.
+    <br />Ember CLI usa módulos ECMAScript 2015 (ES2015 ou anteriormente conhecido como ES6) para organizar o código da aplicação.
+    Por exemplo, a linha `import Ember from 'ember';` nos dá acesso à atual biblioteca Ember.js com a variável `Ember`. E a linha `import config from
+    './config/environment';` nos dá acesso aos dados do arquivo de configuração da nossa aplicação, com a variável `config`. `const` é uma maneira de declarar uma variável read-only, 
+    para ter certeza que ela não é acidentalmente reatribuída em outros lugares. No final do arquivo, `export default Router;` faz com que a variável `Router` definida nesse arquivo, fique disponível para outras partes da nossa aplicação.
     
-    ## Upgrading Ember
+    ## Atualizando Ember
     
-    Before continuing to the tutorial, make sure that you have the most recent
-    versions of Ember and Ember Data installed. If the version of `ember` in
-    `bower.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `bower.json` and then run `bower install`.
-    Similarly, if the version of `ember-data` in `package.json` is lower, update the
-    version number and then run `npm install`.
+    Antes de continuar com o tutorial, verifique se você tem as versões mais recentes de Ember e Ember data instaladas. Se a versão de `ember` no
+    `bower.json` é menor do que a versão no canto superior esquerdo desse guia, atualize o número da versão no `bower.json` e então execute o comando`bower install`.
+    Da mesma forma, se a versão de `ember-data` no `package.json` é menor, atualize o número da versão e execute o comando `npm install`.
     
-    ## The Development Server
+    ## O servidor de desenvolvimento
     
-    Once we have a new project in place, we can confirm everything is working by
-    starting the Ember development server:
+    Uma vez que temos um novo projeto, podemos verificar se tudo está funcionando, iniciando o servidor de desenvolvimento do Ember:
     
     ```shell
     ember server
     
 
-or, for short:
+ou, se quisermos abreviar:
 
 ```shell
 ember s
 ```
 
-If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen. Once we add our own `app/templates/application.hbs` file, the welcome screen will be replaced with our own content.
+Se navegarmos para [`http://localhost:4200`](http://localhost:4200), vamos ver a tela de boas vindas padrão. Quando criarmos nosso próprio arquivo `app/templates/application.hbs`, a tela de boas vindas padrão será substituída com o nosso próprio conteúdo.
 
-![default welcome screen](../../images/ember-cli/default-welcome-page.png)
+![Tela de boas vindas padrão](../../images/ember-cli/default-welcome-page.png)
