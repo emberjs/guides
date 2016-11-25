@@ -1,8 +1,8 @@
-A valuable attribute of the Ember framework is its use of [Semantic Versioning](http://semver.org/) to aid projects in keeping up with changes to the framework. Before any functionality or API is removed it first goes through a deprecation period where the functionality is still supported, but usage of it generates a warning logged to the browser console. These warnings can pile up between major releases to a point where the amount of deprecation warnings that scroll through the console becomes overwhelming.
+Um atributo valioso do framework Ember é seu uso de [Controle de Versão Semântica](http://semver.org/) para auxiliar projetos em manter-se atualizado com as alterações do framework. Antes de qualquer funcionalidade ou API ser removida, primeiro passa por um período de deprecation, onde a funcionalidade continua sendo suportada, mas seu uso gera avisos no console do navegador. Esses avisos podem acumular entre major releases à um ponto onde a quantidade de avisos de deprecation que percorre no console se torna esmagadora.
 
 <img width="675px" title="Deprecations Clouding up the Browser JavaScript Console" src="../../images/guides/configuring-ember/handling-deprecations/deprecations-in-console.png" />
 
-Fortunately, Ember provides a way for projects to deal with deprecations in an organized and efficient manner.
+Felizmente, Ember fornece uma forma para os projetos lidarem com deprecations de uma maneira organizada e eficiente.
 
 ## Filtering Deprecations
 

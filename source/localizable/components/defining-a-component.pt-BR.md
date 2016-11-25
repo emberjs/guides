@@ -6,7 +6,7 @@ ember generate component my-component-name
 
 Componentes devem ter pelo menos um traço (-) em seu nome. Portanto, `blog-post` é um nome de componente aceitável e o mesmo para `audio-player-controls`, mas `post` não é um nome aceitável para componentes. Isso evita conflitos com o atual ou futuro nome de elementos HTML, alinha os Ember components com a especificação de [Custom Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) da W3C e garante que o Ember detecte os componentes automaticamente.
 
-A sample component template could look like this:
+Um exemplo de um component template seria algo assim:
 
 ```app/templates/components/blog-post.hbs <article class="blog-post"> 
 
@@ -32,11 +32,9 @@ Its model is populated in `model` hook in the route handler:
 
 export default Ember.Route.extend({ model() { return this.get('store').findAll('post'); } });
 
-    <br />Each component, under the hood, is backed by an element. By default
-    Ember will use a `<div>` element to contain your component's template.
-    To learn how to change the element Ember uses for your component, see
-    [Customizing a Component's
-    Element](../customizing-a-components-element).
+    <br />Each component, under the hood, is backed by an element. Por padrão, Ember usará um elemento `<div>` para conter o template do seu component.
+    Para aprender como alterar o elemento que o Ember para seus componentes, veja
+    [Personalizando elemento de um Componente](../customizing-a-components-element).
     
     
     ## Defining a Component Subclass
