@@ -12,7 +12,7 @@ The most common case for using the run loop is integrating with a non-Ember API 
 * AJAX callbacks
 * Websocket callbacks
 
-## Why is the run loop useful?
+## Por que o run loop é útil?
 
 Very often, batching similar work has benefits. Web browsers do something quite similar by batching changes to the DOM.
 
@@ -97,7 +97,7 @@ In the above example with the run loop, since the user's attributes end up at th
 
 It is of course possible to optimize these scenarios on a case-by-case basis, but getting them for free is much nicer. Using the run loop, we can apply these classes of optimizations not only for each scenario, but holistically app-wide.
 
-## How does the Run Loop work in Ember?
+## Como funciona o Run Loop no Ember?
 
 As mentioned earlier, we schedule work (in the form of function invocations) on queues, and these queues are processed to completion in priority order.
 

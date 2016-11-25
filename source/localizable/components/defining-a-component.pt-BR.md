@@ -1,4 +1,4 @@
-To define a component, run:
+Para definir um componente, execute:
 
 ```shell
 ember generate component my-component-name
@@ -16,7 +16,7 @@ A sample component template could look like this:
 
 Edit title: {{input type="text" value=title}}</article>
 
-    <br />Given the above template, you can now use the `{{blog-post}}` component:
+    <br />Dado o template acima, você pode agora usar o componente `{{blog-post}}`:
     
     ```app/templates/index.hbs
     {{#each model as |post|}}

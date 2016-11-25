@@ -1,6 +1,6 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
+物件を検索するとき、ユーザーは特定の都市に絞って検索することもできます。 物件を都市別にフィルタするコンポーネントを作成していきましょう。
 
-To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
+まず新しい component (コンポーネント)を作成しましょう。 このcomponent (コンポーネント)に求めるのは、入力によって物件のリストをフィルタすることです。したがって、このcomponent (コンポーネント)の名前は`list-filter`と呼ぶことにします。
 
 ```shell
 ember g component list-filter
@@ -163,18 +163,7 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             bedrooms: 15,
             image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
             description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
-          }
-        }, {
-          type: 'rentals',
-          id: 'urban-living',
-          attributes: {
-            title: 'Urban Living',
-            owner: 'Mike Teavee',
-            city: 'Seattle',
-            type: 'Condo',
-            bedrooms: 1,
-            image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
-            description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
+          } This rental is within walking distance of 2 bus stops and the Metro."
           }
         }, {
           type: 'rentals',

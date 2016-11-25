@@ -4,7 +4,7 @@ Aqui está como a nossa homepage parecerá quando acabarmos:
 
 ![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
 
-In Ember, route handlers are responsible for loading model data. Let's open `app/routes/rentals.js` and add our hard-coded data as the return value of the `model` hook:
+No Ember, gerenciamento de rotas (Router) são responsáveis por carregar os dados do modelo (model). Vamos abrir `app/routes/rentals.js` e adicionar os dados fixos como um valor de retorno do `model` hook:
 
 ```app/routes/rentals.js import Ember from 'ember';
 

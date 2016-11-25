@@ -1,12 +1,12 @@
-Atualmente, nosso app está usando dados estáticos para *rentals* no gerenciamento de rotas (Router) `rentals` para definir o modelo. Conforme nossa aplicação vai crescendo, queremos ser capazes de criar, atualizar, excluir e salvar essas alterações de rentals em um servidor back-end. Ember integrates with a data management library called Ember Data to help solve this problem.
+Atualmente, nosso app está usando dados estáticos para *rentals* no gerenciamento de rotas (Router) `rentals` para definir o modelo. Conforme nossa aplicação vai crescendo, queremos ser capazes de criar, atualizar, excluir e salvar essas alterações de rentals em um servidor back-end. Ember vem integrado com uma biblioteca de gerenciamento de dados chamada Ember Data, para nos ajudar a resolver este problema.
 
-Let's generate our first Ember Data model called `rental`:
+Vamos gerar nosso primeiro Ember Data model chamado `rental`:
 
 ```shell
 ember g model rental
 ```
 
-This results in the creation of a model file and a test file:
+Esse comando resulta na criação dos arquivos de model e test:
 
 ```shell
 installing model
@@ -15,7 +15,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file, we see:
+Quando abrimos o arquivo de model, vemos:
 
 ```app/models/rental.js import DS from 'ember-data';
 
@@ -23,7 +23,7 @@ export default DS.Model.extend({
 
 });
 
-    <br />Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
+    <br />Vamos adicionar os mesmos atributos para o nosso rental que usamos na matriz de objetos JavaScript -
     _title_, _owner_, _city_, _type_, _image_, _bedrooms_ and _description_:
     
     ```app/models/rental.js
@@ -40,16 +40,16 @@ export default DS.Model.extend({
     });
     
 
-Now we have a model in our Ember Data store.
+Agora temos um model na nossa Ember Data store.
 
-### Updating the Model Hook
+### Atualizando o Model Hook
 
-To use our new data store, we need to update the `model` hook in our route handler.
+Para usar a nossa nova data store, precisamos atualizar o `model` hook em nosso manipulador de rota (route).
 
 ```app/routes/rentals.js import Ember from 'ember';
 
 export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); } }); ```
 
-When we call `this.get('store').findAll('rental')`, Ember Data will make a GET request to `/rentals`. You can read more about Ember Data in the [Models section](../../models/).
+Quando chamamos `this.get('store').findAll('rental')`, o Ember Data fará uma requisição GET em `/rentals`. Você pode ler mais sobre Ember Data na [seção de Models](../../models/).
 
-Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
+Uma vez que estamos utilizando ember-cli-mirage em nosso ambiente de desenvolvimento, o próprio Mirage vai retornar os dados que fornecemos. Quando realizamos o deploy da aplicação para um servidor em produção, precisamos fornecer um back-end para se comunicar com o Ember Data.
