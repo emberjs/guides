@@ -6,9 +6,9 @@
 ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`), a JavaScript file (`app/components/list-filter.js`), and a component integration test (`tests/integration/components/list-filter-test.js`).
+前と同じように、このコマンドはHandlebarsテンプレート(`app/templates/components/list-filter.hbs`)とJavaScriptファイル(`app/components/list-filter.js`)、インテグレーションテストファイル(`tests/integration/components/list-filter-test.js`)を生成する。).
 
-まず、テストを書いて何をしているのか考えることにします。 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
+それでは、テストを書くことで、何をするのかを考えていきましょう。 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
 
 For our initial test, we will check that all the cities we provide are rendered and that the listing object is accessible from the template.
 

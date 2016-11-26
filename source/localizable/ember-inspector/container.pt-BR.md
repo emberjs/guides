@@ -1,17 +1,17 @@
-Every Ember application has a container that maintains object instances for you. You can inspect these instances using the Container tab. This is useful for objects that don't fall under a dedicated menu, such as services.
+Cada aplicativo Ember tem um container que mantém as instâncias de objeto para você. Você pode inspecionar essas instâncias usando a aba Container. Isso é útil para objetos que não se encaixam em um menu dedicado, como serviços.
 
 <img src="../../images/guides/ember-inspector/container-screenshot.png" width="680" />
 
-Click on the Container tab, and you will see a list of instances the container is holding. Click on a type to see the list of all instances of that type maintained by the container.
+Clique na aba Container e você verá uma lista de instâncias que está fixada ao container. Clique em um tipo para ver a lista de todas as instâncias desse tipo, mantidas pelo container.
 
-### Inspecting Instances
+### Inspecionando Instâncias
 
-Click on a row to inspect a given instance using the Object Inspector.
+Clique em uma linha para inspecionar uma determinada instância usando o Object Inspector.
 
 <img src="../../images/guides/ember-inspector/container-object-inspector.png" width="680" />
 
-### Filter and Reload
+### Filter e Reload
 
-You can reload the container tab by clicking on the reload icon. To search for instances, type a query in the search box.
+Você pode recarregar a aba de container, clicando no ícone de reload. Para pesquisar por instâncias, digite uma consulta na caixa de pesquisa.
 
 <img src="../../images/guides/ember-inspector/container-toolbar.png" width="300" />

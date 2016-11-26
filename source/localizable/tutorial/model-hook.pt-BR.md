@@ -12,15 +12,15 @@ let rentals = [{ id: 'grand-old-mansion', title: 'Grand Old Mansion', owner: 'Ve
 
 export default Ember.Route.extend({ model() { return rentals; } });
 
-    <br />Here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
+    <br />Aqui, estamos usando a sintaxe de definição de método de ES: `model()` que é o mesmo que escrever `model: function()`.
     
-    The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
-    The model hook we've added to our `rentals` route handler will be called when a user enters the `rentals` route.
+    A função `model` funciona como um **hook**, o que significa dizer que o Ember vai chamar essa função em vários momentos em nossa aplicação.
+    O model hook que adicionamos em nosso `rentals` gerenciador de rotas será chamado quando o usuário entrar na rota (route) `rentals`.
     
-    The `model` hook returns our _rentals_ array and passes it to our `rentals` template as the `model` property.
+    O `model`hook retorna nosso _rentals_ array e passa para nosso template `rentals` as propriedades do `model`.
     
-    Agora, mudemos para o nosso template.
-    Podemos usar os dados do modelo para mostrar uma lista de alugueres.
+    Agora, vamos mudar para o nosso template.
+    Podemos usar os dados do modelo para mostrar uma lista de aluguéis.
     Aqui, usaremos outro helper Handlebars comum chamado `{{each}}`.
     Isso irá nos ajudar a percorrer cada objeto em nosso modelo (model):
     
@@ -58,6 +58,6 @@ export default Ember.Route.extend({ model() { return rentals; } });
 
 Neste template, iteramos cada objecto no modelo e chamamos-lhe *rental*. Por cada <0>rental</0> criamos uma listagem com informações relacionadas com a propriedade.
 
-Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
+Agora que estamos listando os aluguéis, nosso teste de aceitação que os aluguéis serão exibidos deve passar:
 
 ![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)

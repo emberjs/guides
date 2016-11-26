@@ -4,7 +4,7 @@ Antes de começar a escrever seu aplicativo Ember, é muito importante ter uma v
 
 ## Gerenciamento de rotas (Router)
 
-Imagine que estamos escrevendo um aplicativo da web para um sítio que permite ao usuário listar suas propriedades para alugar. A qualquer momento, devemos ser capazes de responder a perguntas sobre o estado atual, como *que imóvel está sendo olhado?* e *eles estão editando?* Em Ember, a resposta dessas perguntas é determinada pela URL. A URL pode ser definida de algumas maneiras:
+Imagine que estamos escrevendo um aplicativo web para um site que permite o usuário listar seus imóveis para alugar. A qualquer momento, devemos ser capazes de responder a perguntas sobre o estado atual, como *que imóvel está sendo olhado?* e *eles estão editando?* Em Ember, a resposta dessas perguntas é determinada pela URL. A URL pode ser definida de algumas maneiras:
 
 * O usuário carrega o aplicativo pela primeira vez.
 * O usuário altera o URL manualmente, por exemplo clicando no botão voltar ou editando a barra de endereços.

@@ -18,7 +18,7 @@ ou, para abreviar,
 ember g route about
 ```
 
-We can then see what actions were taken by the generator:
+Podemos então ver qua ações o comando gerou:
 
 ```shell
 installing route

@@ -1,25 +1,22 @@
-In most cases, your application's entire UI will be created by templates that are managed by the router.
+Na maioria dos casos, toda a Interface de Usuário (UI) da sua aplicação será criada por templates que são gerenciados por rotas.
 
-But what if you have an Ember.js app that you need to embed into an existing page, or run alongside other JavaScript frameworks, or serve from the same domain as another app?
+Mas se você tiver uma aplicação Ember.js que você precisa embedar (incorporar) em uma página que já existe ou rodar junto com outro framework JavaScript ou rodar sobre o mesmo domínio como se fosse uma outra aplicação?
 
-### Changing the Root Element
+### Trocando o elemento raiz
 
-By default, your application will render the [application template](../../routing/defining-your-routes/#toc_the-application-route) and attach it to the document's `body` element.
+Por padrão, sua aplicação irá renderizar a [application template](../../routing/defining-your-routes/#toc_the-application-route) e anexá-la ao elemento `body` do documento. 
 
-You can tell the application to append the application template to a different element by specifying its `rootElement` property:
+Você pode dizer à aplicação para acrescentar a application template para um elemento diferente, especificando sua propriedade `rootElement`:
 
 ```app/app.js import Ember from 'ember';
 
 export default Ember.Application.extend({ rootElement: '#app' });
 
-    <br />This property can be specified as either an element or a
-    [jQuery-compatible selector
-    string](http://api.jquery.com/category/selectors/).
+    <br />Esta propriedade pode ser especificada como um elemento ou uma [cadeia de caracteres compatível com seletor jQuery] (http://api.jquery.com/category/selectors/).
     
-    ### Disabling URL Management
+    ### Desativando gerenciamento de URL
     
-    You can prevent Ember from making changes to the URL by [changing the
-    router's `location`](../specifying-url-type) to
+    Você pode impedir que o Ember faça alterações na URL, alterando by [alterando`location` do router](../specifying-url-type) para
     `none`:
     
     ```config/environment.js
@@ -28,9 +25,9 @@ export default Ember.Application.extend({ rootElement: '#app' });
     };
     
 
-### Specifying a Root URL
+### Especificando uma URL raiz
 
-If your Ember application is one of multiple web applications served from the same domain, it may be necessary to indicate to the router what the root URL for your Ember application is. By default, Ember will assume it is served from the root of your domain.
+Se sua aplicação Ember é uma das várias aplicações web, servidas no mesmo domínio, pode ser necessário indicar ao router qual é a URL raiz para sua aplicação Ember. By default, Ember will assume it is served from the root of your domain.
 
 For example, if you wanted to serve your blogging application from `http://emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
 

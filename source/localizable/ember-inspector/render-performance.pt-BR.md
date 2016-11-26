@@ -1,15 +1,15 @@
-You can use the Inspector to measure your app's render times. Click on `Render Performance` to start inspecting render times.
+Você pode usar o Ember Inspector para medir o tempo de renderização da sua aplicação. Clique em `Render Performance` para iniciar a análise do tempo de renderização.
 
 <img src="../../images/guides/ember-inspector/render-performance-screenshot.png" width="680" />
 
-### Accuracy
+### Precisão
 
-Using the Inspector adds a delay to your rendering, so the durations you see are not an accurate representation of the speed of your production apps. Use these times to compare durations and debug rendering bottlenecks, but not as a way to accurately measure rendering times.
+Usar o Ember Inspector adiciona um delay (atraso) na renderização da sua aplicação, então o tempo de renderização que você vê, não é uma representação exata da velocidade que sua aplicação terá em produção. Use esses tempos para comparar a duração e debugar os gargalos de renderização, mas não use como uma forma de medir com precisão o tempo de renderização.
 
 ### Toolbar
 
-Click on the "clear" icon to remove existing render logs.
+Clique no ícone "clear" para remover os logs de renderização existentes.
 
-To measure components and templates that are rendered on initial application boot, click on the "Reload" button at the top. This button ensures that the Inspector starts measuring render times when your app boots.
+Para medir os componentes e templates que são renderizados na inicialização da aplicação, clique no botão "Reload" na parte superior. Este botão garante que o Ember Inspector comece a mensurar o tempo de renderização quando a sua aplicação é inicializada.
 
-To filter the logs, type a query in the search box.
+Para filtrar os logs (registros), digite uma consulta na caixa de pesquisa.

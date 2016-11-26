@@ -1,12 +1,12 @@
-You can use the View Tree to inspect your application's current state. The View Tree shows you the currently rendered templates, models, controllers, and components, in a tree format. Click on the `View Tree` menu on the left to see these.
+Você pode usar a View Tree para inspecionar o estado atual da sua aplicação. A View Tree exibe os templates, models, controllers e components corrente em um formato de árvore. Para vê-la, clique no menu `View Tree` à esquerda.
 
 <img src="../../images/guides/ember-inspector/view-tree-screenshot.png" width="680" />
 
-Use the tips described in [Object Inspector](../object-inspector) to inspect models and controllers. See below for templates and components.
+Utilize as dicas descritas no [Object Inspector](../object-inspector) para inspecionar models e controllers. Veja abaixo para inspecionar templates e components.
 
-### Inspecting Templates
+### Inspeção de Templates
 
-To see how a template was rendered by Ember, click on the template in the View Tree. If you're using Chrome or Firefox, you'll be sent to the Elements panel with that DOM element selected.
+Para ver como um templates foi renderizado por Ember, clique no template na View Tree. Se você estiver usando o Chrome ou Firefox, você será enviado para o painel de elementos com esse elemento DOM selecionado.
 
 <img src="../../images/guides/ember-inspector/view-tree-template.png"
 width="350" />
@@ -14,40 +14,40 @@ width="350" />
 <img src="../../images/guides/ember-inspector/view-tree-elements-panel.png"
 width="450" />
 
-### Components and Inline Views
+### Components e Inline Views
 
-The View Tree ignores components and inline views by default. To load these into the View Tree check the `Components` and `All Views` checkboxes.
+A View Tree ignora components e inline views por padrão. Para carregá-los na View Tree, verifique as caixas de seleção (checkbox) de `Components` e `All Views`.
 
 <img src="../../images/guides/ember-inspector/view-tree-components.png"
 width="600" />
 
-You can then inspect components using the Object Inspector.
+Em seguida, você pode inspecionar os components usando o Object Inspector.
 
 ### Highlighting Templates
 
-#### Hovering over the View Tree
+#### Hover sobre a View Tree
 
-When you hover over the items in the View Tree, the related templates will be highlighted in your app. For every highlighted template, you can see the template name, and its associated objects.
+Quando você passa o mouse sobre os itens nas View Tree, os templates relacionados vão ser destacados (highlighted) na sua aplicação. Para cada template destacado, você poderá ver o nome do template e seus objetos associados.
 
 <img src="../../images/guides/ember-inspector/view-tree-highlight.png" width="680" />
 
-#### Hovering over the app
+#### Hover sobre a aplicação
 
-If you want to highlight a template or component directly within your app, click on the magnifying glass in the Inspector, then hover over the app. As your our mouse passes over it, the related template or component will be highlighted.
+Se você quer destacar um template ou component diretamente dentro de sua aplicação, clique na lupa dentro do Ember Inspector e então passe o mouse sobre a aplicação. Como o nosso mouse passa sobre ela, o template ou component relacionado será destacado.
 
 <img src="../../images/guides/ember-inspector/view-tree-magnifying-glass.png" width="500" />
 
-If you click on a highlighted template or component, the Inspector will select it. You can then click on the backing objects to send them to the object inspector.
+Se você clicar em um template ou component destacado, o Ember Inspector vai selecioná-lo. Em seguida, você pode clicar sobre os objetos para enviá-los para o Object Inspector.
 
 ![](../../images/guides/ember-inspector/view-tree-inspect.png)
 
-Click on the `X` button to deselect a template.
+Clique no botão `X` para cancelar a seleção de um template.
 
-### Duration
+### Duração
 
-The Duration column displays the render time for a given template, including the template's children.
+A coluna duration (duração) exibe o tempo de renderização para um determinado template, incluindo os filhos desse template.
 
 <img src="../../images/guides/ember-inspector/view-tree-duration.png"
 width="500" />
 
-By measuring the render time, the Inspector adds a slight delay to the rendering process. As such, the duration is not an exact representation of expected rendering time for a production application. Thus, the rendering duration is more useful to compare times than as an absolute measure of performance.
+Ao medir o tempo de renderização, o Ember Inspector adiciona um pequeno delay (atraso) no processo de renderização. Como tal, a duração não é uma representação exata do tempo de renderização esperado para uma aplicação Ember em produção. Assim, a duração de renderização é mais útil para comparar tempo do que como uma media absoluta de performance.

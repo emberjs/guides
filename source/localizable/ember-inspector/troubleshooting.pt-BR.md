@@ -1,53 +1,53 @@
-Below are some common issues you may encounter when using the Inspector, along with the necessary steps to solve them. If your issue is not listed below, please submit an issue to the Inspector's [GitHub repo](https://github.com/emberjs/ember-inspector).
+Abaixo estão alguns problemas comuns que você encontrar quando utilizar o Ember Inspector, juntamente com as medidas necessárias para resolvê-los. Se seu problema não está listado abaixo, por favor, crie uma issue no repositório GitHub do [Ember Inspector](https://github.com/emberjs/ember-inspector)..
 
-### Ember Application Not Detected
+### Aplicação Ember não detectada
 
-If the Inspector cannot detect an Ember application, you will see the following message:
+Se o Ember Inspector não puder detectar uma aplicação Ember, você verá a seguinte mensagem:
 
 <img
 src="../../images/guides/ember-inspector/troubleshooting-application-not-detected.png" width="350" />
 
-Some of the reasons this may happen:
+Algumas das razões pelas quais isso pode acontecer:
 
-- This is not an Ember application
-- You are using an old Ember version ( < 1.0 ).
-- You are using a protocol other than http or https. For file:// protocol, follow [these steps](../installation/#toc_file-protocol).
-- The Ember application is inside a sandboxed iframe with no url (if you are using JS Bin, follow [these steps](#toc_using-the-inspector-with-js-bin).
+- Isto não é uma aplicação Ember
+- Você está usando uma versão antiga do Ember ( < 1.0 ).
+- Você está usando um protocolo diferente de http ou https. Para o protocolo file:// siga [estes passos](../installation/#toc_file-protocol).
+- A aplicação Ember está dentro de um iframe em uma área restrita sem nenhuma URL (se você estiver usando JS Bin, siga [estes passos](#toc_using-the-inspector-with-js-bin).
 
-### Using the Inspector with JS Bin
+### Usando o Ember Inspector com JS Bin
 
-Due to the way JS Bin uses iframes, the Inspector doesn't work with edit mode. To use the Inspector with JS Bin, switch to the "live preview" mode by clicking on the arrow circled below.
+Devido à forma como JS Bin usa iframes, o Ember Inspector não funciona com o modo de edição. Para usar o Ember Inspector com JS Bin, mude para o modo "live preview" , clicando na seta dentro de um círculo abaixo. 
 
 <img src="../../images/guides/ember-inspector/troubleshooting-jsbin.png" width="350" />
 
-### Application is not Detected Without Reload
+### Aplicação não é detectada sem o Reload
 
-If you always have to reload your application after you open the Inspector, that may mean the application's booted state is corrupt. This happens if you call `advanceReadiness` or `deferReadiness` after the application has already booted.
+Se você sempre tem que recarregar sua aplicação depois que você abre o Ember Inspector, isto pode significar que a inicialização da aplicação está corrompida. Isso acontece se você chamar `advanceReadiness` ou `deferReadiness` depois que a aplicação já estiver sido iniciada.
 
-### Data Adapter Not Detected
+### Data Adapter não detectado
 
-When you click on the Data tab, and see this message:
+Quando você clica na tab de Data e vê esta mensagem:
 
 <img src="../../images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350" />
 
-It means that the data persistence library you're using does not support the Inspector. If you are the library's author, [see this section](../data/#toc_building-a-data-custom-adapter) on how to add Inspector support to your library.
+Isso significa que a biblioteca de persistência de dados que você está usando não suporta o Ember Inspector. Se você é autor da biblioteca, [consulte esta seção](../data/#toc_building-a-data-custom-adapter) para adicionar suporte de Ember Inspector para sua biblioteca.
 
-### Promises Not Detected
+### Promises não detectadas
 
-You click on the Promises tab, and see this message:
+Quando você clica na tab de Promises e você vê esta mensagem:
 
 <img src="../../images/guides/ember-inspector/troubleshooting-promises-not-detected.png" width="350" />
 
-This happens if you are using a version of Ember < 1.3.
+Isso acontece se você estiver usando uma versão do Ember < 1.3.
 
-#### Missing Promises
+#### Falta de Promises
 
-If the Promises tab is working, but there are Promises you can't find, it's probably because these Promises were created before the Inspector was activated. To detect Promises the moment the app boots, click on the `Reload` button below:
+Se a tab de Promises está funcionando, mas há Promises que você não consegue encontrar, é provavelmente porque estas promises foram criadas antes que o Ember Inspector fosse ativado. Para detectar as Promises no momento que a aplicação inicializa, clique no botão `Reload` abaixo:
 
 <img src="../../images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350" />
 
-#### Inspector Version Old on Firefox
+#### Ember Inspector versão antiga do Firefox
 
-Firefox addons need to go through a review process with each update, so the Inspector is usually one version behind.
+Os add-ons do Firefox precisam passar por um processo de revisão em cada atualização, então o Ember Inspector é geralmente uma versão mais antiga.
 
-Unfortunately we don't have control over the Firefox review process, so if you need the latest Inspector version, download and install it manually from [GitHub](https://github.com/emberjs/ember-inspector).
+Infelizmente, não temos controle sobre o processo de revisão do Firefox, então se você precisa da versão mais recente do Ember Inspector, baixe e instale manualmente do [GitHub](https://github.com/emberjs/ember-inspector)..
