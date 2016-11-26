@@ -1,18 +1,18 @@
 ## Controllers
 
-Controllers behave like a specialized type of Component that is rendered by the router when entering a Route.
+Controllers comportam-se como um tipo especializado de Component que é renderizado pelo router quando entra em uma Route.
 
-The controller receives a single property from the Route – `model` – which is the return value of the Route's `model()` method.
+O Controller recebe uma unica propriedade da Route – `model` – que é o valor de retorno do método `model` da Route.
 
-To define a Controller, run:
+Para definir um Controller, execute:
 
 ```shell
-ember generate controller my-controller-name
+ember generate controller nome-do-meu-controller
 ```
 
-The value of `my-controller-name` must match the name of the Route that renders it. So a Route named `blog-post` would have a matching Controller named `blog-post`.
+O valor de `nome-do-meu-controller` deve corresponder ao nome da Route que o renderiza. Então uma Route denominada `blog-post` teria um controller correspondente chamado `blog-post`.
 
-You only need to generate a Controller if you want to customize its properties or provide any `actions`. If you have no customizations, Ember will provide a Controller instance for you at run time.
+Você só precisa gerar um controller, se você quer personalizar suas propriedades ou fornecer quaisquer `actions`. Se você não tiver personalizações, Ember irá fornecer uma instância do controller para você em tempo de execução (run time).
 
 Let's explore these concepts using an example of a route displaying a blog post. Presume a `BlogPost` model that is presented in a `blog-post` template.
 
