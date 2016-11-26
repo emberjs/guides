@@ -1,28 +1,28 @@
-You can inspect your models by clicking on the `Data` tab. Check out [Building a Data Custom Adapter](#toc_building-a-data-custom-adapter) below if you maintain your own persistence library. When you open the Data tab, you will see a list of model types defined in your application, along with the number of loaded records. The Inspector displays the loaded records when you click on a model type.
+Você pode inspecionar seus models clicando na aba `Data`. Confira abaixo a seção [Construindo um Data Custom Adapter](#toc_building-a-data-custom-adapter) se você mantém a sua própria biblioteca de persistência de dados. Quando você abre a aba de Data, você verá uma lista de model types definido na sua aplicação, juntamente com o número de registros carregados. O Ember Inspector exibe os registros carregados quando você clica em um model type.
 
 <img src="../../images/guides/ember-inspector/data-screenshot.png" width="680" />
 
-### Inspecting Records
+### Inspecionando registros
 
-Each row in the list corresponds to one record. The first four model attributes are shown in the list view. Clicking on the record will open the Object Inspector for that record, and display all attributes.
+Cada linha da lista corresponde a um registro. Os primeiros quatro atributos do model são mostrados na exibição de lista. Clicando sobre o registro irá abrir o Object Inspector desse registro e exibir todos os atributos.
 
 <img src="../../images/guides/ember-inspector/data-object-inspector.png"
 width="680" />
 
-### Record States and Filtering
+### Estado de registros e Filtros
 
-The Data tab is kept in sync with the data loaded in your application. Any record additions, deletions, or changes are reflected immediately. If you have unsaved records, they will be displayed in green by clicking on the New pill.
+A aba de Data é mantida em sincronia com os dados carregados em sua aplicação. Qualquer registro adicionado, excluído ou alterado são refletidos imediatamente. Se você tem registros não salvos, eles serão exibidos em verde, clicando sobre a New pill.
 
 <img src="../../images/guides/ember-inspector/data-new-records.png"
 width="680" />
 
-Click on the Modified pill to display unsaved record modifications.
+Clique sobre a Modified pill para exibir modificações de registro que não foram salvas.
 
 <img src="../../images/guides/ember-inspector/data-modified-records.png"
 width="680" />
 
-You can also filter records by entering a query in the search box.
+Você também pode filtrar registros inserindo uma consulta na caixa de pesquisa.
 
-### Building a Data Custom Adapter
+### Construindo um Data Custom Adapter
 
-You can use your own data persistence library with the Inspector. Build a [data adapter](https://github.com/emberjs/ember.js/blob/3ac2fdb0b7373cbe9f3100bdb9035dd87a849f64/packages/ember-extension-support/lib/data_adapter.js), and you can inspect your models using the Data tab. Use [Ember Data's data adapter](https://github.com/emberjs/data/blob/d7988679590bff63f4d92c4b5ecab173bd624ebb/packages/ember-data/lib/system/debug/debug_adapter.js) as an example for how to build your data adapter.
+Você pode usar sua própria biblioteca de persistência de dados com o Ember Inspector. Construa um [data adapter](https://github.com/emberjs/ember.js/blob/3ac2fdb0b7373cbe9f3100bdb9035dd87a849f64/packages/ember-extension-support/lib/data_adapter.js) e você pode inspecionar seus models usando a aba de Data. Use [Ember Data's data adapter](https://github.com/emberjs/data/blob/d7988679590bff63f4d92c4b5ecab173bd624ebb/packages/ember-data/lib/system/debug/debug_adapter.js) como um exemplo de como construir o seu data adapter.

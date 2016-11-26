@@ -14,16 +14,16 @@ O valor de `nome-do-meu-controller` deve corresponder ao nome da Route que o ren
 
 Você só precisa gerar um controller, se você quer personalizar suas propriedades ou fornecer quaisquer `actions`. Se você não tiver personalizações, Ember irá fornecer uma instância do controller para você em tempo de execução (run time).
 
-Let's explore these concepts using an example of a route displaying a blog post. Presume a `BlogPost` model that is presented in a `blog-post` template.
+Vamos explorar esses conceitos, usando um exemplo de uma Route exibindo um post de blog. Vamos supor que exista um model `BlogPost` que é exibido em um template de `blog-post`.
 
-The `BlogPost` model would have properties like:
+O modelo de `BlogPost` teria propriedades como:
 
 * `title`
 * `intro`
 * `body`
 * `author`
 
-Your template would bind to these properties in the `blog-post` template:
+Seu template deve vincular essas propriedades no template de `blog-post`:
 
 ```app/templates/blog-post.hbs 
 
@@ -41,15 +41,10 @@ Your template would bind to these properties in the `blog-post` template:
   {{model.body}}
 </div>
 
-    <br />In this simple example, we don't have any display-specific properties
-    or actions just yet. For now, our controller's `model` property acts as a
-    pass-through (or "proxy") for the model properties. (Remember that
-    a controller gets the model it represents from its route handler.)
+    <br />Neste exemplo simples, ainda não temos nenhuma property de exibição específica ou actions. For now, our controller's `model` property acts as a
+    pass-through (or "proxy") for the model properties. (Lembre-se que um controller recebe o model que representa a partir do seu route handler). 
     
-    Let's say we wanted to add a feature that would allow the user to
-    toggle the display of the body section. To implement this, we would
-    first modify our template to show the body only if the value of a
-    new `isExpanded` property is true.
+    Digamos que nós queremos adicionar uma feature que permita que o usuário alterne (toggle) a exibição de uma div com class body. Para implementar isso, nós primeiro devemos modificar nosso template para mostrar o body somente se o valor da propriedade `isExpanded` for true.
     
     ```app/templates/blog-post.hbs
     <h1>{{model.title}}</h1>
@@ -70,7 +65,7 @@ Your template would bind to these properties in the `blog-post` template:
     {{/if}}
     
 
-You can then define what the action does within the `actions` hook of the controller, as you would with a component:
+Podemos então definir o que a action faz dentro do hook de `actions` do controller, como você faria com um component:
 
 ```app/controllers/blog-post.js import Ember from 'ember';
 
