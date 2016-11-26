@@ -1,10 +1,10 @@
-The Ember router has four options to manage your application's URL: `history`, which uses the HTML5 History API; `hash`, which uses anchor-based URLs; `auto`, which uses `history` if supported by the user's browser, and falls back to `hash` otherwise; and `none`, which doesn't update the URL. By default, Ember CLI configures the router to use `auto`. You can change this option in `config/environment.js` under `ENV.locationType`.
+O router de Ember tem quatro opções para gerenciar a URL da aplicação: `history`, que usa a API HTML5 de history; o `hash`, que usa URLs baseado em âncora; `auto`, que usa a `history`, se suportado pelo navegador do usuário e devolve para `hash` caso contrário e `none`, que não atualiza a URL. Por padrão, Ember CLI configura o router para usar o `auto`. Você pode mudar esta opção em `config/environment.js` em `ENV.locationType`.
 
 ## history
 
-When using `history`, Ember uses the browser's [history](http://caniuse.com/history) API to produce URLs with a structure like `/posts/new`.
+Quando usar a `history`, Ember usa API [history](http://caniuse.com/history) do navegador para produzir URLs com uma estrutura como `/posts/new`.
 
-Given the following router, entering `/posts/new` will take you to the `posts.new` route.
+Dado o seguinte router, entrar com a URL `/posts/new` irá levá-lo para a rota de `posts.new`.
 
     app/router.js
     Router.map(function() {
@@ -13,14 +13,14 @@ Given the following router, entering `/posts/new` will take you to the `posts.ne
       });
     });
 
-Keep in mind that your server must serve the Ember app from all the URLs defined in your `Router.map` function. In other words, if your user directly navigates to `/posts/new`, your server must be configured to serve your Ember app in response.
+Tenha em mente que seu servidor deve servir o app Ember de todas as URLs definidas em sua função de `Router.map`. Em outras palavras, se seu usuário navega diretamente para `/posts/new`, o servidor deve ser configurado para servir sua aplicação Ember em resposta.
 
 ## hash
 
-The `hash` option uses the URL's anchor to load the starting state of your application and will keep it in sync as you move around. At present, this relies on a [hashchange](http://caniuse.com/hashchange) event existing in the browser.
+A opção de `hash` usa âncora da URL para carregar o estado inicial da sua aplicação e vai mantê-lo em sincronia enquanto você utiliza. Atualmente, se baseia em um evento de [hashchange](http://caniuse.com/hashchange) existente no navegador.
 
-In the router example above, entering `/#/posts/new` will take you to the `posts.new` route.
+No exemplo de router acima, entrar em `/#/posts/new` irá levá-lo para a rota de `posts.new`.
 
 ## none
 
-Finally, if you don't want the browser's URL to interact with your application at all, you can disable the location API entirely by setting `ENV.locationType` to `none`. This is useful for testing, or when you don't want Ember to muck with the URL (for example when you embed your application in a larger page).
+Finalmente, se você não quiser que a URL do navegador interaja com sua aplicação em tudo, você pode desabilitar a location API inteiramente, definindo `ENV.locationType` para `none`. Isso é útil para testar ou quando você não quer Ember suje sua URL (por exemplo, quando você incorpora sua aplicação em uma página maior).
