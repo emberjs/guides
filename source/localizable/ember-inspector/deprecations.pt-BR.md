@@ -14,17 +14,17 @@ Se você estiver usando Ember CLI e tem source maps habilitado, você pode ver u
 
 <img src="../../images/guides/ember-inspector/deprecations-sources-panel.png" width="550" />
 
-You can send the deprecation message's stack trace to the console by clicking on `Trace in the console`.
+Você pode enviar a mensagem de deprecation ao console clicando no `Trace in the console`.
 
 ### Transition Plans
 
-Click on the "Transition Plan" link for information on how to remove the deprecation warning, and you'll be taken to a helpful deprecation guide on the Ember website.
+Clique no link "Transition Plans" para obter informações sobre como remover o aviso de deprecation e você será levado para um guia de deprecations no site do Ember.
 
 <img src="../../images/guides/ember-inspector/deprecations-transition-plan.png" width="680" />
 
-### Filtering and Clearing
+### Filtrando e limpando
 
-You can filter the deprecations by typing a query in the search box. You can also clear the current deprecations by clicking on the clear icon at the top.
+Você pode filtrar as deprecations digitando uma consulta na caixa de pesquisa. Você também pode limpar as deprecations atuais clicando no ícone de limpeza na parte superior.
 
 <img src="../../images/guides/ember-inspector/deprecations-toolbar.png"
 width="300" />

@@ -27,11 +27,11 @@ export default Ember.Application.extend({ rootElement: '#app' });
 
 ### Especificando uma URL raiz
 
-Se sua aplicação Ember é uma das várias aplicações web, servidas no mesmo domínio, pode ser necessário indicar ao router qual é a URL raiz para sua aplicação Ember. By default, Ember will assume it is served from the root of your domain.
+Se sua aplicação Ember é uma das várias aplicações web, servidas no mesmo domínio, pode ser necessário indicar ao router qual é a URL raiz para sua aplicação Ember. Por padrão, Ember vai assumir que é servido na raiz do seu próprio domínio.
 
-For example, if you wanted to serve your blogging application from `http://emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
+Por exemplo, se você queria servir a sua aplicação de blog de `http://emberjs.com/blog/`, seria necessário especificar uma URL raiz do `/blog/`.
 
-This can be achieved by setting the `rootURL` on the router:
+Isso é possível através da configuração do `rootURL` no seu router:
 
     app/router.js
     Ember.Router.extend({
