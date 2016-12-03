@@ -230,8 +230,8 @@ To put it in code, the following will *not* work properly:
 
 ```app/router.js
 Router.map(function() {
-  this.route("photo", { path: "photo/:id" }, function() {
-    this.route("comment", { path: "comment/:id" });
+  this.route('photo', { path: '/photo/:id' }, function() {
+    this.route('comment', { path: '/comment/:id' });
   });
 });
 ```
@@ -240,8 +240,8 @@ But the following will:
 
 ```app/router.js
 Router.map(function() {
-  this.route("photo", { path: "photo/:photo_id" }, function() {
-    this.route("comment", { path: "comment/:comment_id" });
+  this.route('photo', { path: '/photo/:photo_id' }, function() {
+    this.route('comment', { path: '/comment/:comment_id' });
   });
 });
 ```
