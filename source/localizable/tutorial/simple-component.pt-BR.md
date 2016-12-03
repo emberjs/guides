@@ -6,7 +6,7 @@ Let's generate a `rental-listing` component that will manage the behavior for ea
 ember g component rental-listing
 ```
 
-Ember CLI will then generate a handful of files for our component:
+Ember CLI criará alguns arquivos para nossos componente (component):
 
 ```shell
 installing component
@@ -26,13 +26,13 @@ moduleForComponent('rental-listing', 'Integration | Component | rental listing',
 
 test('should toggle wide class on click', function(assert) { assert.expect(3); let stubRental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 }); this.set('rentalObj', stubRental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    <br />A component consists of two parts:
+    <br />Um component consiste em duas partes:
     
-    * A template that defines how it will look (`app/templates/components/rental-listing.hbs`)
-    * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
+    * Um template que define como será o visual (`app/templates/components/rental-listing.hbs`)
+    * Um arquivo de código JavaScript (`app/components/rental-listing.js`) que define o comportamento.
     
-    Our new `rental-listing` component will manage how a user sees and interacts with a rental.
-    To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
+    Nosso novo componente (component) `rental-listing` gerenciará como o usuário vê e interage com o aluguel.
+    Para começar, vamos mudar a tela de detalhes do aluguel template `rentals.hbs` para `rental-listing.hbs`e adicionar um campo para imagem:
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -62,11 +62,11 @@ In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#
   </div>
   
   <h2>
-    Welcome!
+    Bem vindo!
   </h2>
   
   <p>
-    We hope you find exactly what you're looking for in a place to stay.
+    Esperamos que você encontre o lugar perfeito para morar.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
@@ -126,7 +126,7 @@ The value of `isWide` comes from our component's JavaScript file, in this case `
 
 export default Ember.Component.extend({ isWide: false });
 
-    <br />To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
+    <br />Para permitir que o usuário amplie a imagem, precisamos adicionar uma ação que modifique o valor de 'isWide'.
     Vamos chamar esta action de `toggleImageSize`
     
     ```app/templates/components/rental-listing.hbs{+2}

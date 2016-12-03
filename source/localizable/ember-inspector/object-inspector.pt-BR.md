@@ -1,67 +1,67 @@
-The Inspector includes a panel that allows you to view and interact with your Ember objects. To open it, click on any Ember object. You can then view the object's properties.
+O Ember Inspector inclui um painel que permite visualizar e interagir com os objetos do Ember. Para abri-lo, clique em qualquer objeto Ember. Em seguida, você pode exibir as propriedades do objeto.
 
-### Viewing Objects
+### Visualização de objetos
 
-Here's what you see when you click on an object:
+Aqui está o que você vê quando você clica em um objeto:
 
 <img src="../../images/guides/ember-inspector/object-inspector-controller.png" width="450" />
 
-The Inspector displays the parent objects and mixins that are composed into the chosen object, including the inherited properties.
+O Ember Inspector exibe os objetos pai e mixins que são compostas para o objeto escolhido, incluindo as propriedades herdadas.
 
-Each property value in this view is bound to your application, so if the value of a property updates in your app, it will be reflected in the Inspector.
+Cada valor de propriedade nesta visualização é vinculado ao seu aplicativo, então se o valor de uma propriedade atualiza em seu aplicativo, isso será refletido no Ember Inspector.
 
-If a property name is preceded by a calculator icon, that means it is a [computed property](../../object-model/computed-properties). If the value of a computed property hasn't yet been computed, you can click on the calculator to compute it.
+Se um nome de propriedade é precedido por um ícone de calculadora, significa que é uma [propriedade de computado (Computed)](../../object-model/computed-properties). Se ainda não foi calculado o valor de uma propriedade calculada, você pode clicar na calculadora para calcular isso.
 
-### Exposing Objects to the Console
+### Expor objetos no console
 
-#### Sending from the Inspector to the Console
+#### Envio de Inspector para o Console
 
-You can expose objects to the console by clicking on the `$E` button within the Inspector. This will set the global `$E` variable to the chosen object.
+Você pode expor objetos no console, clicando no botão `$E` dentro do Ember Inspetor. Isto irá definir a variável global `$E` ao objeto escolhido.
 
 <img src="../../images/guides/ember-inspector/object-inspector-$E.png"
 width="450" />
 
-You can also expose properties to the console. When you hover over an object's properties, a `$E` button will appear next to every property. Click on it to expose the property's value to the console.
+Você também pode expor propriedades para o console. Quando você passa o mouse sobre as propriedades de um objeto, um botão de `$E` aparecerá ao lado de cada propriedade. Clique nele para expor o valor da propriedade para o console.
 
 <img src="../../images/guides/ember-inspector/object-inspector-property-$E.png" width="450" />
 
-#### Sending from the Console to the Inspector
+#### Envio do Console para o Inspetor
 
-You can send Ember objects and arrays to the Inspector by using `EmberInspector.inspect` within the console.
+Você pode enviar objetos Ember e matrizes para o Inspetor usando `EmberInspector.inspect` dentro do console.
 
 ```javascript
 var object = Ember.Object.create();
 EmberInspector.inspect(object);
 ```
 
-Make sure the Inspector is active when you call this method.
+Certifique-se que o inspetor está ativo quando você chamar esse método.
 
-### Editing Properties
+### Editar Propriedades
 
-You can edit `String`, `Number`, and `Boolean` properties in the Inspector. Your changes will be reflected immediately in your app. Click on a property's value to start editing it.
+Você pode editar `String`, `Number` e `Boolean` propriedades no Inspetor. As alterações se refletirão imediatamente no seu app. clique em um valor propriedade para começar a editá-lo.
 
 <img src="../../images/guides/ember-inspector/object-inspector-edit.png"
 width="450" />
 
-Edit the property and press the `ENTER` key to commit the change, or `ESC` to cancel.
+Edite a propriedade e pressione a tecla `ENTER` para confirmar a alteração, ou `ESC` para cancelar.
 
-### Navigating the Inspector
+### Navegando no Inspetor
 
-In addition to inspecting the properties above, you can inspect properties that hold Ember objects or arrays. Click on the property's value to inspect it.
+Além de inspecionar as propriedades acima, você pode inspecionar propriedades que contenham objetos Ember ou matrizes. Clique sobre o valor da propriedade para inspecioná-lo.
 
 <img src="../../images/guides/ember-inspector/object-inspector-object-property.png" width="450" />
 
-You can continue drill into the Inspector as long as properties contain either an Ember object or an array. In the image below, we clicked on the `model` property first, then clicked on the `store` property.
+You can continue drill into the Inspector as long as properties contain either an Ember object or an array. Na imagem abaixo, nós clicado na propriedade `model` primeiro, em seguida, clicamos sobre a propriedade de `store`.
 
 <img src="../../images/guides/ember-inspector/object-inspector-nested-objects.png" width="450" />
 
-You can see the path to the current object at the top of the Inspector. You can go back to the previous object by clicking on the left-facing arrow at the top left.
+Você pode ver o caminho para o objeto atual na parte superior do Inspector. Você pode voltar para o objeto anterior clicando na seta para a esquerda no canto superior esquerdo.
 
-### Custom Property Grouping
+### Agrupamento de propriedade personalizada
 
-Some properties are not only grouped by inheritance, but also by framework level semantics. For example, if you inspect an Ember Data model, you can see `Attributes`, `Belongs To`, `Has Many`, and `Flags` groups.
+Apenas algumas propriedades não são agrupadas por herança, mas também pelo nível de semântica. Por exemplo, se você inspecionar um Ember Data, você vai ver grupos de `attributes`, `Belongs To`, `Has Many` e `Flags`.
 
 <img src="../../images/guides/ember-inspector/object-inspector-model.png"
 width="450" />
 
-Library authors can customize how any object will display in the Inspector. By defining a `_debugInfo` method, an object can tell the Inspector how it should be rendered. For an example on how to customize an object's properties, see [Ember Data's customization](https://github.com/emberjs/data/blob/f1be2af71d7402d034bc034d9502733647cad295/packages/ember-data/lib/system/debug/debug_info.js).
+Autores da biblioteca podem personalizar como qualquer objeto é exibido no Inspetor. Definindo um método `_debugInfo`, um objeto pode dizer inspecionado durante o processamento. Para obter um exemplo sobre como personalizar Propriedades de um objeto, consulte [Ember Data's Customization](https://github.com/emberjs/data/blob/f1be2af71d7402d034bc034d9502733647cad295/packages/ember-data/lib/system/debug/debug_info.js).

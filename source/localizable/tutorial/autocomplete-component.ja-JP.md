@@ -8,13 +8,13 @@ ember g component list-filter
 
 前と同じように、このコマンドはHandlebarsテンプレート(`app/templates/components/list-filter.hbs`)とJavaScriptファイル(`app/components/list-filter.js`)、インテグレーションテストファイル(`tests/integration/components/list-filter-test.js`)を生成する。).
 
-それでは、テストを書くことで、何をするのかを考えていきましょう。 The filter component should yield a list of filtered items to whatever is rendered inside of it, known as its inner template block. We want our component to call out to two actions: one action to provide a list of all items when no filter is provided, and the other action to search listings by city.
+それでは、テストを書くことで、何をするのかを考えていきましょう。 フィルタ component (コンポーネント)は、フィルタされたアイテムのリストを、inner template block (内部テンプレートブロック) と呼ばれる、内側で描画されたものに渡す必要があります。 component (コンポーネント) は次の2つのアクションを呼び出すようにします。一つは、フィルタが提供されていないときに、すべてのリストを提供するアクション。もう一つは、都市別にリストを検索するアクションです。
 
-For our initial test, we will check that all the cities we provide are rendered and that the listing object is accessible from the template.
+最初のテストでは、準備したすべての都市が表示され、一覧されるオブジェクトがテンプレートからアクセス可能であることを確認します。
 
-Our action call to filter by city will be made asynchronously and we will have to accommodate for this in our test. We will leverage [actions](../../components/triggering-changes-with-actions/#toc_handling-action-completion) here to handle asynchronous action completion from our `filterByCity` call by returning a promise from our stubbed action.
+都市によるフィルタリング呼び出しは非同期で行われるので、テストではこれを考慮する必要があります。 ここでは、スタブされたアクションからPromiseを戻すことによって[actions](../../components/triggering-changes-with-actions/#toc_handling-action-completion)を活かし、`filterByCity`呼び出しから非同期アクションの完了を処理します。
 
-Note that we also need to add a `wait` call at the end of our test to assert the results. Ember's [`wait` helper](../../testing/testing-components/#toc_waiting-on-asynchronous-behavior) waits for all promises to resolve before running the given function callback and finishing the test.
+結果を検証するには、テスト終了時に`wait`呼び出しを追加する必要もあります。 Emberの[wait</code>ヘルパー](../../testing/testing-components/#toc_waiting-on-asynchronous-behavior)は、指定された関数コールバックを実行してテストが終了する前に、すべてのPromiseが解決するのを待ちます。
 
 ```tests/integration/components/list-filter-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import wait from 'ember-test-helpers/wait'; import RSVP from 'rsvp';
 
@@ -36,9 +36,9 @@ test('should initially load all listings', function (assert) { // we want our ac
 
 // the wait function will return a promise that will wait for all promises // and xhr requests to resolve before running the contents of the then block. return wait().then(() => { assert.equal(this.$('.city').length, 3); assert.equal(this.$('.city').first().text().trim(), 'San Francisco'); }); });
 
-    For our second test, we'll check that typing text in the filter will actually appropriately call the filter action and update the listings shown.
+    2つ目のテストでは、フィルタの入力テキストがフィルタアクションを実際に適切に呼び出し、表示されたリストを更新することを確認します。
     
-    We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
+    入力フィールドへの`keyUp`イベントを生成してアクションを強制し、1つのアイテムだけが表示されることを検証します。
     
     ```tests/integration/components/list-filter-test.js
     test('should update with matching listings', function (assert) {
@@ -73,7 +73,7 @@ test('should initially load all listings', function (assert) { // we want our ac
     
     
 
-Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test. Instead of just showing the city, we'll use our `rental-listing` component to display details of the rental.
+次に、`app/templates/rentals.hbs`ファイルにて、テストに書いたのと同様に、新しく`list-filter`コンポーネントを追加します。 ただ都市を表示するだけでなく、`rental-listing`コンポーネントを使用して、賃貸物件の詳細も表示します。
 
 ```app/templates/rentals.hbs 
 
@@ -100,17 +100,17 @@ Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` c
   </li> {{/each}}
 </ul> {{/list-filter}}
 
-    <br />Now that we have failing tests and an idea of what we want our component contract to be, we'll implement the component.
-    We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
+    <br />これで、テストに失敗するようになりました。コンポーネント要素が欲しい気持ちになったので、コンポーネントを実装しましょう。
+    単に入力フィールドとブロックへ結果リストを出力する領域を提供するコンポーネントが欲しいので、テンプレートは単純になります。
     
     ```app/templates/components/list-filter.hbs
     {{input value=value key-up=(action 'handleFilterEntry') class="light" placeholder="Filter By City"}}
     {{yield results}}
     
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be bound to the `value` property in our component. The `key-up` property will be bound to the `handleFilterEntry` action.
+このテンプレートには、テキストフィールドとして表示される[`{{input}}`](../../templates/input-helpers) ヘルパーが含まれています。このテキストフィールドには、検索に使う都市のリストをフィルタするためのパターンを入力できます。 `input`の`value`プロパティは、コンポーネントの`value`プロパティにバインドされます。 `key-up`プロパティは`handleFilterEntry`アクションにバインドされます。
 
-Here is what the component's JavaScript looks like:
+コンポーネントのJavaScriptコードは次のようになります。
 
 ```app/components/list-filter.js import Ember from 'ember';
 
@@ -122,31 +122,31 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
 
 });
 
-    <br />We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
-    Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
+    <br />`init`フックを使って初期リストの値を設定するために、空の値で`filter`アクションを呼び出します。
+    `handleFilterEntry`アクションは、入力ヘルパーによって設定された``value`属性に基づいてフィルタアクションを呼び出します。
     
-    The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+    `filter`アクションは、呼び出し元オブジェクトによって [コンポーネントに渡されます](../../ components/triggering-changes-with-actions/#toc_passing-the-component) 。 これは _クロージャアクション_ として知られているパターンです。
     
-    To implement these actions, we'll create a `rentals` controller.
-    Controllers can contain actions and properties available to the template of its corresponding route.
+    これらのアクションを実装するために、`rentals`コントローラーを作成しましょう。
+    コントローラーには、対応するルートのテンプレートに使用可能なアクションとプロパティを含めることができます。
     
-    Generate a controller for the `rentals` route by running the following:
+    `rentals` route (ルート)用のコントローラを生成するには、次のコマンドを実行します。
     
     ```shell
     ember g controller rentals
     
 
-Now, define your new controller like so:
+それでは、新しいコントローラを以下のように定義してください。
 
 ```app/controllers/rentals.js import Ember from 'ember';
 
 export default Ember.Controller.extend({ actions: { filterByCity(param) { if (param !== '') { return this.get('store').query('rental', { city: param }); } else { return this.get('store').findAll('rental'); } } } });
 
-    <br />When the user types in the text field in our component, the `filterByCity` action in the controller is called.
-    This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far.
-    The result of the query is returned to the caller.
+    <br />ユーザーがcomponent (コンポーネント)のテキストフィールドに入力すると、コントローラの`filterByCity`アクションが呼び出されます。
+    このアクションは`value`プロパティを取り込み、これまでに入力したものと一致するデータストア内の`rental`データにあるレコードをフィルターします。
+    クエリの結果は、呼び出し元に返されます。
     
-    For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
+    このアクションを動かすには、Mirageの`config.js`ファイルを次のように置き換えて、クエリに応答できるようにする必要があります。
     
     ```mirage/config.js
     export default function() {
@@ -192,7 +192,7 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
     }
     
 
-After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen, that will update the rental list as you type:
+Mirageの設定を更新すると、テストに通るようになるだけでなく、入力すると物件一覧を更新する簡単なフィルタがホーム画面に表示されるようになるはずです。
 
 ![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
 

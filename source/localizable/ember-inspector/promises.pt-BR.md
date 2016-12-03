@@ -1,12 +1,12 @@
-The Inspector provides a way to look at all Promises created in your application. Click on the `Promises` menu to start inspecting them.
+Ember Inspcetor fornece uma maneira de olhar para todas as Promises em seu aplicativo. Clique no menu para iniciar inspeção das `Promises`.
 
 <img src="../../images/guides/ember-inspector/promises-screenshot.png" width="680" />
 
-You can see a hierarchical list of Promises with labels describing each Promise, its state, its settled value, and the time it took to settle.
+Você pode ver uma lista hierárquica de Promises com rótulos descrevendo cada Promise, seu estado, seu valor estabelecido e o tempo que levou para resolver.
 
 ### Promise States and Filtering
 
-Promises have different colors based on their state.
+Promises têm cores diferentes com base no seu estado.
 
 <img src="../../images/guides/ember-inspector/promises-fulfilled.png" width="300" />
 
@@ -14,13 +14,13 @@ Promises have different colors based on their state.
 
 <img src="../../images/guides/ember-inspector/promises-rejected.png" width="300" />
 
-You can filter by clicking on the following pills: `Rejected`, `Pending`, `Fulfilled`.
+Você pode filtrar, clicando sobre os ícones seguintes: `Rejected`, `Pending`, `Fulfilled`.
 
 <img src="../../images/guides/ember-inspector/promises-toolbar.png" width="600" />
 
-You can also search for Promises by typing a query in the search box.
+Você também pode procurar Promises digitando uma consulta na caixa de pesquisa.
 
-To clear the currently logged Promises, click on the clear icon on the top left of the tab.
+Para limpar as Promises atualmente conectadas, clique sobre o ícone clear na parte superior esquerda da guia.
 
 ### Inspecting Settled Values
 
