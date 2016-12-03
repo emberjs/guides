@@ -87,7 +87,7 @@ Let's change the router above to use a nested route, like this:
 ```app/router.js
 Router.map(function() {
   this.route('posts', function() {
-    this.route('post', { path: ':post_id' });
+    this.route('post', { path: '/:post_id' });
   });
 });
 ```
