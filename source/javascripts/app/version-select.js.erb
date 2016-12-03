@@ -1,0 +1,15 @@
+window.GUIDE_VERSIONS.onReady(function (versions) {
+  var versionSelectBox = $(".version-select");
+  versionSelectBox.select2({
+    data: versions.available
+  });
+
+  var currentRevision = versions.current;
+  versionSelectBox.val(currentRevision).change();
+
+  versionSelectBox.on('change', function() {
+    var version = this.value;
+
+    window.location = versions.urlFor(version);
+  });
+});
