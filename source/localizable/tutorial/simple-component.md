@@ -124,7 +124,7 @@ Here we invoke the `rental-listing` component by name, and assign each `rentalUn
 
 Now we can add functionality that will show the image of a rental when requested by the user.
 
-Let's use the `{{#if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
+Let's use the `{{if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
 
 ```app/templates/components/rental-listing.hbs{+2,+4,+5}
 <article class="listing">
