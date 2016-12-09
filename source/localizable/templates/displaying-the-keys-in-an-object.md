@@ -88,10 +88,9 @@ export default Ember.Component.extend({
 ```
 
 In order to cause a component to re-render after you have added,
-removed or changed a property from an object, you need to either
+removed or changed a property from an object, you need to
 [`set()`](http://emberjs.com/api/classes/Ember.Component.html#method_set) the
-property on the component again, or manually trigger a re-render of the
-component via [`rerender()`](http://emberjs.com/api/classes/Ember.Component.html#method_rerender):
+property on the component.
 
 ```/app/components/store-categories.js
 import Ember from 'ember';
@@ -107,10 +106,7 @@ export default Ember.Component.extend({
   actions: {
     addCategory(category) {
       let categories = this.get('categories');
-      categories[category] = [];
-
-      // A manual re-render causes the DOM to be updated
-      this.rerender();
+      Ember.set(categories, category, []);
     }
   }
 });
