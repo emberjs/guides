@@ -25,7 +25,7 @@ The route will then set the return value from the `model` hook as the `model` pr
 
 ```app/templates/favorite-posts.hbs 
 
-# Favorite Posts {{#each model as |post|}} 
+# Posts Favoritos {{#each model as |post|}} 
 
 {{post.body}} {{/each}}
 
@@ -93,7 +93,7 @@ while transitioning this way will cause the `model` hook to be executed (because
 
 ```app/templates/photos.hbs 
 
-# Photos {{#each model as |photo|}} 
+# Fotos {{#each model as |photo|}} 
 
 {{#link-to 'photo' photo.id}} ![{{photo.title}}]({{photo.thumbnailUrl}}) {{/link-to}}  {{/each}}
 
@@ -105,7 +105,7 @@ while transitioning this way will cause the `model` hook to be executed (because
     [RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
     The `RSVP.hash` takes
     parameters that return promises, and when all parameter promises resolve, then
-    the `RSVP.hash` promise resolves. For example:
+    the `RSVP.hash` promise resolves. Por exemplo:
     
     ```app/routes/songs.js
     import Ember from 'ember';

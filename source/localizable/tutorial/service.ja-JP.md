@@ -1,14 +1,14 @@
-For Super Rentals, we want to be able to display a map showing where each rental is. To implement this feature, we will take advantage of several Ember concepts:
+Super Rentalsでは、各賃貸物件の場所を示す地図を表示できるようにしたいと考えています。 この機能を実装するために、いくつかのEmberの概念を利用します。
 
-  1. A component to display a map on each rental listing.
-  2. A service to keep a cache of rendered maps to use in different places in the application.
-  3. A utility function to create a map from the Google Maps API.
+  1. それぞれの賃貸物件の地図を表示するcomponent (コンポーネント)
+  2. 描画された地図のキャッシュをアプリケーションのさまざまな場所で使用するための service (サービス)
+  3. Google Maps APIから地図を作成するためのユーティリティ関数
 
-We'll start by displaying the map and work our way back to using the Google Map API.
+地図を表示するところから始め、Google Map APIを使用して仕事を締めくくることにしましょう。
 
-### Display Maps With a Component
+### Component (コンポーネント) に地図を表示する
 
-We'll start by adding a component that shows the rental's city on a map.
+地図上に賃貸物件の都市を示すコンポーネントを追加することから始めます。
 
 <pre><code class="app/templates/components/rental-listing.hbs{+19}">&lt;article class="listing"&gt;
   &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
@@ -32,17 +32,17 @@ We'll start by adding a component that shows the rental's city on a map.
 &lt;/article&gt;
 </code></pre>
 
-Next, generate the map component using Ember CLI.
+次に、Ember CLIを使って地図 component (コンポーネント)を生成します。
 
 ```shell
 ember g component location-map
 ```
 
-Running this command generates three files: a component JavaScript file, a template, and a test file. To help think through what we want our component to do, we'll implement a test first.
+このコマンドを実行すると、component (コンポーネント)のJavaScriptファイル、テンプレート、テストファイルの3つのファイルが生成されます。 component (コンポーネント)で実現したいことを考えてみるために、まずテストを実装します。
 
-In this case, we plan on having our Google Maps service handle map display. Our component's job will be to take the results from the map service (which is a map element) and append it to an element in the component template.
+この場合、Google Maps service (サービス)の地図表示の処理を考えます。 私たちのcomponent (コンポーネント)の仕事は、地図サービス（マップ要素）の結果をコンポーネントテンプレートの要素に追加することです。
 
-To limit the test to validating just this behavior, we'll take advantage of the registration API to provide a stub maps service. A stub stands in place of the real object in your application and simulates its behavior. In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
+この動作を検証することにテストを制限するため、登録APIを利用して地図サービスのスタブを提供します。 アプリケーションの実際のオブジェクトの代わりにスタブをたて、その動作をシミュレートします。 スタブサービスでは、`getMapElement`が呼び出された場所に基づいた地図をフェッチするメソッドを定義します。.
 
 <pre><code class="tests/integration/components/location-map-test.js">import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -73,16 +73,16 @@ test('should append map element to container element', function(assert) {
 });
 </code></pre>
 
-In the `beforeEach` function that runs before each test, we use the implicit function `this.register` to register our stub service in place of the maps service. Registration makes an object available to your Ember application for things like loading components from templates and injecting services in this case.
+各テストの前に実行される`beforeEach`関数では、暗黙的な関数`this.register`を使用して、地図サービスの代わりにスタブサービスを登録します。 サービスを登録すると、テンプレートからcomponent (コンポーネント)をロードしたり、今回のようにサービスを注入したりするために、Emberアプリケーションでオブジェクトを使用できるようになります。
 
-The call to the function `this.inject.service` injects the service we just registered into the context of the tests, so each test may access it through `this.get('mapsService')`. In the example we assert that `calledWithLocation` in our stub is set to the location we passed to the component.
+`this.inject.service`関数を呼び出すと、たったいま登録したサービスがテストのコンテキストに挿入されます。そのため、それぞれのテストは`this.get('mapsService')`を介してサービスにアクセスが可能です。 この例では、スタブ内の`calledWithLocation`がコンポーネントに渡された位置に設定されていることを検証しています。
 
-To get the test to pass, add the container element to the component template.
+テストを通すには、コンテナ要素をcomponent (コンポーネント)のテンプレートに追加します。
 
 <pre><code class="app/templates/components/location-map.hbs">&lt;div class="map-container"&gt;&lt;/div&gt;
 </code></pre>
 
-Then update the component to append the map output to its inner container element. We'll add a maps service injection, and call the `getMapElement` function with the provided location.
+次に、コンポーネントを更新して、地図の出力を内部のコンテナ要素に追加します。 地図サービスのインジェクションを追加し、提供されたlocationを使って`getMapElement`関数を呼び出します。
 
 We then append the map element we get back from the service by implementing `didInsertElement`, which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code). This function gets executed at render time after the component's markup gets inserted into the DOM.
 
@@ -227,11 +227,9 @@ module.exports = function(defaults) {
   // environments, specify an object as the first parameter. That
   // object's keys should be the environment name and the values
   // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
+  That
+  // object's keys should be the environment name and the values
+  // should be the asset to use in that environment.
   app.import('vendor/gmaps.js');
 
   return app.toTree();

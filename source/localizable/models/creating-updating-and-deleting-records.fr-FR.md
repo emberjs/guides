@@ -95,7 +95,7 @@ If the backend server returns validation errors after trying to save, they will 
 
 ## Promises
 
-[`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) returns a promise, which makes easy to asynchronously handle success and failure scenarios. Here's a common pattern:
+[`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) returns a promise, which makes it easy to asynchronously handle success and failure scenarios. Here's a common pattern:
 
 ```javascript
 var post = store.createRecord('post', {

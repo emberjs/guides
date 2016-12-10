@@ -96,7 +96,7 @@ In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#
     
     Ahora podemos añadir la funcionalidad que mostrará la imagen de un alquiler cuando sea solicitado por el usuario.
     
-    Vamos a usar el ayudante `{{#if}}`para mostrar nuestra imagen actual de alquiler más grande sólo cuando `isWide` se defina como true, estableciendo el nombre de la clase de elemento como `wide`. También vamos a añadir algún texto para indicar que la imagen puede cliquearse y envolverla con un enlace, dándole `image` como nombre de clase para que nuestro test puede encontrarla.
+    Let's use the `{{if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. También vamos a añadir algún texto para indicar que la imagen puede cliquearse y envolverla con un enlace, dándole `image` como nombre de clase para que nuestro test puede encontrarla.
     
     ```app/templates/components/rental-listing.hbs{+2,+4,+5}
     <article class="listing">

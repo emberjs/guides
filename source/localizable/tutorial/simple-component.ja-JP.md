@@ -96,7 +96,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     
     これで、ユーザーからの要求によって賃貸物件画像を表示する機能を追加できるようになりました。
     
-    `{{#if}}` helper (ヘルパー)を使って、`isWide`がtrueのときだけ`wide`クラスを設定することで、現在の賃貸物件画像を大きく表示するようにしてみましょう。 イメージがクリック可能だと示すテキストも追加します。そして、それらをアンカー要素でまとめ`image`クラスを与えることで、テストがそれを見つけられるようにします。
+    Let's use the `{{if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. イメージがクリック可能だと示すテキストも追加します。そして、それらをアンカー要素でまとめ`image`クラスを与えることで、テストがそれを見つけられるようにします。
     
     ```app/templates/components/rental-listing.hbs{+2,+4,+5}
     <article class="listing">
