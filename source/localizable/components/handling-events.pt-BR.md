@@ -1,6 +1,6 @@
-You can respond to user events on your component like double-clicking, hovering, and key presses through event handlers. Simply implement the name of the event you want to respond to as a method on your component.
+Você pode responder a eventos em seu componente como duplo click, hover e key press com event handlers. Apenas implemente o nome do evento que você quer responder como um método em seu componente (component).
 
-For example, imagine we have a template like this:
+Como por exemplo, imagine que nos temos um template assim:
 
 ```hbs
 {{#double-clickable}}
@@ -8,15 +8,13 @@ For example, imagine we have a template like this:
 {{/double-clickable}}
 ```
 
-Let's implement `double-clickable` such that when it is clicked, an alert is displayed:
+Vamos implementar `double-clickable`, dessa forma quando for clicado um alerta é exibido:
 
 ```app/components/double-clickable.js import Ember from 'ember';
 
 export default Ember.Component.extend({ doubleClick() { alert("DoubleClickableComponent was clicked!"); } });
 
-    <br />Browser events may bubble up the DOM which potentially target parent component(s)
-    in succession. To enable bubbling `return true;` from the event handler method
-    in your component.
+    <br />Eventos no navegador podem se propagar para cima (bubble up) no DOM e dessa forma atingirem component(s) pai. Para permitir isso `return true;` no método implementado em seu componente (component).
     
     ```app/components/double-clickable.js
     import Ember from 'ember';
@@ -29,17 +27,17 @@ export default Ember.Component.extend({ doubleClick() { alert("DoubleClickableCo
     });
     
 
-See the list of event names at the end of this page. Any event can be defined as an event handler in your component.
+Consulte a lista de nomes de evento no final desta página. Qualquer evento pode ser definido como um método (event handler) em seu componente.
 
-## Sending Actions
+## Envio de ações
 
-In some cases your component needs to define event handlers, perhaps to support various draggable behaviors. For example, a component may need to send an `id` when it receives a drop event:
+Em alguns casos, seu componente precisa definir métodos (event handlers), talvez para oferecer suporte a vários comportamentos arrastáveis. Por exemplo, um componente pode ser necessário enviar um `id` quando ele recebe um evento de drop:
 
 ```hbs
 {{drop-target action=(action "didDrop")}}
 ```
 
-You can define the component's event handlers to manage the drop event. And if you need to, you may also stop events from bubbling, by using `return false;`.
+Você pode definir métodos (event handlers) no componente para gerenciar o evento de drop. E se você precisar, você também pode parar eventos de propagação (bubble up), usando `return false;`.
 
 ```app/components/drop-target.js import Ember from 'ember';
 
@@ -49,20 +47,13 @@ dragOver() { return false; },
 
 drop(event) { let id = event.dataTransfer.getData('text/data'); this.get('action')(id); } });
 
-    <br />In the above component, `didDrop` is the `action` passed in. This action is
-    called from the `drop` event handler and passes one argument to the action -
-    the `id` value found through the `drop` event object.
+    <br />Na componente acima, 'didDrop' é a 'action' passada. Esta ação é chamada no método 'drop' e passa um argumento para a action - o valor do 'id' encontrado através do objeto de evento 'drop'.
     
     
-    Another way to preserve native event behaviors and use an action, is to
-    assign a (closure) action to an inline event handler. Consider the
-    template below which includes an `onclick` handler on a `button` element:
-    
-    ```hbs
-    <button onclick={{action 'signUp'}}>Sign Up</button>
+    Outra maneira de preservar o evento nativo é usar uma action, ou seja atribuir uma closure action para um método (event handler). Considere o modelo abaixo, que inclui um método de 'onclick' em um elemento 'button': ' ' hbs < botão onclick ={{action 'signUp'}} > Sign Up < / botão >
     
 
-The `signUp` action is simply a function defined on the `actions` hash of a component. Since the action is assigned to an inline handler, the function definition can define the event object as its first parameter.
+A ação de `signUp` é simplesmente uma função definida sobre o hash de `action` de um componente. Desde que a ação é atribuída a um método, a definição da função receberá o objeto de evento como seu primeiro parâmetro.
 
 ```js
 actions: {
@@ -73,7 +64,7 @@ actions: {
 }
 ```
 
-The normal behavior for a function defined in `actions` does not receive the browser event as an argument. So, the function definition for the action cannot define an event parameter. The following example demonstrates the default behavior using an action.
+O comportamento normal para uma função definida em `actions` não recebe o evento do navegador como um argumento. Então, a definição da função para action não pode definir um parâmetro para evento. O exemplo a seguir demonstra o comportamento padrão usando uma ação.
 
 ```hbs
 <button {{action 'signUp'}}>Sign Up</button>
@@ -87,29 +78,29 @@ actions: {
 }
 ```
 
-To utilize an `event` object as a function parameter:
+Para utilizar um objeto de `event` como um parâmetro de função:
 
-* Define the event handler in the component (which is designed to receive the browser event object).
-* Or, assign an action to an inline event handler in the template (which creates a closure action and does receive the event object as an argument).
+* Defina o método no componente (que é projetado para receber o objeto de evento do navegador).
+* Ou, atribua uma action ao event handler no template (que cria uma closure action e recebe o objeto de evento como um argumento).
 
-## Event Names
+## Nomes de eventos
 
-The event handling examples described above respond to one set of events. The names of the built-in events are listed below. Custom events can be registered by using [Ember.Application.customEvents](http://emberjs.com/api/classes/Ember.Application.html#property_customEvents).
+Os exemplos de manipulação de evento descritos acima respondem a um conjunto de eventos. Os nomes dos eventos internos estão listados abaixo. Eventos personalizados podem ser registrados usando o [Ember.Application.customEvents](http://emberjs.com/api/classes/Ember.Application.html#property_customEvents).
 
-Touch events:
+Eventos de toque:
 
 * `touchStart`
 * `touchMove`
 * `touchEnd`
 * `touchCancel`
 
-Keyboard events
+Eventos de teclado
 
 * `keyDown`
 * `keyUp`
 * `keyPress`
 
-Mouse events
+Eventos de mouse
 
 * `mouseDown`
 * `mouseUp`
@@ -122,7 +113,7 @@ Mouse events
 * `mouseEnter`
 * `mouseLeave`
 
-Form events:
+Eventos de formulário:
 
 * `submit`
 * `change`
@@ -130,7 +121,7 @@ Form events:
 * `focusOut`
 * `input`
 
-HTML5 drag and drop events:
+HTML5 arrastar e soltar eventos:
 
 * `dragStart`
 * `drag`

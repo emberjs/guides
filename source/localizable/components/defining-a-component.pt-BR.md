@@ -26,7 +26,7 @@ Edit title: {{input type="text" value=title}}</article>
     {{/each}}
     
 
-Its model is populated in `model` hook in the route handler:
+Seu model é preenchido em `model` hook no route handler:
 
 ```app/routes/index.js import Ember from 'ember';
 
