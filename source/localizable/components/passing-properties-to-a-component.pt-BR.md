@@ -1,6 +1,6 @@
-Components are isolated from their surroundings, so any data that the component needs has to be passed in.
+Componentes são isolados de seu ambiente, por isso qualquer dado que o componente precisa ser passado.
 
-For example, imagine you have a `blog-post` component that is used to display a blog post:
+Por exemplo, imagine que você tem um `blog-post` componente que é usado para exibir um post no blog:
 
 ```app/templates/components/blog-post.hbs <article class="blog-post"> 
 
@@ -8,7 +8,7 @@ For example, imagine you have a `blog-post` component that is used to display a 
 
 {{body}}</article>
 
-    <br />Now imagine we have the following template and route:
+    <br />Agora imagine o seguinte template e rota (route):
     
     ```app/routes/index.js
     import Ember from 'ember';
@@ -20,59 +20,39 @@ For example, imagine you have a `blog-post` component that is used to display a 
     });
     
 
-If we tried to use the component like this:
+Se nós tentarmos usar o componente como este:
 
-```app/templates/index.hbs {{#each model as |post|}} {{blog-post}} {{/each}}
+' ' app/templates/index.hbs {{#each model as |post|}} {{blog-post}} {{/ cada}}
 
-    <br />The following HTML would be rendered:
-    
-    ```html
-    <article class="blog-post">
-      <h1></h1>
-      <p></p>
-    </article>
+    <br />Ia ser processado o seguinte HTML: ' ' html < artigo classe = "blog post" >< h1 >< / h1 >< p >< / p >< / artigo >
     
 
-In order to make a property available to a component, you must pass it in like this:
+A fim de passar uma propriedade para um componente, você deve passá-lo assim:
 
 ```app/templates/index.hbs {{#each model as |post|}} {{blog-post title=post.title body=post.body}} {{/each}}
 
-    <br />It is important to note that these properties stay in sync (technically
-    known as being "bound"). That is, if the value of `componentProperty`
-    changes in the component, `outerProperty` will be updated to reflect that
-    change. The reverse is true as well.
+    <br />É importante observar que essas propriedades permaneçam em sincronia (tecnicamente conhecido como sendo o "bound"). Ou seja, se o valor de 'componentProperty' mudar no componente, 'outerProperty' será atualizado para refletir essa alteração. O inverso também é verdadeiro.
     
-    ## Positional Params
-    
-    In addition to passing parameters in by name, you can pass them in by position.
-    In other words, you can invoke the above component example like this:
-    
-    ```app/templates/index.hbs
-    {{#each model as |post|}}
-      {{blog-post post.title post.body}}
-    {{/each}}
+    # # Posicional Params 
+    Além de passar os parâmetros por nome, você pode passar também por posição.
+    Em outras palavras, você pode invocar o exemplo acima do componente assim: ' ' app/templates/index.hbs {{#each model as |post|}} {{blog-post post.title post.body}} {{/ each}}
     
 
-To set the component up to receive parameters this way, you need set the [`positionalParams`](http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams) attribute in your component class.
+Para configurar o componente para receber parâmetros desta forma, você precisa definir o atributo [`positionalParams`](http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams) na sua classe de componente.
 
 ```app/components/blog-post.js import Ember from 'ember';
 
 const BlogPostComponent = Ember.Component.extend({});
 
-BlogPostComponent.reopenClass({ positionalParams: ['title', 'body'] });
+BlogPostComponent.reopenClass ({positionalParams: ['título', 'corpo']});
 
-export default BlogPostComponent;
+padrão de exportação BlogPostComponent;
 
-    <br />Then you can use the attributes in the component exactly as if they had been
-    passed in like `{{blog-post title=post.title body=post.body}}`.
+    <br />Em seguida, você pode usar os atributos do componente, exatamente como se eles fossem passados '{{blog post title=post.title body=post.body}}'.
     
-    Notice that the `positionalParams` property is added to the class as a
-    static variable via `reopenClass`. Positional params are always declared on
-    the component class and cannot be changed while an application runs.
+    Observe que a propriedade 'positionalParams' é adicionada na classe como uma variável estática através de 'reopenClass'. Parâmetros posicionais são sempre declarados na classe do componente e não podem ser alterados enquanto um aplicativo é executado.
     
-    Alternatively, you can accept an arbitrary number of parameters by
-    setting `positionalParams` to a string, e.g. `positionalParams: 'params'`. This
-    will allow you to access those params as an array like so:
+    Como alternativa, você pode aceitar um número arbitrário de parâmetros definindo 'positionalParams' para uma sequência de caracteres, por exemplo, ' positionalParams: ' params '. Isso permitira que você acesse os paramos como um array:
     
     ```app/components/blog-post.js
     import Ember from 'ember';
@@ -89,5 +69,3 @@ export default BlogPostComponent;
     BlogPostComponent.reopenClass({
       positionalParams: 'params'
     });
-    
-    export default BlogPostComponent;
