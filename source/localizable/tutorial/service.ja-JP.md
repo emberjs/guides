@@ -84,7 +84,7 @@ test('should append map element to container element', function(assert) {
 
 次に、コンポーネントを更新して、地図の出力を内部のコンテナ要素に追加します。 地図サービスのインジェクションを追加し、提供されたlocationを使って`getMapElement`関数を呼び出します。
 
-We then append the map element we get back from the service by implementing `didInsertElement`, which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code). This function gets executed at render time after the component's markup gets inserted into the DOM.
+次に、[コンポーネントのライフサイクルフック](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)である`didInsertElement`を実装して、サービスから取得したmap要素を追加します。 この関数は、コンポーネントのマークアップがDOMに挿入された後、描画時に実行されます。
 
 <pre><code class="app/components/location-map.js">import Ember from 'ember';
 
