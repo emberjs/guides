@@ -1,14 +1,10 @@
 The [`{{input}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_input)
 and [`{{textarea}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_textarea)
 helpers in Ember.js are the easiest way to create common form controls. The
-`{{input}}` helper wraps the built-in [Ember.TextField][1] and [Ember.Checkbox][2]
-views, while `{{textarea}}` wraps [Ember.TextArea][3]. Using these helpers,
+`{{input}}` helper wraps the built-in [Ember.TextField](http://emberjs.com/api/classes/Ember.TextField.html) and [Ember.Checkbox](http://emberjs.com/api/classes/Ember.Checkbox.html)
+views, while `{{textarea}}` wraps [Ember.TextArea](http://emberjs.com/api/classes/Ember.TextArea.html). Using these helpers,
 you can create these views with declarations almost identical
 to how you'd create a traditional `<input>` or `<textarea>` element.
-
-[1]: http://emberjs.com/api/classes/Ember.TextField.html
-[2]: http://emberjs.com/api/classes/Ember.Checkbox.html
-[3]: http://emberjs.com/api/classes/Ember.TextArea.html
 
 ## Text fields
 
@@ -91,9 +87,7 @@ Which can be bound or set as described in the previous section.
 
 Will bind the value of the text area to `name` on the current context.
 
-[`{{textarea}}`][1] supports binding and/or setting the following properties:
-
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_textarea
+[`{{textarea}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_textarea) supports binding and/or setting the following properties:
 
 * `value`
 * `name`
