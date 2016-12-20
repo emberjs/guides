@@ -165,8 +165,7 @@ Is the equivalent of:
     
     Enter _dynamic segments_.
     
-    A dynamic segment is a portion of a URL that starts with a `:` and is
-    followed by an identifier.
+    A dynamic segment is a portion of a URL that starts with a `:` and is followed by an identifier.
     
     ```app/router.js
     Router.map(function() {
@@ -193,12 +192,15 @@ In the next section, [Specifying a Route's Model](../specifying-a-routes-model),
 
 ## Wildcard / globbing routes
 
-You can define wildcard routes that will match multiple URL segments. This could be used, for example, if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed by your app.
+You can define wildcard routes that will match multiple URL segments. This could be used, for example, if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed by your app. Wildcard routes begin with an asterisk.
 
-    app/router.js
-    Router.map(function() {
-      this.route('page-not-found', { path: '/*wildcard' });
-    });
+```app/router.js Router.map(function() { this.route('not-found', { path: '/*path' }); });
+
+    <br />```app/templates/not-found.hbs
+    <p>Oops, the page you're looking for wasn't found<p>
+    
+
+In the above example we have successfully used a wildcard route to handle all routes not managed by our application so that when a user navigates to `/a/non-existent/path` they will be shown a message that says the page they're looking for wasn't found.
 
 ## Route Handlers
 

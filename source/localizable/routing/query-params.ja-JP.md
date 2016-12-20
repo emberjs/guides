@@ -166,7 +166,7 @@ This affects query param behavior in two ways:
 
 By default, query param values in Ember are "sticky", in that if you make changes to a query param and then leave and re-enter the route, the new value of that query param will be preserved (rather than reset to its default). This is a particularly handy default for preserving sort/filter parameters as you navigate back and forth between routes.
 
-Furthermore, these sticky query param values are remembered/restored according to the model loaded into the route. So, given a `team` route with dynamic segment `/:team_name` and controller query param "filter", if you navigate to `/badgers` and filter by `"rookies"`, then navigate to `/bears` and filter by `"best"`, and then navigate to `/potatoes` and filter by `"lamest"`, then given the following nav bar links,
+Furthermore, these sticky query param values are remembered/restored according to the model loaded into the route. So, given a `team` route with dynamic segment `/:team_name` and controller query param "filter", if you navigate to `/badgers` and filter by `"rookies"`, then navigate to `/bears` and filter by `"best"`, and then navigate to `/potatoes` and filter by `"worst"`, then given the following nav bar links,
 
 ```handlebars
 {{#link-to "team" "badgers"}}Badgers{{/link-to}}
@@ -179,7 +179,7 @@ the generated links would be
 ```html
 <a href="/badgers?filter=rookies">Badgers</a>
 <a href="/bears?filter=best">Bears</a>
-<a href="/potatoes?filter=lamest">Potatoes</a>
+<a href="/potatoes?filter=worst">Potatoes</a>
 ```
 
 This illustrates that once you change a query param, it is stored and tied to the model loaded into the route.

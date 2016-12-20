@@ -1,4 +1,4 @@
-Getting started with Ember is easy. Ember projects are created and managed through our command line build tool Ember CLI. This tool provides:
+Débuter avec Ember est facile. Les projets Ember sont créés et gérés par notre outil en ligne de commande Ember CLI. Cet outil fournit :
 
 * Modern application asset management (including concatenation, minification, and versioning).
 * Generators to help create components, routes, and more.
@@ -36,7 +36,7 @@ If you get an outdated version of npm, run `npm install -g npm`.
 
 Ember requires Bower to manage additional dependencies. Bower is a command line utility that you install with npm. To install Bower run, ```npm install -g bower```
 
-### Watchman (optional)
+### Watchman (optionnel)
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
@@ -46,16 +46,16 @@ You can run your tests from the command line with PhantomJS, without the need fo
 
 ## Installation
 
-Install Ember using npm:
+Installez Ember en utilisant npm :
 
 ```bash
 npm install -g ember-cli
 ```
 
-To verify that your installation was successful, run:
+Pour vérifier que l'installation fonctionne, exécuter :
 
 ```bash
 ember -v
 ```
 
-If a version number is shown, you're ready to go.
+Si un numéro de version s'affiche, Ember est bien installé.

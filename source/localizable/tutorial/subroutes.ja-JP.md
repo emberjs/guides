@@ -1,4 +1,4 @@
-Up to this point, we've generated four top level routes.
+これまでで、４つのトップレベル route (ルーター)を作成しました。
 
 * An `about` route, that gives information on our application.
 * A `contact` route, with information on how to contact the company.
@@ -192,7 +192,7 @@ export default function() {
     }
   });
 
-  // Find and return the provided rental from our rental list above
+  // 上記の不動産物件のリストから不動産物件を検索して返します。
   this.get('/rentals/:id', function (db, request) {
     return { data: rentals.find((rental) => request.params.id === rental.id) };
   });

@@ -19,7 +19,7 @@ Pour tirer le meilleur parti des guides, vous devriez avoir une connaissance pra
 * **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [ES6 JavaScript Modules](http://jsmodules.io/).
 * **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can take advantage of newer language features such as arrow functions, template strings, destructuring, and more. You can check the [Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
 
-## Reporting a problem
+## Signaler un problème
 
 Typos, missing words, and code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
 

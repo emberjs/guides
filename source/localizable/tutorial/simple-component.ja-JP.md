@@ -157,6 +157,6 @@ export default Ember.Component.extend({ isWide: false });
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-これで、ブラウザー上のの`View Larger`リンクをクリックすると、画像が拡大されます。そして、拡大された画像をクリックすれば、画像はまた小さくなります。
+これで、ブラウザー上の`View Larger`リンクをクリックすると、画像が拡大されます。 そして、拡大された画像をクリックすれば、画像はまた小さくなります。
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)

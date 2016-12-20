@@ -100,26 +100,26 @@ export default Ember.Component.extend({
 });
 </code></pre>
 
-### Fetching Maps With a Service
+### サービスで地図を取得する
 
-At this point we should have a passing component integration test, but our acceptance test should now fail, unable to find our maps service. In addition to our acceptance test failing, no maps show up when we view our web page. To actually generate the maps, we'll implement the maps service.
+この時点で component (コンポーネント)の結合テストに通るはずですが、acceptance test (受入テスト)は失敗し、地図サービスを見つけることはできません。 acceptance test (受入テスト)に失敗するだけでなく、Webページ上に地図も表示されません。 実際に地図を生成するために、地図サービスを実装していきましょう。
 
-Accessing our maps API through a [service](../../applications/services) will give us several benefits
+[サービス](../../applications/services)を使用して地図APIにアクセスすると、いくつかのメリットが得られます。
 
-* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
-* It is lazy-loaded, meaning it won't be initialized until it is called the first time. In some cases this can reduce your app's processor load and memory consumption.
-* It is a singleton, which will allow us cache map data.
-* It follows a lifecycle, meaning we have hooks to execute cleanup code when the service stops, preventing things like memory leaks and unnecessary processing.
+* サービスは[service locator](https://en.wikipedia.org/wiki/Service_locator_pattern)を使って注入されます。そして、地図APIをコードから抽象化することで、リファクタリングとメンテナンスを容易にします。
+* サービスは遅延ロードされているため、最初に呼び出されるまで初期化されません。 場合によっては、これによってアプリのプロセッサ負荷とメモリ消費量を減少できる可能性があります。
+* サービスはSingleton (シングルトン)であり、地図データをキャッシュ可能にします。
+* サービスはライフサイクルに従います。つまり、サービスが停止したときにクリーンアップコードを実行してメモリリークや不要な処理などを防ぐフックを持ちます。
 
-Let's get started creating our service by generating it through Ember CLI, which will create the service file, as well as a unit test for it.
+Ember CLIを使用してサービスを作成してみましょう。Ember CLIを使用すると、サービスファイルとサービスファイルの単体テストが作成されます。
 
 ```shell
 ember g service maps
 ```
 
-The service will keep a cache of map elements based on location. If the map element exists in the cache, the service will return it, otherwise it will create a new one and add it to the cache.
+このサービスは、位置に基づいて地図要素のキャッシュを保持します。 地図要素がキャッシュに存在する場合、サービスはそれを返します。そうでなければ、新しい要素を作成してキャッシュに追加します。
 
-To test our service, we'll want to assert that locations that have been previously loaded are fetched from cache, while new locations are created using the utility.
+このサービスをテストするために、新しい位置情報がユーティリティを使って作成された際に、以前にロードされた位置情報がキャッシュからフェッチされることを検証したいと思うでしょう。
 
 <pre><code class="tests/unit/services/maps-test.js">import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
@@ -158,9 +158,9 @@ test('should use existing map if one is cached for location', function (assert) 
 });
 </code></pre>
 
-Note that the test uses a dummy object as the returned map element. This can be any object because it is only used to assert that the cache has been accessed. Also note that the location has been `camelized` in the cache object, so that it may be used as a key.
+テストでダミーオブジェクトを地図要素として返して使用していることに注目してください。 地図要素はキャッシュがアクセスされたことを検証するためだけに使われるので、任意のオブジェクトにすることができます。 また、キーとして使用するために、キャッシュオブジェクトの中で場所が`キャメルケース化`されていることに注目してください。
 
-Now implement the service as follows. Note that we check if a map already exists for the given location and use that one, otherwise we call a Google Maps utility to create one. We abstract our interaction with the maps API behind an Ember utility so that we can test our service without making network requests to Google.
+サービスを以下に示すように実装します。 指定された場所の地図が既に存在するかどうかを確認し、あればその地図を使用します。そうでなければ、Google Mapsユーティリティを呼び出して地図を作成します。 Emberユーティリティの背後にあるmaps APIとのやりとりを抽象化し、Googleへネットワークリクエストを発行しなくてもサービスをテストできるようにします。
 
 ```app/services/maps.js
 import Ember from 'ember';
@@ -197,20 +197,20 @@ export default Ember.Service.extend({
 });
 ```
 
-### Making Google Maps Available
+### Googleマップを利用できるようにする
 
-Before implementing the map utility, we need to make the 3rd party map API available to our Ember app. There are several ways to include 3rd party libraries in Ember. See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/) as a starting point when you need to add one.
+地図ユーティリティを実装する前に、EmberアプリケーションでサードパーティマップAPIを利用できるようにする必要があります。 Emberにサードパーティライブラリを含めるにはいくつかの方法があります。 サードパーティライブラリを追加する方法は、[依存関係を管理する](../../addons-and-dependencies/managing-dependencies/)のガイドを参照してください。
 
-Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
+GoogleはマップAPIをリモートスクリプトとして提供しています。curlを使用してプロジェクトのvendorディレクトリにダウンロードしましょう。
 
-From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.  
-`Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
+プロジェクトのルートディレクトリから次のコマンドを実行して、Googleマップスクリプトを`gmaps.js `としてプロジェクトのvendorフォルダに配置します。  
+`curl`はUNIXコマンドなので、Windowsの場合は[Windows bashサポート](https://msdn.microsoft.com/en-us/commandline/wsl/about)を利用するか、別の方法でvendorディレクトリにスクリプトをダウンロードする必要があります。
 
 ```shell
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 ```
 
-Once in the vendor directory, the script can be built into the app. We just need to tell Ember CLI to import it using our build file:
+vendorディレクトリに入れることで、スクリプトをアプリに組み込むことができます。 あとは、ビルドファイルを使って、Ember CLIにインポートするよう指示するだけです。
 
 <pre><code class="ember-cli-build.js{+22}">/*jshint node:true*/
 /* global require, module */
@@ -236,15 +236,15 @@ module.exports = function(defaults) {
 };
 </code></pre>
 
-### Accessing the Google Maps API
+### Google Maps APIにアクセスする
 
-Now that we have the maps API available to the application, we can create our map utility. Utility files can be generated using Ember CLI.
+アプリケーションでマップAPIを使用できるようになったので、マップユーティリティを作成できます。 ユーティリティファイルは、Ember CLIを使用して生成することができます。
 
 ```shell
 ember g util google-maps
 ```
 
-The CLI `generate util` command will create a utility file and a unit test. We'll delete the unit test since we don't want to test Google code. Our app needs a single function, `createMap`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
+CLIの`generate util`コマンドは、ユーティリティファイルとユニットテストを作成します。 Googleコードのテストはしたくないので、ユニットテストは削除しましょう。 このアプリケーションには`createMap`という関数が必要です。この関数では、` google.maps.Map`を使用して地図要素を作成し、`google.maps.Geocoder`を使って場所の座標を検索し、`google.maps.Marker`を使って解決された位置情報に基づいて地図上にピンを立てます。
 
 <pre><code class="app/utils/google-maps.js">import Ember from 'ember';
 
@@ -276,17 +276,17 @@ export default Ember.Object.extend({
 });
 </code></pre>
 
-After we restart the server we should now see some end to end maps functionality show up on our front page!
+サーバーを再起動すると、地図機能がフロントページ上に表示されるはずです!
 
 ![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
 
-### Stubbing Services in Acceptance Tests
+### acceptance test (受入テスト) におけるスタブサービス
 
-Finally, we want to update our acceptance tests to account for our new service. While it would be great to verify that a map is displaying, we don't want to hammer the Google Maps API every time we run our acceptance test. For this tutorial we'll rely on our component integration tests to ensure that the map DOM is being attached to our screen. To avoid hitting our Maps request limit, we'll stub out our Maps service in our acceptance tests.
+最後に、新しいサービスを考慮して受け入れテストを更新したいと思います。 地図が表示されていることを確認することは良いことですが、受け入れテストを実行するたびにGoogle Maps APIを叩きたくはありません。 このチュートリアルでは、コンポーネントのインテグレーションテストを使用して、マップDOMが画面にアタッチされていることを確認します。 APIリクエストの制限を超えないように、受入テストでは地図サービスをスタブします。
 
-Often, services connect to third party APIs that are not desirable to include in automated tests. To stub these services we simply have to register a stub service that implements the same API, but does not have the dependencies that are problematic for the test suite.
+サービスはしばしば、自動化テストに含めることが望ましくないサードパーティのAPIに接続することがあります。 これらのサービスをスタブするには、テストスイートに問題のある依存関係は持ち込まず、同じAPIを実装するスタブサービスを登録するだけで済みます。
 
-Add the following code after the imports to our acceptance test:
+acceptance test (受入テスト) の後に、次のコードを追加してください。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">import Ember from 'ember';
 

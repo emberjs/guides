@@ -1,6 +1,6 @@
 As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision. Let's add the ability to toggle the size of the image for each rental. To do this, we'll use a component.
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. A dash is required in every component name to avoid conflicting with a possible HTML element, so `rental-listing` is acceptable but `rental` isn't.
+Let's generate a `rental-listing` component that will manage the behavior for each of our rentals. 每个组件component的名字需要加入中画线，用以避免跟可能的HTML元素命名冲突。 所以 `rental-listing`是一个可以接受的组件名称，而 `rental`则不是。
 
 ```shell
 ember g component rental-listing
@@ -16,7 +16,7 @@ installing component-test
   create tests/integration/components/rental-listing-test.js
 ```
 
-We'll start by implementing a failing test with the image toggling behavior that we want.
+我们开始创建一个验证失败的测试用例 用来测试我们图片的开关功能。
 
 For our integration test, we'll create a stub rental that has all the properties that our rental model has. We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away. Note that we find the image element using the CSS selector `.image`.
 
@@ -26,13 +26,13 @@ moduleForComponent('rental-listing', 'Integration | Component | rental listing',
 
 test('should toggle wide class on click', function(assert) { assert.expect(3); let stubRental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 }); this.set('rentalObj', stubRental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    <br />A component consists of two parts:
-    
-    * A template that defines how it will look (`app/templates/components/rental-listing.hbs`)
-    * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
+    <br />一个模板 分为两部分：
+    *  一个用来定义如何显示的模板。
+    (`app/templates/components/rental-listing.hbs`)
+    *  一个用来记录交互操作的javascript代码文件。
     
     Our new `rental-listing` component will manage how a user sees and interacts with a rental.
-    To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
+    着手行动，我们先把一个出租房屋的详细信息从“rentals.hbs”模板页面移到刚创建的“rental-listing.hbs”组件中并添加图片。
     
     ```app/templates/components/rental-listing.hbs{+2}
     <article class="listing">
@@ -53,7 +53,7 @@ test('should toggle wide class on click', function(assert) { assert.expect(3); l
     </article>
     
 
-In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop with our new `rental-listing` component:
+在`rentals.hbs`模板页面的出租信息`{{#each}}`循环体中HTML代码替换成新创建的 `rental-listing` 组件。
 
 ```app/templates/rentals.hbs{+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29} 
 
@@ -90,7 +90,7 @@ In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article> {{/each}}
 
-    Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+    这里我们用组件的名字“rental-listing”调用组件，并把 每个“rentalUnit”对象作为组件的“rental” 属性传人到组件中。
     
     ## Hiding and Showing an Image
     
@@ -157,6 +157,6 @@ Clicking the anchor element will send the action to the component. Ember will th
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image we again see it smaller.
+Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image again, we see it smaller.
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)

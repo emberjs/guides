@@ -157,6 +157,6 @@ Hacer click al enlace, enviará la action (acción) al component (componente). E
 
 export default Ember.Component.extend({ isWide: false, actions: { toggleImageSize() { this.toggleProperty('isWide'); } } }); ```
 
-Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image we again see it smaller.
+Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image again, we see it smaller.
 
 ![listado de alquileres con expandir](../../images/simple-component/styled-rental-listings.png)

@@ -1,14 +1,14 @@
-Part of what makes components so useful is that they let you take complete control of a section of the DOM. This allows for direct DOM manipulation, listening and responding to browser events, and using 3rd party JavaScript libraries in your Ember app.
+Uma das coisas que tornam componentes tão útil é o fato de permitirem que você assuma total controle de uma parte do DOM. Isto permite a manipulação direta de DOM, ouvir e responder a eventos do navegador usando bibliotecas de JavaScript de terceiros em seu aplicativo de Ember.
 
-As components are rendered, re-rendered and finally removed, Ember provides *lifecycle hooks* that allow you to run code at specific times in a component's life.
+Como os componentes são processados, re-processados e finalmente removidos, Ember fornece *lifecycle hooks* que permitem você executar código em momentos específicos na vida de um componente.
 
-To get the most use out of a component, it is important to understand these lifecycle methods.
+Para obter usar melhor o componente, é importante entender esses métodos de ciclo de vida.
 
-## Order of Lifecycle Hooks Called
+## Ordem de execução dos Lifecycle Hooks
 
-Listed below are the component lifecycle hooks in order of execution according to render scenario.
+Abaixo estão listados os lifecycle hooks do componente na ordem de execução de acordo com o cenário de renderização.
 
-### On Initial Render
+### Na renderização inicial
 
   1. `init`
   2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
@@ -16,7 +16,7 @@ Listed below are the component lifecycle hooks in order of execution according t
   4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)
   5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
 
-### On Re-Render
+### Na re-renderizar (atualização)
 
   1. [`didUpdateAttrs`](#toc_resetting-presentation-state-on-attribute-change-with-code-didupdateattrs-code)
   2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
@@ -25,13 +25,13 @@ Listed below are the component lifecycle hooks in order of execution according t
   5. `didUpdate`
   6. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
 
-### On Component Destroy
+### Quando o componente for destruido
 
   1. [`willDestroyElement`](#toc_detaching-and-tearing-down-component-elements-with-code-willdestroyelement-code)
   2. `willClearRender`
   3. `didDestroyElement`
 
-## Lifecycle Hook Examples
+## Exemplos de lifecycle hooks
 
 Below are some samples of ways to use lifecycle hooks within your components.
 
@@ -58,7 +58,7 @@ An example of this scenario in action is a profile editor component. As you are 
 </fieldset>
 ```
 
-`/app/components/profile-editor.js`
+`/app/templates/components/profile-editor.hbs`
 
 ```js
 import Ember from 'ember';
