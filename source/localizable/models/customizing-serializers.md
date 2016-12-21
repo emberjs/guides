@@ -22,7 +22,7 @@ following conventions.
 
 ### JSON API Document
 
-The JSONAPI serializer expects the backend to return a JSON API
+The `JSONAPISerializer` expects the backend to return a JSON API
 Document that follows the JSON API specification and the conventions
 of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all
 type names should be pluralized and attribute and relationship names
@@ -162,7 +162,7 @@ But our server expects data in this format:
 {
   "data": {
     "id": "1",
-    "type": "product"
+    "type": "product",
     "attributes": {
       "name": "My Product",
       "cost": {
@@ -540,7 +540,7 @@ looks similar to this:
 }]
 ```
 
-The JSONAPISerializer is built on top of the JSONSerializer so they share
+The `JSONAPISerializer` is built on top of the `JSONSerializer` so they share
 many of the same hooks for customizing the behavior of the
 serialization process. Be sure to check out the
 [API docs](http://emberjs.com/api/data/classes/DS.JSONSerializer.html)
