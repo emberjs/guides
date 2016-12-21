@@ -68,16 +68,15 @@ There is also a way to share data within your blog post component with the conte
     <div class="body">{{yield (hash body=(component editStyle))}}</div>
     
 
-Once yielded the data can be accessed within wrapped content by referencing the `as` variable.
+Once yielded the data can be accessed within wrapped content by referencing the `as` variable. Now a component called `markdown-style` will be rendered in `{{post.body}}`.
 
-```app/templates/index.hbs {{#blog-post editStyle="markdown-style" as |post|}} 
+```app/templates/index.hbs {{#blog-post editStyle="markdown-style" postData=myText as |post|}} 
 
 <p class="author">
   by {{author}}
 </p> {{post.body}} {{/blog-post}}
 
-    <br />Finally we want to share the model of the data a user fills out for the post within our `blog-post` and body components.
-    To share the `postData` object with the new body component, you can add arguments to the component helper.
+    <br />Finally, we want to share the the blog text that a user fills out for the post within our `blog-post` and body components. To share the blog text with the new body component, we'll add a `postData` argument to the component helper.
     
     ```app/templates/components/blog-post.hbs
     <h2>{{title}}</h2>
@@ -89,5 +88,7 @@ Since the component isn't instantiated until the component block content is rend
     app/templates/index.hbs
     {{#blog-post editStyle="markdown-style" as |post|}}
       <p class="author">by {{author}}</p>
-      {{post.body editStyle="compact-style"}}
-    {{/blog-post}} Sharing components this way is commonly referred to as "Contextual Components", because the component is shared only with the context of the parent component's block area.
+      {{post.body bodyStyle="compact-style"}}
+    {{/blog-post}}
+
+Sharing components this way is commonly referred to as "Contextual Components", because the component is shared only with the context of the parent component's block area.
