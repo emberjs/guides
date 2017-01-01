@@ -136,7 +136,7 @@ Start by running `ember g controller rentals/index` to create an index controlle
 
 Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
 
-```app/controller/rentals/index.js
+```app/controllers/rentals/index.js
 import RentalsController from '../rentals';
 
 export default RentalsController;
