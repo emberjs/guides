@@ -217,8 +217,7 @@ export default function() {
     return { data: rentals.find((rental) => request.params.id === rental.id) };
   });
 
-};
-
+}
 ```
 
 ## Generating a Nested Detail Route
