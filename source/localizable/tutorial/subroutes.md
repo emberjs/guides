@@ -60,7 +60,7 @@ To create an index nested route, run the following command:
 ember g route rentals/index
 ```
 
-If you open up your Router (`app/router`) you may notice that nothing has updated.
+If you open up your Router (`app/router.js`) you may notice that nothing has updated.
 
 ```app/router.js
 Router.map(function() {
