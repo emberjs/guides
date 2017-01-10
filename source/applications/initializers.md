@@ -33,7 +33,9 @@ export function initialize(application) {
   application.inject('route', 'cart', 'service:shopping-cart');
 };
 
-export default { initialize };
+export default {
+  initialize
+};
 ```
 
 ## Application Instance Initializers
@@ -52,7 +54,9 @@ export function initialize(applicationInstance) {
   logger.log('Hello from the instance initializer!');
 }
 
-export default { initialize };
+export default {
+  initialize
+};
 ```
 
 ## Specifying Initializer Order
