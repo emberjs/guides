@@ -71,8 +71,8 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'configReader',
-  before: 'websocketInit',
+  name: 'config-reader',
+  before: 'websocket-init',
   initialize: initialize
 };
 ```
@@ -83,8 +83,8 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'websocketInit',
-  after: 'configReader',
+  name: 'websocket-init',
+  after: 'config-reader',
   initialize: initialize
 };
 ```
@@ -95,8 +95,8 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'assetInit',
-  after: ['configReader', 'websocketInit'],
+  name: 'asset-init',
+  after: ['config-reader', 'websocket-init'],
   initialize: initialize
 };
 ```
