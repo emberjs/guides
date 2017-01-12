@@ -300,7 +300,7 @@ in the document payload returned by your server:
     "type": "people",
     "attributes": {
       "first-name": "Zaphod",
-      "last-name": "Beetlebrox",
+      "last-name": "Beeblebrox",
       "is-person-of-the-year": true
     }
   }
