@@ -46,15 +46,15 @@ export default { name: 'logger', initialize: initialize };
     };
     
     export default {
-      name: 'configReader',
-      before: 'websocketInit',
+      name: 'config-reader',
+      before: 'websocket-init',
       initialize: initialize
     };
     
 
 ```app/initializers/websocket-init.js export function initialize(application) { // ... your code ... };
 
-export default { name: 'websocketInit', after: 'configReader', initialize: initialize };
+export default { name: 'websocket-init', after: 'config-reader', initialize: initialize };
 
     <br />```app/initializers/asset-init.js
     export function initialize(application) {
@@ -62,8 +62,8 @@ export default { name: 'websocketInit', after: 'configReader', initialize: initi
     };
     
     export default {
-      name: 'assetInit',
-      after: ['configReader', 'websocketInit'],
+      name: 'asset-init',
+      after: ['config-reader', 'websocket-init'],
       initialize: initialize
     };
     

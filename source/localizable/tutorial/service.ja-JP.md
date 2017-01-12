@@ -4,7 +4,7 @@ Super Rentalsでは、各賃貸物件の場所を示す地図を表示できる�
   2. 描画された地図のキャッシュをアプリケーションのさまざまな場所で使用するための service (サービス)
   3. Google Maps APIから地図を作成するためのユーティリティ関数
 
-地図を表示するところから始め、Google Map APIを使用して仕事を締めくくることにしましょう。
+We'll start by displaying the map and work our way back to using the Google Maps API.
 
 ### Component (コンポーネント) に地図を表示する
 

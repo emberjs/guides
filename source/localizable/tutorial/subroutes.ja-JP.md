@@ -1,22 +1,22 @@
-これまでで、４つのトップレベル route (ルーター)を作成しました。
+ここまでで、4つのトップレベル route (ルート)を作成しました。
 
-* An `about` route, that gives information on our application.
-* A `contact` route, with information on how to contact the company.
-* A `rentals` route, where we will allow users to browse rental properties.
-* The `index` route, which we've set up to redirect to the `rentals` route.
+* アプリケーションに関する情報を与える`about` route (ルート)。
+* 会社への連絡方法に関する情報である`連絡先` route(ルート)。
+* 賃貸物件を閲覧できる`rentals</ 0> route(ルート)。</li>
+<li><code>rentals</ 0> route(ルート)にリダイレクトするように設定した<code>index` route(ルート)。
 
-Our `rentals` route is going to serve multiple functions. From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals. To satisfy that requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
+`rentals` toute(ルート)は複数の機能を提供します。 [acceptance test (受入テスト)](../acceptance-test)では、ユーザーが賃貸物件を閲覧して検索できるようにし、それぞれの賃貸物件の詳細情報も表示できるようにしました。 この要件を満たすために、Emberの[ネスト化されたルート機能](../../routing/defining-your-routes/#toc_nested-routes)を利用する予定です。
 
-By the end of this section we want to have created the following new routes:
+このセクションの最後には、次の新しい route(ルート)を作成したいと考えています。
 
-* A `rentals/index` route that displays the rental page's general information, and also lists available rentals. The index nested route is shown by default when the user visits the `rentals` URL.
-* A `rentals/show` route that still displays the rental page's general information, while also showing detailed information about a selected rental. The `show` route will get substituted with the id of the rental being shown (for example `rentals/grand-old-mansion`).
+* 賃貸物件ページの一般情報と閲覧可能な賃貸物件のリストも表示する`rentals/index` route(ルート)。 ユーザーが`rentals`というURLを訪れると、ネストされたindex route(ルート)がデフォルトで表示されます。
+* 賃貸物件ページの一般情報を表示し、選択した賃貸物件に関する詳細情報も表示する`rentals/show` route(ルート)。 `show` route(ルート)は表示されている賃貸物件のIDで置き換えられます(`rentals/grand-old-mansion`のように)。
 
-## The Parent Route
+## 親 route(ルート)
 
-Previously, in the [Routes and Templates tutorial](../routes-and-templates), we set up a `rentals` route.
+前の[ルートとテンプレートのチュートリアル](../routes-and-templates)で、`rentals` route(ルート)を設定していました。
 
-Opening the template for this route reveals an outlet underneath the route's general page information. At the bottom of the template, you'll notice an `{{outlet}}` helper. This is where the active nested route will be rendered.
+このroute(ルート)のテンプレートを開くと、route(ルート)の一般ページ情報の下にあるoutletが表示されます。 テンプレートの一番下に`{{outlet}}`ヘルパーがあることがわかります。 これはアクティブなネストされたroute(ルート)が描画される場所です。
 
 ```app/templates/rentals.hbs
 <div class="jumbo">
@@ -39,19 +39,19 @@ Opening the template for this route reveals an outlet underneath the route's gen
 {{outlet}}
 ```
 
-Having a parent route means that any content on our parent route template will be present as we browse down through our child routes, allowing us to add things like common instructions, navigation, footers or sidebars.
+親route(ルート)を持つということは、子route(ルート)を閲覧する際に親route(ルート)テンプレート上のコンテンツがすべて存在することを意味します。これによって、共通の指示、ナビゲーション、フッターまたはサイドバーのようなものを追加することができます。
 
-## Generating a Nested Index Route
+## ネストされたindex route(ルート)の生成
 
-The first nested route to generate will be the index route. An index nested route works similarly to the base index route. It is the default route that renders when no route is provided. Therefore in our case, when we navigate to `/rentals`, Ember will attempt to load the rentals index route as a nested route.
+最初に作るネストされたroute(ルート)はindex route(ルート)になります。 ネストされたindex route(ルート)は、ベースのindex route(ルート)と同様に機能します。 これは、route(ルート)が提供されていないときに描画されるデフォルトroute(ルート)です。 したがって、`/rentals`に移動すると、Emberはrentals index route(ルート)をネストされたroute(ルート)としてロードしようとします。
 
-To create an index nested route, run the following command:
+ネストされたindex route(ルート)を作成するには、次のコマンドを実行します。
 
 ```shell
 ember g route rentals/index
 ```
 
-If you open up your Router (`app/router`) you may notice that nothing has updated.
+Router (`app/router.js`)を開くと、何も更新されていないことに気づくでしょう。
 
 ```app/router.js
 Router.map(function() {
@@ -61,9 +61,9 @@ Router.map(function() {
 });
 ```
 
-Much like how our application's `index` route doesn't appear in our Router, `index` routes on sub-routes won't explicitly appear in the Router either. Ember knows that the default action is to take the user to the `index` route. However, you can add the `index` route if you want to customize it. For example, you can modify the `index` route's path by specifying `this.route('index', { path: '/custom-path'})`.
+アプリケーションの`index` route(ルート)がRouter(ルータ)に表示されないように、サブルートの`index` route(ルート)もRouter(ルータ)には明示的に表示されません。 Emberはデフォルトのアクションが`index`ルートにユーザを移動させることであることを認識しています。 ただし、カスタマイズする場合には`index` route(ルート)を追加できます。 たとえば、`index` route(ルート)のパスを`this.route('index', { path: '/custom-path'})`で特定するには、次のようにします。
 
-In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals. Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
+[Ember Dataを使用する](../ember-data#toc_updating-the-model-hook)セクションでは、すべての賃貸物件をフェッチする呼び出しを追加しました。 この`findAll`呼び出しを親の`rentals` route(ルート)から新しいサブroute(ルート)に移動することによって、新しく生成された`rentals/index` route(ルート)を実装しましょう。
 
 <pre><code class="app/routes/rentals.js{-2,-3,-4}">export default Ember.Route.extend({
   model() {
@@ -80,7 +80,7 @@ export default Ember.Route.extend({
 });
 ```
 
-Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
+すべての賃貸物件をネストされたroute (ルート)のモデルに戻したので、次は賃貸物件リストのマークアップをメインのroute (ルート)テンプレートからネストされたindex route(ルート)のテンプレートに移動します。
 
 <pre><code class="app/templates/rentals.hbs{-9,-10,-11,-12,-13,-14,-15,-16,-17}">&lt;div class="jumbo"&gt;
   &lt;div class="right tomster"&gt;&lt;/div&gt;
@@ -115,25 +115,25 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 {{outlet}}
 ```
 
-Finally, we need to make our controller that has our filter action available to the new nested index route.
+最後に、新しいネストしたindex route(ルート)でfilterアクションを使用できるコントローラを作成する必要があります。
 
-Start by running `ember g controller rentals/index` to create an index controller for our nested route.
+まず、`ember g controller rentals/index`を実行して、ネストされたroute(ルート)のindexコントローラを作成します。
 
-Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
+`app/controller/rentals.js`からコントローラファイル全体を`app/controller/ rentals/index.js`にコピーするのではなく、JavaScriptの import/export 機能を利用して、rentalsコントローラをrentals/indexコントローラとして再エクスポートするだけです。
 
-```app/controller/rentals/index.js
+```app/controllers/rentals/index.js
 import RentalsController from '../rentals';
 
 export default RentalsController;
 ```
 
-## Setting up Data for the Nested Detail Route
+## ネストした詳細route(ルート)にデータを設定する
 
-Next, we will want to create a sub-route that will list information for a specific rental. To do this, we will need to update a couple of files. To find a specific rental, we will want to use Ember Data's `findRecord` function [(see "Finding Records" for more details)](../../models/finding-records/). The `findRecord` function requires that we search by a unique key.
+次に、特定の賃貸物件の詳細情報を表示するサブroute(ルート)を作成します。 それをするために、いくつかのファイルを更新する必要があります。 特定の賃貸物件を見つけるために、Ember Dataの`findRecord`関数を使います[(詳細は「レコードを取得する」を参照してください)](../../models/finding-records/)。 `findRecord`関数を使うには、ユニークキーを使って検索する必要があります。
 
-While on the `show` route, we will also want to show additional information about our specific rental.
+`show` route(ルート)上で、特定の賃貸物件に関する追加情報も表示しましょう。
 
-In order to do this, we will need to modify the Mirage `config.js` file that we added back in the [Installing Addons section](../installing-addons). We will add a new route handler to return a specific rental:
+これを行うには、[「Addonをインストールする」セクション](../installing-addons)で追加したMirageの`config.js`ファイルを変更する必要があります。 特定の賃貸物件を返す新しいroute(ルート)ハンドラを追加しましょう。
 
 ```mirage/config.js{+57,+58,+59,+60}
 export default function() {
@@ -192,24 +192,23 @@ export default function() {
     }
   });
 
-  // 上記の不動産物件のリストから不動産物件を検索して返します。
+  // Find and return the provided rental from our rental list above
   this.get('/rentals/:id', function (db, request) {
     return { data: rentals.find((rental) => request.params.id === rental.id) };
   });
 
-};
-
+}
 ```
 
-## Generating a Nested Detail Route
+## ネストした詳細route(ルート)を生成する
 
-Now that our API is ready to return individual rentals, we can generate our `show` sub-route. Much like generating our `rentals` route, we will use `ember g` to create a nested route.
+個別の賃貸物件を返すAPIが準備ができたので、これで`show`サブroute(ルート)を生成できます。 `rentals` route(ルート)を生成するのと同じように、`ember g `を使用してネストされたroute(ルート)を作成します。
 
 ```shell
 ember g route rentals/show
 ```
 
-You will see output like this:
+出力は以下のようになります。
 
 ```shell
 installing route
@@ -221,7 +220,7 @@ installing route-test
   create tests/unit/routes/rentals/show-test.js
 ```
 
-Let's start by looking at the changes to our Router (`app/router.js`).
+Router (`app/router.js`)への変更から見ていきましょう。
 
 ```app/router.js{+5}
 Router.map(function() {
@@ -233,11 +232,11 @@ Router.map(function() {
 });
 ```
 
-Our new route is nested within our `rentals` route. This tells Ember that it is a sub-route and will be accessed through `localhost:4200/rentals/show`.
+新しいroute(ルート)は`rentals` route(ルート)の中にネストされています。 これはEmberに、それがサブroute(ルート)であり、`localhost:4200/rentals/show`を介してアクセスされることを伝えます。
 
-To tell the application which rental we want to access, we need to replace the `show` route path with the ID of the rental listing. We also want to simplify the URL so that it looks more like this: `localhost:4200/rentals/id-for-rental`.
+どの賃貸物件にアクセスするかをアプリケーションに伝えるには、`show` route(ルート)パスを賃貸物件リストのIDに置き換える必要があります。 `localhost:4200/rentals/id-for-rental`と見えるように、URLも単純化したいと考えています。
 
-To do that, we modify our route as follows:
+これをするために、route(ルート)を以下のように編集します。
 
 ```app/router.js{+5}
 Router.map(function() {
@@ -249,11 +248,11 @@ Router.map(function() {
 });
 ```
 
-The `rental_id` will now be passed to the route.
+これで`rental_id`はroute(ルート)に渡されるようになります。
 
-## Finding By ID
+## IDによる検索
 
-Next, we want to edit our `show` route to retrieve the requested rental:
+次に、リクエストされた賃貸物件を取得するように、`show` route(ルート) を編集します。
 
 ```app/routes/rentals/show.js{+2,+3,+4}
 export default Ember.Route.extend({
@@ -263,11 +262,11 @@ export default Ember.Route.extend({
 });
 ```
 
-Since we added `:rental_id` to the `show` path in our router, `rental_id` is now available in our `model` hook. When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../../models/)).
+Routerのパス`show`に`:rental_id`を追加したので、`model`フックで`rental_id`を利用できるようになっています。 `this.get('store').findRecord('rental', params.rental_id)`を呼び出すと、Ember Dataは、HTTP GETを使用して`/rentals/our-id`を照会します([詳細はこちら](../../models/))。
 
-## Adding the Rental To Our Template
+## テンプレートに賃貸物件を追加する
 
-Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
+これで、show route(ルート) (`app/templates/rentals/show.hbs`) のテンプレートを更新し、賃貸物件の情報を一覧表示することができます。
 
 ```app/templates/rentals/show.hbs
 <div class="jumbo show-listing">
@@ -291,15 +290,15 @@ Next, we can update the template for our show route (`app/templates/rentals/show
 </div>
 ```
 
-Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the information listed for that specific rental.
+`localhost:4200/rentals/grand-old-mansion`を参照すると、特定の賃貸物件情報が表示されます。
 
 ![Rental Page Nested Show Route](../../images/subroutes/subroutes-super-rentals-show.png)
 
-## Linking to a Specific Rental
+## 特定の賃貸物件へリンクする
 
-Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages. Here, the `link-to` helper takes the route name and the rental model object as arguments. When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](http://emberjs.com/api/classes/Ember.Route.html#method_serialize) the object to the ID of the model into the URL. Alternately, you may just pass `rental.id` for clarity.
+個々の賃貸物件用のページをロードできるようになったので、`rental-listing` component (コンポーネント)内にリンク(`link-to`ヘルパーを使って)を追加して個々のページに移動するようにします。 ここでは、`link-to`ヘルパーはroute (ルート)名と物件のモデルオブジェクトを引数として受け取ります。 `link-to`のブロックヘルパーに第二引数としてオブジェクトを渡すと、デフォルトではオブジェクトをモデルのIDからURLに[serializeする](http://emberjs.com/api/classes/Ember.Route.html#method_serialize)ことになります。 または、明確に`rental.id`を渡すこともできます。
 
-Clicking on the title will load the detail page for that rental.
+タイトルをクリックすると、その物件の詳細ページが読み込まれます。
 
 <pre><code class="app/templates/components/rental-listing.hbs{+6}">&lt;article class="listing"&gt;
   &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
@@ -325,10 +324,10 @@ Clicking on the title will load the detail page for that rental.
 
 ![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
-## Final Check
+## 最終チェック
 
-At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
+この時点で、最初に要件として作成した[acceptance test (受入テスト)のリスト](../acceptance-test)を含む、すべてのテストは合格するはずです。
 
 ![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
 
-At this point you can do a [deployment](../deploying) and share your Super Rentals application to the world or you can use this as a base to explore other Ember features and addons. Regardless, we hope this has helped you get started with creating your own ambitious applications with Ember!
+この時点で[デプロイ](../deploying)し、SuperRentalsアプリケーションを世界に公開することができます。 あるいは、このアプリケーションをベースにして、他のEmberの機能やアドオンを探索することができます。 それに関わらず、このアプリケーションが、あなたがEmberを使って野心的なアプリケーションを作成する助けになっていることを願っています!

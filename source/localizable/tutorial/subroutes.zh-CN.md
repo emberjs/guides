@@ -51,7 +51,7 @@ To create an index nested route, run the following command:
 ember g route rentals/index
 ```
 
-If you open up your Router (`app/router`) you may notice that nothing has updated.
+If you open up your Router (`app/router.js`) you may notice that nothing has updated.
 
 ```app/router.js
 Router.map(function() {
@@ -121,7 +121,7 @@ Start by running `ember g controller rentals/index` to create an index controlle
 
 Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
 
-```app/controller/rentals/index.js
+```app/controllers/rentals/index.js
 import RentalsController from '../rentals';
 
 export default RentalsController;
@@ -197,8 +197,7 @@ export default function() {
     return { data: rentals.find((rental) => request.params.id === rental.id) };
   });
 
-};
-
+}
 ```
 
 ## Generating a Nested Detail Route

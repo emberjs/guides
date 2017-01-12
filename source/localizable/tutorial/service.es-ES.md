@@ -4,7 +4,7 @@ Para Super Rentals, queremos tener un mapa en el que se muestre donde se encuent
   2. Un servicio para mantener en caché los mapas renderizados en diferentes lugares de la aplicación.
   3. Una función utility (utilidad) para crear un mapa desde el API de Google Maps.
 
-Empezaremos mostrando el mapa y trabajaremos con lo demás usando el API de Google Maps.
+We'll start by displaying the map and work our way back to using the Google Maps API.
 
 ### Mostrar mapas con un Component (componente)
 

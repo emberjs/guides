@@ -4,7 +4,7 @@ For Super Rentals, we want to be able to display a map showing where each rental
   2. A service to keep a cache of rendered maps to use in different places in the application.
   3. A utility function to create a map from the Google Maps API.
 
-We'll start by displaying the map and work our way back to using the Google Map API.
+We'll start by displaying the map and work our way back to using the Google Maps API.
 
 ### Display Maps With a Component
 

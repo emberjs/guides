@@ -220,7 +220,6 @@ test('should transition to rentals route', function(assert) { let route = this.s
     
     export default Ember.Route.extend({
       beforeModel() {
-        this._super(...arguments);
         this.replaceWith('rentals');
       }
     });

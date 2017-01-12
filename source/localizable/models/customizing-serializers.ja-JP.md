@@ -8,7 +8,7 @@ When requesting a record, the `JSONAPISerializer` expects your server to return 
 
 ### JSON API Document
 
-The JSONAPI serializer expects the backend to return a JSON API Document that follows the JSON API specification and the conventions of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all type names should be pluralized and attribute and relationship names should be dash-cased. For example, if you request a record from `/people/123`, the response should look like this:
+The `JSONAPISerializer` expects the backend to return a JSON API Document that follows the JSON API specification and the conventions of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all type names should be pluralized and attribute and relationship names should be dash-cased. For example, if you request a record from `/people/123`, the response should look like this:
 
 ```js
 {
@@ -130,7 +130,7 @@ But our server expects data in this format:
 {
   "data": {
     "id": "1",
-    "type": "product"
+    "type": "product",
     "attributes": {
       "name": "My Product",
       "cost": {
@@ -439,7 +439,7 @@ For requests that are only expected to return 0 or more records (e.g. `store.fin
 }]
 ```
 
-The JSONAPISerializer is built on top of the JSONSerializer so they share many of the same hooks for customizing the behavior of the serialization process. Be sure to check out the [API docs](http://emberjs.com/api/data/classes/DS.JSONSerializer.html) for a full list of methods and properties.
+The `JSONAPISerializer` is built on top of the `JSONSerializer` so they share many of the same hooks for customizing the behavior of the serialization process. Be sure to check out the [API docs](http://emberjs.com/api/data/classes/DS.JSONSerializer.html) for a full list of methods and properties.
 
 ## EmbeddedRecordMixin
 
