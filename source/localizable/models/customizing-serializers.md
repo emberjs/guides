@@ -299,8 +299,8 @@ in the document payload returned by your server:
     "id": "44",
     "type": "people",
     "attributes": {
-      "first-name": "Barack",
-      "last-name": "Obama",
+      "first-name": "Zaphod",
+      "last-name": "Beetlebrox",
       "is-person-of-the-year": true
     }
   }
