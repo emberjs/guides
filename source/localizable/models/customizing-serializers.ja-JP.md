@@ -253,8 +253,8 @@ export default DS.Model.extend({ firstName: DS.attr('string'), lastName: DS.attr
         "id": "44",
         "type": "people",
         "attributes": {
-          "first-name": "Barack",
-          "last-name": "Obama",
+          "first-name": "Zaphod",
+          "last-name": "Beeblebrox",
           "is-person-of-the-year": true
         }
       }

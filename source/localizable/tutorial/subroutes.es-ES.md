@@ -119,7 +119,7 @@ Finally, we need to make our controller that has our filter action available to 
 
 Start by running `ember g controller rentals/index` to create an index controller for our nested route.
 
-Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
+Instead of copying the whole controller file over to `app/controllers/rentals/index.js` from `app/controllers/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
 
 ```app/controllers/rentals/index.js
 import RentalsController from '../rentals';

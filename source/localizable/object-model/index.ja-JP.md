@@ -1,4 +1,4 @@
-You'll notice standard JavaScript class patterns and the new ES2015 classes aren't widely used in Ember. Plain objects can still be found, and sometimes they're referred to as "hashes".
+標準のJavaScriptクラスパターンと新しいES2015 クラスはEmberでは広く使われていません。プレーンなオブジェクトはまだ見つかるかもしれません。それらは「ハッシュ」と呼ばれます。
 
 JavaScript objects don't support the observation of property value changes. Consequently, if an object is going to participate in Ember's binding system you may see an `Ember.Object` instead of a plain object.
 

@@ -69,14 +69,11 @@ ember generate template application
 
     <br />Emberは新しいファイルを検知し、バックグラウンドでページを自動的にリロードしたはずです。 ウェルカムページが"PeopleTracker"に置き換わったのが確認できるはずです。 You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
     
-    ## Define a Route
+    ## route（ルート）を定義する
     
-    Let's build an application that shows a list of scientists. To do that,
-    the first step is to create a route. For now, you can think of routes as
-    being the different pages that make up your application.
+    では、科学者のリストを表示するアプリケーションを作っていきましょう。 そのためには、まずroute（ルート）を作成する必要があります。 当面は、ルートはアプリケーションを構成する別のページと考えるといいでしょう。
     
-    Ember comes with _generators_ that automate the boilerplate code for
-    common tasks. To generate a route, type this in your terminal:
+    Emberには定型コードを自動生成する、_generators_（ジェネレータ）があります。 ルートを生成するには、ターミナルで次のように入力します。
     
     ```sh
     ember generate route scientists
@@ -107,9 +104,7 @@ installing route-test
 
 ## List of Scientists
 
-    <br />ブラウザで[`http://localhost:4200/scientists`](http://localhost:4200/scientists)を開いてください。 You should
-    see the `<h2>` you put in the `scientists.hbs` template, right below the
-    `<h1>` from our `application.hbs` template.
+    <br />ブラウザで[`http://localhost:4200/scientists`](http://localhost:4200/scientists)を開いてください。 `application.hbs`の`<h1>`直下に、`scientists.hbs`テンプレートに追加した、`<h2>`が確認できるはずです。
     
     これで`scientists`テンプテートが出来ました。それでは、描画用のデータを与えていきましょう。 そのために、ルートのための_モデル_を指定します。モデルを指定するには`app/routes/scientists.js`を編集します。
     
