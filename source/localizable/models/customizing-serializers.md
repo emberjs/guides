@@ -755,7 +755,7 @@ method to transform the response from the adapter into the normalized
 JSON object described above.
 
 This method receives the `store`, the Model class for the request, the
-payload payload, the id of the record request (or `null` if there is
+payload, the id of the record request (or `null` if there is
 no id associated with the request) and the request type (a string with
 the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`,
 `'findBelongsTo'`, `'findHasMany'`, `'findMany'`, `'query'`,
