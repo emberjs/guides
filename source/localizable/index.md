@@ -36,6 +36,33 @@ strings, destructuring, and more. You can check the
 [Babel.js documentation][babeljs] or read [Understanding ECMAScript 6][es6]
 online.
 
+## A Note on Mobile Performance
+
+Ember will do a lot to help you write fast apps, but it can't prevent you from
+writing a slow one. This is especially true on mobile devices. To deliver a great
+experience, it's important to measure performance early and often, and with a diverse
+set of devices.
+
+Make sure you are testing performance on real devices. Simulated mobile
+environments on a desktop computer give an optimistic-at-best representation of
+what your real world performance will be like. The more operating systems and
+hardware configurations you test, the more confident you can be.
+
+Due to their limited network connectivity and CPU power, great performance on
+mobile devices rarely comes for free. You should integrate performance testing
+into your development workflow from the beginning. This will help you avoid
+making costly architectural mistakes that are much harder to fix if you only
+notice them once your app is nearly complete.
+
+In short:
+
+1. Always test on real, representative mobile devices.
+2. Measure performance from the beginning, and keep testing as your app
+   develops.
+
+These tips will help you identify problems early so they can be addressed systematically, rather than
+in a last-minute scramble.
+
 ## Reporting a problem
 
 Typos, missing words, and code samples with errors are all considered
