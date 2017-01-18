@@ -223,7 +223,7 @@ There are several ways to include 3rd party libraries in Ember. See the guides s
 
 Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
 
-From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.  
+From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.
 `Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
 
 ```shell
@@ -320,7 +320,9 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code after the imports to our acceptance test:
 
-```/tests/acceptance/list-rentals-test.js
+```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
+import { test } from 'qunit';
+import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 import Ember from 'ember';
 
 let StubMapsService = Ember.Service.extend({
@@ -329,6 +331,7 @@ let StubMapsService = Ember.Service.extend({
   }
 });
 
+moduleForAcceptance('Acceptance | list-rentals');
 moduleForAcceptance('Acceptance | list rentals', {
   beforeEach() {
     this.application.register('service:stubMaps', StubMapsService);
