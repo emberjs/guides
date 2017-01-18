@@ -15,12 +15,11 @@ npm install firebase-tools@^2.1 -g
 git clone $REPO
 
 # get latest version so we can copy our files to the right snapshot dir
-cd guides.emberjs.com/snapshots
-a=(*/)
-tmp=${a[@]: -1} # has a trailing slash we remove below
-latestVersion=${tmp%/}
-
+cd guides.emberjs.com
+latestVersion=`node tasks/get-latest-version.js`
 LATEST_VERSION=$WEBSITE_FILES/snapshots/$latestVersion
+
+echo "Will deploy $latestVersion"
 
 cd $DEPLOY
 
