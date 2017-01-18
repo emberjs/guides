@@ -60,13 +60,14 @@ To create an index nested route, run the following command:
 ember g route rentals/index
 ```
 
-If you open up your Router (`app/router.js`) you may notice that nothing has updated.
+If you open up your Router (`app/router.js`) you may notice that the rentals line has changed.
+This extra `function() {}` is required because it needs a child route, the `this.route('index', { path: '/'});` is implied.
 
 ```app/router.js
 Router.map(function() {
   this.route('about');
   this.route('contact');
-  this.route('rentals');
+  this.route('rentals', function() {});
 });
 ```
 
