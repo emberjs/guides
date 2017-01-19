@@ -9,8 +9,8 @@ WEBSITE_FILES=$DEPLOY/guides.emberjs.com
 mkdir $DEPLOY
 cd $DEPLOY
 
-echo "Installing Firebase tools for deploys"
-npm install firebase-tools@^2.1 -g
+echo "Installing Netlify tools"
+npm install netlify-cli -g
 
 git clone $REPO
 
@@ -31,5 +31,12 @@ cd $WEBSITE_FILES
 # clean up versions in our built files
 node tasks/update-versions.js
 
-# do the deploy to production
-firebase deploy
+cd snapshots
+
+# Need to get permissions / tokens sorted out
+# might need to use -t <token-here> for this
+
+currentDir=`pwd`
+echo "Deploying from $currentDir"
+
+netlify deploy -s ca5334ce-40e8-4c25-a26a-0d1e36e609c2 -p . -t $NETLIFY_ACCESS_TOKEN
