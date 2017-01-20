@@ -115,7 +115,7 @@ export default Ember.Component.extend({
 
 ### Fetching Maps With a Service
 
-At this point we should have a passing component integration test, but our acceptance test should now fail, unable to find our maps service.  In addition to our acceptance test failing, no maps show up when we view our web page.
+At this point we should have a passing component integration test. However, no maps show up when we view our web page.
 To actually generate the maps, we'll implement the maps service.
 
 Accessing our maps API through a [service](../../applications/services) will give us several benefits
