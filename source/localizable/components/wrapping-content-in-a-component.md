@@ -74,7 +74,7 @@ We will give them the option to specify either `markdown-style` or `html-style`.
 ```
 
 Supporting different editing styles will require different body components to provide special validation and highlighting.
-To load a different body component based on editing style, you can yield the component using the component helper and hash helper.
+To load a different body component based on editing style, you can yield the component using the [`component helper`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_component) and [`hash helper`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_hash).
 
 ```app/templates/components/blog-post.hbs
 <h2>{{title}}</h2>
@@ -90,7 +90,7 @@ Once yielded the data can be accessed within wrapped content by referencing the 
 {{/blog-post}}
 ```
 
-Finally, we want to share the the blog text that a user fills out for the post within our `blog-post` and body components. To share the blog text with the new body component, we'll add a `postData` argument to the component helper.
+Finally, we want to share the blog text that a user fills out for the post within our `blog-post` and body components. To share the blog text with the new body component, we'll add a `postData` argument to the component helper.
 
 ```app/templates/components/blog-post.hbs
 <h2>{{title}}</h2>
