@@ -102,7 +102,7 @@ export default Ember.Component.extend({
 
 ### Obteniendo los mapas con un service (servicio)
 
-At this point we should have a passing component integration test, but our acceptance test should now fail, unable to find our maps service. In addition to our acceptance test failing, no maps show up when we view our web page. To actually generate the maps, we'll implement the maps service.
+At this point we should have a passing component integration test. However, no maps show up when we view our web page. To actually generate the maps, we'll implement the maps service.
 
 Accessing our maps API through a [service](../../applications/services) will give us several benefits
 
@@ -203,8 +203,7 @@ Antes de implementar la utilidad del mapa, tenemos que hacer que el API de terce
 
 Debido a que Google ofrece su API de mapas como un script remoto, usaremos curl para descargar en el directorio vendor de nuestro proyecto.
 
-En el directorio de raíz de tu proyecto, ejecute el siguiente comando para poner el script de Google Maps en la carpeta vendor de tu proyecto como `gmaps.js`.  
-`Curl` es un comando UNIX, así que si estás en windows debes aprovechar el [soporte de bash de Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) o utilizar un método alternativo para descargar el script en el directorio vendor.
+From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`. `Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
 
 ```shell
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
@@ -291,7 +290,9 @@ Often, services connect to third party APIs that are not desirable to include in
 
 Add the following code after the imports to our acceptance test:
 
-<pre><code class="/tests/acceptance/list-rentals-test.js">import Ember from 'ember';
+<pre><code class="/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}">import { test } from 'qunit';
+import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
+import Ember from 'ember';
 
 let StubMapsService = Ember.Service.extend({
   getMapElement() {
@@ -299,6 +300,7 @@ let StubMapsService = Ember.Service.extend({
   }
 });
 
+moduleForAcceptance('Acceptance | list-rentals');
 moduleForAcceptance('Acceptance | list rentals', {
   beforeEach() {
     this.application.register('service:stubMaps', StubMapsService);

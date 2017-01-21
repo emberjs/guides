@@ -99,7 +99,7 @@ Emberは、acceptance test (受入テスト)でよく目にする仕事を行う
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should list available rentals.', function (assert) {
   visit('/');
-  andThen(function () {
+  andThen(function() {
     assert.equal(find('.listing').length, 3, 'should see 3 listings');
   });
 });
@@ -112,7 +112,7 @@ Emberは、acceptance test (受入テスト)でよく目にする仕事を行う
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');
-  andThen(function () {
+  andThen(function() {
     assert.equal(currentURL(), '/about', 'should navigate to about');
   });
 });
@@ -120,7 +120,7 @@ Emberは、acceptance test (受入テスト)でよく目にする仕事を行う
 test('should link to contact information', function (assert) {
   visit('/');
   click('a:contains("Contact")');
-  andThen(function () {
+  andThen(function() {
     assert.equal(currentURL(), '/contact', 'should navigate to contact');
   });
 });
@@ -134,7 +134,7 @@ URLをテストした後は、都市の検索条件に応じて一覧を絞り�
   visit('/');
   fillIn('.list-filter input', 'seattle');
   keyEvent('.list-filter input', 'keyup', 69);
-  andThen(function () {
+  andThen(function() {
     assert.equal(find('.listing').length, 1, 'should show 1 listing');
     assert.equal(find('.listing .location:contains("Seattle")').length, 1, 'should contain 1 listing with location Seattle');
   });

@@ -607,7 +607,7 @@ Note that the type is `"post"` to match the post model and the `relatedPosts` re
 
 When creating a custom serializer you will need to define a [normalizeResponse](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalizeResponse) method to transform the response from the adapter into the normalized JSON object described above.
 
-This method receives the `store`, the Model class for the request, the payload payload, the id of the record request (or `null` if there is no id associated with the request) and the request type (a string with the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`, `'findBelongsTo'`, `'findHasMany'`, `'findMany'`, `'query'`, `'createRecord'`, `'deleteRecord'` and `'updateRecord'`) as arguments.
+This method receives the `store`, the Model class for the request, the payload, the id of the record request (or `null` if there is no id associated with the request) and the request type (a string with the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`, `'findBelongsTo'`, `'findHasMany'`, `'findMany'`, `'query'`, `'createRecord'`, `'deleteRecord'` and `'updateRecord'`) as arguments.
 
 A custom serializer will also need to define a [normalize](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalize) method. This method is called by `store.normalize(type, payload)` and is often used for normalizing requests made outside of Ember Data because they do not fall into the normal CRUD flow that the adapter provides.
 

@@ -1,8 +1,8 @@
-As you learn about Ember, you'll see code like `Ember.Component.extend()` and `DS.Model.extend()`. Here, you'll learn about this `extend()` method, as well as other major features of the Ember object model.
+Emberを学ぶと、`Ember.Component.extend()`や`DS.Model.extend()`といったコードを目にするでしょう。 ここでは、Emberオブジェクトモデルの他の主な機能だけでなく、この `extend()`メソッドについて学びます。
 
-### Defining Classes
+### クラスを定義する
 
-To define a new Ember *class*, call the [`extend()`](http://emberjs.com/api/classes/Ember.Object.html#method_extend) method on [`Ember.Object`](http://emberjs.com/api/classes/Ember.Object.html):
+Emberで新しい*クラス*を定義するには、[`Ember.Object`](http://emberjs.com/api/classes/Ember.Object.html)の[`extend()`](http://emberjs.com/api/classes/Ember.Object.html#method_extend)メソッドを呼び出します。
 
 ```javascript
 const Person = Ember.Object.extend({
@@ -12,17 +12,15 @@ const Person = Ember.Object.extend({
 });
 ```
 
-This defines a new `Person` class with a `say()` method.
+これで`say()`メソッドを持つ新しい`Person`クラスが定義されます。
 
-You can also create a *subclass* from any existing class by calling its `extend()` method. For example, you might want to create a subclass of Ember's built-in [`Ember.Component`](http://emberjs.com/api/classes/Ember.Component.html) class:
+任意の既存クラスから*サブクラス*を作成するには、そのクラスの`extend()`メソッドを呼び出します。 例えば、Emberに組み込まれている[`Ember.Component`](http://emberjs.com/api/classes/Ember.Component.html)のサブクラスを作成したいなら、次のようにします。
 
 ```app/components/todo-item.js export default Ember.Component.extend({ classNameBindings: ['isUrgent'], isUrgent: true });
 
-    <br />### Overriding Parent Class Methods
+    <br />### 親クラスのメソッドをオーバーライドする
     
-    When defining a subclass, you can override methods but still access the
-    implementation of your parent class by calling the special `_super()`
-    method:
+    サブクラスを定義する際、メソッドをオーバーライドすることができます。このとき、特別な`_super()`メソッドを呼び出すことで親クラスの実装にアクセスすることが可能です。
     
     ```javascript
     const Person = Ember.Object.extend({
@@ -46,13 +44,13 @@ You can also create a *subclass* from any existing class by calling its `extend(
     yehuda.say('Yes'); // alerts "Yehuda Katz says: Yes, sir!"
     
 
-In certain cases, you will want to pass arguments to `_super()` before or after overriding.
+特定のケースでは、オーバーライドの前後で`_super()`に引数を渡します。
 
-This allows the original method to continue operating as it normally would.
+これによって、元のメソッドは正常に動作し続けることができます。
 
-One common example is when overriding the [`normalizeResponse()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse) hook in one of Ember-Data's serializers.
+一般的な例に、EmberDataのシリアライザーの1つ、[`normalizeResponse()`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse)フックをオーバーライドする場合があります。
 
-A handy shortcut for this is to use a "spread operator", like `...arguments`:
+このようなケースで使える便利なショートカットに、`...arguments`のように記述する「スプレッド演算子」があります。
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
@@ -61,11 +59,11 @@ normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
 }
 ```
 
-The above example returns the original arguments (after your customizations) back to the parent class, so it can continue with its normal operations.
+上記の例では、(カスタマイズした後で) 元の引数を親クラスに戻すため、通常の操作を続行できます。
 
-### Creating Instances
+### インスタンスを作成する
 
-Once you have defined a class, you can create new *instances* of that class by calling its [`create()`](http://emberjs.com/api/classes/Ember.Object.html#method_create) method. Any methods, properties and computed properties you defined on the class will be available to instances:
+クラスを定義すると、[`create()`](http://emberjs.com/api/classes/Ember.Object.html#method_create)メソッドを呼び出すことで、そのクラスの*インスタンス*を作成できます。 あなたがクラスに定義した全てのメソッド、プロパティ、計算プロパティはインスタンスに存在することになります。
 
 ```javascript
 const Person = Ember.Object.extend({
@@ -99,7 +97,7 @@ Note that for performance reasons, while calling `create()` you cannot redefine 
 
 By convention, properties or variables that hold classes are PascalCased, while instances are not. So, for example, the variable `Person` would point to a class, while `person` would point to an instance (usually of the `Person` class). You should stick to these naming conventions in your Ember applications.
 
-### Initializing Instances
+### インスタンスの初期化
 
 When a new instance is created, its [`init()`](http://emberjs.com/api/classes/Ember.Object.html#method_init) method is invoked automatically. This is the ideal place to implement setup required on new instances:
 
@@ -171,7 +169,7 @@ Person.create({
 // Robert ['eggs', 'cheese', 'sausage']
 ```
 
-### Accessing Object Properties
+### オブジェクトの属性へのアクセス
 
 When accessing the properties of an object, use the [`get()`](http://emberjs.com/api/classes/Ember.Object.html#method_get) and [`set()`](http://emberjs.com/api/classes/Ember.Object.html#method_set) accessor methods:
 

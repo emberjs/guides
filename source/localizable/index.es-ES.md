@@ -19,19 +19,34 @@ Para hacer la mayoría de las guías, deberías tener conocimientos de:
 * **Módulos de ES2015** - entenderás mejor la estructura de proyecto de la [Línea de Comandos de Ember](https://ember-cli.com/) y rutas de importación si estás cómodo con los [Módulos de JavaScript ES6](http://jsmodules.io/).
 * **Sintaxis de ES2015** - Ember CLI utiliza Babel.js por defecto para tomar ventaja de las nuevas características del lenguaje como arrow functions, template strings, destructuring y más. Puedes consultar la [documentación de Babel.js](https://babeljs.io/docs/learn-es2015/) o leer [entendiendo ECMAScript 6](https://leanpub.com/understandinges6/read) en línea.
 
-## Reportar un problema
+## A Note on Mobile Performance
 
-Errores tipográficos, palabras faltantes y código de ejemplo con errores son todos considerados fallas en la documentación. Si encuentras uno de ellos, o bien, quieres mejorar las guías existentes, ¡estamos felices de ayudarte a que nos ayudes!
+Ember will do a lot to help you write fast apps, but it can't prevent you from writing a slow one. This is especially true on mobile devices. To deliver a great experience, it's important to measure performance early and often, and with a diverse set of devices.
 
-Algunas de las formas más comunes de reportar un problema con las guías son:
+Make sure you are testing performance on real devices. Simulated mobile environments on a desktop computer give an optimistic-at-best representation of what your real world performance will be like. The more operating systems and hardware configurations you test, the more confident you can be.
+
+Due to their limited network connectivity and CPU power, great performance on mobile devices rarely comes for free. You should integrate performance testing into your development workflow from the beginning. This will help you avoid making costly architectural mistakes that are much harder to fix if you only notice them once your app is nearly complete.
+
+In short:
+
+  1. Always test on real, representative mobile devices.
+  2. Measure performance from the beginning, and keep testing as your app develops.
+
+These tips will help you identify problems early so they can be addressed systematically, rather than in a last-minute scramble.
+
+## Reporting a problem
+
+Typos, missing words, and code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
+
+Some of the more common ways to report a problem with the guides are:
 
 * Utilizando el icono de lápiz en la derecha superior de cada página de guía
 * Abriendo un ticket o solicitud de pull en [el repositorio de GitHub](https://github.com/emberjs/guides/)
 
-Haciendo clic en el icono de lápiz te llevará al editor de GitHub para esa guía por lo que se puede editar inmediatamente, utilizando el lenguaje Markdown. Esta es la manera más rápida de corregir un error, una palabra faltante o un error en una muestra de código.
+Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
 
-Si deseas hacer una contribución más importante compruebe nuestro [issue tracker ](https://github.com/emberjs/guides/issues) para ver si tu problema ya se encuentra solucionándose. Si no encuentras un issue activo, abre uno nuevo.
+If you wish to make a more significant contribution be sure to check our [issue tracker](https://github.com/emberjs/guides/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
 
-Si tienes preguntas sobre estilizar o el proceso para contribuir, puedes revisar nuestra [guía para contribuir](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). Si aún sigues con tu pregunta, encuéntranos en `#-team-learning` en el [Grupo de Slack](https://ember-community-slackin.herokuapp.com/).
+If you have any questions about styling or the contributing process, you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
 
-¡Buena suerte!
+Good luck!

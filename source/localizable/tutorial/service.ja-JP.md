@@ -102,7 +102,7 @@ export default Ember.Component.extend({
 
 ### サービスで地図を取得する
 
-この時点で component (コンポーネント)の結合テストに通るはずですが、acceptance test (受入テスト)は失敗し、地図サービスを見つけることはできません。 acceptance test (受入テスト)に失敗するだけでなく、Webページ上に地図も表示されません。 実際に地図を生成するために、地図サービスを実装していきましょう。
+この時点でコンポーネントのインテグレーションテストは通るはずです。ただし、Webページで開いたときには何の地図も表示されません。実際に地図を作成するために、mapsサービスを実装していきます。
 
 [サービス](../../applications/services)を使用して地図APIにアクセスすると、いくつかのメリットが得られます。
 
@@ -203,8 +203,7 @@ export default Ember.Service.extend({
 
 GoogleはマップAPIをリモートスクリプトとして提供しています。curlを使用してプロジェクトのvendorディレクトリにダウンロードしましょう。
 
-プロジェクトのルートディレクトリから次のコマンドを実行して、Googleマップスクリプトを`gmaps.js `としてプロジェクトのvendorフォルダに配置します。  
-`curl`はUNIXコマンドなので、Windowsの場合は[Windows bashサポート](https://msdn.microsoft.com/en-us/commandline/wsl/about)を利用するか、別の方法でvendorディレクトリにスクリプトをダウンロードする必要があります。
+プロジェクトのルートディレクトリから次のコマンドを実行して、Google Mapのスクリプトを`gmaps.js`という名前でプロジェクトのvenderフォルダの下に置きます。 `Curl`はUNIXコマンドです。もしWindowsを使っている場合は[Windows bash サポート](https://msdn.microsoft.com/en-us/commandline/wsl/about)を活用するか、別の方法を使って、スクリプトをvenderディレクトリの下にダウンロードする必要があります。
 
 ```shell
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
@@ -288,7 +287,9 @@ export default Ember.Object.extend({
 
 acceptance test (受入テスト) の後に、次のコードを追加してください。
 
-<pre><code class="/tests/acceptance/list-rentals-test.js">import Ember from 'ember';
+<pre><code class="/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}">import { test } from 'qunit';
+import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
+import Ember from 'ember';
 
 let StubMapsService = Ember.Service.extend({
   getMapElement() {
@@ -296,6 +297,7 @@ let StubMapsService = Ember.Service.extend({
   }
 });
 
+moduleForAcceptance('Acceptance | list-rentals');
 moduleForAcceptance('Acceptance | list rentals', {
   beforeEach() {
     this.application.register('service:stubMaps', StubMapsService);

@@ -19,19 +19,34 @@
 * **ES2015 modules**——如果你熟悉 [ES6 JavaScript Modules](https://ember-cli.com/) 的话就更容易理解 [Ember CLI's](http://jsmodules.io/)的项目结构及模块导入路径..
 * **ES2015 语法**—— Ember CLI 默认配备了 Babel.js，于是你可以直接享用诸如箭头函数，模版字符串，解构等最新的语言特性。 这部分的内容你可以查看 [Babel.js 文档](https://babeljs.io/docs/learn-es2015/)或阅读在线书籍[理解 ECMAScript 6](https://leanpub.com/understandinges6/read)。
 
-## 报告问题
+## A Note on Mobile Performance
 
-错别字，内容缺漏，有错误的代码示例都是指南的 bugs，如果你有发现其中之一或是想要改进现有指南的话，我们非常乐意辅助你来帮助我们！
+Ember will do a lot to help you write fast apps, but it can't prevent you from writing a slow one. This is especially true on mobile devices. To deliver a great experience, it's important to measure performance early and often, and with a diverse set of devices.
 
-常见的报告问题方式包括：
+Make sure you are testing performance on real devices. Simulated mobile environments on a desktop computer give an optimistic-at-best representation of what your real world performance will be like. The more operating systems and hardware configurations you test, the more confident you can be.
+
+Due to their limited network connectivity and CPU power, great performance on mobile devices rarely comes for free. You should integrate performance testing into your development workflow from the beginning. This will help you avoid making costly architectural mistakes that are much harder to fix if you only notice them once your app is nearly complete.
+
+In short:
+
+  1. Always test on real, representative mobile devices.
+  2. Measure performance from the beginning, and keep testing as your app develops.
+
+These tips will help you identify problems early so they can be addressed systematically, rather than in a last-minute scramble.
+
+## Reporting a problem
+
+Typos, missing words, and code samples with errors are all considered documentation bugs. If you spot one of them, or want to otherwise improve the existing guides, we are happy to help you help us!
+
+Some of the more common ways to report a problem with the guides are:
 
 * 点击每页右上角的铅笔图标
 * 在 [the GitHub repository](https://github.com/emberjs/guides/)提交issue 或者pull request。
 
-点击铅笔图标将会带你进入指南在 Github 上的编辑器，于是你可以使用 Markdown 标记语言直接开始编辑。 这是用于纠正错别字，补充内容缺漏或修正代码示例中错误的最快捷方式。
+Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
 
-如果你想要提供更明确的贡献，请事先检索我们的[问题更踪器](https://github.com/emberjs/guides/issues)以确保不要提交重复的问题。 如果没有正在处理中的问题那就可以开一个新的。
+If you wish to make a more significant contribution be sure to check our [issue tracker](https://github.com/emberjs/guides/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
 
-如果你有关于样式的问题，或是关于贡献流程的问题可以参考我们的[contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md)。 如果问题得不到解决，请通过 [Slack group](https://ember-community-slackin.herokuapp.com/)中的 `#-team-learning` 频道联络我们。.
+If you have any questions about styling or the contributing process, you can check out our [contributing guide](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md). If your question persists, reach us at `#-team-learning` on the [Slack group](https://ember-community-slackin.herokuapp.com/).
 
-祝你好运！
+Good luck!

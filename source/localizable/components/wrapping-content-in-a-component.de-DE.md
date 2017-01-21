@@ -10,20 +10,21 @@ For example, imagine we are building a `blog-post` component that we can use in 
   {{body}}
 </div>
 
-    <br />Now, we can use the `{{blog-post}}` component and pass it properties
-    in another template:
+    <br />Now, we can use the `{{blog-post}}` component and pass it properties in another template:
     
     ```handlebars
     {{blog-post title=title body=body}}
     
 
-(See [Passing Properties to a Component](../passing-properties-to-a-component/) for more.)
+See [Passing Properties to a Component](../passing-properties-to-a-component/) for more.
 
 In this case, the content we wanted to display came from the model. But what if we want the developer using our component to be able to provide custom HTML content?
 
 In addition to the simple form you've learned so far, components also support being used in **block form**. In block form, components can be passed a Handlebars template that is rendered inside the component's template wherever the `{{yield}}` expression appears.
 
-To use the block form, add a `#` character to the beginning of the component name, then make sure to add a closing tag. (See the Handlebars documentation on [block expressions](http://handlebarsjs.com/#block-expressions) for more.)
+To use the block form, add a `#` character to the beginning of the component name, then make sure to add a closing tag.
+
+See the Handlebars documentation on [block expressions](http://handlebarsjs.com/#block-expressions) for more.
 
 In that case, we can use the `{{blog-post}}` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper. To update the example above, we'll first change the component's template:
 
@@ -35,11 +36,10 @@ In that case, we can use the `{{blog-post}}` component in **block form** and tel
   {{yield}}
 </div>
 
-    <br />You can see that we've replaced `{{body}}` with `{{yield}}`. This tells
-    Ember that this content will be provided when the component is used.
+    <br />You can see that we've replaced `{{body}}` with `{{yield}}`.
+    This tells Ember that this content will be provided when the component is used.
     
-    Next, we'll update the template using the component to use the block
-    form:
+    Next, we'll update the template using the component to use the block form:
     
     ```app/templates/index.hbs
     {{#blog-post title=title}}
@@ -61,14 +61,17 @@ There is also a way to share data within your blog post component with the conte
 </p> {{body}} {{/blog-post}}
 
     <br />Supporting different editing styles will require different body components to provide special validation and highlighting.
-    To load a different body component based on editing style, you can yield the component using the component helper and hash helper.
+    To load a different body component based on editing style,
+    you can yield the component using the [`component helper`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_component) and [`hash helper`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_hash). 
+    Here, the appropriate component is assigned to a hash using nested helpers and yielded to the template.
+    Notice `editStyle` being used as an argument to the component helper.
     
     ```app/templates/components/blog-post.hbs
     <h2>{{title}}</h2>
     <div class="body">{{yield (hash body=(component editStyle))}}</div>
     
 
-Once yielded the data can be accessed within wrapped content by referencing the `as` variable. Now a component called `markdown-style` will be rendered in `{{post.body}}`.
+Once yielded, the data can be accessed by the wrapped content by referencing the `post` variable. Now a component called `markdown-style` will be rendered in `{{post.body}}`.
 
 ```app/templates/index.hbs {{#blog-post editStyle="markdown-style" postData=myText as |post|}} 
 
@@ -76,14 +79,17 @@ Once yielded the data can be accessed within wrapped content by referencing the 
   by {{author}}
 </p> {{post.body}} {{/blog-post}}
 
-    <br />Finally, we want to share the the blog text that a user fills out for the post within our `blog-post` and body components. To share the blog text with the new body component, we'll add a `postData` argument to the component helper.
+    <br />Finally, we need to share `myText` with the body in order to have it display.
+    To pass the blog text to the body component, we'll add a `postData` argument to the component helper.
     
     ```app/templates/components/blog-post.hbs
     <h2>{{title}}</h2>
     <div class="body">{{yield (hash body=(component editStyle postData=postData))}}</div>
     
 
-Since the component isn't instantiated until the component block content is rendered, we can add additional arguments within the block. In this case we'll add a text style option which will dictate the style of body text we want in our post. When `{{post.body}}` is instantiated, it will have both the edit style and the `postData` given by its wrapping component.
+At this point, our block content has access to everything it needs to render, via the wrapping `blog-post` component's template helpers.
+
+Additionally, since the component isn't instantiated until the block content is rendered, we can add arguments within the block. In this case we'll add a text style option which will dictate the style of the body text we want in our post. When `{{post.body}}` is instantiated, it will have both the `editStyle` and `postData` given by its wrapping component, as well as the `bodyStyle` declared in the template.
 
     app/templates/index.hbs
     {{#blog-post editStyle="markdown-style" as |post|}}
@@ -91,4 +97,4 @@ Since the component isn't instantiated until the component block content is rend
       {{post.body bodyStyle="compact-style"}}
     {{/blog-post}}
 
-Sharing components this way is commonly referred to as "Contextual Components", because the component is shared only with the context of the parent component's block area.
+Components built this way are commonly referred to as "Contextual Components", allowing inner components to be wrapped within the context of outer components without breaking encapsulation.

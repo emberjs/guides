@@ -99,7 +99,7 @@ To check that rentals are listed, we'll first visit the index route and check th
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should list available rentals.', function (assert) {
   visit('/');
-  andThen(function () {
+  andThen(function() {
     assert.equal(find('.listing').length, 3, 'should see 3 listings');
   });
 });
@@ -112,7 +112,7 @@ For the next two tests, we want to verify that clicking the about and contact pa
 <pre><code class="/tests/acceptance/list-rentals-test.js">test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');
-  andThen(function () {
+  andThen(function() {
     assert.equal(currentURL(), '/about', 'should navigate to about');
   });
 });
@@ -120,7 +120,7 @@ For the next two tests, we want to verify that clicking the about and contact pa
 test('should link to contact information', function (assert) {
   visit('/');
   click('a:contains("Contact")');
-  andThen(function () {
+  andThen(function() {
     assert.equal(currentURL(), '/contact', 'should navigate to contact');
   });
 });
@@ -134,7 +134,7 @@ After testing URLs, we'll drill down on our main rental page to test that we can
   visit('/');
   fillIn('.list-filter input', 'seattle');
   keyEvent('.list-filter input', 'keyup', 69);
-  andThen(function () {
+  andThen(function() {
     assert.equal(find('.listing').length, 1, 'should show 1 listing');
     assert.equal(find('.listing .location:contains("Seattle")').length, 1, 'should contain 1 listing with location Seattle');
   });
