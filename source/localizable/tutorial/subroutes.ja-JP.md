@@ -51,7 +51,7 @@
 ember g route rentals/index
 ```
 
-If you open up your Router (`app/router.js`) you may notice that the rentals line has changed. This extra `function() {}` is required because it needs a child route, the `this.route('index', { path: '/'});` is implied.
+Router (`app/router.js`)を開くと、rentalsの行が更新されていることに気づくでしょう。 この追加の`function() {}`は、子ルートを必要とするために必要なものです。`this.route('index', { path: '/'});`は暗黙的に存在します。
 
 ```app/router.js
 Router.map(function() {
