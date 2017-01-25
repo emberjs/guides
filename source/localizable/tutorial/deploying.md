@@ -46,4 +46,26 @@ cp index.html 200.html
 surge funny-name.surge.sh
 ```
 
-We use `--enviroment=development` here so that Mirage will continue to mock fake data.  However, normally we would use `ember build --environment=production` which does more to make your code ready for production.
+We use `--enviroment=development` here so that Mirage will continue to mock fake data.
+However, normally we would use `ember build --environment=production` which does more to make your code ready for production.
+
+## Servers
+
+### Apache
+
+On an Apache server, the rewrite engine (mod-rewrite) must be enabled in order for Ember routing to work properly.
+If you upload your dist folder, going to your main URL works, but when you try to go to a route such as '{main URL}/example' and it returns 404, your server has not been configured for "friendly" URLs.
+To fix this, if it doesn't exist, add a file called '.htaccess' (just a period at the beginning, nothing before it) to the root folder of your website.
+Add these lines:
+
+```text
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.html [L]
+</IfModule>
+```
+
+Your server's configuration may be different so you may need different options. Please see http://httpd.apache.org/docs/2.0/misc/rewriteguide.html for more information.

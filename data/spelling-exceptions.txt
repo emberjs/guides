@@ -8,6 +8,7 @@ ajax
 allget
 amd
 americentric
+apache
 api
 apis
 app's
@@ -109,9 +110,11 @@ hashchange
 hasmany
 hoc
 homebrew
+htaccess
 html
 htmlbars
 http
+httpd
 https
 iframe
 iframes
@@ -204,6 +207,7 @@ rerender
 rerendering
 restadapter
 reversereverseobjects
+rewriteguide
 routinglog
 rsvp
 runloop
@@ -216,6 +220,7 @@ semver
 serializer
 serializer's
 serializers
+ServersApache
 shiftshiftobject
 sideload
 sideloaded
