@@ -1,9 +1,12 @@
-Currently, our app is using hard-coded data for _rentals_ in the `rentals` route handler to set the model.
-As our application grows, we will want to be able to create new rentals,
-make updates to them, delete them, and save these changes to a backend server.
-Ember integrates with a data management library called Ember Data to help solve this problem.
+Currently, our app is using hard-coded data for our rental listings, defined in the `rentals` route handler.
+As our application grows, we will want to persist our rental data on a server, and make it easier to do do advanced operations on the data, such as querying.
 
-Let's generate our first Ember Data model called `rental`:
+Ember comes with a data management library called [Ember Data](https://github.com/emberjs/data) to held deal with persistent application data.
+
+Ember Data requires you to define the structure of the data you wish to provide to your application by extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html).
+
+You can generate a Ember Data Model using Ember CLI.
+We'll call our model `rental` and generate it as follows:
 
 ```shell
 ember g model rental
@@ -18,7 +21,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file, we see:
+When we open the model file reveals a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
 
 ```app/models/rental.js
 import DS from 'ember-data';
@@ -28,8 +31,10 @@ export default DS.Model.extend({
 });
 ```
 
-Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
-_title_, _owner_, _city_, _type_, _image_, _bedrooms_ and _description_:
+Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
+_title_, _owner_, _city_, _type_, _image_, _bedrooms_ and _description_.
+Define attributes by giving them the result of the function [`DS.attr()`](http://emberjs.com/api/data/classes/DS.html#method_attr).
+For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
 ```app/models/rental.js
 import DS from 'ember-data';
@@ -45,23 +50,56 @@ export default DS.Model.extend({
 });
 ```
 
-Now we have a model in our Ember Data store.
+Now we have a model object that we can use for our Ember Data store.
 
 ### Updating the Model Hook
 
-To use our new data store, we need to update the `model` hook in our route handler.
+To use our new Ember Data Model object, we need to update the `model` function we [previously defined](../model-hook/) in our route handler.
+Delete the hard-coded JavaScript Array, and replace it with the following call to the [Ember Data Store service](../../models/#toc_the-store-and-a-single-source-of-truth).
+The [store service](http://emberjs.com/api/data/classes/DS.Store.html) is injected into all routes and components in Ember.
+It is the main interface you use to interact with Ember Data.
+In this case, call the [`findAll`](http://emberjs.com/api/data/classes/DS.Store.html#method_findAll) function on the store and provide it with the name of your newly created rental model class.
 
-```app/routes/rentals.js
+```app/routes/rentals.js{+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
     return this.get('store').findAll('rental');
+    return [{
+      id: 'grand-old-mansion',
+      title: 'Grand Old Mansion',
+      owner: 'Veruca Salt',
+      city: 'San Francisco',
+      type: 'Estate',
+      bedrooms: 15,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+      description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
+    }, {
+      id: 'urban-living',
+      title: 'Urban Living',
+      owner: 'Mike TV',
+      city: 'Seattle',
+      type: 'Condo',
+      bedrooms: 1,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
+      description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
+    }, {
+      id: 'downtown-charm',
+      title: 'Downtown Charm',
+      owner: 'Violet Beauregarde',
+      city: 'Portland',
+      type: 'Apartment',
+      bedrooms: 3,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+      description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+    }];
   }
 });
 ```
 
-When we call `this.get('store').findAll('rental')`, Ember Data will make a GET request to `/rentals`.
+When we call `findAll`, Ember Data will attempt to make a GET request to `/rentals`.
+
 You can read more about Ember Data in the [Models section](../../models/).
 
 Since we're using Mirage in our development environment, Mirage will return the data we've provided.
