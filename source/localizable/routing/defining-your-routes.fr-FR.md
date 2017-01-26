@@ -197,7 +197,7 @@ You can define wildcard routes that will match multiple URL segments. This could
 ```app/router.js Router.map(function() { this.route('not-found', { path: '/*path' }); });
 
     <br />```app/templates/not-found.hbs
-    <p>Oops, the page you're looking for wasn't found<p>
+    <p>Oops, the page you're looking for wasn't found</p>
     
 
 In the above example we have successfully used a wildcard route to handle all routes not managed by our application so that when a user navigates to `/a/non-existent/path` they will be shown a message that says the page they're looking for wasn't found.

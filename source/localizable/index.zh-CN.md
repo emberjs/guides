@@ -6,18 +6,18 @@
 
 这份指南主要是针对构建 Ember 应用程序的实践指导，重点放在 Ember.js 中大多数广泛使用的特性。 如果你想要查阅完整的文档，包括 Ember 所有的特性和 API，请查阅 [Ember.js API 文档](http://emberjs.com/api/)。.
 
-指南开始解释了如何尽快上手 Ember，紧接着是一份教你构建第一个 Ember 应用程序的教程。如果你是第一次接触 Ember 的话，我们推荐你先从上述两个章节开始。
+The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
 
 ## 前提条件
 
-尽管我们努力让这份指南可以对初学者足够友好，但也必须设定一个技术基准以便我们可以把指南的主要内容集中在 Ember.js 自身的特性上。 我们会在新的概念出现之时提供相关文档的链接。
+While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
 
 为了更容易理解这份指南，你需要有以下的知识基础：
 
 * **HTML，CSS，JavaScript**——创建 web 页面的基石。 你可以在 [Mozilla 开发者网络（Mozilla Developer Network）](https://developer.mozilla.org/en-US/docs/Web)找到这些技术的相关文档。.
 * **Promises**——用于在 JavaScript 代码中处理异步编程的原生机制。 参阅 [Mozilla 开发者网络（Mozilla Developer Network）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)的相关部分。
-* **ES2015 modules**——如果你熟悉 [ES6 JavaScript Modules](https://ember-cli.com/) 的话就更容易理解 [Ember CLI's](http://jsmodules.io/)的项目结构及模块导入路径..
-* **ES2015 语法**—— Ember CLI 默认配备了 Babel.js，于是你可以直接享用诸如箭头函数，模版字符串，解构等最新的语言特性。 这部分的内容你可以查看 [Babel.js 文档](https://babeljs.io/docs/learn-es2015/)或阅读在线书籍[理解 ECMAScript 6](https://leanpub.com/understandinges6/read)。
+* **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](http://jsmodules.io/).
+* **ES2015 语法**—— Ember CLI 默认配备了 Babel.js，于是你可以直接享用诸如箭头函数，模版字符串，解构等最新的语言特性。 这部分的内容你可以查看 [Babel.js 文档](https://babeljs.io/docs/learn-es2015/) 或阅读在线书籍[理解 ECMAScript 6](https://leanpub.com/understandinges6/read)。
 
 ## A Note on Mobile Performance
 
@@ -41,7 +41,7 @@ Typos, missing words, and code samples with errors are all considered documentat
 Some of the more common ways to report a problem with the guides are:
 
 * 点击每页右上角的铅笔图标
-* 在 [the GitHub repository](https://github.com/emberjs/guides/)提交issue 或者pull request。
+* 在 [the GitHub repository](https://github.com/emberjs/guides/) 提交 issue 或者 pull request。
 
 Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
 

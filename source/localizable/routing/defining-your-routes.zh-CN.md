@@ -1,16 +1,16 @@
-应用程序启动时，路由器通过当前 URL匹配定义好的 *路由*。 The routes, in turn, are responsible for displaying templates, loading data, and setting up application state.
+当应用程序启动时，路由控制器通过匹配当前 URL的对应路由，依次进行如下操作： 设置程序状态、载入数据、渲染模版。
 
-To define a route, run
+若要定义一个路由，请运行
 
 ```shell
 ember generate route route-name
 ```
 
-This creates a route file at `app/routes/route-name.js`, a template for the route at `app/templates/route-name.hbs`, and a unit test file at `tests/unit/routes/route-name-test.js`. It also adds the route to the router.
+此命令会创建一个路由文件app/routes/route-name.js，一个对应的模版文件app/templates/route-name.hbs以及一个单元测试文件tests/unit/routes/route-name-test.js。 并将该路由添加至路由控制器router.js中。
 
-## 基本路由
+## 路由基础
 
-The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) method of your Ember application's router can be invoked to define URL mappings. When calling `map()`, you should pass a function that will be invoked with the value `this` set to an object which you can use to create routes.
+Ember路由控制器中的map() 方法可以用来定义URL映射。 When calling `map()`, you should pass a function that will be invoked with the value `this` set to an object which you can use to create routes.
 
 ```app/router.js Router.map(function() { this.route('about', { path: '/about' }); this.route('favorites', { path: '/favs' }); });
 
@@ -197,7 +197,7 @@ You can define wildcard routes that will match multiple URL segments. This could
 ```app/router.js Router.map(function() { this.route('not-found', { path: '/*path' }); });
 
     <br />```app/templates/not-found.hbs
-    <p>Oops, the page you're looking for wasn't found<p>
+    <p>Oops, the page you're looking for wasn't found</p>
     
 
 In the above example we have successfully used a wildcard route to handle all routes not managed by our application so that when a user navigates to `/a/non-existent/path` they will be shown a message that says the page they're looking for wasn't found.

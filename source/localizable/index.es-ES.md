@@ -6,17 +6,17 @@ A la izquierda de cada una de las páginas de la Guía se encuentra la tabla de 
 
 Las guías pretenden contener explicaciones prácticas de cómo crear aplicaciones de Ember, centrándose en las características más usadas de Ember.js. Para una documentación completa de cada función de Ember y el API, consulte la [documentación del API de Ember.js](http://emberjs.com/api/).
 
-Las guías comienzan con una explicación de cómo empezar con Ember, seguido por un tutorial sobre cómo crear tu primera aplicación de Ember. Si eres nuevo en Ember, recomendamos empezar siguiendo estas dos primeras partes de las guías.
+The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
 
 ## Supuestos
 
-Mientras que tratamos de hacer las guías amigables para principiantes como sea posible, debemos establecer una base para que las guías pueden mantenerse enfocadas en la funcionalidad de Ember.js. Trataremos de enlazar documentación apropiada cuando se introduzca un concepto.
+While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
 
 Para hacer la mayoría de las guías, deberías tener conocimientos de:
 
 * **HTML, CSS, JavaScript** - los elementos básicos de las páginas web. Puedes encontrar documentación de cada una de estas tecnologías en la [Red de desarrolladores de Mozilla](https://developer.mozilla.org/en-US/docs/Web).
 * **Promises (promesas)** - la manera nativa de trabajar con asincronía en tu código JavaScript. Vea la sección relevante en la [Red de desarrolladores de Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-* **Módulos de ES2015** - entenderás mejor la estructura de proyecto de la [Línea de Comandos de Ember](https://ember-cli.com/) y rutas de importación si estás cómodo con los [Módulos de JavaScript ES6](http://jsmodules.io/).
+* **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](http://jsmodules.io/).
 * **Sintaxis de ES2015** - Ember CLI utiliza Babel.js por defecto para tomar ventaja de las nuevas características del lenguaje como arrow functions, template strings, destructuring y más. Puedes consultar la [documentación de Babel.js](https://babeljs.io/docs/learn-es2015/) o leer [entendiendo ECMAScript 6](https://leanpub.com/understandinges6/read) en línea.
 
 ## A Note on Mobile Performance

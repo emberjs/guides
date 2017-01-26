@@ -21,18 +21,18 @@ Ember.jsガイドへようこそ! このドキュメントは、あなたをま�
 
 ## モバイルでのパフォーマンスについて
 
-Ember will do a lot to help you write fast apps, but it can't prevent you from writing a slow one. This is especially true on mobile devices. To deliver a great experience, it's important to measure performance early and often, and with a diverse set of devices.
+Emberはあなたが速いアプリケーションを書くことを大いに助けます。ですが、あなたが遅いアプリケーションを書くのを防ぐことはできません。 これは特にモバイルデバイスに当てはまります。 優れたエクスペリエンスを提供するには、さまざまなデバイスを使用して、パフォーマンスを早期に測定することが重要です。
 
-Make sure you are testing performance on real devices. Simulated mobile environments on a desktop computer give an optimistic-at-best representation of what your real world performance will be like. The more operating systems and hardware configurations you test, the more confident you can be.
+必ず実際のデバイス上でパフォーマンスをテストしましょう。 デスクトップコンピューター上でシミュレートされたモバイル環境では、現実世界のパフォーマンスがどうなるのかについて楽観的な結果しか得られません。 複数のOSとハードウェア構成をテストすればするほど、より自信を深めることができます。
 
-Due to their limited network connectivity and CPU power, great performance on mobile devices rarely comes for free. You should integrate performance testing into your development workflow from the beginning. This will help you avoid making costly architectural mistakes that are much harder to fix if you only notice them once your app is nearly complete.
+ネットワーク接続性とCPUパワーが限られているため、モバイルデバイスに優れたパフォーマンスはほとんど期待できません。 最初からパフォーマンステストを開発ワークフローに統合する必要があります。 これは、アプリケーションがほとんど完成した後に気づくのでは修正がとても難しくなるような、高くつくアーキテクチャの誤りを避けるのに役立ちます。
 
-In short:
+まとめるとこうです。
 
-  1. Always test on real, representative mobile devices.
-  2. Measure performance from the beginning, and keep testing as your app develops.
+  1. 常に現実の代表的なモバイルデバイスでテストします。
+  2. 初めからパフォーマンスを計測し、アプリケーションの開発の一部としてテストし続けます。
 
-These tips will help you identify problems early so they can be addressed systematically, rather than in a last-minute scramble.
+これらのヒントは、問題を早期に突き止めるために役立ちます。つまり、最後の数分にスクランブルを組むのではなく、体系的に対処することを可能にします。
 
 ## 問題の報告
 

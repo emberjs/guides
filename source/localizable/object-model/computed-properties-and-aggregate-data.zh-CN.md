@@ -2,7 +2,7 @@
 
 为了完成这个需求，Ember提供了`@each`，如下代码段：
 
-```app/components/todo-list.js export default Ember.Component.extend({ todos: null,
+app/components/todo-list.js export default Ember.Component.extend({ todos: null,
 
 init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
@@ -13,13 +13,10 @@ incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.g
     
     1. 在todos数组中任意一个对象的isDone属性值发生变化的时候；
     2. 往todos数组新增元素的时候；
-    3. 往todos数组新增元素的时候；
+    3. 往todos数组移除元素的时候；
     4. 在组件中todos数组被改变为其他的数组的时候；
     
-    Ember also provides a computed property macro
-    [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
-    which is a shorter way of expressing the above computed property:
-    
+    Ember 也提供了一个计算属性宏[`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),，它可以用更短的方式表达上述的计算属性：
     ```app/components/todo-list.js
     export default Ember.Component.extend({
       todos: null,
@@ -36,7 +33,7 @@ incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.g
     });
     
 
-In both of the examples above, `incomplete` is an array containing the single incomplete todo:
+在以上两个例子中，`incomplete` 是一个包含单个未完成项的数组:
 
 ```javascript
 import TodoListComponent from 'app/components/todo-list';
@@ -46,7 +43,7 @@ todoListComponent.get('incomplete.length');
 // 结果为 1
 ```
 
-If we change the todo's `isDone` property, the `incomplete` property is updated automatically:
+如果我们改变 todo 的 `isDone` 属性，计算属性 `incomplete` 会自动更新:
 
 ```javascript
 let todos = todoListComponent.get('todos');
@@ -63,9 +60,9 @@ todoListComponent.get('incomplete.length');
 // 结果为1
 ```
 
-Note that `@each` only works one level deep. You cannot use nested forms like `todos.@each.owner.name` or `todos.@each.owner.@each.name`.
+需要注意的是，` @each ` 仅适用于单层属性。例如，`todos.@each.owner.name` 或者 `todos.@each.owner.@each.name` 都是不允许的。.
 
-Sometimes you don't care if properties of individual array items change. In this case use the `[]` key instead of `@each`. Computed properties dependent on an array using the `[]` key will only update if items are added to or removed from the array, or if the array property is set to a different array. For example:
+某些时候，当你并不在乎数组中各项元素的属性变化时， 你可以用 `[]` 代替 `@each`。 当你在数组上使用`[]`这样的计算属性时，只有往数组中添加新元素、删除元素或者将数组属性设置为另一个数组时计算属性才会更新。 例如：
 
 ```app/components/todo-list.js export default Ember.Component.extend({ todos: null,
 

@@ -35,7 +35,7 @@ Hello, <strong>Trek Glowacki</strong>!
 
 ### Helpers
 
-Ember gives you the ability to [write your own helpers](../writing-helpers/), to bring a minimum of logic into Ember templating.
+Ember 可以让你编写自己的 helpers，helpers 可以封装最基本的逻辑并应用于模板之中
 
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
