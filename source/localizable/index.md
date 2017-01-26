@@ -13,23 +13,22 @@ build Ember apps, focusing on the most widely-used features of Ember.js.
 For comprehensive documentation of every Ember feature and API, see the
 [Ember.js API documentation](http://emberjs.com/api/).
 
-The Guides begin with an explanation of how to get started with Ember, followed
-by a tutorial on how to build your first Ember app. If you're brand new to
-Ember, we recommend you start off by following along with these first two
-sections of the Guides.
+The Guides begin with an explanation of how to get started with Ember,
+followed by a tutorial on how to build your first Ember app.
+If you're brand new to Ember,
+we recommend you start off by following along with these first two sections of the Guides.
 
 ## Assumptions
 
-While we try to make the Guides as beginner-friendly as we can, we must
-establish a baseline so that the guides can keep focused on Ember.js
-functionality. We will try to link to appropriate documentation whenever
-a concept is introduced.
+While we try to make the Guides as beginner-friendly as we can,
+we must establish a baseline so that the guides can keep focused on Ember.js functionality.
+We will try to link to appropriate documentation whenever a concept is introduced.
 
 To make the most out of the guides, you should have a working knowledge of:
 
 * **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network][mdn].
 * **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network][promises] section.
-* **ES2015 modules** - you will better understand [Ember CLI's][ember-cli] project structure and import paths if you are comfortable with [ES6 JavaScript Modules][js-modules].
+* **ES2015 modules** - you will better understand [Ember CLI's][ember-cli] project structure and import paths if you are comfortable with [JavaScript Modules][js-modules].
 * **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can
 take advantage of newer language features such as arrow functions, template
 strings, destructuring, and more. You can check the
