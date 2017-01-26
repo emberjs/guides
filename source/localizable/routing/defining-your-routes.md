@@ -260,7 +260,7 @@ Router.map(function() {
 ```
 
 ```app/templates/not-found.hbs
-<p>Oops, the page you're looking for wasn't found<p>
+<p>Oops, the page you're looking for wasn't found</p>
 ```
 
 In the above example we have successfully used a wildcard route to handle all routes not managed by our application
