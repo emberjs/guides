@@ -227,7 +227,7 @@ From your project's root directory, run the following command to put the Google 
 `Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
 
 ```shell
-curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
+curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
 ```
 
 Once in the vendor directory, the script can be built into the app.
