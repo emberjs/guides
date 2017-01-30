@@ -169,8 +169,7 @@ export default DS.Model.extend({
 ```
 
 ```app/models/payment-method-cc.js
-import PaymentMethod from './payment-method'
-import DS from 'ember-data';
+import PaymentMethod from './payment-method';
 import Ember from 'ember';
 
 export default PaymentMethod.extend({
