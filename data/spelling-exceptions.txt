@@ -176,6 +176,7 @@ param
 param's
 params
 pascalcased
+PayPal
 PeopleTracker
 performant
 phantomjs
