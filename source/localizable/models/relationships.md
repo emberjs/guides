@@ -143,7 +143,7 @@ export default DS.Model.extend({
 Polymorphism is a powerful concept which allows a developer
 to abstract common functionality into a base class. Consider the
 following example: a user with multiple payment methods. They
-could have a linked Paypal account, and a couple credit cards on
+could have a linked PayPal account, and a couple credit cards on
 file.
 
 Note that, for polymorphism to work, Ember Data expects a
