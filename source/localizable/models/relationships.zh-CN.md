@@ -95,44 +95,127 @@ You can also define a reflexive relationship that doesn't have an inverse:
 
 export default DS.Model.extend({ parent: DS.belongsTo('folder', { inverse: null }) });
 
-    <br />### Readonly Nested Data
+    <br />### Polymorphism
     
-    Some models may have properties that are deeply nested objects of
-    readonly data. The naïve solution would be to define models for each
-    nested object and use `hasMany` and `belongsTo` to recreate the nested
-    relationship. However, since readonly data will never need to be
-    updated and saved this often results in the creation of a great deal
-    of code for very little benefit. An alternate approach is to define
-    these relationships using an attribute with no transform
-    (`DS.attr()`). This makes it easy to access readonly values in
-    computed properties and templates without the overhead of defining
-    extraneous models.
+    Polymorphism is a powerful concept which allows a developer
+    to abstract common functionality into a base class. Consider the
+    following example: a user with multiple payment methods. They
+    could have a linked PayPal account, and a couple credit cards on
+    file.
     
-    ### Creating Records
+    Note that, for polymorphism to work, Ember Data expects a
+    "type" declaration polymorphic type via the reserved `type`
+    property on the model. Confused? See the API response below.
     
-    Let's assume that we have a `blog-post` and a `comment` model, which are related to each other as follows:
+    First, let's look at the model definitions:
     
-    ```app/models/blog-post.js
+    ```app/models/user.js
     import DS from 'ember-data';
     
     export default DS.Model.extend({
-      comments: DS.hasMany('comment')
+      paymentMethods: DS.hasMany('payment-method', { polymorphic: true })
     });
     
 
-```app/models/comment.js import DS from 'ember-data';
+```app/models/payment-method.js import DS from 'ember-data';
 
-export default DS.Model.extend({ blogPost: DS.belongsTo('blog-post') });
+export default DS.Model.extend({ user: DS.belongsTo('user', { inverse: 'paymentMethods' }), });
 
-    <br />When a user comments on a blogPost, we need to create a relationship between the two records. We can simply set the `belongsTo` relationship in our new comment:
+    <br />```app/models/payment-method-cc.js
+    import PaymentMethod from './payment-method';
+    import Ember from 'ember';
     
-    ```javascript
-    let blogPost = this.get('store').peekRecord('blog-post', 1);
-    let comment = this.get('store').createRecord('comment', {
-      blogPost: blogPost
+    export default PaymentMethod.extend({
+      obfuscatedIdentifier: Ember.computed('last4', function () {
+        return `**** **** **** ${this.get('last4')}`;
+      })
     });
-    comment.save();
     
+
+```app/models/payment-method-paypal.js import PaymentMethod from './payment-method' import DS from 'ember-data'; import Ember from 'ember';
+
+export default PaymentMethod.extend({ linkedEmail: DS.attr(),
+
+obfuscatedIdentifier: Ember.computed('linkedEmail', function () { let last5 = this.get('linkedEmail').split('').reverse().slice(0, 5).reverse().join('');
+
+    return `••••${last5}`;
+    
+
+}) });
+
+    <br />And our API might setup these relationships like so:
+    
+    ```json
+    "data":{
+       "id":"8675309",
+       "type":"user",
+       "attributes":{
+          "name":"Anfanie Farmeo"
+       },
+       "relationships":{
+          "payment-methods":{
+             "data":[
+                { "id":1, "type":"PaymentMethodPaypal" },
+                { "id":2, "type":"PaymentMethodCc" },
+                { "id":3, "type":"PaymentMethodApplePay" }
+             ]
+          }
+       }
+    },
+    "included":[
+       {
+          "id":1,
+          "type":"PaymentMethodPaypal",
+          "attributes":{
+             "linked-email":"ryan@gosling.io",
+          }
+       },
+       {
+          "id":2,
+          "type":"PaymentMethodCc",
+          "attributes":{
+             "last4":"1335"
+          }
+       },
+       {
+          "id":3,
+          "type":"PaymentMethodCc",
+          "attributes":{
+             "last4":"5513"
+          }
+       },
+    ]
+    
+
+### Readonly Nested Data
+
+Some models may have properties that are deeply nested objects of readonly data. The naïve solution would be to define models for each nested object and use `hasMany` and `belongsTo` to recreate the nested relationship. However, since readonly data will never need to be updated and saved this often results in the creation of a great deal of code for very little benefit. An alternate approach is to define these relationships using an attribute with no transform (`DS.attr()`). This makes it easy to access readonly values in computed properties and templates without the overhead of defining extraneous models.
+
+### Creating Records
+
+Let's assume that we have a `blog-post` and a `comment` model, which are related to each other as follows:
+
+```app/models/blog-post.js import DS from 'ember-data';
+
+export default DS.Model.extend({ comments: DS.hasMany('comment') });
+
+    <br />```app/models/comment.js
+    import DS from 'ember-data';
+    
+    export default DS.Model.extend({
+      blogPost: DS.belongsTo('blog-post')
+    });
+    
+
+When a user comments on a blogPost, we need to create a relationship between the two records. We can simply set the `belongsTo` relationship in our new comment:
+
+```javascript
+let blogPost = this.get('store').peekRecord('blog-post', 1);
+let comment = this.get('store').createRecord('comment', {
+  blogPost: blogPost
+});
+comment.save();
+```
 
 This will create a new `comment` record and save it to the server. Ember Data will also update the blogPost to include our newly created comment in its `comments` relationship.
 

@@ -16,13 +16,10 @@ O comando `new` gera uma estrutura de projeto com os seguintes arquivos e diret�
 
 ```text
 |--app
-|--bower_components
 |--config
-|--dist
-|--node_modules
 |--public
+|--node_modules
 |--tests
-|--tmp
 |--vendor
 
 bower.json
@@ -36,27 +33,23 @@ Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
 **app**: Aqui é onde as pastas e arquivos de models, components, routes, templates e styles são armazenados. A maior parte de codificação em um projeto Ember acontece nessa pasta.
 
-**bower_components / bower.json**: Bower é uma ferramenta de gerenciamento de dependência. É utilizado no Ember CLI para gerenciar plugins front-end e dependências de componentes (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. Se abrirmos o arquivo `bower.json`, nós vemos a lista de dependências que são instaladas automaticamente, incluindo Ember, Ember CLI Shims, e QUnit (para testes). Se adicionarmos dependências front-end adicionais, tais como Bootstrap, veremos essas dependências listadas aqui e adicionada ao diretório `bower_components`.
+**bower.json**: Bower is a dependency management tool. É utilizado no Ember CLI para gerenciar plugins front-end e dependências de componentes (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. Se abrirmos o arquivo `bower.json`, nós vemos a lista de dependências que são instaladas automaticamente, incluindo Ember, Ember CLI Shims, e QUnit (para testes). Se adicionarmos dependências front-end adicionais, tais como Bootstrap, veremos essas dependências listadas aqui e adicionada ao diretório `bower_components`.
 
 **config**: O diretório de config contém o arquivo `environment.js` onde você pode definir as configurações da sua aplicação.
 
-**dist**: Quando publicamos (deploy) nossa aplicação, os arquivos de saída serão criados aqui.
+**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
 
-**node_modules / package.json**: Esse diretório e arquivo são do npm. npm é o gerenciador de pacotes Node.js. Ember é construído com Node usa uma variedade de módulos Node.js para funcionar. O arquivo `package.json` mantém a lista atual de dependências npm da aplicação. Qualquer Ember CLI add-ons que você instalar, também vão aparecer aqui. Os packages listados em `package.json` são instalados no diretório node_modules.
+**public**: This directory contains assets such as images and fonts.
 
-**public**: Esse diretório contém os assets como imagens e fontes.
+**vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
 
-**vendor**: Esse diretório é onde vai as dependências front-end (como JavaScript ou CSS) que não são gerenciadas pelo Bower.
+**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
-**tests / testem.js**: Os testes automatizados da nossa aplicação vão na pasta `tests`, e o Ember CLI's test runner **testem** é configurado no arquivo `testem.js`.
-
-**tmp**: arquivos temporários do Ember CLI ficam aqui.
-
-**ember-cli-build.js**: este arquivo descreve como Ember CLI deve construir nosso aplicativo.
+**ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
 ## Módulo ES6
 
-Se você der uma olhada no arquivo `app/router.js`, você verá uma sintaxe que pode não ser familiar para você.
+If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -85,12 +78,12 @@ export default Router;
     ember server
     
 
-ou, se quisermos abreviar:
+or, for short:
 
 ```shell
 ember s
 ```
 
-Se navegarmos para [`http://localhost:4200`](http://localhost:4200), vamos ver a tela de boas vindas padrão. Quando criarmos nosso próprio arquivo `app/templates/application.hbs`, a tela de boas vindas padrão será substituída com o nosso próprio conteúdo.
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen. Once we add our own `app/templates/application.hbs` file, the welcome screen will be replaced with our own content.
 
-![Tela de boas vindas padrão](../../images/ember-cli/default-welcome-page.png)
+![default welcome screen](../../images/ember-cli/default-welcome-page.png)

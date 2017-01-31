@@ -16,13 +16,10 @@ ember new super-rentals
 
 ```text
 |--app
-|--bower_components
 |--config
-|--dist
-|--node_modules
 |--public
+|--node_modules
 |--tests
-|--tmp
 |--vendor
 
 bower.json
@@ -36,11 +33,9 @@ Ember CLIが作成したファイルやディレクトリを見てみましょ�
 
 **app**: この配下に、モジュールやコンポーネント、ルート、テンプレート、スタイルシート用のディレクトリやファイルが含まれています。Emberプロジェクトにおけるコーディングの大半は、この中で行われます。
 
-**bower_components / bower.json**: Bowerは依存関係を管理するツールです。 Ember CLIでは、フロントエンドのプラグインやコンポーネントの依存性(HTML、 CSS、 JavaScript など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components`ディレクトリにインストールされます。 `bower.json`を開くと、EmberやEmber CLI Shims、(テストで利用される)QUnitなどを含む、自動的にインストールされる依存関係のリストを確認できます。 Bootstrapなど、フロントエンドの依存関係を新たに追加した場合、それらはここにリストされます。そして、それらは`bower_components`ディレクトリに追加されます。
+**bower.json**: Bowerは依存関係を管理するツールです。 Ember CLIでは、フロントエンドのプラグインやコンポーネントの依存性(HTML、 CSS、 JavaScript など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components`ディレクトリにインストールされます。 `bower.json`を開くと、EmberやEmber CLI Shims、(テストで利用される)QUnitなどを含む、自動的にインストールされる依存関係のリストを確認できます。 Bootstrapなど、フロントエンドの依存関係を新たに追加した場合、それらはここにリストされます。そして、それらは`bower_components`ディレクトリに追加されます。
 
 **config**: 設定ファイル用のディレクトリです。ここには、アプリケーションの設定を行う`environment.js` が含まれています。
-
-**dist**: デプロイ用にアプリケーションをビルドすると、出力ファイルはこの配下に作成されます。
 
 **node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネージャーです。 EmberはNodeで構築されていて、動作に様々なNode.jsモジュールを利用しています。 `package.json`ファイルは、アプリケーションのnpmの依存関係のリストを管理しています。追加でインストールしたEmber CLIアドオンがあれば、それもこのリストで管理されます。 `package.json`内にリストされているパッケージは、node_modulesディレクトリにインストールされます。
 
@@ -49,8 +44,6 @@ Ember CLIが作成したファイルやディレクトリを見てみましょ�
 **vendor**: このディレクトリには、Bowerによって管理されないフロントエンドの依存関係 (JavaScript、CSS など) を配置します。
 
 **tests / testem.js**: アプリケーションの自動テストは`tests`ディレクトリ配下に配置します。Ember CLIのテストランナー**testem**は、`testem.js`によって設定されます。.
-
-**tmp**: Ember CLIの一時ファイルがここに置かれます。
 
 **ember-cli-build.js**: このファイルには、Ember CLIがアプリケーションをどのようにビルドすべきかを記載します。
 

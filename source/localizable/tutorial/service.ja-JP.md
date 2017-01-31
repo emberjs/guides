@@ -206,7 +206,7 @@ GoogleはマップAPIをリモートスクリプトとして提供していま�
 プロジェクトのルートディレクトリから次のコマンドを実行して、Google Mapのスクリプトを`gmaps.js`という名前でプロジェクトのvenderフォルダの下に置きます。 `Curl`はUNIXコマンドです。もしWindowsを使っている場合は[Windows bash サポート](https://msdn.microsoft.com/en-us/commandline/wsl/about)を活用するか、別の方法を使って、スクリプトをvenderディレクトリの下にダウンロードする必要があります。
 
 ```shell
-curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
+curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
 ```
 
 vendorディレクトリに入れることで、スクリプトをアプリに組み込むことができます。 あとは、ビルドファイルを使って、Ember CLIにインポートするよう指示するだけです。

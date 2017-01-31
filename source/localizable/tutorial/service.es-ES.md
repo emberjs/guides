@@ -206,7 +206,7 @@ Debido a que Google ofrece su API de mapas como un script remoto, usaremos curl 
 From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`. `Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
 
 ```shell
-curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
+curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
 ```
 
 Once in the vendor directory, the script can be built into the app. We just need to tell Ember CLI to import it using our build file:
