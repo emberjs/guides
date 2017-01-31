@@ -49,13 +49,11 @@ templates and styles are stored. The majority of your coding on an Ember
 project happens in this folder.
 
 **bower_components / bower.json**: Bower is a dependency management tool.
-It is used in Ember CLI to manage front-end plugins and component dependencies
+It can be used in Ember CLI to manage front-end plugins and component dependencies
 (HTML, CSS, JavaScript, etc).  All Bower components are installed in the
-`bower_components` directory.  If we open `bower.json`, we see the list of
-dependencies that are installed automatically including Ember, Ember
-CLI Shims, and QUnit (for testing). If we add additional
-front-end dependencies, such as Bootstrap, we will see them listed here, and
-added to the `bower_components` directory.
+`bower_components` directory.  If we open `bower.json`, right now it will be empty.
+If we add additional front-end dependencies, such as Bootstrap, we will see them
+listed here, and added to the `bower_components` directory.
 
 **config**: The config directory contains the `environment.js` where you can
 configure settings for your app.
@@ -116,8 +114,8 @@ to other parts of the app.
 
 Before continuing to the tutorial, make sure that you have the most recent
 versions of Ember and Ember Data installed. If the version of `ember` in
-`bower.json` is lower than the version number in the upper-left corner of these
-Guides, update the version number in `bower.json` and then run `bower install`.
+`package.json` is lower than the version number in the upper-left corner of these
+Guides, update the version number in `package.json` and then run `npm install`.
 Similarly, if the version of `ember-data` in `package.json` is lower, update the
 version number and then run `npm install`.
 
