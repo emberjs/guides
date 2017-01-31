@@ -26,13 +26,10 @@ directories:
 
 ```text
 |--app
-|--bower_components
 |--config
-|--dist
-|--node_modules
 |--public
+|--node_modules
 |--tests
-|--tmp
 |--vendor
 
 bower.json
@@ -48,7 +45,7 @@ Let's take a look at the folders and files Ember CLI generates.
 templates and styles are stored. The majority of your coding on an Ember
 project happens in this folder.
 
-**bower_components / bower.json**: Bower is a dependency management tool.
+**bower.json**: Bower is a dependency management tool.
 It is used in Ember CLI to manage front-end plugins and component dependencies
 (HTML, CSS, JavaScript, etc).  All Bower components are installed in the
 `bower_components` directory.  If we open `bower.json`, we see the list of
@@ -60,8 +57,6 @@ added to the `bower_components` directory.
 **config**: The config directory contains the `environment.js` where you can
 configure settings for your app.
 
-**dist**: When we build our app for deployment, the output files will be created
-here.
 
 **node_modules / package.json**: This directory and file are from npm.
 npm is the package manager for Node.js. Ember is built with Node and uses a
@@ -77,8 +72,6 @@ or CSS) that are not managed by Bower go.
 
 **tests / testem.js**: Automated tests for our app go in the `tests` folder,
 and Ember CLI's test runner **testem** is configured in `testem.js`.
-
-**tmp**: Ember CLI temporary files live here.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
