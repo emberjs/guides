@@ -169,11 +169,10 @@ export default DS.Model.extend({
 ```
 
 ```app/models/payment-method-cc.js
-import PaymentMethod from './payment-method'
-import DS from 'ember-data';
+import PaymentMethod from './payment-method';
 import Ember from 'ember';
 
-export default DS.Model.extend({
+export default PaymentMethod.extend({
   obfuscatedIdentifier: Ember.computed('last4', function () {
     return `**** **** **** ${this.get('last4')}`;
   })
@@ -185,7 +184,7 @@ import PaymentMethod from './payment-method'
 import DS from 'ember-data';
 import Ember from 'ember';
 
-export default DS.Model.extend({
+export default PaymentMethod.extend({
   linkedEmail: DS.attr(),
 
   obfuscatedIdentifier: Ember.computed('linkedEmail', function () {
