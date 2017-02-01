@@ -1,5 +1,5 @@
 Currently, our app is using hard-coded data for our rental listings, defined in the `rentals` route handler.
-As our application grows, we will want to persist our rental data on a server, and make it easier to do do advanced operations on the data, such as querying.
+As our application grows, we will want to persist our rental data on a server, and make it easier to do advanced operations on the data, such as querying.
 
 Ember comes with a data management library called [Ember Data](https://github.com/emberjs/data) to held deal with persistent application data.
 
