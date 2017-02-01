@@ -14,30 +14,39 @@ Let's open `app/routes/rentals.js` and add our hard-coded data as the return val
 ```app/routes/rentals.js
 import Ember from 'ember';
 
-let rentals = [{
-  id: 'grand-old-mansion',
-  title: 'Grand Old Mansion',
-  owner: 'Veruca Salt',
-  city: 'San Francisco',
-  type: 'Estate',
-  bedrooms: 15,
-  image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
-}, {
-  id: 'urban-living',
-  title: 'Urban Living',
-  owner: 'Mike TV',
-  city: 'Seattle',
-  type: 'Condo',
-  bedrooms: 1,
-  image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
-}, {
-  id: 'downtown-charm',
-  title: 'Downtown Charm',
-  owner: 'Violet Beauregarde',
-  city: 'Portland',
-  type: 'Apartment',
-  bedrooms: 3,
-  image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+let rentals =[{
+        type: 'rentals',
+        id: 'grand-old-mansion',
+        attributes: {
+          title: 'Grand Old Mansion',
+          owner: 'Veruca Salt',
+          city: 'San Francisco',
+          type: 'Estate',
+          bedrooms: 15,
+          image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
+        }
+      }, {
+        type: 'rentals',
+        id: 'urban-living',
+        attributes: {
+          title: 'Urban Living',
+          owner: 'Mike Teavee',
+          city: 'Seattle',
+          type: 'Condo',
+          bedrooms: 1,
+          image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+        }
+      }, {
+        type: 'rentals',
+        id: 'downtown-charm',
+        attributes: {
+          title: 'Downtown Charm',
+          owner: 'Violet Beauregarde',
+          city: 'Portland',
+          type: 'Apartment',
+          bedrooms: 3,
+          image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+        }
 }];
 
 export default Ember.Route.extend({
@@ -76,16 +85,16 @@ This helper will let us loop through each of the objects in our model:
   <article class="listing">
     <h3>{{rental.title}}</h3>
     <div class="detail owner">
-      <span>Owner:</span> {{rental.owner}}
+      <span>Owner:</span> {{rental.attributes.owner}}
     </div>
     <div class="detail type">
-      <span>Type:</span> {{rental.type}}
+      <span>Type:</span> {{rental.attributes.type}}
     </div>
     <div class="detail location">
-      <span>Location:</span> {{rental.city}}
+      <span>Location:</span> {{rental.attributes.city}}
     </div>
     <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+      <span>Number of bedrooms:</span> {{rental.attributes.bedrooms}}
     </div>
   </article>
 {{/each}}
