@@ -77,7 +77,7 @@ let person = Person.create();
 person.say('Hello'); // alerts " says: Hello"
 ```
 
-When creating an instance, you can initialize the values of its properties by passing an optional hash to the `create()` method:
+インスタンスを作成する際、`create()`メソッドに省略可能なハッシュを渡すことによって、プロパティの値を初期化できます。
 
 ```javascript
 const Person = Ember.Object.extend({
@@ -93,7 +93,7 @@ let tom = Person.create({
 tom.helloWorld(); // alerts "Hi, my name is Tom Dale"
 ```
 
-Note that for performance reasons, while calling `create()` you cannot redefine an instance's computed properties and should not redefine existing or define new methods. You should only set simple properties when calling `create()`. If you need to define or redefine methods or computed properties, create a new subclass and instantiate that.
+パフォーマンス上の理由から、`create()`の呼び出し中には、インスタンスの計算済みプロパティを再定義できないこと、既存のメソッドの再定義新しいメソッドの定義をすべきでないことに注意してください。 `create()`を呼び出したときは、単純なプロパティのみを設定すべきです。 もしメソッドや計算済みプロパティを定義あるいは再定義する必要があるなら、新しいサブクラスを作成してそれをインスタンス化してください。
 
 By convention, properties or variables that hold classes are PascalCased, while instances are not. So, for example, the variable `Person` would point to a class, while `person` would point to an instance (usually of the `Person` class). You should stick to these naming conventions in your Ember applications.
 
@@ -142,7 +142,7 @@ Person.create({
 // They both end up with: ['eggs', 'cheese', 'bacon', 'sausage']
 ```
 
-To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
+この現象を避けるためには、`init()`の中でそれらの配列やオブジェクトのプロパティを初期化することを奨励します。これにより、各インスタンスは一意になります。
 
 ```js
 const Person = Ember.Object.extend({
