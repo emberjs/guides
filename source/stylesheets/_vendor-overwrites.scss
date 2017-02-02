@@ -1,14 +1,14 @@
 /* Algolia Docsearch CSS overrides - https://github.com/algolia/docsearch#customization
    =========================================================================================== */
 
-.aa-dropdown-menu {
+.ds-dropdown-menu {
   right: 0 !important;
   font-size: .8rem;
   border-color: #aaa;
 }
 
 @media (min-width: $breakpoint-large) {
-  .aa-dropdown-menu {
+  .ds-dropdown-menu {
     // The guides search input is on the right-hand
     // side of the header, so it should extend to
     // the left of the input, not to the right.
