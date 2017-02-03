@@ -1,14 +1,12 @@
-Ember uses routes to define logical, addressable pages within our application.
-
 In Super Rentals we want to arrive at a home page which shows a list of rentals.
 From there, we should be able to navigate to an about page and a contact page.
 
-Let's start by building our "about" page.
-Remember, when the URL path `/about` is loaded,
-the router will map the URL to the route handler of the same name, _about.js_.
-The route handler then loads a template.
+Ember provides a [robust routing mechanism](../../routing/) to define logical, addressable pages within our application.
 
 ## An About Route
+
+Let's start by building our "about" page.
+To create a new, URL addressable page in the application, we need to generate a route using Ember CLI.
 
 If we run `ember help generate`, we can see a variety of tools that come with Ember for automatically generating files for various Ember resources.
 Let's use the route generator to start our `about` route.
@@ -23,7 +21,7 @@ or for short,
 ember g route about
 ```
 
-We can then see what actions were taken by the generator:
+The output of the command displays what actions were taken by the generator:
 
 ```shell
 installing route
@@ -35,12 +33,16 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-Three new files are created: one for the route handler, one for the template the route handler will render,
-and a test file.
-The fourth file that is touched is the router.
+A route is composed of the following parts:
 
-When we open the router, we can see that the generator has mapped a new _about_ route for us.
-This route will load the `about` route handler.
+1. An entry in `/app/router.js`, mapping the route name to a specific URI. _`(app/router.js)`_
+2. A route handler JavaScript file, instructing what behavior should be executed when the route is loaded. _`(app/routes/about.js)`_
+3. A route template, describing the page represented by the route. _`(app/templates/about.hbs)`_
+
+Opening `/app/router.js` shows that there is a new line of code for the _about_ route, calling `this.route('about')` in the `map` function.
+Calling the function `this.route(routeName)`, tells the Ember router to load the specified route handler when the user navigates to the URI with the same name.
+In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used.
+See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
 
 ```app/router.js
 import Ember from 'ember';
@@ -88,11 +90,10 @@ Once again, we'll start by generating a route, a route handler, and a template.
 ember g route contact
 ```
 
-We see that our generator has created a `contact` route in the `app/router.js` file,
+The output from this command shows a new `contact` route in `app/router.js`,
 and a corresponding route handler in `app/routes/contact.js`.
-Since we will be using the `contact` template, the `contact` route does not need any additional changes.
 
-In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
+In the route template `/app/templates/contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
 ```app/templates/contact.hbs
 <div class="jumbo">
@@ -117,12 +118,13 @@ If we go to the URL [`http://localhost:4200/contact`](http://localhost:4200/cont
 
 ## Navigating with Links and the {{link-to}} Helper
 
-We really don't want users to have to know our URLs in order to move around our site,
+We'd like to avoid our users having knowledge of our URLs in order to move around our site,
 so let's add some navigational links at the bottom of each page.
 Let's make a contact link on the about page and an about link on the contact page.
 
-Ember has built-in **helpers** that provide functionality such as linking to other routes.
-Here we will use the `{{link-to}}` helper in our code to link between routes:
+Ember has built-in template **helpers** that provide functionality for interacting with the framework.
+The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
+Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
 
 ```app/templates/about.hbs{+9,+10,+11}
 <div class="jumbo">
@@ -175,7 +177,7 @@ To make this happen we'll add a third route and call it `rentals`.
 ember g route rentals
 ```
 
-Let's update the newly generated `rentals.hbs` with some basic markup to seed our rentals list page.
+Let's update the newly generated `app/templates/rentals.hbs` with some basic markup to add some initial content our rentals list page.
 We'll come back to this page later to add in the actual rental properties.
 
 ```app/templates/rentals.hbs
@@ -287,8 +289,9 @@ When `application.hbs` exists, anything you put in it is shown for every page in
 </div>
 ```
 
-Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+Notice the inclusion of an `{{outlet}}` within the body `div` element.
+The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as _about_, or _contact_.
 
-Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes will now pass.
+Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
