@@ -95,7 +95,7 @@ tom.helloWorld(); // alerts "Hi, my name is Tom Dale"
 
 パフォーマンス上の理由から、`create()`の呼び出し中には、インスタンスの計算済みプロパティを再定義できないこと、既存のメソッドの再定義新しいメソッドの定義をすべきでないことに注意してください。 `create()`を呼び出したときは、単純なプロパティのみを設定すべきです。 もしメソッドや計算済みプロパティを定義あるいは再定義する必要があるなら、新しいサブクラスを作成してそれをインスタンス化してください。
 
-By convention, properties or variables that hold classes are PascalCased, while instances are not. So, for example, the variable `Person` would point to a class, while `person` would point to an instance (usually of the `Person` class). You should stick to these naming conventions in your Ember applications.
+慣習として、クラスを保持するプロパティまたは変数はパスカルケース (パスカル記法)ですが、インスタンスはそうではありません。 たとえば、変数Personはクラスを指す一方、personはインスタンス (通常はPersonクラスのインスタンス) を指します。 Emberアプリケーションでは、これらの命名規則に従う必要があります。
 
 ### インスタンスの初期化
 
