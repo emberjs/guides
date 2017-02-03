@@ -23,27 +23,27 @@ npm install -g surge
 ```
 
 Then you can use the `surge` command to deploy your application.
-Note you will also need to provide a copy of index.html with the filename 200.html
-so that surge can support Ember's client-side routing.
+Note you will also need to rename index.html to 200.html to enable
+Ember's client-side routing.
 
 ```shell
 ember build --environment=development
-cd dist
-cp index.html 200.html
-surge
+mv dist/index.html dist/200.html
+surge dist funny-name.surge.sh
 ```
 
-Press return to accept the defaults when deploying the first time.
-You will be provided with a URL in the form `funny-name.surge.sh` that you can use for repeated deployments.
+We chose funny-name.surge.sh but you may use any unclaimed subdomain you like or 
+use a custom domain that you own and have pointed the DNS to one of surges servers.
+If the second argument is left blank surge will prompt you with a suggested subdomain.
 
-So to deploy to the same URL after making changes, perform the same steps, this time providing the URL for your site:
+To deploy to the same URL after making changes, simply perform the same steps reusing 
+the same domain as before.
 
 ```shell
 rm -rf dist
 ember build --environment=development
-cd dist
-cp index.html 200.html
-surge funny-name.surge.sh
+mv dist/index.html dist/200.html
+surge dist funny-name.surge.sh
 ```
 
 We use `--enviroment=development` here so that Mirage will continue to mock fake data.
