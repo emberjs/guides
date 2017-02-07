@@ -78,7 +78,7 @@ For our `about` page, we'll add some HTML that has a bit of information about th
 </div>
 ```
 
-Run `ember serve` (or `ember s` for short) from the shell to start the Ember development server,
+Run `ember server` (or `ember serve` or even `ember s` for short) from the shell to start the Ember development server,
 and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new app in action!
 
 ## A Contact Route
