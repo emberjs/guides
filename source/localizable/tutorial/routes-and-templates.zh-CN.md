@@ -1,10 +1,10 @@
-在Ember项目中，路由器被用来定义页面路径的访问逻辑。
+In Super Rentals we want to arrive at a home page which shows a list of rentals. From there, we should be able to navigate to an about page and a contact page.
 
-在“超级房屋出租”网站实例中，网站首页会显示出租房屋列表。在首页我们可以跳转到关于我们和联系我们页面。
-
-我们先来创建”关于我们“页面。 请记住，当URL 路径 `/about` 被加载时，路由器将 URL /about 映射到同一个名的路由处理程序*about.js* 。 然后路由处理程序加载一个页面模板。
+Ember provides a [robust routing mechanism](../../routing/) to define logical, addressable pages within our application.
 
 ## “关于我们” route
+
+Let's start by building our "about" page. To create a new, URL addressable page in the application, we need to generate a route using Ember CLI.
 
 如果执行 `ember help generate`，我们可以看到很多生成器工具，Ember用它们来自动生成各种资源文件。 我们将要用路由生成器来生成 `about`路由器。
 
@@ -18,7 +18,7 @@ ember generate route about
 ember g route about
 ```
 
-我们来看下生成器都做了那些操作：
+The output of the command displays what actions were taken by the generator:
 
 ```shell
 installing route
@@ -30,9 +30,13 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-创建了3个文件：一个是对应路由处理器文件，一个是路由处理器会渲染的模板页面文件，一个是测试文件。还有第4个文件被修改的是路由器配置文件。
+A route is composed of the following parts:
 
-我们打开路由器配置文件，可以看到生成器已经为我们加了一条新的 *about*路由映射信息。这条路由会映射到`about`路由处理器。
+  1. An entry in `/app/router.js`, mapping the route name to a specific URI. *`(app/router.js)`*
+  2. A route handler JavaScript file, instructing what behavior should be executed when the route is loaded. *`(app/routes/about.js)`*
+  3. A route template, describing the page represented by the route. *`(app/templates/about.hbs)`*
+
+Opening `/app/router.js` shows that there is a new line of code for the *about* route, calling `this.route('about')` in the `map` function. Calling the function `this.route(routeName)`, tells the Ember router to load the specified route handler when the user navigates to the URI with the same name. In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used. See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -58,7 +62,7 @@ export default Router;
     </div>
     
 
-命令行执行`ember serve`（或者用简写`ember s`）启动Ember开发服务，然后访问 [`http://localhost:4200/about`](http://localhost:4200/about)即刻来查看我们的新应用。
+Run `ember server` (or `ember serve` or even `ember s` for short) from the shell to start the Ember development server, and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new app in action!
 
 ## “联系我们” Route
 
@@ -68,9 +72,9 @@ export default Router;
 ember g route contact
 ```
 
-我们可以看到生成器在路由配置文件 <0 >app/router.js</code>中创建了`contact`路由，同时生成了对应的路由处理器文件`app/routes/contact.js`。 因为在这个路由处理器中我们会使用默认的同名模板文件`contact` ，所以我们不需要对路由配置文件做额外配置。
+The output from this command shows a new `contact` route in `app/router.js`, and a corresponding route handler in `app/routes/contact.js`.
 
-在模板文件中 `contact.hbs`，我们可以添加超级访问出租公司的总部信息:
+In the route template `/app/templates/contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
 ```app/templates/contact.hbs 
 
@@ -100,12 +104,15 @@ ember g route contact
     <br />现在我们已经完成了第二个路由器。
     如果访问 URL [`http://localhost:4200/contact`](http://localhost:4200/contact)，我们可以看到联系我们页面。
     
-    ## 用链接和{{link-to}} 帮助类进行跳转
-    我们真心不希望用户需要记住网站的URL才能浏览我们网站的内容，所以我们会在每个页面下面添加跳转链接。
+    ## Navigating with Links and the {{link-to}} Helper
+    
+    We'd like to avoid our users having knowledge of our URLs in order to move around our site,
+    so let's add some navigational links at the bottom of each page.
     我们会在关于我们页面加上联系我们链接以及在联系我们页面加上关于我们链接。
     
-    Ember有内置的各种辅助方法 **helpers** 来提供类似于跳转到指定路由器的功能。
-    这里我们代码中使用”{{link-to}}“辅助类在不同路由中进行跳转。
+    Ember has built-in template **helpers** that provide functionality for interacting with the framework.
+    The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
+    Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
@@ -115,8 +122,7 @@ ember g route contact
         The Super Rentals website is a delightful project created to explore Ember.
         By building a property rental site, we can simultaneously imagine traveling
         AND building Ember applications.
-      Text for Translation
-    </p>
+      </p>
       {{#link-to 'contact' class="button"}}
         Get Started!
       {{/link-to}}
@@ -159,7 +165,7 @@ ember g route contact
     为了这样的一个列表我们需要创建第三个路由”rentals“。
     
 
-我们先修改最新生成的模板文件`rentals.hbs`，加入一些临时标记作为列表页内容。 稍后我们会重新填充真实的出租信息。
+Let's update the newly generated `app/templates/rentals.hbs` with some basic markup to add some initial content our rentals list page. We'll come back to this page later to add in the actual rental properties.
 
 ```app/templates/contact.hbs 
 
@@ -257,8 +263,8 @@ installing template
       </div>
     </div>
 
-请注意在body div标签中的包含的`{{outlet}}` 代码块。 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) 这个标记意味着把该位置代码填充工作交给传入的路由器负责，不同的路由器会产生不同的内容插入到模板中。
+请注意在body div标签中的包含的`{{outlet}}` 代码块。 The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as *about*, or *contact*.
 
-至此，我们已经添加了路由和相应的连接，3个导航跳转验证将可以通过测试。
+Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
 
 ![通过了导航跳转测试](../../images/routes-and-templates/passing-navigation-tests.png)

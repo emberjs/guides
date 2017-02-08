@@ -1,10 +1,10 @@
-Emberは、アプリケーション内で論理的かつ指定可能なページを定義するために、route (ルート)を使用します。
+In Super Rentals we want to arrive at a home page which shows a list of rentals. From there, we should be able to navigate to an about page and a contact page.
 
-Super Rentalsでは、homeページを開くと賃貸物件の一覧を閲覧でき、そこからaboutページやcontactページへと遷移するようにしたいです。
-
-それでは、まず"about"ページの作成から始めましょう。 `/about`というURLが読み込まれると、router (ルーター)は、URLと同じ名前のroute handler (ルート ハンドラー )、*about.js*を対応づけるということを覚えておいてください。 その後、route handler (ルートハンドラ)がテンプレートを読み込みます。
+Ember provides a [robust routing mechanism](../../routing/) to define logical, addressable pages within our application.
 
 ## ルートに関して
+
+Let's start by building our "about" page. To create a new, URL addressable page in the application, we need to generate a route using Ember CLI.
 
 `ember help generate`を実行すると、Emberに付属する、さまざまなリソースを自動生成するツール群を確認できます。 では、route generator ( ルートジェネレータ)を使って、`about` route (ルート)を作成していきましょう。
 
@@ -18,7 +18,7 @@ ember generate route about
 ember g route about
 ```
 
-実行すると表示される以下の内容から、generator (ジェネレータ)が行っていることを確認できます。
+The output of the command displays what actions were taken by the generator:
 
 ```shell
 installing route
@@ -30,9 +30,13 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-3つの新しいファイルが生成されます。一つはroute handler (ルートハンドラー)、一つはroute handler (ルートハンドラー)が描画するtemplate (テンプレート)、最後はテストファイルです。第4のファイル、router (ルーター)には編集が加えられています。
+A route is composed of the following parts:
 
-router (ルーター)を開くと、generator (ジェネレータ)が自動的に*about*ルートを対応付けてくれていることを確認できます。この route (ルート)が、`about`の route handler (ルートハンドラー)を読み込みます。
+  1. An entry in `/app/router.js`, mapping the route name to a specific URI. *`(app/router.js)`*
+  2. A route handler JavaScript file, instructing what behavior should be executed when the route is loaded. *`(app/routes/about.js)`*
+  3. A route template, describing the page represented by the route. *`(app/templates/about.hbs)`*
+
+Opening `/app/router.js` shows that there is a new line of code for the *about* route, calling `this.route('about')` in the `map` function. Calling the function `this.route(routeName)`, tells the Ember router to load the specified route handler when the user navigates to the URI with the same name. In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used. See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -60,7 +64,7 @@ export default Router;
     </div>
     
 
-コマンド `ember serve`(省略形だと`ember s`)を実行して、シェルからEmberの開発サーバーを起動してください。そして、ブラウザで[`http://localhost:4200/about`](http://localhost:4200/about)を開いて、新しいアプリケーションの動きを確認しましょう。
+Run `ember server` (or `ember serve` or even `ember s` for short) from the shell to start the Ember development server, and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new app in action!
 
 ## Contact ルート
 
@@ -70,9 +74,9 @@ export default Router;
 ember g route contact
 ```
 
-generator (ジェネレータ)が`app/router.js`内に`contact` route (ルート)を作成し、そして`app/routes/contact.js`に該当するroute handler (ルートハンドラー)を作成するのを確認します。 `contact`テンプレートを利用していくので、`contact` route (ルート)は特に編集する必要はありません。
+The output from this command shows a new `contact` route in `app/router.js`, and a corresponding route handler in `app/routes/contact.js`.
 
-`contact.hbs`にSuper Rentals HQのコンタクト情報を追記します。
+In the route template `/app/templates/contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
 ```app/templates/contact.hbs 
 
@@ -102,13 +106,15 @@ generator (ジェネレータ)が`app/router.js`内に`contact` route (ルート
     <br />これで、２番目のroute (ルート)が完成しました。
     URL[`http://localhost:4200/contact`](http://localhost:4200/contact)にアクセスすると、コンタクトページにアクセスできます。
     
-    ## リンクによるナビゲーションと {{link-to}} Helper (ヘルバー)
+    ## Navigating with Links and the {{link-to}} Helper
     
-    URLを知らないとサイト内を自由に動き回れないようなアプリケーションには、もちろんしたくありません。各ページの下部にナビゲーション用のリンクを追加しましょう。
+    We'd like to avoid our users having knowledge of our URLs in order to move around our site,
+    so let's add some navigational links at the bottom of each page.
     aboutページにcontactページへのリンク、contactページにはaboutページへのリンクを作ります。
     
-    Emberには、他のroute(ルート)にリンクするような機能を提供する、組み込みの**helpers (ヘルパー)**を持っています。
-    ここでは`{{link-to}}` helper (ヘルパー)を利用し、routes (ルート)間をリンクさせます。
+    Ember has built-in template **helpers** that provide functionality for interacting with the framework.
+    The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
+    Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
@@ -162,7 +168,7 @@ generator (ジェネレータ)が`app/router.js`内に`contact` route (ルート
     これを実現するために、第3のroute (ルート)を追加します。名前は`rentals`としましょう。
     
 
-新しく生成された`rentals.hbs`に賃貸物件を一覧していくために、ベースとなるマークアップを行いましょう。 実際の賃貸物件を追加した後で、またこのページに戻って来ます。
+Let's update the newly generated `app/templates/rentals.hbs` with some basic markup to add some initial content our rentals list page. We'll come back to this page later to add in the actual rental properties.
 
 ```app/templates/rentals.hbs 
 
@@ -262,8 +268,8 @@ installing template
       </div>
     </div>
 
-`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet)の内容はrouter (ルーター)に委ねられます。router (ルーター)は、その時のroute (ルート)用のマークアップをそこに描画します。つまり、私たちが開発するアプリケーションのそれぞれのroute (ルート)が、そこに描画されます。
+`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as *about*, or *contact*.
 
-ここまでで、route (ルート)とそれらを繋ぐリンクを追加しました。route (ルート)へのナビゲーション用に作成した三つの受入テストは、この段階で通っているはずです。
+Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
