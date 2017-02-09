@@ -136,7 +136,7 @@ Here we will use the `{{link-to}}` helper in our code to perform a basic link be
     AND building Ember applications.
   </p>
   {{#link-to 'contact' class="button"}}
-    Get Started!
+    Contact Us
   {{/link-to}}
 </div>
 ```
@@ -193,9 +193,9 @@ We'll come back to this page later to add in the actual rental properties.
 
 ## An Index Route
 
-With our two static pages in place, we are ready to add our home page which welcomes users to the site.
-At this point our main page in our application is our rentals page, for which we've already created a route.
-So we want our index route to simply forward to the `rentals` route we've already created.
+With our three routes in place, we are ready to add an index route, which will handle requests to the root URI (`/`) of our site.
+We'd like to make the rentals page the main page of our application, and we've already created a route.
+Therefore, we want our index route to simply forward to the `rentals` route we've already created.
 
 Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
 
@@ -217,11 +217,17 @@ Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
 We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
 
-We can start by implementing the unit test for index.
-Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
-`replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
+Let's start by implementing the unit test for our new index route.
+
+Since all we want to do is transition people who visit `/` to `/rentals`,
+our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
+`replaceWith` is similar to the route's [`transitionTo`](../../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
-We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+
+In our test, we'll make sure that our index route is redirecting by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+
+A `stub` is simply a fake function that we provide to an object we are testing, that takes the place of one that is already there.
+In this case we are stubbing the `replaceWith` function to assert that it is called with what we expect.
 
 ```tests/unit/routes/index-test.js
 import { moduleFor, test } from 'ember-qunit';
@@ -238,7 +244,7 @@ test('should transition to rentals route', function(assert) {
 });
 ```
 
-In our index route, we simply add the `replaceWith` invocation.
+In our index route, we simply add the actual `replaceWith` invocation.
 
 ```app/routes/index.js
 import Ember from 'ember';
@@ -256,14 +262,9 @@ Now visiting the root route `/` will result in the `/rentals` URL loading.
 
 In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
 
-First, create the application template by typing `ember g template application`.
-
-```shell
-installing template
-  create app/templates/application.hbs
-```
-
-When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
+To show something in every page of your application, you can use the application template.
+The application template is generated when you create a new project.
+Let's open the application template at `/app/templates/application.js`, and add the following banner navigation markup:
 
 
 ```app/templates/application.hbs
