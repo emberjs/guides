@@ -17,7 +17,7 @@ export default Ember.Component.extend({
   },
 
   incomplete: Ember.computed('todos.@each.isDone', function() {
-    var todos = this.get('todos');
+    let todos = this.get('todos');
     return todos.filterBy('isDone', false);
   })
 });
