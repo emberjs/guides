@@ -264,7 +264,7 @@ In addition to providing button-style links in each route of our application, we
 
 To show something in every page of your application, you can use the application template.
 The application template is generated when you create a new project.
-Let's open the application template at `/app/templates/application.js`, and add the following banner navigation markup:
+Let's open the application template at `/app/templates/application.hbs`, and add the following banner navigation markup:
 
 
 ```app/templates/application.hbs
