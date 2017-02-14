@@ -1,10 +1,10 @@
-In Super Rentals we want to arrive at a home page which shows a list of rentals. From there, we should be able to navigate to an about page and a contact page.
+Super Rentalsでは、homeページを開くと賃貸物件の一覧を閲覧でき、そこからaboutページやcontactページへと遷移するようにします。
 
-Ember provides a [robust routing mechanism](../../routing/) to define logical, addressable pages within our application.
+Emberは、アプリケーション内の論理的でアドレスを指定できるページを定義するために、[堅牢なルーティング機構](../../routing/)を提供します。
 
 ## ルートに関して
 
-Let's start by building our "about" page. To create a new, URL addressable page in the application, we need to generate a route using Ember CLI.
+では「about」ページを構築することから始めましょう。 新しい、URL指定が可能なページをアプリケーションに作成するには、Ember CLIを使ってroute (ルート) を生成する必要があります。
 
 `ember help generate`を実行すると、Emberに付属する、さまざまなリソースを自動生成するツール群を確認できます。 では、route generator ( ルートジェネレータ)を使って、`about` route (ルート)を作成していきましょう。
 
@@ -18,7 +18,7 @@ ember generate route about
 ember g route about
 ```
 
-The output of the command displays what actions were taken by the generator:
+コマンドの出力には、ジェネレータによって実行されたアクションの内容が表示されます。
 
 ```shell
 installing route
@@ -30,13 +30,13 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-A route is composed of the following parts:
+route (ルート) は次の部品で構成されます。
 
-  1. An entry in `/app/router.js`, mapping the route name to a specific URI. *`(app/router.js)`*
-  2. A route handler JavaScript file, instructing what behavior should be executed when the route is loaded. *`(app/routes/about.js)`*
-  3. A route template, describing the page represented by the route. *`(app/templates/about.hbs)`*
+  1. ルート名を特定の URI にマッピングする`/app/router.js`内のエントリ。*`(app/router.js)`*
+  2. ルートが読み込まれたときにどのような動作を実行する必要があるかを指示するルートハンドラのJavaScriptファイル。*`(app/routes/about.js)`*
+  3. ルートによって表現されるページを記述するルートテンプレート。*`(app/templates/about.hbs)`*
 
-Opening `/app/router.js` shows that there is a new line of code for the *about* route, calling `this.route('about')` in the `map` function. Calling the function `this.route(routeName)`, tells the Ember router to load the specified route handler when the user navigates to the URI with the same name. In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used. See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
+`/app/router.js`を開くと、*about*ルート用の新しい行があることがわかります。それは`map`関数内で`this.route('about')`を呼び出している箇所です。 `this.route(routeName)`関数の呼び出しは、Emberのrouter (ルーター) に、ユーザーが同名のURIを訪れた際に特定のルートハンドラーを読み込む様に指示します。 この場合は、ユーザーが`/about`に移動した際に、`/app/routes/about.js`で表現されたルートハンドラーが使われることになります。 詳細は[ルートを定義する](../../routing/defining-your-routes/)ためのガイドを参照してください。
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -114,7 +114,7 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
     
     Ember has built-in template **helpers** that provide functionality for interacting with the framework.
     The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
-    Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
+    ここでは、コード内の `{{link-to}}` ヘルパーを使用して、ルート間の基本的なリンクを表します。
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
@@ -126,7 +126,7 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
         AND building Ember applications.
       </p>
       {{#link-to 'contact' class="button"}}
-        Get Started!
+        Contact Us
       {{/link-to}}
     </div>
     
@@ -185,11 +185,11 @@ Let's update the newly generated `app/templates/rentals.hbs` with some basic mar
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-    <br />## インデックス route (ルート)
+    <br />## An Index Route
     
-    静的なページも2つ完成しましたし、サイトを訪れたユーザーを迎えるhome ページを追加するにはいい頃合いでしょう。
-    この時点でアプリケーションのメインページになるのは、すでにroute (ルート)を作成済みの賃貸物件一覧ページです。
-    つまりここでは、インデックスroute (ルート)をすでに作成済みの`rentals` route (ルート)に単に転送したいものとします。
+    With our three routes in place, we are ready to add an index route, which will handle requests to the root URI (`/`) of our site.
+    We'd like to make the rentals page the main page of our application, and we've already created a route.
+    Therefore, we want our index route to simply forward to the `rentals` route we've already created.
     
     aboutページとcontactページでやったのと同じように、まずは`index`という名前の新しいroute (ルート) を作成します。
     
@@ -210,8 +210,13 @@ installing route-test
 これまで作成してきたroute (ルート)ハンドラーと異なり、`index<0> route (ルート)は特別です。router (ルーター)での対応付けは必要ありません。
 どうして対応付けが必要ないかは、Emberで<a href="../subroutes">入れ子になったroute (ルート)</a>を扱う際に詳しく説明します。</p>
 
-<p>index用のユニットテストを実装するところから始めましょう。
-やりたいことは<code>rentals`に遷移することなので、ユニットテストではroute (ルート)の[`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith)メソッドが期待するroute (ルート)を呼び出すことを確認します。 `replaceWith`はroute (ルート)の`transitionTo`関数と似たようなものです。`transitionTo`がブラウザーのヒストリーに現在のURLを追加するのに対し、`replaceWith`は現在のURLを置き換えるという違いがあります。 `rentals` route (ルート)をhomeページとして使いたいので、ここでは`replaceWith`関数を使用します。 route (ルート) 用の`replaceWith`メソッドをスタブし、呼び出された際に`rentals` route (ルート)が渡されるかを検証することで、これを確認します。
+<p>Let's start by implementing the unit test for our new index route.</p>
+
+<p>Since all we want to do is transition people who visit <code>/` to `/rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route. `replaceWith` is similar to the route's [`transitionTo`](../../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
+
+In our test, we'll make sure that our index route is redirecting by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+
+A `stub` is simply a fake function that we provide to an object we are testing, that takes the place of one that is already there. In this case we are stubbing the `replaceWith` function to assert that it is called with what we expect.
 
 ```tests/unit/routes/index-test.js import { moduleFor, test } from 'ember-qunit';
 
@@ -219,7 +224,7 @@ moduleFor('route:index', 'Unit | Route | index');
 
 test('should transition to rentals route', function(assert) { let route = this.subject({ replaceWith(routeName) { assert.equal(routeName, 'rentals', 'replace with route name rentals'); } }); route.beforeModel(); });
 
-    <br />index route (ルート)に`replaceWith`呼び出しを単に追加します。
+    <br />In our index route, we simply add the actual `replaceWith` invocation.
     
     ```app/routes/index.js
     import Ember from 'ember';
@@ -231,20 +236,13 @@ test('should transition to rentals route', function(assert) { let route = this.s
     });
     
 
-これでroot route (ルート)`/<code>は<0>/rentals`というURL を読み込むようになりました。
+Now visiting the root route `/` will result in the `/rentals` URL loading.
 
 ## ナビゲーション付きのバナーを追加する
 
-アプリケーションの各route (ルート)に置いたボタンスタイルのリンクに追加して、共通のバナーを用意したいと思います。バナーにはアプリケーションのタイトルとメインページへのナビゲーションを表示します。
+In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
 
-まず、 `ember g template application`と入力し、アプリケーション用のtemplate (テンプレート)を作成します。.
-
-```shell
-installing template
-  create app/templates/application.hbs
-```
-
-`application.hbs`が存在すると、そこに記述したものはアプリケーションのすべてのページで表示されます。ここでは、以下のようにナビゲーション・バナーのマークアップを追加します。
+To show something in every page of your application, you can use the application template. The application template is generated when you create a new project. Let's open the application template at `/app/templates/application.hbs`, and add the following banner navigation markup:
 
     app/templates/application.hbs
     <div class="container">
@@ -268,8 +266,8 @@ installing template
       </div>
     </div>
 
-`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as *about*, or *contact*.
+`div` 要素の中に`{{outlet}}`が含まれていることに注目してください。 この場合の[`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet)は、*about*や*contact*などのような、現在のroute (ルート)によって描画されるコンテンツ用のプレースホルダーになります。.
 
-Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
+ここまでで、route (ルート)とそれらを繋ぐリンクを追加しました。route (ルート)へのナビゲーション用に作成した三つの受入テストは、この段階で通っているでしょう。
 
 ![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)

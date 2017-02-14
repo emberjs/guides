@@ -6,7 +6,7 @@ app/components/todo-list.js export default Ember.Component.extend({ todos: null,
 
 init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
-incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
+incomplete: Ember.computed('todos.@each.isDone', function() { let todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
 
     <br />对于键`todos.@each.isDone`只要出发下列的任何一个事件都会自动更新计算属性值以及触发观察者。
     

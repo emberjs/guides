@@ -6,7 +6,7 @@ To facilitate this, Ember provides the `@each` key illustrated below:
 
 init() { this.set('todos', [ Ember.Object.create({ isDone: true }), Ember.Object.create({ isDone: false }), Ember.Object.create({ isDone: true }), ]); },
 
-incomplete: Ember.computed('todos.@each.isDone', function() { var todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
+incomplete: Ember.computed('todos.@each.isDone', function() { let todos = this.get('todos'); return todos.filterBy('isDone', false); }) });
 
     <br />Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings
     and fire observers when any of the following events occurs:

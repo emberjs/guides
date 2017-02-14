@@ -18,12 +18,14 @@ ember generate component button-with-confirmation
 
 We'll plan to use the component in a template something like this:
 
-```app/templates/components/user-profile.hbs {{button-with-confirmation text="Click OK to delete your account."}}
+```app/templates/components/user-profile.hbs {{button-with-confirmation text="Click OK to delete your account." }}
 
     <br />We'll also want to use the component elsewhere, perhaps like this:
     
     ```app/templates/components/send-message.hbs
-    {{button-with-confirmation text="Click OK to send your message."}}
+    {{button-with-confirmation
+      text="Click OK to send your message."
+    }}
     
 
 ## Designing the Action
@@ -97,14 +99,17 @@ The component template will have a button and a div that shows the confirmation 
     and they can therefore be passed from one component to another like this:
     
     ```app/templates/components/user-profile.hbs
-    {{button-with-confirmation text="Click here to delete your account." onConfirm=(action "userDidDeleteAccount")}}
+    {{button-with-confirmation
+      text="Click here to delete your account."
+      onConfirm=(action "userDidDeleteAccount")
+    }}
     
 
 This snippet says "take the `userDidDeleteAccount` action from the parent and make it available on the child component as the property `onConfirm`." Note the use here of the `action` helper, which serves to return the function named `"userDidDeleteAccount"` that we are passing to the component.
 
 We can do a similar thing for our `send-message` component:
 
-```app/templates/components/send-message.hbs {{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage")}}
+```app/templates/components/send-message.hbs {{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage") }}
 
     <br />Now, we can use `onConfirm` in the child component to invoke the action on the
     parent:
@@ -320,7 +325,9 @@ export default Ember.Component.extend({ login: Ember.inject.service(), actions: 
     component's `deleteCurrentUser` property.
     
     ```app/templates/components/system-preferences-editor.hbs
-    {{user-profile deleteCurrentUser=(action 'deleteUser' login.currentUser.id)}}
+    {{user-profile
+      deleteCurrentUser=(action 'deleteUser' login.currentUser.id)
+    }}
     
 
 The action `deleteUser` is in quotes, since `system-preferences-editor` is where the action is defined now. Quotes indicate that the action should be looked for in `actions` local to that component, rather than in those that have been passed from a parent.
@@ -328,8 +335,10 @@ The action `deleteUser` is in quotes, since `system-preferences-editor` is where
 In our `user-profile.hbs` template we change our action to call `deleteCurrentUser` as passed above.
 
     app/templates/components/user-profile.hbs
-    {{button-with-confirmation onConfirm=(action deleteCurrentUser)
-      text="Click OK to delete your account."}}
+    {{button-with-confirmation
+      onConfirm=(action deleteCurrentUser)
+      text="Click OK to delete your account."
+    }}
 
 Note that `deleteCurrentUser` is no longer in quotes here as opposed to [previously](#toc_passing-the-action-to-the-component). Quotes are used to initially pass the action down the component tree, but at every subsequent level you are instead passing the actual function reference (without quotes) in the action helper.
 

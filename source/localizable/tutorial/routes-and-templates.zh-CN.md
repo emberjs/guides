@@ -124,7 +124,7 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
         AND building Ember applications.
       </p>
       {{#link-to 'contact' class="button"}}
-        Get Started!
+        Contact Us
       {{/link-to}}
     </div>
     
@@ -182,11 +182,11 @@ Let's update the newly generated `app/templates/rentals.hbs` with some basic mar
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
-    <br />## 首页 Route
+    <br />## An Index Route
     
-    既然网站已经有了2个静态页面，我们可以制作一个首页来迎接网站用户了。
-    目前我们应用的主页就是刚创建的房屋出租列表页。
-    所以我们希望首页的route只是简单转发到我们刚创建的`rentals` route 。
+    With our three routes in place, we are ready to add an index route, which will handle requests to the root URI (`/`) of our site.
+    We'd like to make the rentals page the main page of our application, and we've already created a route.
+    Therefore, we want our index route to simply forward to the `rentals` route we've already created.
     
     依照之前我们创建联系我们和关于我们页面的流程，我们要先创建一个叫 `index`的路由器。
     
@@ -206,7 +206,13 @@ installing route-test
 
 跟我们之前创建的路由器不同， `index` 首页路由器比较特殊：它不需要在路由配置文件中做任何映射 。 我们将会在[nested routes](../subroutes) Ember的级联路由一章中会学到更多关于为什么首页index不需要路由映射。
 
-我们现在可以为index首页开发单元测试了。 我们要测试的结果是首页能跳转到房屋出租列表 `rentals`，所以测试需要验证路由器的 [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith)方法可以被正确调用。 路由器中的`replaceWith`方法跟 `transitionTo`方法类似都是页面跳转，区别是`replaceWith`会把替换浏览器中的浏览历史，而 `transitionTo`则是将跳转地址到浏览历史中。 我们希望`rentals`路由成为主页，所以是用 `replaceWith`方法。 我们的测试需要先在路由中实现 `replaceWith`方法，同时断言`rentals`路由在调用时被正确传入。
+Let's start by implementing the unit test for our new index route.
+
+Since all we want to do is transition people who visit `/` to `/rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route. `replaceWith` is similar to the route's [`transitionTo`](../../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
+
+In our test, we'll make sure that our index route is redirecting by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+
+A `stub` is simply a fake function that we provide to an object we are testing, that takes the place of one that is already there. In this case we are stubbing the `replaceWith` function to assert that it is called with what we expect.
 
 ```tests/unit/routes/index-test.js import { moduleFor, test } from 'ember-qunit';
 
@@ -214,7 +220,7 @@ moduleFor('route:index', 'Unit | Route | index');
 
 test('should transition to rentals route', function(assert) { let route = this.subject({ replaceWith(routeName) { assert.equal(routeName, 'rentals', 'replace with route name rentals'); } }); route.beforeModel(); });
 
-    <br />在index路由中，我们只需要添加“replaceWith”方法调用。
+    <br />In our index route, we simply add the actual `replaceWith` invocation.
     
     ```app/routes/index.js
     import Ember from 'ember';
@@ -226,20 +232,13 @@ test('should transition to rentals route', function(assert) { let route = this.s
     });
     
 
-现在当你访问根目录 `/`的时候会跳转到 `/rentals` URL。
+Now visiting the root route `/` will result in the `/rentals` URL loading.
 
 ## 在导航中加入旗帜区块
 
-除了为每个路由提供按钮连接以为，我们还希望提供一个通用的标题旗帜区作为主页的链接。
+In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
 
-首先，创建一个应用模板。输入命令：`ember g template application`.
-
-```shell
-installing template
-  create app/templates/application.hbs
-```
-
-当首页模板 `application.hbs`存在后，你向其添加的内容会出现在网站的每个页面。现在我们加以下旗帜区域标记：
+To show something in every page of your application, you can use the application template. The application template is generated when you create a new project. Let's open the application template at `/app/templates/application.hbs`, and add the following banner navigation markup:
 
     app/templates/application.hbs
     <div class="container">
@@ -263,8 +262,8 @@ installing template
       </div>
     </div>
 
-请注意在body div标签中的包含的`{{outlet}}` 代码块。 The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as *about*, or *contact*.
+Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as *about*, or *contact*.
 
 Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
 
-![通过了导航跳转测试](../../images/routes-and-templates/passing-navigation-tests.png)
+![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
