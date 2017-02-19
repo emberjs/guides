@@ -46,7 +46,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     eventmachine (1.0.7)
-    execjs (2.3.0)
+    execjs (2.7.0)
     ffi (1.9.6)
     ffi (1.9.6-x86-mingw32)
     haml (4.0.6)
@@ -58,7 +58,7 @@ GEM
     hooks (0.4.0)
       uber (~> 0.0.4)
     i18n (0.6.11)
-    json (1.8.2)
+    json (1.8.6)
     kramdown (1.5.0)
     listen (2.8.5)
       celluloid (>= 0.15.2)
@@ -172,7 +172,7 @@ GEM
     tzinfo-data (1.2015.1)
       tzinfo (>= 1.0.0)
     uber (0.0.13)
-    uglifier (2.7.0)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     underscore-rails (1.7.0)
@@ -209,6 +209,3 @@ DEPENDENCIES
   tzinfo-data
   underscore-rails
   wdm (>= 0.1.0)
-
-BUNDLED WITH
-   1.12.4
