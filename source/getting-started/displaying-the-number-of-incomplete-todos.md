@@ -17,8 +17,8 @@ actions: {
 },
 
 remaining: function() {
-  return this.filterBy('isCompleted', false).get('length');
-}.property('@each.isCompleted'),
+  return this.get('model').filterBy('isCompleted', false).get('length');
+}.property('model.@each.isCompleted'),
 
 inflection: function() {
   var remaining = this.get('remaining');
