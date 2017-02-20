@@ -71,6 +71,7 @@ deserializing
 destructuring
 django
 dom
+DNS
 draggable
 ds
 durations
@@ -234,6 +235,7 @@ stacktraces
 stateful
 stylesheets
 subclassing
+subdomain
 subexpression
 suboptimal
 substate
