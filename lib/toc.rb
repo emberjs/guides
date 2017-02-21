@@ -18,6 +18,14 @@ module TOC
   end
 
   module Helpers
+    def set_version_pages(version_pages)
+      @version_pages = version_pages
+    end
+
+    def version_pages
+      @version_pages
+    end
+
     def toc_for(pages, level=0, base_path="", parent_current=true)
       buffer = "<ol class='toc-level-#{level}#{parent_current ? ' selected' : ''}'>"
       # indentation below is to aid in understanding the HTML structure
@@ -35,7 +43,9 @@ module TOC
 
           buffer << "<li class='toc-level-#{level} #{current ? 'selected' : ''}'>"
             if page.pages
-              buffer << link_to(page.title, '#')
+              unless page.skip_toc
+                buffer << link_to(page.title, '#')
+              end
               buffer << toc_for(page.pages, level + 1, page_path, current)
             else
               buffer << link_to(page.title, page_path + '.html')
@@ -139,13 +149,13 @@ module TOC
     def previous_guide
       return unless current_guide
 
-      current_guide_index = data.pages.find_index(current_guide)
+      current_guide_index = version_pages.find_index(current_guide)
       return unless current_guide_index
 
       previous_guide_index = current_guide_index - 1
 
       if previous_guide_index >= 0
-        data.pages[previous_guide_index]
+        version_pages[previous_guide_index]
       else
         nil
       end
@@ -154,13 +164,13 @@ module TOC
     def next_guide
       return unless current_guide
 
-      current_guide_index = data.pages.find_index(current_guide)
+      current_guide_index = version_pages.find_index(current_guide)
       return unless current_guide_index
 
       next_guide_index = current_guide_index + 1
 
-      if current_guide_index < data.pages.length
-        data.pages[next_guide_index]
+      if current_guide_index < version_pages.length
+        version_pages[next_guide_index]
       else
         nil
       end
@@ -180,7 +190,7 @@ private
       @current_slugs ||= current_page.path.gsub(".html", "").split("/")
     end
 
-    def pages_for_slugs(slugs, pages=data.pages)
+    def pages_for_slugs(slugs, pages=version_pages)
       current_slug = slugs.shift
       page = pages.find { |page| page.url == current_slug }
       remaining_pages = slugs.any? ? pages_for_slugs(slugs, page.pages) : []
@@ -193,13 +203,13 @@ private
       path = current_page.path.gsub('.html', '')
       guide_path = path.split("/")[0]
 
-      @current_guide = data.pages.find do |guide|
+      @current_guide = version_pages.find do |guide|
         guide.url == guide_path
       end
     end
 
     def current_guide_index
-      data.pages.find_index(current_guide)
+      version_pages.find_index(current_guide)
     end
 
     def current_chapter
@@ -217,6 +227,10 @@ private
     def current_chapter_index
       return unless current_guide
       current_guide.chapters.find_index(current_chapter)
+    end
+
+    def version_pages=(pages)
+      @pages ||= pages
     end
 
   end
