@@ -19,34 +19,34 @@ surge cliツールのインストールが事前に完了している必要が�
 npm install -g surge
 ```
 
-インストール後、`surge`コマンドでアプリケーションのデプロイが実行可能になります。 surgeがEmberのクライアントサイドでのルーティングをサポートするには、 index.html のコピーを 200.html という名称で提供する必要があることに注意してください。
+Then you can use the `surge` command to deploy your application. Note you will also need to rename index.html to 200.html to enable Ember's client-side routing.
 
 ```shell
 ember build --environment=development
-cd dist
-cp index.html 200.html
-surge
+mv dist/index.html dist/200.html
+surge dist funny-name.surge.sh
 ```
 
-デプロイの初回時にはデフォルトを承認するために、return キーを押します。`funny-name.surge.sh`等でURLが提供され、そのURLに対して、デプロイを行っていくことができます。
+We chose funny-name.surge.sh but you may use any unclaimed subdomain you like or use a custom domain that you own and have pointed the DNS to one of surges servers. If the second argument is left blank surge will prompt you with a suggested subdomain.
 
-アプリケーションに変更を行い同一のURLにデプロイするには、同一のて実行します、今回はアプリケーションのURLをコマンドのオプションにします。
+To deploy to the same URL after making changes, perform the same steps, reusing the same domain as before.
 
 ```shell
 rm -rf dist
 ember build --environment=development
-cd dist
-cp index.html 200.html
-surge funny-name.surge.sh
+mv dist/index.html dist/200.html
+surge dist funny-name.surge.sh
 ```
 
-ここでは`--enviroment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 しかし、一般的には`ember build --environment=production`を利用して、プロダクションで利用できるようコードを生成します。
+ここでは`--enviroment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 However, normally we would use `ember build --environment=production` which optimizes your application for production.
 
 ## サーバー
 
 ### Apache
 
-Apacheサーバーでは、Emberのルーティングが正しく動作するためにrewriteエンジン (mod-rewrite) を有効にする必要があります。 もしメインのURLとして動かすつもりでdistフォルダーをアップロードしたけれども、'{main URL}/example'などのルートに行くと404が返ってくるようなら、サーバーは「フレンドリー」URLが設定されていません。 Webサイトのルートフォルダー「.htaccess」(ピリオドから始まり、その前には何も付きません)という名前のファイルが存在していないのなら、この問題を解決するために、それを追加してください。 ファイルには以下の行を追加します。
+Apacheサーバーでは、Emberのルーティングが正しく動作するためにrewriteエンジン (mod-rewrite) を有効にする必要があります。 If you upload your dist folder, going to your main URL works, but when you try to go to a route such as '{main URL}/example' and it returns 404, your server has not been configured for "friendly" URLs.
+
+To fix this add a file called '.htaccess' to the root folder of your website. Add these lines:
 
 ```text
 <IfModule mod_rewrite.c>
@@ -58,4 +58,4 @@ RewriteRule (.*) index.html [L]
 </IfModule>
 ```
 
-サーバーの構成が異なる場合には、さまざまなオプションが必要になるかもしれません。があります。詳細については http://httpd.apache.org/docs/2.0/misc/rewriteguide.html を参照してください。
+Your server's configuration may be different so you may need different options. Please see http://httpd.apache.org/docs/2.0/misc/rewriteguide.html for more information.

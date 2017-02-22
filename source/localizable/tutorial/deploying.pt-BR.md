@@ -19,34 +19,34 @@ Você precisará ter o programa de linha de comando surge cli instalado:
 npm install -g surge
 ```
 
-Então você pode usar o comando de `surge` para publicar seu aplicativo. Note que você também precisará fornecer uma cópia do arquivo index.html com o nome 200.html para que o surge dê suporte às rotas no lado do cliente (client-side routing) do Ember.
+Then you can use the `surge` command to deploy your application. Note you will also need to rename index.html to 200.html to enable Ember's client-side routing.
 
 ```shell
 ember build --environment=development
-cd dist
-cp index.html 200.html
-surge
+mv dist/index.html dist/200.html
+surge dist funny-name.surge.sh
 ```
 
-Aperte a tecla "Enter" para aceitar as configurações padrões ao publicar pela primeira vez. Será fornecida uma URL no formato `funny-name.surge.sh` que você pode usar para publicar repetidas vezes.
+We chose funny-name.surge.sh but you may use any unclaimed subdomain you like or use a custom domain that you own and have pointed the DNS to one of surges servers. If the second argument is left blank surge will prompt you with a suggested subdomain.
 
-Então para publicar para uma mesma URL depois de fazer alterações, siga as mesmas etapas, desta vez fornecendo a URL para seu site:
+To deploy to the same URL after making changes, perform the same steps, reusing the same domain as before.
 
 ```shell
 rm -rf dist
 ember build --environment=development
-cd dist
-cp index.html 200.html
-surge funny-name.surge.sh
+mv dist/index.html dist/200.html
+surge dist funny-name.surge.sh
 ```
 
-No exemplo acima, nós usamos `--enviroment=development` então o Mirage continuará fornecendo mock de fake data. No entanto, normalmente nós usaríamos `ember build --environment=production` que faz mais para tornar seu código pronto para produção.
+No exemplo acima, nós usamos `--enviroment=development` então o Mirage continuará fornecendo mock de fake data. However, normally we would use `ember build --environment=production` which optimizes your application for production.
 
 ## Servers
 
 ### Apache
 
-On an Apache server, the rewrite engine (mod-rewrite) must be enabled in order for Ember routing to work properly. If you upload your dist folder, going to your main URL works, but when you try to go to a route such as '{main URL}/example' and it returns 404, your server has not been configured for "friendly" URLs. To fix this, if it doesn't exist, add a file called '.htaccess' (just a period at the beginning, nothing before it) to the root folder of your website. Add these lines:
+On an Apache server, the rewrite engine (mod-rewrite) must be enabled in order for Ember routing to work properly. If you upload your dist folder, going to your main URL works, but when you try to go to a route such as '{main URL}/example' and it returns 404, your server has not been configured for "friendly" URLs.
+
+To fix this add a file called '.htaccess' to the root folder of your website. Add these lines:
 
 ```text
 <IfModule mod_rewrite.c>
