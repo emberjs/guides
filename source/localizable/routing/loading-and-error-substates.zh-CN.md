@@ -1,10 +1,10 @@
 The Ember Router allows you to provide feedback that a route is loading, as well as when an error occurs in loading a route.
 
-## `loading` substates
+## “加载”子状态
 
-During the `beforeModel`, `model`, and `afterModel` hooks, data may take some time to load. Technically, the router pauses the transition until the promises returned from each hook fulfill.
+在beforeModel、model、afterModel钩子中，数据可能需要一些时间来加载。 从技术角度来说，路由控制器会暂停跳转，直至所有钩子方法的Promise全部完全填充（fullfill）
 
-Consider the following:
+先看如下代码：
 
 ```app/router.js Router.map(function() { this.route('slow-model'); });
 
@@ -18,7 +18,7 @@ Consider the following:
     });
     
 
-If you navigate to `slow-model`, in the `model` hook, the query may take a long time to complete. During this time, your UI isn't really giving you any feedback as to what's happening. If you're entering this route after a full page refresh, your UI will be entirely blank, as you have not actually finished fully entering any route and haven't yet displayed any templates. If you're navigating to `slow-model` from another route, you'll continue to see the templates from the previous route until the model finish loading, and then, boom, suddenly all the templates for `slow-model` load.
+如果你跳转到slow-model，在model钩子方法中，查询可能需要很长的时间才能完成。 在这段时间里，用户界面并不能体现出现在正在发生的任何事情。 If you're entering this route after a full page refresh, your UI will be entirely blank, as you have not actually finished fully entering any route and haven't yet displayed any templates. If you're navigating to `slow-model` from another route, you'll continue to see the templates from the previous route until the model finish loading, and then, boom, suddenly all the templates for `slow-model` load.
 
 So, how can we provide some visual feedback during the transition?
 
