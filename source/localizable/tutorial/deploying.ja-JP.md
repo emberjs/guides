@@ -11,15 +11,15 @@ scp -r dist/* myserver.com:/var/www/public/
 
 ## Surge.sh へのデプロイ
 
-[ Surge.sh](http://surge.sh/) はフリーで任意のフォルダを、webに公開することができます。Emberアプリケーションは単に`ember build`によって生成されたフォルダーををデプロイすることができます。.
+[ Surge.sh](http://surge.sh/)はフリーで任意のフォルダを、webに公開できます。Emberアプリケーションをデプロイするには、単に`ember build`によって生成されたフォルダーをデプロイするだけです。.
 
-surge cliツールのインストールが事前に完了している必要があります:
+Surge.shにデプロイするには、以下のようにsurge cliツールをインストールしておく必要があります。
 
 ```shell
 npm install -g surge
 ```
 
-Then you can use the `surge` command to deploy your application. Note you will also need to rename index.html to 200.html to enable Ember's client-side routing.
+そうすれば、アプリケーションをデプロイするための`surge`コマンドが使用できます。その際、Emberのクライアントサイドのルーティングを可能にするために、index.htmlを200.htmlというファイル名に変更しなくてはならないことに注意してください。
 
 ```shell
 ember build --environment=development
