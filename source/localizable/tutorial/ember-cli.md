@@ -50,12 +50,10 @@ It can be used to manage front-end plugins and component dependencies
 (HTML, CSS, JavaScript, etc).  All Bower components are installed in the
 `bower_components` directory. If we add front-end dependencies, such as 
 Bootstrap, we will see them listed here, and added to the 
-`bower_components` directory. As of Ember 2.11 it is no longer required
-by Ember CLI (see the [release notes](http://emberjs.com/blog/2017/01/23/ember-2-11-released.html#toc_ember-no-longer-supplied-via-code-bower-code) for more information).
+`bower_components` directory.
 
 **config**: The config directory contains the `environment.js` where you can
 configure settings for your app.
-
 
 **node_modules / package.json**: This directory and file are from npm.
 npm is the package manager for Node.js. Ember is built with Node and uses a
