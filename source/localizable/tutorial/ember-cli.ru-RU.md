@@ -33,7 +33,7 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
-**bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower.json**: Bower is a dependency management tool. It can be used to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we add front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
 **config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
@@ -72,9 +72,9 @@ export default Router;
     ## Upgrading Ember
     
     Before continuing to the tutorial, make sure that you have the most recent
-    versions of Ember and Ember Data installed. If the version of `ember` in
-    `bower.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `bower.json` and then run `bower install`.
+    versions of Ember and Ember Data installed. If the version of `ember-source` in
+    `package.json` is lower than the version number in the upper-left corner of these
+    Guides, update the version number in `package.json` and then run `npm install`.
     Similarly, if the version of `ember-data` in `package.json` is lower, update the
     version number and then run `npm install`.
     

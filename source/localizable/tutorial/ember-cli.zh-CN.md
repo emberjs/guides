@@ -33,7 +33,7 @@ Let's take a look at the folders and files Ember CLI generates.
 
 **app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
-**bower.json**: Bower is a dependency management tool. It is used in Ember CLI to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we open `bower.json`, we see the list of dependencies that are installed automatically including Ember, Ember CLI Shims, and QUnit (for testing). If we add additional front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower.json**: Bower is a dependency management tool. It can be used to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we add front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
 **config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
@@ -64,7 +64,9 @@ export default Router;
     
     ## 升级 Ember
     
-    在继续本教程之前，首先确保你安装的是最新版本的 Ember和Ember Data。 如果 `bower.json` 中 `ember` 和 `ember-data` 的版本号低于这篇指南左上角显示的版本号，请更新 `bower.json` 中的两个版本号，然后执行 `bower install`升级。
+    在继续本教程之前，首先确保你安装的是最新版本的 Ember和Ember Data。 If the version of `ember-source` in
+    `package.json` is lower than the version number in the upper-left corner of these
+    Guides, update the version number in `package.json` and then run `npm install`.
     同样，如果`ember-data`在`package.json`是较低版本，则更改版本号，然后运行 `npm install`升级。
     
     ## 开发模式启动服务器

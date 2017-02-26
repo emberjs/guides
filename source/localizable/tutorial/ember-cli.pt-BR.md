@@ -33,7 +33,7 @@ Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
 
 **app**: Aqui é onde as pastas e arquivos de models, components, routes, templates e styles são armazenados. A maior parte de codificação em um projeto Ember acontece nessa pasta.
 
-**bower.json**: Bower is a dependency management tool. É utilizado no Ember CLI para gerenciar plugins front-end e dependências de componentes (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. Se abrirmos o arquivo `bower.json`, nós vemos a lista de dependências que são instaladas automaticamente, incluindo Ember, Ember CLI Shims, e QUnit (para testes). Se adicionarmos dependências front-end adicionais, tais como Bootstrap, veremos essas dependências listadas aqui e adicionada ao diretório `bower_components`.
+**bower.json**: Bower is a dependency management tool. It can be used to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. If we add front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
 **config**: O diretório de config contém o arquivo `environment.js` onde você pode definir as configurações da sua aplicação.
 
@@ -66,8 +66,9 @@ export default Router;
     
     ## Atualizando Ember
     
-    Antes de continuar com o tutorial, verifique se você tem as versões mais recentes de Ember e Ember data instaladas. Se a versão de `ember` no
-    `bower.json` é menor do que a versão no canto superior esquerdo desse guia, atualize o número da versão no `bower.json` e então execute o comando`bower install`.
+    Antes de continuar com o tutorial, verifique se você tem as versões mais recentes de Ember e Ember data instaladas. If the version of `ember-source` in
+    `package.json` is lower than the version number in the upper-left corner of these
+    Guides, update the version number in `package.json` and then run `npm install`.
     Da mesma forma, se a versão de `ember-data` no `package.json` é menor, atualize o número da versão e execute o comando `npm install`.
     
     ## O servidor de desenvolvimento

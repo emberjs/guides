@@ -33,7 +33,7 @@ Ember CLIが作成したファイルやディレクトリを見てみましょ�
 
 **app**: この配下に、モジュールやコンポーネント、ルート、テンプレート、スタイルシート用のディレクトリやファイルが含まれています。Emberプロジェクトにおけるコーディングの大半は、この中で行われます。
 
-**bower.json**: Bowerは依存関係を管理するツールです。 Ember CLIでは、フロントエンドのプラグインやコンポーネントの依存性(HTML、 CSS、 JavaScript など) を管理するために利用しています。 すべてのBowerコンポーネントは`bower_components`ディレクトリにインストールされます。 `bower.json`を開くと、EmberやEmber CLI Shims、(テストで利用される)QUnitなどを含む、自動的にインストールされる依存関係のリストを確認できます。 Bootstrapなど、フロントエンドの依存関係を新たに追加した場合、それらはここにリストされます。そして、それらは`bower_components`ディレクトリに追加されます。
+**bower.json**: Bowerは依存関係を管理するツールです。 Ember CLIでは、フロントエンドのプラグインやコンポーネントの依存性(HTML、 CSS、 JavaScript など) を管理するために利用が可能です。 すべてのBowerコンポーネントは`bower_components`ディレクトリにインストールされます。 Bootstrapなど、フロントエンドの依存関係を新たに追加した場合、それらはここにリストされます。そして、それらは`bower_components`ディレクトリに追加されます。
 
 **config**: 設定ファイル用のディレクトリです。ここには、アプリケーションの設定を行う`environment.js` が含まれています。
 
@@ -66,7 +66,7 @@ export default Router;
     
     ## Emberのアップグレード
     
-    チュートリアルを先に進める前に、インストール済みのEmberとEmber Dataが最新のバージョンであることを確認してください。 もし、`bower.json`にある`ember`のバージョンがこのガイドの左上にあるバージョン番号よりも古い場合には、`bower.json`内のバージョン番号を更新し、`bower install`を実行してください。
+    チュートリアルを先に進める前に、インストール済みのEmberとEmber Dataが最新のバージョンであることを確認してください。 もし、`package.json`にある`ember-source`のバージョンがこのガイドの左上にあるバージョン番号よりも古い場合には、`package.json`内のバージョン番号を更新し、`npm install`を実行してください。
     同様に、もし`package.json`内の`ember-data`のバージョンが古かった場合は、`package.json`内のバージョン番号を更新し、`npm install`コマンドを実行してください。
     
     ## 開発サーバー

@@ -1,4 +1,4 @@
-The Ember Router allows you to provide feedback that a route is loading, as well as when an error occurs in loading a route.
+Ember路由控制器允许提供一个可以用来表示路由读取或路由读取错误的反馈状态。
 
 ## “加载”子状态
 
@@ -18,11 +18,11 @@ The Ember Router allows you to provide feedback that a route is loading, as well
     });
     
 
-如果你跳转到slow-model，在model钩子方法中，查询可能需要很长的时间才能完成。 在这段时间里，用户界面并不能体现出现在正在发生的任何事情。 If you're entering this route after a full page refresh, your UI will be entirely blank, as you have not actually finished fully entering any route and haven't yet displayed any templates. If you're navigating to `slow-model` from another route, you'll continue to see the templates from the previous route until the model finish loading, and then, boom, suddenly all the templates for `slow-model` load.
+如果你跳转到slow-model，在model钩子方法中，查询可能需要很长的时间才能完成。 在这段时间里，用户界面并不能体现出现在正在发生的任何事情。 如果你在刷新后进入此路由，您的页面将会是一片空白，因为你并没有完全实际进入任何路由，没有任何模版会被渲染。 如果你从另一个路由跳转到slow-model，在模型完全加载之前，你仍然会看到前一个路由的模版，然后，boom，slow-model的模版会突然完全显示出来。
 
-So, how can we provide some visual feedback during the transition?
+这种行为大多数情况下是无法接受的 ，所以，我们如何在这种类似的过渡期间去提供一个可供用户感知的视觉反馈呢？
 
-Simply define a template called `loading` (and optionally a corresponding route) that Ember will transition to. The intermediate transition into the loading substate happens immediately (synchronously), the URL won't be updated, and, unlike other transitions, the currently active transition won't be aborted.
+只需要定义一个名为loading的模版（和相应的路由） The intermediate transition into the loading substate happens immediately (synchronously), the URL won't be updated, and, unlike other transitions, the currently active transition won't be aborted.
 
 Once the main transition into `slow-model` completes, the `loading` route will be exited and the transition to `slow-model` will continue.
 

@@ -27,9 +27,9 @@ mv dist/index.html dist/200.html
 surge dist funny-name.surge.sh
 ```
 
-We chose funny-name.surge.sh but you may use any unclaimed subdomain you like or use a custom domain that you own and have pointed the DNS to one of surges servers. If the second argument is left blank surge will prompt you with a suggested subdomain.
+上記ではfunny-name.surge.shを選択しましたが、まだ使用されていない任意のサブドメインを使うことができます。あるいは、DNSをsurgeのあるサーバーに向けることで、あなたが所有するカスタムドメインを使うこともできます。 第2引数が省略された場合には、Surgeは適当なサブドメインを提示します。
 
-To deploy to the same URL after making changes, perform the same steps, reusing the same domain as before.
+変更した後に同じURLにデプロイするには、同じ手順に従って、ドメインを再利用します。
 
 ```shell
 rm -rf dist
@@ -38,7 +38,7 @@ mv dist/index.html dist/200.html
 surge dist funny-name.surge.sh
 ```
 
-ここでは`--enviroment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 However, normally we would use `ember build --environment=production` which optimizes your application for production.
+ここでは`--enviroment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 しかし、一般的には`ember build --environment=production`を利用して、プロダクションで利用できるようコードを生成します。
 
 ## サーバー
 
