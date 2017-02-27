@@ -26,7 +26,7 @@ npm --version
 
 Se você receber um erro *"command not found"* ou tiver uma versão desatualizada do Node:
 
-* Usuários de Windows ou Mac podem baixar e executar [o instalador de Node. js](http://nodejs.org/download/).
+* Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/en/download/).
 * Usuários de Mac podem instalar Node usando [Homebrew](http://brew.sh/). Depois de instalar o Homebrew, execute `brew install node` para instalar o Node.js.
 * Usuários de Linux podem usar [esse guia para a instalação de Node.js no Linux](https://nodejs.org/en/download/package-manager/).
 

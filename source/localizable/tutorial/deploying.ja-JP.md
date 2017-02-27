@@ -44,9 +44,9 @@ surge dist funny-name.surge.sh
 
 ### Apache
 
-Apacheサーバーでは、Emberのルーティングが正しく動作するためにrewriteエンジン (mod-rewrite) を有効にする必要があります。 If you upload your dist folder, going to your main URL works, but when you try to go to a route such as '{main URL}/example' and it returns 404, your server has not been configured for "friendly" URLs.
+Apacheサーバーでは、Emberのルーティングが正しく動作するためにrewriteエンジン (mod-rewrite) を有効にする必要があります。 もしメインのURLとして動かすつもりでdistフォルダーをアップロードしたけれども、'{main URL}/example'などのルートに行くと404が返ってくるようなら、サーバーには「フレンドリー」URLが設定されていません。
 
-To fix this add a file called '.htaccess' to the root folder of your website. Add these lines:
+これを修正するには、ウェブサイトのrootディレクトリに「.htaccess」というファイルを追加し、以下の内容を記述してください。
 
 ```text
 <IfModule mod_rewrite.c>
@@ -58,4 +58,4 @@ RewriteRule (.*) index.html [L]
 </IfModule>
 ```
 
-Your server's configuration may be different so you may need different options. Please see http://httpd.apache.org/docs/2.0/misc/rewriteguide.html for more information.
+サーバーの構成が異なる場合には、さまざまなオプションが必要になるかもしれません。詳細については http://httpd.apache.org/docs/2.0/misc/rewriteguide.html を参照してください。
