@@ -3,6 +3,7 @@
   background-size: cover;
   color: $white;
   padding: 1em 0;
+  font-family: 'Source Sans Pro';
 
   .container {
     @include media($large-screen) {
