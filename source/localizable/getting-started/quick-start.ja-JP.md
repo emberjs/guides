@@ -67,7 +67,7 @@ ember generate template application
 
 {{outlet}}
 
-    <br />Emberは新しいファイルを検知し、バックグラウンドでページを自動的にリロードしたはずです。 ウェルカムページが"PeopleTracker"に置き換わったのが確認できるはずです。 You also added an `{{outlet}}` to this page, which means that any nested route will be rendered in that place.
+    <br />Emberは新しいファイルを検知し、バックグラウンドでページを自動的にリロードしたはずです。 ウェルカムページが"PeopleTracker"に置き換わったのが確認できるはずです。 このページに`{{outlet}}`を加えることはまた、その場所に任意の入れ子になったルートが描画されることを意味します。
     
     ## route（ルート）を定義する
     

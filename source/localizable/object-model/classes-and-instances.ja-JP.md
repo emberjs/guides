@@ -117,7 +117,7 @@ Person.create({
 
 もし`Ember.Component`のようなフレームワークのクラスを継承していて、`init()`メソッドをオーバーライドするなら、`this._super(...arguments)`を呼び出すようにしてください。 呼び出さなかった場合には、親クラスの重要な作業がセットアップされずに、アプリケーションが予期しない振る舞いをする可能性があります。
 
-Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
+任意の`Ember.Object`上に直接定義した配列やオブジェクトは、そのオブジェクトのすべてのインスタンス間で共有されます。
 
 ```js
 const Person = Ember.Object.extend({
