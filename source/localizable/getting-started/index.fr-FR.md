@@ -1,17 +1,17 @@
-Débuter avec Ember est facile. Les projets Ember sont créés et gérés par notre outil en ligne de commande Ember CLI. Cet outil fournit :
+L'apprentissage d'Ember est d'une facilitée déconcertante. Les projets Ember sont créés et gérés grâce à notre outil de construction d'application en ligne de commande Ember CLI. Cet outil fournit :
 
-* Modern application asset management (including concatenation, minification, and versioning).
-* Generators to help create components, routes, and more.
-* A conventional project layout, making existing Ember applications easy to approach.
-* Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
-* A complete [QUnit](https://qunitjs.com/) test harness.
-* The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
+* Les avantages de gestion des applications modernes (incluant la concaténation, la simplification de code et la gestion de version).
+* Des générateurs automatique afin d'aider la création de composants, routes et autres.
+* Un canevas de projet standardisé, rendant les applications Ember existante plus facile à aborder.
+* Un support pour javascript ES2015/ES6 via le projet [Babel](http://babeljs.io/docs/learn-es2015/). Ce qui inclut [les modules Javascript](http://exploringjs.com/es6/ch_modules.html), qui sont utilisés tout au long de ce guide d'apprentissage.
+* Une exploitation totale des tests unitaires [QUnit](https://qunitjs.com/).
+* La possibilité d'utiliser l'écosystème grandissant des [Addons d'Ember](https://emberobserver.com/).
 
-## Dependencies
+## Dépendances
 
 ### Git
 
-Ember requires Git to manage many of its dependencies. Git comes with Mac OS X and most Linux distributions. Windows users can download and run [this Git installer](http://git-scm.com/download/win).
+Ember nécessite Git pour gérer un bon nombre de ses dépendances. Git est fourni de série avec les systèmes Mac OS X et la plupart des distributions Linux. Les utilisateurs de Windows peuvent télécharger et lancer [ce programme d'installation de Git](http://git-scm.com/download/win).
 
 ### Nodes.js et npm
 

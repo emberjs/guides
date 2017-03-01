@@ -99,7 +99,7 @@ tom.helloWorld(); // alerts "Hi, my name is Tom Dale"
 
 ### インスタンスの初期化
 
-When a new instance is created, its [`init()`](http://emberjs.com/api/classes/Ember.Object.html#method_init) method is invoked automatically. This is the ideal place to implement setup required on new instances:
+新しいインスタンスが作成されると、そのインスタンスの[`init()`](http://emberjs.com/api/classes/Ember.Object.html#method_init)メソッドが自動的に呼び出されます。 このメソッドは、新しいインスタンスに対する必要な設定を行うのに適した場所です。
 
 ```js
 const Person = Ember.Object.extend({
@@ -115,7 +115,7 @@ Person.create({
 // alerts "Stefan Penner, reporting for duty!"
 ```
 
-If you are subclassing a framework class, like `Ember.Component`, and you override the `init()` method, make sure you call `this._super(...arguments)`! If you don't, a parent class may not have an opportunity to do important setup work, and you'll see strange behavior in your application.
+もし`Ember.Component`のようなフレームワークのクラスを継承していて、`init()`メソッドをオーバーライドするなら、`this._super(...arguments)`を呼び出すようにしてください。 呼び出さなかった場合には、親クラスの重要な作業がセットアップされずに、アプリケーションが予期しない振る舞いをする可能性があります。
 
 Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
 
@@ -171,7 +171,7 @@ Person.create({
 
 ### オブジェクトの属性へのアクセス
 
-When accessing the properties of an object, use the [`get()`](http://emberjs.com/api/classes/Ember.Object.html#method_get) and [`set()`](http://emberjs.com/api/classes/Ember.Object.html#method_set) accessor methods:
+オブジェクトのプロパティにアクセスする際は、 [`get()`](http://emberjs.com/api/classes/Ember.Object.html#method_get)と[`set()`](http://emberjs.com/api/classes/Ember.Object.html#method_set)というアクセサメソッドを使います。
 
 ```js
 const Person = Ember.Object.extend({
@@ -185,4 +185,4 @@ person.set('name', 'Tobias Fünke');
 person.get('name'); // 'Tobias Fünke'
 ```
 
-Make sure to use these accessor methods; otherwise, computed properties won't recalculate, observers won't fire, and templates won't update.
+忘れずにこれらのアクセサメソッドを使ってください。さもなければ計算型プロパティは再計算されず、オブザーバーは発火せず、テンプレートは更新されません。
