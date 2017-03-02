@@ -29,7 +29,7 @@ type names should be pluralized and attribute and relationship names
 should be dash-cased. For example, if you request a record from
 `/people/123`, the response should look like this:
 
-```js
+```json
 {
   "data": {
     "type": "people",
@@ -45,7 +45,7 @@ should be dash-cased. For example, if you request a record from
 A response that contains multiple records may have an array in its
 `data` property.
 
-```js
+```json
 {
   "data": [{
     "type": "people",
@@ -73,7 +73,7 @@ key. For example, if you request `/articles/1` and the backend also
 returned any comments associated with that person the response
 should look like this:
 
-```js
+```json
 {
   "data": {
     "type": "articles",
@@ -320,7 +320,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
-  keyForAttribute: function(attr) {
+  keyForAttribute(attr) {
     return Ember.String.underscore(attr);
   }
 });
@@ -428,7 +428,7 @@ method.
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
-  keyForRelationship: function(key, relationship) {
+  keyForRelationship(key, relationship) {
     return key + 'Ids';
   }
 });
@@ -448,10 +448,10 @@ registered for use as attributes:
 import DS from 'ember-data';
 
 export default DS.Transform.extend({
-  serialize: function(value) {
+  serialize(value) {
     return [value.get('x'), value.get('y')];
   },
-  deserialize: function(value) {
+  deserialize(value) {
     return Ember.Object.create({ x: value[0], y: value[1] });
   }
 });
