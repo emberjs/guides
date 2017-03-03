@@ -19,6 +19,13 @@ for the tutorial in the next section, you can make an app called `super-rentals`
 ember new super-rentals
 ```
 
+A new project will be created inside your current directory. You can now go to
+your `super-rentals` project directory and start working on it.
+
+```shell
+cd super-rentals
+```
+
 ## Directory Structure
 
 The `new` command generates a project structure with the following files and
@@ -102,14 +109,6 @@ as to make sure it is not accidentally reassigned elsewhere. At the end of the f
 `export default Router;` makes the `Router` variable defined in this file available 
 to other parts of the app.
 
-## Upgrading Ember
-
-Before continuing to the tutorial, make sure that you have the most recent
-versions of Ember and Ember Data installed. If the version of `ember-source` in
-`package.json` is lower than the version number in the upper-left corner of these
-Guides, update the version number in `package.json` and then run `npm install`.
-Similarly, if the version of `ember-data` in `package.json` is lower, update the
-version number and then run `npm install`.
 
 ## The Development Server
 
