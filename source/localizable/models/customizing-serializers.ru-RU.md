@@ -10,7 +10,7 @@ When requesting a record, the `JSONAPISerializer` expects your server to return 
 
 The `JSONAPISerializer` expects the backend to return a JSON API Document that follows the JSON API specification and the conventions of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all type names should be pluralized and attribute and relationship names should be dash-cased. For example, if you request a record from `/people/123`, the response should look like this:
 
-```js
+```json
 {
   "data": {
     "type": "people",
@@ -25,7 +25,7 @@ The `JSONAPISerializer` expects the backend to return a JSON API Document that f
 
 A response that contains multiple records may have an array in its `data` property.
 
-```js
+```json
 {
   "data": [{
     "type": "people",
@@ -49,7 +49,7 @@ A response that contains multiple records may have an array in its `data` proper
 
 Data that is not a part of the primary request but includes linked relationships should be placed in an array under the `included` key. For example, if you request `/articles/1` and the backend also returned any comments associated with that person the response should look like this:
 
-```js
+```json
 {
   "data": {
     "type": "articles",
@@ -265,7 +265,7 @@ If the attributes returned by your server use a different convention you can use
 
 ```app/serializers/application.js import Ember from 'ember'; import DS from 'ember-data';
 
-export default DS.JSONAPISerializer.extend({ keyForAttribute: function(attr) { return Ember.String.underscore(attr); } });
+export default DS.JSONAPISerializer.extend({ keyForAttribute(attr) { return Ember.String.underscore(attr); } });
 
     <br />Irregular keys can be mapped with a custom serializer. The `attrs`
     object can be used to declare a simple mapping between property names
@@ -351,7 +351,7 @@ If needed these naming conventions can be overwritten by implementing the [`keyF
 
 ```app/serializers/application.js import DS from 'ember-data';
 
-export default DS.JSONAPISerializer.extend({ keyForRelationship: function(key, relationship) { return key + 'Ids'; } });
+export default DS.JSONAPISerializer.extend({ keyForRelationship(key, relationship) { return key + 'Ids'; } });
 
     <br /><br />## Creating Custom Transformations
     
@@ -366,10 +366,10 @@ export default DS.JSONAPISerializer.extend({ keyForRelationship: function(key, r
     import DS from 'ember-data';
     
     export default DS.Transform.extend({
-      serialize: function(value) {
+      serialize(value) {
         return [value.get('x'), value.get('y')];
       },
-      deserialize: function(value) {
+      deserialize(value) {
         return Ember.Object.create({ x: value[0], y: value[1] });
       }
     });

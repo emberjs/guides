@@ -115,14 +115,14 @@ And then add the `{{outlet}}` helper to your template where you want the nested 
     For example, if you write a simple router like this:
     
     ```app/router.js
-    Router.map(function(){
+    Router.map(function() {
       this.route('favorites');
     });
     
 
 It is the equivalent of:
 
-```app/router.js Router.map(function(){ this.route('index', { path: '/' }); this.route('favorites'); });
+```app/router.js Router.map(function() { this.route('index', { path: '/' }); this.route('favorites'); });
 
     <br />The `index` template will be rendered into the `{{outlet}}` in the
     `application` template. If the user navigates to `/favorites`,
@@ -141,7 +141,7 @@ It is the equivalent of:
 
 Is the equivalent of:
 
-```app/router.js Router.map(function(){ this.route('index', { path: '/' }); this.route('posts', function() { this.route('index', { path: '/' }); this.route('favorites'); }); });
+```app/router.js Router.map(function() { this.route('index', { path: '/' }); this.route('posts', function() { this.route('index', { path: '/' }); this.route('favorites'); }); });
 
     <br />If the user navigates to `/posts`, the current route will be
     `posts.index`, and the `posts/index` template

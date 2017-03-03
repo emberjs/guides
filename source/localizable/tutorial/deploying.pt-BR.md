@@ -58,4 +58,4 @@ RewriteRule (.*) index.html [L]
 </IfModule>
 ```
 
-Your server's configuration may be different so you may need different options. Please see http://httpd.apache.org/docs/2.0/misc/rewriteguide.html for more information.
+Your server's configuration may be different so you may need different options. Please see the [Apache URL Rewriting Guide](http://httpd.apache.org/docs/2.0/misc/rewriteguide.html) for more information.

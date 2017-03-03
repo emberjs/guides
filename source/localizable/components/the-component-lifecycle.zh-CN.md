@@ -86,7 +86,7 @@ export default Ember.Component.extend({
 
 ### Formatting Component Attributes with `didReceiveAttrs`
 
-`didReceiveAttrs` runs after `init`, and it also runs on subsequent re-renders, which is useful for logic that is the same on all renders. It does not run when the re-rendered has been initiated internally.
+`didReceiveAttrs` runs after `init`, and it also runs on subsequent re-renders, which is useful for logic that is the same on all renders. It does not run when the re-render has been initiated internally.
 
 Since the `didReceiveAttrs` hook is called every time a component's attributes are updated whether on render or re-render, you can use the hook to effectively act as an observer, ensuring code is executed every time an attribute changes.
 

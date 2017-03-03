@@ -90,16 +90,17 @@ Ember路由控制器中的map() 方法可以用来定义URL映射。 当调用ma
     在每层嵌套路由（包含最高层）中，Ember会自动提供一个名为index的路由，路径为'/'。
     要看到嵌套路由的层级定义，检查路由控制器，当你每看到一个function，这就是一个新的层级。
     
-    例如，如果你有这么一个路由控制器：
+    For example, if you write a simple router like this:
+    
     ```app/router.js
-    Router.map(function(){
+    Router.map(function() {
       this.route('favorites');
     });
     
 
 它等同于：
 
-```app/router.js Router.map(function(){ this.route('index', { path: '/' }); this.route('favorites'); });
+```app/router.js Router.map(function() { this.route('index', { path: '/' }); this.route('favorites'); });
 
     <br />Index模版将会被渲染至application模版的{{outlet}} 中。 如果用户跳转到/favorites, Ember将会用favorites模版替换index模版。
     
@@ -113,7 +114,7 @@ Ember路由控制器中的map() 方法可以用来定义URL映射。 当调用ma
 
 它等同于：
 
-```app/router.js Router.map(function(){ this.route('index', { path: '/' }); this.route('posts', function() { this.route('index', { path: '/' }); this.route('favorites'); }); });
+```app/router.js Router.map(function() { this.route('index', { path: '/' }); this.route('posts', function() { this.route('index', { path: '/' }); this.route('favorites'); }); });
 
     <br />如果用户跳转到/posts，当前路由将会是posts.index，同时posts/index模版会被渲染至posts模版的{{outlet}}中。
     
