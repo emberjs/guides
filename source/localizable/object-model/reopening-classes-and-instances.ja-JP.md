@@ -19,9 +19,9 @@ Person.reopen({
 });
 ```
 
-`reopen()`は、クラスのすべてのインスタンス間で共有される、インスタンスメソッドやプロパティを追加するために使われます。 It does not add methods and properties to a particular instance of a class as in vanilla JavaScript (without using prototype).
+`reopen()`は、クラスのすべてのインスタンス間で共有される、インスタンスメソッドやプロパティを追加するために使われます。 普通のJavaScript (プロトタイプを使わない場合) のように、特定のクラスのインスタンスにメソッドやプロパティを追加するものではありません。
 
-But when you need to add static methods or static properties to the class itself you can use [`reopenClass()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass).
+静的なメソッドやプロパティをクラス自身に追加する必要がある場合には、[`reopenClass()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass)を使います。.
 
 ```javascript
 // クラスに静的なプロパティを追加
