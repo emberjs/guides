@@ -148,7 +148,7 @@ whenever you see a `function`, that's a new level.
 For example, if you write a simple router like this:
 
 ```app/router.js
-Router.map(function(){
+Router.map(function() {
   this.route('favorites');
 });
 ```
@@ -156,7 +156,7 @@ Router.map(function(){
 It is the equivalent of:
 
 ```app/router.js
-Router.map(function(){
+Router.map(function() {
   this.route('index', { path: '/' });
   this.route('favorites');
 });
@@ -180,7 +180,7 @@ Router.map(function() {
 Is the equivalent of:
 
 ```app/router.js
-Router.map(function(){
+Router.map(function() {
   this.route('index', { path: '/' });
   this.route('posts', function() {
     this.route('index', { path: '/' });
