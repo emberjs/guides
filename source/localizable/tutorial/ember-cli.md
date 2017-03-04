@@ -2,6 +2,8 @@ Welcome to the Ember Tutorial!
 This tutorial is meant to introduce basic Ember concepts while creating a professional looking application.
 If you get stuck at any point during the tutorial feel free to visit [https://github.com/ember-learn/super-rentals](https://github.com/ember-learn/super-rentals) for a working example of the completed app.
 
+You can install the latest version of `ember-cli` by following the [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
+
 Ember CLI, Ember's command line interface, provides a standard project
 structure, a set of development tools, and an addon system.
 This allows Ember developers to focus on building apps rather
