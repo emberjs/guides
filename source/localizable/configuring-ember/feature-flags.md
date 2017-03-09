@@ -49,7 +49,7 @@ When using the Ember.js canary or beta builds you can enable a "**present** but 
 feature by setting its flag value to `true` before your application boots:
 
 ```config/environment.js
-var ENV = {
+let ENV = {
   EmberENV: {
     FEATURES: {
       'link-to': true

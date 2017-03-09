@@ -65,7 +65,7 @@ All RSVP methods can take a label as the final argument.
 
 ```javascript
 
-var label = 'Find Posts'
+let label = 'Find Posts'
 
 new RSVP.Promise(method, label);
 

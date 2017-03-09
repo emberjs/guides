@@ -42,7 +42,7 @@ For example, an application initializer could register a `Logger` factory with t
 import Ember from 'ember';
 
 export function initialize(application) {
-  var Logger = Ember.Object.extend({
+  let Logger = Ember.Object.extend({
     log(m) {
       console.log(m);
     }
@@ -68,7 +68,7 @@ be returned "as is" when it's looked up:
 
 ```app/initializers/logger.js
 export function initialize(application) {
-  var logger = {
+  let logger = {
     log(m) {
       console.log(m);
     }
@@ -98,7 +98,7 @@ In the following example, the `Message` class is registered as a non-singleton:
 import Ember from 'ember';
 
 export function initialize(application) {
-  var Message = Ember.Object.extend({
+  let Message = Ember.Object.extend({
     text: ''
   });
 
@@ -121,7 +121,7 @@ Factories can be injected into whole "types" of factories with *type injections*
 import Ember from 'ember';
 
 export function initialize(application) {
-  var Logger = Ember.Object.extend({
+  let Logger = Ember.Object.extend({
     log(m) {
       console.log(m);
     }

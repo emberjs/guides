@@ -17,7 +17,7 @@ sole argument. For example:
 
 
 ```js
-var promise = fetchTheAnswer();
+let promise = fetchTheAnswer();
 
 promise.then(fulfill, reject);
 
@@ -35,7 +35,7 @@ chained together to perform sequential asynchronous operations:
 
 ```js
 // Note: jQuery AJAX methods return promises
-var usernamesPromise = Ember.$.getJSON('/usernames.json');
+let usernamesPromise = Ember.$.getJSON('/usernames.json');
 
 usernamesPromise.then(fetchPhotosOfUsers)
                 .then(applyInstagramFilters)

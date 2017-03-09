@@ -32,7 +32,7 @@ router's `location`](../specifying-url-type) to
 `none`:
 
 ```config/environment.js
-var ENV = {
+let ENV = {
   locationType: 'none'
 };
 ```

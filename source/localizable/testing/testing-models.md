@@ -18,7 +18,7 @@ export default DS.Model.extend({
   levelName: DS.attr('string', { defaultValue: 'Noob' }),
 
   levelUp() {
-    var newLevel = this.incrementProperty('level');
+    let newLevel = this.incrementProperty('level');
     if (newLevel === 5) {
       this.set('levelName', 'Professional');
     }

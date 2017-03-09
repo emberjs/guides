@@ -51,7 +51,7 @@ Let's add some simple logging to indicate that the instance has booted:
 
 ```app/instance-initializers/logger.js
 export function initialize(applicationInstance) {
-  var logger = applicationInstance.lookup('logger:main');
+  let logger = applicationInstance.lookup('logger:main');
   logger.log('Hello from the instance initializer!');
 }
 

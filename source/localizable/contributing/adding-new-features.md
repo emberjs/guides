@@ -79,7 +79,7 @@ enabling them before creating their Ember.Application.
 
 ```config/environment.js
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     EmberENV: {
       FEATURES: {
         htmlbars: true

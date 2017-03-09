@@ -79,7 +79,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   beforeModel(transition) {
     if (!this.controllerFor('auth').get('userIsLoggedIn')) {
-      var loginController = this.controllerFor('login');
+      let loginController = this.controllerFor('login');
       loginController.set('previousTransition', transition);
       this.transitionTo('login');
     }
@@ -94,7 +94,7 @@ export default Ember.Controller.extend({
   actions: {
     login() {
       // Log the user in, then reattempt previous transition if it exists.
-      var previousTransition = this.get('previousTransition');
+      let previousTransition = this.get('previousTransition');
       if (previousTransition) {
         this.set('previousTransition', null);
         previousTransition.retry();
