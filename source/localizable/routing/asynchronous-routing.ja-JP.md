@@ -5,7 +5,7 @@
 Emberは、ルーターの非同期のロジックを扱うのにプロミスの概念を多用しています。 一言で言えば、プロミスはのちに起こる値を表すオブジェクトです。 プロミスは*成功*(値の解決に成功) または *リジェクト* (値の解決に失敗) のいずれかとなります。 最終の値を取得する、またはプロミスがリジェクトされた場合のハンドリングは成功、リジェクトの二つのコールバックを受け取ることのできる、プロミスの[`then()`](http://emberjs.com/api/classes/RSVP.Promise.html#method_then)メソッドで処理します。 もし、プロミスが成功すれば、成功の値とともに、成功時のハンドロラーが呼び出されます、また、プロミスがリジェクトされた場合はリジェクトされた理由とともに、リジェクトハンドラーが呼び出されます。 例えば
 
 ```js
-var promise = fetchTheAnswer();
+let promise = fetchTheAnswer();
 
 promise.then(fulfill, reject);
 
@@ -21,8 +21,8 @@ function reject(reason) {
 プロミスの力点は、非同期のオペレーションを次々と処理される、列として処理できることです。
 
 ```js
-// Note: jQuery AJAX メソッドはプロミスを返します。
-var usernamesPromise = Ember.$.getJSON('/usernames.json');
+// Note: jQuery AJAX methods return promises
+let usernamesPromise = Ember.$.getJSON('/usernames.json');
 
 usernamesPromise.then(fetchPhotosOfUsers)
                 .then(applyInstagramFilters)

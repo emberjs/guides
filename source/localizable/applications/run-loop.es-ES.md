@@ -54,7 +54,7 @@ Interesantemente, este patrón se mantiene válido para muchos otros tipos de tr
 Veamos un ejemplo similar que está optimizado en Ember, comenzando con un objeto `User`:
 
 ```javascript
-var User = Ember.Object.extend({
+let User = Ember.Object.extend({
   firstName: null,
   lastName: null,
   fullName: Ember.computed('firstName', 'lastName', function() {
@@ -73,12 +73,12 @@ y una plantilla para mostrar sus atributos:
 Si ejecutamos el siguiente código sin el bucle de ejecución:
 
 ```javascript
-var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
+let user = User.create({ firstName: 'Tom', lastName: 'Huda' });
 user.set('firstName', 'Yehuda');
-// {{firstName}} y {{fullName}} son actualizados
+// {{firstName}} and {{fullName}} are updated
 
 user.set('lastName', 'Katz');
-// {{lastName}} y {{fullName}} son actualizados
+// {{lastName}} and {{fullName}} are updated
 ```
 
 Vemos que el navegador procesará la plantilla 2 veces.
@@ -86,7 +86,7 @@ Vemos que el navegador procesará la plantilla 2 veces.
 En tanto, si tenemos el bucle de ejecución en el código anterior, el navegador sólo procesará la plantilla una vez que los atributos hayan sido colocados por completo.
 
 ```javascript
-var user = User.create({ firstName: 'Tom', lastName: 'Huda' });
+let user = User.create({ firstName: 'Tom', lastName: 'Huda' });
 user.set('firstName', 'Yehuda');
 user.set('lastName', 'Katz');
 user.set('firstName', 'Tom');
@@ -133,7 +133,8 @@ The algorithm works this way:
 
 Rather than writing the higher level app code that internally invokes the various run loop scheduling functions, we have stripped away the covers, and shown the raw run-loop interactions.
 
-Working with this API directly is not common in most Ember apps, but understanding this example will help you to understand the run-loops algorithm, which will make you a better Ember developer. <iframe src="https://s3.amazonaws.com/emberjs.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe>
+Working with this API directly is not common in most Ember apps, but understanding this example will help you to understand the run-loops algorithm, which will make you a better Ember developer. <iframe src="https://s3.amazonaws.com/emberjs.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe> 
+
 ## How do I tell Ember to start a run loop?
 
 You should begin a run loop when the callback fires.

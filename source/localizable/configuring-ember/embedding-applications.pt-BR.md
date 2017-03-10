@@ -14,13 +14,14 @@ export default Ember.Application.extend({ rootElement: '#app' });
 
     <br />Esta propriedade pode ser especificada como um elemento ou uma [cadeia de caracteres compatível com seletor jQuery] (http://api.jquery.com/category/selectors/).
     
-    ### Desativando gerenciamento de URL
+    ### Disabling URL Management
     
-    Você pode impedir que o Ember faça alterações na URL, alterando by [alterando`location` do router](../specifying-url-type) para
+    You can prevent Ember from making changes to the URL by [changing the
+    router's `location`](../specifying-url-type) to
     `none`:
     
     ```config/environment.js
-    var ENV = {
+    let ENV = {
       locationType: 'none'
     };
     

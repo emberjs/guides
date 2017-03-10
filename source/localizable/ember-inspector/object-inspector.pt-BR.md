@@ -30,7 +30,7 @@ Você também pode expor propriedades para o console. Quando você passa o mouse
 Você pode enviar objetos Ember e matrizes para o Inspetor usando `EmberInspector.inspect` dentro do console.
 
 ```javascript
-var object = Ember.Object.create();
+let object = Ember.Object.create();
 EmberInspector.inspect(object);
 ```
 

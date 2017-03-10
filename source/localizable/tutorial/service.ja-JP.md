@@ -213,14 +213,15 @@ vendorディレクトリに入れることで、スクリプトをアプリに�
 
 <pre><code class="ember-cli-build.js{+22}">/*jshint node:true*/
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+let EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
+  let app = new EmberApp(defaults, {
     // Add options here
   });
 
-  //  `app.import`を使って出力ファイルにライブラリーを追加します。 to add additional 
+  // Use `app.import` to add additional libraries to the generated
+  // output files.
   //
   // If you need to use different assets in different
   // environments, specify an object as the first parameter. That

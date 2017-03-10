@@ -11,7 +11,7 @@ Let's assume we have a `Player` model that has `level` and `levelName` attribute
 
 export default DS.Model.extend({ level: DS.attr('number', { defaultValue: 0 }), levelName: DS.attr('string', { defaultValue: 'Noob' }),
 
-levelUp() { var newLevel = this.incrementProperty('level'); if (newLevel === 5) { this.set('levelName', 'Professional'); } } });
+levelUp() { let newLevel = this.incrementProperty('level'); if (newLevel === 5) { this.set('levelName', 'Professional'); } } });
 
     <br />Now let's create a test which will call `levelUp` on the player when they are
     level 4 to assert that the `levelName` changes. We will use `moduleForModel`:

@@ -20,7 +20,7 @@ Ember 应用程序利用 [dependency injection](https://en.wikipedia.org/wiki/De
 
 ```app/initializers/logger.js import Ember from 'ember';
 
-export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
+export function initialize(application) { let Logger = Ember.Object.extend({ log(m) { console.log(m); } });
 
 application.register('logger:main', Logger); }
 
@@ -31,11 +31,12 @@ export default { name: 'logger', initialize: initialize };
     默认情况下，Ember 会在一个注册工厂被检索时尝试对其实例化。
     当注册一个已经被实例化的对象而不是一个类的时候，使用 `instantiate: false` 选项可以避免在检索时尝试重新实例化。
     
-    在下面的例子中，`logger` 是一个单纯的 JavaScript 对象，因此在检索时应该原样返回而不是实例化：
+    In the following example, the `logger` is a plain JavaScript object that should
+    be returned "as is" when it's looked up:
     
     ```app/initializers/logger.js
     export function initialize(application) {
-      var logger = {
+      let logger = {
         log(m) {
           console.log(m);
         }
@@ -60,7 +61,7 @@ In the following example, the `Message` class is registered as a non-singleton:
 
 ```app/initializers/notification.js import Ember from 'ember';
 
-export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
+export function initialize(application) { let Message = Ember.Object.extend({ text: '' });
 
 application.register('notification:message', Message, { singleton: false }); }
 
@@ -76,7 +77,7 @@ export default { name: 'notification', initialize: initialize };
     import Ember from 'ember';
     
     export function initialize(application) {
-      var Logger = Ember.Object.extend({
+      let Logger = Ember.Object.extend({
         log(m) {
           console.log(m);
         }

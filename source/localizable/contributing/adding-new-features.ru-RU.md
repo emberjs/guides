@@ -53,7 +53,7 @@ If a feature has made it into beta or release, and you make a commit to master t
     
     ```config/environment.js
     module.exports = function(environment) {
-      var ENV = {
+      let ENV = {
         EmberENV: {
           FEATURES: {
             htmlbars: true

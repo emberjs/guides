@@ -33,7 +33,7 @@ When a developer adds a new feature to the `canary` channel (i.e. the `master` b
 When using the Ember.js canary or beta builds you can enable a "**present** but **disabled**" feature by setting its flag value to `true` before your application boots:
 
     config/environment.js
-    var ENV = {
+    let ENV = {
       EmberENV: {
         FEATURES: {
           'link-to': true

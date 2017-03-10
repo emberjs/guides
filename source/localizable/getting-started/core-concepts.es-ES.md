@@ -30,7 +30,7 @@ La mayoría de plantillas en Ember nos resultan familiares, ya que no son más q
 
 En Ember, las plantillas utilizan adicionalmente la sintaxis de [Handlebars](http://handlebarsjs.com). Todo lo que sea válido en Handlebars es asimismo válido en Ember.
 
-Las plantillas también pueden mostrar propiedades establecidas en su contexto, que puede ser un componente o una ruta (técnicamente podría ser también un controlador, pero últimamente ya casi no se utiliza de este modo, y de hecho pronto quedará obsoleto). Por ejemplo:
+Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
 
 ```handlebars
 < div > ¡Hola {{nombre}}! Esta es una plantilla de Ember totalmente válida. < / div >

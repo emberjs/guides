@@ -30,7 +30,7 @@ A maioria das templates em um projeto Ember são familiares, e se parecem com um
 
 Os templates Ember usam a sintaxe [Handlebars](http://handlebarsjs.com). Toda sintaxe do Handlebars é aceita no Ember.
 
-As templates podem também mostrar propriedades fornecidas através do contexto, que pode ser tanto um componente como uma rota. Por exemplo:
+Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
 
 ```handlebars
 <div>Hi {{name}}, this is a valid Ember template!</div>

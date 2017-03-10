@@ -50,7 +50,7 @@ Si una feature logra ser incluida en la rama beta o release, y haces un commit a
     
     ```config/environment.js
     module.exports = function(environment) {
-      var ENV = {
+      let ENV = {
         EmberENV: {
           FEATURES: {
             htmlbars: true

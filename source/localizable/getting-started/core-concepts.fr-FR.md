@@ -30,7 +30,7 @@ Most templates in an Ember codebase are instantly familiar, and look like any fr
 
 Ember templates use the syntax of [Handlebars](http://handlebarsjs.com) templates. Anything that is valid Handlebars syntax is valid Ember syntax.
 
-Templates can also display properties provided to them from their context, which is either a component or a route (technically, a controller presents the model from the route to the template, but this is rarely used in modern Ember apps and will be deprecated soon). For example:
+Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
 
 ```handlebars
 <div>Hi {{name}}, this is a valid Ember template!</div>

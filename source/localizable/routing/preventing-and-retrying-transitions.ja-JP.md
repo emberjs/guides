@@ -37,7 +37,7 @@ Aborted transitions can be retried at a later time. A common use case for this i
 
 ```app/routes/some-authenticated.js import Ember from 'ember';
 
-export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { var loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
+export default Ember.Route.extend({ beforeModel(transition) { if (!this.controllerFor('auth').get('userIsLoggedIn')) { let loginController = this.controllerFor('login'); loginController.set('previousTransition', transition); this.transitionTo('login'); } } });
 
     <br />```app/controllers/login.js
     import Ember from 'ember';
@@ -46,7 +46,7 @@ export default Ember.Route.extend({ beforeModel(transition) { if (!this.controll
       actions: {
         login() {
           // Log the user in, then reattempt previous transition if it exists.
-          var previousTransition = this.get('previousTransition');
+          let previousTransition = this.get('previousTransition');
           if (previousTransition) {
             this.set('previousTransition', null);
             previousTransition.retry();

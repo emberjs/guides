@@ -1,5 +1,7 @@
 Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember concepts while creating a professional looking application. If you get stuck at any point during the tutorial feel free to visit <https://github.com/ember-learn/super-rentals> for a working example of the completed app.
 
+You can install the latest version of `ember-cli` by following the [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
+
 Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## Creating a New App
@@ -8,6 +10,12 @@ To create a new project using Ember CLI, use the `new` command. In preparation f
 
 ```shell
 ember new super-rentals
+```
+
+A new project will be created inside your current directory. You can now go to your `super-rentals` project directory and start working on it.
+
+```shell
+cd super-rentals
 ```
 
 ## Directory Structure
@@ -69,14 +77,6 @@ export default Router;
     `export default Router;` makes the `Router` variable defined in this file available 
     to other parts of the app.
     
-    ## Upgrading Ember
-    
-    Before continuing to the tutorial, make sure that you have the most recent
-    versions of Ember and Ember Data installed. If the version of `ember-source` in
-    `package.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `package.json` and then run `npm install`.
-    Similarly, if the version of `ember-data` in `package.json` is lower, update the
-    version number and then run `npm install`.
     
     ## The Development Server
     

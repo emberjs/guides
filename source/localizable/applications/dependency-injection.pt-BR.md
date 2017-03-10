@@ -20,7 +20,7 @@ For example, an application initializer could register a `Logger` factory with t
 
 ```app/initializers/logger.js import Ember from 'ember';
 
-export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
+export function initialize(application) { let Logger = Ember.Object.extend({ log(m) { console.log(m); } });
 
 application.register('logger:main', Logger); }
 
@@ -37,7 +37,7 @@ export default { name: 'logger', initialize: initialize };
     
     ```app/initializers/logger.js
     export function initialize(application) {
-      var logger = {
+      let logger = {
         log(m) {
           console.log(m);
         }
@@ -62,7 +62,7 @@ In the following example, the `Message` class is registered as a non-singleton:
 
 ```app/initializers/notification.js import Ember from 'ember';
 
-export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
+export function initialize(application) { let Message = Ember.Object.extend({ text: '' });
 
 application.register('notification:message', Message, { singleton: false }); }
 
@@ -72,13 +72,13 @@ export default { name: 'notification', initialize: initialize };
     
     Once a factory is registered, it can be "injected" where it is needed.
     
-    Factories can be injected into whole "types" of factories with *type injections*. Por exemplo:
+    Factories can be injected into whole "types" of factories with *type injections*. For example:
     
     ```app/initializers/logger.js
     import Ember from 'ember';
     
     export function initialize(application) {
-      var Logger = Ember.Object.extend({
+      let Logger = Ember.Object.extend({
         log(m) {
           console.log(m);
         }

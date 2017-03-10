@@ -3,4 +3,5 @@ O Ember Inspector é um add-on de navegador, criado para ajudar você a entender
 Aqui está um breve vídeo mostrando algumas das features do Ember Inspector:
 
 <div class="video">
-  <iframe src="https://www.youtube.com/embed/9TMaFhYwC6g?showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+  <iframe src="https://www.youtube.com/embed/9TMaFhYwC6g?showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div>

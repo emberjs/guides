@@ -5,13 +5,13 @@ The Ember Data store provides an interface for retrieving records of a single ty
 Use [`store.findRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord) to retrieve a record by its type and ID. This will return a promise that fulfills with the requested record:
 
 ```javascript
-var blogPost = this.get('store').findRecord('blog-post', 1); // => GET /blog-posts/1
+let blogPost = this.get('store').findRecord('blog-post', 1); // => GET /blog-posts/1
 ```
 
 Use [`store.peekRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekRecord) to retrieve a record by its type and ID, without making a network request. This will return the record only if it is already present in the store:
 
 ```javascript
-var blogPost = this.get('store').peekRecord('blog-post', 1); // => no network request
+let blogPost = this.get('store').peekRecord('blog-post', 1); // => no network request
 ```
 
 ### Retrieving Multiple Records
@@ -19,13 +19,13 @@ var blogPost = this.get('store').peekRecord('blog-post', 1); // => no network re
 Use [`store.findAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_findAll) to retrieve all of the records for a given type:
 
 ```javascript
-var blogPosts = this.get('store').findAll('blog-post'); // => GET /blog-posts
+let blogPosts = this.get('store').findAll('blog-post'); // => GET /blog-posts
 ```
 
 Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll) to retrieve all of the records for a given type that are already loaded into the store, without making a network request:
 
 ```javascript
-var blogPosts = this.get('store').peekAll('blog-post'); // => no network request
+let blogPosts = this.get('store').peekAll('blog-post'); // => no network request
 ```
 
 `store.findAll()` returns a `DS.PromiseArray` that fulfills to a `DS.RecordArray` and `store.peekAll` directly returns a `DS.RecordArray`.

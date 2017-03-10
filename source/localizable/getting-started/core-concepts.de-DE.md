@@ -30,7 +30,7 @@ Die meisten Templates in einer Ember-Codebase wirken sofort vertraut und sehen w
 
 In Ember-Templates kann [Handlebars](http://handlebarsjs.com)-Syntax verwendet werden. Alles, was in Handlebars syntaktisch erlaubt ist, ist auch in Ember erlaubt.
 
-In Templates lassen sich auch Attribute ausgeben, die von dem jeweiligen Kontext zur Verfügung gestellt werden. Dieser Kontext ist entweder eine Komponente oder eine Route (rein technisch betrachtet wird im zweiten Fall noch ein sogenannter Controller benötigt, um das Attribut von der Route zum Template zu übermitteln, das kann aber in heutigen Ember-Apps meistens ignoriert werden und wird wahrscheinlich in einer späteren Version nicht mehr nötig sein). Zum Beispiel:
+Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
 
 ```handlebars
 <div>Hi {{name}}, das ist ein valides Ember-Template!</div>

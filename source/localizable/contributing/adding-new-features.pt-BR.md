@@ -50,7 +50,7 @@ Se uma funcionalidade tiver sido feita no branch beta ou de lançamento, e você
     
     ```config/environment.js
     module.exports = function(environment) {
-      var ENV = {
+      let ENV = {
         EmberENV: {
           FEATURES: {
             htmlbars: true

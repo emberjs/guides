@@ -37,7 +37,7 @@ Ember Data takes care of tracking the state of each record for you. This allows 
 By default, Ember Data will `POST` newly created records to their type url.
 
 ```javascript
-var post = store.createRecord('post', {
+let post = store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
@@ -98,12 +98,12 @@ If the backend server returns validation errors after trying to save, they will 
 [`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) returns a promise, which makes it easy to asynchronously handle success and failure scenarios. Here's a common pattern:
 
 ```javascript
-var post = store.createRecord('post', {
+let post = store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 
-var self = this;
+let self = this;
 
 function transitionToPost(post) {
   self.transitionToRoute('posts.show', post);

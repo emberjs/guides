@@ -1,5 +1,7 @@
 Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember concepts while creating a professional looking application. If you get stuck at any point during the tutorial feel free to visit <https://github.com/ember-learn/super-rentals> for a working example of the completed app.
 
+You can install the latest version of `ember-cli` by following the [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
+
 Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## 创建一个新应用程序
@@ -8,6 +10,12 @@ To create a new project using Ember CLI, use the `new` command. In preparation f
 
 ```shell
 ember new super-rentals
+```
+
+A new project will be created inside your current directory. You can now go to your `super-rentals` project directory and start working on it.
+
+```shell
+cd super-rentals
 ```
 
 ## 目录结构
@@ -59,19 +67,21 @@ Router.map(function() { });
 
 export default Router;
 
-    <br />Ember CLI 使用 ECMAScript 2015（简称 ES2015，以前也叫 ES6）模块来组织应用程序代码。
-    比如说 `import Ember from 'ember';` 这一行，让我们可以通过 `Ember` 变量来访问实际的 Ember.js 库。 而 `import config from './config/environment';` 这一行则让我们可以通过 `config` 变量来访问程序的配置数据。 `const` 是一种声明只读变量的方法，以确保该变量的值不会在其它地方被误更改。 在文件的末尾，`export default Router;` 使得此文件中定义的 `Router` 变量可以从应用程序的其它地方来调用。
+    <br />Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
+    code.
+    For example, the line `import Ember from 'ember';` gives us access to the actual
+    Ember.js library as the variable `Ember`. And the `import config from
+    './config/environment';` line gives us access to our app's configuration data
+    as the variable `config`. `const` is a way to declare a read-only variable, 
+    as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
+    `export default Router;` makes the `Router` variable defined in this file available 
+    to other parts of the app.
     
-    ## 升级 Ember
     
-    在继续本教程之前，首先确保你安装的是最新版本的 Ember和Ember Data。 If the version of `ember-source` in
-    `package.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `package.json` and then run `npm install`.
-    同样，如果`ember-data`在`package.json`是较低版本，则更改版本号，然后运行 `npm install`升级。
+    ## The Development Server
     
-    ## 开发模式启动服务器
-    
-    当我们的新项目已经准备就绪，我们可以通过下面的命令启动服务器来确保一切运转正常。
+    Once we have a new project in place, we can confirm everything is working by
+    starting the Ember development server:
     
     ```shell
     ember server

@@ -146,7 +146,7 @@ Here's how you can change the data:
 
 ```app/serializers/application.js import DS from 'ember-data';
 
-export default DS.JSONAPISerializer.extend({ serialize(snapshot, options) { var json = this._super(...arguments);
+export default DS.JSONAPISerializer.extend({ serialize(snapshot, options) { let json = this._super(...arguments);
 
     json.data.attributes.cost = {
       amount: json.data.attributes.amount,
@@ -393,7 +393,7 @@ export default DS.Model.extend({ position: DS.attr('coordinate-point') });
 But once loaded on a model instance, it will behave as an object:
 
 ```js
-var cursor = store.findRecord('cursor', 1);
+let cursor = store.findRecord('cursor', 1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9
 ```

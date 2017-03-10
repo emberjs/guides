@@ -1,18 +1,26 @@
 Bem-vindo ao Tutorial de Ember! Este tutorial destina-se a introduzir os conceitos básicos de Ember ao criar um aplicativo de aparência profissional. Se você ficar preso em algum ponto durante o tutorial, sinta-se livre para visitar <https://github.com/ember-learn/super-rentals> para um exemplo funcional do aplicativo concluído.
 
-Ember CLI, a interface de linha de comando do Ember, fornece uma estrutura de projeto padrão, um conjunto de ferramentas de desenvolvimento e um sistema de addon. Isto permite aos desenvolvedores Ember focar criando aplicativos ao invés de construir as estruturas de apoio que os fazem funcionar. Sua linha de comando, um rápido `ember --help` mostra os comandos que o Ember CLI fornece. Para obter mais informações sobre um comando específico, digite `ember help <nome-do-comando>`.
+You can install the latest version of `ember-cli` by following the [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
+
+Ember CLI, Ember's command line interface, provides a standard project structure, a set of development tools, and an addon system. This allows Ember developers to focus on building apps rather than building the support structures that make them run. From your command line, a quick `ember --help` shows the commands Ember CLI provides. For more information on a specific command, type `ember help <command-name>`.
 
 ## Criando um novo aplicativo
 
-Para criar um novo projeto usando o Ember CLI, use o comando `new`. Para preparar para o tutorial na próxima seção, você pode fazer um app chamado `super-rentals`.
+To create a new project using Ember CLI, use the `new` command. In preparation for the tutorial in the next section, you can make an app called `super-rentals`.
 
 ```shell
 ember new super-rentals
 ```
 
+A new project will be created inside your current directory. You can now go to your `super-rentals` project directory and start working on it.
+
+```shell
+cd super-rentals
+```
+
 ## Estrutura de diretórios (pastas)
 
-O comando `new` gera uma estrutura de projeto com os seguintes arquivos e diretórios:
+The `new` command generates a project structure with the following files and directories:
 
 ```text
 |--app
@@ -29,13 +37,13 @@ README.md
 testem.js
 ```
 
-Vamos dar uma olhada nas pastas e arquivos que o Ember CLI gera.
+Let's take a look at the folders and files Ember CLI generates.
 
-**app**: Aqui é onde as pastas e arquivos de models, components, routes, templates e styles são armazenados. A maior parte de codificação em um projeto Ember acontece nessa pasta.
+**app**: This is where folders and files for models, components, routes, templates and styles are stored. The majority of your coding on an Ember project happens in this folder.
 
-**bower.json**: Bower is a dependency management tool. It can be used to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). Todos os componentes Bower são instalados na pasta `bower_components`. If we add front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
+**bower.json**: Bower is a dependency management tool. It can be used to manage front-end plugins and component dependencies (HTML, CSS, JavaScript, etc). All Bower components are installed in the `bower_components` directory. If we add front-end dependencies, such as Bootstrap, we will see them listed here, and added to the `bower_components` directory.
 
-**config**: O diretório de config contém o arquivo `environment.js` onde você pode definir as configurações da sua aplicação.
+**config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
 **node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
 
@@ -59,21 +67,21 @@ Router.map(function() { });
 
 export default Router;
 
-    <br />Ember CLI usa módulos ECMAScript 2015 (ES2015 ou anteriormente conhecido como ES6) para organizar o código da aplicação.
-    Por exemplo, a linha `import Ember from 'ember';` nos dá acesso à atual biblioteca Ember.js com a variável `Ember`. E a linha `import config from
-    './config/environment';` nos dá acesso aos dados do arquivo de configuração da nossa aplicação, com a variável `config`. `const` é uma maneira de declarar uma variável read-only, 
-    para ter certeza que ela não é acidentalmente reatribuída em outros lugares. No final do arquivo, `export default Router;` faz com que a variável `Router` definida nesse arquivo, fique disponível para outras partes da nossa aplicação.
+    <br />Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
+    code.
+    For example, the line `import Ember from 'ember';` gives us access to the actual
+    Ember.js library as the variable `Ember`. And the `import config from
+    './config/environment';` line gives us access to our app's configuration data
+    as the variable `config`. `const` is a way to declare a read-only variable, 
+    as to make sure it is not accidentally reassigned elsewhere. At the end of the file,
+    `export default Router;` makes the `Router` variable defined in this file available 
+    to other parts of the app.
     
-    ## Atualizando Ember
     
-    Antes de continuar com o tutorial, verifique se você tem as versões mais recentes de Ember e Ember data instaladas. If the version of `ember-source` in
-    `package.json` is lower than the version number in the upper-left corner of these
-    Guides, update the version number in `package.json` and then run `npm install`.
-    Da mesma forma, se a versão de `ember-data` no `package.json` é menor, atualize o número da versão e execute o comando `npm install`.
+    ## The Development Server
     
-    ## O servidor de desenvolvimento
-    
-    Uma vez que temos um novo projeto, podemos verificar se tudo está funcionando, iniciando o servidor de desenvolvimento do Ember:
+    Once we have a new project in place, we can confirm everything is working by
+    starting the Ember development server:
     
     ```shell
     ember server

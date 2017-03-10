@@ -20,7 +20,7 @@ Por ejemplo, un iniciador de aplicación podría registrar una fábrica `Logger`
 
 ```app/initializers/logger.js import Ember from 'ember';
 
-export function initialize(application) { var Logger = Ember.Object.extend({ log(m) { console.log(m); } });
+export function initialize(application) { let Logger = Ember.Object.extend({ log(m) { console.log(m); } });
 
 application.register('logger:main', Logger); }
 
@@ -31,11 +31,12 @@ export default { name: 'logger', initialize: initialize };
     De manera predeterminada, Ember intentará instanciar una fábrica registrada cuando sea buscada.
     Cuando se esté registrando un objeto ya instanciado en lugar de una clase, utiliza la opción `instantiate: false` para evitar intentar re-instanciarlo durante las búsquedas.
     
-    En el siguiente ejemplo, `logger` es un objeto plano de Javascript que debería ser retornado "tal cual", cuando se busca:
+    In the following example, the `logger` is a plain JavaScript object that should
+    be returned "as is" when it's looked up:
     
     ```app/initializers/logger.js
     export function initialize(application) {
-      var logger = {
+      let logger = {
         log(m) {
           console.log(m);
         }
@@ -60,7 +61,7 @@ En el ejemplo siguiente, la clase `Mensaje` está registrada como un non-singlet
 
 ```app/initializers/notification.js import Ember from 'ember';
 
-export function initialize(application) { var Message = Ember.Object.extend({ text: '' });
+export function initialize(application) { let Message = Ember.Object.extend({ text: '' });
 
 application.register('notification:message', Message, { singleton: false }); }
 
@@ -76,7 +77,7 @@ export default { name: 'notification', initialize: initialize };
     import Ember from 'ember';
     
     export function initialize(application) {
-      var Logger = Ember.Object.extend({
+      let Logger = Ember.Object.extend({
         log(m) {
           console.log(m);
         }

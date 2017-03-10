@@ -23,7 +23,7 @@ export default Ember.Application.extend({ rootElement: '#app' });
     `none`:
     
     ```config/environment.js
-    var ENV = {
+    let ENV = {
       locationType: 'none'
     };
     
