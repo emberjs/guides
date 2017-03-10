@@ -45,7 +45,7 @@ mv dist/index.html dist/200.html
 surge dist funny-name.surge.sh
 ```
 
-We use `--enviroment=development` here so that Mirage will continue to mock fake data.
+We use `--environment=development` here so that Mirage will continue to mock fake data.
 However, normally we would use `ember build --environment=production` which optimizes your application for production.
 
 ## Servers
