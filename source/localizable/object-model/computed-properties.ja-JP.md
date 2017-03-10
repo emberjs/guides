@@ -134,4 +134,4 @@ Person = Ember.Object.extend({
 });
 ```
 
-To see the full list of computed property macros, have a look at [the API documentation](http://emberjs.com/api/classes/Ember.computed.html)
+計算型プロパティマクロの完全な一覧を確認するには、[APIドキュメント](http://emberjs.com/api/classes/Ember.computed.html)を参照してください。
