@@ -38,7 +38,7 @@ mv dist/index.html dist/200.html
 surge dist funny-name.surge.sh
 ```
 
-ここでは`--enviroment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 しかし、一般的には`ember build --environment=production`を利用して、プロダクションで利用できるようコードを生成します。
+ここでは`--environment=development`を設定して、Mirageが引き続きmock ファイクデータを利用できるようにします。 しかし、一般的には`ember build --environment=production`を利用して、プロダクションで利用できるようコードを生成します。
 
 ## サーバー
 
