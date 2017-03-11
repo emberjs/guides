@@ -30,7 +30,7 @@ Emberコードベースに含まれるテンプレートの大部分は、すぐ
 
 Emberのテンプレートは[Handlebars](http://handlebarsjs.com)の構文を利用します。Handlebarsとして有効な構文なら、それはEmberの構文としても有効です。
 
-Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
+テンプレートは、コンポーネントやルートのコントローラーといったコンテキストから提供されたプロパティを以下のように表示できます。
 
 ```handlebars
 <div>こんにちは {{name}}、これは有効なEmberテンプレートです!</div>
