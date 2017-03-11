@@ -118,9 +118,9 @@ captainAmerica.get('lastName'); // Burnside
 
 ### 計算型プロパティマクロ
 
-Some types of computed properties are very common. Ember provides a number of computed property macros, which are shorter ways of expressing certain types of computed property.
+計算型プロパティのいくつかのタイプはとても一般的です。Emberは、ある種類の計算型プロパティをより短く表現する、計算型プロパティのマクロを提供しています。
 
-In this example, the two computed properties are equivalent:
+以下の例で、2つの計算型プロパティは等価です。
 
 ```javascript
 Person = Ember.Object.extend({
