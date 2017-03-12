@@ -90,8 +90,7 @@ Ember路由控制器中的map() 方法可以用来定义URL映射。 当调用ma
     在每层嵌套路由（包含最高层）中，Ember会自动提供一个名为index的路由，路径为'/'。
     要看到嵌套路由的层级定义，检查路由控制器，当你每看到一个function，这就是一个新的层级。
     
-    For example, if you write a simple router like this:
-    
+    举个例子，假设你定义了如下的路由控制器：
     ```app/router.js
     Router.map(function() {
       this.route('favorites');
