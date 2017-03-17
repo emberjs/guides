@@ -1,10 +1,10 @@
-Ember supports observing any property, including computed properties.
+Emberは、計算型プロパティを含む任意のプロパティの監視をサポートしています。
 
-Observers should contain behavior that reacts to changes in another property. Observers are especially useful when you need to perform some behavior after a binding has finished synchronizing.
+オブザーバー (observer) には別のプロパティの変更に反応する処理を含める必要があります。オブザーバーは、バインディングが同期を完了した後で、いくつかの処理を実行する必要がある場合に特に便利です。
 
-Observers are often over-used by new Ember developers. Observers are used heavily within the Ember framework itself, but for most problems Ember app developers face, computed properties are the appropriate solution.
+オブザーバーは、新しいEmber開発者にしばしば多用されます。 オブザーバーはEmberフレームワーク自体によって内部で多用されるものですが、Emberアプリケーション開発者が直面するほとんどの問題には、計算型プロパティが適切なソリューションです。
 
-You can set up an observer on an object by using `Ember.observer`:
+`Ember.observer`を使うことで、次のようにオブジェクトにオブザーバーを設定できます。
 
 ```javascript
 Person = Ember.Object.extend({
@@ -32,11 +32,11 @@ person.get('fullName'); // "Yehuda Katz"
 person.set('firstName', 'Brohuda'); // fullName changed to: Brohuda Katz
 ```
 
-Because the `fullName` computed property depends on `firstName`, updating `firstName` will fire observers on `fullName` as well.
+計算型プロパティの`fullName`は`firstName`に依存しているので、`firstName`を更新すると`fullName`のオブザーバーが同様に起動します。
 
-### Observers and asynchrony
+### オブザーバーと非同期性
 
-Observers in Ember are currently synchronous. This means that they will fire as soon as one of the properties they observe changes. Because of this, it is easy to introduce bugs where properties are not yet synchronized:
+Emberのオブザーバーは現状は非同期です。 これは、監視しているプロパティの一つが変更するとすぐにオブザーバーが起動することを意味しています。 これによって、まだ同期されていないプロパティとの間にバグが混入しやすくなります。
 
 ```javascript
 Person.reopen({
@@ -49,7 +49,7 @@ Person.reopen({
 });
 ```
 
-This synchronous behavior can also lead to observers being fired multiple times when observing multiple properties:
+この同期動作は、複数のプロパティを監視している際にオブザーバーが複数回起動される状況にもつながります。
 
 ```javascript
 Person.reopen({
@@ -62,7 +62,7 @@ person.set('firstName', 'John');
 person.set('lastName', 'Smith');
 ```
 
-To get around these problems, you should make use of [`Ember.run.once()`](http://emberjs.com/api/classes/Ember.run.html#method_once). This will ensure that any processing you need to do only happens once, and happens in the next run loop once all bindings are synchronized:
+これらの問題を回避するには、[`Ember.run.once()`](http://emberjs.com/api/classes/Ember.run.html#method_once)を使用する必要があります。 これを使うことで、行わなければならない任意の処理が一度だけ起き、次の実行時には全てのバインディングが同期されることが保証されます。
 
 ```javascript
 Person.reopen({
@@ -81,11 +81,11 @@ person.set('firstName', 'John');
 person.set('lastName', 'Smith');
 ```
 
-### Observers and object initialization
+### オブザーバーとオブジェクトの初期化
 
-Observers never fire until after the initialization of an object is complete.
+オブザーバーはオブジェクトの初期化が完全に終了するまでは起動しません。
 
-If you need an observer to fire as part of the initialization process, you cannot rely on the side effect of `set`. Instead, specify that the observer should also run after `init` by using [`Ember.on()`](http://emberjs.com/api/classes/Ember.html#method_on):
+もし初期化プロセスの一部としてオブザーバーを起動する必要がある場合は、`set`の副作用に依存はできません。 代わりに、次のように[`Ember.on()`](http://emberjs.com/api/classes/Ember.html#method_on)を使うことで`init`の後にオブザーバーを合わせて実行するように指示します。
 
 ```javascript
 Person = Ember.Object.extend({
@@ -99,17 +99,17 @@ Person = Ember.Object.extend({
 });
 ```
 
-### Unconsumed Computed Properties Do Not Trigger Observers
+### 使われていない計算型プロパティはオブザーバーを作動させない
 
-If you never `get()` a computed property, its observers will not fire even if its dependent keys change. You can think of the value changing from one unknown value to another.
+計算型プロパティが決して`get()`されないなら、たとえ依存するキーが変更されたとしてもオブザーバーは起動しません。未知の値から別の値に変更する値について考慮できます。
 
-This doesn't usually affect application code because computed properties are almost always observed at the same time as they are fetched. For example, you get the value of a computed property, put it in DOM (or draw it with D3), and then observe it so you can update the DOM once the property changes.
+計算型プロパティはほとんどの場合、常に監視されると同時にフェッチされているため、このことは通常アプリケーションに影響しません。 たとえば、計算型プロパティの値を取得し、DOMに置き (あるいはD3などで描画し) 、そのプロパティを監視することで、プロパティが変更されるとDOMが更新されるようにします。
 
-If you need to observe a computed property but aren't currently retrieving it, get it in your `init()` method.
+計算型プロパティを監視する必要があるものの現在取得されていない場合には、`init()`メソッドにおいて取得します。
 
-### Outside of class definitions
+### クラス定義の外側
 
-You can also add observers to an object outside of a class definition using [`addObserver()`](http://emberjs.com/api/classes/Ember.Object.html#method_addObserver):
+[`addObserver()`](http://emberjs.com/api/classes/Ember.Object.html#method_addObserver)を使うことで、クラス定義の外側のオブジェクトにオブザーバーをも追加できます。
 
 ```javascript
 person.addObserver('fullName', function() {
