@@ -74,6 +74,7 @@ moduleForComponent('location-map', 'Integration | Component | location map', {
 test('should append map element to container element', function(assert) {
   this.set('myLocation', 'New York');
   this.render(hbs`{{location-map location=myLocation}}`);
+  this.get('mapsService').getMapElement(this.get('myLocation'));
   assert.equal(this.$('.map-container').children().length, 1, 'the map element should be put onscreen');
   assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'a map of New York should be requested');
 });
