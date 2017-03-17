@@ -8,7 +8,7 @@ We'll call this component `list-filter`, since all we want our component to do i
 ember g component list-filter
 ```
 
-As before, this creates a Handlebars template (`app/templates/components/list-filter.hbs`),
+As before, this creates a Component template (`app/templates/components/list-filter.hbs`),
 a JavaScript file (`app/components/list-filter.js`),
 and a component integration test (`tests/integration/components/list-filter-test.js`).
 
