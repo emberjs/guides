@@ -1,12 +1,15 @@
 ## What are Computed Properties?
 
-In a nutshell, computed properties let you declare functions as properties. You create one by defining a computed property as a function, which Ember will automatically call when you ask for the property. You can then use it the same way you would any normal, static property.
+In a nutshell, computed properties let you declare functions as properties.
+You create one by defining a computed property as a function, which Ember will automatically call when you ask for the property.
+You can then use it the same way you would any normal, static property.
 
 It's super handy for taking one or more normal properties and transforming or manipulating their data to create a new value.
 
 ### Computed properties in action
 
-We'll start with a simple example:
+We'll start with a simple example.
+We have a `Person` object with `firstName` and `lastName` properties, but we also want a `fullName` property that joins the two names when either of them changes:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -15,7 +18,10 @@ Person = Ember.Object.extend({
   lastName: null,
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+    
+    return `${firstName} ${lastName}`;
   })
 });
 
@@ -27,13 +33,53 @@ let ironMan = Person.create({
 ironMan.get('fullName'); // "Tony Stark"
 ```
 
-This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on. The
-first time you access the `fullName` property, the function backing the computed property (i.e. the last argument) will
-be run and the results will be cached. Subsequent access of `fullName` will read from the cache without calling the
-function.  Changing any of the dependent properties causes the cache to invalidate, so that the computed function runs
-again on the next access.
+This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on.
+The first time you access the `fullName` property, the function will be called and the results will be cached.
+Subsequent access of `fullName` will read from the cache without calling the function.
+Changing any of the dependent properties causes the cache to invalidate, so that the computed function runs again on the next access.
 
-When you want to depend on a property which belongs to an object, you can setup multiple dependent keys by using brace expansion:
+### Multiple dependents on the same object
+
+In the previous example, the `fullName` computed property depends on two other properties:
+
+```javascript
+…
+  fullName: Ember.computed('firstName', 'lastName', function() {
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+    
+    return `${firstName} ${lastName}`;
+  })
+…
+```
+
+We can also use a short-hand syntax called _brace expansion_ to declare the dependents.
+You surround the dependent properties with braces (`{}`), and separate with commas, like so:
+
+```javascript
+…
+  fullName: Ember.computed('{firstName,lastName}', function() {
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+    
+    return `${firstName} ${lastName}`;
+  })
+…
+```
+
+This is especially useful when you depend on properties of an object, since it allows you to replace:
+
+```javascript
+let obj = Ember.Object.extend({
+  baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
+
+  something: Ember.computed('baz.foo', 'baz.bar', function() {
+    return this.get('baz.foo') + ' ' + this.get('baz.bar');
+  })
+});
+```
+
+With:
 
 ```javascript
 let obj = Ember.Object.extend({
@@ -45,12 +91,11 @@ let obj = Ember.Object.extend({
 });
 ```
 
-This allows you to observe both `foo` and `bar` on `baz` with much less duplication/redundancy
-when your dependent keys are mostly similar.
-
 ### Chaining computed properties
 
-You can use computed properties as values to create new computed properties. Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
+You can use computed properties as values to create new computed properties.
+Let's add a `description` computed property to the previous example,
+and use the existing `fullName` property and add in some other properties:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -80,7 +125,8 @@ captainAmerica.get('description'); // "Steve Rogers; Age: 80; Country: USA"
 
 ### Dynamic updating
 
-Computed properties, by default, observe any changes made to the properties they depend on and are dynamically updated when they're called. Let's use computed properties to dynamically update.
+Computed properties, by default, observe any changes made to the properties they depend on and are dynamically updated when they're called.
+Let's use computed properties to dynamically update.
 
 ```javascript
 captainAmerica.set('firstName', 'William');
@@ -125,9 +171,8 @@ captainAmerica.get('lastName'); // Burnside
 
 ### Computed property macros
 
-Some types of computed properties are very common. Ember provides a number of
-computed property macros, which are shorter ways of expressing certain types
-of computed property.
+Some types of computed properties are very common.
+Ember provides a number of computed property macros, which are shorter ways of expressing certain types of computed property.
 
 In this example, the two computed properties are equivalent:
 
