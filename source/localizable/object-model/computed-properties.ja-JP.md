@@ -30,7 +30,7 @@ let ironMan = Person.create({
 
 ここでは、`firstName`と`lastName`を依存プロパティとして持つ計算型プロパティ、`fullName`を宣言しています。 `fullName`プロパティに初めてアクセスした際に、上記の関数が呼び出されて結果がキャッシュされます。 以降の`fullName`へのアクセスは、関数の呼び出し無しにキャッシュから読み込まれます。 依存するプロパティのいずれかが変更されると、キャッシュが無効になって、次のアクセス時に再び関数が実行されます。
 
-### 同じオブジェクトに対する複数の依存
+### 同一のオブジェクトへの複数の依存
 
 先ほどの例で、計算型プロパティ`fullName`は2つの異なるプロパティに依存していました。
 
@@ -58,7 +58,7 @@ let ironMan = Person.create({
 …
 ```
 
-This is especially useful when you depend on properties of an object, since it allows you to replace:
+この構文は1つのオブジェクトに複数のプロパティを依存させる場合に特に便利です。たとえば、以下のコードを
 
 ```javascript
 let obj = Ember.Object.extend({
@@ -70,7 +70,7 @@ let obj = Ember.Object.extend({
 });
 ```
 
-With:
+次のように置き換えれます。
 
 ```javascript
 let obj = Ember.Object.extend({
