@@ -6,7 +6,7 @@
 
 ### 計算型プロパティを使う
 
-単純な例から始めることにしましょう。
+単純な例から始めることにしましょう。 `firstName`と`lastName`というプロパティを持つ `Person` オブジェクトに、それらのいずれかが変更された時に2つの名前を結合する`fullName`プロパティが欲しいときには、次のようにします。
 
 ```javascript
 Person = Ember.Object.extend({
@@ -15,7 +15,10 @@ Person = Ember.Object.extend({
   lastName: null,
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+
+    return `${firstName} ${lastName}`;
   })
 });
 
@@ -23,13 +26,51 @@ let ironMan = Person.create({
   firstName: 'Tony',
   lastName:  'Stark'
 });
-
-ironMan.get('fullName'); // "Tony Stark"
 ```
 
-ここでは、`firstName`と`lastName`を依存プロパティとして持つ計算型プロパティ、`fullName`を宣言しています。 `fullName`プロパティに初めてアクセスすると、計算型プロパティの背後にある関数 (すなわち宣言時の引数の最後) が実行され、結果がキャッシュされます。 以降の`fullName`へのアクセスは関数呼び出し無しにキャッシュから読み込まれます。 依存するプロパティのいずれかが変更されると、キャッシュが無効になって、次のアクセス時に再び関数が実行されます。
+ここでは、`firstName`と`lastName`を依存プロパティとして持つ計算型プロパティ、`fullName`を宣言しています。 `fullName`プロパティに初めてアクセスした際に、上記の関数が呼び出されて結果がキャッシュされます。 以降の`fullName`へのアクセスは、関数の呼び出し無しにキャッシュから読み込まれます。 依存するプロパティのいずれかが変更されると、キャッシュが無効になって、次のアクセス時に再び関数が実行されます。
 
-オブジェクトに属するプロパティに依存させたいときは、ブレース展開を使用して、複数の依存キーを設定できます。
+### 同じオブジェクトに対する複数の依存
+
+先ほどの例で、計算型プロパティ`fullName`は2つの異なるプロパティに依存していました。
+
+```javascript
+…
+  fullName: Ember.computed('firstName', 'lastName', function() {
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+
+    return `${firstName} ${lastName}`;
+  })
+…
+```
+
+*ブレース展開*という省略構文を使うことでも依存関係を宣言できます。 依存するプロパティを中かっこ(`{}`) で囲み、カンマで区切ります。
+
+```javascript
+…
+  fullName: Ember.computed('{firstName,lastName}', function() {
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+
+    return `${firstName} ${lastName}`;
+  })
+…
+```
+
+This is especially useful when you depend on properties of an object, since it allows you to replace:
+
+```javascript
+let obj = Ember.Object.extend({
+  baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
+
+  something: Ember.computed('baz.foo', 'baz.bar', function() {
+    return this.get('baz.foo') + ' ' + this.get('baz.bar');
+  })
+});
+```
+
+With:
 
 ```javascript
 let obj = Ember.Object.extend({
@@ -40,8 +81,6 @@ let obj = Ember.Object.extend({
   })
 });
 ```
-
-こうすることで、依存するキーがほとんど同じ場合に、記述の重複や冗長さを抑えて、`baz`の先の`foo`と`bar`も監視できます。
 
 ### 計算型プロパティの連鎖
 
@@ -108,12 +147,6 @@ Person = Ember.Object.extend({
     }
   })
 });
-
-
-let captainAmerica = Person.create();
-captainAmerica.set('fullName', 'William Burnside');
-captainAmerica.get('firstName'); // William
-captainAmerica.get('lastName'); // Burnside
 ```
 
 ### 計算型プロパティマクロ

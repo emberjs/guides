@@ -1,6 +1,6 @@
-Unlike most other frameworks that include some sort of binding implementation, bindings in Ember.js can be used with any object. That said, bindings are most often used within the Ember framework itself, and for most problems Ember app developers face, computed properties are the appropriate solution.
+何らかのバインディング実装を含んでいる大体のフレームワークとは異なり、Ember.jsのバインディングはどのオブジェクトでも使用できます。 つまり、バインディングはEmberフレームワークで最もよく使われているものであり、Emberアプリケーション開発者が直面するほとんどの問題には、計算型プロパティが適切な解決方法だということです。
 
-The easiest way to create a two-way binding is to use a [`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias), that specifies the path to another object.
+双方向バインディングを作成する最も簡単な方法は、別のオブジェクトへのパスを指定する[`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias)を使用することです。
 
 ```javascript
 husband = Ember.Object.create({

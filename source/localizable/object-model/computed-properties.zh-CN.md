@@ -6,7 +6,7 @@
 
 ### 在`action`中计算的属性
 
-我们将从一个简单的例子开始︰
+We'll start with a simple example. We have a `Person` object with `firstName` and `lastName` properties, but we also want a `fullName` property that joins the two names when either of them changes:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -15,7 +15,10 @@ Person = Ember.Object.extend({
   lastName: null,
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+
+    return `${firstName} ${lastName}`;
   })
 });
 
@@ -27,9 +30,49 @@ let ironMan = Person.create({
 ironMan.get('fullName'); // "Tony Stark"
 ```
 
-上述代码声明了计算属性`fullName`，并且这个计算属性依赖于普通属性 `firstName` 和 `lastName` The first time you access the `fullName` property, the function backing the computed property (i.e. the last argument) will be run and the results will be cached. `FullName` 的后续访问将从缓存中读取，而无需调用该函数。 更改依赖项属性的任何导致缓存失效，因此计算属性函数在下次访问时再次运行以获取最新的值。
+上述代码声明了计算属性`fullName`，并且这个计算属性依赖于普通属性 `firstName` 和 `lastName` The first time you access the `fullName` property, the function will be called and the results will be cached. Subsequent access of `fullName` will read from the cache without calling the function. Changing any of the dependent properties causes the cache to invalidate, so that the computed function runs again on the next access.
 
-当你想要依赖于属于一个对象的属性时，您可以通过使用大括号扩展设置多个相关的参数︰
+### Multiple dependents on the same object
+
+In the previous example, the `fullName` computed property depends on two other properties:
+
+```javascript
+…
+  fullName: Ember.computed('firstName', 'lastName', function() {
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+
+    return `${firstName} ${lastName}`;
+  })
+…
+```
+
+We can also use a short-hand syntax called *brace expansion* to declare the dependents. You surround the dependent properties with braces (`{}`), and separate with commas, like so:
+
+```javascript
+…
+  fullName: Ember.computed('{firstName,lastName}', function() {
+    let firstName = this.get('firstName');
+    let lastName = this.get('lastName');
+
+    return `${firstName} ${lastName}`;
+  })
+…
+```
+
+This is especially useful when you depend on properties of an object, since it allows you to replace:
+
+```javascript
+let obj = Ember.Object.extend({
+  baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
+
+  something: Ember.computed('baz.foo', 'baz.bar', function() {
+    return this.get('baz.foo') + ' ' + this.get('baz.bar');
+  })
+});
+```
+
+With:
 
 ```javascript
 let obj = Ember.Object.extend({
@@ -41,11 +84,9 @@ let obj = Ember.Object.extend({
 });
 ```
 
-请看上述代码，计算属性还允许你监测一个对象 `baz`的多个属性`foo` 和`bar`，当计算属性依赖对象的多个属性时这种方式非常实用。
+### Chaining computed properties
 
-### 计算属性链
-
-可以用计算属性的值来创建新的计算属性。 前面的示例中添加一个计算属性`description`，使用现有 `fullName` 属性以及添加一些其他属性︰
+You can use computed properties as values to create new computed properties. Let's add a `description` computed property to the previous example, and use the existing `fullName` property and add in some other properties:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -73,9 +114,9 @@ let captainAmerica = Person.create({
 captainAmerica.get('description'); // "Steve Rogers; Age: 80; Country: USA"
 ```
 
-### 动态更新
+### Dynamic updating
 
-默认情况下，计算的属性观察他们所依赖的所有属性（包括计算属性），当所依赖的属性发生变化之后会自动触发计算属性的更新，比如下面的代码：
+Computed properties, by default, observe any changes made to the properties they depend on and are dynamically updated when they're called. Let's use computed properties to dynamically update.
 
 ```javascript
 captainAmerica.set('firstName', 'William');
@@ -83,13 +124,13 @@ captainAmerica.set('firstName', 'William');
 captainAmerica.get('description'); // "William Rogers; Age: 80; Country: USA"
 ```
 
-所以，当属性`firstName`发生改变被计算属性`fullName`观察到使得计算属性值自动更新，由于计算属性`fullName`发生改变又被<0>description</0>观察到，同样的会使得这个计算属性值也自动更新。
+So this change to `firstName` was observed by `fullName` computed property, which was itself observed by the `description` property.
 
-设置任意依赖的属性导致的改变，将按照创建的计算属性链，一路向下传播，到所有依赖他们的计算属性。
+Setting any dependent property will propagate changes through any computed properties that depend on them, all the way down the chain of computed properties you've created.
 
-### 设置计算属性
+### Setting Computed Properties
 
-你还以自定义计算属性的`set`方法，在方法内增加自己的处理逻辑。 如果尝试设置一个计算属性，需要在调用的时候传入键值(属性名)，以及将被设置的值。 你必须从 setter 函数返回新的计算属性预定值。
+You can also define what Ember should do when setting a computed property. If you try to set a computed property, it will be invoked with the key (property name), and the value you want to set it to. You must return the new intended value of the computed property from the setter function.
 
 ```javascript
 Person = Ember.Object.extend({
@@ -108,13 +149,19 @@ Person = Ember.Object.extend({
     }
   })
 });
+
+
+let captainAmerica = Person.create();
+captainAmerica.set('fullName', 'William Burnside');
+captainAmerica.get('firstName'); // William
+captainAmerica.get('lastName'); // Burnside
 ```
 
-### 计算属性宏
+### Computed property macros
 
-某些类型的计算属性是很常见的。Ember提供大量的计算属性宏(通用方法)，用这些宏处理计算属性非常的简便。
+Some types of computed properties are very common. Ember provides a number of computed property macros, which are shorter ways of expressing certain types of computed property.
 
-在此示例中，提供两种方式判断计算属性值是否于某个值相等︰
+In this example, the two computed properties are equivalent:
 
 ```javascript
 Person = Ember.Object.extend({
@@ -128,4 +175,4 @@ Person = Ember.Object.extend({
 });
 ```
 
-若要了解更多计算属性宏，请看 [API 文档](http://emberjs.com/api/classes/Ember.computed.html)详细的介绍。
+To see the full list of computed property macros, have a look at [the API documentation](http://emberjs.com/api/classes/Ember.computed.html)

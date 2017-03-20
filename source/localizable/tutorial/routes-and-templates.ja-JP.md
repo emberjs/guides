@@ -247,11 +247,11 @@ test('should transition to rentals route', function(assert) { let route = this.s
     <div class="container">
       <div class="menu">
         {{#link-to 'index'}}
-          <h1 class="left">
+          <h1>
             <em>SuperRentals</em>
           </h1>
         {{/link-to}}
-        <div class="left links">
+        <div class="links">
           {{#link-to 'about'}}
             About
           {{/link-to}}
