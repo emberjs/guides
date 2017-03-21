@@ -21,7 +21,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file reveals a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
+When we open the model file, we can see a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
 
 ```app/models/rental.js
 import DS from 'ember-data';
