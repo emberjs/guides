@@ -38,7 +38,7 @@ installing route-test
 An Ember route is built with three parts:
 
 1. An entry in the Ember router (`/app/router.js`), which maps between our route name and a specific URI
-2. A route file, which sets up what should happen when that route is loaded _`(app/routes/about.js)`_
+2. A route handler file, which sets up what should happen when that route is loaded _`(app/routes/about.js)`_
 3. A route template, which is where we display the actual content for the page _`(app/templates/about.hbs)`_
 
 If we open `/app/router.js`, we'll see a new line of code for the **about** route, calling
@@ -62,7 +62,7 @@ export default Router;
 ```
 
 Because we only plan to display static contact on our about page, we won't adjust the `/app/routes/about.js`
-file right now. Instead, let's open our `/app/templates/about.hbs` file and add some info about
+route handler file right now. Instead, let's open our `/app/templates/about.hbs` template file and add some info about
 Super Rentals:
 
 ```app/templates/about.hbs
@@ -77,7 +77,7 @@ Super Rentals:
 </div>
 ```
 
-Now run `ember server` (or `ember serve` or even `ember s` for short) on your command line to start
+Now run `ember server` (or `ember serve`, or even `ember s` for short) on your command line to start
 the Ember development server and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to
 see our new page in action!
 
@@ -112,12 +112,12 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
 </div>
 ```
 
-And if we go to [`http://localhost:4200/contact`](http://localhost:4200/contact), we'll see our contact page.
+Now when we go to [`http://localhost:4200/contact`](http://localhost:4200/contact), we'll see our contact page.
 
 ## Navigating with Links and the {{link-to}} Helper
 
-Moving around our site is a bit of a pain right now, so let's make that easier for folks.
-We'll put a link to the contact page on the about page and a corresponding link to the about
+Moving around our site is a bit of a pain right now, so let's make that easier.
+We'll put a link to the contact page on the about page, and a corresponding link to the about
 page on the contact page.
 
 To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
@@ -291,7 +291,7 @@ As mentioned earlier on the [Planning the Application page](../acceptance-test/)
 an Ember acceptance test automates interacting with our app in a similar way to a visitor.
 
 If you open the acceptance test we created (`/tests/acceptance/list-rentals-test.js`), you'll see our
-goals, which includes the ability to navigate to an `about` page and a `contact` page. Let's start there.
+goals, which include the ability to navigate to an `about` page and a `contact` page. Let's start there.
 
 First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper
 and then make sure our current URL is `/rentals` once the redirect occurs.
