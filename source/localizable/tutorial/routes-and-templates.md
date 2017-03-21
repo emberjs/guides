@@ -1,5 +1,5 @@
 For Super Rentals, we want to arrive at a home page which displays a list of rentals.
-From there, we should be able to vist an about page and our contact page.
+From there, we should be able to visit an about page and our contact page.
 
 ## An About Route
 
@@ -256,11 +256,11 @@ Let's open it again (`/app/templates/application.hbs`) and replace its contents 
 <div class="container">
   <div class="menu">
     {{#link-to 'index'}}
-      <h1 class="left">
+      <h1>
         <em>SuperRentals</em>
       </h1>
     {{/link-to}}
-    <div class="left links">
+    <div class="links">
       {{#link-to 'about'}}
         About
       {{/link-to}}
@@ -281,11 +281,11 @@ or `contact`) should be shown.
 
 At this point, we should be able to navigate between our `about`, `contact`, and `rentals` pages.
 
-At this point, you can move on to the [next page](../model-hook/) or delve into testing the new functionality we just added.
+From here you can move on to the [next page](../model-hook/) or dive into testing the new functionality we just added.
 
 ## Implementing Acceptance Tests
 
-Now that we have various pages in our appl, let's walk through how to build tests for them.
+Now that we have various pages in our application, let's walk through how to build tests for them.
 
 As mentioned earlier on the [Planning the Application page](../acceptance-test/),
 an Ember acceptance test automates interacting with our app in a similar way to a visitor.
