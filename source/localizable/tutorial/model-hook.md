@@ -8,10 +8,10 @@ a library for robustly managing data in our app.
 
 Here's what our homepage will look like when we're done:
 
-![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
+![super rentals homepage with rentals list](../../images/model-hook/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading the model with data for the page.
-It loads the data in a function called `model`.
+It loads the data in a function called [`model`](http://emberjs.com/api/classes/Ember.Route.html#method_model).
 The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
 The model function we've added to our `rentals` route handler will be called when a user navigates to the rentals route via root URL `http://localhost:4200`, or via `http://localhost:4200/rentals`.
 
@@ -58,7 +58,7 @@ export default Ember.Route.extend({
 
 Note that here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
 
-Ember will use the model object returned above and save it as an attribute called `model`, 
+Ember will use the model object returned above and save it as an attribute called `model`,
 available to the rentals template we generated with our route in [Routes and Templates](../routes-and-templates/#toc_a-rentals-route).
 
 Now, let's switch over to our rentals page template.
@@ -66,13 +66,12 @@ We can use the model attribute to display our list of rentals.
 Here, we'll use another common Handlebars helper called [`{{each}}`](../../templates/displaying-a-list-of-items/).
 This helper will let us loop through each of the rental objects in our model:
 
-```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
+```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
   <p>
     We hope you find exactly what you're looking for in a place to stay.
-    <br>Browse our listings, or use the search box below to narrow your search.
   </p>
   {{#link-to 'about' class="button"}}
     About Us
@@ -102,6 +101,31 @@ In this template, we loop through each object.
 On each iteration, the current object gets stored in a variable called `rental`.
 From the rental variable in each step, we create a listing with information about the property.
 
-Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
+You may move onto the [next page](../installing-addons/) to keep implementing new features, or continue reading on testing the app you've created.
+
+### Acceptance Testing the Rental List
+
+To check that rentals are listed with an automated test, we will create a test to visit the index route and check that the results show 3 listings.
+
+In `app/templates/rentals.hbs`, we wrapped each rental display in an `article` element, and gave it a class called `listing`.
+We will use the listing class to find out how many rentals are shown on the page.
+
+To find the elements that have a class called `listing`, we'll use a test helper called [find](http://emberjs.com/api/classes/Ember.Test.html#method_find).
+The `find` function returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
+In this case it will return an array of all the elements with a class called `listing`.
+
+```/tests/acceptance/list-rentals-test.js
+test('should list available rentals.', function (assert) {
+  visit('/');
+  andThen(function() {
+    assert.equal(find('.listing').length, 3, 'should see 3 listings');
+  });
+});
+```
+
+Run the tests again using the command `ember t -s`, and toggle "Hide passed tests" to show your new passing test.
+
+Now we are listing rentals, and and verifying it with an acceptance test.
+This leaves us with 2 remaining acceptance test failures (and 1 jshint failure):
 
 ![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)

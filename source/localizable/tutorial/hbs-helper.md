@@ -69,7 +69,7 @@ const communityPropertyTypes = [
   'Apartment'
 ];
 
-export function rentalPropertyType([type]/*, hash*/) {
+export function rentalPropertyType([type]) {
   if (communityPropertyTypes.includes(type)) {
     return 'Community';
   }
@@ -81,7 +81,7 @@ export default Ember.Helper.helper(rentalPropertyType);
 ```
 
 Handlebars passes an array of arguments from our template to our helper.
-We are using ES2015 destructuring to get the first item in the array and name it `type`.
+We are using [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get the first item in the array and name it `type`.
 Then we can check to see if `type` exists in our `communityPropertyTypes` array.
 
 Now in our browser we should see that the first rental property is listed as "Standalone",

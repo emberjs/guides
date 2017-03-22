@@ -353,12 +353,27 @@ Clicking on the title will load the detail page for that rental.
 ```
 ![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
-## Final Check
+At this point you can do a [deployment](../deploying/) and share your Super Rentals application to the world
+or you can use this as a base to explore other Ember features and addons.
+Regardless, we hope this has helped you get started with creating your own ambitious applications with Ember!
+
+### Acceptance Tests
+
+We want to verify that we can click on a specific rental and load a detailed view to the page.
+We'll click on the title and validate that an expanded description of the rental is shown.
+
+```/tests/acceptance/list-rentals-test.js
+test('should show details for a specific rental', function (assert) {
+  visit('/rentals');
+  click('a:contains("Grand Old Mansion")');
+  andThen(function() {
+    assert.equal(currentURL(), '/rentals/grand-old-mansion', 'should navigate to show route');
+    assert.equal(find('.show-listing h2').text(), "Grand Old Mansion", 'should list rental title');
+    assert.equal(find('.description').length, 1, 'should list a description of the property');
+  });
+});
+```
 
 At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
 
 ![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
-
-At this point you can do a [deployment](../deploying) and share your Super Rentals application to the world
-or you can use this as a base to explore other Ember features and addons.
-Regardless, we hope this has helped you get started with creating your own ambitious applications with Ember!

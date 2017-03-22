@@ -20,7 +20,7 @@
   pages:
     - title: "Creating Your App"
       url: "ember-cli"
-    - title: "Setting Up Tests"
+    - title: "Planning Your App"
       url: 'acceptance-test'
     - title: "Routes and Templates"
       url: "routes-and-templates"
