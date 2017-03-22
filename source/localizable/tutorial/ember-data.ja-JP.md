@@ -19,7 +19,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-モデルファイルを開くと、[`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html)を拡張する空のクラスが表示されます。
+When we open the model file, we can see a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
 
 ```app/models/rental.js import DS from 'ember-data';
 
@@ -45,7 +45,7 @@ export default DS.Model.extend({
     });
     
 
-これでEmber Dataストア用に使用できるモデルオブジェクトが定義されました。
+We now have a model object that we can use for our Ember Data implementation.
 
 ### Model Hook (モデルフック)の更新
 
@@ -59,4 +59,4 @@ export default Ember.Route.extend({ model() { return this.get('store').findAll('
 
 Ember Dataの詳細については[モデルセクション](../../models/)を確認してください。.
 
-開発環境では Mirage を利用しているので、事前にMirageに提供したデータが返されます。 プロダクションにアプリケーションをデプロイする際には、実際にEmber Dataがやりとりをするバックエンドを構築する必要があります。
+Since we've already set up Ember Mirage in our development environment, Mirage will return the data we requested. When we deploy our app to a production server, we will likely want to replace Mirage with a remote server for Ember Data to communicate with for storing and retrieving persisted data. A remote server will allow for data to be shared and updated across users.

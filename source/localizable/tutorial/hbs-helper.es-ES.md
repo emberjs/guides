@@ -54,12 +54,12 @@ Idealmente veremos "Type: Standalone - Estate" para nuestra primera propiedad en
 
 const communityPropertyTypes = [ 'Condo', 'Townhouse', 'Apartment' ];
 
-export function rentalPropertyType([type]/*, hash*/) { if (communityPropertyTypes.includes(type)) { return 'Community'; }
+export function rentalPropertyType([type]) { if (communityPropertyTypes.includes(type)) { return 'Community'; }
 
 return 'Standalone'; }
 
 export default Ember.Helper.helper(rentalPropertyType); ```
 
-Handlebars pasa un arreglo de argumentos de nuestra plantilla a nuestro helper. Estamos utilizando desestructuración de ES2015 para obtener el primer elemento de la matriz y llamarlo `tipo`. Así podremos comprobar si `type`. existe en nuestro arreglo de `communityPropertyTypes`.
+Handlebars pasa un arreglo de argumentos de nuestra plantilla a nuestro helper. We are using [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get the first item in the array and name it `type`. Así podremos comprobar si `type`. existe en nuestro arreglo de `communityPropertyTypes`.
 
 Ahora en nuestro navegador deberíamos ver que la rental property aparece como "Standalone", mientras que los otros dos aparecen como "Community".

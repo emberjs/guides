@@ -54,12 +54,12 @@ export default Ember.Helper.helper(rentalPropertyType);
 
 const communityPropertyTypes = [ 'Condo', 'Townhouse', 'Apartment' ];
 
-export function rentalPropertyType([type]/*, hash*/) { if (communityPropertyTypes.includes(type)) { return 'Community'; }
+export function rentalPropertyType([type]) { if (communityPropertyTypes.includes(type)) { return 'Community'; }
 
 return 'Standalone'; }
 
 export default Ember.Helper.helper(rentalPropertyType); ```
 
-Handlebars はテンプレートからヘルパーに引数の配列を渡します。 ES2015 の分割代入を使い、配列の最初の項目を取り出して、`type`という名称にしています。 これによって、`communityPropertyTypes`配列に`type`が存在するか確認できるようになります。
+Handlebars はテンプレートからヘルパーに引数の配列を渡します。 We are using [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get the first item in the array and name it `type`. これによって、`communityPropertyTypes`配列に`type`が存在するか確認できるようになります。
 
 ブラウザで確認すると、最初の賃貸物件は"Standalone"、他の2つの物件が"Community"と表示されているはずです。

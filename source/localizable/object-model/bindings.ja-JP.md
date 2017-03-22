@@ -22,9 +22,9 @@ husband.set('pets', 1);
 wife.get('pets'); // 1
 ```
 
-Note that bindings don't update immediately. Ember waits until all of your application code has finished running before synchronizing changes, so you can change a bound property as many times as you'd like without worrying about the overhead of syncing bindings when values are transient.
+バインディングはすぐには更新されないことに注意してください。 Emberは、変更を同期する前に、アプリケーションコードすべての実行が終了するのを待ちます。そのため、あなたは変更が一時的な際でもバインディングのオーバーヘッドを気にすることなく、何回でも変更できます。
 
-## One-Way Bindings
+## 片方向バインディング
 
 A one-way binding only propagates changes in one direction, using [`computed.oneWay()`](http://emberjs.com/api/classes/Ember.computed.html#method_oneWay). Often, one-way bindings are a performance optimization and you can safely use a two-way binding (which are de facto one-way bindings if you only ever change one side). Sometimes one-way bindings are useful to achieve specific behaviour such as a default that is the same as another property but can be overridden (e.g. a shipping address that starts the same as a billing address but can later be changed)
 

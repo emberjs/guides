@@ -324,10 +324,23 @@ Routerのパス`show`に`:rental_id`を追加したので、`model`フックで`
 
 ![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
-## 最終チェック
+この時点で[デプロイ](../deploying/)し、SuperRentalsアプリケーションを世界に公開できます。 あるいは、このアプリケーションをベースにして、他のEmberの機能やアドオンを探索できます。 それに関わらず、このアプリケーションが、あなたがEmberを使って野心的なアプリケーションを作成する助けになっていることを願っています!
+
+### 受入テスト
+
+最後に、特定の賃貸物件をクリックし、詳細ページを読み込むことを検証しましょう。 タイトルをクリックし、拡大した賃貸物件の説明が表示されることを確認します。
+
+<pre><code class="/tests/acceptance/list-rentals-test.js">test('should show details for a specific rental', function (assert) {
+  visit('/rentals');
+  click('a:contains("Grand Old Mansion")');
+  andThen(function() {
+    assert.equal(currentURL(), '/rentals/grand-old-mansion', 'should navigate to show route');
+    assert.equal(find('.show-listing h2').text(), "Grand Old Mansion", 'should list rental title');
+    assert.equal(find('.description').length, 1, 'should list a description of the property');
+  });
+});
+</code></pre>
 
 この時点で、最初に要件として作成した[acceptance test (受入テスト)のリスト](../acceptance-test)を含む、すべてのテストは合格するはずです。
 
 ![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
-
-この時点で[デプロイ](../deploying)し、SuperRentalsアプリケーションを世界に公開することができます。 あるいは、このアプリケーションをベースにして、他のEmberの機能やアドオンを探索することができます。 それに関わらず、このアプリケーションが、あなたがEmberを使って野心的なアプリケーションを作成する助けになっていることを願っています!

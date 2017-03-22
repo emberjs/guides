@@ -19,7 +19,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file reveals a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
+When we open the model file, we can see a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
 
 ```app/models/rental.js import DS from 'ember-data';
 
@@ -46,7 +46,7 @@ export default DS.Model.extend({
     });
     
 
-Now we have a model object that we can use for our Ember Data store.
+We now have a model object that we can use for our Ember Data implementation.
 
 ### Updating the Model Hook
 
@@ -60,4 +60,4 @@ When we call `findAll`, Ember Data will attempt to make a GET request to `/renta
 
 You can read more about Ember Data in the [Models section](../../models/).
 
-Since we're using Mirage in our development environment, Mirage will return the data we've provided. When we deploy our app to a production server, we will need to provide a backend for Ember Data to communicate with.
+Since we've already set up Ember Mirage in our development environment, Mirage will return the data we requested. When we deploy our app to a production server, we will likely want to replace Mirage with a remote server for Ember Data to communicate with for storing and retrieving persisted data. A remote server will allow for data to be shared and updated across users.

@@ -1,12 +1,12 @@
-In Super Rentals we want to arrive at a home page which shows a list of rentals. From there, we should be able to navigate to an about page and a contact page.
-
-Ember provides a [robust routing mechanism](../../routing/) to define logical, addressable pages within our application.
+For Super Rentals, we want to arrive at a home page which displays a list of rentals. From there, we should be able to visit an about page and our contact page.
 
 ## “关于我们” route
 
-Let's start by building our "about" page. To create a new, URL addressable page in the application, we need to generate a route using Ember CLI.
+Let's start by building our "about" page.
 
-如果执行 `ember help generate`，我们可以看到很多生成器工具，Ember用它们来自动生成各种资源文件。 我们将要用路由生成器来生成 `about`路由器。
+In Ember, when we want to make a new page that can be visited using a URL, we need to generate a "route" using Ember CLI. For a quick overview of how Ember structures things, see [our diagram on the Core Concepts page](../../getting-started/core-concepts/).
+
+Let's use Ember's route generator to start our `about` route.
 
 ```shell
 ember generate route about
@@ -18,7 +18,9 @@ ember generate route about
 ember g route about
 ```
 
-The output of the command displays what actions were taken by the generator:
+*Note: Running `ember help generate` will list a number of other Ember resources you can create as well ...*
+
+And here's what our generator prints out:
 
 ```shell
 installing route
@@ -30,51 +32,51 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-A route is composed of the following parts:
+An Ember route is built with three parts:
 
-  1. An entry in `/app/router.js`, mapping the route name to a specific URI. *`(app/router.js)`*
-  2. A route handler JavaScript file, instructing what behavior should be executed when the route is loaded. *`(app/routes/about.js)`*
-  3. A route template, describing the page represented by the route. *`(app/templates/about.hbs)`*
+  1. An entry in the Ember router (`/app/router.js`), which maps between our route name and a specific URI
+  2. A route handler file, which sets up what should happen when that route is loaded *`(app/routes/about.js)`*
+  3. A route template, which is where we display the actual content for the page *`(app/templates/about.hbs)`*
 
-Opening `/app/router.js` shows that there is a new line of code for the *about* route, calling `this.route('about')` in the `map` function. Calling the function `this.route(routeName)`, tells the Ember router to load the specified route handler when the user navigates to the URI with the same name. In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used. See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
+If we open `/app/router.js`, we'll see a new line of code for the **about** route, calling `this.route('about')` in the `Router.map` function. That new line of code tells the Ember router to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
 const Router = Ember.Router.extend({ location: config.locationType, rootURL: config.rootURL });
 
-Router.map(function() {this.route('about');});
+Router.map(function() { this.route('about'); });
 
 export default Router;
 
-    <br />”about“路由处理器会默认加载”about.hbs“模板页面。
-    这以为这我们不需要在路由处理器”app/routes/about.js“文件中做任何修改来制定对应的模板文件”about.hbs“。
+    <br />Because we only plan to display static contact on our about page, we won't adjust the `/app/routes/about.js`
+    route handler file right now. Instead, let's open our `/app/templates/about.hbs` template file and add some info about
+    Super Rentals:
     
-    生成器生成好所有路由相关配置，我们就可以直接开始逻辑代码和页面模板的开发了。
-    在”关于我们“页面中，我们会加一些HTML代码用来描述网站的相关信息：
     ```app/templates/about.hbs
     <div class="jumbo">
       <div class="right tomster"></div>
       <h2>About Super Rentals</h2>
       <p>
-        ”超级房屋出租“网站是一个有趣的项目，用来学习Ember框架。
-        通过创建这个房屋出租网站，我们可以想象自己在旅行同时创建一个Eber应用。
+        The Super Rentals website is a delightful project created to explore Ember.
+        By building a property rental site, we can simultaneously imagine traveling
+        AND building Ember applications.
       </p>
     </div>
     
 
-Run `ember server` (or `ember serve` or even `ember s` for short) from the shell to start the Ember development server, and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new app in action!
+Now run `ember server` (or `ember serve`, or even `ember s` for short) on your command line to start the Ember development server and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to see our new page in action!
 
 ## “联系我们” Route
 
-我们接下来再创建另外一个路由器用来访问公司联系信息页面。我们还会通过生成器来添加一个路由器，一个 路由处理器和一个模板页面。
+Now let's create another route with contact details for the company. Once again, we'll start by generating a route:
 
 ```shell
 ember g route contact
 ```
 
-The output from this command shows a new `contact` route in `app/router.js`, and a corresponding route handler in `app/routes/contact.js`.
+Here again, we add a new `contact` route in `app/router.js` and generate a route handler in `app/routes/contact.js`.
 
-In the route template `/app/templates/contact.hbs`, we can add the details for contacting our Super Rentals HQ:
+In the route template `/app/templates/contact.hbs`, let's add our contact details:
 
 ```app/templates/contact.hbs 
 
@@ -83,15 +85,15 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
   </div>
   
   <h2>
-    联系我们
+    Contact Us
   </h2>
   
   <p>
-    超级出租公司的业务代表很高兴帮助您选择一个目的地或者回答您的任何问题。
+    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
   </p>
   
   <p>
-    超级租赁总部 
+    Super Rentals HQ 
     
     <address>
       1212 Test Address Avenue<br /> Testington, OR 97233
@@ -101,18 +103,16 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
   </p>
 </div>
 
-    <br />现在我们已经完成了第二个路由器。
-    如果访问 URL [`http://localhost:4200/contact`](http://localhost:4200/contact)，我们可以看到联系我们页面。
+    <br />Now when we go to [`http://localhost:4200/contact`](http://localhost:4200/contact), we'll see our contact page.
     
     ## Navigating with Links and the {{link-to}} Helper
     
-    We'd like to avoid our users having knowledge of our URLs in order to move around our site,
-    so let's add some navigational links at the bottom of each page.
-    我们会在关于我们页面加上联系我们链接以及在联系我们页面加上关于我们链接。
+    Moving around our site is a bit of a pain right now, so let's make that easier.
+    We'll put a link to the contact page on the about page, and a corresponding link to the about
+    page on the contact page.
     
-    Ember has built-in template **helpers** that provide functionality for interacting with the framework.
-    The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
-    Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
+    To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
+    that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">
@@ -129,28 +129,28 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
     </div>
     
 
-`{{link-to}}` 辅助方法引入了name参数，用来标识需要跳转的目标路由地址，在这里是 `contact`。 这时我们访问关于我们页面 [`http://localhost:4200/about`](http://localhost:4200/about)，就可以看到一个可以跳转到联系我们的链接了。
+In this case, we're telling the `{{link-to}}` helper the name of the route we want to link to: `contact`. When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have a working link to our contact page:
 
-![“超级访问出租”页面截图](../../images/routes-and-templates/ember-super-rentals-about.png)
+![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
 
-接下来，我们要在联系我们页面在加入一个关于我们的跳转链接，这样我们就可以在`about` 和 `contact`两个页面来回跳转。.
+Now, we'll add our corresponding link to the contact page so we can move back and forth between `about` and `contact`:
 
-```app/templates/contact.hbs 
+```app/templates/contact.hbs{+15,+16,+17} 
 
 <div class="jumbo">
   <div class="right tomster">
   </div>
   
   <h2>
-    联系我们
+    Contact Us
   </h2>
   
   <p>
-    超级出租公司的业务代表很高兴帮助您选择一个目的地或者回答您的任何问题。
+    Super Rentals Representatives would love to help you<br />choose a destination or answer any questions you may have.
   </p>
   
   <p>
-    超级租赁总部 
+    Super Rentals HQ 
     
     <address>
       1212 Test Address Avenue<br /> Testington, OR 97233
@@ -160,25 +160,28 @@ In the route template `/app/templates/contact.hbs`, we can add the details for c
   </p> {{#link-to 'about' class="button"}} About {{/link-to}}
 </div>
 
-    <br />## 出租房屋列表路由
-    我们的网站需要一个出租房屋列表供网站用户浏览。
-    为了这样的一个列表我们需要创建第三个路由”rentals“。
+    <br />## A Rentals Route
+    In addition to our `about` and `contact` pages, we want to show a list of rentals that
+    our visitors can look through. So let's add a third route and call it `rentals`:
+    
+    ```shell
+    ember g route rentals
     
 
-Let's update the newly generated `app/templates/rentals.hbs` with some basic markup to add some initial content our rentals list page. We'll come back to this page later to add in the actual rental properties.
+And then let's update our new template (`/app/templates/rentals.hbs`) with some initial content. We'll come back to this page in a bit to add in the actual rental properties.
 
-```app/templates/contact.hbs 
+```app/templates/rentals.hbs 
 
 <div class="jumbo">
   <div class="right tomster">
   </div>
   
   <h2>
-    欢迎！
+    Welcome!
   </h2>
   
   <p>
-    我们希望你找到了梦寐以求的归宿。
+    We hope you find exactly what you're looking for in a place to stay.
   </p> {{#link-to 'about' class="button"}} About Us {{/link-to}}
 </div>
 
@@ -194,7 +197,7 @@ Let's update the newly generated `app/templates/rentals.hbs` with some basic mar
     ember g route index
     
 
-我们可以看到熟悉的route生成输出日志：
+We can see the now familiar output for the route generator:
 
 ```shell
 installing route
@@ -204,43 +207,31 @@ installing route-test
   create tests/unit/routes/index-test.js
 ```
 
-跟我们之前创建的路由器不同， `index` 首页路由器比较特殊：它不需要在路由配置文件中做任何映射 。 我们将会在[nested routes](../subroutes) Ember的级联路由一章中会学到更多关于为什么首页index不需要路由映射。
+Unlike the other route handlers we've made so far, the `index` route is special: it does NOT require an entry in the router's mapping. We'll learn more about why the entry isn't required later on when we look at [nested routes](../subroutes) in Ember.
 
-Let's start by implementing the unit test for our new index route.
+All we want to do when a user visits the root (`/`) URL is transition to `/rentals`. To do this we will add code to our index route handler by implementing a route lifecycle hook, called `beforeModel`.
 
-Since all we want to do is transition people who visit `/` to `/rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route. `replaceWith` is similar to the route's [`transitionTo`](../../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
+Each route handler has a set of "lifecycle hooks", which are functions that are invoked at specific times during the loading of a page. The [`beforeModel`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel) hook gets executed before the data gets fetched from the model hook, and before the page is rendered. See [the next section](../model-hook) for an explanation of the model hook.
 
-In our test, we'll make sure that our index route is redirecting by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
+In our index route handler, we'll call the [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) function. The `replaceWith` function is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history. Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
 
-A `stub` is simply a fake function that we provide to an object we are testing, that takes the place of one that is already there. In this case we are stubbing the `replaceWith` function to assert that it is called with what we expect.
+In our index route handler, we add the `replaceWith` invocation to `beforeModel`.
 
-```tests/unit/routes/index-test.js import { moduleFor, test } from 'ember-qunit';
+```app/routes/index.js{+4,+5,+6} import Ember from 'ember';
 
-moduleFor('route:index', 'Unit | Route | index');
+export default Ember.Route.extend({ beforeModel() { this.replaceWith('rentals'); } });
 
-test('should transition to rentals route', function(assert) { let route = this.subject({ replaceWith(routeName) { assert.equal(routeName, 'rentals', 'replace with route name rentals'); } }); route.beforeModel(); });
-
-    <br />In our index route, we simply add the actual `replaceWith` invocation.
+    <br />Now visiting the root route at `/` will result in the `/rentals` URL loading.
     
-    ```app/routes/index.js
-    import Ember from 'ember';
+    ## Adding a Banner with Navigation
     
-    export default Ember.Route.extend({
-      beforeModel() {
-        this.replaceWith('rentals');
-      }
-    });
+    In addition to adding individual links to each route of our app, we'd like to
+    add a common header across the top of our page to display our app's title and its navigation bar.
     
-
-Now visiting the root route `/` will result in the `/rentals` URL loading.
-
-## 在导航中加入旗帜区块
-
-In addition to providing button-style links in each route of our application, we would like to provide a common banner to display both the title of our application, as well as its main pages.
-
-To show something in every page of your application, you can use the application template. The application template is generated when you create a new project. Let's open the application template at `/app/templates/application.hbs`, and add the following banner navigation markup:
-
-    app/templates/application.hbs
+    To show something on every page, we can use the application template (which we edited earlier).
+    Let's open it again (`/app/templates/application.hbs`) and replace its contents with the following:
+    
+    ```app/templates/application.hbs
     <div class="container">
       <div class="menu">
         {{#link-to 'index'}}
@@ -261,9 +252,75 @@ To show something in every page of your application, you can use the application
         {{outlet}}
       </div>
     </div>
+    
 
-Notice the inclusion of an `{{outlet}}` within the body `div` element. The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as *about*, or *contact*.
+We've seen most of this before, but the `{{outlet}}` beneath `<div class="body">` is new. The `{{outlet}}` helper tells Ember where content for our current route (such as `about` or `contact`) should be shown.
 
-Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
+At this point, we should be able to navigate between our `about`, `contact`, and `rentals` pages.
 
-![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
+From here you can move on to the [next page](../model-hook/) or dive into testing the new functionality we just added.
+
+## Implementing Acceptance Tests
+
+Now that we have various pages in our application, let's walk through how to build tests for them.
+
+As mentioned earlier on the [Planning the Application page](../acceptance-test/), an Ember acceptance test automates interacting with our app in a similar way to a visitor.
+
+If you open the acceptance test we created (`/tests/acceptance/list-rentals-test.js`), you'll see our goals, which include the ability to navigate to an `about` page and a `contact` page. Let's start there.
+
+First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper and then make sure our current URL is `/rentals` once the redirect occurs.
+
+```/tests/acceptance/list-rentals-test.js test('should show rentals as the home page', function (assert) { visit('/'); andThen(function() { assert.equal(currentURL(), '/rentals', 'should redirect automatically'); }); });
+
+    <br />Now run the tests by typing `ember test --server` in the command line (or `ember t -s` for short).
+    
+    Instead of 7 failures there should now be 6 (5 acceptance failures and 1 JSHint).
+    You can also run our specific test by selecting the entry called "Acceptance | list rentals"
+    in the drop down input labeled "Module" on the test UI.
+    
+    You can also toggle "Hide passed tests" to show your passing test case along with the tests that are still
+    failing (because we haven't yet built them).
+    
+    ### Ember's test helpers
+    
+    Ember provides a variety of acceptance test helpers to make common tasks easier,
+    such as visiting routes, filling in fields, clicking on links/buttons, and waiting for pages to display.
+    
+    Some of the helpers we'll use commonly are:
+    
+    * [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) - loads a given URL
+    * [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
+    * [`andThen`](../../testing/acceptance/#toc_wait-helpers) - waits for our previous commands to run before executing our function.
+      In our test below, we want to wait for our page to load after `click` is called so that we can double-check that the new page has loaded
+    * [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
+    
+    ### Test visiting our About and Contact pages
+    Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
+    
+    ```/tests/acceptance/list-rentals-test.js
+    test('should link to information about the company.', function (assert) {
+      visit('/');
+      click('a:contains("About")');
+      andThen(function() {
+        assert.equal(currentURL(), '/about', 'should navigate to about');
+      });
+    });
+    
+    test('should link to contact information', function (assert) {
+      visit('/');
+      click('a:contains("Contact")');
+      andThen(function() {
+        assert.equal(currentURL(), '/contact', 'should navigate to contact');
+      });
+    });
+    
+
+In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/equal/). `assert.equal()` checks to see if two items (our first and second arguments) equal each other. If they don't, our test will fail. The third optional argument allows us to provide a nicer message which we'll be shown if this test fails.
+
+In our tests, we also call two helpers (`visit` and `click`) one after another. Although Ember does a number of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers).
+
+If you left `ember test` running, it should have automatically updated to show the three tests related to navigating have now passed.
+
+In the screen recording below, we run the tests, deselect "Hide passed tests", and set the module to our acceptance test, revealing the 3 tests we got passing.
+
+![passing navigation tests](../../images/routes-and-templates/ember-route-tests.gif)

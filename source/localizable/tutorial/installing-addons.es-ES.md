@@ -6,9 +6,15 @@ Para Super Rentals, utilizaremos dos addons: [ember-cli-tutorial-style](https://
 
 ### ember-cli-tutorial-style
 
-En lugar de tener que copiar/pegar el CSS de Super Rentals, hemos creado un addon (complemento) llamado [ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style) que inmediatamente añadirá el CSS para el tutorial. El addon (complemento) funciona creando un archivo llamado `ember-tutorial.css` y poner ese archivo en el directorio `vendor` de super-rentals. As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in `vendor.css` (which is referenced in `app/index.html`). We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
+En lugar de tener que copiar/pegar el CSS de Super Rentals, hemos creado un addon (complemento) llamado [ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style) que inmediatamente añadirá el CSS para el tutorial. The addon works by generating a file called `ember-tutorial.css` and putting that file in the super-rentals `vendor` directory.
 
-Ejecuta el siguiente comando para instalar el addon (complemento):
+The [`vendor` directory](../../addons-and-dependencies/managing-dependencies/#toc_other-assets) in Ember is a special directory where you can include content that gets compiled into your application. When Ember CLI builds our app from our source code, it copies `ember-tutorial.css` into a file called `vendor.css`.
+
+As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in a file called `vendor.css`. The `vendor.css` file is referenced in `app/index.html`, making the styles available at runtime.
+
+We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
+
+Run the following command to install the addon:
 
 ```shell
 ember install ember-cli-tutorial-style
@@ -16,19 +22,17 @@ ember install ember-cli-tutorial-style
 
 Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will incorporate the new CSS and refreshing the browser window will give you this:
 
-![página de inicio de super rentals con estilos](../../images/installing-addons/styled-super-rentals-basic.png)
+![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
 
 ### ember-cli-mirage
 
-[Mirage](http://www.ember-cli-mirage.com/) es una biblioteca que permite generar respuestas HTTP, y es utilizada a menudo para pruebas de aceptación de Ember. Para el caso de este tutorial, usaremos mirage como nuestro origen de datos. Mirage nos permitirá crear datos falsos mientras desarrollamos nuestra aplicación y simular un servidor back-end en ejecución.
+[Mirage](http://www.ember-cli-mirage.com/) is a client HTTP stubbing library often used for Ember acceptance testing. For the case of this tutorial, we'll use mirage as our source of data. Mirage will allow us to create fake data to work with while developing our app and mimic a running backend server.
 
-Instalar el addon (complemento) de la siguiente forma:
+Install the Mirage addon as follows:
 
 ```shell
 ember install ember-cli-mirage
 ```
-
-Si te encuentras ejecutando `ember serve` en otra línea de comandos, reinicia el servidor para incluir Mirage en tu compilación.
 
 Let's now configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
@@ -95,3 +99,5 @@ export default DS.JSONAPIAdapter.extend({
 });
 
 ```
+
+If you were running `ember serve` in another shell, restart the server to include Mirage in your build.
