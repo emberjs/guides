@@ -1,6 +1,20 @@
 Welcome to the Ember.js Guides! This documentation will take you from
 total beginner to Ember expert.
 
+## What is Ember?
+
+Ember is a JavaScript front-end framework designed to help you build websites with rich and complex user interactions.
+It does so by providing developers both with many features that are essential to manage complexity in modern web applications,
+as well as an integrated development toolkit that enables rapid iteration.
+
+Some of these features that you'll learn about in the guides are:
+
+* [Ember CLI](/configuring-ember/configuring-ember-cli/) - A robust development toolkit to create, develop, and build Ember applications. When you see an `$ ember <command>` instruction throughout the guides, that's Ember CLI!
+* [Routing](/routing) — The central part of an Ember application. Enables developers to drive the application state from the URL.
+* [Templating engine](/templates/handlebars-basics/) — Use Handlebars syntax to write your application's templates
+* [Data layer](/models/) — Ember Data provides a consistent way to communicate with external APIs and manage application state
+* [Ember Inspector](/ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild, try to install it and open up the [NASA website](https://www.nasa.gov/)!
+
 ## Organization
 
 On the left side of each Guides page is a table of contents,
