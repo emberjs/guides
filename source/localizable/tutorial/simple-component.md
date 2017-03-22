@@ -158,6 +158,10 @@ Let's call this action `toggleImageSize`
 
 Clicking the anchor element will send the action to the component.
 Ember will then go into the `actions` hash and call the `toggleImageSize` function.
+
+An "actions hash" is an object in the component that contains functions.
+These functions are called when various UI actions occur, stemming mostly from user interaction such as a click event.
+
 Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
 
 ```app/components/rental-listing.js{+5,+6,+7,+8,+9}
