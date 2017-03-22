@@ -88,7 +88,7 @@ installing component-test
 
 これで、ユーザーからの要求によって賃貸物件画像を表示する機能を追加できるようになりました。
 
-Let's use the `{{if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
+`{{if}}`helper (ヘルパー) を使って、`isWide`がtrueに設定されているときだけ要素クラス名を`wide`に設定することで、現在の賃貸物件画像を大きく表示しましょう。 イメージがクリック可能だと示すテキストも追加します。そして、それらをアンカー要素でまとめ`image`クラスを与えることで、テストがそれを見つけられるようにします。
 
 ```app/templates/components/rental-listing.hbs{+2,+4,+5} <article class="listing"> <a class="image {{if isWide "wide"}}"> ![]({{rental.image}}) <small>View Larger</small> </a> 
 
@@ -110,8 +110,8 @@ Let's use the `{{if}}` helper to show our current rental image larger only when 
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article>
 
-    <br />The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
-    Since we want the image to be smaller at first, we will set the property to start as `false`:
+    <br />`isWide`の値は、component (コンポーネント)のJavaScriptファイル、この場合は`rental-listing.js`から与えられます。
+    はじめは画像を非表示にしたいので、次のようにプロパティを`false`に設定します。
     
     ```app/components/rental-listing.js{+4}
     import Ember from 'ember';
@@ -249,7 +249,7 @@ In the second test, we verify that clicking on the image toggles the size. We wi
 
 ```tests/integration/components/rental-listing-test.js test('should toggle wide class on click', function(assert) { this.set('rentalObj', rental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    The final test should look as follows:
+    テストは最終的に次のようになります。
     
     ```tests/integration/components/rental-listing-test.js
     import { moduleForComponent, test } from 'ember-qunit';
