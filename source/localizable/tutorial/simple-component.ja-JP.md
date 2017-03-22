@@ -145,7 +145,7 @@ To allow the user to widen the image, we will need to add an action that toggles
 
     <br />Clicking the anchor element will send the action to the component.
     Ember will then go into the `actions` hash and call the `toggleImageSize` function.
-    Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
+    コンポーネントに`toggleImageSize`関数を作成し、`isWide`プロパティをトグルするようにしましょう。
     
     ```app/components/rental-listing.js{+5,+6,+7,+8,+9}
     import Ember from 'ember';
