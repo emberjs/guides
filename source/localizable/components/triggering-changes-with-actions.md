@@ -414,7 +414,7 @@ export default Ember.Component.extend({
 When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree. 
 Using the action helper, parent components can pass actions to child components through templates alone without adding JavaScript code to those child components.
 
-For example, say we want move account deletion from the `user-profile` component to its parent `system-preferences-editor` to be handled.
+For example, say we want to move account deletion from the `user-profile` component to its parent `system-preferences-editor`.
 
 First we would move the `deleteUser` action from `user-profile.js` to the actions object on `system-preferences-editor`.
 
