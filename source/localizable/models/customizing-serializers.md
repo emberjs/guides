@@ -671,7 +671,7 @@ record.
 #### Ember Data's Normalized JSON Format
 
 The normalized JSON format that Ember Data expects is a
-[JSON API](http://jsonapi.org/) document with a couple additional
+[JSON API](http://jsonapi.org/) document with a couple of additional
 restrictions.
 
 First, it is important to make sure that the `type` name of a record
