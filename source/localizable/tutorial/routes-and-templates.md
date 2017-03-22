@@ -45,7 +45,7 @@ If we open `/app/router.js`, we'll see a new line of code for the **about** rout
 `this.route('about')` in the `Router.map` function. That new line of code tells the Ember router
 to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
-```app/router.js
+```app/router.js{+10}
 import Ember from 'ember';
 import config from './config/environment';
 
