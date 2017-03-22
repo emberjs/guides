@@ -40,7 +40,7 @@ An Ember route is built with three parts:
 
 If we open `/app/router.js`, we'll see a new line of code for the **about** route, calling `this.route('about')` in the `Router.map` function. That new line of code tells the Ember router to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
-```app/router.js import Ember from 'ember'; import config from './config/environment';
+```app/router.js{+10} import Ember from 'ember'; import config from './config/environment';
 
 const Router = Ember.Router.extend({ location: config.locationType, rootURL: config.rootURL });
 
