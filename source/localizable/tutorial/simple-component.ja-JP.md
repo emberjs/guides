@@ -121,7 +121,7 @@ installing component-test
     });
     
 
-To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`. Let's call this action `toggleImageSize`
+ユーザーが画像を拡大できるようにするには、`isWide`の値をトグルするアクションを追加する必要があります。 それでは、このアクション`toggleImageSize`アクションを呼び出しましょう。
 
 ```app/templates/components/rental-listing.hbs{+2} <article class="listing"> <a {{action 'toggleimagesize'}} class="image {{if isWide "wide"}}"> ![]({{rental.image}}) <small>View Larger</small> </a> 
 
@@ -143,8 +143,12 @@ To allow the user to widen the image, we will need to add an action that toggles
   <span>Number of bedrooms:</span> {{rental.bedrooms}}
 </div></article>
 
-    <br />Clicking the anchor element will send the action to the component.
-    Ember will then go into the `actions` hash and call the `toggleImageSize` function.
+    <br />アンカー要素をクリックすると、コンポーネントにアクションが送られます。
+    そうするとEmber は`actions`ハッシュに推移し、`toggleImageSize` ファンクションを呼び出します。
+    
+    An [actions hash](https://guides.emberjs.com/v2.12.0/templates/actions/) is an object in the component that contains functions.
+    These functions are called when the user interacts with the UI, such as clicking.
+    
     コンポーネントに`toggleImageSize`関数を作成し、`isWide`プロパティをトグルするようにしましょう。
     
     ```app/components/rental-listing.js{+5,+6,+7,+8,+9}
@@ -160,7 +164,7 @@ To allow the user to widen the image, we will need to add an action that toggles
     });
     
 
-Now when we click the image or the `View Larger` link in our browser, we see our image show larger. When we click the enlarged image again, we see it smaller.
+これで、ブラウザー上の`View Larger`リンクをクリックすると、画像が拡大されます。 そして、拡大された画像をクリックすれば、画像はまた小さくなります。
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
 

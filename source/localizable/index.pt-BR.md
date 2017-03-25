@@ -1,23 +1,35 @@
 Bem vindo ao guia de Ember.js! Esse guia irá te levar de iniciante a perito em Ember.
 
-## Organização
+## What is Ember?
 
-Ao lado esquerdo de cada página dos Guias há uma tabela de conteúdo, organizado em seções, que podem ser expandidas para mostrar os tópicos que eles cobrem. Ambas seções e os tópicos dentro de cada seção são ordenados dos conceitos mais básicos para os mais avançados.
+Ember is a JavaScript front-end framework designed to help you build websites with rich and complex user interactions. It does so by providing developers both with many features that are essential to manage complexity in modern web applications, as well as an integrated development toolkit that enables rapid iteration.
 
-Os guias tem o objetivo de conter explicações práticas de como construir aplicativos em Ember, enfocando os recursos mais utilizados do Ember.js. Para documentação detalhada de todos os recursos de Ember e da API, consulte a [documentação da API Ember.js](http://emberjs.com/api/).
+Some of these features that you'll learn about in the guides are:
+
+* [Ember CLI](./configuring-ember/configuring-ember-cli/) - A robust development toolkit to create, develop, and build Ember applications. When you see an `$ ember <command>` instruction throughout the guides, that's Ember CLI!
+* [Routing](./routing) - The central part of an Ember application. Enables developers to drive the application state from the URL.
+* [Templating engine](./templates/handlebars-basics/) - Use Handlebars syntax to write your application's templates
+* [Data layer](./models/) - Ember Data provides a consistent way to communicate with external APIs and manage application state
+* [Ember Inspector](./ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild, try to install it and open up the [NASA website](https://www.nasa.gov/)!
+
+## Organization
+
+On the left side of each Guides page is a table of contents, organized into sections that can be expanded to show the topics they cover. Both the sections and the topics within each section are ordered from basic to advanced concepts.
+
+The Guides are intended to contain practical explanations of how to build Ember apps, focusing on the most widely-used features of Ember.js. For comprehensive documentation of every Ember feature and API, see the [Ember.js API documentation](http://emberjs.com/api/).
 
 The Guides begin with an explanation of how to get started with Ember, followed by a tutorial on how to build your first Ember app. If you're brand new to Ember, we recommend you start off by following along with these first two sections of the Guides.
 
-## Pré-Requisitos
+## Assumptions
 
 While we try to make the Guides as beginner-friendly as we can, we must establish a baseline so that the guides can keep focused on Ember.js functionality. We will try to link to appropriate documentation whenever a concept is introduced.
 
-Para tirar o máximo de proveito dos guias, você deve ter conhecimento básico de:
+To make the most out of the guides, you should have a working knowledge of:
 
-* **HTML, CSS, JavaScript** - a base para construção de páginas web. Você pode encontrar a documentação de cada uma destas tecnologias em [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
-* **Promises** - a maneira nativa para lidar com assincronia no seu código JavaScript. Consulte a seção relevante do [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
+* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
 * **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](http://jsmodules.io/).
-* **ES2015 sintaxe** - Ember CLI vem com Babel.js por padrão, então você pode tirar proveito dos novos recursos de linguagem, como funções de seta, template strings, desestruturação e mais. Você pode verificar a [documentação de Babel.js](https://babeljs.io/docs/learn-es2015/) ou ler [compreendendo ECMAScript 6](https://leanpub.com/understandinges6/read) on-line.
+* **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can take advantage of newer language features such as arrow functions, template strings, destructuring, and more. You can check the [Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
 
 ## A Note on Mobile Performance
 
@@ -40,8 +52,8 @@ Typos, missing words, and code samples with errors are all considered documentat
 
 Some of the more common ways to report a problem with the guides are:
 
-* Usando o ícone de lápis na parte superior direita de cada página do guia
-* Abrindo uma issue ou pull request para [o repositório no GitHub](https://github.com/emberjs/guides/)
+* Using the pencil icon on the top-right of each guide page
+* Opening an issue or pull request to [the GitHub repository](https://github.com/emberjs/guides/)
 
 Clicking the pencil icon will bring you to GitHub's editor for that guide so you can edit right away, using the Markdown markup language. This is the fastest way to correct a typo, a missing word, or an error in a code sample.
 
