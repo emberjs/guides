@@ -428,7 +428,7 @@ and then sends a `keyup` event to the same field with a code of `69` (the `e` ke
 The test locates the results of the search by finding elements with a class of `listing`,
 which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component) section of the tutorial.
 
-Since we our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle",
+Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle",
 so we assert that the number of listings is one and that the location it displays is named, "Seattle".
 
 The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1,
