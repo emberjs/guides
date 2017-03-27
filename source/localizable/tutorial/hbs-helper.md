@@ -80,9 +80,9 @@ export function rentalPropertyType([type]) {
 export default Ember.Helper.helper(rentalPropertyType);
 ```
 
-Handlebars passes an array of arguments from our template to our helper.
-We are using [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get the first item in the array and name it `type`.
-Then we can check to see if `type` exists in our `communityPropertyTypes` array.
+Handlebars allows for an indefinite number of [arguments](../../templates/writing-helpers/#toc_helper-arguments) in the form of an array. This means that on each execution of the helper function, the number of arguments can change depending on how it's called in the template. For example, if you create a handlebars helper called `{{my-helper}}` and declare it in your template as `{{my-helper "foo" "bar"}}`, when the helper function gets called, it receives an array with two items, "foo" and "bar", in that order.
+
+To simplify the access of these arguments, we make use of the [ES2015 destructuring feature](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment), which allows us to give a name to each expected argument in the array. In the example above, `rentalPropertyType` uses destructuring to get the first item in the array and name it `type`. Then we can check to see if `type` exists in our `communityPropertyTypes` array.
 
 Now in our browser we should see that the first rental property is listed as "Standalone",
 while the other two are listed as "Community".
