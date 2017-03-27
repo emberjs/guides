@@ -19,11 +19,10 @@ download and run [this Git installer](http://git-scm.com/download/win).
 
 ### Node.js and npm
 
-Ember CLI is built with JavaScript, and expects the [Node.js](https://nodejs.org/)
+Ember CLI is built with JavaScript, and requires the most recent LTS version of the [Node.js](https://nodejs.org/)
 runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js
 installed you are ready to go.
 
-Ember requires Node.js 0.12 or higher and npm 2.7 or higher.
 If you're not sure whether you have Node.js or the right version, run this on your
 command line:
 

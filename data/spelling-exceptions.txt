@@ -290,6 +290,7 @@ CoffeeScript
 TypeScript
 preprocessor
 Linter
+LTS
 jslint
 interoperable
 SSR
