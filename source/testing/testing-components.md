@@ -45,14 +45,16 @@ component's `style` attribute and is reflected in the  rendered HTML:
 test('should change colors', function(assert) {
   assert.expect(2);
 
+  var subject = this.subject();
+
   // set the outer context to red
-  this.set('colorValue', 'red');
+  subject.set('colorValue', 'red');
 
   this.render(hbs`{{pretty-color name=colorValue}}`);
 
   assert.equal(this.$('div').attr('style'), 'color: red', 'starts as red');
 
-  this.set('colorValue', 'blue');
+  subject.set('colorValue', 'blue');
 
   assert.equal(this.$('div').attr('style'), 'color: blue', 'updates to blue');
 });
@@ -65,13 +67,15 @@ being rendered properly:
 test('should be rendered with its color name', function(assert) {
   assert.expect(2);
 
-  this.set('colorValue', 'orange');
+  var subject = this.subject();
+
+  subject.set('colorValue', 'orange');
 
   this.render(hbs`{{pretty-color name=colorValue}}`);
 
   assert.equal(this.$().text().trim(), 'Pretty Color: orange', 'text starts as orange');
 
-  this.set('colorValue', 'green');
+  subject.set('colorValue', 'green');
 
   assert.equal(this.$().text().trim(), 'Pretty Color: green', 'text switches to green');
 
@@ -167,8 +171,10 @@ of a test double (dummy function):
 ```tests/integration/components/comment-form-test.js
 test('should trigger external action on form submit', function(assert) {
 
+  var subject = this.subject();
+
   // test double for the external action
-  this.set('externalAction', (attributes) => assert.deepEqual(attributes, { comment: 'You are not a wizard!' }, 'submitted input value gets passed to external action'));
+  subject.set('externalAction', (attributes) => assert.deepEqual(attributes, { comment: 'You are not a wizard!' }, 'submitted input value gets passed to external action'));
 
   this.render(hbs`{{comment-form submitComment=(action externalAction)}}`);
 
@@ -264,9 +270,12 @@ when we modify the values on the service.
 test('should change displayed location when current location changes', function (assert) {
   this.render(hbs`{{location-indicator}}`);
   assert.equal(this.$().text().trim(), 'You currently are located in New York, USA', 'origin location should display');
-  this.set('location.city', 'Beijing');
-  this.set('location.country', 'China');
-  this.set('location.currentLocation', { x: 11111, y: 222222 });
+
+  var subject = this.subject();
+
+  subject.set('location.city', 'Beijing');
+  subject.set('location.country', 'China');
+  subject.set('location.currentLocation', { x: 11111, y: 222222 });
   assert.equal(this.$().text().trim(), 'You currently are located in Beijing, China', 'location display should change');
 });
 ```
