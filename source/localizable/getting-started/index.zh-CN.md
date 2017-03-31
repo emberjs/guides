@@ -15,9 +15,9 @@ Ember 需要 Git 来管理许多它依赖的东西。 Mac OS X 和大多数 Linu
 
 ### Node.js 和 npm
 
-Ember CLI 使用 JavaScript 编写，并且需要 [Node.js](https://nodejs.org/) 运行环境的支持。 它还需要通过 [npm](https://www.npmjs.com/) 来获取依赖的模块和软件包。 npm 是打包在 Node.js 中的，所以如果你的电脑只需要安装 Node.js 就可以了。
+Ember CLI is built with JavaScript, and requires the most recent LTS version of the [Node.js](https://nodejs.org/) runtime. 它还需要通过 [npm](https://www.npmjs.com/) 来获取依赖的模块和软件包。 npm 是打包在 Node.js 中的，所以如果你的电脑只需要安装 Node.js 就可以了。
 
-Ember 需要 Node.js 0.12 或是更高版本以及 npm 2.7 及以上版本。若你无法确定你是否安装了 Node.js 以及版本号是否合乎要求，那就在命令行运行以下命令：
+If you're not sure whether you have Node.js or the right version, run this on your command line:
 
 ```bash
 node --version

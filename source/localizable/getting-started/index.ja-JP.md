@@ -15,9 +15,9 @@ Emberは依存関係の多くを管理するのにGitを利用しています。
 
 ### Node.js とnpm
 
-Ember CLIはJavaScriptで作られていて、実行には[Node.js](https://nodejs.org/)ランタイムが必要となります。 また、[npm](https://www.npmjs.com/)を通して依存関係のあるライブラリを取得する必要があります。 npmはNode.jsとともにインストールされます。ですので、Node.jsがすでにインストール済みでしたら、あなたは先に進む準備ができています。
+Ember CLI is built with JavaScript, and requires the most recent LTS version of the [Node.js](https://nodejs.org/) runtime. また、[npm](https://www.npmjs.com/)を通して依存関係のあるライブラリを取得する必要があります。 npmはNode.jsとともにインストールされます。ですので、Node.jsがすでにインストール済みでしたら、あなたは先に進む準備ができています。
 
-EmberはNode.js 0.12かそれ以上、npm 2.7かそれ以上を必要とします。もしNode.jsがインストールされているかわからない、あるいはバージョンが不明な場合は、コマンドライン上で以下を実行してください。
+If you're not sure whether you have Node.js or the right version, run this on your command line:
 
 ```bash
 node --version

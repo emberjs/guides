@@ -1,4 +1,4 @@
-By default, each component is backed by a `<div>` element. If you were to look at a rendered component in your developer tools, you would see a DOM representation that looked something like:
+Por defecto, cada componente está respaldado por un elemento `<div>`. If you were to look at a rendered component in your developer tools, you would see a DOM representation that looked something like:
 
 ```html
 <div id="ember180" class="ember-view">

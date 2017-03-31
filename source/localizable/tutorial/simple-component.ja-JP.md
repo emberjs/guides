@@ -146,8 +146,8 @@ installing component-test
     <br />アンカー要素をクリックすると、コンポーネントにアクションが送られます。
     そうするとEmber は`actions`ハッシュに推移し、`toggleImageSize` ファンクションを呼び出します。
     
-    An [actions hash](https://guides.emberjs.com/v2.12.0/templates/actions/) is an object in the component that contains functions.
-    These functions are called when the user interacts with the UI, such as clicking.
+    [actionハッシュ](../../templates/actions/) は関数を含むコンポーネント内のオブジェクトです。
+    これらの関数は、クリック操作など、ユーザーがUIを操作した際に呼び出されます。
     
     コンポーネントに`toggleImageSize`関数を作成し、`isWide`プロパティをトグルするようにしましょう。
     
@@ -168,18 +168,18 @@ installing component-test
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
 
-Move on to the [next page](../hbs-helper/) for the next feature, or continue on here to test what you just wrote.
+次の機能を作るために[次のページ](../hbs-helper/)に移るか、このまま続けて、上記で書いたコードをテストしてください。
 
-### An Integration Test
+### 結合テスト
 
-Ember components are commonly tested with [component integration tests](../../testing/testing-components/). Component integration tests verify the behavior of a component within the context of Ember's rendering engine. When running in an integration test, the component goes through its regular [render lifecycle](../../components/the-component-lifecycle/), and has access to dependent objects, loaded through Ember's resolver.
+Emberコンポーネントは、通常[コンポーネント用の結合テスト](../../testing/testing-components/)によってテストされています。 コンポーネント用の結合テストは、Emberのレンダリングエンジンのコンテキスト内でのコンポーネントの動作を検証します。 結合テストを実行すると、コンポーネントは通常の[レンダリングライフサイクル](../../components/the-component-lifecycle/)を経由し、Emberのリゾルバによって読み込まれた依存オブジェクトへの参照を持ちます。
 
-Our component integration test will test two different behaviors:
+ここでのコンポーネント結合テストでは、2つの異なる動作をテストします。
 
-* The component should show details about the rental
-* The component should toggle the existence of a wide class on click, to expand and shrink the photo of the rental.
+* コンポーネントは賃貸物件についての詳細を表示すべきです
+* 賃貸物件の写真を拡大縮小するために、コンポーネントはクリックによってwideクラスの存在をトグルすべきです
 
-Let's update the default test to contain the scenarios we want to verify:
+それでは、検証したいシナリオを含むようテストを更新しましょう。
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -193,9 +193,9 @@ test('should toggle wide class on click', function(assert) {
 
 });
 
-    <br />For the test we'll pass the component a fake object that has all the properties that our rental model has.
-    We'll give the variable the name `rental`, and in each test we'll set `rental` to our local scope, represented by the `this` object.
-    The render template can access values in local scope.
+    <br />テスト用に、賃貸物件モデルが持っているすべてのプロパティを持つ偽オブジェクトをコンポーネントに渡します。
+    `rental`という変数名にし、`this`オブジェクトによって表現される各テストのローカルスコープに、その`rental`を設定します。
+    描画テンプレートはローカルスコープ内の値にアクセスできます。
     
     ```tests/integration/components/rental-listing-test.js
     import { moduleForComponent, test } from 'ember-qunit';
@@ -224,7 +224,7 @@ test('should toggle wide class on click', function(assert) {
     });
     
 
-Now lets render our component using the `render` function. The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates. Since we set the `rentalObj` variable to our local scope, we can access it as part of our render string.
+それでは、`render`関数を使ってコンポーネントを描画しましょう。 `render`関数にはテンプレート文字列を渡せるので、テンプレート内で行うのと同じ方法でコンポーネントを宣言できます。 ローカルスコープに`rentalObj`変数を設定することで、描画文字列の一部としてその内容にアクセスできます。
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
@@ -236,9 +236,9 @@ test('should display rental details', function(assert) { this.set('rentalObj', r
 
 test('should toggle wide class on click', function(assert) { this.set('rentalObj', rental); this.render(hbs`{{rental-listing rental=rentalObj}}`); });
 
-    <br />Finally, lets add our actions and assertions.
+    <br />最後に、アクションと検証処理を追加しましょう。
     
-    In the first test, we just want to verify the output of the component, so we just assert that the title and owner text match what we provided in the fake `rental`.
+    最初のテストではコンポーネントの出力を検証したいので、タイトルと所有者のテキストが偽の`rental`に設定した内容と一致することだけを検証します。
     
     ```tests/integration/components/rental-listing-test.js
     test('should display rental details', function(assert) {
@@ -249,7 +249,7 @@ test('should toggle wide class on click', function(assert) { this.set('rentalObj
     });
     
 
-In the second test, we verify that clicking on the image toggles the size. We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away. Note that we find the image element using the CSS selector `.image`.
+2つ目のテストでは、画像をクリックするとサイズが切り替わるかを検証します。 まず、コンポーネントが最初には`wide`と言うクラスが付かずに描画されることを検証します。 そして画像をクリックするとその要素に`wide`クラスが付与され、もう一度クリックされると`wide`クラスが取り除かれることを検証します。 CSSセレクタ`.image`を使って画像を見つけていることに注目してください。.
 
 ```tests/integration/components/rental-listing-test.js test('should toggle wide class on click', function(assert) { this.set('rentalObj', rental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
@@ -291,4 +291,4 @@ In the second test, we verify that clicking on the image toggles the size. We wi
     });
     
 
-Run `ember t -s` to verify that our new test is passing. To find the new test, locate "Integration | Component | rental listing" in the "Module" field of the test UI.
+新しいテストが通ることを検証するために、`ember t -s`を実行してください。新しいテストの結果を見つけるには、テスト結果の "Module" フィールド内の "Integration | Component | rental listing" を探してください。

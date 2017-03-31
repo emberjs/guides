@@ -1,4 +1,4 @@
-As they search for a rental, users might also want to narrow their search to a specific city. Let's build a component that will let them filter rentals by city.
+As they search for a rental, users might also want to narrow their search to a specific city. While our [initial](../simple-component/) rental listing component only displayed rental information, this new filter component will also allow the user to provide input in the form of filter criteria.
 
 To begin, let's generate our new component. We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
@@ -12,7 +12,11 @@ As before when we created the [`rental-listing` component](../simple-component),
 * a JavaScript file (`app/components/list-filter.js`),
 * and a component integration test (`tests/integration/components/list-filter-test.js`).
 
-In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component. Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20. This is because our component passes, or "yields" data to the inner markup. In this case we are yielding our filter results as a variable called `rentals` (line 14).
+In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
+
+Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20. This is an example of the [**block form**](/components/wrapping-content-in-a-component) of a component, which allows a Handlebars template to be rendered *inside* the component's template wherever the `{{yield}}` expression appears.
+
+In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
 ```app/templates/rentals.hbs 
 
@@ -49,7 +53,11 @@ In our `app/templates/rentals.hbs` template file, we'll add a reference to our n
     {{yield results}}
     
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be bound to the `value` property in our component. The `key-up` property will be bound to the `handleFilterEntry` action.
+The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be kept in sync with the `value` property in the component.
+
+Another way to say this is that the `value` property of `input` is [**bound**](../../object-model/bindings/) to the `value` property of the component. If the property changes, either by the user typing in the input field, or by assigning a new value to it in our program, the new value of the property is present in both the rendered web page and in the code.
+
+The `key-up` property will be bound to the `handleFilterEntry` action.
 
 Here is what the component's JavaScript looks like:
 
@@ -341,7 +349,7 @@ Our test fills out "Seattle" as the search criteria in the search field, and the
 
 The test locates the results of the search by finding elements with a class of `listing`, which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component) section of the tutorial.
 
-Since we our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle", so we assert that the number of listings is one and that the location it displays is named, "Seattle".
+Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle", so we assert that the number of listings is one and that the location it displays is named, "Seattle".
 
 The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1, and the item displayed shows "Seattle"" as the location
 
