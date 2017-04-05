@@ -27,7 +27,7 @@ but any event handling behavior implemented in the component is retained such as
 {{#blog-post post=model as |title body author|}}
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
-  <div class="post-body">{{body}}</p>
+  <p class="post-body">{{body}}</p>
 {{/blog-post}}
 ```
 
@@ -40,9 +40,7 @@ using the `hasBlock` property.
 
 ```app/templates/components/blog-post.hbs
 {{#if hasBlock}}
-  {{yield post.title}}
-  {{yield post.body}}
-  {{yield post.author}}
+  {{yield post.title post.body post.author}}  
 {{else}}
   <h1>{{post.title}}</h1>
   <p class="author">Authored by {{post.author}}</p>
