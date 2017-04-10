@@ -198,45 +198,48 @@ export default PaymentMethod.extend({
 And our API might setup these relationships like so:
 
 ```json
-"data":{
-   "id":"8675309",
-   "type":"user",
-   "attributes":{
-      "name":"Anfanie Farmeo"
-   },
-   "relationships":{
-      "payment-methods":{
-         "data":[
-            { "id":1, "type":"PaymentMethodPaypal" },
-            { "id":2, "type":"PaymentMethodCc" },
-            { "id":3, "type":"PaymentMethodApplePay" }
-         ]
-      }
-   }
-},
-"included":[
-   {
-      "id":1,
-      "type":"PaymentMethodPaypal",
-      "attributes":{
-         "linked-email":"ryan@gosling.io",
-      }
-   },
-   {
-      "id":2,
-      "type":"PaymentMethodCc",
-      "attributes":{
-         "last4":"1335"
-      }
-   },
-   {
-      "id":3,
-      "type":"PaymentMethodCc",
-      "attributes":{
-         "last4":"5513"
-      }
-   },
-]
+{
+	"data": {
+		"id": "8675309",
+		"type": "user",
+		"attributes": {
+			"name": "Anfanie Farmeo"
+		},
+		"relationships": {
+			"payment-methods": {
+				"data": [{
+					"id": "1",
+					"type": "PaymentMethodPaypal"
+				}, {
+					"id": "2",
+					"type": "PaymentMethodCc"
+				}, {
+					"id": "3",
+					"type": "PaymentMethodApplePay"
+				}]
+			}
+		}
+	},
+	"included": [{
+		"id": "1",
+		"type": "PaymentMethodPaypal",
+		"attributes": {
+			"linked-email": "ryan@gosling.io"
+		}
+	}, {
+		"id": "2",
+		"type": "PaymentMethodCc",
+		"attributes": {
+			"last4": "1335"
+		}
+	}, {
+		"id": "3",
+		"type": "PaymentMethodCc",
+		"attributes": {
+			"last4": "5513"
+		}
+	}]
+}
 ```
 
 ### Readonly Nested Data
