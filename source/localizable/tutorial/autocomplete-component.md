@@ -224,7 +224,7 @@ test('should initially load all listings', function (assert) {
 ```
 
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
-We provide an action function by setting it to our test's local scope by calling `this.on`.
+We provide an action function by setting it to the local scope of our test by calling `this.on`.
 
 ```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21}
 import { moduleForComponent, test } from 'ember-qunit';
