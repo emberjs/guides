@@ -224,7 +224,7 @@ test('should initially load all listings', function (assert) {
 ```
 
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
-We provide an action function by setting it to our tests local scope by calling `this.on`.
+We provide an action function by setting it to our test's local scope by calling `this.on`.
 
 ```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21}
 import { moduleForComponent, test } from 'ember-qunit';
@@ -314,9 +314,9 @@ Ember's [wait helper](../../testing/testing-components/#toc_waiting-on-asynchron
 waits for all asynchronous tasks to complete before running the given function callback.
 It returns a promise that we also return from the test.
 
-If you return a promise from a QUnit test, The test will wait to finish until that promise is resolved.
+If you return a promise from a QUnit test, the test will wait to finish until that promise is resolved.
 In this case our test completes when the `wait` helper decides that processing is finished,
-and the function we provide that assert the resulting state is completed.
+and the function we provide that asserts the resulting state is completed.
 
 ```tests/integration/components/list-filter-test.js{+3,+37,+38,+39,+40}
 import { moduleForComponent, test } from 'ember-qunit';
@@ -403,7 +403,7 @@ You can verify this by starting up our test suite by typing `ember t -s` at the 
 
 ### Acceptance Tests
 
-Now that we've tested that the `list-filter` component behaves as expected, lets test that the page itself also behaves properly with an acceptance test.
+Now that we've tested that the `list-filter` component behaves as expected, let's test that the page itself also behaves properly with an acceptance test.
 We'll verify that a user visiting the rentals page can enter text into the search field and narrow the list of rentals by city.
 
 Open our existing acceptance test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
@@ -426,7 +426,7 @@ We introduce two new helpers into this test, `fillIn` and `keyEvent`.
 * The [`fillIn`](http://emberjs.com/api/classes/Ember.Test.html#method_fillIn) helper "fills in" the given text into an input field matching the given selector.
 * The [`keyEvent`](http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
-In `app/components/list-filter.js`, we have the top-level element rendered by the component a class called `list-filter`.
+In `app/components/list-filter.js`, we have as the top-level element rendered by the component a class called `list-filter`.
 We locate the search input within the component using the selector `.list-filter input`,
 since we know that there is only one input element located in the list-filter component.
 
@@ -440,9 +440,9 @@ Since our data is hard-coded in Mirage, we know that there is only one rental wi
 so we assert that the number of listings is one and that the location it displays is named, "Seattle".
 
 The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1,
-and the item displayed shows "Seattle"" as the location
+and the item displayed shows "Seattle" as the location.
 
-You should be down only 2 failing tests.  One remaining acceptance test failure, and our JSHint test that fails on an unused assert for our unimplemented test.
+You should be down to only 2 failing tests: One remaining acceptance test failure; and our JSHint test that fails on an unused assert for our unimplemented test.
 
 ![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)
 
