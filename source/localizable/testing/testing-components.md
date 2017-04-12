@@ -253,7 +253,7 @@ moduleForComponent('location-indicator', 'Integration | Component | location ind
 
   beforeEach: function () {
     this.register('service:location-service', locationStub);
-    // Calling inject puts the service instance in the test's context,
+    // Calling inject puts the service instance in the context of the test,
     // making it accessible as "locationService" within each test
     this.inject.service('location-service', { as: 'locationService' });
   }
