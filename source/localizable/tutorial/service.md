@@ -217,7 +217,7 @@ export default Ember.Component.extend({
 });
 ```
 
-You may have noticed that this.get('location') refers to a property location we haven't defined.
+You may have noticed that `this.get('location')` refers to a property location we haven't defined.
 This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
@@ -305,7 +305,7 @@ In our first test notice that we expect four asserts to be run in line 17. Two o
 In the second test, only one assert is expected (line 26), since the map element is fetched from cache and does not use the utility.
 
 Also, note that the second test uses a dummy object as the returned map element (defined on line 4).
-Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 34).
+Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 32).
 
 The location in the cache has been [`camelized`](http://emberjs.com/api/classes/Ember.String.html#method_camelize) (line 30),
 so that it may be used as a key to look up our element.
@@ -313,7 +313,7 @@ This matches the behavior in `getMapElement` when city has not yet been cached.
 
 ### Integration Testing the Map Component
 
-Now lets test that the map component is relying on our service to provide map elements.
+Now let's test that the map component is relying on our service to provide map elements.
 
 To limit the test to validating only its own behavior and not the service, we'll take advantage of the registration API to register a stub maps service.
 That way when Ember injects the map service into the component, it uses our fake service instead of the real one.
