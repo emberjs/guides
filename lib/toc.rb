@@ -78,6 +78,19 @@ module TOC
       end
     end
 
+    def old_version_warning
+      %Q{
+        <div class="old-version-warning">
+          <i class="icon-attention-circled"></i>
+          <strong>Old Guides - </strong>
+          You are viewing the guides for Ember v1.11.0
+          <a href="/" class="btn">
+            VIEW <span class='latest-version'>LATEST</span>
+          </a>
+        </div>
+      }
+    end
+
     def chapter_heading
       name = chapter_name.strip
       return if name.blank?
