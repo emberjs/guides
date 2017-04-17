@@ -53,10 +53,6 @@ commonly extended adapter. The `RESTAdapter` allows your store to
 communicate with an HTTP server by transmitting JSON via XHR. Most
 Ember.js apps that consume a JSON API should use the REST adapter.
 
-- [DS.ActiveModelAdapter](http://emberjs.com/api/data/classes/DS.ActiveModelAdapter.html)
-is a specialized version of the `RESTAdapter` that is set up to work
-out of the box with Rails-style REST APIs.
-
 
 ## Customizing the RESTAdapter
 
