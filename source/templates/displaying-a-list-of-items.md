@@ -43,10 +43,10 @@ and related [Ember Mutable Array methods](http://emberjs.com/api/classes/Ember.M
   property. Make sure the value you pass to `key` is unique!
 
   There are a few special values for `key`:
-    * `@index` - The index of the item in the array.
-    * `@item` - The item in the array itself.  This can only be used for arrays of strings
-      or numbers.
-    * `@guid` - Generate a unique identifier for each object (uses `Ember.guidFor`).
+  
+  * `@index` - The index of the item in the array.
+  * `@item` - The item in the array itself.  This can only be used for arrays of strings or numbers.
+  * `@guid` - Generate a unique identifier for each object (uses `Ember.guidFor`).
 
 
 ### Empty Lists
