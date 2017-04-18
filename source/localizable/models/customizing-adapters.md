@@ -93,11 +93,11 @@ JSON API adapter:
     <tr><th>Action</th><th>HTTP Verb</th><th>URL</th></tr>
   </thead>
   <tbody>
-    <tr><th>Find</th><td>GET</td><td>/posts/123</td></tr>
-    <tr><th>Find All</th><td>GET</td><td>/posts</td></tr>
-    <tr><th>Update</th><td>PATCH</td><td>/posts/123</td></tr>
-    <tr><th>Create</th><td>POST</td><td>/posts</td></tr>
-    <tr><th>Delete</th><td>DELETE</td><td>/posts/123</td></tr>
+    <tr><th>findRecord</th><td>GET</td><td>/posts/123</td></tr>
+    <tr><th>findAll</th><td>GET</td><td>/posts</td></tr>
+    <tr><th>update</th><td>PATCH</td><td>/posts/123</td></tr>
+    <tr><th>create</th><td>POST</td><td>/posts</td></tr>
+    <tr><th>delete</th><td>DELETE</td><td>/posts/123</td></tr>
   </tbody>
 </table>
 
