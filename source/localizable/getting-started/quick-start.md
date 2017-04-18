@@ -265,8 +265,7 @@ directory.
 
 The Ember community values collaboration and building common tools that
 everyone relies on. If you're interested in deploying your app to
-production in a fast and reliable way, check out the [Ember CLI
-Deploy][ember-deploy] addon.
+production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.github.io/ember-cli-deploy/) addon.
 
 [ember-deploy]: http://ember-cli-deploy.com/
 
