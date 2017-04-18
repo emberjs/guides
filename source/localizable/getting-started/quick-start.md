@@ -222,14 +222,7 @@ curly braces (`{{component}}`). We're going to tell our component:
 2. What array of people to use, via the `people` attribute. We'll
    provide this route's `model` as the list of people.
 
-```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
-<h2>List of Scientists</h2>
-
-<ul>
-  {{#each model as |scientist|}}
-    <li>{{scientist}}</li>
-  {{/each}}
-</ul>
+```app/templates/scientists.hbs
 {{people-list title="List of Scientists" people=model}}
 ```
 
