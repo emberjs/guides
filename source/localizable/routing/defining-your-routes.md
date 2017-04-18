@@ -124,7 +124,18 @@ the `{{outlet}}` of the `posts` template.
 A nested route's names includes the names of its ancestors.
 If you want to transition to a route (either
 via `transitionTo` or `{{#link-to}}`), make sure to use the full route
-name (`posts.new`, not `new`).
+name (`posts.new`, not `new`). If you don't want to use the full route
+name (e.g., because a resource can be accessed in multiple locations), use the
+`resetNamespace` option. This will not change the structure of the URL, it
+merely shortens the route name.
+
+```app/router.js
+Router.map(function() {
+  this.route('posts', function() {
+    this.route('post', { path: '/:post_id', resetNamespace: true});
+  });
+});
+```
 
 ## The application route
 
