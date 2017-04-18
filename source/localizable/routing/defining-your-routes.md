@@ -39,6 +39,28 @@ Router.map(function() {
 });
 ```
 
+If your route name has multiple words then your route should follow
+convention and be hyphenated. Routes with underscores in them will
+not be rendered.
+
+```app/router.js
+Router.map(function() {
+  this.route('home');
+  this.route('long-route-name'); // will render template on route
+  this.route('long_route_name'); // will not render template
+});
+```
+
+By default the path in the URL bar will be the same as your route
+name. If you need something other than the dasherized route in your
+URL bar you can use the path option to customize it.
+
+```app/router.js
+Router.map(function() {
+  this.route('long-route-name', { path: '/long_route_name' });
+});
+```
+
 Inside your templates, you can use [`{{link-to}}`][1] to navigate between
 routes, using the name that you provided to the `route` method.
 
