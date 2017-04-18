@@ -19,7 +19,7 @@ La expresión de bloque puede usar parámetros de bloque para enlazar nombres a 
 {{#blog-post post=model as |title body author|}}
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
-  <div class="post-body">{{body}}</p>
+  <p class="post-body">{{body}}</p>
 {{/blog-post}}
 ```
 
@@ -30,9 +30,7 @@ Los nombres son enlazados en el orden en que son pasados a `yield` en la plantil
 Es posible el uso de un componente en ambas formas, block y non-block desde una plantilla única de componente utilizando la propiedad `hasBlock`.
 
 <pre><code class="app/templates/components/blog-post.hbs">{{#if hasBlock}}
-  {{yield post.title}}
-  {{yield post.body}}
-  {{yield post.author}}
+  {{yield post.title post.body post.author}}  
 {{else}}
   &lt;h1&gt;{{post.title}}&lt;/h1&gt;
   &lt;p class="author"&gt;Authored by {{post.author}}&lt;/p&gt;

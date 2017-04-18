@@ -66,7 +66,7 @@ The `signUp` action is simply a function defined on the `actions` hash of a comp
 
 ```js
 actions: {
-  signUp: function(event){ 
+  signUp(event){ 
     // Only when assigning the action to an inline handler, the event object
     // is passed to the action as the first parameter.
   }
@@ -81,7 +81,7 @@ The normal behavior for a function defined in `actions` does not receive the bro
 
 ```js
 actions: {
-  signUp: function(){
+  signUp(){
     // No event object is passed to the action.
   }
 }

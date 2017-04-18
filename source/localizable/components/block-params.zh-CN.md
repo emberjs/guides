@@ -19,7 +19,7 @@ The block expression can then use block params to bind names to any yielded valu
 {{#blog-post post=model as |title body author|}}
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
-  <div class="post-body">{{body}}</p>
+  <p class="post-body">{{body}}</p>
 {{/blog-post}}
 ```
 
@@ -30,9 +30,7 @@ The names are bound in the order that they are passed to `yield` in the componen
 It is possible to support both block and non-block usage of a component from a single component template using the `hasBlock` property.
 
 <pre><code class="app/templates/components/blog-post.hbs">{{#if hasBlock}}
-  {{yield post.title}}
-  {{yield post.body}}
-  {{yield post.author}}
+  {{yield post.title post.body post.author}}  
 {{else}}
   &lt;h1&gt;{{post.title}}&lt;/h1&gt;
   &lt;p class="author"&gt;Authored by {{post.author}}&lt;/p&gt;

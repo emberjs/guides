@@ -1,12 +1,12 @@
-For Super Rentals, we want to arrive at a home page which displays a list of rentals. From there, we should be able to visit an about page and our contact page.
+Super Rentalsでは、homeページを開くと賃貸物件の一覧を閲覧でき、そこからaboutページやcontactページへと遷移するようにします。
 
 ## ルートに関して
 
-Let's start by building our "about" page.
+それでは、まず"about"ページの作成から始めましょう。
 
-In Ember, when we want to make a new page that can be visited using a URL, we need to generate a "route" using Ember CLI. For a quick overview of how Ember structures things, see [our diagram on the Core Concepts page](../../getting-started/core-concepts/).
+Emberでは、URLを通して訪れることが可能な新しいページを作りたいときには、Ember CLIを使って「ルート (route)」を生成する必要があります。 Emberがどのような構成になっているかの概要は、 [中核となる概念のページにある図](../../getting-started/core-concepts/)を参照してください。.
 
-Let's use Ember's route generator to start our `about` route.
+では、ルートジェネレータを使って、`about`ルートを作成していきましょう。
 
 ```shell
 ember generate route about
@@ -18,9 +18,9 @@ ember generate route about
 ember g route about
 ```
 
-*Note: Running `ember help generate` will list a number of other Ember resources you can create as well ...*
+*NOTE: `ember help generate`を実行すると、このコマンドを使って作成できる他のEmberリソースが一覧されます。*
 
-And here's what our generator prints out:
+コマンドを実行すると、以下のような出力がされます。
 
 ```shell
 installing route
@@ -32,7 +32,7 @@ installing route-test
   create tests/unit/routes/about-test.js
 ```
 
-An Ember route is built with three parts:
+Emberルートは以下の3つの部品で構成されます。
 
   1. An entry in the Ember router (`/app/router.js`), which maps between our route name and a specific URI
   2. A route handler file, which sets up what should happen when that route is loaded *`(app/routes/about.js)`*
@@ -49,8 +49,7 @@ Router.map(function() { this.route('about'); });
 export default Router;
 
     <br />Because we only plan to display static contact on our about page, we won't adjust the `/app/routes/about.js`
-    route handler file right now. Instead, let's open our `/app/templates/about.hbs` template file and add some info about
-    Super Rentals:
+    route handler file right now. 代わりに、テンプレートファイル`/app/templates/about.hbs`を開いてSuper Rentalsについての情報をいくつか追加しましょう。
     
     ```app/templates/about.hbs
     <div class="jumbo">
@@ -112,7 +111,7 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
     page on the contact page.
     
     To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
-    that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
+    that makes it easy to link between our routes.  それでは`about.hbs`を調整しましょう。
     
     ```app/templates/about.hbs{+9,+10,+11}
     <div class="jumbo">

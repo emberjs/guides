@@ -1,22 +1,22 @@
-For Super Rentals, we want to be able to display a map showing where each rental is. To implement this feature, we will take advantage of several Ember concepts:
+Super Rentalsでは、各賃貸物件の場所を示す地図を表示できるようにしたいと考えています。 この機能を実装するために、いくつかのEmberの概念を利用します。
 
-  1. A utility function to create a map from the Google Maps API.
+  1. Google Maps APIから地図を作成するためのユーティリティ関数
   2. 描画された地図のキャッシュをアプリケーションのさまざまな場所で使用するための service (サービス)
-  3. A component to display a map on each rental listing.
+  3. それぞれの賃貸物件の地図を表示するcomponent (コンポーネント)
 
-### Making Google Maps Available
+### Googleマップを利用できるようにする
 
-Before implementing a map, we need to make a 3rd party map API available to our Ember app. There are several ways to include 3rd party libraries in Ember. See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/) as a starting point when you need to add one.
+地図ユーティリティを実装する前に、EmberアプリケーションでサードパーティマップAPIを利用できるようにする必要があります。 Emberにサードパーティライブラリを含めるにはいくつかの方法があります。 サードパーティライブラリを追加する方法は、[依存関係を管理する](../../addons-and-dependencies/managing-dependencies/)のガイドを参照してください。
 
-Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
+GoogleはマップAPIをリモートスクリプトとして提供しています。curlを使用してプロジェクトのvendorディレクトリにダウンロードしましょう。
 
-From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`. `Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
+プロジェクトのルートディレクトリから次のコマンドを実行して、Google Mapのスクリプトを`gmaps.js`という名前でプロジェクトのvenderフォルダの下に置きます。 `Curl`はUNIXコマンドです。もしWindowsを使っている場合は[Windows bash サポート](https://msdn.microsoft.com/en-us/commandline/wsl/about)を活用するか、別の方法を使って、スクリプトをvenderディレクトリの下にダウンロードする必要があります。
 
 ```shell
 curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
 ```
 
-Once in the vendor directory, the script can be built into the app. We just need to tell Ember CLI to import it using our build file:
+vendorディレクトリに入れることで、スクリプトをアプリに組み込むことができます。 あとは、ビルドファイルを使って、Ember CLIにインポートするよう指示するだけです。
 
 <pre><code class="ember-cli-build.js{+22}">/*jshint node:true*/
 /* global require, module */
@@ -45,19 +45,19 @@ module.exports = function(defaults) {
 };
 </code></pre>
 
-### Accessing the Google Maps API with a Utility
+### ユーティリティを使ってGoogle Maps APIにアクセスする
 
-Ember utilities are reusable code that can be accessed from various parts of the application. For Super Rentals, we'll use a utility to access the Google Maps API. The utility will abstract the Google API away from our Maps service, which will allow for future reuse of the maps API within the application, easier refactoring to alternate maps implementations, and easier testing of code that depends on it.
+Emberのユーティリティはアプリケーションの様々な箇所からアクセスできる再利用可能なコードです。 Super Rentals向けに、ここではGoogle Maps APIにアクセスするユーティリティを使用します。 ユーティリティはMapsサービスからGoogle APIを抽象化し、アプリケーション内で地図APIを再利用できるようにし、別の地図APIへの切り替えや依存しているコードのテストを容易にします。
 
-Now that we have the maps API available to the application, we can create our map utility. Utility files can be generated using Ember CLI.
+アプリケーションでマップAPIを使用できるようになったので、マップユーティリティを作成できます。 ユーティリティファイルは、Ember CLIを使用して生成することができます。
 
 ```shell
 ember g util google-maps
 ```
 
-The CLI `generate util` command will create a utility file and a unit test. We'll delete the unit test since we don't want to test Google code.
+CLIの`generate util`コマンドは、ユーティリティファイルとユニットテストを生成します。ここではGoogleのコードをテストしたいわけではないので、ユニットテストは削除します。
 
-Our app needs a single function, `createMap`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
+このアプリケーションには`createMap`という関数が必要です。この関数では、` google.maps.Map`を使用して地図要素を作成し、`google.maps.Geocoder`を使って場所の座標を検索し、`google.maps.Marker`を使って解決された位置情報に基づいて地図上にピンを立てます。
 
 <pre><code class="app/utils/google-maps.js">import Ember from 'ember';
 
@@ -89,9 +89,9 @@ export default Ember.Object.extend({
 });
 </code></pre>
 
-### Fetching Maps With a Service
+### サービスを使って地図を取得する
 
-Now that we are able to generate a map element, we will implement a maps service that will keep a reference to the Map object we create, and attach the map to an element in our application
+これで地図要素を生成できるので、作成したMapオブジェクトへの参照を保持する地図サービスを実装し、アプリケーションに地図を表示させましょう。
 
 Accessing our maps API through a [service](../../applications/services) will give us several benefits
 
@@ -142,7 +142,7 @@ export default Ember.Service.extend({
 });
 ```
 
-### Display Maps With a Component
+### コンポーネントで地図を表示する
 
 With a service and utility that render a map to a web page element, we'll connect it to our application using a component.
 
@@ -179,7 +179,7 @@ export default Ember.Component.extend({
 });
 </code></pre>
 
-You may have noticed that this.get('location') refers to a property location we haven't defined. This property will be passed in to the component by its parent template below.
+You may have noticed that `this.get('location')` refers to a property location we haven't defined. This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
@@ -211,7 +211,7 @@ After starting the server we should now see some end to end maps functionality s
 
 You may now either move onto the [next feature](../subroutes/), or continue here to test the maps feature we just added.
 
-### Unit testing a Service
+### サービスのユニットテスト
 
 We'll use a unit test to validate the service. Unit tests are more isolated than integration tests and acceptance test, and are intended for testing specific logic within a class.
 
@@ -258,13 +258,13 @@ When the service calls `createMap` on our fake utility, we will run asserts to v
 
 In the second test, only one assert is expected (line 26), since the map element is fetched from cache and does not use the utility.
 
-Also, note that the second test uses a dummy object as the returned map element (defined on line 4). Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 34).
+Also, note that the second test uses a dummy object as the returned map element (defined on line 4). Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 32).
 
 The location in the cache has been [`camelized`](http://emberjs.com/api/classes/Ember.String.html#method_camelize) (line 30), so that it may be used as a key to look up our element. This matches the behavior in `getMapElement` when city has not yet been cached.
 
-### Integration Testing the Map Component
+### 地図コンポーネントの結合テスト
 
-Now lets test that the map component is relying on our service to provide map elements.
+Now let's test that the map component is relying on our service to provide map elements.
 
 To limit the test to validating only its own behavior and not the service, we'll take advantage of the registration API to register a stub maps service. That way when Ember injects the map service into the component, it uses our fake service instead of the real one.
 
@@ -303,7 +303,7 @@ In the `beforeEach` function that runs before each test, we use the built-in fun
 
 The call to the function `this.inject.service` [injects](../../applications/dependency-injection/#toc_ad-hoc-injections) the service we just registered into the context of the tests, so each test may access it through `this.get('mapsService')`. In the example we assert that `calledWithLocation` in our stub is set to the location we passed to the component.
 
-### Stubbing Services in Acceptance Tests
+### 受入テストにおけるスタブサービス
 
 Finally, we want to update our acceptance tests to account for our new service. While it would be great to verify that a map is displaying, we don't want to hammer the Google Maps API every time we run our acceptance test. For this tutorial we'll rely on our component integration tests to ensure that the map DOM is being attached to our screen. To avoid hitting our Maps request limit, we'll stub out our Maps service in our acceptance tests.
 

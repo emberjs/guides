@@ -1,4 +1,4 @@
-As they search for a rental, users might also want to narrow their search to a specific city. While our [initial](../simple-component/) rental listing component only displayed rental information, this new filter component will also allow the user to provide input in the form of filter criteria.
+ユーザーが賃貸物件を検索するとき、検索対象を特定の都市に限定に限定することもあるでしょう。 While our [initial](../simple-component/) rental listing component only displayed rental information, this new filter component will also allow the user to provide input in the form of filter criteria.
 
 まず新しい component (コンポーネント)を作成しましょう。 このcomponent (コンポーネント)に求めるのは、入力によって物件のリストをフィルタすることです。したがって、このcomponent (コンポーネント)の名前は`list-filter`と呼ぶことにします。
 
@@ -43,7 +43,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   </li> {{/each}}
 </ul> {{/list-filter}}
 
-    <br /><br />We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
+    <br /><br />単に入力フィールドとブロックへ結果リストを出力する領域を提供するコンポーネントが欲しいので、テンプレートは単純になります。
     
     ```app/templates/components/list-filter.hbs
     {{input value=value
@@ -88,13 +88,13 @@ actions: { handleFilterEntry() { let filterInputValue = this.get('value'); let f
     In our case we want to generate a controller called `rentals`.
     Ember will know that a controller with the name of `rentals` will apply to the route with the same name.
     
-    Generate a controller for the `rentals` route by running the following:
+    `rentals` ルート用のコントローラを生成するには、次のコマンドを実行します。
     
     ```shell
     ember g controller rentals
     
 
-Now, define your new controller like so:
+新しいコントローラを以下のように定義してください。
 
 ```app/controllers/rentals.js import Ember from 'ember';
 
@@ -168,7 +168,7 @@ After updating our mirage configuration, we should see passing tests, as well as
 
 You can now proceed on to implement the [next feature](../service/), or continue on to test our newly created filter component.
 
-### An Integration Test
+### 結合テスト
 
 Now that we've created a new component for filtering a list, we want to create a test to verify it. Let's use a [component integration test](../../testing/testing-components) to verify our component behavior, similar to [how we tested our rental listing component earlier](../simple-component/#toc_an-integration-test).
 
@@ -181,7 +181,7 @@ moduleForComponent('list-filter', 'Integration | Component | filter listing', { 
 test('should initially load all listings', function (assert) { });
 
     <br />Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
-    We provide an action function by setting it to our tests local scope by calling `this.on`.
+    We provide an action function by setting it to the local scope of our test by calling `this.on`.
     
     ```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21}
     import { moduleForComponent, test } from 'ember-qunit';
@@ -247,9 +247,9 @@ test('should initially load all listings', function (assert) { // we want our ac
     waits for all asynchronous tasks to complete before running the given function callback.
     It returns a promise that we also return from the test.
     
-    If you return a promise from a QUnit test, The test will wait to finish until that promise is resolved.
+    If you return a promise from a QUnit test, the test will wait to finish until that promise is resolved.
     In this case our test completes when the `wait` helper decides that processing is finished,
-    and the function we provide that assert the resulting state is completed.
+    and the function we provide that asserts the resulting state is completed.
     
     ```tests/integration/components/list-filter-test.js{+3,+37,+38,+39,+40}
     import { moduleForComponent, test } from 'ember-qunit';
@@ -320,7 +320,7 @@ return wait().then(() => { assert.equal(this.$('.city').length, 1); assert.equal
     
     ### Acceptance Tests
     
-    Now that we've tested that the `list-filter` component behaves as expected, lets test that the page itself also behaves properly with an acceptance test.
+    Now that we've tested that the `list-filter` component behaves as expected, let's test that the page itself also behaves properly with an acceptance test.
     We'll verify that a user visiting the rentals page can enter text into the search field and narrow the list of rentals by city.
     
     Open our existing acceptance test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
@@ -343,7 +343,7 @@ We introduce two new helpers into this test, `fillIn` and `keyEvent`.
 * The [`fillIn`](http://emberjs.com/api/classes/Ember.Test.html#method_fillIn) helper "fills in" the given text into an input field matching the given selector.
 * The [`keyEvent`](http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
-In `app/components/list-filter.js`, we have the top-level element rendered by the component a class called `list-filter`. We locate the search input within the component using the selector `.list-filter input`, since we know that there is only one input element located in the list-filter component.
+In `app/components/list-filter.js`, we have as the top-level element rendered by the component a class called `list-filter`. We locate the search input within the component using the selector `.list-filter input`, since we know that there is only one input element located in the list-filter component.
 
 Our test fills out "Seattle" as the search criteria in the search field, and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing.
 
@@ -351,8 +351,8 @@ The test locates the results of the search by finding elements with a class of `
 
 Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle", so we assert that the number of listings is one and that the location it displays is named, "Seattle".
 
-The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1, and the item displayed shows "Seattle"" as the location
+The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1, and the item displayed shows "Seattle" as the location.
 
-You should be down only 2 failing tests. One remaining acceptance test failure, and our JSHint test that fails on an unused assert for our unimplemented test.
+You should be down to only 2 failing tests: One remaining acceptance test failure; and our JSHint test that fails on an unused assert for our unimplemented test.
 
 ![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)

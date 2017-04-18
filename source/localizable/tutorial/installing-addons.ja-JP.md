@@ -1,14 +1,14 @@
-Emberは、プロジェクトに簡単に追加できる、豊富なaddons (アドオン)のエコシステムを持っています。addons (アドオン)は幅広い機能をプロジェクトに追加することで、多くの場合、時間を節約し、あなたをあなた自身のプロジェクトに集中できるようにしてくれます。
+Emberは、プロジェクトに簡単に追加できる、豊富なaddons (アドオン) のエコシステムを持っています。アドオンは幅広い機能をプロジェクトに追加することで、多くの場合、時間を節約し、あなたをあなた自身のプロジェクトに集中できるようにしてくれます。
 
-addon (アドオン)のリストを閲覧するには、[Ember Observer](https://emberobserver.com/) のWebサイトへ行ってください。 サイトへ行くと、NPMに公開されている ember addon (アドオン)が分類されて閲覧できるようになっています。addon (アドオン)は、いくつかの基準で点数付けがされています。
+アドオンのリストを閲覧するには、[Ember Observer](https://emberobserver.com/) のWebサイトへ行ってください。 サイトへ行くと、NPMに公開されている ember用のアドオンが分類されて閲覧できるようになっています。アドオンはいくつかの基準で点数付けがされています。
 
-Super Rentals では、[ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style)と[ember-cli-mirage](http://www.ember-cli-mirage.com/)という、二つのaddon (アドオン)を活用します。.
+Super Rentals では、[ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style)と[ember-cli-mirage](http://www.ember-cli-mirage.com/)という、二つのアドオンを活用します。.
 
 ### ember-cli-tutorial-style
 
-Super RentalsにスタイルをあてるためにCSSをコピーペーストをする代わりに、私たちは[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)という addon (アドオン) を作成し、チュートリアルにすぐにCSSを追加できるようにしました。 The addon works by generating a file called `ember-tutorial.css` and putting that file in the super-rentals `vendor` directory.
+Super RentalsにスタイルをあてるためにCSSをコピーペーストをする代わりに、私たちは[ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style)というアドオンを作成し、チュートリアルにすぐにCSSを追加できるようにしました。 アドオンは、`ember-tutorial.css`というファイルを作成し、super-rentalsの`vendor`ディレクトリの下にそのファイルを置きます。
 
-The [`vendor` directory](../../addons-and-dependencies/managing-dependencies/#toc_other-assets) in Ember is a special directory where you can include content that gets compiled into your application. When Ember CLI builds our app from our source code, it copies `ember-tutorial.css` into a file called `vendor.css`.
+Emberの[`vendor`ディレクトリ](../../addons-and-dependencies/managing-dependencies/#toc_other-assets)はアプリケーションにコンパイルされるコンテンツを含められる特別なディレクトリです。 Ember CLIはソースコードからアプリケーションをビルドする際に、`vendor.css`と呼ばれるファイルに`ember-tutorial.css`をコピーします。.
 
 As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in a file called `vendor.css`. The `vendor.css` file is referenced in `app/index.html`, making the styles available at runtime.
 

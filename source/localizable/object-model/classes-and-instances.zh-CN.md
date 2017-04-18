@@ -117,7 +117,7 @@ Person.create({
 
 如果一个类是Ember框架的子类，比如`Ember.Component`的子类，并且在子类中重写了`init()`方法，此时请务必确保调用了`this._super(...arguments)`方法。 如果你不这样做，父类不能完成重要的初始化工作，在您的应用程序中，你会出现一些不可预知的行为。
 
-对象的所有实例可以共享定义在`Ember.Object`上的任何数组和对象。
+Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that class.
 
 ```js
 const Person = Ember.Object.extend({

@@ -1,46 +1,46 @@
-To show the basic setup of an Ember application, we'll walk through building an app for a property rental site called Super Rentals. We'll start with a homepage, an about page and a contact page.
+Emberアプリケーションの基本設定を確認するために、Super Rentalsという賃貸物件サイト用のアプリケーションを構築していきましょう。homeページ、aboutページ、contactページの作成から始めていきます。
 
-Here's a look at what we want to build before we get started.
+その前に、私たちが作成したいアプリケーションの外観を以下に示します。
 
 ![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
 
-Let's work through what we want to do on the home page. We want our application to:
+それでは、Super Rentalsアプリケーションのhomeページで何をしたいかを考えてみましょう。
 
-* Show rentals on the home page
-* Link to information about the company
-* Link to contact information
-* List the available rentals
-* Filter the list of rentals by city
-* Show more details for a selected rental
+* homeページ上に複数の賃貸物件を表示する
+* 会社情報にリンクする
+* 問い合わせ情報にリンクする
+* 利用可能な賃貸物件を一覧表示する
+* 都市ごとに賃貸物件の一覧を絞り込む
+* 選択された賃貸物件の詳細を表示する
 
-For the remainder of this page, we'll give you an introduction to testing in Ember and get you set up to add tests as we implement pieces of our app. On subsequent tutorial pages, the final sections of each page will be devoted to adding a test for the feature you just implemented. These sections aren't required for a working application and you may move on with the tutorial without writing them.
+このページにあることを思い出せるように、Emberにおけるテストについて説明し、アプリケーション実装の一部としてテストを追加する段取りをします。 以降のチュートリアルでは、各ページの最後のセクションで、そのページで実装した機能のテストを追加していく構成となっています。 これらのセクションはアプリケーションを動かすのに必須ではないので、それらを書かなくてもチュートリアルを進めることもできます。
 
-At this point, you can continue to the [next page](../routes-and-templates/) or read more about Ember testing below.
+現時点でもう[次のページ](../routes-and-templates/)に進むこともできますし、このままEmberのテストに関する詳細を読み進めることもできます。
 
-### Testing Our Application As We Go
+### 進むたびにアプリケーションをテストする
 
-We can represent the goals above as [Ember acceptance tests](../../testing/acceptance/). Acceptance tests interact with our app like an actual person would, but are automated, helping ensure that our app doesn't break in the future.
+これらのゴールを、[EmberのAcceptance tests (受け入れテスト)](../../testing/acceptance/)として表現できます。 受け入れテストは、実際に人が行うように相互作用するだけでなく、それを自動で行えます。そうすることで、アプリケーションが将来にわたって壊れないことを担保できます。
 
-When we create a new Ember Project using Ember CLI, it uses the [`QUnit`](https://qunitjs.com/) JavaScript test framework to define and run tests.
+Ember CLI を使って新しいプロジェクトを作成した場合、プロジェクトはJavaScriptテストフレームワークの[`QUnit`](https://qunitjs.com/)を使いテストを定義、実行します。
 
-We'll start by using Ember CLI to generate a new acceptance test:
+それでは、Ember CLIを使って、Acceptance tests (受け入れテスト) を作成していきましょう。
 
 ```shell
 ember g acceptance-test list-rentals
 ```
 
-The command will generate the following output, showing that it created a single file called `tests/acceptance/list-rentals-test.js`.
+コマンドを実行すると、次の内容が出力されます。そして、`tests/acceptance/list-rentals-test.js`というファイルが1つ作成されます。.
 
 ```shell
 installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```
 
-Opening that file will reveal some initial code that will try to go to the `list-rentals` route and verify that the route is loaded. The initial code is there to help us build our first acceptance test.
+テストファイルの中身は、`list-rentals` ルートに移動して、そのルートが読み読まれることを確認する定型コードとなっています。 この定型コードは、最初の受け入れテストを書く足がかりになります。
 
-Since we haven't added any functionality to our application yet, we'll use this first test to get started on running tests in our app.
+まだアプリケーションになんの機能を追加していないので、この最初のテストを使用して、アプリケーションでテストを実行するようにします。
 
-To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base url, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the url is what we want it to be.
+そのためには、生成されたテスト中で`/list-rentals`と出てくる箇所を`/`に置き換えてください。 テストはベースURLである`http://localhost:4200/`から開始し、ページの読み込みが終わったかどうかと期待するURLかどうかの、基本的なチェックを行います。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
@@ -59,23 +59,23 @@ test('visiting /', function(assert) {
 });
 </code></pre>
 
-A few of things to note in this simple test:
+以下は、この簡単なテストについての注意事項です。
 
-* Acceptance tests are setup by calling the function `moduleForAcceptance`. This function ensures that your Ember application is started and shut down between each test.
-* QUnit passes in an object called an [`assert`](https://api.qunitjs.com/category/assert/) to each test function. An `assert` has functions, such as `equal()`, that allow your test to check for conditions within the test environment. A test must have one passing assert to be successful.
-* Ember acceptance tests use a set of test helper functions, such as the `visit`, `andThen`, and `currentURL` functions used above. We'll discuss those functions in more detail later in the tutorial.
+* 受け入れテストは`moduleForAcceptance`関数を呼び出すことでセットアップされます。この関数は、各テストごとにEmberアプリケーションを開始して終了することを確認します。
+* QUnitは[`assert`](https://api.qunitjs.com/category/assert/)と呼ばれるオブジェクトをそれぞれのテスト関数に渡します。 `assert`は、`equal()`といった、テスト環境内の条件をテストできる関数を持ちます。 テストは成功するアサートを必ず1つは持つ必要があります。
+* Emberの受け入れテストは、上記で使われている`visit`、`andThen`、`currentURL`などのような、テストヘルパー関数の集合を使用します。 チュートリアルの後半で、これらの関数の詳細を説明します。
 
-Now run your test suite with the CLI command, `ember test --server`.
+では、CLIコマンド`ember test --server`を使ってテストスイートを実行しましょう。.
 
-By default, when you run `ember test --server`, Ember CLI runs the [Testem test runner](https://github.com/testem/testem), which runs Qunit in Chrome and [PhantomJS](http://phantomjs.org/).
+`ember test --server`を実行すると、Ember CLIはデフォルトでは[Testemテストランナー](https://github.com/testem/testem)を走らせ、Chromeと[PhantomJS](http://phantomjs.org/)でQunitを走らせます。.
 
-Our launched Chrome web browser now shows 10 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful acceptance test, along with 9 passing JSHint tests. Ember tests each file you create for syntax issues (known as "linting") using [JSHint](http://jshint.com/).
+今は起動されたChromeに10個のテストに成功したと表示しているでしょう。 もし"Hide passed tests" (通ったテストを非表示にする) ラベルのチェックボックスをトグルすると、成功した受け入れテストが9個のJSHintのテスト結果とともに確認できるはずです。 Emberは作成したそれぞれのファイルに対して、[JSHint](http://jshint.com/)を使った構文チェック (「リンティング」と呼ばれる) を行います。.
 
 ![Initial Tests Screenshot](../../images/acceptance-test/initial-tests.png)
 
-### Adding Your Application Goals as Acceptance Tests
+### 受け入れテストとしてアプリケーションのゴールを追加する
 
-As mentioned before, our initial test just made sure everything was running properly. Now let's replace that test with the list of tasks we want our app to handle (described up above).
+前に述べたように、最初のテストでは、すべてが正しく実行されていることが確認されました。 ここでは、そのテストをアプリケーションで処理するタスクのリスト(上で説明したものです) に置き換えてみましょう。
 
 <pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
@@ -101,6 +101,6 @@ test('should show details for a selected rental', function (assert) {
 });
 </code></pre>
 
-Running `ember test --server` will now show 7 failing tests (out of 15). Each of the 6 tests we setup above will fail, plus one JSHint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
+`ember test --server`と実行すると、7つのテストに失敗したと表示されるでしょう。 上記で作成した6つのテストはそれぞれ失敗し、さらにJSHintのテストが`assert is defined but never used`と言われて失敗します。 上記のテストが失敗するのは、QUnitが特定の条件(`assert`として知られる)に対して少なくとも1回のチェックを必要とするためです。).
 
-As we continue through this tutorial, we'll use these acceptance tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.
+このチュートリアルを通して、これらの受け入れテストをチェックリストとして使用していきます。すべてのテストが通った時には、私たちは高いレベルの目標を達成するはずです。

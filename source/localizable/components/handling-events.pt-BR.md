@@ -57,7 +57,7 @@ A ação de `signUp` é simplesmente uma função definida sobre o hash de `acti
 
 ```js
 actions: {
-  signUp: function(event){ 
+  signUp(event){ 
     // Only when assigning the action to an inline handler, the event object
     // is passed to the action as the first parameter.
   }
@@ -72,7 +72,7 @@ O comportamento normal para uma função definida em `actions` não recebe o eve
 
 ```js
 actions: {
-  signUp: function(){
+  signUp(){
     // No event object is passed to the action.
   }
 }

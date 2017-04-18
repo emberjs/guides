@@ -119,7 +119,7 @@ Person.create({
 
 If you are subclassing a framework class, like `Ember.Component`, and you override the `init()` method, make sure you call `this._super(...arguments)`! If you don't, a parent class may not have an opportunity to do important setup work, and you'll see strange behavior in your application.
 
-Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
+Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that class.
 
 ```js
 const Person = Ember.Object.extend({

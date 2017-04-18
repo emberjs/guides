@@ -1,8 +1,8 @@
-Emberは、計算型プロパティを含む任意のプロパティの監視をサポートしています。
+***Note:** Observers are often over-used by new Ember developers. Observers are used heavily within the Ember framework itself, but for most problems Ember app developers face, computed properties are the appropriate solution.*
 
-オブザーバー (observer) には別のプロパティの変更に反応する処理を含める必要があります。オブザーバーは、バインディングが同期を完了した後で、いくつかの処理を実行する必要がある場合に特に便利です。
+Ember supports observing any property, including computed properties.
 
-オブザーバーは、新しいEmber開発者にしばしば多用されます。 オブザーバーはEmberフレームワーク自体によって内部で多用されるものですが、Emberアプリケーション開発者が直面するほとんどの問題には、計算型プロパティが適切なソリューションです。
+Observers should contain behavior that reacts to changes in another property. Observers are especially useful when you need to perform some behavior after a binding has finished synchronizing.
 
 `Ember.observer`を使うことで、次のようにオブジェクトにオブザーバーを設定できます。
 

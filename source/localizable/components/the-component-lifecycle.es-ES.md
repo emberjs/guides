@@ -198,7 +198,7 @@ The scroll happens on `didRender`, where it will scroll the component's containe
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  className: 'item-list',
+  classNames: ['item-list'],
 
   didReceiveAttrs() {
     this._super(...arguments);
