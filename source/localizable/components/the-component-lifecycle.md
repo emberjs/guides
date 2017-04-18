@@ -11,10 +11,11 @@ Listed below are the component lifecycle hooks in order of execution according t
 ### On Initial Render
 
 1. `init`
-2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
-3. `willRender`
-4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)
-5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
+2. `didInitAttrs`
+3. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
+4. `willRender`
+5. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)
+6. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
 
 ### On Re-Render 
 
