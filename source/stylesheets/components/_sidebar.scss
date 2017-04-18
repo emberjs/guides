@@ -112,7 +112,7 @@ ol.toc-level-1 {
 
   li {
     border-left: 3px solid transparent;
-    transition: border-width $duration, margin-right $duration;
+    transition: border-width $duration;
 
     &.selected,
     &:hover {
@@ -121,7 +121,6 @@ ol.toc-level-1 {
 
     &:hover {
       border-left-width: 6px;
-      margin-right: -3px;
     }
   }
 
