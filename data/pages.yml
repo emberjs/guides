@@ -131,6 +131,22 @@
     - title: "Triggering Changes with Actions"
       url: "triggering-changes-with-actions"
 
+- title: "Glimmer Components"
+  url: 'glimmer-components'
+  pages:
+    - title: "Introduction"
+      url: "index"
+    - title: "Refactoring Templates into Components"
+      url: "refactoring-templates-into-components"
+    - title: "The Anatomy of a Component"
+      url: "the-anatomy-of-a-component"
+    - title: "Passing Data to Components"
+      url: "passing-data-to-components"
+    - title: "Adding Behavior and Keeping States"
+      url: "adding-behavior-and-keeping-states"
+    - title: "Handling User Interaction"
+      url: "handling-user-interaction"
+
 - title: "Controllers"
   url: 'controllers'
   pages:
