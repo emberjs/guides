@@ -37,11 +37,9 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 {{#list-filter
    filter=(action 'filterByCity')
    as |rentals|}}
-  <ul class="results">
-    {{#each rentals as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
-    {{/each}}
-  </ul>
+  {{#each rentals as |rentalUnit|}}
+    {{rental-listing rental=rentalUnit}}
+  {{/each}}
 {{/list-filter}}
 ```
 
