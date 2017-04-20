@@ -51,7 +51,7 @@ To start, let's move the rental display details for a single rental from the `re
 Now in our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
 with our new `rental-listing` component:
 
-```app/templates/rentals.hbs{+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29}
+```app/templates/rentals.hbs{+11,+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
