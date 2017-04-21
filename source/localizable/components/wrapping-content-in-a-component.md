@@ -50,6 +50,37 @@ Next, we'll update the template using the component to use the block form:
 It's important to note that the template scope inside the component block is the same as outside.
 If a property is available in the template outside the component, it is also available inside the component block.
 
+##Using Layout to Wrap Content in a Component
+
+In addition to wrapping content in a Component's template,
+you can also use the public layout API in your Component JavaScript.
+
+```app/templates/application.hbs
+{{#person-profile}}
+  <h2>Chief Basket Weaver</h2>
+  <h3>Fisherman Industries</h3>
+{{/person-profile}}
+```
+
+```app/components/person-profile.js
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  layout: Ember.HTMLBars.compile("<h1>Person's Title</h1><div class='details'>{{yield}}</div>")
+});
+```
+
+The above will result in the following HTML output:
+
+```html
+<h1>Person's Title</h1>
+<div class="details">
+  <h2>Chief Basket Weaver</h2>
+  <h3>Fisherman Industries</h3>
+</div>
+```
+
+
 ## Sharing Component Data with its Wrapped Content
 
 There is also a way to share data within your blog post component with the content it is wrapping.
