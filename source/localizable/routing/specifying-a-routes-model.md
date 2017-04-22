@@ -163,3 +163,5 @@ each record in the song model and album model:
   {{/each}}
 </ul>
 ```
+
+If you are using Ember-Data, it is in general [bad practice](https://medium.com/@sam.selikoff/because-returning-a-single-domain-object-from-the-route-is-the-ember-pattern-the-very-name-of-the-94c4abf4ad58) to return multiple models in a route: in the above, prefer returning the `album` model in which you have setup the `songs` [hasMany](https://guides.emberjs.com/v2.1.0/models/working-with-relationships/) relationship, and access your songs in your templates using `album.songs` (or `album.get('songs')` in your components). 
