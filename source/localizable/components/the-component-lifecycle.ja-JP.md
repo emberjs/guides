@@ -39,7 +39,7 @@ Below are some samples of ways to use lifecycle hooks within your components.
 
 `didUpdateAttrs` runs when the attributes of a component have changed, but not when the component is re-rendered, via `component.rerender`, `component.set`, or changes in models or services used by the template.
 
-A `didUpdateAttrs` is called prior to rerender, you can use this hook to execute code when specific attributes are changed. This hook can be an effective alternative to an observer, as it will run prior to a re-render, but after an attribute has changed.
+Since `didUpdateAttrs` is called prior to rerender, you can use this hook to execute code when specific attributes are changed. This hook can be an effective alternative to an observer, as it will run prior to a re-render, but after an attribute has changed.
 
 An example of this scenario in action is a profile editor component. As you are editing one user, and the user attribute is changed, you can use `didUpdateAttrs` to clear any error state that was built up from editing the previous user.
 

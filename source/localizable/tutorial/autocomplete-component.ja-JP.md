@@ -1,4 +1,4 @@
-ユーザーが賃貸物件を検索するとき、検索対象を特定の都市に限定に限定することもあるでしょう。 While our [initial](../simple-component/) rental listing component only displayed rental information, this new filter component will also allow the user to provide input in the form of filter criteria.
+ユーザーが賃貸物件を検索するとき、検索対象を特定の都市に限定に限定することもあるでしょう。 [最初の](../simple-component/)賃貸物件を一覧するコンポーネントは賃貸物件情報のみを表示していましたが、この新しいフィルターコンポーネントでは、ユーザーがフィルタの形式で入力することもできます。
 
 まず新しい component (コンポーネント)を作成しましょう。 このcomponent (コンポーネント)に求めるのは、入力によって物件のリストをフィルタすることです。したがって、このcomponent (コンポーネント)の名前は`list-filter`と呼ぶことにします。
 
@@ -6,15 +6,15 @@
 ember g component list-filter
 ```
 
-As before when we created the [`rental-listing` component](../simple-component), the "generate component" CLI command creates
+[`rental-listing` コンポーネント](../simple-component)を前に作成したように、CLIコマンド "generate component" は次のものを作成します。
 
-* a Handlebars template (`app/templates/components/list-filter.hbs`),
-* a JavaScript file (`app/components/list-filter.js`),
-* and a component integration test (`tests/integration/components/list-filter-test.js`).
+* Handlebarsテンプレート (`app/templates/components/list-filter.hbs`),
+* JavaScriptファイル (`app/components/list-filter.js`),
+* コンポーネントの結合テスト (`tests/integration/components/list-filter-test.js`).
 
-In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
+`app/templates/rentals.hbs`テンプレートファイル内に、新しい`list-filter`コンポーネントへの参照を追加します。
 
-Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20. This is an example of the [**block form**](/components/wrapping-content-in-a-component) of a component, which allows a Handlebars template to be rendered *inside* the component's template wherever the `{{yield}}` expression appears.
+12行目から20行目にかけて開いて閉じられている`list-filter`によって、賃貸物件のマークアップが括られていることに注意したさい。 This is an example of the [**block form**](../../components/wrapping-content-in-a-component) of a component, which allows a Handlebars template to be rendered *inside* the component's template wherever the `{{yield}}` expression appears.
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
