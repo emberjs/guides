@@ -62,6 +62,9 @@ It can be used to manage front-end plugins and component dependencies
 `bower_components` directory. If we add front-end dependencies, such as
 Bootstrap, we will see them listed here, and added to the
 `bower_components` directory.
+_Note_: Ember CLI is moving away from bower usage. We mention this now so you
+can follow best practices, and to make you aware that this feature may be 
+deprecated in the near future.  
 
 **config**: The config directory contains the `environment.js` where you can
 configure settings for your app.
