@@ -16,7 +16,8 @@ subclass of `Ember.Component` in your JavaScript.
 
 To use a tag other than `div`, subclass `Ember.Component` and assign it
 a `tagName` property. This property can be any valid HTML5 tag name as a
-string.
+string. You also may set the `tagName` property to an empty string to
+have the element not be inside any tag. 
 
 ```app/components/navigation-bar.js
 import Ember from 'ember';
