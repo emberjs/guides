@@ -5,7 +5,7 @@ Ember comes with a data management library called [Ember Data](https://github.co
 
 Ember Data requires you to define the structure of the data you wish to provide to your application by extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html).
 
-You can generate a Ember Data Model using Ember CLI.
+You can generate an Ember Data Model using Ember CLI.
 We'll call our model `rental` and generate it as follows:
 
 ```shell
