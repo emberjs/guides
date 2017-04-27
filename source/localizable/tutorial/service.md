@@ -12,44 +12,37 @@ There are several ways to include 3rd party libraries in Ember.
 See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/)
 as a starting point when you need to add one.
 
-Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires implementers to reference its library from a script tag.
+We can add custom script references to our application by updating the main HTML page at `app/index.html`.
 
-From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.
-`Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
+```app/index.html{+22}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SuperRentals</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-```shell
-curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
-```
+    {{content-for "head"}}
 
-Once in the vendor directory, the script can be built into the app.
-We just need to tell Ember CLI to import it using our build file:
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/super-rentals.css">
 
-```ember-cli-build.js{+22}
-/*jshint node:true*/
-/* global require, module */
-let EmberApp = require('ember-cli/lib/broccoli/ember-app');
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
 
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    // Add options here
-  });
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/super-rentals.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.22"></script>
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
-  app.import('vendor/gmaps.js');
+    {{content-for "body-footer"}}
+  </body>
+</html>
 
-  return app.toTree();
-};
 ```
 
 ### Accessing the Google Maps API with a Utility
