@@ -247,7 +247,7 @@ You may now either move onto the [next feature](../subroutes/), or continue here
 ###  Unit testing a Service
 
 We'll use a unit test to validate the service.
-Unit tests are more isolated than integration tests and acceptance test,
+Unit tests are more isolated than integration tests and acceptance tests,
 and are intended for testing specific logic within a class.
 
 For our service unit test, we'll want to verify that locations that have been previously loaded are fetched from cache, while new locations are created using the utility.
