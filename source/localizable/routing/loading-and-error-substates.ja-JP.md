@@ -65,6 +65,7 @@ Ember Router (ルーター)はルータが読み込みでエラーが発生し�
         loading(transition, originRoute) {
           let controller = this.controllerFor('foo');
           controller.set('currentlyLoading', true);
+          return true; // allows the loading template to be shown
         }
       }
     });

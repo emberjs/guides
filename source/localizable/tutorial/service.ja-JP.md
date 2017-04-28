@@ -8,56 +8,51 @@ Super Rentalsでは、各賃貸物件の場所を示す地図を表示できる�
 
 地図ユーティリティを実装する前に、EmberアプリケーションでサードパーティマップAPIを利用できるようにする必要があります。 Emberにサードパーティライブラリを含めるにはいくつかの方法があります。 サードパーティライブラリを追加する方法は、[依存関係を管理する](../../addons-and-dependencies/managing-dependencies/)のガイドを参照してください。
 
-GoogleはマップAPIをリモートスクリプトとして提供しています。curlを使用してプロジェクトのvendorディレクトリにダウンロードしましょう。
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires implementers to reference its library from a script tag. We can add custom script references to our application by updating the main HTML page at `app/index.html`.
 
-プロジェクトのルートディレクトリから次のコマンドを実行して、Google Mapのスクリプトを`gmaps.js`という名前でプロジェクトのvenderフォルダの下に置きます。 `Curl`はUNIXコマンドです。もしWindowsを使っている場合は[Windows bash サポート](https://msdn.microsoft.com/en-us/commandline/wsl/about)を活用するか、別の方法を使って、スクリプトをvenderディレクトリの下にダウンロードする必要があります。
+```app/index.html{+22}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SuperRentals</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-```shell
-curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
+    {{content-for "head"}}
+
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/super-rentals.css">
+
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/super-rentals.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.22"></script>
+
+    {{content-for "body-footer"}}
+  </body>
+</html>
+
 ```
-
-vendorディレクトリに入れることで、スクリプトをアプリに組み込むことができます。 あとは、ビルドファイルを使って、Ember CLIにインポートするよう指示するだけです。
-
-<pre><code class="ember-cli-build.js{+22}">/*jshint node:true*/
-/* global require, module */
-let EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    // Add options here
-  });
-
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
-  app.import('vendor/gmaps.js');
-
-  return app.toTree();
-};
-</code></pre>
 
 ### ユーティリティを使ってGoogle Maps APIにアクセスする
 
-Emberのユーティリティはアプリケーションの様々な箇所からアクセスできる再利用可能なコードです。 Super Rentals向けに、ここではGoogle Maps APIにアクセスするユーティリティを使用します。 ユーティリティはMapsサービスからGoogle APIを抽象化し、アプリケーション内で地図APIを再利用できるようにし、別の地図APIへの切り替えや依存しているコードのテストを容易にします。
+Ember utilities are reusable code that can be accessed from various parts of the application. For Super Rentals, we'll use a utility to access the Google Maps API. The utility will abstract the Google API away from our Maps service, which will allow for future reuse of the maps API within the application, easier refactoring to alternate maps implementations, and easier testing of code that depends on it.
 
-アプリケーションでマップAPIを使用できるようになったので、マップユーティリティを作成できます。 ユーティリティファイルは、Ember CLIを使用して生成することができます。
+Now that we have the maps API available to the application, we can create our map utility. Utility files can be generated using Ember CLI.
 
 ```shell
 ember g util google-maps
 ```
 
-CLIの`generate util`コマンドは、ユーティリティファイルとユニットテストを生成します。ここではGoogleのコードをテストしたいわけではないので、ユニットテストは削除します。
+The CLI `generate util` command will create a utility file and a unit test. We'll delete the unit test since we don't want to test Google code.
 
-このアプリケーションには`createMap`という関数が必要です。この関数では、` google.maps.Map`を使用して地図要素を作成し、`google.maps.Geocoder`を使って場所の座標を検索し、`google.maps.Marker`を使って解決された位置情報に基づいて地図上にピンを立てます。
+Our app needs a single function, `createMap`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
 
 <pre><code class="app/utils/google-maps.js">import Ember from 'ember';
 
@@ -91,13 +86,13 @@ export default Ember.Object.extend({
 
 ### サービスを使って地図を取得する
 
-これで地図要素を生成できるので、作成したMapオブジェクトへの参照を保持する地図サービスを実装し、アプリケーションに地図を表示させましょう。
+Now that we are able to generate a map element, we will implement a maps service that will keep a reference to the Map object we create, and attach the map to an element in our application
 
 Accessing our maps API through a [service](../../applications/services) will give us several benefits
 
-* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
+* サービスは[service locator](https://en.wikipedia.org/wiki/Service_locator_pattern)を使って注入されます。そして、地図APIをコードから抽象化することで、リファクタリングとメンテナンスを容易にします。
 * サービスは遅延ロードされているため、最初に呼び出されるまで初期化されません。 場合によっては、これによってアプリのプロセッサ負荷とメモリ消費量を減少できる可能性があります。
-* It is a singleton, which means there is only one instance of the service object in browser. This will allow us to keep map data while the user navigates around the app, so that returning to a page doesn't require it to reload its maps.
+* サービスはシングルトンです。つまり、ブラウザー内でそのサービスのインスタンスはただ一つです。 これによって、ユーザーがアプリ内を巡回している間に地図データを保持でき、ページに戻っても地図を再読み込みする必要はありません。
 
 Let's get started creating our service by generating it through Ember CLI, which will create the service file, as well as a unit test for it.
 

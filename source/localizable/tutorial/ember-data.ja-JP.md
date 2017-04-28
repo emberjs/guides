@@ -19,7 +19,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file, we can see a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
+モデルファイルを開くと、[`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html)を拡張する空のクラスを確認できます。
 
 ```app/models/rental.js import DS from 'ember-data';
 
@@ -45,7 +45,7 @@ export default DS.Model.extend({
     });
     
 
-We now have a model object that we can use for our Ember Data implementation.
+これでEmber Dataストア用に使用できるモデルオブジェクトが定義されました。
 
 ### Model Hook (モデルフック)の更新
 
@@ -55,10 +55,10 @@ We now have a model object that we can use for our Ember Data implementation.
 
 export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); return [{ id: 'grand-old-mansion', title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg', description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests." }, { id: 'urban-living', title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg', description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro." }, { id: 'downtown-charm', title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg', description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet." }]; } }); ```
 
-When we call `findAll`, Ember Data will attempt to fetch rentals from `/api/rentals`. If you recall, in the section titled [Installing Addons](../installing-addons/) we set up an adapter to route data requests through `/api`.
+`findAll`を呼び出すとき、Ember Dataは`/api/rentals`から賃貸物件のリストを取得しようとします。 思い出すと、[アドオンのインストール](../installing-addons/)というセクションで、`/api`を介してデータリクエストをルーティングするためのアダプタを設定しました。.
 
 Ember Dataの詳細については[モデルセクション](../../models/)を確認してください。.
 
-Since we have already set up Ember Mirage in our development environment, Mirage will return the data we requested without actually making a network request.
+開発環境にEmber Mirageを設定済みなため、実際にはネットワークをリクエストすることなく、Mirageが要求されたデータを返します。
 
-When we deploy our app to a production server, we will likely want to replace Mirage with a remote server for Ember Data to communicate with for storing and retrieving persisted data. A remote server will allow for data to be shared and updated across users.
+作成したアプリケーションをプロダクションのサーバーにデプロイする際は、MirageをEmber Data用のリモートサーバーへと置き換え、永続化されたデータの格納や取得のための通信を行うことをお勧めします。 リモートサーバーに置き換えることで、ユーザー間でのデータ共有や更新を行うことができます。

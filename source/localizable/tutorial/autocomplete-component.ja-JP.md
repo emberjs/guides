@@ -14,9 +14,9 @@ ember g component list-filter
 
 `app/templates/rentals.hbs`テンプレートファイル内に、新しい`list-filter`コンポーネントへの参照を追加します。
 
-12行目から20行目にかけて開いて閉じられている`list-filter`によって、賃貸物件のマークアップが括られていることに注意したさい。 This is an example of the [**block form**](../../components/wrapping-content-in-a-component) of a component, which allows a Handlebars template to be rendered *inside* the component's template wherever the `{{yield}}` expression appears.
+12行目から20行目にかけて開いて閉じられている`list-filter`によって、賃貸物件のマークアップが括られていることに注意してください。 以下はコンポーネントの[**ブロックフォーム (block form)**](../../components/wrapping-content-in-a-component)の例になります。ブロックフォームは、コンポーネントのテンプレートの*内側*で`{{yield}}`式が現れた箇所にHandlebarsのテンプレートを描画するものです。
 
-In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
+ここでは、フィルタしたデータを`rentals`と呼ばれる変数として内部マークアップに渡しています (14行目)。
 
 ```app/templates/rentals.hbs 
 
@@ -53,7 +53,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
     {{yield results}}
     
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. The `value` property of the `input` will be kept in sync with the `value` property in the component.
+このテンプレートには、テキストフィールドとして表示される[`{{input}}`](../../templates/input-helpers) ヘルパーが含まれています。このテキストフィールドには、検索に使う都市のリストをフィルタするためのパターンを入力できます。 `input`の`value`プロパティは、コンポーネントの`value`プロパティにバインドされます。
 
 Another way to say this is that the `value` property of `input` is [**bound**](../../object-model/bindings/) to the `value` property of the component. If the property changes, either by the user typing in the input field, or by assigning a new value to it in our program, the new value of the property is present in both the rendered web page and in the code.
 
