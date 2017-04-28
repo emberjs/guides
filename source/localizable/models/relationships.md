@@ -234,7 +234,7 @@ And our API might setup these relationships like so:
 		}
 	}, {
 		"id": "3",
-		"type": "PaymentMethodCc",
+		"type": "PaymentMethodApplePay",
 		"attributes": {
 			"last4": "5513"
 		}
