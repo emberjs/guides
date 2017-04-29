@@ -119,21 +119,15 @@ this.transitionTo('/posts/1?sort=date&showDetails=true');
 
 ### Opting into a full transition
 
-Arguments provided to `transitionTo`
-or `link-to` only correspond to a change in query param values,
-and not a change in the route hierarchy, it is not considered a
-full transition, which means that hooks like `model` and
-`setupController` won't fire by default, but rather only
-controller properties will be updated with new query param values, as
-will the URL.
+When you change query params through a transition (`transitionTo` and `link-to`),
+it is not considered a full transition.
+This means that the controller properties associated with the query params will be updated,
+as will the URL, but no `Route` method hook like `model` or `setupController` will be called.
 
-But some query param changes necessitate loading data from the server,
-in which case it is desirable to opt into a full-on transition. To opt
-into a full transition when a controller query param property changes,
-you can use the optional `queryParams` configuration hash on the `Route`
-associated with that controller, and set that query param's
-`refreshModel` config property to `true`:
-
+If you need a query param change to trigger a full transition, and thus the method hooks,
+you can use the optional `queryParams` configuration hash on the `Route`.
+If you have a `category` query param and you want it to trigger a model refresh,
+you can set it as follows:
 
 ```app/routes/articles.js
 import Ember from 'ember';
@@ -144,6 +138,7 @@ export default Ember.Route.extend({
       refreshModel: true
     }
   },
+
   model(params) {
     // This gets called upon entering 'articles' route
     // for the first time, and we opt into refiring it upon
@@ -168,11 +163,10 @@ export default Ember.Controller.extend({
 ### Update URL with `replaceState` instead
 
 By default, Ember will use `pushState` to update the URL in the
-address bar in response to a controller query param property change, but
-if you would like to use `replaceState` instead (which prevents an
-additional item from being added to your browser's history), you can
-specify this on the `Route`'s `queryParams` config hash, e.g. (continued
-from the example above):
+address bar in response to a controller query param property change.
+If you would like to use `replaceState` instead, which prevents an
+additional item from being added to your browser's history,
+you can specify this as follows:
 
 ```app/routes/articles.js
 import Ember from 'ember';
@@ -186,16 +180,14 @@ export default Ember.Route.extend({
 });
 ```
 
-Note that the name of this config property and its default value of
-`false` is similar to the `link-to` helper's, which also lets
-you opt into a `replaceState` transition via `replace=true`.
+This behaviour is similar to `link-to`,
+which also lets you opt into a `replaceState` transition via `replace=true`.
 
 ### Map a controller's property to a different query param key
 
 By default, specifying `foo` as a controller query param property will
-bind to a query param whose key is `foo`, e.g. `?foo=123`. You can also map
-a controller property to a different query param key using the
-following configuration syntax:
+bind to a query param whose key is `foo`, e.g. `?foo=123`.
+You can also map a controller property to a different query param key using the following configuration syntax:
 
 ```app/controllers/articles.js
 import Ember from 'ember';
@@ -211,7 +203,7 @@ export default Ember.Controller.extend({
 This will cause changes to the `controller:articles`'s `category`
 property to update the `articles_category` query param, and vice versa.
 
-Note that query params that require additional customization can
+Query params that require additional customization can
 be provided along with strings in the `queryParams` array.
 
 ```app/controllers/articles.js
@@ -229,8 +221,8 @@ export default Ember.Controller.extend({
 
 ### Default values and deserialization
 
-In the following example, the controller query param property `page` is
-considered to have a default value of `1`.
+In the following example,
+the controller query param property `page` is considered to have a default value of `1`.
 
 ```app/controllers/articles.js
 import Ember from 'ember';
@@ -255,18 +247,17 @@ This affects query param behavior in two ways:
 
 ### Sticky Query Param Values
 
-By default, query param values in Ember are "sticky", in that if you
-make changes to a query param and then leave and re-enter the route, the
-new value of that query param will be preserved (rather than reset to
-its default). This is a particularly handy default for preserving sort/filter
-parameters as you navigate back and forth between routes.
+By default, query param values in Ember are "sticky",
+in that if you make changes to a query param and then leave and re-enter the route,
+the new value of that query param will be preserved (rather than reset to its default).
+This is a particularly handy default for preserving sort/filter parameters as you navigate back and forth between routes.
 
-Furthermore, these sticky query param values are remembered/restored
-according to the model loaded into the route. So, given a `team` route
-with dynamic segment `/:team_name` and controller query param "filter",
-if you navigate to `/badgers` and filter by `"rookies"`, then navigate
-to `/bears` and filter by `"best"`, and then navigate to `/potatoes` and
-filter by `"worst"`, then given the following nav bar links,
+Furthermore, these sticky query param values are remembered/restored according to the model loaded into the route.
+So, given a `team` route with dynamic segment `/:team_name` and controller query param "filter",
+if you navigate to `/badgers` and filter by `"rookies"`,
+then navigate to `/bears` and filter by `"best"`,
+and then navigate to `/potatoes` and filter by `"worst"`,
+then given the following nav bar links:
 
 ```handlebars
 {{#link-to "team" "badgers"}}Badgers{{/link-to}}
@@ -274,7 +265,7 @@ filter by `"worst"`, then given the following nav bar links,
 {{#link-to "team" "potatoes"}}Potatoes{{/link-to}}
 ```
 
-the generated links would be
+the generated links would be:
 
 ```html
 <a href="/badgers?filter=rookies">Badgers</a>
@@ -282,8 +273,8 @@ the generated links would be
 <a href="/potatoes?filter=worst">Potatoes</a>
 ```
 
-This illustrates that once you change a query param, it is stored and
-tied to the model loaded into the route.
+This illustrates that once you change a query param,
+it is stored and tied to the model loaded into the route.
 
 If you wish to reset a query param, you have two options:
 
@@ -292,11 +283,9 @@ If you wish to reset a query param, you have two options:
 2. use the `Route.resetController` hook to set query param values back to
    their defaults before exiting the route or changing the route's model.
 
-In the following example, the controller's `page` query param is reset
-to 1, _while still scoped to the pre-transition `ArticlesRoute` model_.
-The result of this is that all links pointing back into the exited route
-will use the newly reset value `1` as the value for the `page` query
-param.
+In the following example, the controller's `page` query param is reset to 1,
+_while still scoped to the pre-transition `ArticlesRoute` model_.
+The result of this is that all links pointing back into the exited route will use the newly reset value `1` as the value for the `page` query param.
 
 ```app/routes/articles.js
 import Ember from 'ember';
@@ -329,8 +318,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-The following demonstrates how you can override both the scope and the
-query param URL key of a single controller query param property:
+The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
 
 ```app/controllers/articles.js
 import Ember from 'ember';
