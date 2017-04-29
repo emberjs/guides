@@ -194,7 +194,7 @@ There are a few things to note about the `didInsertElement()` hook:
 ### Making Updates to the Rendered DOM with `didRender`
 
 The `didRender` hook is called during both render and re-render after the template has rendered and the DOM updated.
-You can leverage this hook to perform post-processing on the DOM of a component after its been updated.
+You can leverage this hook to perform post-processing on the DOM of a component after it's been updated.
 
 In this example, there is a list component that needs to scroll to a selected item when rendered.
 Since scrolling to a specific spot is based on positions within the DOM, we need to ensure that the list has been rendered before scrolling.
