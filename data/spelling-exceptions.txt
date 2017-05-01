@@ -186,6 +186,8 @@ plugins
 pluralizations
 polyfill
 polyfills
+polymorphism
+Polymorphism
 poppopobject
 popups
 postgresql
