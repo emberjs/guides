@@ -97,9 +97,11 @@ Alternatively, you could pass both a photo's ID and a comment to the component:
 </p>
 ```
 
-In the above example, the model hook for `PhotoRoute` will run with `params.photo_id = 5`.  The `model` hook for
-`CommentRoute` _won't_ run since you supplied a model object for the `comment` segment. The comment's id will
-populate the url according to `CommentRoute`'s `serialize` hook.
+In the above example, the model hook for `PhotoRoute` will run with `params.photo_id = 5`.
+The `:comment_id` will be the same as in the previous example.
+
+Note that the `model` hook for `CommentRoute` _won't_ run since you supplied a model object for the `comment` segment.
+
 
 ### Setting query-params
 
