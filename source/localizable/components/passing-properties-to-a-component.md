@@ -65,7 +65,7 @@ In other words, you can invoke the above component example like this:
 {{/each}}
 ```
 
-To set the component up to receive parameters this way, you need
+To set the component up to receive parameters this way, you need to
 set the [`positionalParams`][1] attribute in your component class.
 
 [1]: http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams
