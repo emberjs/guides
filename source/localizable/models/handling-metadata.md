@@ -73,7 +73,7 @@ export default Ember.Route.extend({
     return this.store.findAll('user').then((results) => {
       return {
         users: results,
-        meta: results.meta
+        meta: results.get('meta')
       };
     });
   },
