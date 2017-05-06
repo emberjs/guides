@@ -43,7 +43,6 @@ directories:
 
 <other files>
 
-bower.json
 ember-cli-build.js
 package.json
 README.md
