@@ -4,7 +4,7 @@ the backend store. By default, Ember Data serializes data using the
 format, Ember Data allows you to customize the serializer or use a
 different serializer entirely.
 
-Ember Data ships with 3 Serializers. The
+Ember Data ships with 3 serializers. The
 [`JSONAPISerializer`](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html)
 is the default serializer and works with JSON API backends. The
 [`JSONSerializer`](http://emberjs.com/api/data/classes/DS.JSONSerializer.html)
@@ -263,7 +263,7 @@ API documentation](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html
 In order to keep track of unique records in the store Ember Data
 expects every record to have an `id` property in the payload. Ids
 should be unique for every unique record of a specific type. If your
-backend used a different key other then `id` you can use the
+backend uses a key other than `id` you can use the
 serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
@@ -494,7 +494,7 @@ Not all APIs follow the conventions that the `JSONAPISerializer` uses
 with a data namespace and sideloaded relationship records. Some
 legacy APIs may return a simple JSON payload that is just the requested
 resource or an array of serialized records. The `JSONSerializer` is a
-serializer that ships with Ember Data that can be used along side the
+serializer that ships with Ember Data that can be used alongside the
 `RESTAdapter` to serialize these simpler APIs.
 
 To use it in your application you will need to define a
@@ -557,7 +557,7 @@ records. The `EmbeddedRecordsMixin` is meant to help with this problem.
 To set up embedded records, include the mixin when extending a
 serializer then define and configure embedded relationships.
 
-For example if your `post` model contained an embedded `author` record
+For example, if your `post` model contained an embedded `author` record
 that looks similar to this:
 
 
@@ -592,7 +592,7 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 
 If you find yourself needing to both serialize and deserialize the
 embedded relationship you can use the shorthand option of `{ embedded:
-'always' }`. The following example and the one above are equivalent.
+'always' }`. The example above could therefore be expressed as such:
 
 ```app/serializers/post.js
 import DS from 'ember-data';
@@ -605,10 +605,11 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 ```
 
 
-The `serialize` and `deserialize` keys support 3 options.
-- `records` is used to signal that the entire record is expected
-- `ids` is used to signal that only the id of the record is expected
-- false is used to signal that the record is not expected
+The `serialize` and `deserialize` keys support 3 values:
+
+* `records` is used to signal that the entire record is expected
+* `ids` is used to signal that only the id of the record is expected
+* `false` is used to signal that the record is not expected
 
 For example you may find that you want to read an embedded record when
 extracting a JSON payload but only include the relationship's id when
@@ -661,11 +662,11 @@ It is also responsible for transforming a snapshot of a record into
 the payload that an adapter will send to the backend.
 
 A serializer has two main roles in Ember Data.
-First it is responsible for taking a response from an adapter and
+First, it is responsible for taking a response from an adapter and
 serializing it into the normalized JSON format that Ember Data
 understands.
 Secondly, it transforms snapshots of records into a payload the
-adapter will send to the server when creating, updating or deleting a
+adapter will send to the server when creating, updating, or deleting a
 record.
 
 #### Ember Data's Normalized JSON Format
@@ -694,11 +695,11 @@ As with the `type` names, this is different from the example attribute
 and relationship names shown in the
 [JSON API spec](http://jsonapi.org/format/).
 The examples in the spec use dash-case for attribute and relationship
-names, however, the spec does not require attribute or relationship
+names. However, the spec does not require attribute or relationship
 names to follow any specific casing convention.
 If you are using Ember Data's own `JSONAPISerializer` it will assume
 the attribute and relationship names from your API are dash-case and
-automatically transform them to be camelCase when it creates the
+automatically transform them to camelCase when it creates the
 normalized JSON object.
 
 Other than these two restrictions, Ember Data's normalized JSON object
@@ -756,10 +757,10 @@ JSON object described above.
 
 This method receives the `store`, the Model class for the request, the
 payload, the id of the record request (or `null` if there is
-no id associated with the request) and the request type (a string with
+no id associated with the request), and the request type (a string with
 the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`,
 `'findBelongsTo'`, `'findHasMany'`, `'findMany'`, `'query'`,
-`'createRecord'`, `'deleteRecord'` and `'updateRecord'`) as arguments.
+`'createRecord'`, `'deleteRecord'`, and `'updateRecord'`) as arguments.
 
 A custom serializer will also need to define a
 [normalize](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalize)

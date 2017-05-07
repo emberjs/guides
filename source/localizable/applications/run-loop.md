@@ -193,7 +193,7 @@ $('a').click(() => {
 });
 ```
 
-The run loop API calls that _schedule_ work i.e. [`run.schedule`][1], [`run.scheduleOnce`][2],
+The run loop API calls that _schedule_ work, i.e. [`run.schedule`][1], [`run.scheduleOnce`][2],
 [`run.once`][3] have the property that they will approximate a run loop for you if one does not already exist.
 These automatically created run loops we call _autoruns_.
 
