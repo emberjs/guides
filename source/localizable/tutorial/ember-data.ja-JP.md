@@ -4,7 +4,7 @@ Emberには、[Ember Data](https://github.com/emberjs/data)というデータ管
 
 Ember Dataでは、[`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html)を拡張することによって、アプリケーションに提供したいデータの構造を定義する必要があります。.
 
-Ember CLI を使ってEmber Dataモデルを生成できます。 これから作るモデルを`rental`と呼ぶことにしましょう。これを生成するには、次のようにします。
+You can generate an Ember Data Model using Ember CLI. We'll call our model `rental` and generate it as follows:
 
 ```shell
 ember g model rental

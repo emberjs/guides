@@ -1,39 +1,36 @@
-As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself, such as authentication or using SASS for your stylesheets. Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve these problems. Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript datepicker that aren't specific to Ember apps. Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
+Emberアプリを開発しているときには、Ember自体が扱っていない一般的なシナリオを実行する可能性があります。それはたとえば、認証だったりスタイルシート用にSASSを使用することだったりといったことです。 Ember CLIは、これらの問題を解決するための再利用可能なライブラリを配布する一般的なフォーマットを提供します。このフォーマットは、[Emberアドオン](#toc_addons)と呼ばれます。 さらに、Emberアプリ特有のものではない、CSSフレームワークやJavaScriptのdatepickeなどといったフロントエンドの依存関係を利用することもできます。 Ember CLI は標準の[Bowerパッケージマネージャー](#toc_bower)を介してこれらのパッケージをインストールすることをサポートしています。.
 
-## Addons
+## アドオン
 
-Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints) (e.g. `ember install ember-cli-sass`). Addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
+Emberアドオンは[Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)を使ってインストールできます (例: `ember install ember-cli-sass`)。 アドオンは、それ以外の依存性をプロジェクトの`bower.json`ファイルを自動的に変更することによって、他の依存関係をもたらす可能性があります。
 
-You can find listings of addons on [Ember Observer](http://emberobserver.com).
+[Ember Observer](http://emberobserver.com)に行けば、アドオンのリストを見ることができます。.
 
 ## Bower
 
-Ember CLI uses the [Bower](http://bower.io) package manager, making it easy to keep your front-end dependencies up to date. The Bower configuration file, `bower.json`, is located at the root of your Ember CLI project, and lists the dependencies for your project. Executing `bower install` will install all of the dependencies listed in `bower.json` in one step.
+Ember CLIは、フロントエンドの依存関係を最新に保ちやすくするために、[Bower](http://bower.io)パッケージマネージャーを使用します。 Bowerの構成ファイルである`bower.json`は、Ember CLIプロジェクトのルートにあり、プロジェクトの依存関係のリストを記載します。 `bower install`を実行すると、`bower.json`にリストされている全ての依存関係が一度にインストールされます。
 
-Ember CLI watches `bower.json` for changes. Thus it reloads your app if you install new dependencies via `bower install <dependencies> --save`.
+Ember CLIは`bower.json`の変更を監視します。したがって、`bower install <dependencies> --save`によって新しい依存関係をインストールすると、Ember CLIはアプリケーションをリロードします。.
 
-## Other assets
+## その他のアセット
 
-Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
+アドオンやBowerパッケージとして利用できないサードパーティのJavaScriptは、プロジェクトの`vendor/`フォルダーに配置する必要があります。
 
-Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
+あなた自身のアセット (`robots.txt`や`favicon`、カスタムフォントなど)はプロジェクト内の`public/`フォルダーに配置する必要があります。
 
-## Compiling Assets
+## アセットのコンパイル
 
-When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
+アドオンに含まれていない依存関係を使用している場合は、アセットをビルドにアセットを含めるようEmber CLIに指示する必要があります。 これを行うには、アセットのマニフェストファイルである`ember-cli-build.js`を使用します。 その場合は、`bower_components`フォルダー及び`vendor`フォルダーにあるアセットをインポートするようにしてください。
 
-### Globals provided by JavaScript assets
+### JavaScriptアセットによって提供されるグローバル変数
 
-The globals provided by some assets (like `moment` in the below example) can be used in your application without the need to `import` them. Provide the asset path as the first and only argument.
+いくつかのアセット (以下の例における`moment`など) によって提供されるグローバル変数は、`インポート`する必要なしに、アプリケーションから使用できます。 アセットパスを最初にして唯一の引数として指定してください。
 
 ```ember-cli-build.js app.import('bower_components/moment/moment.js');
 
-    <br />You will need to add `"moment"` to the `predef` section in `.jshintrc` to prevent JSHint errors
-    about using an undefined variable.
+    <br />`.jshintrc`の`predef`セクションに`"moment"`を追加して、未定義変数の使用に関するJSHintエラーを防ぐ必要があります。
     
-    ### AMD JavaScript modules
-    
-    Provide the asset path as the first argument, and the list of modules and exports as the second.
+    ### AMD JavaScript モジュール
     
     ```ember-cli-build.js
     app.import('bower_components/ic-ajax/dist/named-amd/main.js', {
@@ -49,17 +46,16 @@ The globals provided by some assets (like `moment` in the below example) can be 
     });
     
 
-You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
+こうすることで、必要なモジュールを非同期でアプリケーションに`インポート`できます (例えば`import { raw as icAjaxRaw } from 'ic-ajax';`のようにします) 。)
 
-### Environment-Specific Assets
+### 環境固有のアセット
 
-If you need to use different assets in different environments, specify an object as the first parameter. That object's key should be the environment name, and the value should be the asset to use in that environment.
+環境ごとに異なるアセットを使用する必要がある場合は、最初のパラメーターとしてオブジェクトを指定します。 その際、オブジェクトのキーは環境名に、あたいは環境で使用するアセットにする必要があります。
 
 ```ember-cli-build.js app.import({ development: 'bower_components/ember/ember.js', production: 'bower_components/ember/ember.prod.js' });
 
-    <br />If you need to import an asset in only one environment you can wrap `app.import` in an `if` statement.
-    For assets needed during testing, you should also use the `{type: 'test'}` option to make sure they
-    are available in test mode.
+    <br />ある環境だけにアセットをインポートしたい場合は、`app.import`を`if`文で括ります。
+    テスト中に必要なアセットの場合には、テストモードで利用できるかを指示するために`{type: 'test'}`も使用する必要があります。
     
     ```ember-cli-build.js
     if (app.env === 'development') {
@@ -75,37 +71,37 @@ If you need to use different assets in different environments, specify an object
 
 ### CSS
 
-Provide the asset path as the first argument:
+第一引数にアセットのパスを指定します。
 
 ```ember-cli-build.js app.import('bower_components/foundation/css/foundation.css');
 
-    <br />All style assets added this way will be concatenated and output as `/assets/vendor.css`.
+    <br />この方法で追加された全てのスタイル用アセットは、1つに結合されて`/assets/vendor.css`として出力されます。
     
-    ### Other Assets
+    ### その他のアセット
     
-    All assets located in the `public/` folder will be copied as is to the final output directory, `dist/`.
+    `public/`フォルダー内の全てのアセットは、最終的な出力ディレクトリである`dist/`にそのままコピーされます。
     
-    For example, a `favicon` located at `public/images/favicon.ico` will be copied to `dist/images/favicon.ico`.
     
-    All third-party assets, included either manually in `vendor/` or via a package manager like Bower, must be added via `import()`.
+    例えば、`public/images/favicon.ico`にある`favicon`は、`dist/images/favicon.ico`にコピーされます。
     
-    Third-party assets that are not added via `import()` will not be present in the final build.
+    `vendor/`に手動で入れられたか、あるいはBowerのようなパッケージマネージャーを介して入れられた全てのサードパーティのアセットは、`import()`によって追加しなければなりません。
     
-    By default, `import`ed assets will be copied to `dist/` as they are, with the existing directory structure maintained.
+    `import()`によって追加されていないサードパーティのアセットは、最終ビルドには含まれません。
+    
+    デフォルトでは、`import`されたアセットは、既存のディレクトリ構造を維持したまま`dist/`にコピーされます。
     
     ```ember-cli-build.js
     app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf');
     
 
-This example would create the font file in `dist/font-awesome/fonts/fontawesome-webfont.ttf`.
+この例では、`dist/font-awesome/fonts/fontawesome-webfont.ttf`にフォントファイルを作成しています.
 
-You can also optionally tell `import()` to place the file at a different path. The following example will copy the file to `dist/assets/fontawesome-webfont.ttf`.
+オプションで、`import()`に対してファイルを別のパスに置くよう指示することもできます。 次の例では、ファイルを`dist/assets/fontawesome-webfont.ttf`にコピーします。.
 
 ```ember-cli-build.js app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf', { destDir: 'assets' });
 
-    <br />If you need to load certain dependencies before others,
-    you can set the `prepend` property equal to `true` on the second argument of `import()`.
-    This will prepend the dependency to the vendor file instead of appending it, which is the default behavior.
+    <br />特定の依存関係を他の依存関係よりも前にロードする必要がある場合は、`import()`の2番目の引数`prepend`プロパティを`true`に設定します。
+    これによって、既定の動作の代わりに、vendorファイルの先頭に依存関係が追加されます (既定の動作ではvendorファイルの最後に依存関係が追加されます) 。
     
     ```ember-cli-build.js
     app.import('bower_components/es5-shim/es5-shim.js', {

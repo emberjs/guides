@@ -25,7 +25,7 @@ Los servicios deben extender de la clase base [`Ember.Service`](http://emberjs.c
 export default Ember.Service.extend({ });
 
     <br />Como cualquier objeto de Ember, un servicio es inicializado y puede tener propiedades y métodos de su propiedad.
-    A continuación el servicio de carrito de compras administra un arreglo de elementos que representa los elementos presentes en el carrito de compras.
+    Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
     
     ```app/services/shopping-cart.js
     import Ember from 'ember';

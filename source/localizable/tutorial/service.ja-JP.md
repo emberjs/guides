@@ -8,7 +8,7 @@ Super Rentalsでは、各賃貸物件の場所を示す地図を表示できる�
 
 地図ユーティリティを実装する前に、EmberアプリケーションでサードパーティマップAPIを利用できるようにする必要があります。 Emberにサードパーティライブラリを含めるにはいくつかの方法があります。 サードパーティライブラリを追加する方法は、[依存関係を管理する](../../addons-and-dependencies/managing-dependencies/)のガイドを参照してください。
 
-The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires implementers to reference its library from a script tag. We can add custom script references to our application by updating the main HTML page at `app/index.html`.
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a script tag. We can add custom script references to our application by updating the main HTML page at `app/index.html`.
 
 ```app/index.html{+22}
 <!DOCTYPE html>
@@ -208,7 +208,7 @@ You may now either move onto the [next feature](../subroutes/), or continue here
 
 ### サービスのユニットテスト
 
-We'll use a unit test to validate the service. Unit tests are more isolated than integration tests and acceptance test, and are intended for testing specific logic within a class.
+We'll use a unit test to validate the service. Unit tests are more isolated than integration tests and acceptance tests, and are intended for testing specific logic within a class.
 
 For our service unit test, we'll want to verify that locations that have been previously loaded are fetched from cache, while new locations are created using the utility. We will isolate our tests from actually calling Google Maps by stubbing our map utility. On line 6 of `maps-test.js` below we create an Ember object to simulate the behavior of the utility, but instead of creating a google map, we return an empty JavaScript object.
 

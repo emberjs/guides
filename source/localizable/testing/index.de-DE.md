@@ -21,7 +21,7 @@ Unit tests are used to test isolated chunks of functionality, or "units". They c
 
 Some specific examples of units tests are:
 
-* A fullname attribute is computed which is the aggregate of its first and last.
+* A fullname attribute is computed which combines the `firstName` and `lastName` attributes.
 * The serializer properly converts the blog request payload into a blog post model object.
 * Blog dates are properly formatted.
 

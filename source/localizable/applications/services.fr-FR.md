@@ -25,7 +25,7 @@ Services must extend the [`Ember.Service`](http://emberjs.com/api/classes/Ember.
 export default Ember.Service.extend({ });
 
     <br />Like any Ember object, a service is initialized and can have properties and methods of its own.
-    Below the shopping cart service manages an items array that represents the items currently in the shopping cart.
+    Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
     
     ```app/services/shopping-cart.js
     import Ember from 'ember';

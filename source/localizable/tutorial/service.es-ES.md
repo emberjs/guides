@@ -8,7 +8,7 @@ For Super Rentals, we want to be able to display a map showing where each rental
 
 Before implementing a map, we need to make a 3rd party map API available to our Ember app. There are several ways to include 3rd party libraries in Ember. See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/) as a starting point when you need to add one.
 
-The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires implementers to reference its library from a script tag. We can add custom script references to our application by updating the main HTML page at `app/index.html`.
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a script tag. We can add custom script references to our application by updating the main HTML page at `app/index.html`.
 
 ```app/index.html{+22}
 <!DOCTYPE html>
@@ -208,7 +208,7 @@ You may now either move onto the [next feature](../subroutes/), or continue here
 
 ### Unit testing a Service
 
-We'll use a unit test to validate the service. Unit tests are more isolated than integration tests and acceptance test, and are intended for testing specific logic within a class.
+We'll use a unit test to validate the service. Unit tests are more isolated than integration tests and acceptance tests, and are intended for testing specific logic within a class.
 
 For our service unit test, we'll want to verify that locations that have been previously loaded are fetched from cache, while new locations are created using the utility. We will isolate our tests from actually calling Google Maps by stubbing our map utility. On line 6 of `maps-test.js` below we create an Ember object to simulate the behavior of the utility, but instead of creating a google map, we return an empty JavaScript object.
 

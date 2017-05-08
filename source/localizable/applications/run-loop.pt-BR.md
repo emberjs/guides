@@ -165,7 +165,7 @@ $('a').click(() => {
 });
 ```
 
-The run loop API calls that *schedule* work i.e. [`run.schedule`](http://emberjs.com/api/classes/Ember.run.html#method_schedule), [`run.scheduleOnce`](http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce), [`run.once`](http://emberjs.com/api/classes/Ember.run.html#method_once) have the property that they will approximate a run loop for you if one does not already exist. These automatically created run loops we call *autoruns*.
+The run loop API calls that *schedule* work, i.e. [`run.schedule`](http://emberjs.com/api/classes/Ember.run.html#method_schedule), [`run.scheduleOnce`](http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce), [`run.once`](http://emberjs.com/api/classes/Ember.run.html#method_once) have the property that they will approximate a run loop for you if one does not already exist. These automatically created run loops we call *autoruns*.
 
 Here is some pseudocode to describe what happens using the example above:
 

@@ -30,9 +30,8 @@ cd super-rentals
 |--tests
 |--vendor
 
-<その他のファイル>
+<other files>
 
-bower.json
 ember-cli-build.js
 package.json
 README.md
@@ -43,23 +42,21 @@ Ember CLIが作成したファイルやディレクトリを見てみましょ�
 
 **app**: この配下に、モジュールやコンポーネント、ルート、テンプレート、スタイルシート用のディレクトリやファイルが含まれています。Emberプロジェクトにおけるコーディングの大半は、この中で行われます。
 
-**bower.json**: Bowerは依存関係を管理するツールです。 Ember CLIでは、フロントエンドのプラグインやコンポーネントの依存性(HTML、 CSS、 JavaScript など) を管理するために利用が可能です。 すべてのBowerコンポーネントは`bower_components`ディレクトリにインストールされます。 Bootstrapなど、フロントエンドの依存関係を新たに追加した場合、それらはここにリストされます。そして、それらは`bower_components`ディレクトリに追加されます。
+**config**: The config directory contains the `environment.js` where you can configure settings for your app.
 
-**config**: 設定ファイル用のディレクトリです。ここには、アプリケーションの設定を行う`environment.js` が含まれています。
+**node_modules / package.json**: This directory and file are from npm. npm is the package manager for Node.js. Ember is built with Node and uses a variety of Node.js modules for operation. The `package.json` file maintains the list of current npm dependencies for the app. Any Ember CLI add-ons you install will also show up here. Packages listed in `package.json` are installed in the node_modules directory.
 
-**node_modules / package.json**: このディレクトリとファイルはnpmに関連しています。 npmはNode.jsのパッケージマネージャーです。 EmberはNodeで構築されていて、動作に様々なNode.jsモジュールを利用しています。 `package.json`ファイルは、アプリケーションのnpmの依存関係のリストを管理しています。追加でインストールしたEmber CLIアドオンがあれば、それもこのリストで管理されます。 `package.json`内にリストされているパッケージは、node_modulesディレクトリにインストールされます。
+**public**: This directory contains assets such as images and fonts.
 
-**public**: このディレクトリには、画像ファイルやフォントなどのアセットが含まれています。
+**vendor**: This directory is where front-end dependencies (such as JavaScript or CSS) that are not managed by Bower go.
 
-**vendor**: このディレクトリには、Bowerによって管理されないフロントエンドの依存関係 (JavaScript、CSS など) を配置します。
+**tests / testem.js**: Automated tests for our app go in the `tests` folder, and Ember CLI's test runner **testem** is configured in `testem.js`.
 
-**tests / testem.js**: アプリケーションの自動テストは`tests`ディレクトリ配下に配置します。Ember CLIのテストランナー**testem**は、`testem.js`によって設定されます。.
-
-**ember-cli-build.js**: このファイルには、Ember CLIがアプリケーションをどのようにビルドすべきかを記載します。
+**ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
 ## ES6 モジュール
 
-`app/router.js`に目を通すと、見慣れない構文が使われてることに気がつくはずです。
+If you take a look at `app/router.js`, you'll notice some syntax that may be unfamiliar to you.
 
 ```app/router.js import Ember from 'ember'; import config from './config/environment';
 
@@ -83,19 +80,19 @@ export default Router;
     ember server
     
 
-コマンドは次のように省略することもできます。
+or, for short:
 
 ```shell
 ember s
 ```
 
-ブラウザで[`http://localhost:4200`](http://localhost:4200)を開くと、デフォルトのウェルカムページが表示されているはずです。 `app/templates/application.hbs`を編集することと、表示内容を好きに置き換えられます。
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen. When we edit the `app/templates/application.hbs` file, we'll replace that content with our own.
 
 ![default welcome screen](../../images/ember-cli/default-welcome-page.png)
 
-新しいプロジェクトで行いたい最初のことは、ウェルカムページを削除することです。そのためには、まず`app/templates/application.hbs`にあるアプリケーションテンプレートファイルを開きます。.
+The first thing we want to do in our new project is to remove the welcome screen. We do this by simply opening up the application template file located at `app/templates/application.hbs`.
 
-ファイルを開いたなら、`{{welcome-page}}`というラベルの付いたコンポーネントを削除してください。すると、これからアプリケーションを作っていくために、アプリケーションは全くの空白なキャンバスとなるはずです。
+Once open, remove the component labeled `{{welcome-page}}`. The application should now be a completely blank canvas to build our application on.
 
 ```app/templates/application.hbs{-1,-2,-3} {{!-- The following component displays Ember's default welcome message. --}} {{welcome-page}} {{!-- Feel free to remove this! --}}
 

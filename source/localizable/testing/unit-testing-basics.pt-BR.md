@@ -52,7 +52,7 @@ export default Ember.Object.extend({ foo: 'bar', testMethod() { this.set('foo', 
     });
     
 
-In the event the object's method returns a value you can simply assert that the return value is calculated correctly. Suppose our object has a `calc` method that returns a value based on some internal state.
+In the event the object's method returns a value, you can simply assert that the return value is calculated correctly. Suppose our object has a `calc` method that returns a value based on some internal state.
 
 ```app/models/some-thing.js import Ember from 'ember';
 

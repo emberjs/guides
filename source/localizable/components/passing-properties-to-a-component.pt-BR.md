@@ -38,7 +38,7 @@ A fim de passar uma propriedade para um componente, você deve passá-lo assim:
     Em outras palavras, você pode invocar o exemplo acima do componente assim: ' ' app/templates/index.hbs {{#each model as |post|}} {{blog-post post.title post.body}} {{/ each}}
     
 
-Para configurar o componente para receber parâmetros desta forma, você precisa definir o atributo [`positionalParams`](http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams) na sua classe de componente.
+To set the component up to receive parameters this way, you need to set the [`positionalParams`](http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams) attribute in your component class.
 
 ```app/components/blog-post.js import Ember from 'ember';
 

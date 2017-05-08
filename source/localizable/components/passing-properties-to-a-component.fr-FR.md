@@ -53,7 +53,7 @@ In order to make a property available to a component, you must pass it in like t
     {{/each}}
     
 
-To set the component up to receive parameters this way, you need set the [`positionalParams`](http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams) attribute in your component class.
+To set the component up to receive parameters this way, you need to set the [`positionalParams`](http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams) attribute in your component class.
 
 ```app/components/blog-post.js import Ember from 'ember';
 
