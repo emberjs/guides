@@ -257,6 +257,8 @@ describe TOC::Helpers do
   end
 
   describe "specific version data" do
+    let(:basics_page)            { double(path: "v2.11.0/middleman-basics/index.html") }
+
     before(:each) do
       class HelperTester
         include TOC::Helpers
