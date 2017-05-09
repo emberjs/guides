@@ -291,7 +291,7 @@ describe TOC::Helpers do
       it "raises an exception if a file doesn't exist" do
         allow(File).to receive(:exist?).and_return(false)
         expect { toc }.to raise_error(RuntimeError,
-                                      /source\/localizable\/middleman-basics\/index.md does not exist but is referenced in data\/guides.yml./)
+                                      /source\/localizable\/v2.11.0\/middleman-basics\/index.md does not exist but is referenced in data\/guides.yml./)
       end
 
       it "includes guide titles" do
@@ -323,7 +323,7 @@ describe TOC::Helpers do
       end
 
       it "links to the innermost page" do
-        expect(toc).to include("<a href=\"/middleman-basics/index.html\">")
+        expect(toc).to include("<a href=\"/v2.11.0/middleman-basics/index.html\">")
       end
 
       it "links to hashes for parents of nested pages" do

@@ -1,6 +1,5 @@
 - title: "Guides and Tutorials"
   url: 'v2.11.0'
-  skip_toc: true
   pages:
     - title: "Middleman Basics"
       url: "middleman-basics"
