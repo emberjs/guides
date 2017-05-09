@@ -29,6 +29,9 @@ GEM
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
+    byebug (2.7.0)
+      columnize (~> 0.3)
+      debugger-linecache (~> 1.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -42,6 +45,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colored (1.2)
+    columnize (0.9.0)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -55,6 +59,7 @@ GEM
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
     daemons (1.2.3)
+    debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     ethon (0.8.0)
@@ -143,6 +148,9 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-byebug (1.3.2)
+      byebug (~> 2.7)
+      pry (~> 0.9.12)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -223,6 +231,7 @@ DEPENDENCIES
   normalize-scss
   poltergeist
   pry
+  pry-byebug
   rack
   rails-assets-js-md5!
   rails-assets-moment!

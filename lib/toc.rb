@@ -27,7 +27,8 @@ module TOC
     end
 
     def toc_for(pages, level=0, base_path="", parent_current=true)
-      buffer = "<ol class='toc-level-#{level}#{parent_current ? ' selected' : ''}'>"
+      toc_css_level = (level-1 >= 0) ? "toc-level-#{level-1}" : ''
+      buffer = "<ol class='#{toc_css_level}#{parent_current ? ' selected' : ''}'>"
       # indentation below is to aid in understanding the HTML structure
         pages.each do |page|
           next if page.skip_toc
@@ -37,11 +38,16 @@ module TOC
 
           page_path = base_path + "/" + page.url
 
+          if page.children_only
+            buffer << toc_for(page.pages, level + 1, page_path, current)
+            next
+          end
+
           unless page.pages || File.exist?(file = "source/localizable" + page_path + ".md")
             raise "#{file} does not exist but is referenced in data/guides.yml."
           end
 
-          buffer << "<li class='toc-level-#{level} #{current ? 'selected' : ''}'>"
+          buffer << "<li class='#{toc_css_level} #{current ? 'selected' : ''}'>"
             if page.pages
               unless page.skip_toc
                 buffer << link_to(page.title, '#')
@@ -201,7 +207,7 @@ private
       return @current_guide if @current_guide
 
       path = current_page.path.gsub('.html', '')
-      guide_path = path.split("/")[0]
+      guide_path = path.split("/")[1]
 
       @current_guide = version_pages.find do |guide|
         guide.url == guide_path

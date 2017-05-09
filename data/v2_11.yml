@@ -1,6 +1,6 @@
 - title: "Guides and Tutorials"
   url: 'v2.11.0'
-  skip_toc: true
+  children_only: true
   pages:
     - title: "Welcome to the Guides"
       url: "index"

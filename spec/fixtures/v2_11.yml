@@ -1,5 +1,6 @@
 - title: "Guides and Tutorials"
   url: 'v2.11.0'
+  children_only: true
   pages:
     - title: "Middleman Basics"
       url: "middleman-basics"
