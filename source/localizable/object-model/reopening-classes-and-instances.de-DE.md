@@ -1,4 +1,4 @@
-You don't need to define a class all at once. You can reopen a class and define new properties using the [`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass) method.
+You don't need to define a class all at once. You can reopen a class and define new properties using the [`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopen) method.
 
 ```javascript
 Person.reopen({
@@ -28,7 +28,7 @@ But when you need to add static methods or static properties to the class itself
 Person.reopenClass({
   isPerson: false
 });
-// override property of Person instance
+// override property of existing and future Person instances
 Person.reopen({
   isPerson: true
 });

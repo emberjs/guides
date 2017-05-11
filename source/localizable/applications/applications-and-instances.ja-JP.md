@@ -1,7 +1,7 @@
-Every Ember application is represented by a class that extends [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html). This class is used to declare and configure the many objects that make up your app.
+全てのEmberアプリケーションは、[`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html)を継承したクラスとして表現されます。 このクラスは、アプリケーションを構成する多くのオブジェクトを宣言し構成するために使われます。
 
-As your application boots, it creates an [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) that is used to manage its stateful aspects. This instance acts as the "owner" of objects instantiated for your app.
+起動すると、アプリケーションは状態管理に使用する[`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html)を作成します。 このインスタンスは、アプリケーション用にインスタンス化されたオブジェクトの「所用者」として機能します。
 
-Essentially, the `Application` *defines your application* while the `ApplicationInstance` *manages its state*.
+基本的に、`ApplicationInstance`が*状態を管理*し、`Application`が*アプリケーションを定義*します.
 
-This separation of concerns not only clarifies the architecture of your app, it can also improve its efficiency. This is particularly true when your app needs to be booted repeatedly during testing and / or server-rendering (e.g. via [FastBoot](https://github.com/tildeio/ember-cli-fastboot)). The configuration of a single `Application` can be done once and shared among multiple stateful `ApplicationInstance` instances. These instances can be discarded once they're no longer needed (e.g. when a test has run or FastBoot request has finished).
+このような関心ごとの分離は、アプリケーションのアーキテクチャを明らかにするだけでなく、その効果も向上させます。 これはアプリケーションをテスト中に繰り返し起動したり、あるいはサーバーレンダリング (例えば[FastBoot](https://github.com/tildeio/ember-cli-fastboot)経由で) を行う必要がある場合には、特に当てはまります。 このような場合には、単一`Application`の構成を一度行った後で、複数のステートフルな`ApplicationInstance`の間で共有できます。 これらのインスタンスは必要がなくなれば破棄することもできます (例えば、テストを実行している時やFastBootのリクエストが終了した時など)。

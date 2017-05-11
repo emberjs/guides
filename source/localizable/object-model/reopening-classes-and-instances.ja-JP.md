@@ -1,4 +1,4 @@
-クラスを一度にすべて定義する必要はありません。 [`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass)メソッドを使うことで、クラスをリオープンして新しいプロパティを定義できます。
+クラスを一度にすべて定義する必要はありません。 You can reopen a class and define new properties using the [`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopen) method.
 
 ```javascript
 Person.reopen({
@@ -24,15 +24,15 @@ Person.reopen({
 静的なメソッドやプロパティをクラス自身に追加する必要がある場合には、[`reopenClass()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass)を使います。.
 
 ```javascript
-// クラスに静的なプロパティを追加
+// add static property to class
 Person.reopenClass({
   isPerson: false
 });
-// Personインスタンスのプロパティをオーバーライド
+// override property of existing and future Person instances
 Person.reopen({
   isPerson: true
 });
 
-Person.isPerson; // false - これは`reopenClass`によって作成された静的なプロパティなので
+Person.isPerson; // false - because it is static property created by `reopenClass`
 Person.create().get('isPerson'); // true
 ```

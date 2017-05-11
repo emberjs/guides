@@ -1,4 +1,4 @@
-一个类只需要定义一次即可。 你可以重新扩展一个类或者使用[`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass)方法定义新的属性。
+一个类只需要定义一次即可。 You can reopen a class and define new properties using the [`reopen()`](http://emberjs.com/api/classes/Ember.Object.html#method_reopen) method.
 
 ```javascript
 Person.reopen({
@@ -28,7 +28,7 @@ Person.reopen({
 Person.reopenClass({
   isPerson: false
 });
-// override property of Person instance
+// override property of existing and future Person instances
 Person.reopen({
   isPerson: true
 });
