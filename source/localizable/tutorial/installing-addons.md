@@ -25,8 +25,54 @@ ember install ember-cli-tutorial-style
 ```
 
 Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry
-in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will
-incorporate the new CSS and refreshing the browser window will give you this:
+in `package.json`. Be sure to restart your server after the addon has installed successfully.
+
+
+Now let's open `app/routes/rentals.js` and modify the rental type to a compound string. We will come back to need for this later when working with `template helpers`:
+
+```app/routes/rentals.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model() {
+    return [{
+      id: 'grand-old-mansion',
+      title: 'Grand Old Mansion',
+      owner: 'Veruca Salt',
+      city: 'San Francisco',
+      //type: 'Estate',
+      type: 'Standalone - Estate',
+      bedrooms: 15,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+      description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
+    }, {
+      id: 'urban-living',
+      title: 'Urban Living',
+      owner: 'Mike TV',
+      city: 'Seattle',
+      //type: 'Condo',
+      type: 'Community - Condo',
+      bedrooms: 1,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
+      description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
+
+    }, {
+      id: 'downtown-charm',
+      title: 'Downtown Charm',
+      owner: 'Violet Beauregarde',
+      city: 'Portland',
+      //type: 'Apartment',
+      type: 'Community - Apartment',
+      bedrooms: 3,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+      description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+
+    }];
+  }
+});
+```
+
+Restarting the server will incorporate the new CSS and refreshing the browser window will give you this:
 
 ![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
 
