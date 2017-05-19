@@ -2,7 +2,7 @@ This document will document some of the processes that members of the documentat
 
 # Review Period
 
-The two weeks preceeding a scheduled release is considered the review period of the Guides.
+The two weeks preceding a scheduled release is considered the review period of the Guides.
 It is only during this period that pull requests for the relevant milestone are to be merged in.
 
 Before the review period starts, the previous version should be re-released with any updates.
