@@ -37,7 +37,7 @@ and fire observers when any of the following events occurs:
 
 It's important to note that the `@each` key can be dependant on more than one key. 
 For example, if you are using `Ember.computed` to sort an array by multiple keys, 
-you would declare the depandency with braces: `todos.@each.{priority,title}`
+you would declare the dependency with braces: `todos.@each.{priority,title}`
 
 ### Computed Property Macros
 
