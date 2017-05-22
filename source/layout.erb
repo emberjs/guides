@@ -33,6 +33,10 @@
     <%= yield_content :outside_wrapper %>
 
     <main class="container">
+
+    <% if current_page.data.title == "404 - Not Found" %>
+      <%= yield %>
+    <% else %>
       <%= partial "sidebar" %>
 
       <article class="chapter">
@@ -48,6 +52,7 @@
 
         <%= chapter_links %>
       </article>
+    <% end %>
     </main>
 
     <%= partial "footer" %>
