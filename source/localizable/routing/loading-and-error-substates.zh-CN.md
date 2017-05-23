@@ -2,7 +2,7 @@ Ember路由控制器允许提供一个可以用来表示路由读取或路由读
 
 ## “加载”子状态
 
-在beforeModel、model、afterModel钩子中，数据可能需要一些时间来加载。 从技术角度来说，路由控制器会暂停跳转，直至所有钩子方法的Promise全部完全填充（fulfill）
+在beforeModel、model、afterModel钩子中，数据可能需要一些时间来加载。 从技术角度来说，路由控制器会暂停跳转，直至所有钩子方法的Promise全部完全填充（fullfill）
 
 先看如下代码：
 

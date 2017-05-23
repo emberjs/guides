@@ -1,22 +1,22 @@
-Ember applications utilize the [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) ("DI") design pattern to declare and instantiate classes of objects and dependencies between them. Applications and application instances each serve a role in Ember's DI implementation.
+Emberアプリケーションは、クラスやクラス間の依存関係を宣言・インスタンス化するために、デザインパターンの1つ[依存性の注入](https://en.wikipedia.org/wiki/Dependency_injection) (DI, Dependency Injection) を利用します。 アプリケーションとアプリケーションのインスタンスはそれぞれ、EmberのDI実装の役割を果たします。
 
-An [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html) serves as a "registry" for dependency declarations. Factories (i.e. classes) are registered with an application, as well as rules about "injecting" dependencies that are applied when objects are instantiated.
+[`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html)は依存関係を宣言するための「レジストリ」として機能します。 ファクトリ (クラス) は、アプリケーションに登録されるのはもちろん、オブジェクトのインスタンス化時に適用される依存性の「注入」に関するルールにも登録されます。
 
-An [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) serves as the "owner" for objects that are instantiated from registered factories. Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
+[`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html)は登録されたファクトリからインスタンス化されたオブジェクトの「オーナー」として機能します。 アプリケーションインスタンスは、オブジェクトを「探す」(インスタンス化および/あるいは検索する)手段を提供します。
 
-> *Note: Although an `Application` serves as the primary registry for an app, each `ApplicationInstance` can also serve as a registry. Instance-level registrations are useful for providing instance-level customizations, such as A/B testing of a feature.*
+> *注意事項: `Application`はアプリケーション用のプライマリのレジストリとして機能しますが、各`ApplicationInstance`もまたレジストリとして機能することが可能です。 インスタンスレベルで登録を行えることは、機能のA/Bテストのような、インスタンスレベルのカスタマイズを提供するのに便利です。*
 
-## Factory Registrations
+## ファクトリによる登録
 
-A factory can represent any part of your application, like a *route*, *template*, or custom class. Every factory is registered with a particular key. For example, the index template is registered with the key `template:index`, and the application route is registered with the key `route:application`.
+ファクトリは、*route*や*template*、カスタムクラスなどのようなアプリケーションの任意の部分を表現できます。 全てのファクトリは特定のキーにより登録されます。 例えば、indexテンプレートは`template:index`をキーにして登録されます。そして、アプリケーションルートは`route:application`をキーにして登録されます.
 
-Registration keys have two segments split by a colon (`:`). The first segment is the framework factory type, and the second is the name of the particular factory. Hence, the `index` template has the key `template:index`. Ember has several built-in factory types, such as `service`, `route`, `template`, and `component`.
+登録に使われるキーはコロン (`:`) によって分割された2つの部分を持ちます。 1つ目の部分はフレームワークにおけるファクトリのタイプ、2つ目の部分は特定のファクトリ名を表します。 したがって、`index`テンプレートは`template:index`というキーを持つことになります。 Emberは組み込みのファクトリタイプをいくつか持っています。例えば、`service`、`route`、`template`、`component`などです.
 
-You can create your own factory type by simply registering a factory with the new type. For example, to create a `user` type, you'd simply register your factory with `application.register('user:user-to-register')`.
+新しいタイプのファクトリを登録さえすれば、独自のファクトリタイプを作成できます。 例えば、`user`タイプを作成するには、単に`application.register('user:user-to-register')`としてファクトリを登録するだけです。.
 
-Factory registrations must be performed either in application or application instance initializers (with the former being much more common).
+ファクトリの登録は、アプリケーションかアプリケーションインスタンスのイニシャライザのいずれかで行う必要があります (前者で行うのが最も一般的です)。
 
-For example, an application initializer could register a `Logger` factory with the key `logger:main`:
+例えば、アプリケーションのイニシャライザで`logger:main`というキーで`Logger`ファクトリを登録する場合は以下のようにします。
 
 ```app/initializers/logger.js import Ember from 'ember';
 
@@ -26,14 +26,13 @@ application.register('logger:main', Logger); }
 
 export default { name: 'logger', initialize: initialize };
 
-    <br />### Registering Already Instantiated Objects
+    <br />### すでにインスタンス化されたオブジェクトを登録する
     
-    By default, Ember will attempt to instantiate a registered factory when it is looked up.
-    When registering an already instantiated object instead of a class,
-    use the `instantiate: false` option to avoid attempts to re-instantiate it during lookups.
+    デフォルトでは、登録されたファクトリが検索されたときにEmberはそのファクトリをインスタンス化しようとします。
+    既にインスタンス化されたオブジェクトをクラスの代わりに登録するときは、
+    `instantiate: false`オプションを使用して、検索時に再インスタンス化を行わないようにします。
     
-    In the following example, the `logger` is a plain JavaScript object that should
-    be returned "as is" when it's looked up:
+    以下の例では、`logger`は検索された場合は「そのまま」返す必要があるプレーンなJavaScriptオブジェクトです。
     
     ```app/initializers/logger.js
     export function initialize(application) {
@@ -52,13 +51,13 @@ export default { name: 'logger', initialize: initialize };
     };
     
 
-### Registering Singletons vs. Non-Singletons
+### シングルトンを登録するか、それとも非シングルトンを登録するか
 
-By default, registrations are treated as "singletons". This simply means that an instance will be created when it is first looked up, and this same instance will be cached and returned from subsequent lookups.
+デフォルトでは、登録は「シングルトン」として扱われます。 これは、最初に検索された際に作成されたインスタンスがキャッシュされ、以降の検索ではそれが返されるということを、単に意味しています。
 
-When you want fresh objects to be created for every lookup, register your factories as non-singletons using the `singleton: false` option.
+検索される度に新鮮なオブジェクトを作成したい場合には、`singleton: false`オプションを使って、非シングルトンとしてファクトリを登録してください。
 
-In the following example, the `Message` class is registered as a non-singleton:
+以下の例では、`Message`クラスを日シングルトンとして登録しています。
 
 ```app/initializers/notification.js import Ember from 'ember';
 
@@ -68,11 +67,11 @@ application.register('notification:message', Message, { singleton: false }); }
 
 export default { name: 'notification', initialize: initialize };
 
-    <br />## Factory Injections
+    <br />## ファクトリの注入
     
-    Once a factory is registered, it can be "injected" where it is needed.
+    一旦ファクトリを登録すると、必要に応じてそれを「注入」することが可能になります。
     
-    Factories can be injected into whole "types" of factories with *type injections*. For example:
+    ファクトリは、*注入するタイプ*によってファクトリの「タイプ」全体に注入することが可能です。 例えば以下のようになります。
     
     ```app/initializers/logger.js
     import Ember from 'ember';
@@ -94,36 +93,35 @@ export default { name: 'notification', initialize: initialize };
     };
     
 
-As a result of this type injection, all factories of the type `route` will be instantiated with the property `logger` injected. The value of `logger` will come from the factory named `logger:main`.
+このタイプの注入の結果として、 `route`タイプの全てのファクトリが注入された`logger`プロパティと共にインスタンス化されます。 `logger`の値は`logger:main`と名付けられたファクトリから取得されます。.
 
-Routes in this example application can now access the injected logger:
+上記を行なったアプリケーションのルートでは、注入されたloggerに以下のようにアクセスできます。
 
 ```app/routes/index.js import Ember from 'ember';
 
 export default Ember.Route.extend({ activate() { // The logger property is injected into all routes this.get('logger').log('Entered the index route!'); } });
 
-    <br />Injections can also be made on a specific factory by using its full key:
+    <br />以下のように完全なキーを使うことで、特定のファクトリにのみに注入を行うことも可能です。
     
     ```js
     application.inject('route:index', 'logger', 'logger:main');
     
 
-In this case, the logger will only be injected on the index route.
+このケースでは、loggerはindexルートだけに注入されます。
 
-Injections can be made into any class that requires instantiation. This includes all of Ember's major framework classes, such as components, helpers, routes, and the router.
+注入は、インスタンス化が必要な任意のクラスに行うことができます。これにはコンポーネント、ヘルパー、ルート、ルータなど、Emberの主要なフレームワーククラス全てが含まれます。
 
-### Ad Hoc Injections
+### アドホックな注入
 
-Dependency injections can also be declared directly on Ember classes using `Ember.inject`. Currently, `Ember.inject` supports injecting controllers (via `Ember.inject.controller`) and services (via `Ember.inject.service`).
+`Ember.inject`を使うことで、直接Emberのクラスに依存性の注入を行うことも可能です。 現在`Ember.inject`は、コントローラー (`Ember.inject.controller`を介して) やサービス (`Ember.inject.service`を介して)の注入をサポートしています。).
 
-The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
+以下のコードは、`cart-contents`コンポーネントに`shopping-cart`サービスを`cart`プロパティとして注入しています。
 
 ```app/components/cart-contents.js import Ember from 'ember';
 
 export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart') });
 
-    <br />If you'd like to inject a service with the same name as the property,
-    simply leave off the service name (the dasherized version of the name will be used):
+    <br />プロパティと同じ名前のサービスを注入する場合は、単にサービス名を指定しないようにします (ケバブケース化された名前が使われます) 。
     
     ```app/components/cart-contents.js
     import Ember from 'ember';
@@ -133,19 +131,19 @@ export default Ember.Component.extend({ cart: Ember.inject.service('shopping-car
     });
     
 
-## Factory Instance Lookups
+## ファクトリによるインスタンス検索
 
-To fetch an instantiated factory from the running application you can call the [`lookup`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup) method on an application instance. This method takes a string to identify a factory and returns the appropriate object.
+実行中のアプリケーションでファクトリのインスタンスをフェッチするには、アプリケーションインスタンスの[`lookup`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup)メソッドを呼び出します。 このメソッドはファクトリを識別する文字列の引数を一つ取り、適切なオブジェクトを返します。
 
 ```javascript
 applicationInstance.lookup('factory-type:factory-name');
 ```
 
-The application instance is passed to Ember's instance initializer hooks and it is added as the "owner" of each object that was instantiated by the application instance.
+アプリケーションインスタンスは、Emberのインスタンスイニシャライザのフックに渡され、アプリケーションインスタンスによってインスタンス化された各オブジェクトの「所有者」として追加されます。
 
-### Using an Application Instance Within an Instance Initializer
+### インスタンスイニシャライザ内でのアプリケーションインスタンスの使用
 
-Instance initializers receive an application instance as an argument, providing an opportunity to look up an instance of a registered factory.
+インスタンスイニシャライザは引数としてアプリケーションインスタンスを受け取ります。これによって、インスタンスイニシャライザ内で登録されているファクトリのインスタンスを検索することが可能となります。
 
 ```app/instance-initializers/logger.js export function initialize(applicationInstance) { let logger = applicationInstance.lookup('logger:main');
 
@@ -153,15 +151,11 @@ logger.log('Hello from the instance initializer!'); }
 
 export default { name: 'logger', initialize: initialize };
 
-    <br />### Getting an Application Instance from a Factory Instance
+    <br />### ファクトリインスタンスからアプリケーションインスタンスを取得する
     
-    [`Ember.getOwner`][4] will retrieve the application instance that "owns" an
-    object. This means that framework objects like components, helpers, and routes
-    can use [`Ember.getOwner`][4] to perform lookups through their application
-    instance at runtime.
+    [`Ember.getOwner`][4]を使うことで、オブジェクトを「所有する」アプリケーションインスタンスを取得できます。 つまり、コンポーネントやヘルパー、ルートなどのようなフレームワークオブジェクトは、実行時にアプリケーションインスタンスを使って検索を行うために、[`Ember.getOwner`][4]を使うことができるということです。
     
-    For example, this component plays songs with different audio services based
-    on a song's `audioType`.
+    例えば、このコンポーネントは歌の`audioType`に基づく異なるオーティオサービスを使って曲を演奏します。
     
     ```app/components/play-audio.js
     import Ember from 'ember';

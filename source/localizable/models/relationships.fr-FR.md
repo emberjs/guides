@@ -182,7 +182,7 @@ obfuscatedIdentifier: Ember.computed('linkedEmail', function () { let last5 = th
             }
         }, {
             "id": "3",
-            "type": "PaymentMethodCc",
+            "type": "PaymentMethodApplePay",
             "attributes": {
                 "last4": "5513"
             }
