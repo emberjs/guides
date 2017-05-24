@@ -37,7 +37,7 @@ To start, let's move the rental display details for a single rental from the `re
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental.type}}
+    <span>Type:</span> {{rental.propertyType}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
@@ -72,7 +72,7 @@ with our new `rental-listing` component:
       <span>Owner:</span> {{rental.owner}}
     </div>
     <div class="detail type">
-      <span>Type:</span> {{rental.type}}
+      <span>Type:</span> {{rental.propertyType}}
     </div>
     <div class="detail location">
       <span>Location:</span> {{rental.city}}
@@ -109,7 +109,7 @@ giving it the `image` class name so that our test can find it.
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental.type}}
+    <span>Type:</span> {{rental.propertyType}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
@@ -145,7 +145,7 @@ Let's call this action `toggleImageSize`
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental.type}}
+    <span>Type:</span> {{rental.propertyType}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
@@ -230,7 +230,7 @@ let rental = Ember.Object.create({
   image: 'fake.png',
   title: 'test-title',
   owner: 'test-owner',
-  type: 'test-type',
+  propertyType: 'test-type',
   city: 'test-city',
   bedrooms: 3
 });
@@ -261,7 +261,7 @@ let rental = Ember.Object.create({
   image: 'fake.png',
   title: 'test-title',
   owner: 'test-owner',
-  type: 'test-type',
+  propertyType: 'test-type',
   city: 'test-city',
   bedrooms: 3
 });
@@ -320,7 +320,7 @@ let rental = Ember.Object.create({
   image: 'fake.png',
   title: 'test-title',
   owner: 'test-owner',
-  type: 'test-type',
+  propertyType: 'test-type',
   city: 'test-city',
   bedrooms: 3
 });

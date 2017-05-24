@@ -57,7 +57,7 @@ We want the component to simply provide an input field and yield the results lis
 ```
 
 The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
-The `value` property of the `input` will be kept in sync with the `value` property in the component. 
+The `value` property of the `input` will be kept in sync with the `value` property in the component.
 
 Another way to say this is that the `value` property of `input` is [**bound**](../../object-model/bindings/) to the `value` property of the component.
 If the property changes, either by the user typing in the input field, or by assigning a new value to it in our program,
@@ -149,7 +149,7 @@ export default function() {
         title: 'Grand Old Mansion',
         owner: 'Veruca Salt',
         city: 'San Francisco',
-        type: 'Estate',
+        propertyType: 'Estate',
         bedrooms: 15,
         image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
         description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
@@ -161,7 +161,7 @@ export default function() {
         title: 'Urban Living',
         owner: 'Mike Teavee',
         city: 'Seattle',
-        type: 'Condo',
+        propertyType: 'Condo',
         bedrooms: 1,
         image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
         description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
@@ -173,7 +173,7 @@ export default function() {
         title: 'Downtown Charm',
         owner: 'Violet Beauregarde',
         city: 'Portland',
-        type: 'Apartment',
+        propertyType: 'Apartment',
         bedrooms: 3,
         image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
         description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
@@ -445,5 +445,3 @@ and the item displayed shows "Seattle" as the location.
 You should be down to only 2 failing tests: One remaining acceptance test failure; and our JSHint test that fails on an unused assert for our unimplemented test.
 
 ![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)
-
-
