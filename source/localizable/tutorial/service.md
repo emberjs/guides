@@ -215,7 +215,7 @@ This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-```app/templates/components/rental-listing.hbs{+19}
+```app/templates/components/rental-listing.hbs{+20}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -226,7 +226,8 @@ Finally open the template file for our `rental-listing` component and add the ne
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+    <span>Type:</span> {{rental-property-type rental.propertyType}}
+      - {{rental.propertyType}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}

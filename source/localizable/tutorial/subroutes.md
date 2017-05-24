@@ -168,7 +168,7 @@ export default function() {
         title: "Grand Old Mansion",
         owner: "Veruca Salt",
         city: "San Francisco",
-        type: "Estate",
+        propertyType: "Estate",
         bedrooms: 15,
         image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg",
         description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
@@ -181,7 +181,7 @@ export default function() {
         title: "Urban Living",
         owner: "Mike Teavee",
         city: "Seattle",
-        type: "Condo",
+        propertyType: "Condo",
         bedrooms: 1,
         image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg",
         description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
@@ -194,7 +194,7 @@ export default function() {
         title: "Downtown Charm",
         owner: "Violet Beauregarde",
         city: "Portland",
-        type: "Apartment",
+        propertyType: "Apartment",
         bedrooms: 3,
         image: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg",
         description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
@@ -302,7 +302,7 @@ Next, we can update the template for our show route (`app/templates/rentals/show
       <strong>Owner:</strong> {{model.owner}}
     </div>
     <div class="detail">
-      <strong>Type:</strong> {{rental-property-type model.type}} - {{model.type}}
+      <strong>Type:</strong> {{rental-property-type model.propertyType}} - {{model.propertyType}}
     </div>
     <div class="detail">
       <strong>Location:</strong> {{model.city}}
@@ -340,7 +340,8 @@ Clicking on the title will load the detail page for that rental.
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+    <span>Type:</span> {{rental-property-type rental.propertyType}}
+      - {{rental.propertyType}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
