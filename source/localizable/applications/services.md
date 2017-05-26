@@ -93,7 +93,8 @@ export default Ember.Component.extend({
 This injects the shopping cart service into the component and makes it available as the `cart` property.
 
 Sometimes a service may or may not exist, like when an initializer conditionally registers a service.
-Since normal injection will throw if the service doesn't exist, you must lookup the service instead.
+Since normal injection will throw an error if the service doesn't exist,
+you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/classes/Ember.html#method_getOwner) instead. 
 
 ```app/components/cart-contents.js
 import Ember from 'ember';
