@@ -4,7 +4,6 @@ Ember CLI provides a common format called [Ember Addons](#toc_addons) for distri
 to solve these problems.
 Additionally, you may want to make use of front-end dependencies like a CSS framework
 or a JavaScript datepicker that aren't specific to Ember apps.
-Ember CLI supports installing these packages through the standard [Bower package manager](#toc_bower).
 
 ## Addons
 
@@ -13,17 +12,6 @@ Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#
 Addons may bring in other dependencies by modifying your project's `bower.json` file automatically.
 
 You can find listings of addons on [Ember Observer](http://emberobserver.com).
-
-## Bower
-
-Ember CLI uses the [Bower](http://bower.io) package manager,
-making it easy to keep your front-end dependencies up to date.
-The Bower configuration file, `bower.json`, is located at the root of your Ember CLI project,
-and lists the dependencies for your project.
-Executing `bower install` will install all of the dependencies listed in `bower.json` in one step.
-
-Ember CLI watches `bower.json` for changes.
-Thus it reloads your app if you install new dependencies via `bower install <dependencies> --save`.
 
 ## Other assets
 
