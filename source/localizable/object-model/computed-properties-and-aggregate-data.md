@@ -2,6 +2,8 @@ Sometimes you have a computed property whose value depends on the properties of
 items in an array. For example, you may have an array of todo items, and want
 to calculate the incomplete todo's based on their `isDone` property.
 
+## `@each`
+
 To facilitate this, Ember provides the `@each` key illustrated below:
 
 ```app/components/todo-list.js
@@ -30,6 +32,14 @@ and fire observers when any of the following events occurs:
 2. An item is added to the `todos` array.
 3. An item is removed from the `todos` array.
 4. The `todos` property of the component is changed to a different array.
+
+### Multiple Dependent Keys
+
+It's important to note that the `@each` key can be dependant on more than one key. 
+For example, if you are using `Ember.computed` to sort an array by multiple keys, 
+you would declare the dependency with braces: `todos.@each.{priority,title}`
+
+### Computed Property Macros
 
 Ember also provides a computed property macro
 [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
@@ -81,6 +91,8 @@ todoListComponent.get('incomplete.length');
 
 Note that `@each` only works one level deep. You cannot use nested forms like
 `todos.@each.owner.name` or `todos.@each.owner.@each.name`.
+
+## `[]` vs `@each`
 
 Sometimes you don't care if properties of individual array items change. In this
 case use the `[]` key instead of `@each`. Computed properties dependent on an array
