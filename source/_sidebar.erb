@@ -5,9 +5,7 @@
   <input id="toc-toggle" class="toc-toggle visually-hidden" type="checkbox" />
   <label for="toc-toggle">Table of Contents <span class="visually-hidden">toggle</span></label>
 
-  <nav class="toc-container" aria-label="table of contents">
-    <%= toc_for(data.pages) %>
-  </nav>
+  <%= toc_for(data.pages) %>
 
   <%= link_to "&#11014; Back to Top".html_safe, "#", class: "back-to-top" %>
 </aside>
