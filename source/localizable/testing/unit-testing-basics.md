@@ -135,3 +135,20 @@ test('should set other prop to yes when foo changes', function(assert) {
   assert.equal(someThing.get('other'), 'yes');
 });
 ```
+
+### Skipping tests
+
+Some times you might be working on a feature, but know that a certain test will fail so you might want to skip it.
+You can do it by using `skip`:
+
+```javascript
+import { test, skip } from 'ember-qunit';
+
+test('run this test', function(assert) {
+    assert.ok(true)
+});
+
+skip('skip this test', function(assert) {
+    assert.ok(true)
+});
+```
