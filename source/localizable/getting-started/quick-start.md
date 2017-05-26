@@ -243,6 +243,52 @@ create a `programmers` route that shows a list of famous programmers. By
 re-using the `people-list` component, you can do it in almost no code at
 all.
 
+## Click Events
+
+So far, your application is listing data, but there is no way for the user
+to interact with the information.
+In web applications, you often want to listen for user events like clicks or hovers.
+Ember makes this easy to do.
+First add an `action` helper to the `li` in your `people-list` component.
+
+```app/templates/components/people-list.hbs{-5,+6}
+<h2>{{title}}</h2>
+
+<ul>
+  {{#each people as |person|}}
+    <li>{{person}}</li>
+    <li {{action "showPerson" person}}>{{person}}</li>
+  {{/each}}
+</ul>
+```
+
+The `action` helper allows you to add event listeners to elements and call named functions.
+By default, the `action` helper adds a `click` event listener,
+but it can be used to listen for any element event.
+Now, when the `li` element is clicked a `showPerson` function will be called
+from the `actions` object in the `people-list` component.
+Think of this like calling `this.actions.showPerson(person)` from our template.
+
+To handle this function call you need to modify the `people-list` component file
+to add the function to be called.
+In the component, add an `actions` object with a `showPerson` function that
+alerts the first argument.
+
+```app/components/people-list.js{+4,+5,+6,+7,+8}
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  actions: {
+    showPerson(person) {
+      alert(person);
+    }
+  }
+});
+```
+
+Now in the browser when a scientist's name is clicked, this function is called
+and the person's name is alerted.
+
 ## Building For Production
 
 Now that we've written our application and verified that it works in
