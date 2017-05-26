@@ -1,16 +1,10 @@
-在你开发Ember应用的过程中，你可能会碰到一些常见的Ember本身没有提到的场景，如身份验证或使用SASS作为样式格式 Ember CLI 提供了一个通用的形式叫做 [Ember 插件](#toc_addons) 来发布解决这些问题的可重用的库。 此外，您可能还希望使用一些像 CSS 框架这样的前端依赖或 Javascript 日期选择插件这样并不是特定于Ember应用的组件。 Ember CLI 通过标准的 [Bower 包管理器](#toc_bower)来安装这些软件.
+在你开发Ember应用的过程中，你可能会碰到一些常见的Ember本身没有提到的场景，如身份验证或使用SASS作为样式格式 Ember CLI 提供了一个通用的形式叫做 [Ember 插件](#toc_addons) 来发布解决这些问题的可重用的库。 此外，您可能还希望使用一些像 CSS 框架这样的前端依赖或 Javascript 日期选择插件这样并不是特定于Ember应用的组件。
 
 ## 插件
 
 Ember插件的安装可以通过[Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)(例如：`ember install ember-cli-sass`)。 插件可能会通过自动修改项目的 `bower.json` 文件引入其他依赖项。
 
 你可以在[Ember Observer](http://emberobserver.com)找到所有的插件.
-
-## Bower
-
-Ember CLI使用[bower](http://bower.io)作为前端的依赖管理器，使你能更容易更新你的前端依赖项到最新版本。 Bower的配置文件`bower.json`位于项目的根目录，里面列出来你项目的所有依赖。 在命令行中执行`bower install`将会安装记录在`bower.json`里的前端依赖。
-
-Ember CLI会扫描`bower.json`文件的改动，因此，当你通过`bower install <dependencies> --save`安装了新的依赖时，它会自动刷新你的应用。.
 
 ## Other assets
 

@@ -2,13 +2,13 @@
 
 イニシャライザには、アプリケーションイニシャライザとアプリケーションインスタンスイニシャライザの２種類があります。
 
-Application initializers are run as your application boots, and provide the primary means to configure [dependency injections](../dependency-injection) in your application.
+アプリケーションイニシャライザはアプリケーション起動時に実行され、アプリケーションで[依存性の注入](../dependency-injection)を行うための主要な手段を提供します。
 
-Application instance initializers are run as an application instance is loaded. They provide a way to configure the initial state of your application, as well as to set up dependency injections that are local to the application instance (e.g. A/B testing configurations).
+アプリケーションインスタンスイニシャライザは、アプリケーションインスタンスの読み込み時に実行されます。 アプリケーションの状態を初期化する手段を提供し、アプリケーションインスタンス固有の依存性注入を行う手段も提供します (A/Bテスト構成など)。
 
 Operations performed in initializers should be kept as lightweight as possible to minimize delays in loading your application. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
 
-## Application Initializers
+## アプリケーションイニシャライザ
 
 Application initializers can be created with Ember CLI's `initializer` generator:
 

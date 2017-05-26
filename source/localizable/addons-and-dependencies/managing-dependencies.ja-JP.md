@@ -1,16 +1,10 @@
-Emberアプリを開発しているときには、Ember自体が扱っていない一般的なシナリオを実行する可能性があります。それはたとえば、認証だったりスタイルシート用にSASSを使用することだったりといったことです。 Ember CLIは、これらの問題を解決するための再利用可能なライブラリを配布する一般的なフォーマットを提供します。このフォーマットは、[Emberアドオン](#toc_addons)と呼ばれます。 さらに、Emberアプリ特有のものではない、CSSフレームワークやJavaScriptのdatepickeなどといったフロントエンドの依存関係を利用することもできます。 Ember CLI は標準の[Bowerパッケージマネージャー](#toc_bower)を介してこれらのパッケージをインストールすることをサポートしています。.
+Emberアプリを開発しているときには、Ember自体が扱っていない一般的なシナリオを実行する可能性があります。それはたとえば、認証だったりスタイルシート用にSASSを使用することだったりといったことです。 Ember CLIは、これらの問題を解決するための再利用可能なライブラリを配布する一般的なフォーマットを提供します。このフォーマットは、[Emberアドオン](#toc_addons)と呼ばれます。 さらに、Emberアプリ特有のものではない、CSSフレームワークやJavaScriptのdatepickeなどといったフロントエンドの依存関係を利用することもできます。
 
 ## アドオン
 
 Emberアドオンは[Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)を使ってインストールできます (例: `ember install ember-cli-sass`)。 アドオンは、それ以外の依存性をプロジェクトの`bower.json`ファイルを自動的に変更することによって、他の依存関係をもたらす可能性があります。
 
 [Ember Observer](http://emberobserver.com)に行けば、アドオンのリストを見ることができます。.
-
-## Bower
-
-Ember CLIは、フロントエンドの依存関係を最新に保ちやすくするために、[Bower](http://bower.io)パッケージマネージャーを使用します。 Bowerの構成ファイルである`bower.json`は、Ember CLIプロジェクトのルートにあり、プロジェクトの依存関係のリストを記載します。 `bower install`を実行すると、`bower.json`にリストされている全ての依存関係が一度にインストールされます。
-
-Ember CLIは`bower.json`の変更を監視します。したがって、`bower install <dependencies> --save`によって新しい依存関係をインストールすると、Ember CLIはアプリケーションをリロードします。.
 
 ## その他のアセット
 

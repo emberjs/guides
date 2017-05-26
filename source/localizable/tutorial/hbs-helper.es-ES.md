@@ -23,9 +23,9 @@ export function rentalPropertyType(params/*, hash*/) { return params; }
 
 export default Ember.Helper.helper(rentalPropertyType);
 
-    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.type`:
+    <br />Let's update our `rental-listing` component template to use our new helper and pass in `rental.propertyType`:
     
-    ```app/templates/components/rental-listing.hbs{-11,+12}
+    ```app/templates/components/rental-listing.hbs{-11,+12,+13}
     <article class="listing">
       <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
         <img src="{{rental.image}}" alt="">
@@ -36,8 +36,9 @@ export default Ember.Helper.helper(rentalPropertyType);
         <span>Owner:</span> {{rental.owner}}
       </div>
       <div class="detail type">
-        <span>Type:</span> {{rental.type}}
-        <span>Type:</span> {{rental-property-type rental.type}} - {{rental.type}}
+        <span>Type:</span> {{rental.propertyType}}
+        <span>Type:</span> {{rental-property-type rental.propertyType}}
+          - {{rental.propertyType}}
       </div>
       <div class="detail location">
         <span>Location:</span> {{rental.city}}
@@ -48,18 +49,18 @@ export default Ember.Helper.helper(rentalPropertyType);
     </article>
     
 
-Idealmente veremos "Type: Standalone - Estate" para nuestra primera propiedad en alquiler. En cambio, template helper por defecto retorna los valores de `rental.type`. Vamos a actualizar nuestro helper para ver si existe una property en un arreglo de `communityPropertyTypes`, si así, retornará `'Community'` o `'Standalone'`:
+Idealmente veremos "Type: Standalone - Estate" para nuestra primera propiedad en alquiler. Instead, our default template helper is returning back our `rental.propertyType` values. Vamos a actualizar nuestro helper para ver si existe una property en un arreglo de `communityPropertyTypes`, si así, retornará `'Community'` o `'Standalone'`:
 
 ```app/helpers/rental-property-type.js import Ember from 'ember';
 
 const communityPropertyTypes = [ 'Condo', 'Townhouse', 'Apartment' ];
 
-export function rentalPropertyType([type]) { if (communityPropertyTypes.includes(type)) { return 'Community'; }
+export function rentalPropertyType([propertyType]) { if (communityPropertyTypes.includes(propertyType)) { return 'Community'; }
 
 return 'Standalone'; }
 
 export default Ember.Helper.helper(rentalPropertyType); ```
 
-Each [argument](https://guides.emberjs.com/v2.12.0/templates/writing-helpers/#toc_helper-arguments) in the helper will be added to an array and passed to our helper. For example, `{{my-helper "foo" "bar"}}` would result in `myHelper(["foo", "bar"])`. Using array [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) assignment, we can name expected parameters within the array. In the example above, the first argument in the template will be assigned to `type`. This provides a flexible, expressive interface for your helpers, including optional arguments and default values.
+Each [argument](https://guides.emberjs.com/v2.12.0/templates/writing-helpers/#toc_helper-arguments) in the helper will be added to an array and passed to our helper. For example, `{{my-helper "foo" "bar"}}` would result in `myHelper(["foo", "bar"])`. Using array [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) assignment, we can name expected parameters within the array. In the example above, the first argument in the template will be assigned to `propertyType`. This provides a flexible, expressive interface for your helpers, including optional arguments and default values.
 
 Ahora en nuestro navegador deberíamos ver que la rental property aparece como "Standalone", mientras que los otros dos aparecen como "Community".

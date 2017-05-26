@@ -32,7 +32,7 @@ Our new `rental-listing` component will manage how a user sees and interacts wit
 </div>
 
 <div class="detail type">
-  <span>Type:</span> {{rental.type}}
+  <span>Type:</span> {{rental.propertyType}}
 </div>
 
 <div class="detail location">
@@ -67,7 +67,7 @@ Our new `rental-listing` component will manage how a user sees and interacts wit
           <span>Owner:</span> {{rental.owner}}
         </div>
         <div class="detail type">
-          <span>Type:</span> {{rental.type}}
+          <span>Type:</span> {{rental.propertyType}}
         </div>
         <div class="detail location">
           <span>Location:</span> {{rental.city}}
@@ -100,7 +100,7 @@ Let's use the `{{if}}` helper to show our current rental image larger only when 
 </div>
 
 <div class="detail type">
-  <span>Type:</span> {{rental.type}}
+  <span>Type:</span> {{rental.propertyType}}
 </div>
 
 <div class="detail location">
@@ -133,7 +133,7 @@ To allow the user to widen the image, we will need to add an action that toggles
 </div>
 
 <div class="detail type">
-  <span>Type:</span> {{rental.type}}
+  <span>Type:</span> {{rental.propertyType}}
 </div>
 
 <div class="detail location">
@@ -207,7 +207,7 @@ test('should toggle wide class on click', function(assert) {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
-      type: 'test-type',
+      propertyType: 'test-type',
       city: 'test-city',
       bedrooms: 3
     });
@@ -229,7 +229,7 @@ Now lets render our component using the `render` function. The `render` function
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
-let rental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 });
+let rental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', propertyType: 'test-type', city: 'test-city', bedrooms: 3 });
 
 moduleForComponent('rental-listing', 'Integration | Component | rental listing', { integration: true });
 
@@ -265,7 +265,7 @@ In the second test, we verify that clicking on the image toggles the size. We wi
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
-      type: 'test-type',
+      propertyType: 'test-type',
       city: 'test-city',
       bedrooms: 3
     });

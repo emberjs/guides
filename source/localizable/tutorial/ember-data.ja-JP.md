@@ -27,7 +27,8 @@ export default DS.Model.extend({
 
 });
 
-    <br />では、rentalオブジェクトの構造を定義しましょう。JavaScriptオブジェクトの配列にハードコードして[ここまで使ってきた](../model-hook/) 賃貸物件の属性を使います。定義する属性は _title_、 _owner_、 _city_、 _type_、 _image_、 _bedrooms_ 、 _description_になります。
+    <br />Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
+    _title_, _owner_, _city_, _property type_, _image_, _bedrooms_ and _description_.
     関数 [`DS.attr()`](http://emberjs.com/api/data/classes/DS.html#method_attr) の結果を与えることによって、属性を定義します。
     Ember Dataの属性についての詳細は、ガイドの[属性を定義する](../../models/defining-models/#toc_defining-attributes) セクションを参照してください。
     
@@ -38,7 +39,7 @@ export default DS.Model.extend({
       title: DS.attr(),
       owner: DS.attr(),
       city: DS.attr(),
-      type: DS.attr(),
+      propertyType: DS.attr(),
       image: DS.attr(),
       bedrooms: DS.attr(),
       description: DS.attr()
@@ -53,7 +54,7 @@ export default DS.Model.extend({
 
 ```app/routes/rentals.js{+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33} import Ember from 'ember';
 
-export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); return [{ id: 'grand-old-mansion', title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', type: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg', description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests." }, { id: 'urban-living', title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', type: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg', description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro." }, { id: 'downtown-charm', title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', type: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg', description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet." }]; } }); ```
+export default Ember.Route.extend({ model() { return this.get('store').findAll('rental'); return [{ id: 'grand-old-mansion', title: 'Grand Old Mansion', owner: 'Veruca Salt', city: 'San Francisco', propertyType: 'Estate', bedrooms: 15, image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg', description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests." }, { id: 'urban-living', title: 'Urban Living', owner: 'Mike TV', city: 'Seattle', propertyType: 'Condo', bedrooms: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg', description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro." }, { id: 'downtown-charm', title: 'Downtown Charm', owner: 'Violet Beauregarde', city: 'Portland', propertyType: 'Apartment', bedrooms: 3, image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg', description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet." }]; } }); ```
 
 `findAll`を呼び出すとき、Ember Dataは`/api/rentals`から賃貸物件のリストを取得しようとします。 思い出すと、[アドオンのインストール](../installing-addons/)というセクションで、`/api`を介してデータリクエストをルーティングするためのアダプタを設定しました。.
 

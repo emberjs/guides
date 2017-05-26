@@ -178,7 +178,7 @@ You may have noticed that `this.get('location')` refers to a property location w
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-<pre><code class="app/templates/components/rental-listing.hbs{+19}">&lt;article class="listing"&gt;
+<pre><code class="app/templates/components/rental-listing.hbs{+20}">&lt;article class="listing"&gt;
   &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
     &lt;img src="{{rental.image}}" alt=""&gt;
     &lt;small&gt;View Larger&lt;/small&gt;
@@ -188,7 +188,8 @@ Finally open the template file for our `rental-listing` component and add the ne
     &lt;span&gt;Owner:&lt;/span&gt; {{rental.owner}}
   &lt;/div&gt;
   &lt;div class="detail type"&gt;
-    &lt;span&gt;Type:&lt;/span&gt; {{rental-property-type rental.type}} - {{rental.type}}
+    &lt;span&gt;Type:&lt;/span&gt; {{rental-property-type rental.propertyType}}
+      - {{rental.propertyType}}
   &lt;/div&gt;
   &lt;div class="detail location"&gt;
     &lt;span&gt;Location:&lt;/span&gt; {{rental.city}}

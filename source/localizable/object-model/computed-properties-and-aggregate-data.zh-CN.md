@@ -1,5 +1,7 @@
 有时候，一个计算属性的值依赖数组元素的属性。 比如，你有一个包含todo的数组，你想根据数组元素的`isDone`属性计算todo是否完成。
 
+## `@each`
+
 为了完成这个需求，Ember提供了`@each`，如下代码段：
 
 app/components/todo-list.js export default Ember.Component.extend({ todos: null,
@@ -16,7 +18,18 @@ incomplete: Ember.computed('todos.@each.isDone', function() { let todos = this.g
     3. 往todos数组移除元素的时候；
     4. 在组件中todos数组被改变为其他的数组的时候；
     
-    Ember 也提供了一个计算属性宏[`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),，它可以用更短的方式表达上述的计算属性：
+    ### Multiple Dependent Keys
+    
+    It's important to note that the `@each` key can be dependant on more than one key. 
+    For example, if you are using `Ember.computed` to sort an array by multiple keys, 
+    you would declare the dependency with braces: `todos.@each.{priority,title}`
+    
+    ### Computed Property Macros
+    
+    Ember also provides a computed property macro
+    [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
+    which is a shorter way of expressing the above computed property:
+    
     ```app/components/todo-list.js
     export default Ember.Component.extend({
       todos: null,
@@ -61,6 +74,8 @@ todoListComponent.get('incomplete.length');
 ```
 
 需要注意的是，` @each ` 仅适用于单层属性。例如，`todos.@each.owner.name` 或者 `todos.@each.owner.@each.name` 都是不允许的。.
+
+## `[]` vs `@each`
 
 某些时候，当你并不在乎数组中各项元素的属性变化时， 你可以用 `[]` 代替 `@each`。 当你在数组上使用`[]`这样的计算属性时，只有往数组中添加新元素、删除元素或者将数组属性设置为另一个数组时计算属性才会更新。 例如：
 

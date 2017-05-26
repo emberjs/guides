@@ -1,4 +1,4 @@
-Beim Entwickeln deiner Ember-Anwendung wirst du wahrscheinlich in manchen Situationen Funktionalität benötigen, die Ember nicht standardmäßig mitbringt. Dabei kann es sich um Authentifizierung handeln oder wenn du SASS für deine Stylesheets verwendest. Mit den sogenannten [Ember Addons](#toc_addons) stellt Ember CLI ein einheitliches Format zur Verfügung, um wiederverwendbare Bibliotheken zu erstellen und verteilen, die solche Aufgaben lösen. Außerdem möchtest du vielleicht Frontend-Abhängigkeiten wie ein CSS-Framework oder einen JavaScript-Datepicker einsetzen, die nicht spezifisch mit Ember-Anwendungen zusammenhängen. Ember CLI unterstützt das Installieren solcher Pakete mit dem Standard-[Bower-Pakemetmanager](#toc_bower).
+Beim Entwickeln deiner Ember-Anwendung wirst du wahrscheinlich in manchen Situationen Funktionalität benötigen, die Ember nicht standardmäßig mitbringt. Dabei kann es sich um Authentifizierung handeln oder wenn du SASS für deine Stylesheets verwendest. Mit den sogenannten [Ember Addons](#toc_addons) stellt Ember CLI ein einheitliches Format zur Verfügung, um wiederverwendbare Bibliotheken zu erstellen und verteilen, die solche Aufgaben lösen. Außerdem möchtest du vielleicht Frontend-Abhängigkeiten wie ein CSS-Framework oder einen JavaScript-Datepicker einsetzen, die nicht spezifisch mit Ember-Anwendungen zusammenhängen.
 
 ## Addons
 
@@ -6,19 +6,13 @@ Ember Addons können über [Ember CLI](http://ember-cli.com/extending/#developin
 
 Eine Übersicht von Addons kannst du auf [Ember Observer](http://emberobserver.com) vorfinden.
 
-## Bower
+## Other assets
 
-Ember CLI benutzt den Paketmanager [Bower](http://bower.io), mit dem du deine Frontend-Abhängigkeiten auf einfache Art aktuell halten kannst. Die Bower-Konfigurationsdatei, `bower.json`, befindet sich im Wurzelverzeichnis deines Ember-CLI-Projektes und erfasst die Abhängigkeiten deines Projekts. Durch Ausführen von `bower install` kannst du alle Abhängigkeiten, die in `bower.json` aufgeführt sind, auf einmal installieren.
+Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
 
-Ember CLI überwacht `bower.json` auf Änderungen, d.h. es wird deine Anwendung neuladen, wenn du neue Abhängigkeiten mit `bower install <abhaengigkeiten> --save` installierst.
+Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
 
-## Andere Ressourcen
-
-JavaScript von Drittanbietern das nicht als Addon oder als Bower-Paket zur Verfügung steht, sollte innerhalb deines Projektes im Ordner `vendor/` abgelegt werden.
-
-Deine eigene Dateien (wie z.B. `robots.txt`, `favicon`, eigene Schriftarten, etc) sollten in deinem Projekt im Ordner `public/` abgelegt werden.
-
-## Ressourcen kompilieren
+## Compiling Assets
 
 When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
 

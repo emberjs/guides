@@ -1,4 +1,4 @@
-Mientras estás desarrollando tu aplicación de Ember, probablemente te encontrarás con estos escenarios que no son abordados por Ember, como autenticación o utilizar SASS para las hojas de estilo. Ember CLI proporciona un formato común llamado [Ember Addons](#toc_addons) para la distribución de librerías reutilizables para resolver estos problemas. Además, puede que desee hacer uso de las dependencias front-end como un framework CSS o un selector de fechas hecho en JavaScript que no son hechos especificamente para aplicaciones de Ember. Ember CLI soporta la instalación de estos paquetes a través del [gestor de paquetes de Bower](#toc_bower) estándar.
+Mientras estás desarrollando tu aplicación de Ember, probablemente te encontrarás con estos escenarios que no son abordados por Ember, como autenticación o utilizar SASS para las hojas de estilo. Ember CLI proporciona un formato común llamado [Ember Addons](#toc_addons) para la distribución de librerías reutilizables para resolver estos problemas. Además, puede que desee hacer uso de las dependencias front-end como un framework CSS o un selector de fechas hecho en JavaScript que no son hechos especificamente para aplicaciones de Ember.
 
 ## Addons
 
@@ -6,19 +6,13 @@ Los Addons de Ember pueden ser instalados utilizando la [Línea de Comandos de E
 
 Puedes encontrar un listado de addons en [Ember Observer](http://emberobserver.com).
 
-## Bower
+## Other assets
 
-Ember CLI utiliza el gestor de paquetes [Bower](http://bower.io), haciendo fácil de mantener al día tus dependencias de front-end. El archivo de configuración de Bower, `bower.json`, se encuentra en la raíz de tu proyecto de Ember CLI y lista las dependencias para su proyecto. Ejecutar `bower install` instalará todas las dependencias enumeradas en el archivo `bower.json` en un solo paso.
-
-Ember CLI observa el archivo `bower.json` para ver si ha cambiado. Así recargará tu aplicación si instalas nuevas dependencias vía `bower install <dependencies> --save`.
-
-## Otros assets
-
-El JavaScript de terceros no disponible como addon o paquete de Bower debería ser colocado en el directorio `vendor` dentro de tu proyecto.
+Third-party JavaScript not available as an addon or Bower package should be placed in the `vendor/` folder in your project.
 
 Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be placed in the `public/` folder in your project.
 
-## Compilando insumos
+## Compiling Assets
 
 When you're using dependencies that are not included in an addon, you will have to instruct Ember CLI to include your assets in the build. This is done using the asset manifest file `ember-cli-build.js`. You should only try to import assets located in the `bower_components` and `vendor` folders.
 

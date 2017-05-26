@@ -32,7 +32,7 @@ installing component-test
 </div>
 
 <div class="detail type">
-  <span>Type:</span> {{rental.type}}
+  <span>Type:</span> {{rental.propertyType}}
 </div>
 
 <div class="detail location">
@@ -66,7 +66,7 @@ installing component-test
           <span>Owner:</span> {{rental.owner}}
         </div>
         <div class="detail type">
-          <span>Type:</span> {{rental.type}}
+          <span>Type:</span> {{rental.propertyType}}
         </div>
         <div class="detail location">
           <span>Location:</span> {{rental.city}}
@@ -99,7 +99,7 @@ installing component-test
 </div>
 
 <div class="detail type">
-  <span>Type:</span> {{rental.type}}
+  <span>Type:</span> {{rental.propertyType}}
 </div>
 
 <div class="detail location">
@@ -132,7 +132,7 @@ installing component-test
 </div>
 
 <div class="detail type">
-  <span>Type:</span> {{rental.type}}
+  <span>Type:</span> {{rental.propertyType}}
 </div>
 
 <div class="detail location">
@@ -206,7 +206,7 @@ test('should toggle wide class on click', function(assert) {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
-      type: 'test-type',
+      propertyType: 'test-type',
       city: 'test-city',
       bedrooms: 3
     });
@@ -228,7 +228,7 @@ test('should toggle wide class on click', function(assert) {
 
 ```tests/integration/components/rental-listing-test.js import { moduleForComponent, test } from 'ember-qunit'; import hbs from 'htmlbars-inline-precompile'; import Ember from 'ember';
 
-let rental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', type: 'test-type', city: 'test-city', bedrooms: 3 });
+let rental = Ember.Object.create({ image: 'fake.png', title: 'test-title', owner: 'test-owner', propertyType: 'test-type', city: 'test-city', bedrooms: 3 });
 
 moduleForComponent('rental-listing', 'Integration | Component | rental listing', { integration: true });
 
@@ -253,7 +253,7 @@ test('should toggle wide class on click', function(assert) { this.set('rentalObj
 
 ```tests/integration/components/rental-listing-test.js test('should toggle wide class on click', function(assert) { this.set('rentalObj', rental); this.render(hbs`{{rental-listing rental=rentalObj}}`); assert.equal(this.$('.image.wide').length, 0, 'initially rendered small'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click'); this.$('.image').click(); assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click'); });
 
-    テストは最終的に次のようになります。
+    The final test should look as follows:
     
     ```tests/integration/components/rental-listing-test.js
     import { moduleForComponent, test } from 'ember-qunit';
@@ -264,7 +264,7 @@ test('should toggle wide class on click', function(assert) { this.set('rentalObj
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
-      type: 'test-type',
+      propertyType: 'test-type',
       city: 'test-city',
       bedrooms: 3
     });
