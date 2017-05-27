@@ -72,6 +72,10 @@ Besides ES6, you'll see a lot of content about compiling/transpiling CoffeeScrip
 * Ember CLI specifically uses [Babel](https://babeljs.io/) via the [ember-cli-babel](https://github.com/babel/ember-cli-babel) plugin.
 
 
+## UI
+UI stands for User Interface and is essentially what the user sees and interacts with on a device. In terms of the web, the UI is generally composed of a series of pages containing visual elements such as buttons and icons that a user can interact with to perform a specific function.
+
+
 ## Shadow DOM
 Not to be confused with Virtual DOM. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
 
