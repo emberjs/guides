@@ -29,7 +29,7 @@ Some specific examples of units tests are:
 
 Integration tests serve as a middle ground between acceptance tests, which only interact with the full system through user endpoints, and unit tests, which interact with specific code algorithms on a micro level. Integration tests verify interactions between various parts of the application, such as behavior between UI controls. They are valuable in ensuring data and actions are properly passed between different parts of the system, and provide confidence that parts of the system will work within the application under multiple scenarios.
 
-It is recommended that components be tested with integration tests because the component interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
+It is recommended that components and helpers be tested with integration tests because the component interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
 
 Examples of integration tests are:
 

@@ -60,7 +60,7 @@ To access a service, you can inject it in any container-resolved object such as 
 
 export default Ember.Component.extend({ //will load the service in file /app/services/shopping-cart.js shoppingCart: Ember.inject.service() });
 
-    <br />The other way to inject a service is to provide the name of the service as the argument.
+    <br />Another way to inject a service is to provide the name of the service as the argument.
     
     ```app/components/cart-contents.js
     import Ember from 'ember';
@@ -73,22 +73,37 @@ export default Ember.Component.extend({ //will load the service in file /app/ser
 
 This injects the shopping cart service into the component and makes it available as the `cart` property.
 
-Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called. Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
-
-Once loaded, a service will persist until the application exits.
-
-Below we add a remove action to the `cart-contents` component. Notice that below we access the `cart` service with a call to`this.get`.
+Sometimes a service may or may not exist, like when an initializer conditionally registers a service. Since normal injection will throw an error if the service doesn't exist, you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/classes/Ember.html#method_getOwner) instead.
 
 ```app/components/cart-contents.js import Ember from 'ember';
 
-export default Ember.Component.extend({ cart: Ember.inject.service('shopping-cart'),
+export default Ember.Component.extend({ //will load the service in file /app/services/shopping-cart.js cart: Ember.computed(function() { return Ember.getOwner(this).lookup('service:shopping-cart'); }) });
 
-actions: { remove(item) { this.get('cart').remove(item); } } });
-
-    Once injected into a component, a service can also be used in the template.
-    Note `cart` being used below to get data from the cart.
+    <br />Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called.
+    Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
     
-    ```app/templates/components/cart-contents.hbs
+    Once loaded, a service will persist until the application exits.
+    
+    Below we add a remove action to the `cart-contents` component.
+    Notice that below we access the `cart` service with a call to`this.get`.
+    
+    ```app/components/cart-contents.js
+    import Ember from 'ember';
+    
+    export default Ember.Component.extend({
+      cart: Ember.inject.service('shopping-cart'),
+    
+      actions: {
+        remove(item) {
+          this.get('cart').remove(item);
+        }
+      }
+    });
+    
+
+Once injected into a component, a service can also be used in the template. Note `cart` being used below to get data from the cart.
+
+    app/templates/components/cart-contents.hbs
     <ul>
       {{#each cart.items as |item|}}
         <li>

@@ -6,39 +6,39 @@
 
 アプリケーションインスタンスイニシャライザは、アプリケーションインスタンスの読み込み時に実行されます。 アプリケーションの状態を初期化する手段を提供し、アプリケーションインスタンス固有の依存性注入を行う手段も提供します (A/Bテスト構成など)。
 
-Operations performed in initializers should be kept as lightweight as possible to minimize delays in loading your application. Although advanced techniques exist for allowing asynchrony in application initializers (i.e. `deferReadiness` and `advanceReadiness`), these techniques should generally be avoided. Any asynchronous loading conditions (e.g. user authorization) are almost always better handled in your application route's hooks, which allows for DOM interaction while waiting for conditions to resolve.
+イニシャライザ内で行う処理は、アプリケーションの読み込み遅延を可能な限り抑えるために、極力軽くすべきです。 アプリケーションイニシャライザ (`deferReadiness`や`advanceReadiness`) で非同期処理を可能にする高度なテクニックも存在しますが、そうしたテクニックは一般には避けるべきです。 ほとんどの場合、非同期の読み込み条件 (ユーザー認証など) は、条件の解決を待つ間にDOMのやり取りが可能であるアプリケーションルートのフックで処理される方がよいです。
 
 ## アプリケーションイニシャライザ
 
-Application initializers can be created with Ember CLI's `initializer` generator:
+アプリケーションイニシャライザはEmber CLIの`イニシャライザ`ジェネレータで作成できます。
 
 ```bash
 ember generate initializer shopping-cart
 ```
 
-Let's customize the `shopping-cart` initializer to inject a `cart` property into all the routes in your application:
+それでは、`shopping-cart`のイニシャライザをカスタマイズし、アプリケーションの全てのルートに`cart`プロパティを注入しましょう。
 
 ```app/initializers/shopping-cart.js export function initialize(application) { application.inject('route', 'cart', 'service:shopping-cart'); };
 
 export default { name: 'shopping-cart', initialize: initialize };
 
-    <br />## Application Instance Initializers
+    <br />## アプリケーションインスタンスイニシャライザ
     
-    Application instance initializers can be created with Ember CLI's `instance-initializer` generator:
+    アプリケーションインスタンスイニシャライザは、Ember CLIの`instance-initializer`ジェネレータを使用して、次のように作成できます。
     
     ```bash
     ember generate instance-initializer logger
     
 
-Let's add some simple logging to indicate that the instance has booted:
+次に、インスタンスが起動していることを示すいくつかの単純なログを追加してみましょう。
 
 ```app/instance-initializers/logger.js export function initialize(applicationInstance) { let logger = applicationInstance.lookup('logger:main'); logger.log('Hello from the instance initializer!'); }
 
 export default { name: 'logger', initialize: initialize };
 
-    <br />## Specifying Initializer Order
+    <br />## イニシャライザの順序を指定する
     
-    If you'd like to control the order in which initializers run, you can use the `before` and/or `after` options:
+    もしイニシャライザの実行順を制御したければ、`before`と (もしくは) `after`オプションを使用します。
     
     ```app/initializers/config-reader.js
     export function initialize(application) {
@@ -68,4 +68,4 @@ export default { name: 'websocket-init', after: 'config-reader', initialize: ini
     };
     
 
-Note that ordering only applies to initializers of the same type (i.e. application or application instance). Application initializers will always run before application instance initializers.
+順序付けは、同じタイプのイニシャライザにのみ適用されます(アプリケーションorアプリケーションインスタンス) 。 アプリケーションイニシャライザは、常にアプリケーションインスタンスイニシャライザより前に実行されます。

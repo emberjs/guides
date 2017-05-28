@@ -72,15 +72,19 @@ Más alla de ES6, verás una gran cantidad de contenido sobre compilar/transpila
 
 * Ember CLI utiliza específicamente [Babel](https://babeljs.io/) mediante el plugin [ember-cli-babel](https://github.com/babel/ember-cli-babel).
 
+## UI
+
+UI stands for User Interface and is essentially what the user sees and interacts with on a device. In terms of the web, the UI is generally composed of a series of pages containing visual elements such as buttons and icons that a user can interact with to perform a specific function.
+
 ## Shadow DOM
 
-No confundir con Virtual DOM. Shadow DOM es todavía un trabajo en progreso, pero básicamente forma propuesta para tener un DOM "aislado" y encapsulado dentro del DOM de tu aplicación.
+Not to be confused with Virtual DOM. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
 
-Crear un "widget" o control reutilizable puede ser un buen caso de uso para esto. Los navegadores implementan algunos de sus controles con su propia versión de un shadow DOM.
+Creating a re-usable "widget" or control might be a good use-case for this. Browsers implement some of their controls using their own version of a shadow DOM.
 
 * [Borrador de trabajo de W3C](http://www.w3.org/TR/shadow-dom/)
 * [¿Qué diablos es Shadow DOM?](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
 
 ## Virtual DOM
 
-Not se debe confundir con Shadow DOM. El concepto de un DOM virtual significa abstraer tu código (o en nuestro caso, Ember) del DOM del navegador a favor de un DOM "virtual" que fácilmente puede ser accedido para lectura/escritura o incluso serializado.
+Not to be confused with Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.

@@ -183,20 +183,58 @@ installing route-test
 
 如果你创建一个新的路由来显示另一个人员列表，你就能看到这个组件化的效果了。 留给读者作为练习，你可以尝试创建一个 `programmers` 路由来显示一些著名程序员的列表。 通过复用 `people-list` 组件，你几乎不用写任何代码就能实现这个功能。
 
+## Click Events
+
+So far, your application is listing data, but there is no way for the user to interact with the information. In web applications, you often want to listen for user events like clicks or hovers. Ember makes this easy to do. First add an `action` helper to the `li` in your `people-list` component.
+
+```app/templates/components/people-list.hbs{-5,+6} 
+
+## {{title}}
+
+{{#each people as |person|}} 
+
+* {{person}}<li {{action "showperson" person}}>{{person}}</li> {{/each}} 
+
+    <br />The `action` helper allows you to add event listeners to elements and call named functions.
+    By default, the `action` helper adds a `click` event listener,
+    but it can be used to listen for any element event.
+    Now, when the `li` element is clicked a `showPerson` function will be called
+    from the `actions` object in the `people-list` component.
+    Think of this like calling `this.actions.showPerson(person)` from our template.
+    
+    To handle this function call you need to modify the `people-list` component file
+    to add the function to be called.
+    In the component, add an `actions` object with a `showPerson` function that
+    alerts the first argument.
+    
+    ```app/components/people-list.js{+4,+5,+6,+7,+8}
+    import Ember from 'ember';
+    
+    export default Ember.Component.extend({
+      actions: {
+        showPerson(person) {
+          alert(person);
+        }
+      }
+    });
+    
+
+Now in the browser when a scientist's name is clicked, this function is called and the person's name is alerted.
+
 ## Building For Production
 
-现在我们的程序已经写好并在开发环境中验证完毕，到了部署给用户的时候了。运行以下命令即可：
+Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
 
 ```sh
 ember build --env production
 ```
 
-这个 `build` 命令会把你程序中所包含的所有的资源打包起来。这些资源包括 JavaScript、模板、CSS、web 字体、图片，等等。
+The `build` command packages up all of the assets that make up your application&mdash;JavaScript, templates, CSS, web fonts, images, and more.
 
-这里我们通过 `--env` 参数来告知 Ember，让它为生产环境来构建。 这样会创建一个优化过的包，可以直接上传到你的 web 主机。 构建完成后，你可以在 `dist/` 目录下找到所有拼接和压缩好的资源。
+In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
 
-Ember 社群重视协作，重视打造每个人都可以依赖的常用工具。 如果你对将你的应用快速稳定地部署到生产环境中有兴趣，可以查阅[Ember CLI Deploy](http://ember-cli-deploy.com/)这个插件
+The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
-如果你是要把应用程序部署到一个 Apache web 服务器上面，那么首先为其创建一个新的虚拟主机（virtual host）。 To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
+If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
 
     FallbackResource index.html

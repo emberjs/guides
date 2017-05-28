@@ -180,20 +180,58 @@ installing route-test
 
 この効果は、異なる人のリストを利用するルートを作成する際に確認できます。 例題として、著名なプログラマを表示する`programmers`ルートを作成してみてはどうでしょう。 `people-list`コンポーネントを利用することで、ほぼコードを書かずに例題を解くことができるはずです。
 
-## プロダクション用のビルド
+## Click Events
 
-ここまでで、アプリケーションを作成し、開発環境では機能することが確認できました。いよいよ、ユーザーにデプロイする準備が整いました。そのためには、次のコマンドを実行してください。
+So far, your application is listing data, but there is no way for the user to interact with the information. In web applications, you often want to listen for user events like clicks or hovers. Ember makes this easy to do. First add an `action` helper to the `li` in your `people-list` component.
+
+```app/templates/components/people-list.hbs{-5,+6} 
+
+## {{title}}
+
+{{#each people as |person|}} 
+
+* {{person}}<li {{action "showperson" person}}>{{person}}</li> {{/each}} 
+
+    <br />The `action` helper allows you to add event listeners to elements and call named functions.
+    By default, the `action` helper adds a `click` event listener,
+    but it can be used to listen for any element event.
+    Now, when the `li` element is clicked a `showPerson` function will be called
+    from the `actions` object in the `people-list` component.
+    Think of this like calling `this.actions.showPerson(person)` from our template.
+    
+    To handle this function call you need to modify the `people-list` component file
+    to add the function to be called.
+    In the component, add an `actions` object with a `showPerson` function that
+    alerts the first argument.
+    
+    ```app/components/people-list.js{+4,+5,+6,+7,+8}
+    import Ember from 'ember';
+    
+    export default Ember.Component.extend({
+      actions: {
+        showPerson(person) {
+          alert(person);
+        }
+      }
+    });
+    
+
+Now in the browser when a scientist's name is clicked, this function is called and the person's name is alerted.
+
+## Building For Production
+
+Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
 
 ```sh
 ember build --env production
 ```
 
-`build`コマンドは、アプリケーションを構成するすべてのアセット (JavaScript、テンプレート、 CSS、 Webフォント、画像など) を一つにまとめます。
+The `build` command packages up all of the assets that make up your application&mdash;JavaScript, templates, CSS, web fonts, images, and more.
 
-今回は、`--env`フラグを通して、プロダクション環境にビルドするようEmberに指示しました。 こうすることで、Webホストへのアップロードに最適化されたバンドルが作成されます。 ビルドが完了すると、`dist/`ディレクトリ配下にすべてが連結・ミニファイドされたアセットが確認できるでしょう。
+In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
 
-Emberコミュニティは協調、そして誰もが当てにする一般的なツールを構築することに価値を置きます。 もし、高速で信頼性の高い方法でアプリケーションをプロダクションに配置することに興味があるのなら、[Ember CLI Deploy](http://ember-cli-deploy.com/) addon (アドオン) を確認するといいでしょう。
+The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
-Apache Webサーバにデプロイする場合は、まずアプリケーション用の新しいバーチャルホストを作成します。 すべてのroutes (ルート)がindex.htmlによって処理されることを確認するには、アプリケーションのバーチャルホスト設定に次のディレクティブを追加してください。
+If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
 
     FallbackResource index.html

@@ -72,15 +72,19 @@ ES6の他にも、ショートハンドな言語、CoffeeScriptについてJavaS
 
 * Ember CLI 正確には[ember-cli-babel](https://github.com/babel/ember-cli-babel) プラグインを経由して[Babel](https://babeljs.io/)を利用しています。
 
+## UI
+
+UI stands for User Interface and is essentially what the user sees and interacts with on a device. In terms of the web, the UI is generally composed of a series of pages containing visual elements such as buttons and icons that a user can interact with to perform a specific function.
+
 ## Shadow DOM
 
-バーチャル DOMと混同してはいけません。シャドーDOMは今も進行中の提案で、アプリケーションのDOMとは別の分離されたDOMを保持するものです。
+Not to be confused with Virtual DOM. Shadow DOM is still a work in progress, but basically a proposed way to have an "isolated" DOM encapsulated within your app's DOM.
 
-再利用可能な「ウィジェット」やコントロールはシャドーDOMを利用するいい例でしょう。ブラウザーはそれぞれがコントロールした、シャドーDOMの部分的なサポートを実装しています。
+Creating a re-usable "widget" or control might be a good use-case for this. Browsers implement some of their controls using their own version of a shadow DOM.
 
 * [W3C Working Draft](http://www.w3.org/TR/shadow-dom/)
 * [What the Heck is Shadow DOM?](http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
 
 ## Virtual DOM
 
-シャドー DOMと混同してはいけません。 バーチャルDOMのコンセプトは、コード(今の場合で言えばEmber) をブラウザーのDOMから仮想に抽象化して、容易に読み取り/書き込みあるいは簡単にシリアライズできるものにすることです。
+Not to be confused with Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.

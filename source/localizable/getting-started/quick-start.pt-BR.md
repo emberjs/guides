@@ -183,20 +183,58 @@ Volte para o seu navegador e você verá que a interface parece idêntica. A ún
 
 Você pode ver isso em ação, se você criar uma nova rota que mostra uma lista diferente de pessoas. Como um exercício para o leitor, você pode tentar criar uma rota de `programadores` que mostra uma lista de programadores famosos. Re-usando o componente `people-list`, você pode fazer isso com praticamente nenhum código.
 
-## Compilando para produção
+## Click Events
 
-Agora que nós escrevemos a nossa aplicação e verificamos que ela funciona em desenvolvimento, é hora de prepará-la para nossos usuários. Para fazer isso, execute o seguinte comando:
+So far, your application is listing data, but there is no way for the user to interact with the information. In web applications, you often want to listen for user events like clicks or hovers. Ember makes this easy to do. First add an `action` helper to the `li` in your `people-list` component.
+
+```app/templates/components/people-list.hbs{-5,+6} 
+
+## {{title}}
+
+{{#each people as |person|}} 
+
+* {{person}}<li {{action "showperson" person}}>{{person}}</li> {{/each}} 
+
+    <br />The `action` helper allows you to add event listeners to elements and call named functions.
+    By default, the `action` helper adds a `click` event listener,
+    but it can be used to listen for any element event.
+    Now, when the `li` element is clicked a `showPerson` function will be called
+    from the `actions` object in the `people-list` component.
+    Think of this like calling `this.actions.showPerson(person)` from our template.
+    
+    To handle this function call you need to modify the `people-list` component file
+    to add the function to be called.
+    In the component, add an `actions` object with a `showPerson` function that
+    alerts the first argument.
+    
+    ```app/components/people-list.js{+4,+5,+6,+7,+8}
+    import Ember from 'ember';
+    
+    export default Ember.Component.extend({
+      actions: {
+        showPerson(person) {
+          alert(person);
+        }
+      }
+    });
+    
+
+Now in the browser when a scientist's name is clicked, this function is called and the person's name is alerted.
+
+## Building For Production
+
+Now that we've written our application and verified that it works in development, it's time to get it ready to deploy to our users. To do so, run the following command:
 
 ```sh
 ember build --env production
 ```
 
-O comando `build` empacota todos seus TDK(assets) que compõem o seu aplicativo&mdash;JavaScript, templates, CSS, web fonts, imagens, e mais.
+The `build` command packages up all of the assets that make up your application&mdash;JavaScript, templates, CSS, web fonts, images, and more.
 
-Neste caso, nós dissemos para o Ember compilar para o ambiente de produção através da etiqueta `--env`. Isso cria um pacote otimizado que está pronto para ser enviado para o seu servidor web. Uma vez que a compilação termine, você encontrará todos os arquivos da sua aplicação concatenados e minificados no diretório `dist /`.
+In this case, we told Ember to build for the production environment via the `--env` flag. This creates an optimized bundle that's ready to upload to your web host. Once the build finishes, you'll find all of the concatenated and minified assets in your application's `dist/` directory.
 
-A comunidade Ember valoriza a colaboração e construção de ferramentas comuns que todos possam contar. Se você está interessado em publicar seu aplicativo em produção de forma rápida e confiável, confira o plugin [Ember CLI Deploy](http://ember-cli-deploy.com/).
+The Ember community values collaboration and building common tools that everyone relies on. If you're interested in deploying your app to production in a fast and reliable way, check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
-Se o deploy de sua aplicação for em um servidor Apache, primeiro crie um novo host virtual para aplicação. Para ter certeza que todas as rotas serão controladas pelo index.html, adicione a seguinte diretiva na configuração do host virtual
+If you deploy your application to an Apache web server, first create a new virtual host for the application. To make sure all routes are handled by index.html, add the following directive to the application's virtual host configuration
 
     FallbackResource index.html
