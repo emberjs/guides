@@ -240,18 +240,39 @@ export default Ember.Component.extend({
 
 Sometimes the parent component invoking an action has some context needed for the action that the child component
 doesn't.
-For these cases, actions passed to a component via the action helper may be invoked with arguments.
-For example, we'll update the `send-message` action to take a message type in addition to the message itself.
-Since the `button-with-confirmation` component doesn't know or care about what type of message its collecting, we want
-to provide a message type from `send-message` when we define the action.
+Consider, for example,
+the case where the `button-with-confirmation` component we've defined is used within `send-message`.
+The `sendMessage` action that we pass to the child component may expect a message type parameter to be provided as an argument:
+
+```app/components/send-message.js
+export default Ember.Component.extend({
+  actions: {
+    sendMessage(messageType) {
+      //send message here and return a promise
+    }
+  }
+});
+```
+
+However,
+the `button-with-confirmation` component invoking the action doesn't know or care what type of message it's collecting.
+In cases like this, the parent template can provide the required parameter when the action is passed to the child.
+For example, if we want to use the button to send a message of type `"info"`:
 
 ```app/templates/components/send-message.hbs
 {{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage" "info")}}
 ```
 
-In this case, the code in `button-with-confirmation` does not change.
-It will still invoke `onConfirm` with no arguments.
-The action helper will add the arguments provided in the template to the call.
+Within `button-with-confirmation`, the code in the `submitConfirm` action does not change.
+It will still invoke `onConfirm` without explicit arguments:
+
+```app/components/button-with-confirmation.js
+const promise = this.get('onConfirm')();
+```
+However the expression `(action "sendMessage" "info")` used in passing the action to the component creates a closure,
+i.e. an object that binds the parameter we've provided to the function specified.
+So now when the action is invoked, that parameter will automatically be passed as its argument, effectively calling `sendMessage("info")`,
+despite the argument not appearing in the calling code.
 
 Action arguments curry, meaning that you can provide partial arguments to the action helper and provide the rest of the
 arguments when you call the function within the component javascript file.
