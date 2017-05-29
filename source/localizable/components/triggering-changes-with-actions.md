@@ -222,8 +222,8 @@ export default Ember.Component.extend({
     },
 
     submitConfirm() {
-      //call onConfirm with the value of the input field as an argument
-      const promise = this.get('onConfirm')();
+      // call onConfirm with the value of the input field as an argument
+      let promise = this.get('onConfirm')();
       promise.then(() => {
         this.set('confirmShown', false);
       });
@@ -274,10 +274,53 @@ i.e. an object that binds the parameter we've provided to the function specified
 So now when the action is invoked, that parameter will automatically be passed as its argument, effectively calling `sendMessage("info")`,
 despite the argument not appearing in the calling code.
 
-Action arguments curry, meaning that you can provide partial arguments to the action helper and provide the rest of the
-arguments when you call the function within the component javascript file.
-For example, our `button-with-confirmation` component will now [yield](../wrapping-content-in-a-component/) the content
-of the confirmation dialog to collect extra information to be sent along with the `onConfirm` action:
+So far in our example, the action we have passed to `button-with-confirmation` is a function that accepts one argument,
+`messageType`.
+Suppose we want to extend this by allowing `sendMessage` to take a second argument,
+the actual text of the message the user is sending:
+
+```app/components/send-message.js
+export default Ember.Component.extend({
+  actions: {
+    sendMessage(messageType, messageText) {
+      //send message here and return a promise
+    }
+  }
+});
+```
+
+We want to arrange for the action to be invoked from within `button-with-confirmation` with both arguments.
+We've seen already that if we provide a `messageType` value to the `action` helper when we insert `buttton-with-confirmation` into its parent `send-message` template,
+that value will be passed to the `sendMessage` action as its first argument automatically when invoked as `onConfirm`.
+If we subsequently pass a single additional argument to `onConfirm` explicitly,
+that argument will be passed to `sendMessage` as its second argument
+(This ability to provide arguments to a function one at a time is known as [currying](https://en.wikipedia.org/wiki/Currying)).
+
+In our case, the explicit argument that we pass to `onConfirm` will be the required `messageText`.
+However, remember that internally our `button-with-confirmation` component does not know or care that it is being used in a messaging application.
+Therefore within the component's javascript file,
+we will use a property `confirmValue` to represent that argument and pass it to `onConfirm` as shown here:
+
+```app/components/button-with-confirmation.js
+export default Ember.Component.extend({
+  actions: {
+    //...
+    submitConfirm() {
+      // call onConfirm with a second argument
+      let promise = this.get('onConfirm')(this.get('confirmValue'));
+      promise.then(() => {
+        this.set('confirmShown', false);
+      });
+    },
+    //...
+  }
+});
+```
+
+In order for `confirmValue` to take on the value of the message text,
+we'll bind the property to the value of a user input field that will appear when the button is clicked.
+To accomplish this,
+we'll first modify the component so that it can be used in block form and we will [yield](../wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
 
 ```app/templates/components/button-with-confirmation.hbs
 <button {{action "launchConfirmDialog"}}>{{text}}</button>
@@ -290,8 +333,8 @@ of the confirmation dialog to collect extra information to be sent along with th
 {{/if}}
 ```
 
-The `send-message` component provides an input as block content to the `button-with-confirmation` component, setting
-`confirmValue`.
+With this modification,
+we can now use the component in `send-message` to wrap a text input element whose `value` attribute is set to `confirmValue`:
 
 ```app/templates/components/send-message.hbs
 {{#button-with-confirmation
@@ -302,47 +345,10 @@ The `send-message` component provides an input as block content to the `button-w
 {{/button-with-confirmation}}
 ```
 
-Now when the `submitConfirm` action is invoked, we call it with the value provided by our yielded input.
-
-```app/components/button-with-confirmation.js
-import Ember from 'ember';
-
-export default Ember.Component.extend({
-  actions: {
-    launchConfirmDialog() {
-      this.set("confirmShown", true);
-    },
-
-    submitConfirm() {
-      //call onConfirm with the value of the input field as an argument
-      const promise = this.get('onConfirm')(this.get('confirmValue'));
-      promise.then(() => {
-        this.set('confirmShown', false);
-      });
-    },
-
-    cancelConfirm() {
-      this.set('confirmShown', false);
-    }
-  }
-});
-```
-
-This action will call our bound `sendMessage` function with both the message type we provided earlier, and the template
-and the message value provided in the component JavaScript.
-
-
-```app/components/send-message.js
-import Ember from 'ember';
-
-export default Ember.Component.extend({
-  actions: {
-    sendMessage(messageType, messageText) {
-      //send message here and return a promise
-    }
-  }
-});
-```
+When the user enters their message into the input field,
+the message text will now be available to the component as `confirmValue`.
+Then, once they click the "OK" button, the `submitConfirm` action will be triggered, calling `onConfirm` with the provided `confirmValue`,
+thus invoking the `sendMessage` action in `send-message` with both the `messageType` and `messageText` arguments.
 
 ## Invoking Actions Directly on Component Collaborators
 
