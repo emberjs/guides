@@ -78,6 +78,10 @@ label[for="toc-toggle"] {
       display: block !important;
     }
   }
+  
+  a {
+    text-container: none;
+  }
 }
 
 li.toc-level-0 {
