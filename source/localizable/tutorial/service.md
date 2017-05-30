@@ -163,7 +163,12 @@ export default Ember.Service.extend({
 });
 ```
 
+<<<<<<< HEAD
 ### Display Maps With a Component
+=======
+In the `beforeEach` function that runs before each test, we use the built-in function `this.register` to [register](../../applications/dependency-injection#toc_factory-registrations) our stub service in place of the maps service.
+Registration makes an object available to your Ember application for things like loading components from templates and [injecting services](../../applications/dependency-injection/#toc_ad-hoc-injections) in this case.
+>>>>>>> 22306d5... Adds links for new concepts to services page
 
 With a service and utility that render a map to a web page element,
 we'll connect it to our application using a component.
