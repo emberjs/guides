@@ -348,7 +348,7 @@ test('should link to contact information', function (assert) {
 });
 ```
 
-In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/equal/). `assert.equal()` checks
+In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/assert/equal). `assert.equal()` checks
 to see if two items (our first and second arguments) equal each other.  If they don't, our test will fail.
 The third optional argument allows us to provide a nicer message which we'll be shown if this test fails.
 
