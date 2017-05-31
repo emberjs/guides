@@ -442,6 +442,6 @@ so we assert that the number of listings is one and that the location it display
 The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1,
 and the item displayed shows "Seattle" as the location.
 
-You should be down to only 2 failing tests: One remaining acceptance test failure; and our JSHint test that fails on an unused assert for our unimplemented test.
+You should be down to only 2 failing tests: One remaining acceptance test failure; and our ESLint test that fails on an unused assert for our unimplemented test.
 
 ![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)

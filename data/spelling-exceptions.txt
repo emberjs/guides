@@ -83,6 +83,7 @@ emberjs
 enumerables
 env
 erroring
+eslint
 evented
 facto
 falsy
