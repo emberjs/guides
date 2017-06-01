@@ -12,6 +12,10 @@
       display: flex;
     }
   }
+  
+  a {
+    text-decoration: none;
+  }
 
   .footer-info {
     color: $medium-gray;
