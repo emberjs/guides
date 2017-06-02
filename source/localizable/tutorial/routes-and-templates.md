@@ -307,7 +307,7 @@ test('should show rentals as the home page', function (assert) {
 
 Now run the tests by typing `ember test --server` in the command line (or `ember t -s` for short).
 
-Instead of 7 failures there should now be 6 (5 acceptance failures and 1 JSHint).
+Instead of 7 failures there should now be 6 (5 acceptance failures and 1 ESLint).
 You can also run our specific test by selecting the entry called "Acceptance | list rentals"
 in the drop down input labeled "Module" on the test UI.
 
