@@ -5,7 +5,7 @@ or checking out items in their shopping cart.
 Usually you want to redirect them to the login page, and after they have successfully logged in, take them back to the page they originally wanted to access.
 
 There are many other reasons you probably want to have the last word on whether a user can or cannot access a certain page.
-Whatever the reason, Ember allows you that control with a combination of hooks and methods in your route.
+Ember allows you to control that access with a combination of hooks and methods in your route.
 
 One of the methods is [`transitionTo()`](http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo).
 Calling `transitionTo()` from a route or
