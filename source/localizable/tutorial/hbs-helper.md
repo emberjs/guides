@@ -89,7 +89,7 @@ while the other two are listed as "Community".
 
 ### Integration Test
 
-Update the content of the integration text to the following to fix it:
+Update the content of the integration test to the following to fix it:
 
 ```/tests/integration/helpers/rental-property-type-test.js{-15,+16}
 
