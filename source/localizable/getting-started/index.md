@@ -46,6 +46,14 @@ Ember requires Bower to manage additional dependencies.
 Bower is a command line utility that you install with npm.
 To install Bower run, ```npm install -g bower```
 
+### Bower
+
+Ember requires bower to manage dependencies in applications. If bower has not 
+yet been installed on your system, run
+```bash
+npm install -g bower
+```
+
 ### Watchman (optional)
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
