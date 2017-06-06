@@ -24,7 +24,7 @@ Given the above template, you can now use the `{{blog-post}}` component:
 
 ```app/templates/index.hbs
 {{#each model as |post|}}
-  {{#blog-post title=post.title}}
+  {{blog-post title=post.title}}
     {{post.body}}
   {{/blog-post}}
 {{/each}}
