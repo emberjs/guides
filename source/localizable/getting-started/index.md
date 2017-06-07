@@ -40,12 +40,6 @@ installing Homebrew, run `brew install node` to install Node.js.
 
 If you get an outdated version of npm, run `npm install -g npm`.
 
-### Bower
-
-Ember requires Bower to manage additional dependencies.
-Bower is a command line utility that you install with npm.
-To install Bower run, ```npm install -g bower```
-
 ### Watchman (optional)
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
