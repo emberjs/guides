@@ -26,7 +26,7 @@ function fulfill(answer) {
 }
 
 function reject(reason) {
-  console.log(`Couldn't get the answer! Reason: ${reason}`);
+  console.log('Couldnot get the answer! Reason: ${reason}');
 }
 ```
 
