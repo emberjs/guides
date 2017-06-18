@@ -32,30 +32,26 @@ Se você receber um erro *"command not found"* ou tiver uma versão desatualizad
 
 Se você estiver com uma versão desatualizada do npm, execute `npm install -g npm`.
 
-### Bower
+### Watchman (optional)
 
-Ember requer Bower para gerenciar dependências adicionais. Bower é um utilitário de linha de comando que você instala com npm. Para instalar o Bower execute, ```npm install -g bower```
-
-### Watchman (opcional)
-
-No Mac e no Linux, você pode melhorar o desempenho da observação de arquivos ("file watching") instalando [Watchman](https://facebook.github.io/watchman/docs/install.html).
+On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
 
 ### PhantomJS (optional)
 
-Com PhantomJs, você pode rodar seus testes da linha de comando, sem precisar abrir um navegador. Consulte as [instruções para baixar PhantomJs](http://phantomjs.org/download.html).
+You can run your tests from the command line with PhantomJS, without the need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
 
 ## Instalação
 
-Instale o Ember usando o npm:
+Install Ember using npm:
 
 ```bash
 npm install -g ember-cli
 ```
 
-Para verificar se a instalação foi bem-sucedida, execute:
+To verify that your installation was successful, run:
 
 ```bash
 ember -v
 ```
 
-Se um número de versão for exibido, você está pronto para começar.
+If a version number is shown, you're ready to go.

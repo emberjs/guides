@@ -2,7 +2,7 @@ Sometimes you want to redirect a user to a different page than what they request
 
 For example, if they're not logged in, you might want to prevent them from editing their profile, accessing private information, or checking out items in their shopping cart. Usually you want to redirect them to the login page, and after they have successfully logged in, take them back to the page they originally wanted to access.
 
-There are many other reasons you probably want to have the last word on whether a user can or cannot access a certain page. Whatever the reason, Ember allows you that control with a combination of hooks and methods in your route.
+There are many other reasons you probably want to have the last word on whether a user can or cannot access a certain page. Ember allows you to control that access with a combination of hooks and methods in your route.
 
 One of the methods is [`transitionTo()`](http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo). Calling `transitionTo()` from a route or [`transitionToRoute()`](http://emberjs.com/api/classes/Ember.Controller.html#method_transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect. `transitionTo()` behaves exactly like the [link-to](../../templates/links) helper.
 

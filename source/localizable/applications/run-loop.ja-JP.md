@@ -1,22 +1,22 @@
-Ember's internals and most of the code you will write in your applications takes place in a run loop. The run loop is used to batch, and order (or reorder) work in a way that is most effective and efficient.
+Emberの内部、そしてアプリケーション内で書かれるほとんどのコードは、実行ループ (run loop) の中で実行されます。 実行ループはバッチ処理に使われ、最も効果的かつ効率的な方法で作業を順序付け (または再順序付け) します。
 
-It does so by scheduling work on specific queues. These queues have a priority, and are processed to completion in priority order.
+それは、特定のキューで作業をスケジューリングすることで行います。 それらのキューには優先順位があり、その優先順位に従って処理が行われます。
 
-For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop directly.
+Emberの基本的なアプリケーション開発シナリオでは、実行ループを理解したり、直接使用する必要はありません。 全ての通路はあなた用に綺麗に舗装されているので、あなたは実行ループで直接作業する必要はありません。
 
-The most common case for using the run loop is integrating with a non-Ember API that includes some sort of asynchronous callback. For example:
+実行ループを使用する最も一般的なケースは、非同期のコールバックを含むEmberのものでないAPIを統合するような場合です。それは例えば、以下のようなものです。
 
-* DOM update and event callbacks
-* `setTimeout` and `setInterval` callbacks
-* `postMessage` and `messageChannel` event handlers
-* AJAX callbacks
-* Websocket callbacks
+* DOMの更新やイベントのコールバック
+* `setTimeout`や`setInterval`のコールバック
+* `postMessage`や`messageChannel`のイベントハンドラ
+* AJAXコールバック
+* Websocketコールバック
 
-## Why is the run loop useful?
+## 実行ループが便利な理由
 
-Very often, batching similar work has benefits. Web browsers do something quite similar by batching changes to the DOM.
+大抵の場合は、同様の作業をバッチ処理することには利点があります。 WebブラウザはDOMへの変更をバッチ処理することで、とてもよく似た処理を行います。
 
-Consider the following HTML snippet:
+以下のHTML片を考えてみてください。
 
 ```html
 <div id="foo"></div>
@@ -24,7 +24,7 @@ Consider the following HTML snippet:
 <div id="baz"></div>
 ```
 
-and executing the following code:
+次に以下のコードを実行したとします。
 
 ```javascript
 foo.style.height = '500px' // write
@@ -37,7 +37,7 @@ baz.style.height = '200px' // write
 baz.offsetHeight // read (recalculate style, layout, expensive!)
 ```
 
-In this example, the sequence of code forced the browser to recalculate style, and relayout after each step. However, if we were able to batch similar jobs together, the browser would have only needed to recalculate the style and layout once.
+この例では、一連のコードはスタイルの再計算と各処理の後での再レイアウトをブラウザに強制します。 しかし、もし類似したジョブをまとめてバッチ処理できるなら、ブラウザがスタイルの再計算やレイアウトを行うのは一度のみでよくなります。
 
 ```javascript
 foo.style.height = '500px' // write
@@ -49,9 +49,9 @@ bar.offsetHeight // read (fast since style and layout are already known)
 baz.offsetHeight // read (fast since style and layout are already known)
 ```
 
-Interestingly, this pattern holds true for many other types of work. Essentially, batching similar work allows for better pipelining, and further optimization.
+興味ふかいことに、このパターンは他の多くの種類の作業にも当てはまります。本質的には、同様の作業をバッチ処理することにより、より良いパイプライン化と最適化が可能になります。
 
-Let's look at a similar example that is optimized in Ember, starting with a `User` object:
+それでは、Emberによって最適化された同様の例を見て見ましょう。`User`オブジェクトから始めます。
 
 ```javascript
 let User = Ember.Object.extend({
@@ -63,14 +63,14 @@ let User = Ember.Object.extend({
 });
 ```
 
-and a template to display its attributes:
+このオブジェクトの属性を表示するテンプレートは以下のようになります。
 
 ```handlebars
 {{firstName}}
 {{fullName}}
 ```
 
-If we execute the following code without the run loop:
+実行ループなしに次のコードを実行すると、次のようになります。
 
 ```javascript
 let user = User.create({ firstName: 'Tom', lastName: 'Huda' });
@@ -81,9 +81,9 @@ user.set('lastName', 'Katz');
 // {{lastName}} and {{fullName}} are updated
 ```
 
-We see that the browser will rerender the template twice.
+ブラウザがテンプレートを2回描画することがわかります。
 
-However, if we have the run loop in the above code, the browser will only rerender the template once the attributes have all been set.
+しかし、もし上記のコードを実行ループを実行すると、ブラウザは属性を全て設定した後に1度だけテンプレートを描画します。
 
 ```javascript
 let user = User.create({ firstName: 'Tom', lastName: 'Huda' });
@@ -93,55 +93,55 @@ user.set('firstName', 'Tom');
 user.set('lastName', 'Huda');
 ```
 
-In the above example with the run loop, since the user's attributes end up at the same values as before execution, the template will not even rerender!
+上記の例を実行ループで実行した場合は、ユーザーの属性は実行前と同じ値になるため、テンプレートは再描画されません!
 
-It is of course possible to optimize these scenarios on a case-by-case basis, but getting them for free is much nicer. Using the run loop, we can apply these classes of optimizations not only for each scenario, but holistically app-wide.
+これらのシナリオをケースバイケースで最適化することはもちろん可能です。しかし、コストを払わずにそれが得られるのはとても良いことです。 実行ループを使用することで、これらのクラスの最適化を各シナリオだけでなく、アプリケーション全体に適用することができます。
 
-## How does the Run Loop work in Ember?
+## Emberで実行ループはどのように機能するか
 
-As mentioned earlier, we schedule work (in the form of function invocations) on queues, and these queues are processed to completion in priority order.
+前述したように、キューの形で作業をスケジュールし(関数呼び出しの形式で)、これらのキューは優先順位に従って処理されます。
 
-What are the queues, and what is their priority order?
+キュー、そしてその優先順位とは一体何でしょうか。
 
 ```javascript
 Ember.run.queues
 // => ["sync", "actions", "routerTransitions", "render", "afterRender", "destroy"]
 ```
 
-Because the priority is first to last, the "sync" queue has higher priority than the "render" or "destroy" queue.
+キューの優先順位は順番によって決まるため、"sync" (同期) キューは "render" (描画) キューまたは "destroy" (破棄) キューよりも高い優先度を持ちます。
 
-## What happens in these queues?
+## これらのキューの中では何が起きるか
 
-* The `sync` queue contains binding synchronization jobs.
-* The `actions` queue is the general work queue and will typically contain scheduled tasks e.g. promises.
-* The `routerTransitions` queue contains transition jobs in the router.
-* The `render` queue contains jobs meant for rendering, these will typically update the DOM.
-* The `afterRender` queue contains jobs meant to be run after all previously scheduled render tasks are complete. This is often good for 3rd-party DOM manipulation libraries, that should only be run after an entire tree of DOM has been updated.
-* The `destroy` queue contains jobs to finish the teardown of objects other jobs have scheduled to destroy.
+* `sync`キューは同期ジョブのバインディングを含みます。
+* `actions`キューは一般的な作業キューであり、通常プロミスなどのスケジュールされた作業を含みます。
+* `routerTransitions`キューはルーター内の遷移ジョブを含みます。
+* `render`キューは描画のためのジョブを含みます。それらのジョブは、通常DOMの更新を行います。
+* `afterRender`キューは、スケジュールされた全ての描画作業が完了した後に実行するジョブを含みます。 これは、DOMツリー全体が更新された後にのみ実行されるサードパーティのDOM操作ライブラリにとって、しばしば役に立つものです。
+* `destroy`キューは、他のジョブが破棄する予定のオブジェクトの解体を行うジョブを含みます。
 
-## In what order are jobs executed on the queues?
+## キューではどのような順序でジョブが実行されるか
 
-The algorithm works this way:
+アルゴリズムは以下のように動作します。
 
-  1. Let the highest priority queue with pending jobs be: `CURRENT_QUEUE`, if there are no queues with pending jobs the run loop is complete
-  2. Let a new temporary queue be defined as `WORK_QUEUE`
-  3. Move jobs from `CURRENT_QUEUE` into `WORK_QUEUE`
-  4. Process all the jobs sequentially in `WORK_QUEUE`
-  5. Return to Step 1
+  1. 保留されているジョブを含む優先度の高いキューを`CURRENT_QUEUE`とします。保留中のジョブを含むキューが無い場合は、実行ループを完了します。
+  2. 新しい一時的なキューを`WORK_QUEUE`として宣言します。
+  3. `CURRENT_QUEUE`から`WORK_QUEUE`にジョブを移します。
+  4. `WORK_QUEUE`内の全てのキューを順番に処理します。
+  5. 最初のステップに戻ります。
 
-## An example of the internals
+## 内部構造の例
 
-Rather than writing the higher level app code that internally invokes the various run loop scheduling functions, we have stripped away the covers, and shown the raw run-loop interactions.
+実行ループをスケジュールするさまざまな関数を内部で呼び出す上位レベルのアプリケーションコードを記述するのではなく、覆っているものを取り除いて、生の実行ループのやり取りをお見せしました。
 
-Working with this API directly is not common in most Ember apps, but understanding this example will help you to understand the run-loops algorithm, which will make you a better Ember developer. <iframe src="https://s3.amazonaws.com/emberjs.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe> 
+ほとんどのEmberアプリケーションにおいて、このAPIを直接操作することは一般的ではありません。しかし、この例を理解することは、実行ループアルゴリズムを理解し、より良いEmber開発者となるのに役立ちます。 <iframe src="https://s3.amazonaws.com/emberjs.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe> 
 
-## How do I tell Ember to start a run loop?
+## 実行ループを開始するにはどうするか
 
-You should begin a run loop when the callback fires.
+実行ループは、コールバックの発生と共に開始する必要があります。
 
-The `Ember.run` method can be used to create a run loop. In this example, jQuery and `Ember.run` are used to handle a click event and run some Ember code.
+`Ember.run`メソッドは、実行ループを作成するために使用できます。以下の例では、クリックイベントを処理してEmberコードを実行するために、jQueryと`Ember.run`を使用しています。
 
-This example uses the `=>` function syntax, which is a \[new ES2015 syntax for callback functions\] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) that provides a lexical `this`. If this syntax is new, think of it as a function that has the same `this` as the context it is defined in.
+この例では、`=>`関数構文を使用しています。これはレキシカルな`this`を提供する\[コールバック関数用の新しいES2015構文\](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) です。 もしこの構文が見慣れたものでなければ、定義されているコンテキストと同じ`this`を持つ関数だと考えてください。
 
 ```javascript
 $('a').click(() => {
@@ -151,9 +151,9 @@ $('a').click(() => {
 });
 ```
 
-## What happens if I forget to start a run loop in an async handler?
+## 非同期ハンドラ内で実行ループを開始するのを忘れるとどうなるか
 
-As mentioned above, you should wrap any non-Ember async callbacks in `Ember.run`. If you don't, Ember will try to approximate a beginning and end for you. Consider the following callback:
+上記のように、Ember以外の非同期コールバックは`Ember.run`でラップする必要があります。 そうしないと、Emberは最初と最後を近づけようとします。 次のコールバックを考えてみましょう。
 
 ```javascript
 $('a').click(() => {
@@ -165,21 +165,21 @@ $('a').click(() => {
 });
 ```
 
-The run loop API calls that *schedule* work, i.e. [`run.schedule`](http://emberjs.com/api/classes/Ember.run.html#method_schedule), [`run.scheduleOnce`](http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce), [`run.once`](http://emberjs.com/api/classes/Ember.run.html#method_once) have the property that they will approximate a run loop for you if one does not already exist. These automatically created run loops we call *autoruns*.
+実行ループAPIは、*スケジュール*機能 ([`run.schedule`](http://emberjs.com/api/classes/Ember.run.html#method_schedule)、[`run.scheduleOnce`](http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce)、[`run.once`](http://emberjs.com/api/classes/Ember.run.html#method_once)など) を呼び出します。それらは、実行ループが存在しない場合にそれを近似するプロパティを持っています。 これらは自動的に*autorun*と呼ばれる実行ループを作成しました.
 
-Here is some pseudocode to describe what happens using the example above:
+上記の例を使用して何が起こるかを記述する疑似コードを次に示します。
 
 ```javascript
 $('a').click(() => {
-  // 1. autoruns do not change the execution of arbitrary code in a callback.
-  //    This code is still run when this callback is executed and will not be
-  //    scheduled on an autorun.
+  // 1. autorunはコールバック内の任意のコード実行を変更しません。
+  // このコードはコールバックが実行された際に実行されます。
+  // 自動実行のスケジュールはされません。
   console.log('Doing things...');
 
   Ember.run.schedule('actions', () => {
-    // 2. schedule notices that there is no currently available run loop so it
-    //    creates one. It schedules it to close and flush queues on the next
-    //    turn of the JS event loop.
+    // 2. scheduleは現在利用可能な実行ループがないことを検知し、
+    //    実行ループを1つ作成します。 そして、JSイベントループの次のターンで
+    // キューをフラッシュするよう実行ループをスケジュールします。
     if (! Ember.run.hasOpenRunLoop()) {
       Ember.run.start();
       nextTick(() => {
@@ -187,35 +187,34 @@ $('a').click(() => {
       }, 0);
     }
 
-    // 3. There is now a run loop available so schedule adds its item to the
-    //    given queue
+    // 3. もう利用可能な実行ループがあるため、scheduleは処理を指定されたキューに追加します。
     Ember.run.schedule('actions', () => {
       // Do more things
     });
 
   });
 
-  // 4. This schedule sees the autorun created by schedule above as an available
-  //    run loop and adds its item to the given queue.
+  // 4. このscheduleでは、上記のscheduleで作成されたautorunを使用可能な実行ループとして認識し、
+  //   そのアイテムが特定のキューに追加されます。
   Ember.run.schedule('afterRender', () => {
     // Do yet more things
   });
 });
 ```
 
-Although autoruns are convenient, they are suboptimal. The current JS frame is allowed to end before the run loop is flushed, which sometimes means the browser will take the opportunity to do other things, like garbage collection. GC running in between data changing and DOM rerendering can cause visual lag and should be minimized.
+autorunは便利ですが、最適ではありません。 現在のJSフレームは、実行ループがフラッシュされる前に終了することができます。これは、ブラウザが他の処理 (ガベージコレクションのような) を行う機会を得る可能性があることを意味します。 データ変更とDOM再描画の間におけるGCの実行は、視覚的な遅れを引き起こす可能性があルノで、最小にする必要があります。
 
-Relying on autoruns is not a rigorous or efficient way to use the run loop. Wrapping event handlers manually are preferred.
+autorunに依存するのは、実行ループを使用する厳密あるいは効果的な方法ではありません。実行ループを使用するには、イベントハンドラを手動でラップする方が望ましいです。
 
-## How is run loop behaviour different when testing?
+## 実行ループの振る舞いはテストの際どう異なるか
 
-When your application is in *testing mode* then Ember will throw an error if you try to schedule work without an available run loop.
+アプリケーションが*テストモード*の場合、もし利用可能な実行ループが無い状態で作業をスケジュールしようとすると、Emberはエラーを投げます。
 
-Autoruns are disabled in testing for several reasons:
+いくつかの理由から、テストの際のautorunは無効にされています。
 
-  1. Autoruns are Embers way of not punishing you in production if you forget to open a run loop before you schedule callbacks on it. While this is useful in production, these are still situations that should be revealed in testing to help you find and fix them.
-  2. Some of Ember's test helpers are promises that wait for the run loop to empty before resolving. If your application has code that runs *outside* a run loop, these will resolve too early and give erroneous test failures which are difficult to find. Disabling autoruns help you identify these scenarios and helps both your testing and your application!
+  1. autorunは、コールバックをスケジュールする前に実行ループを開くのを忘れた場合に、プロダクションであなたを罰さなくするためのEmber流の方法です。 これはプロダクションでは便利です。しかし、それらを見つけて修正するために、テストの中で明らかにすべき状況です。
+  2. Emberのテストペルパーの中には、解決する前に実行ループが空になるのをを待つPromiseがあります。 アプリケーションに実行ループの*外側*で実行するコードがある場合は、それらは早く解決されすぎ、誤ったテストの失敗を引き起こしてしまうでしょう。 autorunを禁止することは、これらのシナリオを識別し、テストとアプリケーションの両方を助けることになるでしょう!
 
-## Where can I find more information?
+## さらなる情報がある場所
 
-Check out the [Ember.run](http://emberjs.com/api/classes/Ember.run.html) API documentation, as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.
+[Ember.run](http://emberjs.com/api/classes/Ember.run.html)APIのドキュメントはもちろん、実行ループの動力源である[Backburner ライブラリ](https://github.com/ebryn/backburner.js/)も参照してください。

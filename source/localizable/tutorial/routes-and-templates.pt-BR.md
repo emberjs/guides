@@ -274,7 +274,7 @@ First, we want to test that visiting `/` properly redirects to `/rentals`. We'll
 
     <br />Now run the tests by typing `ember test --server` in the command line (or `ember t -s` for short).
     
-    Instead of 7 failures there should now be 6 (5 acceptance failures and 1 JSHint).
+    Instead of 7 failures there should now be 6 (5 acceptance failures and 1 ESLint).
     You can also run our specific test by selecting the entry called "Acceptance | list rentals"
     in the drop down input labeled "Module" on the test UI.
     
@@ -315,7 +315,7 @@ First, we want to test that visiting `/` properly redirects to `/rentals`. We'll
     });
     
 
-In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/equal/). `assert.equal()` checks to see if two items (our first and second arguments) equal each other. If they don't, our test will fail. The third optional argument allows us to provide a nicer message which we'll be shown if this test fails.
+In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/assert/equal). `assert.equal()` checks to see if two items (our first and second arguments) equal each other. If they don't, our test will fail. The third optional argument allows us to provide a nicer message which we'll be shown if this test fails.
 
 In our tests, we also call two helpers (`visit` and `click`) one after another. Although Ember does a number of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers).
 

@@ -159,7 +159,7 @@ export default Ember.Controller.extend({ queryParams: ['page', 'filter', { categ
 
 This affects query param behavior in two ways:
 
-  1. Query param values are cast to the same datatype as the default value, e.g. a URL change from `/?page=3` to `/?page=2` will set `controller:articles`'s `page` property to the number `2`, rather than the string `"2"`. The same also applies to boolean default values.
+  1. Query param values are cast to the same datatype as the default value, e.g. a URL change from `/?page=3` to `/?page=2` will set `controller:articles`'s `page` property to the number `2`, rather than the string `"2"`. The same also applies to boolean default values. If the default value is an array, the string will be parsed using `JSON.parse`.
   2. When a controller's query param property is currently set to its default value, this value won't be serialized into the URL. So in the above example, if `page` is `1`, the URL might look like `/articles`, but once someone sets the controller's `page` value to `2`, the URL will become `/articles?page=2`.
 
 ### Sticky Query Param Values

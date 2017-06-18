@@ -69,7 +69,7 @@ Now run your test suite with the CLI command, `ember test --server`.
 
 By default, when you run `ember test --server`, Ember CLI runs the [Testem test runner](https://github.com/testem/testem), which runs Qunit in Chrome and [PhantomJS](http://phantomjs.org/).
 
-Our launched Chrome web browser now shows 10 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful acceptance test, along with 9 passing JSHint tests. Ember tests each file you create for syntax issues (known as "linting") using [JSHint](http://jshint.com/).
+Our launched Chrome web browser now shows 10 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful acceptance test, along with 9 passing ESLint tests. Ember tests each file you create for syntax issues (known as "linting") using [ESLint](http://eslint.org/).
 
 ![Initial Tests Screenshot](../../images/acceptance-test/initial-tests.png)
 
@@ -101,6 +101,6 @@ test('should show details for a selected rental', function (assert) {
 });
 </code></pre>
 
-Running `ember test --server` will now show 7 failing tests (out of 15). Each of the 6 tests we setup above will fail, plus one JSHint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
+Running `ember test --server` will now show 7 failing tests (out of 15). Each of the 6 tests we setup above will fail, plus one ESLint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
 
 As we continue through this tutorial, we'll use these acceptance tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.

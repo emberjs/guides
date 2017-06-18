@@ -246,7 +246,7 @@ test('should toggle wide class on click', function(assert) { this.set('rentalObj
       this.set('rentalObj', rental);
       this.render(hbs`{{rental-listing rental=rentalObj}}`);
       assert.equal(this.$('.listing h3').text(), 'test-title', 'Title: test-title');
-      assert.equal(this.$('.listing .owner').text().trim(), 'Owner: test-owner');
+      assert.equal(this.$('.listing .owner').text().trim(), 'Owner: test-owner', 'Owner: test-owner');
     });
     
 

@@ -118,7 +118,7 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             title: 'Grand Old Mansion',
             owner: 'Veruca Salt',
             city: 'San Francisco',
-            propertyType: 'Estate',
+            "property-type": 'Estate',
             bedrooms: 15,
             image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
             description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
@@ -130,7 +130,7 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             title: 'Urban Living',
             owner: 'Mike Teavee',
             city: 'Seattle',
-            propertyType: 'Condo',
+            "property-type": 'Condo',
             bedrooms: 1,
             image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
             description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
@@ -142,7 +142,7 @@ export default Ember.Controller.extend({ actions: { filterByCity(param) { if (pa
             title: 'Downtown Charm',
             owner: 'Violet Beauregarde',
             city: 'Portland',
-            propertyType: 'Apartment',
+            "property-type": 'Apartment',
             bedrooms: 3,
             image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
             description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
@@ -353,6 +353,6 @@ Since our data is hard-coded in Mirage, we know that there is only one rental wi
 
 The test verifies that after filling in the search input with "Seattle", the rental list reduces from 3 to 1, and the item displayed shows "Seattle" as the location.
 
-You should be down to only 2 failing tests: One remaining acceptance test failure; and our JSHint test that fails on an unused assert for our unimplemented test.
+You should be down to only 2 failing tests: One remaining acceptance test failure; and our ESLint test that fails on an unused assert for our unimplemented test.
 
 ![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)
