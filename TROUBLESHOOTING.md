@@ -18,6 +18,12 @@ OR
 brew link openssl --force
 ```
 
+If errors with Open SSL still occur after restarting the terminal or brew link fails, try adding the following to `~/.bashrc` and restart the terminal:
+
+```
+export PATH=$(brew --prefix openssl)/bin:$PATH"
+```
+
 ## Installing on Windows
 
 For Windows developers using [RubyInstaller](http://rubyinstaller.org/), you'll need to [download the DevKit](http://rubyinstaller.org/downloads) and install it using instructions:

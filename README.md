@@ -24,6 +24,20 @@ for those plugins.
 The Guides are built with Middleman, which runs on Ruby 1.9.3 or newer
 (2.0.0 recommended).
 
+Mac users should install Ruby using rbenv to avoid changing their OS dependencies:
+
+```
+brew install rbenv
+```
+
+Follow the [rbenv installation instructions](https://github.com/rbenv/rbenv) to install the Ruby version specified [here](.ruby-version), then go through the init steps, set a global version, and restart the terminal. If `gem env home` shows rbenv in the path, your installation was successful. You should not have to sudo install any gems.
+
+Once you have installed Ruby, you will need bundler and Middleman:
+
+```
+gem install bundler middleman
+```
+
 During build, Middleman will require Aspell to look for misspellings. On Macs, it can be installed via Homebrew:
 
 ``` sh
@@ -31,6 +45,8 @@ brew install aspell --with-lang-en
 ```
 
 On Windows, you can download an [installer](http://aspell.net/win32/), but unfortunately it is unmaintained. On Linux, you can install with your distribution's package manager. On all platforms, you can also [build the most recent version from source](http://aspell.net/man-html/Installing.html).
+
+Some Mac users may also need to install openSSL, which will be indicated in an error during the bundle command. See [Troubleshooting.md](TROUBLESHOOTING.md).
 
 ## Developing with the Guides
 
