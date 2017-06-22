@@ -22,7 +22,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
-```app/templates/rentals.hbs{+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,-46,-47,-48}
+```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -44,8 +44,8 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   </ul>
 {{/list-filter}}
 {{#each model as |rentalUnit|}}
-      {{rental-listing rental=rentalUnit}}
-  {{/each}}
+  {{rental-listing rental=rentalUnit}}
+{{/each}}
 ```
 
 
