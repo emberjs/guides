@@ -18,7 +18,7 @@ Notice that below we "wrap" our rentals markup inside the open and closing menti
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
-```app/templates/rentals.hbs 
+```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20} 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -41,7 +41,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   <li>
     {{rental-listing rental=rentalUnit}}
   </li> {{/each}}
-</ul> {{/list-filter}}
+</ul> {{/list-filter}} {{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{/each}}
 
     <br /><br />We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
     

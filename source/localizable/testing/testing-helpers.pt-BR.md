@@ -50,7 +50,7 @@ test('formats 199 with $ as currency sign', function(assert) {
   this.set('value', 199);
   this.set('sign', '$');
 
-  this.render(hbs`{{format-curreny value sign=sign}}`);
+  this.render(hbs`{{format-currency value sign=sign}}`);
 
   assert.equal(this.$().text().trim(), '$1.99');
 });
@@ -62,7 +62,7 @@ We can now also properly test if a helper will respond to property changes.
   this.set('value', 199);
   this.set('sign', '$');
 
-  this.render(hbs`{{format-curreny value sign=sign}}`);
+  this.render(hbs`{{format-currency value sign=sign}}`);
 
   assert.equal(this.$().text().trim(), '$1.99', 'Value is formatted with $');
 

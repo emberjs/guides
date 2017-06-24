@@ -1,31 +1,31 @@
-An [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
+[`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html)はアプリケーションが存続している間に生きているEmberオブジェクトで、アプリケーションの様々な部分から利用することができます。
 
-Services are useful for features that require shared state or persistent connections. Example uses of services might include:
+サービスは、状態の共有や永続的な接続が必要な機能に役立ちます。サービスの使用例には、以下のようなものがあります。
 
-* User/session authentication.
-* Geolocation.
-* WebSockets.
-* Server-sent events or notifications.
-* Server-backed API calls that may not fit Ember Data.
-* Third-party APIs.
-* Logging.
+* ユーザーやセッションの認証
+* 位置情報
+* WebSocket
+* Server Sent Events や通知
+* Ember Dataに適合しないサーバーAPIの呼び出し
+* サードパーティ製API
+* ログの記録
 
-### Defining Services
+### サービスを定義する
 
-Services can be generated using Ember CLI's `service` generator. For example, the following command will create the `ShoppingCart` service:
+サービスはEmber CLIの`service`ジェネレータを使って作成できます。例えば、次のコマンドは`ShoppingCart`サービスを作成します。
 
 ```bash
 ember generate service shopping-cart
 ```
 
-Services must extend the [`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html) base class:
+サービスは必ず[`Ember.Service`](http://emberjs.com/api/classes/Ember.Service.html)基底クラスを継承しなければなりません。
 
 ```app/services/shopping-cart.js import Ember from 'ember';
 
 export default Ember.Service.extend({ });
 
-    <br />Like any Ember object, a service is initialized and can have properties and methods of its own.
-    Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
+    <br />他のEmberオブジェクトと同様に、サービスは初期化され、独自のプロパティとメソッドを持つことが可能です。
+    以下に示すショッピングカートサービスでは、現在ショッピングカートに入っているアイテムを表すアイテムの配列を管理します。
     
     ```app/services/shopping-cart.js
     import Ember from 'ember';
@@ -52,9 +52,9 @@ export default Ember.Service.extend({ });
     });
     
 
-### Accessing Services
+### サービスにアクセスする
 
-To access a service, you can inject it in any container-resolved object such as a component or another service using the `Ember.inject.service` function. There are 2 ways to use this function. You can either invoke it with no arguments, or you can pass it the registered name of the service. When no arguments are passed, the service is loaded based on the name of the variable key. You can load the shopping cart service with no arguments like below.
+サービスにアクセスするには、`Ember.inject.service`を使って、そのサービスをDIコンテナ (コンポーネントや別のサービスなど) に注入します。 There are 2 ways to use this function. You can either invoke it with no arguments, or you can pass it the registered name of the service. When no arguments are passed, the service is loaded based on the name of the variable key. You can load the shopping cart service with no arguments like below.
 
 ```app/components/cart-contents.js import Ember from 'ember';
 

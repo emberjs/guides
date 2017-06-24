@@ -18,7 +18,7 @@ ember g component list-filter
 
 ここでは、フィルタしたデータを`rentals`と呼ばれる変数として内部マークアップに渡しています (14行目)。
 
-```app/templates/rentals.hbs 
+```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20} 
 
 <div class="jumbo">
   <div class="right tomster">
@@ -41,7 +41,7 @@ ember g component list-filter
   <li>
     {{rental-listing rental=rentalUnit}}
   </li> {{/each}}
-</ul> {{/list-filter}}
+</ul> {{/list-filter}} {{#each model as |rentalUnit|}} {{rental-listing rental=rentalUnit}} {{/each}}
 
     <br /><br />単に入力フィールドとブロックへ結果リストを出力する領域を提供するコンポーネントが欲しいので、テンプレートは単純になります。
     
