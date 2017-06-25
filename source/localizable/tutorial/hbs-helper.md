@@ -85,3 +85,29 @@ Each [argument](https://guides.emberjs.com/v2.12.0/templates/writing-helpers/#to
 
 Now in our browser we should see that the first rental property is listed as "Standalone",
 while the other two are listed as "Community".
+
+
+### Integration Test
+
+Update the content of the integration test to the following to fix it:
+
+```/tests/integration/helpers/rental-property-type-test.js{-15,+16}
+
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('rental-property-type', 'helper:rental-property-type', {
+  integration: true
+});
+
+// Replace this with your real tests.
+test('it renders', function(assert) {
+  this.set('inputValue', '1234');
+
+  this.render(hbs`{{rental-property-type inputValue}}`);
+
+  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().text().trim(), 'Standalone');
+});
+
+```
