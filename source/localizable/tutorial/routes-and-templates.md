@@ -296,7 +296,7 @@ goals, which include the ability to navigate to an `about` page and a `contact` 
 First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper
 and then make sure our current URL is `/rentals` once the redirect occurs.
 
-```/tests/acceptance/list-rentals-test.js
+```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
 test('should show rentals as the home page', function (assert) {
   visit('/');
   andThen(function() {
@@ -314,6 +314,8 @@ in the drop down input labeled "Module" on the test UI.
 You can also toggle "Hide passed tests" to show your passing test case along with the tests that are still
 failing (because we haven't yet built them).
 
+![6_fail](../../images/routes-and-templates/routes-and-templates.gif)
+
 ### Ember's test helpers
 
 Ember provides a variety of acceptance test helpers to make common tasks easier,
@@ -330,7 +332,7 @@ Some of the helpers we'll use commonly are:
 ### Test visiting our About and Contact pages
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
 
-```/tests/acceptance/list-rentals-test.js
+```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+10,+11,+12,+13,+14}
 test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');

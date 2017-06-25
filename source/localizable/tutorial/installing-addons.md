@@ -44,7 +44,7 @@ ember install ember-cli-mirage
 
 Let's now configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
-```mirage/config.js
+```mirage/config.js{+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67}
 export default function() {
   this.namespace = '/api';
 
@@ -87,6 +87,31 @@ export default function() {
     };
   });
 }
+export default function() {
+ // These comments are here to help you get started. Feel free to delete them.
+
+  /*
+    Config (with defaults).
+    
+    Note: these only affect routes defined *after* them!
+  */
+  
+  // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
+  // this.namespace = '';    // make this `/api`, for example, if your API is namespaced
+  // this.timing = 400;      // delay for each request, automatically set to 0 during testing
+  
+  /*
+    Shorthand cheatsheet:
+
+    this.get('/posts');
+    this.post('/posts');
+    this.get('/posts/:id');
+    this.put('/posts/:id'); // or this.patch
+    this.del('/posts/:id');
+    
+    http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
+  */
+}
 ```
 
 This configures Mirage so that whenever Ember Data makes a GET request to `/api/rentals`, Mirage will return this JavaScript object as JSON.
@@ -103,7 +128,7 @@ This adapter will extend the [`JSONAPIAdapter`][1] base class from Ember Data:
 
 [1]: http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html
 
-```app/adapters/application.js
+```app/adapters/application.js{+4}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({

@@ -17,9 +17,11 @@ The model function we've added to our `rentals` route handler will be called whe
 
 Let's open `app/routes/rentals.js` and return an array of rental objects from the `model` function:
 
-```app/routes/rentals.js
+```app/routes/rentals.js{-3,-4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38}
 import Ember from 'ember';
 
+export default Ember.Route.extend({
+});
 export default Ember.Route.extend({
   model() {
     return [{
@@ -114,7 +116,7 @@ To find the elements that have a class called `listing`, we'll use a test helper
 The `find` function returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 In this case it will return an array of all the elements with a class called `listing`.
 
-```/tests/acceptance/list-rentals-test.js
+```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
 test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function() {
@@ -128,4 +130,4 @@ Run the tests again using the command `ember t -s`, and toggle "Hide passed test
 Now we are listing rentals, and and verifying it with an acceptance test.
 This leaves us with 2 remaining acceptance test failures (and 1 jshint failure):
 
-![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)
+![list rentals test passing](../../images/model-hook/model-hook.png)
