@@ -15,7 +15,7 @@ This will create two files, our helper and its related test:
 installing helper
   create app/helpers/rental-property-type.js
 installing helper-test
-  create tests/unit/helpers/rental-property-type-test.js
+  create tests/integration/helpers/rental-property-type-test.js
 ```
 
 Our new helper starts out with some boilerplate code from the generator:
