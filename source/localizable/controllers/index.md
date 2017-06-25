@@ -82,6 +82,8 @@ of the controller, as you would with a component:
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  isExpanded: false,
+
   actions: {
     toggleBody() {
       this.toggleProperty('isExpanded');
