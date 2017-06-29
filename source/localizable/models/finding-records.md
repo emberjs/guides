@@ -77,11 +77,10 @@ For example, if your server API provides an endpoint for the currently logged in
 and the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
 
 ```app/adapters/user.js
-// app/adapters/user.js
 import DS from "ember-data";
 
 export default DS.Adapter.extend({
-  queryRecord(modelName, query) {
+  queryRecord(store, type, query) {
     return Ember.$.getJSON("/api/current_user");
   }
 });
