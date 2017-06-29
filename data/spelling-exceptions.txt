@@ -32,6 +32,7 @@ blogPost's
 bookmarklet
 boolean
 breakpoint
+Browserlist
 bugfix
 bugfixes
 camelcase
@@ -145,6 +146,7 @@ keycode
 laravel
 li
 lifecycle
+linters
 localhost
 locator
 login

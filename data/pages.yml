@@ -244,6 +244,8 @@
       url: "embedding-applications"
     - title: "Feature Flags"
       url: "feature-flags"
+    - title: "Build targets"
+      url: "build-targets"
     - title: "Debugging"
       url: "debugging"
 
