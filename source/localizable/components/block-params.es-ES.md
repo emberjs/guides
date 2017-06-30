@@ -6,8 +6,9 @@ Los componentes pueden recibir propiedades ([Pasando Propiedades a un Componente
 {{blog-post post=model}}
 ```
 
-<pre><code class="app/templates/components/blog-post.hbs">{{yield post.title post.body post.author}}
-</code></pre>
+```app/templates/components/blog-post.hbs
+{{yield post.title post.body post.author}}
+```
 
 Aquí un modelo completo de una publicación de un blog está siendo pasado al componente como una propiedad única de componente. A su vez, el componente está devolviendo valores utilizando `yield`. En este caso, los valores concedidos son traídos desde la publicación que se está pasando, pero también lo que sea que el componente tenga acceso puede ser concedido, como una propiedad interna o algo desde un servicio.
 
@@ -29,13 +30,14 @@ Los nombres son enlazados en el orden en que son pasados a `yield` en la plantil
 
 Es posible el uso de un componente en ambas formas, block y non-block desde una plantilla única de componente utilizando la propiedad `hasBlock`.
 
-<pre><code class="app/templates/components/blog-post.hbs">{{#if hasBlock}}
+```app/templates/components/blog-post.hbs
+{{#if hasBlock}}
   {{yield post.title post.body post.author}}  
 {{else}}
-  &lt;h1&gt;{{post.title}}&lt;/h1&gt;
-  &lt;p class="author"&gt;Authored by {{post.author}}&lt;/p&gt;
-  &lt;p&gt;{{post.body}}&lt;/p&gt;
+  <h1>{{post.title}}</h1>
+  <p class="author">Authored by {{post.author}}</p>
+  <p>{{post.body}}</p>
 {{/if}}
-</code></pre>
+```
 
 Esto tiene el efecto de proporcionar una plantilla predeterminada cuando se utiliza un componente en la forma non-block mientras proporciona valores concedidos para uso con los parámetros de bloque cuando se usa una expresión de bloque.

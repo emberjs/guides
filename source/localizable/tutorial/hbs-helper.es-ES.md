@@ -12,7 +12,7 @@ Esto creará dos archivos, nuestro helper y su archivo para pruebas relacionado:
 installing helper
   create app/helpers/rental-property-type.js
 installing helper-test
-  create tests/unit/helpers/rental-property-type-test.js
+  create tests/integration/helpers/rental-property-type-test.js
 ```
 
 Nuestro nuevo helper comienza con algún código que viene del generador:
@@ -59,8 +59,33 @@ export function rentalPropertyType([propertyType]) { if (communityPropertyTypes.
 
 return 'Standalone'; }
 
-export default Ember.Helper.helper(rentalPropertyType); ```
+export default Ember.Helper.helper(rentalPropertyType);
 
-Each [argument](https://guides.emberjs.com/v2.12.0/templates/writing-helpers/#toc_helper-arguments) in the helper will be added to an array and passed to our helper. For example, `{{my-helper "foo" "bar"}}` would result in `myHelper(["foo", "bar"])`. Using array [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) assignment, we can name expected parameters within the array. In the example above, the first argument in the template will be assigned to `propertyType`. This provides a flexible, expressive interface for your helpers, including optional arguments and default values.
-
-Ahora en nuestro navegador deberíamos ver que la rental property aparece como "Standalone", mientras que los otros dos aparecen como "Community".
+    <br />Each [argument](https://guides.emberjs.com/v2.12.0/templates/writing-helpers/#toc_helper-arguments) in the helper will be added to an array and passed to our helper. For example, `{{my-helper "foo" "bar"}}` would result in `myHelper(["foo", "bar"])`. Using array [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) assignment, we can name expected parameters within the array. In the example above, the first argument in the template will be assigned to `propertyType`. This provides a flexible, expressive interface for your helpers, including optional arguments and default values.
+    
+    Now in our browser we should see that the first rental property is listed as "Standalone",
+    while the other two are listed as "Community".
+    
+    
+    ### Integration Test
+    
+    Update the content of the integration test to the following to fix it:
+    
+    ```/tests/integration/helpers/rental-property-type-test.js{-15,+16}
+    
+    import { moduleForComponent, test } from 'ember-qunit';
+    import hbs from 'htmlbars-inline-precompile';
+    
+    moduleForComponent('rental-property-type', 'helper:rental-property-type', {
+      integration: true
+    });
+    
+    // Replace this with your real tests.
+    test('it renders', function(assert) {
+      this.set('inputValue', '1234');
+    
+      this.render(hbs`{{rental-property-type inputValue}}`);
+    
+      assert.equal(this.$().text().trim(), '1234');
+      assert.equal(this.$().text().trim(), 'Standalone');
+    });

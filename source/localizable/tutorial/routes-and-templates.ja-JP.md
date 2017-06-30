@@ -269,7 +269,7 @@ If you open the acceptance test we created (`/tests/acceptance/list-rentals-test
 
 First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper and then make sure our current URL is `/rentals` once the redirect occurs.
 
-```/tests/acceptance/list-rentals-test.js test('should show rentals as the home page', function (assert) { visit('/'); andThen(function() { assert.equal(currentURL(), '/rentals', 'should redirect automatically'); }); });
+```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5} test('should show rentals as the home page', function (assert) { visit('/'); andThen(function() { assert.equal(currentURL(), '/rentals', 'should redirect automatically'); }); });
 
     <br />Now run the tests by typing `ember test --server` in the command line (or `ember t -s` for short).
     
@@ -279,6 +279,8 @@ First, we want to test that visiting `/` properly redirects to `/rentals`. We'll
     
     You can also toggle "Hide passed tests" to show your passing test case along with the tests that are still
     failing (because we haven't yet built them).
+    
+    ![6_fail](../../images/routes-and-templates/routes-and-templates.gif)
     
     ### Ember's test helpers
     
@@ -296,7 +298,7 @@ First, we want to test that visiting `/` properly redirects to `/rentals`. We'll
     ### Test visiting our About and Contact pages
     Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
     
-    ```/tests/acceptance/list-rentals-test.js
+    ```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+10,+11,+12,+13,+14}
     test('should link to information about the company.', function (assert) {
       visit('/');
       click('a:contains("About")');

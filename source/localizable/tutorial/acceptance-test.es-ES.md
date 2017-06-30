@@ -42,7 +42,8 @@ Since we haven't added any functionality to our application yet, we'll use this 
 
 To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base url, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the url is what we want it to be.
 
-<pre><code class="/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
+```/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}
+import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | list-rentals');
@@ -57,7 +58,7 @@ test('visiting /', function(assert) {
     assert.equal(currentURL(), '/');
   });
 });
-</code></pre>
+```
 
 A few of things to note in this simple test:
 
@@ -77,7 +78,8 @@ Our launched Chrome web browser now shows 10 successful tests. If you toggle the
 
 As mentioned before, our initial test just made sure everything was running properly. Now let's replace that test with the list of tasks we want our app to handle (described up above).
 
-<pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
+```/tests/acceptance/list-rentals-test.js{+7,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25,-26,-27,-28,-29}
+import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | list-rentals');
@@ -99,8 +101,17 @@ test('should filter the list of rentals by city.', function (assert) {
 
 test('should show details for a selected rental', function (assert) {
 });
-</code></pre>
+test('visiting /', function(assert) {
+  visit('/');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/');
+  });
+});
+```
 
 Running `ember test --server` will now show 7 failing tests (out of 15). Each of the 6 tests we setup above will fail, plus one ESLint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
 
 As we continue through this tutorial, we'll use these acceptance tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.
+
+![Initial Tests Screenshot](../../images/acceptance-test/acceptance-test.png)

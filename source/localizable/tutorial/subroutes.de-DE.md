@@ -65,12 +65,13 @@ Much like how our application's `index` route doesn't appear in our Router, `ind
 
 In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals. Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
-<pre><code class="app/routes/rentals.js{-2,-3,-4}">export default Ember.Route.extend({
+```app/routes/rentals.js{-2,-3,-4}
+export default Ember.Route.extend({
   model() {
     return this.get('store').findAll('rental');
   }
 });
-</code></pre>
+```
 
 ```app/routes/rentals/index.js{+2,+3,+4}
 export default Ember.Route.extend({
@@ -82,25 +83,26 @@ export default Ember.Route.extend({
 
 Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
 
-<pre><code class="app/templates/rentals.hbs{-9,-10,-11,-12,-13,-14,-15,-16,-17}">&lt;div class="jumbo"&gt;
-  &lt;div class="right tomster"&gt;&lt;/div&gt;
-  &lt;h2&gt;Welcome!&lt;/h2&gt;
-  &lt;p&gt;We hope you find exactly what you're looking for in a place to stay.&lt;/p&gt;
+```app/templates/rentals.hbs{-9,-10,-11,-12,-13,-14,-15,-16,-17}
+<div class="jumbo">
+  <div class="right tomster"></div>
+  <h2>Welcome!</h2>
+  <p>We hope you find exactly what you're looking for in a place to stay.</p>
   {{#link-to 'about' class="button"}}
     About Us
   {{/link-to}}
-&lt;/div&gt;
+</div>
 {{#list-filter
    filter=(action 'filterByCity')
    as |rentals|}}
-  &lt;ul class="results"&gt;
+  <ul class="results">
     {{#each rentals as |rentalUnit|}}
-      &lt;li&gt;{{rental-listing rental=rentalUnit}}&lt;/li&gt;
+      <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
-  &lt;/ul&gt;
+  </ul>
 {{/list-filter}}
 {{outlet}}
-</code></pre>
+```
 
 ```app/templates/rentals/index.hbs{+1,+2,+3,+4,+5,+6,+7,+8,+9}
 {{#list-filter
@@ -300,28 +302,29 @@ Now that we can load pages for individual rentals, we'll add a link (using the `
 
 Clicking on the title will load the detail page for that rental.
 
-<pre><code class="app/templates/components/rental-listing.hbs{+6}">&lt;article class="listing"&gt;
-  &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
-    &lt;img src="{{rental.image}}" alt=""&gt;
-    &lt;small&gt;View Larger&lt;/small&gt;
-  &lt;/a&gt;
-  &lt;h3&gt;{{#link-to "rentals.show" rental}}{{rental.title}}{{/link-to}}&lt;/h3&gt;
-  &lt;div class="detail owner"&gt;
-    &lt;span&gt;Owner:&lt;/span&gt; {{rental.owner}}
-  &lt;/div&gt;
-  &lt;div class="detail type"&gt;
-    &lt;span&gt;Type:&lt;/span&gt; {{rental-property-type rental.propertyType}}
+```app/templates/components/rental-listing.hbs{+6}
+<article class="listing">
+  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+    <img src="{{rental.image}}" alt="">
+    <small>View Larger</small>
+  </a>
+  <h3>{{#link-to "rentals.show" rental}}{{rental.title}}{{/link-to}}</h3>
+  <div class="detail owner">
+    <span>Owner:</span> {{rental.owner}}
+  </div>
+  <div class="detail type">
+    <span>Type:</span> {{rental-property-type rental.propertyType}}
       - {{rental.propertyType}}
-  &lt;/div&gt;
-  &lt;div class="detail location"&gt;
-    &lt;span&gt;Location:&lt;/span&gt; {{rental.city}}
-  &lt;/div&gt;
-  &lt;div class="detail bedrooms"&gt;
-    &lt;span&gt;Number of bedrooms:&lt;/span&gt; {{rental.bedrooms}}
-  &lt;/div&gt;
+  </div>
+  <div class="detail location">
+    <span>Location:</span> {{rental.city}}
+  </div>
+  <div class="detail bedrooms">
+    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  </div>
   {{location-map location=rental.city}}
-&lt;/article&gt;
-</code></pre>
+</article>
+```
 
 ![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
@@ -331,7 +334,8 @@ At this point you can do a [deployment](../deploying/) and share your Super Rent
 
 We want to verify that we can click on a specific rental and load a detailed view to the page. We'll click on the title and validate that an expanded description of the rental is shown.
 
-<pre><code class="/tests/acceptance/list-rentals-test.js">test('should show details for a specific rental', function (assert) {
+```/tests/acceptance/list-rentals-test.js
+test('should show details for a specific rental', function (assert) {
   visit('/rentals');
   click('a:contains("Grand Old Mansion")');
   andThen(function() {
@@ -340,7 +344,7 @@ We want to verify that we can click on a specific rental and load a detailed vie
     assert.equal(find('.description').length, 1, 'should list a description of the property');
   });
 });
-</code></pre>
+```
 
 At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
 

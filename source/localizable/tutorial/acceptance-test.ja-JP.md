@@ -42,7 +42,8 @@ installing acceptance-test
 
 そのためには、生成されたテスト中で`/list-rentals`と出てくる箇所を`/`に置き換えてください。 テストはベースURLである`http://localhost:4200/`から開始し、ページの読み込みが終わったかどうかと期待するURLかどうかの、基本的なチェックを行います。
 
-<pre><code class="/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}">import { test } from 'qunit';
+```/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}
+import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | list-rentals');
@@ -57,7 +58,7 @@ test('visiting /', function(assert) {
     assert.equal(currentURL(), '/');
   });
 });
-</code></pre>
+```
 
 以下は、この簡単なテストについての注意事項です。
 
@@ -77,7 +78,8 @@ test('visiting /', function(assert) {
 
 前に述べたように、最初のテストでは、すべてが正しく実行されていることが確認されました。 ここでは、そのテストをアプリケーションで処理するタスクのリスト(上で説明したものです) に置き換えてみましょう。
 
-<pre><code class="/tests/acceptance/list-rentals-test.js">import { test } from 'qunit';
+```/tests/acceptance/list-rentals-test.js{+7,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25,-26,-27,-28,-29}
+import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | list-rentals');
@@ -99,8 +101,17 @@ test('should filter the list of rentals by city.', function (assert) {
 
 test('should show details for a selected rental', function (assert) {
 });
-</code></pre>
+test('visiting /', function(assert) {
+  visit('/');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/');
+  });
+});
+```
 
 `ember test --server`と実行すると、7つのテストに失敗したと表示されるでしょう。 上記で作成した6つのテストはそれぞれ失敗し、さらにESLintのテストが`assert is defined but never used`と言われて失敗します。 上記のテストが失敗するのは、QUnitが特定の条件 (`assert`として知られる) に対して少なくとも1回のチェックを必要とするためです。).
 
 このチュートリアルを通して、これらの受け入れテストをチェックリストとして使用していきます。すべてのテストが通った時には、私たちは高いレベルの目標を達成するはずです。
+
+![Initial Tests Screenshot](../../images/acceptance-test/acceptance-test.png)

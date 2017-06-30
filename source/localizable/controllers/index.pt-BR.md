@@ -69,7 +69,9 @@ Podemos então definir o que a action faz dentro do hook de `actions` do control
 
 ```app/controllers/blog-post.js import Ember from 'ember';
 
-export default Ember.Controller.extend({ actions: { toggleBody() { this.toggleProperty('isExpanded'); } } }); ```
+export default Ember.Controller.extend({ isExpanded: false,
+
+actions: { toggleBody() { this.toggleProperty('isExpanded'); } } }); ```
 
 ### Common questions
 

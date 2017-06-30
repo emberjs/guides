@@ -54,7 +54,8 @@ The CLI `generate util` command will create a utility file and a unit test. We'l
 
 Our app needs a single function, `createMap`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
 
-<pre><code class="app/utils/google-maps.js">import Ember from 'ember';
+```app/utils/google-maps.js
+import Ember from 'ember';
 
 const google = window.google;
 
@@ -71,7 +72,7 @@ export default Ember.Object.extend({
   },
 
   pinLocation(location, map) {
-    this.get('geocoder').geocode({address: location}, (result, status) =&gt; {
+    this.get('geocoder').geocode({address: location}, (result, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         let geometry = result[0].geometry.location;
         let position = { lat: geometry.lat(), lng: geometry.lng() };
@@ -82,7 +83,7 @@ export default Ember.Object.extend({
   }
 
 });
-</code></pre>
+```
 
 ### サービスを使って地図を取得する
 
@@ -151,8 +152,9 @@ Running this command generates three files: a component JavaScript file, a templ
 
 Let's start by adding a `div` element to the component template. This `div` will act as a place for the 3rd party map API to render the map to.
 
-<pre><code class="app/templates/components/location-map.hbs">&lt;div class="map-container"&gt;&lt;/div&gt;
-</code></pre>
+```app/templates/components/location-map.hbs
+<div class="map-container"></div>
+```
 
 Next, update the component to append the map output to the `div` element we created.
 
@@ -160,7 +162,8 @@ We provide the maps service into our component by initializing a property of our
 
 With our `maps` service, our component will call the `getMapElement` function with the provided location. We append the map element we get back from the service by implementing `didInsertElement`, which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code). This function runs during the component render, after the component's markup gets inserted into the page.
 
-<pre><code class="app/components/location-map.js">import Ember from 'ember';
+```app/components/location-map.js
+import Ember from 'ember';
 
 export default Ember.Component.extend({
   maps: Ember.inject.service(),
@@ -172,34 +175,35 @@ export default Ember.Component.extend({
     this.$('.map-container').append(mapElement);
   }
 });
-</code></pre>
+```
 
 You may have noticed that `this.get('location')` refers to a property location we haven't defined. This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-<pre><code class="app/templates/components/rental-listing.hbs{+20}">&lt;article class="listing"&gt;
-  &lt;a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}"&gt;
-    &lt;img src="{{rental.image}}" alt=""&gt;
-    &lt;small&gt;View Larger&lt;/small&gt;
-  &lt;/a&gt;
-  &lt;h3&gt;{{rental.title}}&lt;/h3&gt;
-  &lt;div class="detail owner"&gt;
-    &lt;span&gt;Owner:&lt;/span&gt; {{rental.owner}}
-  &lt;/div&gt;
-  &lt;div class="detail type"&gt;
-    &lt;span&gt;Type:&lt;/span&gt; {{rental-property-type rental.propertyType}}
+```app/templates/components/rental-listing.hbs{+20}
+<article class="listing">
+  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+    <img src="{{rental.image}}" alt="">
+    <small>View Larger</small>
+  </a>
+  <h3>{{rental.title}}</h3>
+  <div class="detail owner">
+    <span>Owner:</span> {{rental.owner}}
+  </div>
+  <div class="detail type">
+    <span>Type:</span> {{rental-property-type rental.propertyType}}
       - {{rental.propertyType}}
-  &lt;/div&gt;
-  &lt;div class="detail location"&gt;
-    &lt;span&gt;Location:&lt;/span&gt; {{rental.city}}
-  &lt;/div&gt;
-  &lt;div class="detail bedrooms"&gt;
-    &lt;span&gt;Number of bedrooms:&lt;/span&gt; {{rental.bedrooms}}
-  &lt;/div&gt;
+  </div>
+  <div class="detail location">
+    <span>Location:</span> {{rental.city}}
+  </div>
+  <div class="detail bedrooms">
+    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  </div>
   {{location-map location=rental.city}}
-&lt;/article&gt;
-</code></pre>
+</article>
+```
 
 After starting the server we should now see some end to end maps functionality show up on our front page!
 
@@ -215,7 +219,8 @@ For our service unit test, we'll want to verify that locations that have been pr
 
 Unit tests use the function called `this.subject` to instantiate the object to test, and lets the test pass in initial values as arguments. In our case we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
-<pre><code class="tests/unit/services/maps-test.js">import { moduleFor, test } from 'ember-qunit';
+```tests/unit/services/maps-test.js
+import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
 
 const DUMMY_ELEMENT = {};
@@ -248,7 +253,7 @@ test('should use existing map if one is cached for location', function (assert) 
   let element = mapService.getMapElement('San Francisco');
   assert.equal(element, DUMMY_ELEMENT, 'element fetched from cache');
 });
-</code></pre>
+```
 
 When the service calls `createMap` on our fake utility, we will run asserts to validate that it is called. In our first test notice that we expect four asserts to be run in line 17. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
 
@@ -266,7 +271,8 @@ To limit the test to validating only its own behavior and not the service, we'll
 
 A stub stands in place of the real object in your application and simulates its behavior. In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
 
-<pre><code class="tests/integration/components/location-map-test.js">import { moduleForComponent, test } from 'ember-qunit';
+```tests/integration/components/location-map-test.js
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
 
@@ -293,7 +299,7 @@ test('should append map element to container element', function(assert) {
   assert.equal(this.$('.map-container').children().length, 1, 'the map element should be put onscreen');
   assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'a map of New York should be requested');
 });
-</code></pre>
+```
 
 In the `beforeEach` function that runs before each test, we use the built-in function `this.register` to [register](../../applications/dependency-injection/#toc_factory-registrations) our stub service in place of the maps service. Registration makes an object available to your Ember application for things like loading components from templates and injecting services in this case.
 
@@ -307,7 +313,8 @@ Often, services connect to third party APIs that are not desirable to include in
 
 Add the following code after the imports to our acceptance test:
 
-<pre><code class="/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}">import { test } from 'qunit';
+```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
+import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 import Ember from 'ember';
 
@@ -324,7 +331,7 @@ moduleForAcceptance('Acceptance | list rentals', {
     this.application.inject('component:location-map', 'maps', 'service:stubMaps');
   }
 });
-</code></pre>
+```
 
 What's happening here is we are adding our own stub maps service that simply creates an empty div. Then we are putting it in Ember's [registry](../../applications/dependency-injection#toc_factory-registrations), and injecting it into the `location-map` component that uses it. That way every time that component is created, our stub map service gets injected over the Google maps service. Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
 

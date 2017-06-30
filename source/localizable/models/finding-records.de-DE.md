@@ -67,9 +67,9 @@ For example, if your server API provides an endpoint for the currently logged in
 
 and the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
 
-```app/adapters/user.js // app/adapters/user.js import DS from "ember-data";
+```app/adapters/user.js import DS from "ember-data";
 
-export default DS.Adapter.extend({ queryRecord(modelName, query) { return Ember.$.getJSON("/api/current_user"); } });
+export default DS.Adapter.extend({ queryRecord(store, type, query) { return Ember.$.getJSON("/api/current_user"); } });
 
     <br />then calling [`store.queryRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_queryRecord) will retrieve that object from the server:
     

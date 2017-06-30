@@ -54,13 +54,13 @@ export default Ember.Service.extend({ });
 
 ### サービスにアクセスする
 
-サービスにアクセスするには、`Ember.inject.service`を使って、そのサービスをDIコンテナ (コンポーネントや別のサービスなど) に注入します。 There are 2 ways to use this function. You can either invoke it with no arguments, or you can pass it the registered name of the service. When no arguments are passed, the service is loaded based on the name of the variable key. You can load the shopping cart service with no arguments like below.
+サービスにアクセスするには、`Ember.inject.service`を使って、そのサービスをDIコンテナ (コンポーネントや別のサービスなど) に注入します。 この機能を使用するには2つの方法があります。 引数なしで呼び出すことも、サービスの登録名を渡すことも可能です。 引数が渡されなかった場合は、サービスは変数キーの名前に基づいて読み込まれます。 ショッピングカートサービスを引数なしで読み込むには以下のようにします。
 
 ```app/components/cart-contents.js import Ember from 'ember';
 
 export default Ember.Component.extend({ //will load the service in file /app/services/shopping-cart.js shoppingCart: Ember.inject.service() });
 
-    <br />Another way to inject a service is to provide the name of the service as the argument.
+    <br />引数としてサービス名を与えることで、サービスを注入する方法もあります。
     
     ```app/components/cart-contents.js
     import Ember from 'ember';
@@ -71,21 +71,21 @@ export default Ember.Component.extend({ //will load the service in file /app/ser
     });
     
 
-This injects the shopping cart service into the component and makes it available as the `cart` property.
+この方法では、ショッピングカートサービスをコンポーネントに注入して、`cart`プロパティとして利用可能にしています。
 
-Sometimes a service may or may not exist, like when an initializer conditionally registers a service. Since normal injection will throw an error if the service doesn't exist, you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/classes/Ember.html#method_getOwner) instead.
+時にはサービスが存在するかしないかが定まらないこともあります。イニシャライザが条件付きでサービスを登録するような場合です。 通常は存在しないサービスを注入しようとするとエラーが投げられるので、Emberの[`getOwner`](https://emberjs.com/api/classes/Ember.html#method_getOwner)を使ってサービスを検索する必要があります。
 
 ```app/components/cart-contents.js import Ember from 'ember';
 
 export default Ember.Component.extend({ //will load the service in file /app/services/shopping-cart.js cart: Ember.computed(function() { return Ember.getOwner(this).lookup('service:shopping-cart'); }) });
 
-    <br />Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called.
-    Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
+    <br />注入されたプロパティは遅延読み込みされます。つまり、プロパティが明示的に呼び出されるまで、サービスはインスタンス化されません。
+    したがって、コンポーネント内で`get`を使いサービスにアクセスする必要があります。そうでない場合は、サービスが定義されていない可能性があります。
     
-    Once loaded, a service will persist until the application exits.
+    一旦読み込まれると、サービスはアプリケーションが終了するまで存続します。
     
-    Below we add a remove action to the `cart-contents` component.
-    Notice that below we access the `cart` service with a call to`this.get`.
+    以下では、`cart-contents`コンポーネントにremoveアクションを追加します。
+    `this.get`を使って`cart`サービスにアクセスしていることに注目してください。
     
     ```app/components/cart-contents.js
     import Ember from 'ember';
@@ -101,7 +101,7 @@ export default Ember.Component.extend({ //will load the service in file /app/ser
     });
     
 
-Once injected into a component, a service can also be used in the template. Note `cart` being used below to get data from the cart.
+コンポーネントにサービスを注入すると、それはテンプレート内でも使用できます。 カートからデータを取得するために`cart`が使われていることに注目してください。
 
     app/templates/components/cart-contents.hbs
     <ul>

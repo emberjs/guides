@@ -74,7 +74,9 @@ You can then define what the action does within the `actions` hook of the contro
 
 ```app/controllers/blog-post.js import Ember from 'ember';
 
-export default Ember.Controller.extend({ actions: { toggleBody() { this.toggleProperty('isExpanded'); } } }); ```
+export default Ember.Controller.extend({ isExpanded: false,
+
+actions: { toggleBody() { this.toggleProperty('isExpanded'); } } }); ```
 
 ### Common questions
 

@@ -8,9 +8,11 @@ Por padrão, sua aplicação irá renderizar a [application template](../../rout
 
 Você pode dizer à aplicação para acrescentar a application template para um elemento diferente, especificando sua propriedade `rootElement`:
 
-```app/app.js import Ember from 'ember';
+```app/app.js{+4} …
 
-export default Ember.Application.extend({ rootElement: '#app' });
+App = Ember.Application.extend({ rootElement: '#app' modulePrefix: config.modulePrefix, podModulePrefix: config.podModulePrefix, Resolver });
+
+…
 
     <br />Esta propriedade pode ser especificada como um elemento ou uma [cadeia de caracteres compatível com seletor jQuery] (http://api.jquery.com/category/selectors/).
     
@@ -20,21 +22,49 @@ export default Ember.Application.extend({ rootElement: '#app' });
     router's `location`](../specifying-url-type) to
     `none`:
     
-    ```config/environment.js
-    let ENV = {
-      locationType: 'none'
-    };
+    ```config/environment.js{-8,+9}
+    /* eslint-env node */
+    
+    module.exports = function(environment) {
+      var ENV = {
+        modulePrefix: 'my-blog',
+        environment: environment,
+        rootURL: '/',
+        locationType: 'auto',
+        locationType: 'none',
+        …
+      };
+    
+      …
+    
+      return ENV;
+    }
     
 
 ### Especificando uma URL raiz
 
-Se sua aplicação Ember é uma das várias aplicações web, servidas no mesmo domínio, pode ser necessário indicar ao router qual é a URL raiz para sua aplicação Ember. Por padrão, Ember vai assumir que é servido na raiz do seu próprio domínio.
+If your Ember application is one of multiple web applications served from the same domain, it may be necessary to indicate to the router what the root URL for your Ember application is. By default, Ember will assume it is served from the root of your domain.
 
-Por exemplo, se você queria servir a sua aplicação de blog de `http://emberjs.com/blog/`, seria necessário especificar uma URL raiz do `/blog/`.
+For example, if you wanted to serve your blogging application from `http://emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
 
-Isso é possível através da configuração do `rootURL` no seu router:
+This can be achieved by configuring the `rootURL` property on `ENV`:
 
-    app/router.js
-    Ember.Router.extend({
-      rootURL: '/blog/'
+```config/environment.js{-7,+8} /* eslint-env node */
+
+module.exports = function(environment) { var ENV = { modulePrefix: 'my-blog', environment: environment, rootURL: '/', rootURL: '/blog/', locationType: 'auto', … }; }
+
+    <br />You will notice that this is then used to configure your application's router:
+    
+    ```app/router.js
+    import Ember from 'ember';
+    import config from './config/environment';
+    
+    const Router = Ember.Router.extend({
+      location: config.locationType,
+      rootURL: config.rootURL
     });
+    
+    Router.map(function() {
+    });
+    
+    export default Router;

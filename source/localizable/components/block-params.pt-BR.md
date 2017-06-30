@@ -6,8 +6,9 @@ Components can have properties passed in ([Passing Properties to a Component](..
 {{blog-post post=model}}
 ```
 
-<pre><code class="app/templates/components/blog-post.hbs">{{yield post.title post.body post.author}}
-</code></pre>
+```app/templates/components/blog-post.hbs
+{{yield post.title post.body post.author}}
+```
 
 Here an entire blog post model is being passed to the component as a single component property. In turn the component is returning values using `yield`. In this case the yielded values are pulled from the post being passed in but anything that the component has access to can be yielded, such as an internal property or something from a service.
 
@@ -29,13 +30,14 @@ The names are bound in the order that they are passed to `yield` in the componen
 
 It is possible to support both block and non-block usage of a component from a single component template using the `hasBlock` property.
 
-<pre><code class="app/templates/components/blog-post.hbs">{{#if hasBlock}}
+```app/templates/components/blog-post.hbs
+{{#if hasBlock}}
   {{yield post.title post.body post.author}}  
 {{else}}
-  &lt;h1&gt;{{post.title}}&lt;/h1&gt;
-  &lt;p class="author"&gt;Authored by {{post.author}}&lt;/p&gt;
-  &lt;p&gt;{{post.body}}&lt;/p&gt;
+  <h1>{{post.title}}</h1>
+  <p class="author">Authored by {{post.author}}</p>
+  <p>{{post.body}}</p>
 {{/if}}
-</code></pre>
+```
 
 This has the effect of providing a default template when using a component in the non-block form but providing yielded values for use with block params when using a block expression.

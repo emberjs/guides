@@ -8,9 +8,11 @@ By default, your application will render the [application template](../../routin
 
 You can tell the application to append the application template to a different element by specifying its `rootElement` property:
 
-```app/app.js import Ember from 'ember';
+```app/app.js{+4} …
 
-export default Ember.Application.extend({ rootElement: '#app' });
+App = Ember.Application.extend({ rootElement: '#app' modulePrefix: config.modulePrefix, podModulePrefix: config.podModulePrefix, Resolver });
+
+…
 
     <br />This property can be specified as either an element or a
     [jQuery-compatible selector
@@ -22,10 +24,23 @@ export default Ember.Application.extend({ rootElement: '#app' });
     router's `location`](../specifying-url-type) to
     `none`:
     
-    ```config/environment.js
-    let ENV = {
-      locationType: 'none'
-    };
+    ```config/environment.js{-8,+9}
+    /* eslint-env node */
+    
+    module.exports = function(environment) {
+      var ENV = {
+        modulePrefix: 'my-blog',
+        environment: environment,
+        rootURL: '/',
+        locationType: 'auto',
+        locationType: 'none',
+        …
+      };
+    
+      …
+    
+      return ENV;
+    }
     
 
 ### Specifying a Root URL
@@ -34,9 +49,24 @@ If your Ember application is one of multiple web applications served from the sa
 
 For example, if you wanted to serve your blogging application from `http://emberjs.com/blog/`, it would be necessary to specify a root URL of `/blog/`.
 
-This can be achieved by setting the `rootURL` on the router:
+This can be achieved by configuring the `rootURL` property on `ENV`:
 
-    app/router.js
-    Ember.Router.extend({
-      rootURL: '/blog/'
+```config/environment.js{-7,+8} /* eslint-env node */
+
+module.exports = function(environment) { var ENV = { modulePrefix: 'my-blog', environment: environment, rootURL: '/', rootURL: '/blog/', locationType: 'auto', … }; }
+
+    <br />You will notice that this is then used to configure your application's router:
+    
+    ```app/router.js
+    import Ember from 'ember';
+    import config from './config/environment';
+    
+    const Router = Ember.Router.extend({
+      location: config.locationType,
+      rootURL: config.rootURL
     });
+    
+    Router.map(function() {
+    });
+    
+    export default Router;
