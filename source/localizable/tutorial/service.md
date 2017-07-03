@@ -12,37 +12,21 @@ There are several ways to include 3rd party libraries in Ember.
 See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/)
 as a starting point when you need to add one.
 
-The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a script tag.
-We can add custom script references to our application by updating the main HTML page at `app/index.html`.
 
-```app/index.html{+22}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SuperRentals</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a remote script.
+In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
 
-    {{content-for "head"}}
+```shell
+ember install ember-simple-google-maps
+```
 
-    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link rel="stylesheet" href="{{rootURL}}assets/super-rentals.css">
+Google Maps requires an API key for deployment.
+You can [Generate an API key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+from Google.
+Add your new API key to the application by stopping the server and restarting it with the environment variable, `GOOGLE_MAPS_API_KEY`.
 
-    {{content-for "head-footer"}}
-  </head>
-  <body>
-    {{content-for "body"}}
-
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/super-rentals.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.22"></script>
-
-    {{content-for "body-footer"}}
-  </body>
-</html>
-
+```shell
+GOOGLE_MAPS_API_KEY=<your key here> ember s
 ```
 
 ### Accessing the Google Maps API with a Utility
