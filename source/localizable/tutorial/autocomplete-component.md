@@ -22,7 +22,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
-```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20}
+```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
