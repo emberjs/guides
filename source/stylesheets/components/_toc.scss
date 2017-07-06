@@ -131,4 +131,8 @@ ol.toc-level-1 {
     color: $base-font-color;
     padding-left: $gutter;
   }
+
+  .selected a {
+    font-weight: 500;
+  }
 }
