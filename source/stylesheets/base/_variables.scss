@@ -29,6 +29,7 @@ $white: #fff;
 $black: #000;
 $creme: #FFFBF5;
 $linen: #f9e7e4;
+$near-black: #444;
 
 $base-background-color: #FDFDFD;
 $sidebar-background-color: #FFFDF9;
@@ -58,7 +59,7 @@ $highlight-colors: (
 );
 
 // Font Colors
-$base-font-color: $brown;
+$base-font-color: $near-black;
 $dark-font-color: $dark-gray;
 $light-font-color: $light-brown;
 $action-color: $ember-orange;
