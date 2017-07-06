@@ -6,6 +6,7 @@ require 'support-for'
 Dir['./lib/*'].each { |f| require f }
 
 ignore /[a-z]{2}-[A-Z]{2}$/
+ignore "localizable/*"
 
 # Debugging
 set(:logging, ENV['RACK_ENV'] != 'production')
@@ -13,7 +14,8 @@ set(:logging, ENV['RACK_ENV'] != 'production')
 activate :relative_assets
 set :relative_links, true
 
-activate :i18n, :langs => [:en]
+# activate :i18n, :langs => [:en]
+
 set :markdown_engine, :redcarpet
 set :markdown, :layout_engine => :erb,
          :fenced_code_blocks => true,
