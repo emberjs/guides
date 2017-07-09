@@ -1,43 +1,23 @@
 Super Rentalsでは、各賃貸物件の場所を示す地図を表示できるようにしたいと考えています。 この機能を実装するために、いくつかのEmberの概念を利用します。
 
-  1. Google Maps APIから地図を作成するためのユーティリティ関数
-  2. 描画された地図のキャッシュをアプリケーションのさまざまな場所で使用するための service (サービス)
-  3. それぞれの賃貸物件の地図を表示するcomponent (コンポーネント)
+1. Google Maps APIから地図を作成するためのユーティリティ関数
+2. 描画された地図のキャッシュをアプリケーションのさまざまな場所で使用するための service (サービス)
+3. それぞれの賃貸物件の地図を表示するcomponent (コンポーネント)
 
 ### Googleマップを利用できるようにする
 
 地図ユーティリティを実装する前に、EmberアプリケーションでサードパーティマップAPIを利用できるようにする必要があります。 Emberにサードパーティライブラリを含めるにはいくつかの方法があります。 サードパーティライブラリを追加する方法は、[依存関係を管理する](../../addons-and-dependencies/managing-dependencies/)のガイドを参照してください。
 
-The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a script tag. We can add custom script references to our application by updating the main HTML page at `app/index.html`.
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a remote script. In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
 
-```app/index.html{+22}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SuperRentals</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+```shell
+ember install ember-simple-google-maps
+```
 
-    {{content-for "head"}}
+Google Maps requires an API key for deployment. You can [Generate an API key](https://developers.google.com/maps/documentation/javascript/get-api-key) from Google. Add your new API key to the application by stopping the server and restarting it with the environment variable, `GOOGLE_MAPS_API_KEY`.
 
-    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link rel="stylesheet" href="{{rootURL}}assets/super-rentals.css">
-
-    {{content-for "head-footer"}}
-  </head>
-  <body>
-    {{content-for "body"}}
-
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/super-rentals.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.22"></script>
-
-    {{content-for "body-footer"}}
-  </body>
-</html>
-
+```shell
+GOOGLE_MAPS_API_KEY=<your key here> ember s
 ```
 
 ### ユーティリティを使ってGoogle Maps APIにアクセスする

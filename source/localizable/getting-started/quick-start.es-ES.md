@@ -2,11 +2,11 @@ Esta guía te enseñará cómo construir una aplicación simple usando Ember des
 
 Daremos estos pasos:
 
-  1. Instalación de Ember.
-  2. Creación de una nueva aplicación.
-  3. Definir una ruta.
-  4. Escribir un componente.
-  5. Construir la aplicación para ser desplegada en producción.
+1. Instalación de Ember.
+2. Creación de una nueva aplicación.
+3. Definir una ruta.
+4. Escribir un componente.
+5. Construir la aplicación para ser desplegada en producción.
 
 ## Instalar Ember
 
@@ -97,10 +97,10 @@ create tests/unit/routes/scientists-test.js
 
 Se trata de Ember diciendo que ha creado:
 
-  1. Una plantilla que aparecerá cuando el usuario visite `/scientists`.
-  2. Un objeto de tipo `Route` que obtendrá el modelo utilizado por esa plantilla.
-  3. Una entrada en el enrutador de la aplicación (ubicado en `app/router.js`).
-  4. Una test unitario para esta ruta.
+1. Una plantilla que aparecerá cuando el usuario visite `/scientists`.
+2. Un objeto de tipo `Route` que obtendrá el modelo utilizado por esa plantilla.
+3. Una entrada en el enrutador de la aplicación (ubicado en `app/router.js`).
+4. Una test unitario para esta ruta.
 
 Abre la plantilla recién creada en `app/templates/scientists.hbs` y agrega el siguiente código HTML:
 

@@ -1,4 +1,4 @@
-これまでのところ、このアプリケーションはEmber Dataのモデルから、データを直接ユーザーに表示していました。 アプリケーションが成長するにつれ、データをそのまま表示するだけではなく、加工してユーザーに表示したいと思うでしょう。 そのために、EmberにはHandlebarsテンプレートヘルパーがあります。ヘルパーをつかうことで、テンプレート内のデータを装飾（decorate）できます。 それでは、Handlebarsヘルパーを使って、ユーザーが賃貸物件を"standalone" (一戸建て)なのか"Community"(集合住宅)の一部なのかを簡単に確認できるようにしましょう。
+これまでのところ、このアプリケーションはEmber Dataのモデルから、データを直接ユーザーに表示していました。 アプリケーションが成長するにつれ、データをそのまま表示するだけではなく、加工してユーザーに表示したいと思うでしょう。 そのために、EmberにはHandlebarsテンプレートヘルパーがあります。ヘルパーをつかうことで、テンプレート内のデータを装飾（decorate）できます。 Let's use a handlebars helper to allow our users to quickly see if a property is "Standalone" or part of a "Community".
 
 まずは、`rental-property-type`ヘルパーを生成します。
 

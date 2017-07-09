@@ -45,9 +45,9 @@ export default Ember.Controller.extend({ queryParams: ['category'], category: nu
 
 With this code, we have established the following behaviors:
 
-  1. もし、ユーザーが`/articles`に遷移すると、`category` は `null`となり記事はフィルタされません。
-  2. ユーザーが`/articles?category=recent`へと遷移すると、`category`が`"recent"`に設定され、記事がフィルタされます。
-  3. `articles` route (ルート)内では、どのような`controller:articles`の`category`property (プロパティ) への変更も、URL の クエリ パラメーターを更新します。 デフォルトでは、クエリー パラメーターのプロパティーの変更はrouter (ルーター)のtransition (遷移)は行なわずURLのみ更新されます。 (例　`model` hooks や `setupController` などは呼び出されません);
+1. もし、ユーザーが`/articles`に遷移すると、`category` は `null`となり記事はフィルタされません。
+2. ユーザーが`/articles?category=recent`へと遷移すると、`category`が`"recent"`に設定され、記事がフィルタされます。
+3. `articles` route (ルート)内では、どのような`controller:articles`の`category`property (プロパティ) への変更も、URL の クエリ パラメーターを更新します。 デフォルトでは、クエリー パラメーターのプロパティーの変更はrouter (ルーター)のtransition (遷移)は行なわずURLのみ更新されます。 (例　`model` hooks や `setupController` などは呼び出されません);
 
 ### link-to Helper (ヘルパー)
 
@@ -159,8 +159,8 @@ export default Ember.Controller.extend({ queryParams: ['page', 'filter', { categ
 
 This affects query param behavior in two ways:
 
-  1. Query param values are cast to the same datatype as the default value, e.g. a URL change from `/?page=3` to `/?page=2` will set `controller:articles`'s `page` property to the number `2`, rather than the string `"2"`. The same also applies to boolean default values. If the default value is an array, the string will be parsed using `JSON.parse`.
-  2. When a controller's query param property is currently set to its default value, this value won't be serialized into the URL. So in the above example, if `page` is `1`, the URL might look like `/articles`, but once someone sets the controller's `page` value to `2`, the URL will become `/articles?page=2`.
+1. Query param values are cast to the same datatype as the default value, e.g. a URL change from `/?page=3` to `/?page=2` will set `controller:articles`'s `page` property to the number `2`, rather than the string `"2"`. The same also applies to boolean default values. If the default value is an array, the string will be parsed using `JSON.parse`.
+2. When a controller's query param property is currently set to its default value, this value won't be serialized into the URL. So in the above example, if `page` is `1`, the URL might look like `/articles`, but once someone sets the controller's `page` value to `2`, the URL will become `/articles?page=2`.
 
 ### Sticky Query Param Values
 
@@ -186,8 +186,8 @@ This illustrates that once you change a query param, it is stored and tied to th
 
 If you wish to reset a query param, you have two options:
 
-  1. explicitly pass in the default value for that query param into `link-to` or `transitionTo`.
-  2. use the `Route.resetController` hook to set query param values back to their defaults before exiting the route or changing the route's model.
+1. explicitly pass in the default value for that query param into `link-to` or `transitionTo`.
+2. use the `Route.resetController` hook to set query param values back to their defaults before exiting the route or changing the route's model.
 
 In the following example, the controller's `page` query param is reset to 1, *while still scoped to the pre-transition `ArticlesRoute` model*. The result of this is that all links pointing back into the exited route will use the newly reset value `1` as the value for the `page` query param.
 

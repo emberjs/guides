@@ -2,11 +2,11 @@ This guide will teach you how to build a simple app using Ember from scratch.
 
 We'll cover these steps:
 
-  1. Installing Ember.
-  2. Creating a new application.
-  3. Defining a route.
-  4. Writing a UI component.
-  5. Building your app to be deployed to production.
+1. Installing Ember.
+2. Creating a new application.
+3. Defining a route.
+4. Writing a UI component.
+5. Building your app to be deployed to production.
 
 ## Install Ember
 
@@ -98,10 +98,10 @@ installing route-test
 
 That's Ember telling you that it has created:
 
-  1. A template to be displayed when the user visits `/scientists`.
-  2. A `Route` object that fetches the model used by that template.
-  3. An entry in the application's router (located in `app/router.js`).
-  4. A unit test for this route.
+1. A template to be displayed when the user visits `/scientists`.
+2. A `Route` object that fetches the model used by that template.
+3. An entry in the application's router (located in `app/router.js`).
+4. A unit test for this route.
 
 Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
 

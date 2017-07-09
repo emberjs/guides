@@ -103,9 +103,9 @@ export default Ember.Route.extend({ ... actions: { loading(transition, originRou
 
 As with the `loading` substate, on a thrown error or rejected promise returned from the `articles.overview` route's `model` hook (or `beforeModel` or `afterModel`) Ember will look for an error template or route in the following order:
 
-  1. `articles.overview-error`
-  2. `articles.error` or `articles-error`
-  3. `error` or `application-error`
+1. `articles.overview-error`
+2. `articles.error` or `articles-error`
+3. `error` or `application-error`
 
 If one of the above is found, the router will immediately transition into that substate (without updating the URL). The "reason" for the error (i.e. the exception thrown or the promise reject value) will be passed to that error state as its `model`.
 

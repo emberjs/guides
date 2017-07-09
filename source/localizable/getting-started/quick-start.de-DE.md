@@ -2,11 +2,11 @@ In diesem Tutorial lernst du, wie du eine einfache Ember-App von Grund auf neu e
 
 Folgende Schritte werden wir beschreiben:
 
-  1. Ember installieren.
-  2. Eine neue Anwendung erstellen.
-  3. Eine Route definieren.
-  4. Eine UI-Komponente schreiben.
-  5. Die App zu kompilieren, damit sie auf einen Produktionsserver deployt werden kann.
+1. Ember installieren.
+2. Eine neue Anwendung erstellen.
+3. Eine Route definieren.
+4. Eine UI-Komponente schreiben.
+5. Die App zu kompilieren, damit sie auf einen Produktionsserver deployt werden kann.
 
 ## Ember installieren
 
@@ -98,10 +98,10 @@ installing route-test
 
 That's Ember telling you that it has created:
 
-  1. A template to be displayed when the user visits `/scientists`.
-  2. A `Route` object that fetches the model used by that template.
-  3. An entry in the application's router (located in `app/router.js`).
-  4. A unit test for this route.
+1. A template to be displayed when the user visits `/scientists`.
+2. A `Route` object that fetches the model used by that template.
+3. An entry in the application's router (located in `app/router.js`).
+4. A unit test for this route.
 
 Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
 

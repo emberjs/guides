@@ -10,26 +10,26 @@ Listed below are the component lifecycle hooks in order of execution according t
 
 ### On Initial Render
 
-  1. `init`
-  2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
-  3. `willRender`
-  4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)
-  5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
+1. `init`
+2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
+3. `willRender`
+4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)
+5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
 
 ### On Re-Render
 
-  1. [`didUpdateAttrs`](#toc_resetting-presentation-state-on-attribute-change-with-code-didupdateattrs-code)
-  2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
-  3. `willUpdate`
-  4. `willRender`
-  5. `didUpdate`
-  6. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
+1. [`didUpdateAttrs`](#toc_resetting-presentation-state-on-attribute-change-with-code-didupdateattrs-code)
+2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
+3. `willUpdate`
+4. `willRender`
+5. `didUpdate`
+6. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
 
 ### On Component Destroy
 
-  1. [`willDestroyElement`](#toc_detaching-and-tearing-down-component-elements-with-code-willdestroyelement-code)
-  2. `willClearRender`
-  3. `didDestroyElement`
+1. [`willDestroyElement`](#toc_detaching-and-tearing-down-component-elements-with-code-willdestroyelement-code)
+2. `willClearRender`
+3. `didDestroyElement`
 
 ## Lifecycle Hook Examples
 
@@ -116,8 +116,8 @@ After a component successfully renders its backing HTML element into the DOM, it
 
 Ember guarantees that, by the time `didInsertElement()` is called:
 
-  1. The component's element has been both created and inserted into the DOM.
-  2. The component's element is accessible via the component's [`$()`](http://emberjs.com/api/classes/Ember.Component.html#method__) method.
+1. The component's element has been both created and inserted into the DOM.
+2. The component's element is accessible via the component's [`$()`](http://emberjs.com/api/classes/Ember.Component.html#method__) method.
 
 A component's [`$()`](http://emberjs.com/api/classes/Ember.Component.html#method__) method allows you to access the component's DOM element by returning a JQuery element. For example, you can set an attribute using jQuery's `attr()` method:
 

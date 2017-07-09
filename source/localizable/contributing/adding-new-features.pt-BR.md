@@ -78,14 +78,14 @@ O processo de compilação irá remover qualquer funcionalidade não incluída n
 
 Para um novo PR:
 
-  1. Travis vai testar contra o master com todas as sinalizações de funcionalidades ativas.
-  2. Se um commit for marcado com [BUGFIX beta], Travis também vai apontar este commit para o beta e executar os testes naquele branch. Se um commit não aplicar corretamente ou os testes falharem, os testes irão falhar.
-  3. Se um commit estiver marcado com [BUGFIX release], Travis também vai apontar este commit para o release e executar o teste naquele branch. Se um commit não aplicar corretamente ou os testes falharem, os testes irão falhar.
+1. Travis vai testar contra o master com todas as sinalizações de funcionalidades ativas.
+2. Se um commit for marcado com [BUGFIX beta], Travis também vai apontar este commit para o beta e executar os testes naquele branch. Se um commit não aplicar corretamente ou os testes falharem, os testes irão falhar.
+3. Se um commit estiver marcado com [BUGFIX release], Travis também vai apontar este commit para o release e executar o teste naquele branch. Se um commit não aplicar corretamente ou os testes falharem, os testes irão falhar.
 
 Para um novo commit ao master:
 
-  1. Travis executará os testes conforme descrito acima.
-  2. Se a compilação passar, Travis vai apontar os commits aos branches apropriados.
+1. Travis executará os testes conforme descrito acima.
+2. Se a compilação passar, Travis vai apontar os commits aos branches apropriados.
 
 A idéia é que novos commits devem ser enviados como PRs para garantir que eles se aplicam de forma limpa, e uma vez que for pressionado o botão de merge, Travis vai aplicá-los aos branches corretos.
 

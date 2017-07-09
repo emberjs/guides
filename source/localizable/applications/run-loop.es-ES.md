@@ -123,11 +123,11 @@ Ya que la prioridad es del primero al último, la cola de "sincronización" tien
 
 The algorithm works this way:
 
-  1. Let the highest priority queue with pending jobs be: `CURRENT_QUEUE`, if there are no queues with pending jobs the run loop is complete
-  2. Let a new temporary queue be defined as `WORK_QUEUE`
-  3. Move jobs from `CURRENT_QUEUE` into `WORK_QUEUE`
-  4. Process all the jobs sequentially in `WORK_QUEUE`
-  5. Return to Step 1
+1. Let the highest priority queue with pending jobs be: `CURRENT_QUEUE`, if there are no queues with pending jobs the run loop is complete
+2. Let a new temporary queue be defined as `WORK_QUEUE`
+3. Move jobs from `CURRENT_QUEUE` into `WORK_QUEUE`
+4. Process all the jobs sequentially in `WORK_QUEUE`
+5. Return to Step 1
 
 ## An example of the internals
 
@@ -213,8 +213,8 @@ When your application is in *testing mode* then Ember will throw an error if you
 
 Autoruns are disabled in testing for several reasons:
 
-  1. Autoruns are Embers way of not punishing you in production if you forget to open a run loop before you schedule callbacks on it. While this is useful in production, these are still situations that should be revealed in testing to help you find and fix them.
-  2. Some of Ember's test helpers are promises that wait for the run loop to empty before resolving. If your application has code that runs *outside* a run loop, these will resolve too early and give erroneous test failures which are difficult to find. Disabling autoruns help you identify these scenarios and helps both your testing and your application!
+1. Autoruns are Embers way of not punishing you in production if you forget to open a run loop before you schedule callbacks on it. While this is useful in production, these are still situations that should be revealed in testing to help you find and fix them.
+2. Some of Ember's test helpers are promises that wait for the run loop to empty before resolving. If your application has code that runs *outside* a run loop, these will resolve too early and give erroneous test failures which are difficult to find. Disabling autoruns help you identify these scenarios and helps both your testing and your application!
 
 ## Where can I find more information?
 

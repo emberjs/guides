@@ -2,11 +2,11 @@ Este guia vai te ensinar como construir, do zero, um aplicativo simples usando E
 
 Nós vamos cobrir estas etapas:
 
-  1. Instalando o Ember.
-  2. Criando um novo aplicativo.
-  3. Definindo uma rota.
-  4. Escrevendo um componente de UI (User Interface / Interface do Usuário).
-  5. Construindo seu aplicativo para ser instalado ("deployed") em produção.
+1. Instalando o Ember.
+2. Criando um novo aplicativo.
+3. Definindo uma rota.
+4. Escrevendo um componente de UI (User Interface / Interface do Usuário).
+5. Construindo seu aplicativo para ser instalado ("deployed") em produção.
 
 ## Instalando o Ember
 
@@ -93,10 +93,10 @@ installing route-test
 
 Isso é Ember dizendo que criou:
 
-  1. Um template a ser exibido quando o usuário visita `/scientists`.
-  2. Um objeto `Route` (Rota) que busca o model usado por esse "template".
-  3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`).
-  4. Um teste unitário para esta rota.
+1. Um template a ser exibido quando o usuário visita `/scientists`.
+2. Um objeto `Route` (Rota) que busca o model usado por esse "template".
+3. Uma inserção no roteador do aplicativo (localizado em `app/router.js`).
+4. Um teste unitário para esta rota.
 
 Abra o template recém-criado em `app/templates/scientists.hbs` e adicione o seguinte HTML:
 

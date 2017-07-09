@@ -34,9 +34,9 @@ installing route-test
 
 Emberルートは以下の3つの部品で構成されます。
 
-  1. An entry in the Ember router (`/app/router.js`), which maps between our route name and a specific URI
-  2. A route handler file, which sets up what should happen when that route is loaded *`(app/routes/about.js)`*
-  3. A route template, which is where we display the actual content for the page *`(app/templates/about.hbs)`*
+1. An entry in the Ember router (`/app/router.js`), which maps between our route name and a specific URI
+2. A route handler file, which sets up what should happen when that route is loaded *`(app/routes/about.js)`*
+3. A route template, which is where we display the actual content for the page *`(app/templates/about.hbs)`*
 
 If we open `/app/router.js`, we'll see a new line of code for the **about** route, calling `this.route('about')` in the `Router.map` function. That new line of code tells the Ember router to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 

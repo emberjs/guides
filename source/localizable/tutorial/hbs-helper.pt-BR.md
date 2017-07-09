@@ -1,4 +1,4 @@
-Até o momento, nossa aplicação está exibindo os dados de usuário diretamente do nosso model através do Ember Data. Conforme nossa aplicação cresce, vamos querer manipular dados adicionais antes de apresentá-lo aos nossos usuários. Por esta razão, Ember oferece templates helpers em Handlebars para nos ajudar a tratar dados em nossos templates. Vamos usar um handlebars helper para permitir que nossos usuários possam, rapidamente, ver se uma propriedade é "standalone" ou parte de uma "Community".
+Até o momento, nossa aplicação está exibindo os dados de usuário diretamente do nosso model através do Ember Data. Conforme nossa aplicação cresce, vamos querer manipular dados adicionais antes de apresentá-lo aos nossos usuários. Por esta razão, Ember oferece templates helpers em Handlebars para nos ajudar a tratar dados em nossos templates. Let's use a handlebars helper to allow our users to quickly see if a property is "Standalone" or part of a "Community".
 
 Para começar, vamos gerar um helper para `rental-property-type`:
 

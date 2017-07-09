@@ -41,8 +41,8 @@ Due to their limited network connectivity and CPU power, great performance on mo
 
 In short:
 
-  1. Always test on real, representative mobile devices.
-  2. Measure performance from the beginning, and keep testing as your app develops.
+1. Always test on real, representative mobile devices.
+2. Measure performance from the beginning, and keep testing as your app develops.
 
 These tips will help you identify problems early so they can be addressed systematically, rather than in a last-minute scramble.
 

@@ -81,14 +81,14 @@ The build process will remove any features not included in the list, and remove 
 
 For a new PR:
 
-  1. Travis will test against master with all feature flags on.
-  2. If a commit is tagged with [BUGFIX beta], Travis will also cherry-pick the commit into beta, and run the tests on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
-  3. If a commit is tagged with [BUGFIX release], Travis will also cherry-pick the commit into release, and run the test on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
+1. Travis will test against master with all feature flags on.
+2. If a commit is tagged with [BUGFIX beta], Travis will also cherry-pick the commit into beta, and run the tests on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
+3. If a commit is tagged with [BUGFIX release], Travis will also cherry-pick the commit into release, and run the test on that branch. If the commit doesn't apply cleanly or the tests fail, the tests will fail.
 
 For a new commit to master:
 
-  1. Travis will run the tests as described above.
-  2. If the build passes, Travis will cherry-pick the commits into the appropriate branches.
+1. Travis will run the tests as described above.
+2. If the build passes, Travis will cherry-pick the commits into the appropriate branches.
 
 The idea is that new commits should be submitted as PRs to ensure they apply cleanly, and once the merge button is pressed, Travis will apply them to the right branches.
 

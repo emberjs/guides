@@ -302,12 +302,13 @@ Routerのパス`show`に`:rental_id`を追加したので、`model`フックで`
 
 タイトルをクリックすると、その物件の詳細ページが読み込まれます。
 
-```app/templates/components/rental-listing.hbs{+6}
+```app/templates/components/rental-listing.hbs{-6,+7}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
+  <h3>{{rental.title}}</h3>
   <h3>{{#link-to "rentals.show" rental}}{{rental.title}}{{/link-to}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}

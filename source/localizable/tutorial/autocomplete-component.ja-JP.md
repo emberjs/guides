@@ -18,7 +18,7 @@ ember g component list-filter
 
 ここでは、フィルタしたデータを`rentals`と呼ばれる変数として内部マークアップに渡しています (14行目)。
 
-```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20} 
+```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23} 
 
 <div class="jumbo">
   <div class="right tomster">
