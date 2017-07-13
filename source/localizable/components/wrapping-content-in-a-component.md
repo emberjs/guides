@@ -89,7 +89,11 @@ To pass the blog text to the body component, we'll add a `postData` argument to 
 
 ```app/templates/components/blog-post.hbs
 <h2>{{title}}</h2>
-<div class="body">{{yield (hash body=(component editStyle postData=postData))}}</div>
+<div class="body">
+  {{yield (hash 
+    body=(component editStyle postData=postData)
+  )}}
+</div>
 ```
 
 At this point, our block content has access to everything it needs to render,
