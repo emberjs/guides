@@ -229,6 +229,48 @@ After starting the server we should now see some end to end maps functionality s
 
 You may now either move onto the [next feature](../subroutes/), or continue here to test the maps feature we just added.
 
+###  Making Google Maps Available For Testing
+
+We'll need to add the [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) script reference to use in our tests by updating the tests HTML page at `tests/index.html`.
+
+```tests/index.html{+29}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SuperRentals Tests</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{content-for "head"}}
+    {{content-for "test-head"}}
+
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/super-rentals.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/test-support.css">
+
+    {{content-for "head-footer"}}
+    {{content-for "test-head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+    {{content-for "test-body"}}
+
+    <script src="/testem.js" integrity=""></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/test-support.js"></script>
+    <script src="{{rootURL}}assets/super-rentals.js"></script>
+    <script src="{{rootURL}}assets/tests.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.22"></script>
+
+    {{content-for "body-footer"}}
+    {{content-for "test-body-footer"}}
+  </body>
+</html>
+
+```
+
 ###  Unit testing a Service
 
 We'll use a unit test to validate the service.
