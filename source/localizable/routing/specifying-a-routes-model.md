@@ -165,3 +165,65 @@ each record in the song model and album model:
 ```
 
 If you use [Ember Data](../../models/) and you are building an `RSVP.hash` with the model's relationship, consider instead properly setting up your [relationships](../../models/relationships) and letting Ember Data take care of loading them.
+
+## Reusing Route Context
+
+Sometimes you need to fetch a model, but your route doesn't have the parameters, because it's
+a child route and the route directly above or a few levels above has the parameters that your route
+needs.
+
+In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
+
+```app/routes/album/index.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model() {
+    let { album_id } = this.paramsFor('album');
+
+    return this.store.query('song', { album: album_id });
+  }
+});
+```
+
+This is guaranteed to work because the parent route is loaded. But if you tried to
+do `paramsFor` on a sibling route, you wouldn't have the results you expected.
+
+This is a great way to use the parent context to load something that you want.
+Using `paramsFor` will also give you the query params defined on that route's controller.
+This method could also be used to look up the current route's parameters from an action
+or another method on the route, and in that case we have a shortcut: `this.paramsFor(this.routeName)`.
+
+In our case, the parent route had already loaded its songs, so we would be writing unnecessary fetching logic.
+Let's rewrite the same route, but use `modelFor`, which works the same way, but returns the model
+from the parent route.
+
+```app/routes/album/index.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model() {
+    let { songs } = this.modelFor('album');
+
+    return songs;
+  }
+});
+```
+
+In the case above, the parent route looked something like this:
+
+```app/routes/album.js
+import Ember from 'ember';
+import RSVP from 'rsvp';
+
+export default Ember.Route.extend({
+  model({ album_id }) {
+    return RSVP.hash({
+      album: this.store.findRecord('album', album_id),
+      songs: this.store.query('songs', { album: album_id })
+    });
+  }
+});
+```
+
+And calling `modelFor` returned the result of the `model` hook.
