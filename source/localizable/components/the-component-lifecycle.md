@@ -262,9 +262,9 @@ Let's use this hook to cleanup our date picker and event listener from above:
 
 ```js
 willDestroyElement() {
-  this._super(...arguments);
   this.$().off('animationend');
   this.$('input.date').myDatepickerLib().destroy();
+  this._super(...arguments);
 }
 ```
 
