@@ -105,11 +105,13 @@ in turn and return a new array:
 
 
 ```javascript
-let hawaii = Ember.Object.create({
+import EmberObject from '@ember/object';
+
+let hawaii = EmberObject.create({
   capital: 'Honolulu'
 });
 
-let california = Ember.Object.create({
+let california = EmberObject.create({
   capital: 'Sacramento'
 });
 
@@ -142,7 +144,9 @@ When working with a collection of Ember objects, you will often want to filter a
 
 
 ```javascript
-Todo = Ember.Object.extend({
+import EmberObject from '@ember/object';
+
+Todo = EmberObject.extend({
   title: null,
   isDone: false
 });
@@ -169,7 +173,9 @@ use the [`every()`](http://emberjs.com/api/classes/Ember.Enumerable.html#method_
 
 
 ```javascript
-Person = Ember.Object.extend({
+import EmberObject from '@ember/object';
+
+Person = EmberObject.extend({
   name: null,
   isHappy: false
 });
