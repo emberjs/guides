@@ -6,9 +6,9 @@ with your application.
 #### Log router transitions
 
 ```app/app.js
-import Ember from 'ember';
+import Application from '@ember/application';
 
-export default Ember.Application.extend({
+export default Application.extend({
   // Basic logging, e.g. "Transitioned into 'post'"
   LOG_TRANSITIONS: true,
 
