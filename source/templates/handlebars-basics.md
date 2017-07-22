@@ -23,9 +23,9 @@ must be added to the application controller. If you are following along with
 an Ember CLI application, you may need to create this file:
 
 ```app/controllers/application.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   firstName: 'Trek',
   lastName: 'Glowacki'
 });
@@ -51,7 +51,7 @@ Ember gives you the ability to [write your own helpers](../writing-helpers/), to
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
 ```app/helpers/sum.js
-import Ember from 'ember';
+import { helper } from "@ember/component/helper"
 
 export function sum(params) {
   return params.reduce((a, b) => {
@@ -59,7 +59,7 @@ export function sum(params) {
   });
 };
 
-export default Ember.Helper.helper(sum);
+export default helper(sum);
 ```
 
 The above code will allow you invoke the `sum()` function as a `{{sum}}` handlebars "helper" in your templates:

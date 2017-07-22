@@ -18,9 +18,9 @@ In the component or controller, you can then define what the action does within
 the `actions` hook:
 
 ```app/components/single-post.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   actions: {
     toggleBody() {
       this.toggleProperty('isShowingBody');
@@ -48,9 +48,9 @@ The `select` action handler would be called with a single argument
 containing the post model:
 
 ```app/components/single-post.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   actions: {
     select(post) {
       console.log(post.get('title'));
