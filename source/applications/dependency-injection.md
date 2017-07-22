@@ -141,7 +141,7 @@ The value of `logger` will come from the factory named `logger:main`.
 Routes in this example application can now access the injected logger:
 
 ```app/routes/index.js
-import Route from "@ember/routing/route"
+import Route from "@ember/routing/route";
 
 export default Route.extend({
   activate() {

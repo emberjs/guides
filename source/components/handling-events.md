@@ -14,9 +14,9 @@ Let's implement `double-clickable` such that when it is
 clicked, an alert is displayed:
 
 ```app/components/double-clickable.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   doubleClick() {
     alert("DoubleClickableComponent was clicked!");
   }
@@ -28,9 +28,9 @@ in succession. To enable bubbling `return true;` from the event handler method
 in your component.
 
 ```app/components/double-clickable.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   doubleClick() {
     Ember.Logger.info("DoubleClickableComponent was clicked!");
     return true;
@@ -56,9 +56,9 @@ And if you need to, you may also stop events from bubbling, by using
 `return false;`.
 
 ```app/components/drop-target.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   attributeBindings: ['draggable'],
   draggable: 'true',
 
@@ -110,7 +110,7 @@ default behavior using an action.
 
 ```js
 actions: {
-  signUp(){
+  signUp() {
     // No event object is passed to the action.
   }
 }
@@ -128,7 +128,7 @@ To utilize an `event` object as a function parameter:
 
 The event handling examples described above respond to one set of events.
 The names of the built-in events are listed below. Custom events can be
-registered by using [Ember.Application.customEvents][customEvents].
+registered by using [Application.customEvents][customEvents].
 
 Touch events:
 

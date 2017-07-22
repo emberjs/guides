@@ -81,7 +81,7 @@ module.exports = function(environment) {
 You will notice that this is then used to configure your application's router:
 
 ```app/router.js
-import Router from "@ember/routing/router"
+import Router from "@ember/routing/router";
 import config from './config/environment';
 
 const Router = Router.extend({
