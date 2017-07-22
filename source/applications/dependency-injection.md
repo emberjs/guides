@@ -2,20 +2,17 @@ Ember applications utilize the [dependency injection](https://en.wikipedia.org/w
 ("DI") design pattern to declare and instantiate classes of objects and dependencies between them.
 Applications and application instances each serve a role in Ember's DI implementation.
 
-An [`Ember.Application`][1] serves as a "registry" for dependency declarations.
+An [`Application`][http://emberjs.com/api/classes/Ember.Application.html] serves as a "registry" for dependency declarations.
 Factories (i.e. classes) are registered with an application,
 as well as rules about "injecting" dependencies that are applied when objects are instantiated.
 
-An [`Ember.ApplicationInstance`][2] serves as the "owner" for objects that are instantiated from registered factories.
+An [`ApplicationInstance`][http://emberjs.com/api/classes/Ember.ApplicationInstance.html] serves as the "owner" for objects that are instantiated from registered factories.
 Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
 
 > _Note: Although an `Application` serves as the primary registry for an app,
 each `ApplicationInstance` can also serve as a registry.
 Instance-level registrations are useful for providing instance-level customizations,
 such as A/B testing of a feature._
-
-[1]: http://emberjs.com/api/classes/Ember.Application.html
-[2]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html
 
 ## Factory Registrations
 
@@ -39,10 +36,10 @@ or application instance initializers (with the former being much more common).
 For example, an application initializer could register a `Logger` factory with the key `logger:main`:
 
 ```app/initializers/logger.js
-import Ember from 'ember';
+import EmberObject from "@ember/object";
 
 export function initialize(application) {
-  let Logger = Ember.Object.extend({
+  let Logger = EmberObject.extend({
     log(m) {
       console.log(m);
     }
@@ -95,10 +92,10 @@ register your factories as non-singletons using the `singleton: false` option.
 In the following example, the `Message` class is registered as a non-singleton:
 
 ```app/initializers/notification.js
-import Ember from 'ember';
+import EmberObject from "@ember/object";
 
 export function initialize(application) {
-  let Message = Ember.Object.extend({
+  let Message = EmberObject.extend({
     text: ''
   });
 
@@ -118,10 +115,10 @@ Once a factory is registered, it can be "injected" where it is needed.
 Factories can be injected into whole "types" of factories with *type injections*. For example:
 
 ```app/initializers/logger.js
-import Ember from 'ember';
+import EmberObject from "@ember/object";
 
 export function initialize(application) {
-  let Logger = Ember.Object.extend({
+  let Logger = EmberObject.extend({
     log(m) {
       console.log(m);
     }
@@ -144,9 +141,9 @@ The value of `logger` will come from the factory named `logger:main`.
 Routes in this example application can now access the injected logger:
 
 ```app/routes/index.js
-import Ember from 'ember';
+import Route from "@ember/routing/route"
 
-export default Ember.Route.extend({
+export default Route.extend({
   activate() {
     // The logger property is injected into all routes
     this.get('logger').log('Entered the index route!');
@@ -167,17 +164,18 @@ This includes all of Ember's major framework classes, such as components, helper
 
 ### Ad Hoc Injections
 
-Dependency injections can also be declared directly on Ember classes using `Ember.inject`.
-Currently, `Ember.inject` supports injecting controllers (via `Ember.inject.controller`)
-and services (via `Ember.inject.service`).
+Dependency injections can also be declared directly on Ember classes using `inject`.
+Currently, `inject` supports injecting controllers (via `import { inject } from '@ember/controller';`)
+and services (via `import { inject } from '@ember/service';`).
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
 ```app/components/cart-contents.js
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from "@ember/service";
 
-export default Ember.Component.extend({
-  cart: Ember.inject.service('shopping-cart')
+export default Component.extend({
+  cart: service('shopping-cart')
 });
 ```
 
@@ -185,17 +183,18 @@ If you'd like to inject a service with the same name as the property,
 simply leave off the service name (the dasherized version of the name will be used):
 
 ```app/components/cart-contents.js
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from "@ember/service";
 
-export default Ember.Component.extend({
-  shoppingCart: Ember.inject.service()
+export default Component.extend({
+  shoppingCart: service()
 });
 ```
 
 ## Factory Instance Lookups
 
 To fetch an instantiated factory from the running application you can call the
-[`lookup`][3] method on an application instance. This method takes a string
+[`lookup`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup) method on an application instance. This method takes a string
 to identify a factory and returns the appropriate object.
 
 ```javascript
@@ -226,21 +225,18 @@ export default {
 
 ### Getting an Application Instance from a Factory Instance
 
-[`Ember.getOwner`][4] will retrieve the application instance that "owns" an
+[`Ember.getOwner`](http://emberjs.com/api/#method_getOwner) will retrieve the application instance that "owns" an
 object. This means that framework objects like components, helpers, and routes
-can use [`Ember.getOwner`][4] to perform lookups through their application
+can use [`Ember.getOwner`](http://emberjs.com/api/#method_getOwner) to perform lookups through their application
 instance at runtime.
 
 For example, this component plays songs with different audio services based
 on a song's `audioType`.
 
 ```app/components/play-audio.js
-import Ember from 'ember';
-const {
-  Component,
-  computed,
-  getOwner
-} = Ember;
+import Component from '@ember/component';
+import { computed } from "@ember/object";
+import { getOwner } from "@ember/application";
 
 // Usage:
 //
@@ -259,7 +255,3 @@ export default Component.extend({
   }
 });
 ```
-
-[3]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup
-[4]: http://emberjs.com/api/#method_getOwner
-
