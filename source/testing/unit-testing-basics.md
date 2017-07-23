@@ -17,13 +17,14 @@ Let's start by creating an object that has a `computedFoo` computed property
 based on a `foo` property.
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject, { computed } from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   foo: 'bar',
 
-  computedFoo: Ember.computed('foo', function() {
+  computedFoo: computed('foo', function() {
     const foo = this.get('foo');
+
     return `computed ${foo}`;
   })
 });
@@ -43,6 +44,7 @@ moduleFor('model:some-thing', 'Unit | some thing', {
 test('should correctly concat foo', function(assert) {
   const someThing = this.subject();
   someThing.set('foo', 'baz');
+
   assert.equal(someThing.get('computedFoo'), 'computed baz');
 });
 ```
@@ -60,10 +62,11 @@ the `testMethod` method alters some internal state of the object (by updating
 the `foo` property).
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   foo: 'bar',
+
   testMethod() {
     this.set('foo', 'baz');
   }
@@ -87,13 +90,15 @@ return value is calculated correctly. Suppose our object has a `calc` method
 that returns a value based on some internal state.
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   count: 0,
+
   calc() {
     this.incrementProperty('count');
     let count = this.get('count');
+
     return `count: ${count}`;
   }
 });
@@ -114,12 +119,14 @@ test('should return incremented count on calc', function(assert) {
 Suppose we have an object that has a property and a method observing that property.
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { observer } from "@ember/object";
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   foo: 'bar',
   other: 'no',
-  doSomething: Ember.observer('foo', function() {
+
+  doSomething: observer('foo', function() {
     this.set('other', 'yes');
   })
 });

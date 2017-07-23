@@ -8,12 +8,13 @@ component is bound to its `style` property.
 > component pretty-color`.
 
 ```app/components/pretty-color.js
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   attributeBindings: ['style'],
 
-  style: Ember.computed('name', function() {
+  style: computed('name', function() {
     const name = this.get('name');
     return `color: ${name}`;
   })
@@ -93,9 +94,9 @@ clicked on:
 > component magic-title`.
 
 ```app/components/magic-title.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   title: 'Hello World',
 
   actions: {
@@ -144,9 +145,9 @@ For example, imagine you have a comment form component that invokes a
 > component comment-form`.
 
 ```app/components/comment-form.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   comment: '',
 
   actions: {
@@ -202,17 +203,19 @@ and country of your current location:
 > component location-indicator`.
 
 ```app/components/location-indicator.js
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-export default Ember.Component.extend({
-  locationService: Ember.inject.service('location-service'),
+export default Component.extend({
+  locationService: service('location-service'),
 
   // when the coordinates change, call the location service to get the current city and country
-  city: Ember.computed('locationService.currentLocation', function () {
+  city: computed('locationService.currentLocation', function () {
     return this.get('locationService').getCurrentCity();
   }),
 
-  country: Ember.computed('locationService.currentLocation', function () {
+  country: computed('locationService.currentLocation', function () {
     return this.get('locationService').getCurrentCountry();
   })
 });
@@ -229,10 +232,10 @@ beforeEach function.  In this case we initially force location to New York.
 ```tests/integration/components/location-indicator-test.js
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
+import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Ember.Service.extend({
+const locationStub = Service.extend({
   city: 'New York',
   country: 'USA',
   currentLocation: {
@@ -296,9 +299,10 @@ to limit requests to the server, and you want to verify that results are display
 > component delayed-typeahead`.
 
 ```app/components/delayed-typeahead.js
-import Ember from 'ember';
+import Component from '@ember/component';
+import { debounce } from "@ember/runloop";
 
-export default Ember.Component.extend({
+export default Component.extend({
   actions: {
     handleTyping() {
       //the fetchResults function is passed into the component from its parent

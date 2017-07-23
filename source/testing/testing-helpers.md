@@ -12,7 +12,7 @@ helper from [Writing Helpers].
 > format-currency`.
 
 ```app/helpers/format-currency.js
-import Ember from 'ember';
+import { helper } from "@ember/component/helper";
 
 export function formatCurrency([value, ...rest], namedArgs) {
   let dollars = Math.floor(value / 100);
@@ -23,7 +23,7 @@ export function formatCurrency([value, ...rest], namedArgs) {
   return `${sign}${dollars}.${cents}`;
 }
 
-export default Ember.Helper.helper(formatCurrency);
+export default helper(formatCurrency);
 ```
 
 Let's start by testing the helper by showing a simple unit test and then move on
