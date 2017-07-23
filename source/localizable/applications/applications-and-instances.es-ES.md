@@ -1,7 +1,0 @@
-Cada aplicación de Ember se representa con una clase que extiende de [`Ember.Application`](http://emberjs.com/api/classes/Ember.Application.html). Esta clase se utiliza para declarar y configurar los múltiples objetos que forman parte de tu aplicación.
-
-Mientras tu aplicación inicia, crea un [`Ember.ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) que se encarga de manejar todos los aspectos que tienen estados. Esta instancia actúa como el "dueño" de objetos instanciados para tu aplicación.
-
-Esencialmente, la `Application` *define tu aplicación* mientras que el `ApplicationInstance` *maneja su estado*.
-
-Esta separación de asuntos no sólo aclara la arquitectura de tu aplicación, también puede mejorar su eficiencia. Esto es particularmente cierto cuando tu aplicación necesita iniciar varias veces durante las pruebas y / o rendering de servidor (por ejemplo, a través de [FastBoot](https://github.com/tildeio/ember-cli-fastboot)). La configuración de una sola `aplicación` puede ser hecha una vez y compartida entre varias instancias de `ApplicationInstance` que manejan estados. Estas instancias pueden ser descartadas una vez que ya no son necesarias (cuando se ha ejecutado una prueba o la petición de FastBoot ha terminado).

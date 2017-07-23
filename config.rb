@@ -13,7 +13,6 @@ set(:logging, ENV['RACK_ENV'] != 'production')
 activate :relative_assets
 set :relative_links, true
 
-activate :i18n, :langs => [:en]
 set :markdown_engine, :redcarpet
 set :markdown, :layout_engine => :erb,
          :fenced_code_blocks => true,

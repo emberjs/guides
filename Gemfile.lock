@@ -6,9 +6,9 @@ GIT
     coderay (1.1.0.rc1)
 
 GIT
-  remote: https://github.com/macrocoders/middleman-toc
-  revision: 38f2aeb4e9473d91752b6945a65644acf0749d0e
-  tag: v0.1.0
+  remote: https://github.com/ember-learn/middleman-toc
+  revision: 7b871a052055d09a3b354dec5b3f5b7eebd97adc
+  branch: master
   specs:
     middleman-toc (0.1.0)
       middleman-core (~> 3.0)
@@ -244,4 +244,4 @@ DEPENDENCIES
   wdm (>= 0.1.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
