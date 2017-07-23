@@ -23,9 +23,9 @@ been categorized as popular we'd specify `'category'`
 as one of `controller:article`'s `queryParams`:
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['category'],
   category: null
 });
@@ -43,13 +43,14 @@ Now we need to define a computed property of our category-filtered
 array that the `articles` template will render:
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['category'],
   category: null,
 
-  filteredArticles: Ember.computed('category', 'model', function() {
+  filteredArticles: computed('category', 'model', function() {
     let category = this.get('category');
     let articles = this.get('model');
 
@@ -130,9 +131,9 @@ If you have a `category` query param and you want it to trigger a model refresh,
 you can set it as follows:
 
 ```app/routes/articles.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   queryParams: {
     category: {
       refreshModel: true
@@ -152,9 +153,9 @@ export default Ember.Route.extend({
 ```
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['category'],
   category: null
 });
@@ -169,9 +170,9 @@ additional item from being added to your browser's history,
 you can specify this as follows:
 
 ```app/routes/articles.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   queryParams: {
     category: {
       replace: true
@@ -190,12 +191,13 @@ bind to a query param whose key is `foo`, e.g. `?foo=123`.
 You can also map a controller property to a different query param key using the following configuration syntax:
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: {
     category: 'articles_category'
   },
+
   category: null
 });
 ```
@@ -207,12 +209,13 @@ Query params that require additional customization can
 be provided along with strings in the `queryParams` array.
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['page', 'filter', {
     category: 'articles_category'
   }],
+
   category: null,
   page: 1,
   filter: 'recent'
@@ -225,9 +228,9 @@ In the following example,
 the controller query param property `page` is considered to have a default value of `1`.
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: 'page',
   page: 1
 });
@@ -289,9 +292,9 @@ _while still scoped to the pre-transition `ArticlesRoute` model_.
 The result of this is that all links pointing back into the exited route will use the newly reset value `1` as the value for the `page` query param.
 
 ```app/routes/articles.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   resetController(controller, isExiting, transition) {
     if (isExiting) {
       // isExiting would be false if only the route's model was changing
@@ -308,9 +311,9 @@ even as a route's model changes. This can be accomplished by setting the
 config hash:
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: [{
     showMagnifyingGlass: {
       scope: 'controller'
@@ -322,9 +325,9 @@ export default Ember.Controller.extend({
 The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
 
 ```app/controllers/articles.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['page', 'filter',
     {
       showMagnifyingGlass: {

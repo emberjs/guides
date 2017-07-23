@@ -15,9 +15,9 @@ hook in the `favorite-posts` route handler:
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
 
 ```app/routes/favorite-posts.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return this.get('store').query('post', { favorite: true });
   }
@@ -71,9 +71,9 @@ Router.map(function() {
 ```
 
 ```app/routes/photo.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(params) {
     return this.get('store').findRecord('photo', params.photo_id);
   }
@@ -130,10 +130,10 @@ parameters that return promises, and when all parameter promises resolve, then
 the `RSVP.hash` promise resolves. For example:
 
 ```app/routes/songs.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return RSVP.hash({
       songs: this.get('store').findAll('song'),
@@ -175,9 +175,9 @@ needs.
 In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
 
 ```app/routes/album/index.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     let { album_id } = this.paramsFor('album');
 
@@ -199,9 +199,9 @@ Let's rewrite the same route, but use `modelFor`, which works the same way, but 
 from the parent route.
 
 ```app/routes/album/index.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     let { songs } = this.modelFor('album');
 
@@ -213,10 +213,10 @@ export default Ember.Route.extend({
 In the case above, the parent route looked something like this:
 
 ```app/routes/album.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),

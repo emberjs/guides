@@ -23,9 +23,9 @@ If you want to render a template other than the default one, set the route's [`t
 the template you want to render instead.
 
 ```app/routes/posts.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   templateName: 'posts/favorite-posts'
 });
 ```
