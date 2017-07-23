@@ -172,7 +172,7 @@ is rendered and you want to handle some cleanup when it ends:
 didInsertElement() {
   this._super(...arguments);
   this.$().on('animationend', () => {
-    $(this).removeClass('.sliding-anim');
+    $(this).removeClass('sliding-anim');
   });
 }
 ```
