@@ -46,9 +46,7 @@ This hook can be an effective alternative to an observer, as it will run prior t
 An example of this scenario in action is a profile editor component.  As you are editing one user, and the user attribute is changed,
 you can use `didUpdateAttrs` to clear any error state that was built up from editing the previous user.
 
-`/app/templates/components/profile-editor.hbs`
-
-```hbs
+```/app/templates/components/profile-editor.hbs
 <ul class="errors">
   {{#each errors as |error|}}
     <li>{{error.message}}</li>
@@ -61,9 +59,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 </fieldset>
 ```
 
-`/app/components/profile-editor.js`
-
-```js
+```/app/components/profile-editor.js
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -98,7 +94,7 @@ you can use the hook to effectively act as an observer, ensuring code is execute
 For example, if you have a component that renders based on a json configuration, but you want to provide your component with the option of taking the config as a string,
 you can leverage `didReceiveAttrs` to ensure the incoming config is always parsed.
 
-```javascript
+```/app/components/profile-editor.js
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -219,9 +215,7 @@ When rendered the component will iterate through the given list and apply a clas
 
 The scroll happens on `didRender`, where it will scroll the component's container to the element with the selected class name.
 
-`/app/components/selected-item-list.js`
-
-```js
+```/app/components/selected-item-list.js
 import Ember from 'ember';
 
 export default Ember.Component.extend({
