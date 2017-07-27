@@ -74,9 +74,9 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 Here is what the component's JavaScript looks like:
 
 ```app/components/list-filter.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['list-filter'],
   value: '',
 
@@ -124,9 +124,9 @@ ember g controller rentals
 Now, define your new controller like so:
 
 ```app/controllers/rentals.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     filterByCity(param) {
       if (param !== '') {
