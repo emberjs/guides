@@ -64,9 +64,9 @@ It's useful for understanding which objects Ember is finding when it does a look
 and which it is generating automatically for you.
 
 ```app/app.js
-import Ember from 'ember';
+import Application from '@ember/application';
 
-export default Ember.Application.extend({
+export default Application.extend({
   LOG_RESOLVER: true
 });
 ```
@@ -119,11 +119,11 @@ but a common practice is to call `console.assert` to dump the error to the
 console.
 
 ```app/app.js
-import Ember from 'ember';
+import { assert } from '@ember/debug';
 import RSVP from 'rsvp';
 
 RSVP.on('error', function(error) {
-  Ember.assert(error, false);
+  assert(error, false);
 });
 ```
 
