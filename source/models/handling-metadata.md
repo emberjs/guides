@@ -66,9 +66,9 @@ After reading it, `meta.total` can be used to calculate how many pages of posts 
 To use the `meta` data outside of the `model` hook, you need to return it:
 
 ```app/routes/users.js
-import Ember from 'ember';
+import Router from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return this.store.findAll('user').then((results) => {
       return {

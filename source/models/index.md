@@ -74,9 +74,9 @@ You might be tempted to make the component responsible for fetching that
 data and storing it:
 
 ```app/components/list-of-drafts.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
       this.set('drafts', data);
@@ -103,9 +103,9 @@ tempted to copy and paste your existing `willRender` code into the new
 component.
 
 ```app/components/drafts-button.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
       this.set('drafts', data);

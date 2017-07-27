@@ -169,25 +169,25 @@ export default DS.Model.extend({
 ```
 
 ```app/models/payment-method-cc.js
+import { computed } from '@ember/object';
 import PaymentMethod from './payment-method';
-import Ember from 'ember';
 
 export default PaymentMethod.extend({
-  obfuscatedIdentifier: Ember.computed('last4', function () {
+  obfuscatedIdentifier: computed('last4', function () {
     return `**** **** **** ${this.get('last4')}`;
   })
 });
 ```
 
 ```app/models/payment-method-paypal.js
-import PaymentMethod from './payment-method'
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
+import PaymentMethod from './payment-method'
 
 export default PaymentMethod.extend({
   linkedEmail: DS.attr(),
 
-  obfuscatedIdentifier: Ember.computed('linkedEmail', function () {
+  obfuscatedIdentifier: computed('linkedEmail', function () {
     let last5 = this.get('linkedEmail').split('').reverse().slice(0, 5).reverse().join('');
 
     return `••••${last5}`;
