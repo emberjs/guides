@@ -109,13 +109,13 @@ export default Ember.Component.extend({
 ```app/templates/components/magic-title.hbs
 <h2>{{title}}</h2>
 
-<button {{action "updateTitle"}}>
+<button class="title-button" {{action "updateTitle"}}>
   Update Title
 </button>
 ```
 
-jQuery triggers can be used to simulate user interaction and test that the title
-is updated when the button is clicked on:
+We recommend using native DOM events wrapped inside the run loop or the [`ember-native-dom-helpers`](https://github.com/cibernox/ember-native-dom-helpers) addon to simulate user interaction and test that the title is updated when the button is clicked.<br>
+Using jQuery to simulate user click events might lead to unexpected test results as the action can potentially be called twice.
 
 ```tests/integration/components/magic-title-test.js
 test('should update title on button click', function(assert) {
@@ -126,7 +126,7 @@ test('should update title on button click', function(assert) {
   assert.equal(this.$('h2').text(), 'Hello World', 'initial text is hello world');
 
   //Click on the button
-  this.$('button').click();
+  Ember.run(() => document.querySelector('.title-button').click());
 
   assert.equal(this.$('h2').text(), 'This is Magic', 'title changes after click');
 });
@@ -162,7 +162,7 @@ export default Ember.Component.extend({
   <label>Comment:</label>
   {{textarea value=comment}}
 
-  <input type="submit" value="Submit"/>
+  <input class="comment-input" type="submit" value="Submit"/>
 </form>
 ```
 
@@ -186,7 +186,7 @@ test('should trigger external action on form submit', function(assert) {
   this.$('textarea').change();
 
   // click the button to submit the form
-  this.$('input').click();
+   Ember.run(() => document.querySelector('.comment-input').click());
 });
 ```
 ### Stubbing Services
