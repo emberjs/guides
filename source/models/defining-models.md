@@ -50,13 +50,17 @@ properties that combine or transform primitive attributes.
 
 ```app/models/person.js
 import DS from 'ember-data';
+<<<<<<< HEAD
 import Ember from 'ember';
+=======
+import { computed } from '@ember/object';
+>>>>>>> Converts Models (#2015)
 
 export default DS.Model.extend({
   firstName: DS.attr(),
   lastName: DS.attr(),
 
-  fullName: Ember.computed('firstName', 'lastName', function() {
+  fullName: computed('firstName', 'lastName', function() {
     return `${this.get('firstName')} ${this.get('lastName')}`;
   })
 });

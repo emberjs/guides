@@ -352,7 +352,9 @@ when retrieving a specific post we can have the server also return that post's c
 as follows:
 
 ```app/routes/post.js
-export default Ember.Route.extend({
+import Route from '@ember/routing/route';
+
+export default Route.extend({
   model(params) {
    return this.store.findRecord('post', params.post_id, {include: 'comments'});
   }
@@ -365,7 +367,9 @@ So to request both the post's comments and the authors of those comments the req
 would look like this:
 
 ```app/routes/post.js
-export default Ember.Route.extend({
+import Route from '@ember/routing/route';
+
+export default Route.extend({
   model(params) {
    return this.store.findRecord('post', params.post_id, {include: 'comments,comments.author'});
   }
@@ -377,7 +381,9 @@ form part of that argument.
 For example:
 
 ```app/routes/adele.js
-export default Ember.Route.extend({
+import Route from '@ember/routing/route';
+
+export default Route.extend({
   model() {
     // GET to /artists?filter[name]=Adele&include=albums
     this.store.query('artist', {

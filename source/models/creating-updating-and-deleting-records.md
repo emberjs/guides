@@ -118,7 +118,7 @@ the errors from saving a blog post in your template:
 ## Promises
 
 [`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) returns
-a promise, which makes it easy to asynchronously handle success and failure 
+a promise, which makes it easy to asynchronously handle success and failure
 scenarios.  Here's a common pattern:
 
 ```javascript
