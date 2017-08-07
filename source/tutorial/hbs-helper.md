@@ -21,13 +21,13 @@ installing helper-test
 Our new helper starts out with some boilerplate code from the generator:
 
 ```app/helpers/rental-property-type.js
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function rentalPropertyType(params/*, hash*/) {
   return params;
 }
 
-export default Ember.Helper.helper(rentalPropertyType);
+export default helper(rentalPropertyType);
 ```
 
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.propertyType`:
@@ -62,7 +62,7 @@ Let's update our helper to look if a property exists in an array of `communityPr
 if so, we'll return either `'Community'` or `'Standalone'`:
 
 ```app/helpers/rental-property-type.js{-3,-4,-5,+7,+8,+9,+10,+11,+13,+14,+15,+16,+17,+18,+19}
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function rentalPropertyType(params/*, hash*/) {
   return params;
@@ -82,7 +82,7 @@ export function rentalPropertyType([propertyType]) {
   return 'Standalone';
 }
 
-export default Ember.Helper.helper(rentalPropertyType);
+export default helper(rentalPropertyType);
 ```
 
 Each [argument](https://guides.emberjs.com/v2.12.0/templates/writing-helpers/#toc_helper-arguments) in the helper will be added to an array and passed to our helper. For example, `{{my-helper "foo" "bar"}}` would result in `myHelper(["foo", "bar"])`. Using array [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) assignment, we can name expected parameters within the array. In the example above, the first argument in the template will be assigned to `propertyType`. This provides a flexible, expressive interface for your helpers, including optional arguments and default values.

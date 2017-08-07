@@ -54,11 +54,11 @@ which makes use of `google.maps.Map` to create our map element,
 and `google.maps.Marker` to pin our map based on the resolved location.
 
 ```app/utils/google-maps.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
 const google = window.google;
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
   init() {
     this.set('geocoder', new google.maps.Geocoder());
@@ -113,14 +113,16 @@ Note that we check if a map already exists for the given location and use that o
 otherwise we call a Google Maps utility to create one.
 
 ```app/services/maps.js
-import Ember from 'ember';
+import Service from '@ember/service';
+import EmberObject from '@ember/object';
+
 import MapUtil from '../utils/google-maps';
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   init() {
     if (!this.get('cachedMaps')) {
-      this.set('cachedMaps', Ember.Object.create());
+      this.set('cachedMaps', EmberObject.create());
     }
     if (!this.get('mapUtil')) {
       this.set('mapUtil', MapUtil.create());
@@ -171,7 +173,7 @@ Next, update the component to append the map output to the `div` element we crea
 
 We provide the maps service into our component by initializing a property of our component, called `maps`.
 Services are commonly made available in components and other Ember objects by ["service injection"](../../applications/services/#toc_accessing-services).
-When you initialize a property with `Ember.inject.service()`,
+When you initialize a property with `import { inject } from '@ember/service';`,
 Ember tries to set that property with a service matching its name.
 
 With our `maps` service, our component will call the `getMapElement` function with the provided location.
@@ -180,10 +182,11 @@ which is a [component lifecycle hook](../../components/the-component-lifecycle/#
 This function runs during the component render, after the component's markup gets inserted into the page.
 
 ```app/components/location-map.js
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-export default Ember.Component.extend({
-  maps: Ember.inject.service(),
+export default Component.extend({
+  maps: service(),
 
   didInsertElement() {
     this._super(...arguments);
@@ -244,11 +247,11 @@ In our case we are passing in our fake map utility object in the first test, and
 
 ```tests/unit/services/maps-test.js
 import { moduleFor, test } from 'ember-qunit';
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
 const DUMMY_ELEMENT = {};
 
-let MapUtilStub = Ember.Object.extend({
+let MapUtilStub = EmberObject.extend({
   createMap(element, location) {
     this.assert.ok(element, 'createMap called with element');
     this.assert.ok(location, 'createMap called with location');
@@ -269,7 +272,7 @@ test('should create a new map if one isnt cached for location', function (assert
 
 test('should use existing map if one is cached for location', function (assert) {
   assert.expect(1);
-  let stubCachedMaps = Ember.Object.create({
+  let stubCachedMaps = EmberObject.create({
     sanFrancisco: DUMMY_ELEMENT
   });
   let mapService = this.subject({ cachedMaps: stubCachedMaps });
@@ -302,9 +305,9 @@ In the stub service, define a method that will fetch the map based on location, 
 ```tests/integration/components/location-map-test.js
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
+import Service from '@ember/service';
 
-let StubMapsService = Ember.Service.extend({
+let StubMapsService = Service.extend({
   getMapElement(location) {
     this.set('calledWithLocation', location);
     // We create a div here to simulate our maps service,
@@ -351,9 +354,9 @@ Add the following code after the imports to our acceptance test:
 ```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
-import Ember from 'ember';
+import Service from '@ember/service';
 
-let StubMapsService = Ember.Service.extend({
+let StubMapsService = Service.extend({
   getMapElement() {
     return document.createElement('div');
   }
