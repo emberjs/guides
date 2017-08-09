@@ -19,11 +19,6 @@ Before the review period starts, the previous version should be re-released with
 
 # Pull Requests
 
-You should use [homu](http://homu.io) when accepting pull requests.
-You can read about the available commands in the front page.
-
-The Guides repository has homu [configured to auto-squash commits](http://homu.io/r/emberjs/guides).
-
 Before merging you should check the following:
 
 - Milestone. If it's assigned to the Milestone of the next release, only merge during the review period.
