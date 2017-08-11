@@ -98,11 +98,12 @@ you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/
 
 ```app/components/cart-contents.js
 import Ember from 'ember';
+const { getOwner } = Ember;
 
 export default Ember.Component.extend({
   //will load the service in file /app/services/shopping-cart.js
   cart: Ember.computed(function() {
-    return Ember.getOwner(this).lookup('service:shopping-cart');
+    return getOwner(this).lookup('service:shopping-cart');
   })
 });
 ```
