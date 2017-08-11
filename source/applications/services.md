@@ -38,25 +38,26 @@ Below, the shopping cart service manages an items array that represents the item
 
 ```app/services/shopping-cart.js
 import Ember from 'ember';
+const { get, set } = Ember;
 
 export default Ember.Service.extend({
   items: null,
 
   init() {
     this._super(...arguments);
-    this.set('items', []);
+    set(this, 'items', []);
   },
 
   add(item) {
-    this.get('items').pushObject(item);
+    get(this, 'items').pushObject(item);
   },
 
   remove(item) {
-    this.get('items').removeObject(item);
+    get(this, 'items').removeObject(item);
   },
 
   empty() {
-    this.get('items').clear();
+    get(this, 'items').clear();
   }
 });
 ```
@@ -98,11 +99,12 @@ you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/
 
 ```app/components/cart-contents.js
 import Ember from 'ember';
+const { getOwner } = Ember;
 
 export default Ember.Component.extend({
   //will load the service in file /app/services/shopping-cart.js
   cart: Ember.computed(function() {
-    return Ember.getOwner(this).lookup('service:shopping-cart');
+    return getOwner(this).lookup('service:shopping-cart');
   })
 });
 ```
@@ -117,13 +119,14 @@ Notice that below we access the `cart` service with a call to`this.get`.
 
 ```app/components/cart-contents.js
 import Ember from 'ember';
+const { get } = Ember;
 
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
 
   actions: {
     remove(item) {
-      this.get('cart').remove(item);
+      get(this, 'cart').remove(item);
     }
   }
 });
