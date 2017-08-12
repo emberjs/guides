@@ -6,7 +6,6 @@ Here's a look at what we want to build before we get started.
 
 Let's work through what we want to do on the home page. We want our application to:
 
-* Show rentals on the home page
 * Link to information about the company
 * Link to contact information
 * List the available rentals
