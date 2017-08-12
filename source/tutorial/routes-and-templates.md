@@ -100,15 +100,15 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
   <h2>Contact Us</h2>
   <p>Super Rentals Representatives would love to help you<br>choose a destination or answer
     any questions you may have.</p>
-  <p>
+  <address>
     Super Rentals HQ
-    <address>
+    <p>
       1212 Test Address Avenue<br>
       Testington, OR 97233
-    </address>
+    </p>
     <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-  </p>
+  </address>
 </div>
 ```
 
@@ -152,15 +152,15 @@ Now, we'll add our corresponding link to the contact page so we can move back an
   <h2>Contact Us</h2>
   <p>Super Rentals Representatives would love to help you<br>choose a destination or answer
     any questions you may have.</p>
-  <p>
+  <address>
     Super Rentals HQ
-    <address>
+    <p>
       1212 Test Address Avenue<br>
       Testington, OR 97233
-    </address>
+    </p>
     <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-  </p>
+  </address>
   {{#link-to "about" class="button"}}
     About
   {{/link-to}}
