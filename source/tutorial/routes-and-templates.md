@@ -61,7 +61,7 @@ Router.map(function() {
 export default Router;
 ```
 
-Because we only plan to display static contact on our about page, we won't adjust the `/app/routes/about.js`
+Because we only plan to display static content on our about page, we won't adjust the `/app/routes/about.js`
 route handler file right now. Instead, let's open our `/app/templates/about.hbs` template file and add some info about
 Super Rentals:
 
