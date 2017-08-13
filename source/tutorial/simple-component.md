@@ -302,7 +302,7 @@ test('should toggle wide class on click', function(assert) {
 });
 ```
 
-Finally, lets add our actions and assertions.
+Finally, let's add our actions and assertions.
 
 In the first test, we just want to verify the output of the component, so we just assert that the title and owner text match what we provided in the fake `rental`.
 
