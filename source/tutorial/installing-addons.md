@@ -1,7 +1,7 @@
 Ember has a rich ecosystem of addons that can be easily added to projects.
 Addons provide a wide range of functionality to projects, often saving time and letting you focus on your project.
 
-To browse addons, visit the [Ember Observer](https://emberobserver.com/) website.  It catalogs and categorizes ember addons that have been published to NPM and assigns them a score based on a variety of criteria.
+To browse addons, visit the [Ember Observer](https://emberobserver.com/) website.  It catalogs and categorizes Ember addons that have been published to NPM and assigns them a score based on a variety of criteria.
 
 For Super Rentals, we'll take advantage of two addons: [ember-cli-tutorial-style](https://github.com/toddjordan/ember-cli-tutorial-style) and [ember-cli-mirage](http://www.ember-cli-mirage.com/).
 
