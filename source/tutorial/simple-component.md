@@ -269,7 +269,7 @@ test('should toggle wide class on click', function(assert) {
 });
 ```
 
-Now lets render our component using the `render` function.
+Now let's render our component using the `render` function.
 The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates.
 Since we set the `rentalObj` variable to our local scope, we can access it as part of our render string.
 
