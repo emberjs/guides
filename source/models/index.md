@@ -207,6 +207,7 @@ example, an `order` may have many `line-items`, and a
 
 ```app/models/order.js
 import DS from 'ember-data';
+
 export default DS.Model.extend({
   lineItems: DS.hasMany('line-item')
 });
