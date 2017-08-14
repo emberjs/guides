@@ -223,23 +223,22 @@ export default Ember.Test.registerAsyncHelper('addContact',
 // addContact('Dan');
 ```
 
-Finally, don't forget to add your helpers in `tests/.jshintrc` and in
-`tests/helpers/start-app.js`. In `tests/.jshintrc` you need to add it in the
-`predef` section, otherwise you will get failing jshint tests:
+Finally, don't forget to add your helpers in `tests/.eslintrc.js` and in
+`tests/helpers/start-app.js`. In `tests/.eslintrc.js` you need to add it in the
+`globals` section, otherwise you will get failing ESLint tests:
 
-```tests/.jshintc
-{
-  "predef": [
-    "document",
-    "window",
-    "location",
-    ...
-    "shouldHaveElementWithCount",
-    "dblclick",
-    "addContact"
-  ],
-  ...
-}
+```tests/.eslintrc.js{-4,+5,+6,+7,+8,+9,+10}
+module.exports = {
+  env: {
+    embertest: true
+  }
+  },
+  globals: {
+    shouldHaveElementWithCount: true,
+    dblclick: true,
+    addContact: true
+  }
+};
 ```
 
 In `tests/helpers/start-app.js` you need to import the helper file: it

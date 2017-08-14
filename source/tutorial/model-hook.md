@@ -126,6 +126,6 @@ test('should list available rentals.', function (assert) {
 Run the tests again using the command `ember t -s`, and toggle "Hide passed tests" to show your new passing test.
 
 Now we are listing rentals, and and verifying it with an acceptance test.
-This leaves us with 2 remaining acceptance test failures (and 1 jshint failure):
+This leaves us with 2 remaining acceptance test failures (and 1 eslint failure):
 
 ![list rentals test passing](../../images/model-hook/model-hook.png)

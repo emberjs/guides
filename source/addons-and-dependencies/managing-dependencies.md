@@ -36,7 +36,7 @@ Provide the asset path as the first and only argument.
 app.import('bower_components/moment/moment.js');
 ```
 
-You will need to add `"moment"` to the `predef` section in `.jshintrc` to prevent JSHint errors
+You will need to add `"moment"` to the `globals` section in `.eslintrc.js` to prevent ESLint errors
 about using an undefined variable.
 
 ### AMD JavaScript modules
