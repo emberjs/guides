@@ -14,6 +14,8 @@ As before when we created the [`rental-listing` component](../simple-component),
 * a JavaScript file (`app/components/list-filter.js`),
 * and a component integration test (`tests/integration/components/list-filter-test.js`).
 
+#### Providing Markup to a Component
+
 In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
 
 Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20.
@@ -48,6 +50,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 {{/each}}
 ```
 
+#### Accepting Input to a Component
 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
@@ -93,7 +96,9 @@ export default Ember.Component.extend({
 });
 ```
 
-We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
+#### Filtering Data Based on Input
+
+In the above example we use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls a function called `filter` based on the `value` attribute set by the input helper.
 
 The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component).
@@ -137,6 +142,8 @@ export default Ember.Controller.extend({
 When the user types in the text field in our component, the `filterByCity` action in the controller is called.
 This action takes in the `value` property, and filters the `rental` data for records in data store that match what the user has typed thus far.
 The result of the query is returned to the caller.
+
+#### Faking Query Results
 
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 Instead of simply returning the list of rentals, our Mirage HTTP GET handler for `rentals` will return rentals matching the string provided in the URL query parameter called `city`.
@@ -196,10 +203,85 @@ export default function() {
 }
 ```
 
-After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen,
-that will update the rental list as you type:
+After updating our mirage configuration, we should see a simple filter on the home screen that will update the rental list as you type:
 
 ![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
+
+#### Handling Results Coming Back at Different Times
+
+In our example, you might notice that if you type quickly that the results might get out of sync with the current filter text entered.
+This is because our data filtering function is _asynchronous_, meaning that the code in the function gets scheduled for later, while the code that calls the function continues to execute.
+Often code that may make network requests is set up to be asynchronous because the server may return its responses at varying times.
+
+Lets add some protective code to ensure our results do not get out of sync with our filter input.
+To do this we'll simply provide the filter text to the filter function, so that when the results come back we can compare the original filter value with the current filter value.
+We will update the results on screen only if the original filter value and the current filter value are the same.
+
+```app/controllers/rentals.js{-7,+8,+9,+10,+11,-13,+14,+15,+16,+17}
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  actions: {
+    filterByCity(param) {
+      if (param !== '') {
+        return this.get('store').query('rental', { city: param });
+        return this.get('store')
+          .query('rental', { city: param }).then((results) => {
+            return { query: param, results: results };
+          });
+      } else {
+        return this.get('store').findAll('rental');
+        return this.get('store')
+          .findAll('rental').then((results) => {
+            return { query: param, results: results };
+          });
+      }
+    }
+  }
+});
+```
+
+In the `filterByCity` function in the rental controller above,
+we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
+
+```app/components/list-filter.js{+9,+10,+11,+19,+20,+21}
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  classNames: ['list-filter'],
+  value: '',
+
+  init() {
+    this._super(...arguments);
+    this.get('filter')('').then((allResults) => {
+      this.set('results', allResults.results));
+    };
+  },
+
+  actions: {
+    handleFilterEntry() {
+      let filterInputValue = this.get('value');
+      let filterAction = this.get('filter');
+      filterAction(filterInputValue).then((resultsObj) => {
+        if (resultsObj.query === this.get('value')) {
+          this.set('results', resultsObj.results);
+        }
+      });
+    }
+  }
+
+});
+```
+
+In our list filter component JavaScript, we use the `query` property to compare to the `value` property of the component.
+The `value` property represents the latest state of the input field.
+Therefore we now check that results match the input field, ensuring that results will stay in sync with the last thing the user has typed.
+
+While this approach will keep our results order consistent, there are other things to consider when dealing with multiple concurrent tasks,
+such as [limiting the number of requests made to the server](https://emberjs.com/api/classes/Ember.run.html#method_debounce).
+To create effective and robust autocomplete behavior for your applications,
+we recommend considering the [`ember-concurrency`](http://ember-concurrency.com/#/docs/introduction) addon project.
+
 
 You can now proceed on to implement the [next feature](../service/), or continue on to test our newly created filter component.
 
@@ -229,7 +311,7 @@ test('should initially load all listings', function (assert) {
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 We provide an action function by setting it to the local scope of our test by calling `this.on`.
 
-```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21}
+```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -245,23 +327,14 @@ test('should initially load all listings', function (assert) {
   // we want our actions to return promises,
   //since they are potentially fetching data asynchronously
   this.on('filterByCity', (val) => {
-    if (val === '') {
-      return RSVP.resolve(ITEMS);
-    } else {
-      return RSVP.resolve(FILTERED_ITEMS);
-    }
+    return RSVP.resolve({ results: ITEMS });
   });
-
 });
 ```
 
 `this.on` will add the provided function to the test local scope as `filterByCity`, which we can use to provide to the component.
 
 Our `filterByCity` function is going to pretend to be the action function for our component, that does the actual filtering of the rental list.
-
-If the search input is empty, the function is going to return three cities.
-If the the search input is not empty, its going to return just one.
-If our component is coded correctly, it should in turn display the three cities on initial render and just show one once a character is given to the search box.
 
 We are not testing the actual filtering of rentals in this test, since it is focused on only the capability of the component.
 We will test the full logic of filtering in acceptance tests, described in the next section.
@@ -270,7 +343,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```tests/integration/components/list-filter-test.js{+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36}
+```tests/integration/components/list-filter-test.js{+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -286,11 +359,7 @@ test('should initially load all listings', function (assert) {
   // we want our actions to return promises,
   //since they are potentially fetching data asynchronously
   this.on('filterByCity', (val) => {
-    if (val === '') {
-      return RSVP.resolve(ITEMS);
-    } else {
-      return RSVP.resolve(FILTERED_ITEMS);
-    }
+    return RSVP.resolve({ results: ITEMS });
   });
 
   // with an integration test,
@@ -321,7 +390,7 @@ If you return a promise from a QUnit test, the test will wait to finish until th
 In this case our test completes when the `wait` helper decides that processing is finished,
 and the function we provide that asserts the resulting state is completed.
 
-```tests/integration/components/list-filter-test.js{+3,+37,+38,+39,+40}
+```tests/integration/components/list-filter-test.js{+3,+33,+34,+35,+36}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';
@@ -337,11 +406,7 @@ const FILTERED_ITEMS = [{city: 'San Francisco'}];
 test('should initially load all listings', function (assert) {
   // we want our actions to return promises, since they are potentially fetching data asynchronously
   this.on('filterByCity', (val) => {
-    if (val === '') {
-      return RSVP.resolve(ITEMS);
-    } else {
-      return RSVP.resolve(FILTERED_ITEMS);
-    }
+    return RSVP.resolve({ results: ITEMS });
   });
 
   // with an integration test,
@@ -366,6 +431,9 @@ test('should initially load all listings', function (assert) {
 ```
 
 For our second test, we'll check that typing text in the filter will actually appropriately call the filter action and update the listings shown.
+
+We'll add some additional functionality to our `filterByCity` action to additionally return a single rental,
+represented by the variable `FILTERED_ITEMS` when any value is set.
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
