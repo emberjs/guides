@@ -121,7 +121,7 @@ routes](#toc_index-routes) explains an important addition to this.) When the
 user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into
 the `{{outlet}}` of the `posts` template.
 
-A nested route's names includes the names of its ancestors.
+A nested route name includes the names of its ancestors.
 If you want to transition to a route (either
 via `transitionTo` or `{{#link-to}}`), make sure to use the full route
 name (`posts.new`, not `new`).
