@@ -21,7 +21,7 @@ Inline helpers don't need to be used inside HTML tags. They can also be used
 inside attribute values:
 
 ```handlebars
-<div class="is-car {{if isFast "zoooom" "putt-putt-putt"}}">
+<div class="is-car {{if isFast 'zoooom' 'putt-putt-putt'}}">
 </div>
 ```
 
