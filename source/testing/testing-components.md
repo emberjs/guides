@@ -30,6 +30,8 @@ and its template (if available).  Make sure to set `integration: true` to enable
 integration test capability.
 
 ```tests/integration/components/pretty-color-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+
 moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
   integration: true
 });
@@ -43,7 +45,12 @@ We can test that changing the component's `name` property updates the
 component's `style` attribute and is reflected in the  rendered HTML:
 
 ```tests/integration/components/pretty-color-test.js
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
+  integration: true
+});
 
 test('should change colors', function(assert) {
   assert.expect(2);
@@ -65,6 +72,13 @@ We might also test this component to ensure that the content of its template is
 being rendered properly:
 
 ```tests/integration/components/pretty-color-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
+  integration: true
+});
+
 test('should be rendered with its color name', function(assert) {
   assert.expect(2);
 
@@ -119,6 +133,14 @@ We recommend using native DOM events wrapped inside the run loop or the [`ember-
 Using jQuery to simulate user click events might lead to unexpected test results as the action can potentially be called twice.
 
 ```tests/integration/components/magic-title-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import { run } from '@ember/runloop';
+
+moduleForComponent('magic-title', 'Integration | Component | magic title', {
+  integration: true
+});
+
 test('should update title on button click', function(assert) {
   assert.expect(2);
 
@@ -172,6 +194,14 @@ is invoked when the component's internal `submitComment` action is triggered by 
 of a test double (dummy function):
 
 ```tests/integration/components/comment-form-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import { run } from '@ember/runloop';
+
+moduleForComponent('comment-form', 'Integration | Component | comment form', {
+  integration: true
+});
+
 test('should trigger external action on form submit', function(assert) {
 
   // test double for the external action
@@ -266,7 +296,39 @@ moduleForComponent('location-indicator', 'Integration | Component | location ind
 Once the stub service is registered the test simply needs to check that the stub data that
 is being returned from the service is reflected in the component output.
 
-```tests/integration/components/location-indicator-test.js
+```tests/integration/components/location-indicator-test.js{+33,+34,+35,+36}
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import Service from '@ember/service';
+
+//Stub location service
+const locationStub = Service.extend({
+  city: 'New York',
+  country: 'USA',
+  currentLocation: {
+    x: 1234,
+    y: 5678
+  },
+
+  getCurrentCity() {
+    return this.get('city');
+  },
+  getCurrentCountry() {
+    return this.get('country');
+  }
+});
+
+moduleForComponent('location-indicator', 'Integration | Component | location indicator', {
+  integration: true,
+
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+    // Calling inject puts the service instance in the context of the test,
+    // making it accessible as "locationService" within each test
+    this.inject.service('location-service', { as: 'locationService' });
+  }
+});
+
 test('should reveal current location', function(assert) {
   this.render(hbs`{{location-indicator}}`);
   assert.equal(this.$().text().trim(), 'You currently are located in New York, USA');
@@ -276,7 +338,44 @@ test('should reveal current location', function(assert) {
 In the next example, we'll add another test that validates that the display changes
 when we modify the values on the service.
 
-```tests/integration/components/location-indicator-test.js
+```tests/integration/components/location-indicator-test.js{+38,+39,+40,+41,+42,+43,+44,+45}
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import Service from '@ember/service';
+
+//Stub location service
+const locationStub = Service.extend({
+  city: 'New York',
+  country: 'USA',
+  currentLocation: {
+    x: 1234,
+    y: 5678
+  },
+
+  getCurrentCity() {
+    return this.get('city');
+  },
+  getCurrentCountry() {
+    return this.get('country');
+  }
+});
+
+moduleForComponent('location-indicator', 'Integration | Component | location indicator', {
+  integration: true,
+
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+    // Calling inject puts the service instance in the context of the test,
+    // making it accessible as "locationService" within each test
+    this.inject.service('location-service', { as: 'locationService' });
+  }
+});
+
+test('should reveal current location', function(assert) {
+  this.render(hbs`{{location-indicator}}`);
+  assert.equal(this.$().text().trim(), 'You currently are located in New York, USA');
+});
+
 test('should change displayed location when current location changes', function (assert) {
   this.render(hbs`{{location-indicator}}`);
   assert.equal(this.$().text().trim(), 'You currently are located in New York, USA', 'origin location should display');

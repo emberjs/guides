@@ -37,8 +37,9 @@ In our generated test, ember-cli already uses the `moduleFor` helper to set up a
 container:
 
 ```tests/unit/controllers/posts-test.js
-moduleFor('controller:posts', {
-});
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('controller:posts', {});
 ```
 
 Next we use `this.subject()` to get an instance of the `PostsController` and
@@ -47,6 +48,10 @@ write a test to check the action. `this.subject()` is a helper method from the
 using `moduleFor`.
 
 ```tests/unit/controllers/posts-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('controller:posts', {});
+
 test('should update A and B on setProps action', function(assert) {
   assert.expect(4);
 
@@ -87,9 +92,7 @@ export default Controller.extend({
 ```
 
 ```app/controllers/comments.js
-import Controller, {
-  inject as controller
-} from '@ember/controller';
+import Controller, { inject as controller } from '@ember/controller';
 import { alias } from "@ember/object/computed";
 
 export default Controller.extend({
@@ -102,6 +105,10 @@ This time when we setup our `moduleFor` we need to pass an options object as
 our third argument that has the controller's `needs`.
 
 ```tests/unit/controllers/comments-test.js
+import { moduleFor, test } from 'ember-qunit';
+import EmberObject from "@ember/object";
+import { run } from '@ember/runloop';
+
 moduleFor('controller:comments', 'Comments Controller', {
   needs: ['controller:post']
 });
@@ -111,6 +118,14 @@ Now let's write a test that sets a property on our `post` model in the
 `PostController` that would be available on the `CommentsController`.
 
 ```tests/unit/controllers/comments-test.js
+import { moduleFor, test } from 'ember-qunit';
+import EmberObject from "@ember/object";
+import { run } from '@ember/runloop';
+
+moduleFor('controller:comments', 'Comments Controller', {
+  needs: ['controller:post']
+});
+
 test('should modify the post model', function(assert) {
   assert.expect(2);
 

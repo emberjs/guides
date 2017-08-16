@@ -54,7 +54,7 @@ with the `moduleForComponent` helpers, as shown in [Testing Components].
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('format-currency', 'Integration | Component | pretty color', {
+moduleForComponent('format-currency', 'Integration | Helper | format currency', {
   integration: true
 });
 
@@ -71,6 +71,13 @@ test('formats 199 with $ as currency sign', function(assert) {
 We can now also properly test if a helper will respond to property changes.
 
 ```tests/integration/helpers/format-currency-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('format-currency', 'Integration | Helper | format currency', {
+  integration: true
+});
+
 test('updates the currency sign when it changes', function(assert) {
   this.set('value', 199);
   this.set('sign', '$');
