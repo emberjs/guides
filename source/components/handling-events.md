@@ -128,7 +128,7 @@ To utilize an `event` object as a function parameter:
 
 The event handling examples described above respond to one set of events.
 The names of the built-in events are listed below. Custom events can be
-registered by using [Application.customEvents][customEvents].
+registered by using [Application.customEvents](http://emberjs.com/api/classes/Ember.Application.html#property_customEvents).
 
 Touch events:
 
@@ -173,5 +173,3 @@ HTML5 drag and drop events:
 * `dragOver`
 * `dragEnd`
 * `drop`
-
-[customEvents]: http://emberjs.com/api/classes/Ember.Application.html#property_customEvents

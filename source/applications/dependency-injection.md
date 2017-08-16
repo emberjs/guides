@@ -2,11 +2,11 @@ Ember applications utilize the [dependency injection](https://en.wikipedia.org/w
 ("DI") design pattern to declare and instantiate classes of objects and dependencies between them.
 Applications and application instances each serve a role in Ember's DI implementation.
 
-An [`Application`][http://emberjs.com/api/classes/Ember.Application.html] serves as a "registry" for dependency declarations.
+An [`Application`](http://emberjs.com/api/classes/Ember.Application.html) serves as a "registry" for dependency declarations.
 Factories (i.e. classes) are registered with an application,
 as well as rules about "injecting" dependencies that are applied when objects are instantiated.
 
-An [`ApplicationInstance`][http://emberjs.com/api/classes/Ember.ApplicationInstance.html] serves as the "owner" for objects that are instantiated from registered factories.
+An [`ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) serves as the "owner" for objects that are instantiated from registered factories.
 Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
 
 > _Note: Although an `Application` serves as the primary registry for an app,

@@ -138,9 +138,9 @@ export default Route.extend({
 });
 ```
 
-This code example uses the latest features in JavaScript, some of which
-you may not be familiar with. Learn more with this [overview of the
-newest JavaScript features](https://ponyfoo.com/articles/es6).
+This code example uses the latest features in JavaScript,
+some of which you may not be familiar with.
+Learn more with this [overview of the newest JavaScript features](https://ponyfoo.com/articles/es6).
 
 In a route's `model()` method, you return whatever data you want to make available to the template.
 If you need to fetch data asynchronously,

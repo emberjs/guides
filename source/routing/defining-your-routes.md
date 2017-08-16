@@ -39,10 +39,8 @@ Router.map(function() {
 });
 ```
 
-Inside your templates, you can use [`{{link-to}}`][1] to navigate between
+Inside your templates, you can use [`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to) to navigate between
 routes, using the name that you provided to the `route` method.
-
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to
 
 ```handlebars
 {{#link-to "index"}}<img class="logo">{{/link-to}}

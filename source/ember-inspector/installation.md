@@ -4,7 +4,7 @@ browsers (via a bookmarklet), and on mobile devices by following the steps below
 ### Google Chrome
 
 You can install the Inspector on Google Chrome as a new Developer
-Tool. To begin, visit the Extension page on the [Chrome Web Store][ember-inspector-chrome].
+Tool. To begin, visit the Extension page on the [Chrome Web Store](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi).
 
 Click on "Add To Chrome":
 
@@ -14,8 +14,6 @@ Once installed, go to an Ember application, open the Developer Tools,
 and click on the `Ember` tab at the far right.
 
 <img src="../../images/guides/ember-inspector/installation-chrome-panel.png" width="680">
-
-[ember-inspector-chrome]: https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi
 
 #### File:// protocol
 
@@ -81,6 +79,4 @@ To open the Inspector, click on the new bookmark. Safari blocks popups by defaul
 ### Mobile Devices
 
 If you want to run the Inspector on a mobile device,
-you can use the [Ember CLI Remote Inspector][ember-cli-remote-inspector] addon.
-
-[ember-cli-remote-inspector]: https://github.com/joostdevries/ember-cli-remote-inspector
+you can use the [Ember CLI Remote Inspector](https://github.com/joostdevries/ember-cli-remote-inspector) addon.

@@ -6,11 +6,9 @@ your browser's console, or activate the debugger from your templates.
 
 ### Logging
 
-The [`{{log}}`][1] helper makes it easy to output variables or expressions in
+The [`{{log}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_log) helper makes it easy to output variables or expressions in
  the
 current rendering context into your browser's console:
-
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_log
 
 ```handlebars
 {{log 'Name is:' name}}
@@ -20,11 +18,10 @@ The `{{log}}` helper also accepts primitive types such as strings or numbers.
 
 ### Adding a breakpoint
 
-The [``{{debugger}}``][2] helper provides a handlebars equivalent to JavaScript's
+The [``{{debugger}}``](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_debugger) helper provides a handlebars equivalent to JavaScript's
 `debugger` keyword.  It will halt execution inside the debugger helper and give
 you the ability to inspect the current rendering context:
 
-[2]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_debugger
 
 ```handlebars
 {{debugger}}
