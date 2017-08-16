@@ -254,8 +254,8 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     this.get('filter')('').then((allResults) => {
-      this.set('results', allResults.results));
-    };
+      this.set('results', allResults.results);
+    });
   },
 
   actions: {
