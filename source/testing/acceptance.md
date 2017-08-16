@@ -9,7 +9,7 @@ This generates this file:
 
 ```tests/acceptance/login-test.js
 import { test } from 'qunit';
-import moduleForAcceptance from 'people/tests/helpers/module-for-acceptance';
+import moduleForAcceptance from 'my-app/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | login');
 
@@ -31,6 +31,11 @@ Almost every test has a pattern of visiting a route, interacting with the page
 For example:
 
 ```tests/acceptance/new-post-appears-first-test.js
+import { test } from 'qunit';
+import moduleForAcceptance from 'my-app/tests/helpers/module-for-acceptance';
+
+moduleForAcceptance('Acceptance | posts');
+
 test('should add new post', function(assert) {
   visit('/posts/new');
   fillIn('input.title', 'My new post');
@@ -114,6 +119,11 @@ complete prior to progressing forward. Let's take a look at the following
 example.
 
 ```tests/acceptance/new-post-appears-first-test.js
+import { test } from 'qunit';
+import moduleForAcceptance from 'my-app/tests/helpers/module-for-acceptance';
+
+moduleForAcceptance('Acceptance | posts');
+
 test('should add new post', function(assert) {
   visit('/posts/new');
   fillIn('input.title', 'My new post');
@@ -195,11 +205,12 @@ Here is an example of an async helper:
 
 ```tests/helpers/dblclick.js
 import { registerAsyncHelper } from "@ember/test"
+import { run } from '@ember/runloop';
 
 export default registerAsyncHelper('dblclick',
   function(app, assert, selector, context) {
     let $el = findWithAssert(selector, context);
-    Ember.run(() => $el.dblclick());
+    run(() => $el.dblclick());
   }
 );
 

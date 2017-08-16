@@ -92,7 +92,7 @@ function definition can define the event object as its first parameter.
 
 ```js
 actions: {
-  signUp(event){ 
+  signUp(event){
   	// Only when assigning the action to an inline handler, the event object
     // is passed to the action as the first parameter.
   }
@@ -116,7 +116,7 @@ actions: {
 }
 ```
 
-To utilize an `event` object as a function parameter: 
+To utilize an `event` object as a function parameter:
 
 - Define the event handler in the component (which is designed to receive the
   browser event object).

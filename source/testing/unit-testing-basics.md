@@ -76,6 +76,12 @@ call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
 ```tests/unit/models/some-thing-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
+
 test('should update foo on testMethod', function(assert) {
   const someThing = this.subject();
   someThing.testMethod();
@@ -105,6 +111,12 @@ export default EmberObject.extend({
 The test would call the `calc` method and assert it gets back the correct value.
 
 ```tests/unit/models/some-thing-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
+
 test('should return incremented count on calc', function(assert) {
   const someThing = this.subject();
   assert.equal(someThing.calc(), 'count: 1');
@@ -134,6 +146,12 @@ In order to test the `doSomething` method we create an instance of `SomeThing`,
 update the observed property (`foo`), and assert that the expected effects are present.
 
 ```tests/unit/models/some-thing-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
+
 test('should set other prop to yes when foo changes', function(assert) {
   const someThing = this.subject();
   someThing.set('foo', 'baz');

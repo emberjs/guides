@@ -48,9 +48,9 @@ module.exports = function(environment) {
     locationType: 'none',
     …
   };
-  
+
   …
-  
+
   return ENV;
 }
 ```
