@@ -326,7 +326,7 @@ moduleForComponent('list-filter', 'Integration | Component | filter listing', {
 test('should initially load all listings', function (assert) {
   // we want our actions to return promises,
   //since they are potentially fetching data asynchronously
-  this.on('filterByCity', (val) => {
+  this.on('filterByCity', () => {
     return RSVP.resolve({ results: ITEMS });
   });
 });
@@ -358,7 +358,7 @@ moduleForComponent('list-filter', 'Integration | Component | filter listing', {
 test('should initially load all listings', function (assert) {
   // we want our actions to return promises,
   //since they are potentially fetching data asynchronously
-  this.on('filterByCity', (val) => {
+  this.on('filterByCity', () => {
     return RSVP.resolve({ results: ITEMS });
   });
 
@@ -405,7 +405,7 @@ const FILTERED_ITEMS = [{city: 'San Francisco'}];
 
 test('should initially load all listings', function (assert) {
   // we want our actions to return promises, since they are potentially fetching data asynchronously
-  this.on('filterByCity', (val) => {
+  this.on('filterByCity', () => {
     return RSVP.resolve({ results: ITEMS });
   });
 
@@ -441,9 +441,13 @@ We force the action by generating a `keyUp` event on our input field, and then a
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
-      return RSVP.resolve(ITEMS);
+      return RSVP.resolve({
+        query: val,
+        results: ITEMS });
     } else {
-      return RSVP.resolve(FILTERED_ITEMS);
+      return RSVP.resolve({
+        query: val,
+        results: FILTERED_ITEMS });
     }
   });
 
