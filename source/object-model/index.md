@@ -4,7 +4,7 @@ and sometimes they're referred to as "hashes".
 
 JavaScript objects don't support the observation of property value changes.
 Consequently, if an object is going to participate in Ember's binding
-system you may see an `Ember.Object` instead of a plain object.
+system you may have see an `Ember.Object` instead of a plain object.
 
 [Ember.Object](http://emberjs.com/api/classes/Ember.Object.html) also provides a class system, supporting features like mixins
 and constructor methods. Some features in Ember's object model are not present in
