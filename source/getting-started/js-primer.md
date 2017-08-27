@@ -2,18 +2,26 @@ While the Guides [assume you have a working knowledge of JavaScript](/#toc_assum
 when learning a new framework it can be hard to know what is JavaScript and what is framework,
 especially if you are newer to the ecosystem and less familiar with JavaScript.
 
-On top of that, many new features were introduced to JavaScript with the release of newer specifications like ECMAScript 2015 (also known as ECMAScript 6 or ES6, https://developer.mozilla.org/en/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla). With the current yearly cadence of ECMAScript specifications, developers might have not had time to get familiar with all the new features.
+On top of that, many new features were introduced to JavaScript with the release of newer specifications like ECMAScript 2015 (also known as ECMAScript 6 or ES6, https://developer.mozilla.org/en/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla).
+With the current yearly cadence of ECMAScript specifications,
+developers might have not had time to get familiar with all the new features.
 
-In this guide we will be covering some common JavaScript code patterns that appear in Ember applications, and in particular those that explore the new features provided in ES6, so you can get a clearer sense of where the language ends and the framework starts.
-## const & let variable declarations
+In this guide we will be covering some common JavaScript code patterns that appear in Ember applications,
+and in particular those that explore the new features provided in ES6,
+so you can get a clearer sense of where the language ends and the framework starts.
 
-Unlike some other programming languages, in JavaScript where your variables are created depends on how you declare them. Because of this, classic `var` variable declarations in JavaScript can sometimes be tricky and create confusion over a variable's life cycle.
+## `const` and `let` variable declarations
+
+Unlike some programming languages, in JavaScript where your variables are created depends on how you declare them.
+Because of this, classic `var` variable declarations in JavaScript can sometimes be tricky and create confusion over a variable's life cycle.
 
 By introducing the block-level variables (also sometimes called bindings) `const` and `let` in ES6, variable scope has been made easier to more explicitly control.
 
-### var
+### `var`
 
-In specifications prior to ES6 `var` variable declarations are *hoisted* to the top of the function they are declared irrespective of where in the function they are actually declared, including whether they are declared in a block such as an if statement. Note that such hoisting only applies to variable declaration, not its initialization/assignment.
+In specifications prior to ES6, `var` variable declarations are *hoisted* to the top of the function they are declared irrespective of where in the function they are actually declared,
+including whether they are declared in a block such as an if statement.
+Note that such hoisting only applies to variable declaration, not its initialization/assignment.
 
 Let's take a look at an example:  
 
@@ -30,13 +38,17 @@ function getName(person) {
 }
 ```
 
-### const & let
+### `const` and `let`
 
-#### The Basics, Block-Level Bindings
+#### Block-Level Bindings
 
-On the other hand, `const` and `let` are both block-level bindings, and because of this they are not accessible outside of the given block scope (meaning in a `function` or in `{}`) they are declared in. Also, `const` and `let` both have specific characteristics that allow you to infer more about what the variables are being used for.
+On the other hand, `const` and `let` are both block-level bindings.
+Because of this they are not accessible outside of the given block scope (meaning in a `function` or in `{}`) they are declared in.
+Also, `const` and `let` both have specific characteristics that allow you to infer more about what the variables are being used for.
 
-`let` more or less can be used as a `var` was used, but with the important distinction that `let` declarations are *not* hoisted to the top of their enclosing block, so it's best to place them above where you will need to make reference to them.
+`let` more or less can be used as a `var` was used,
+but with the important distinction that `let` declarations are *not* hoisted to the top of their enclosing block,
+so it's best to place them above where you will need to make reference to them.
 
 ``` javascript
 function getName(person) {
@@ -59,15 +71,18 @@ const firstName = 'Gob'; // valid
 firstName = 'George Michael'; // invalid, no re-assignment
 ```
 
-Both `const` and `let` declarations cannot be accessed until after their declaration, and any attempt to access such bindings before their declarations occurs in what is known in the community as the temporal dead zone.
+Both `const` and `let` declarations cannot be accessed until after their declaration,
+and any attempt to access such bindings before their declarations occurs in what is known in the community as the temporal dead zone.
 
 #### Deeper Dive, Global Variables
 
-Additionally, when `var` is used in the global scope a new global variable is created, which is a property on the global object (for example, the window object in a browser).
+Additionally, when `var` is used in the global scope a new global variable is created,
+which is a property on the global object (for example, the window object in a browser).
 
 For `let` or `const`, a new variable is created, but no property on the global object is generated.
 
-The result is that you cannot overwrite a global variable using `let` or `const` declarations, only shadowing is possible.
+The result is that you cannot overwrite a global variable using `let` or `const` declarations,
+only shadowing is possible.
 
 #### Deeper Dive, Loop behavior
 
@@ -82,7 +97,9 @@ for (var i = 0; i < 3; i++) {
 // i still accessible here
 ```
 
-Because loop variables are accessible from outside the scope of a loop, when creating a function inside of a loop, the counter variable is shared across each iteration, potentially causing unexpected behavior.
+Because loop variables are accessible from outside the scope of a loop,
+when creating a function inside of a loop, the counter variable is shared across each iteration,
+potentially causing unexpected behavior.
 
 ``` javascript
 var someArray = [];
@@ -97,7 +114,8 @@ someArray.forEach(function(item) {
 });
 ```
 
-While an immediately invoked function expression (IIFE) could be used to correct for this unexpected behavior, the use of `let` declaration for the counter variable makes this unnecessary and arguably more cleanly solves the issue creating a new counter variable on each iteration through the loop.
+While an immediately invoked function expression (IIFE) could be used to correct for this unexpected behavior,
+the use of `let` declaration for the counter variable makes this unnecessary and arguably more cleanly solves the issue creating a new counter variable on each iteration through the loop.
 
 ``` javascript
 var someArray = [];
