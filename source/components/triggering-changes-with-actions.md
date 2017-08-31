@@ -290,7 +290,7 @@ export default Ember.Component.extend({
 ```
 
 We want to arrange for the action to be invoked from within `button-with-confirmation` with both arguments.
-We've seen already that if we provide a `messageType` value to the `action` helper when we insert `buttton-with-confirmation` into its parent `send-message` template,
+We've seen already that if we provide a `messageType` value to the `action` helper when we insert `button-with-confirmation` into its parent `send-message` template,
 that value will be passed to the `sendMessage` action as its first argument automatically when invoked as `onConfirm`.
 If we subsequently pass a single additional argument to `onConfirm` explicitly,
 that argument will be passed to `sendMessage` as its second argument
