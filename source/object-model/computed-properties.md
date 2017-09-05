@@ -12,6 +12,8 @@ We'll start with a simple example.
 We have a `Person` object with `firstName` and `lastName` properties, but we also want a `fullName` property that joins the two names when either of them changes:
 
 ```javascript
+import Ember from 'ember':
+
 Person = Ember.Object.extend({
   // these will be supplied by `create`
   firstName: null,
@@ -43,6 +45,8 @@ Changing any of the dependent properties causes the cache to invalidate, so that
 In the previous example, the `fullName` computed property depends on two other properties:
 
 ```javascript
+import Ember from 'ember':
+
 …
   fullName: Ember.computed('firstName', 'lastName', function() {
     let firstName = this.get('firstName');
@@ -57,6 +61,8 @@ We can also use a short-hand syntax called _brace expansion_ to declare the depe
 You surround the dependent properties with braces (`{}`), and separate with commas, like so:
 
 ```javascript
+import Ember from 'ember':
+
 …
   fullName: Ember.computed('{firstName,lastName}', function() {
     let firstName = this.get('firstName');
@@ -70,6 +76,8 @@ You surround the dependent properties with braces (`{}`), and separate with comm
 This is especially useful when you depend on properties of an object, since it allows you to replace:
 
 ```javascript
+import Ember from 'ember':
+
 let obj = Ember.Object.extend({
   baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
 
@@ -82,6 +90,8 @@ let obj = Ember.Object.extend({
 With:
 
 ```javascript
+import Ember from 'ember':
+
 let obj = Ember.Object.extend({
   baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
 
@@ -98,6 +108,8 @@ Let's add a `description` computed property to the previous example,
 and use the existing `fullName` property and add in some other properties:
 
 ```javascript
+import Ember from 'ember':
+
 Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
@@ -145,6 +157,8 @@ If you try to set a computed property, it will be invoked with the key (property
 You must return the new intended value of the computed property from the setter function.
 
 ```javascript
+import Ember from 'ember':
+
 Person = Ember.Object.extend({
   firstName: null,
   lastName: null,
@@ -177,6 +191,8 @@ Ember provides a number of computed property macros, which are shorter ways of e
 In this example, the two computed properties are equivalent:
 
 ```javascript
+import Ember from 'ember':
+
 Person = Ember.Object.extend({
   fullName: 'Tony Stark',
 
