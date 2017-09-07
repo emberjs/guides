@@ -5,7 +5,7 @@ This tool provides:
 * Modern application asset management (including concatenation, minification, and versioning).
 * Generators to help create components, routes, and more.
 * A conventional project layout, making existing Ember applications easy to approach.
-* Support for ES2015/ES6 JavaScript via the [Babel](http://babeljs.io/docs/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
+* Support for ES2015/ES6 JavaScript via the [Babel](https://babeljs.io/learn-es2015/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
 * A complete [QUnit](https://qunitjs.com/) test harness.
 * The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
 
@@ -35,7 +35,8 @@ If you get a *"command not found"* error or an outdated version for Node:
 
 * Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/en/download/).
 * Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After
-installing Homebrew, run `brew install node` to install Node.js.
+installing Homebrew, run `brew install node` to install Node.js. Alternatively, installer packages are available directly
+from [Node.js](https://nodejs.org/en/download/).
 * Linux users can use [this guide for Node.js installation on Linux](https://nodejs.org/en/download/package-manager/).
 
 If you get an outdated version of npm, run `npm install -g npm`.
@@ -43,11 +44,6 @@ If you get an outdated version of npm, run `npm install -g npm`.
 ### Watchman (optional)
 
 On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
-
-### PhantomJS (optional)
-
-You can run your tests from the command line with PhantomJS, without the
-need for a browser to be open. Consult the [PhantomJS download instructions](http://phantomjs.org/download.html).
 
 ## Installation
 
