@@ -1,0 +1,24 @@
+{
+  "name": "ember-guides",
+  "version": "1.0.0",
+  "description": "The source for the Ember.js guides.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext md source/localizable"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:emberjs/guides.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emberjs/guides/issues"
+  },
+  "homepage": "https://github.com/emberjs/guides#readme",
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-plugin-ember": "^3.0.1",
+    "eslint-plugin-markdown": "^1.0.0-beta.3"
+  }
+}

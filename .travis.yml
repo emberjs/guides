@@ -1,12 +1,19 @@
 language: ruby
 sudo: false
 rvm:
-- 1.9.3
+  - 1.9.3
+
+install:
+  - nvm install 6.9
+  - nvm use 6.9
+  - npm install
+
 addons:
   apt:
     packages:
     - aspell-en
 cache: bundler
+before_script: npm run lint
 script: bundle exec rspec spec && bundle exec middleman build --verbose
 deploy:
   skip_cleanup: true
