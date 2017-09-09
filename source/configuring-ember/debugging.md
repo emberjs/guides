@@ -133,8 +133,13 @@ Backburner has support for stitching the stacktraces together so that you can
 track down where an erroring `Ember.run.later` is being initiated from. Unfortunately,
 this is quite slow and is not appropriate for production or even normal development.
 
-To enable this mode you can set:
+To enable Backburner's full stacktrace mode (and thus determine the stack of the task
+when it was scheduled onto the run loop) you can set:
 
 ```javascript
 Ember.run.backburner.DEBUG = true;
 ```
+
+Once the `DEBUG` value is set to `true`, when you are at a breakpoint you can navigate
+back up the stack to the `flush` method in and check the `errorRecordedForStack.stack`
+value, which will be the captured stack when this job was scheduled.
