@@ -17,9 +17,9 @@ every instance of that class will share the same array/object.
 Let's look at an example.
 
 We will start with a `Framework` class.
-`Framework` has two properties, a `language` string, and a `versions` array.
+`Framework` has two propert ies, a `language` string, and a `versions` array.
 If you are not familiar with the `class` syntax, you can read about it on [the MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-We will be using the `class` syntax, if you are not familiar you can read more on 
+We will be using the `class` syntax, if you are not familiar you can read more on
 We'll then create two instances of that class, `ember` and `phoenix`.
 
 ```javascript
@@ -43,7 +43,7 @@ export default Ember.Component.extend({
 ```javascript
 export default Ember.Component.extend({
   todos: null,
-  
+
   init() {
     this._super(...arguments);
     this.todos = [
@@ -52,3 +52,59 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+## Arrow Functions
+
+You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. ES6 has introduced the arrow function partly to make it easier to handle `this` binding as it's a common source of error.
+
+### Syntax of arrow functions
+
+You can create a simple arrow function with a single argument without parens in this way:
+```javascript
+let someArrowFunc = value => value; // note the lack of parens around the arg value
+```
+Is just like:
+```javascript
+let someArrowFunc = function(value) {
+  return value;
+}
+```
+
+You can also create an arrow function passing in multiple arguments, but such a declaration requires parens:
+```javascript
+let someArrowFunc = (value1, value2) => value1 || value2; // note the parens around the args
+```
+Is just like:
+```javascript
+let someArrowFunc = function(value1, value2) {
+  return value1 || value2;
+}
+```
+
+For an arrow function without any arguments you must include an empty set of parens:
+```javascript
+let someArrowFunc = () => "I have no args"; // note the empty parens
+```
+Is just like:
+```javascript
+let someArrowFunc = function() {
+  return "I have no args";
+}
+```
+
+Of course you can also include a function body wrapped in `{}`:
+```javascript
+let someArrowFunc = (value) => {
+  return value;
+}
+```
+Is just like:
+```javascript
+let someArrowFunc = function(value) {
+  return value;
+}
+```
+
+### `this` Binding
+
+`this` binding is a really common source of error in JavaScript. 
