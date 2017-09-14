@@ -12,18 +12,17 @@ so you can get a clearer sense of where the language ends and the framework star
 
 ## `const` and `let` variable declarations
 
-Unlike some programming languages, in JavaScript where your variables are created depends on how you declare them.
-Because of this, classic `var` variable declarations in JavaScript can sometimes be tricky and create confusion over a variable's life cycle.
-
-By introducing the block-level variables (also sometimes called bindings) `const` and `let` in ES6, variable scope has been made easier to more explicitly control.
+In JavaScript, prior to ES6, there was only one variable declaration known as `var`. With ES6's `const` and `let` declarations there are now a few additional ways to declare variables that change when and how variables can be used.
 
 ### `var`
 
-In specifications prior to ES6, `var` variable declarations are *hoisted* to the top of the function they are declared irrespective of where in the function they are actually declared,
-including whether they are declared in a block such as an if statement.
-Note that such hoisting only applies to variable declaration, not its initialization/assignment.
+Classic `var` variable declarations are treated as if they were declared at the top of the function they are declared in irrespective of where in the function they are actually declared,
+including whether they are declared in a block such as an if statement. This treatment of `var` declarations is sometimes known as *hoisting*.
+Note that such hoisting only applies to a variable's declaration, not its initialization/assignment.
 
-Let's take a look at an example:  
+Because of hoisting, classic `var` variable declarations in JavaScript can sometimes be tricky and create confusion over a variable's life cycle.
+
+Let's take a look at an example of hoisting with `var`:  
 
 ``` javascript
 function getName(person) {
@@ -40,9 +39,11 @@ function getName(person) {
 
 ### `const` and `let`
 
+By introducing the block-level variables (also sometimes called bindings) `const` and `let` in ES6, variable scope has been made easier to more explicitly control.
+
 #### Block-Level Bindings
 
-On the other hand, `const` and `let` are both block-level bindings.
+`const` and `let` are both block-level bindings.
 Because of this they are not accessible outside of the given block scope (meaning in a `function` or in `{}`) they are declared in.
 Also, `const` and `let` both have specific characteristics that allow you to infer more about what the variables are being used for.
 
