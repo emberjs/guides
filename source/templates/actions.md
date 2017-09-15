@@ -75,6 +75,12 @@ You can specify an alternative event by using the `on` option.
 </p>
 ```
 
+To handle multiple events on the same element, attach an action to each type of event you'd like to handle:
+
+```handlebars
+<a {{action 'select' on="click"}} {{action 'foo' on="mouseEnter"}} {{action 'bar' on="mouseLeave"}}>{{post.title}}</a>
+```
+
 You should use the <code>camelCased</code> event names, so two-word names like `keypress`
 become `keyPress`.
 
