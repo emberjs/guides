@@ -20,6 +20,8 @@ a relational database or a not.
 
 ### Step by step initial setup
 
+#### Models
+
 First, define a Model for each kind of record that should be available in your
 app. Anything that a user should be able to create, see, edit, or delete should
 have a Model for it. For example, a photo sharing application might have a
@@ -38,6 +40,8 @@ and it's defined once in its own file. The model function (aka hook) is found
 in many route files, and it's usually responsible for looking up data in the
 store.
 
+#### Adapter
+
 Next, create an adapter and set the URL that your back end requests should go
 to. When your app makes requests, by default they will use
 the URL in your adapter plus the plural model name. Your adapter will follow
@@ -48,6 +52,8 @@ talk to different types of servers without you writing any networking code.
 Or, if you need to, you can write your own custom adapter.
 
 [adapters]: http://emberobserver.com/categories/ember-data-adapters
+
+#### Serializer
 
 Time to create a serializer, if you even need one. If your back end follows
 JSONAPI specification, you are good to go. If not, or if you have some front end
@@ -63,6 +69,8 @@ most new apps can just define one application-wide adapter that is used for
 all record types. These tools let you completely change how your API is
 implemented without impacting your front end Ember application code.
 
+#### Making Server Requests
+
 Now you're ready to start making requests. If you have done front end
 development before, you may be familiar with writing requests by hand, on an
 as-needed and repeated basis... but here, Ember Data does all the heavy lifting.
@@ -70,7 +78,9 @@ All you need to do is call a few special methods (like `findAll`, `findRecord`,
 `save`, and `destroy`) and the requests will be constructed for you, using
 information from your Models, Serializer, and Adapter.
 
-When response is received from the back end server, it is matched up with a
+#### Loading the Server Response
+
+When response is received from the back end server, it is automatically matched up with a
 Model and saved in the Store. The store is a local cache of data that is kept
 up to date as you make more requests. This means that anywhere in your
 app that you need to reference or display data, you're looking at a single
@@ -80,8 +90,27 @@ throughout your app, it will look in the Store first for the records, and
 save you an unnecessary server request. This is one of the ways that Ember
 apps achieve a speedy, smooth interface.
 
+#### Benefits to the developer
+
 All of these tools combined lead to fewer lines of code, high maintainability
 and extensibility, and an easy pathway for supporting changes made to your back end.
+
+## Frequently Asked Questions
+
+## Can I use Ember Data with my rare and special back end server/database?
+
+Yes, with some work on your part to write your own serializers and adapters.
+One of the goals of Ember Data is to make it possible to iterate on the back
+end without requiring a rewrite of the front end. For example, if a
+well-constructed Ember app is making its requests to a legacy back end server,
+switching over to a new server API could be as simple as writing some new
+adapters and serializers. This is one of the reasons why Ember is a good
+choice for long-lived or complex applications.
+
+## Do I need to use Ember Data in my Ember app?
+No. If you prefer to manage requests yourself, you can. Some developers pick
+and choose which Ember Data tools to utilize, such as fetching information
+manually but still loading it into the Store.
 
 ## Why is JSON API the default?
 
@@ -116,7 +145,7 @@ breaking your frontend. And as you add apps for other platforms, such as
 iOS and Android, you will be able to leverage JSON API libraries for
 those platforms to easily consume the same API your Ember app uses.
 
-## Architecture and Asynchronous Requests
+## How are server communications handled? Are they asynchronous?
 
 The first time your application asks the store for a record, the store
 sees that it doesn't have a local copy and requests it from your
