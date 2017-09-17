@@ -86,7 +86,7 @@ To do that, the first step is to create a route.
 For now, you can think of routes as being the different pages that make up your application.
 
 Ember comes with _generators_ that automate the boilerplate code for common tasks.
-To generate a route, type this in your terminal:
+To generate a route, type this in a new terminal window in your `ember-quickstart` directory:
 
 ```sh
 ember generate route scientists
