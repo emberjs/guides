@@ -112,7 +112,7 @@ Once we have a new project in place, we can confirm everything is working by
 starting the Ember development server:
 
 ```shell
-ember server
+ember serve
 ```
 
 or, for short:
