@@ -55,9 +55,11 @@ export default Ember.Component.extend({
 
 ## Object Literal Shorthand
 
+In ES6 some functionality was added that allows the use of terser syntax for object literal properties and methods, along with some enhanced functionality for property names.
+
 ### Property intializer syntax
 
-In ES6 properties can be set on object literals without by including the name of the property without the typical colon and value if the object property the same as the local variable you intend to set as the value of that property. This helps reduce duplication. 
+Now properties can be set on object literals without by including the name of the property without the typical colon and value if the object property the same as the local variable you intend to set as the value of that property. This helps reduce duplication. 
 
 For example:
 ```javascript  
@@ -68,7 +70,7 @@ function someFunc(thing1, thing2) {
   };
 }
 ```
-You can now also set duplicate properties on objects without throwing an error when in strict mode.
+However, you can now also set duplicate properties (where properties named the same) on objects without throwing an error when in strict mode.
 
 ### Concise Methods
 
@@ -94,6 +96,6 @@ let some = "thing ";
 let object = {
 	[some + "1"]: "This is the thing."
 };
-console.log(["thing 1"]); // ouputs "This is the thing."
+console.log(["thing 1"]); // outputs "This is the thing."
 ```  
 
