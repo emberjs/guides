@@ -17,9 +17,9 @@ every instance of that class will share the same array/object.
 Let's look at an example.
 
 We will start with a `Framework` class.
-`Framework` has two propert ies, a `language` string, and a `versions` array.
+`Framework` has two properties, a `language` string, and a `versions` array.
 If you are not familiar with the `class` syntax, you can read about it on [the MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-We will be using the `class` syntax, if you are not familiar you can read more on
+We will be using the `class` syntax, if you are not familiar you can read more on 
 We'll then create two instances of that class, `ember` and `phoenix`.
 
 ```javascript
@@ -51,6 +51,7 @@ export default Ember.Component.extend({
     ]
   }
 });
+```
 
 ## Arrow Functions
 
