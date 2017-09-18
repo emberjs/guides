@@ -51,11 +51,21 @@ export default Ember.Component.extend({
     ]
   }
 });
-```
 
 ## Arrow Functions
 
-You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. ES6 has introduced the arrow function partly to make it easier to handle `this` binding as it's a common source of error.
+You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. Arrow functions introduce a more concise syntax for functions, but they also have a number of differences from classic JavaScript functions. 
+
+Arrow functions:
+
+* can make handling `this` binding more convenient. `this`, `super`, `arguments`, and `new.target` bindings are inherited from the closest containing non-arrow function. 
+* cannot be called with `new`
+* have no prototype
+* no arguments object, must rely on named parameters
+* no duplicate parameters
+* are often better optimized by JavaScript engines
+
+Because the inheritance of `this` re-assigning or binding `this` from a containing function in order to preserve the context can be unnecessary, eliminating common patterns developed around such preservation of context.  
 
 ### Syntax of arrow functions
 
@@ -105,6 +115,4 @@ let someArrowFunc = function(value) {
 }
 ```
 
-### `this` Binding
 
-`this` binding is a really common source of error in JavaScript. 
