@@ -52,3 +52,48 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+## Object Literal Shorthand
+
+### Property intializer syntax
+
+In ES6 properties can be set on object literals without by including the name of the property without the typical colon and value if the object property the same as the local variable you intend to set as the value of that property. This helps reduce duplication. 
+
+For example:
+```javascript  
+function someFunc(thing1, thing2) {
+  return {
+    thing1, // is equivalent to thing1: thing1
+    thing2 // is equivalent to thing2: thing2
+  };
+}
+```
+You can now also set duplicate properties on objects without throwing an error when in strict mode.
+
+### Concise Methods
+
+ES6 eliminates the colon and function keyword from assigning methods to object literals. For example:
+
+```javascript
+let someObject = {
+  thing1,
+  someFunc() { // is essentially equivalent to someFunc: function() {
+	//some code;
+  }
+};
+```
+
+The one difference with concise methods is that they can use super to access an object's prototype whereas regular methods cannot.
+
+### Computed property names
+
+Not to be confused with computed ember `computed properties`, computed property *names*, which were available previously, in ES6 can now be used to include expressions to define the name of a property. For example:
+
+```javascript
+let some = "thing ";
+let object = {
+	[some + "1"]: "This is the thing."
+};
+console.log(["thing 1"]); // ouputs "This is the thing."
+```  
+
