@@ -236,6 +236,7 @@ sidenote
 singularize
 spellcheck
 sql
+stacktrace
 stacktraces
 stateful
 stylesheets
