@@ -19,7 +19,7 @@ Let's look at an example.
 We will start with a `Framework` class.
 `Framework` has two properties, a `language` string, and a `versions` array.
 If you are not familiar with the `class` syntax, you can read about it on [the MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-We will be using the `class` syntax, if you are not familiar you can read more on 
+We will be using the `class` syntax, if you are not familiar you can read more on
 We'll then create two instances of that class, `ember` and `phoenix`.
 
 ```javascript
@@ -55,11 +55,11 @@ export default Ember.Component.extend({
 
 ## Arrow Functions
 
-You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. Arrow functions introduce a more concise syntax for functions, but they also have a number of differences from classic JavaScript functions. 
+You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. Arrow functions introduce a more concise syntax for functions, but they also have a number of differences from classic JavaScript functions.
 
 Arrow functions:
 
-* can make handling `this` binding more convenient. `this`, `super`, `arguments`, and `new.target` bindings are inherited from the closest containing non-arrow function. 
+* can make handling `this` binding more convenient. `this`, `super`, `arguments`, and `new.target` bindings are inherited from the closest containing non-arrow function.
 * cannot be called with `new`
 * have no prototype
 * no arguments object, must rely on named parameters
@@ -116,4 +116,10 @@ let someArrowFunc = function(value) {
 }
 ```
 
-
+And arrow functions can also be used as callbacks functions as well:
+```javascript
+this.someArray.map((element) => {
+  // note the anonymous arrow callback function passed to map
+  // some code
+});
+```
