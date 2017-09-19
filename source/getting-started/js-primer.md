@@ -19,7 +19,7 @@ Let's look at an example.
 We will start with a `Framework` class.
 `Framework` has two properties, a `language` string, and a `versions` array.
 If you are not familiar with the `class` syntax, you can read about it on [the MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-We will be using the `class` syntax, if you are not familiar you can read more on 
+We will be using the `class` syntax, if you are not familiar you can read more on
 We'll then create two instances of that class, `ember` and `phoenix`.
 
 ```javascript
@@ -43,7 +43,7 @@ export default Ember.Component.extend({
 ```javascript
 export default Ember.Component.extend({
   todos: null,
-  
+
   init() {
     this._super(...arguments);
     this.todos = [
@@ -55,31 +55,67 @@ export default Ember.Component.extend({
 
 ## Object Literal Shorthand
 
-In ES6 some functionality was added that allows the use of terser syntax for object literal properties and methods, along with some enhanced functionality for property names.
+ES6 introduced a new more succinct syntax for object literal properties and methods, along with some enhanced functionality for property names.
 
-### Property intializer syntax
+### Property Initializer Syntax
 
-Now properties can be set on object literals without by including the name of the property without the typical colon and value if the object property the same as the local variable you intend to set as the value of that property. This helps reduce duplication. 
+Properties can now be set on object literals by including the name of the property only without the typical colon and value. This prevents some duplication when the object property is the same as the local variable you intend to set as the value of that property.
 
-For example:
-```javascript  
+For example, this:
+```javascript
 function someFunc(thing1, thing2) {
   return {
-    thing1, // is equivalent to thing1: thing1
-    thing2 // is equivalent to thing2: thing2
+    thing1: thing1,
+    thing2: thing2
   };
 }
 ```
-However, you can now also set duplicate properties (where properties named the same) on objects without throwing an error when in strict mode.
+
+Can be written like this in ES6 using the property initializer syntax:
+```javascript  
+function someFunc(thing1, thing2) {
+  return {
+    thing1, // no colon and value
+    thing2
+  };
+}
+```
+Note that if duplication is your intent you can now set duplicate properties on objects without throwing an error when in strict mode, which was not possible in ES5.
+
+So this now works:
+
+```javascript  
+function someFunc(thing1, thing1) {
+  "use strict";
+
+  return {
+    thing1,
+    thing1 // no error here
+  };
+}
+```
 
 ### Concise Methods
 
-ES6 eliminates the colon and function keyword from assigning methods to object literals. For example:
+ES6 also eliminates the colon and function keyword from assigning methods to object literals.
+
+For example, this:
 
 ```javascript
 let someObject = {
   thing1,
-  someFunc() { // is essentially equivalent to someFunc: function() {
+  someFunc: function() {
+	//some code;
+  }
+};
+```
+
+Can be written like this in ES6 using the concise method syntax:
+
+```javascript
+let someObject = {
+  thing1,
+  someFunc() { // no colon and function keyword
 	//some code;
   }
 };
@@ -98,4 +134,3 @@ let object = {
 };
 console.log(["thing 1"]); // outputs "This is the thing."
 ```  
-
