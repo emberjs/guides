@@ -119,7 +119,7 @@ let person = {
   firstName,
   lastName,
   fullName: function() {
-	//some code;
+	//some code
   }
 };
 ```
@@ -134,21 +134,9 @@ let person = {
   firstName,
   lastName,
   fullName() { // no colon and function keyword
-	//some code;
+	//some code
   }
 };
 ```
 
 The one difference with concise methods is that they can use super to access an object's prototype whereas regular methods cannot.
-
-### Computed property names
-
-Not to be confused with computed ember `computed properties`, computed property *names*, which were available previously, in ES6 can now be used to include expressions to define the name of a property. For example:
-
-```javascript
-let first = "first ";
-let person = {
-	[first + "name"]: "Yehuda"
-};
-console.log(person["first name"]); // outputs "Yehuda"
-```  
