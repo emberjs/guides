@@ -63,36 +63,46 @@ Properties can now be set on object literals by including the name of the proper
 
 For example, this:
 ```javascript
-function someFunc(thing1, thing2) {
-  return {
-    thing1: thing1,
-    thing2: thing2
+  let firstName = "Yehuda";
+  let lastName  = "Katz";
+
+  let person = {
+    firstName: firstName,
+    lastName: lastName
   };
-}
 ```
 
-Can be written like this in ES6 using the property initializer syntax:
+Can be written in ES6 as:
 ```javascript  
-function someFunc(thing1, thing2) {
-  return {
-    thing1, // no colon and value
-    thing2
-  };
-}
+let firstName = "Yehuda";
+let lastName  = "Katz";
+
+let person = {
+  firstName, // no colon and value
+  lastName
+};
 ```
-Note that if duplication is your intent you can now set duplicate properties on objects without throwing an error when in strict mode, which was not possible in ES5.
 
-So this now works:
+However the property name and the name of the value being set needs to match in order for this to work. For example, this does *not* work in ES6:
+```javascript  
+let foreName = "Yehuda";
+let surName  = "Katz";
+
+let person = {
+  firstName, // does not work
+  lastName
+};
+```
+
+Note that if duplication is your intent you can now set duplicate properties on objects without throwing an error when in strict mode, which was not possible in ES5. For example, this does work in ES6:
 
 ```javascript  
-function someFunc(thing1, thing1) {
   "use strict";
 
-  return {
-    thing1,
-    thing1 // no error here
+  let person = {
+    firstName: "Yehuda",
+    firstName: "Tom" // no error here
   };
-}
 ```
 
 ### Concise Methods
@@ -102,20 +112,28 @@ ES6 also eliminates the colon and function keyword from assigning methods to obj
 For example, this:
 
 ```javascript
-let someObject = {
-  thing1,
-  someFunc: function() {
+let firstName = "Yehuda";
+let lastName  = "Katz";
+
+let person = {
+  firstName,
+  lastName,
+  fullName: function() {
 	//some code;
   }
 };
 ```
 
-Can be written like this in ES6 using the concise method syntax:
+Can be written in ES6 as:
 
 ```javascript
-let someObject = {
-  thing1,
-  someFunc() { // no colon and function keyword
+let firstName = "Yehuda";
+let lastName  = "Katz";
+
+let person = {
+  firstName,
+  lastName,
+  fullName() { // no colon and function keyword
 	//some code;
   }
 };
@@ -128,9 +146,9 @@ The one difference with concise methods is that they can use super to access an 
 Not to be confused with computed ember `computed properties`, computed property *names*, which were available previously, in ES6 can now be used to include expressions to define the name of a property. For example:
 
 ```javascript
-let some = "thing ";
-let object = {
-	[some + "1"]: "This is the thing."
+let first = "first ";
+let person = {
+	[first + "name"]: "Yehuda"
 };
-console.log(["thing 1"]); // outputs "This is the thing."
+console.log(person["first name"]); // outputs "Yehuda"
 ```  
