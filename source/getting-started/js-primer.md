@@ -55,7 +55,7 @@ export default Ember.Component.extend({
 
 ## Object Literal Shorthand
 
-ES6 introduced a new more succinct syntax for object literal properties and methods, along with some enhanced functionality for property names.
+ES6 introduced a new more succinct syntax for object literal properties and methods.
 
 ### Property Initializer Syntax
 
