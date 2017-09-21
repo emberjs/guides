@@ -140,3 +140,5 @@ let person = {
 ```
 
 The one difference with concise methods is that they can use super to access an object's prototype whereas regular methods cannot.
+
+For further reference on property initializer and concise method syntax see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
