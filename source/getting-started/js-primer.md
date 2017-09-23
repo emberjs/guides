@@ -2,7 +2,8 @@ While the Guides [assume you have a working knowledge of JavaScript](/#toc_assum
 when learning a new framework it can be hard to know what is JavaScript and what is framework,
 especially if you are newer to the ecosystem and less familiar with JavaScript.
 
-On top of that, many new features were introduced to JavaScript with the release of newer specifications like ECMAScript 2015 (also known as ECMAScript 6 or ES6, https://developer.mozilla.org/en/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla).
+On top of that, many new features were introduced to JavaScript with the release of newer specifications like ECMAScript 2015,
+also known as [ECMAScript 6 or ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla).
 With the current yearly cadence of ECMAScript specifications,
 developers might have not had time to get familiar with all the new features.
 
@@ -64,7 +65,7 @@ function getName(person) {
 }
 ```
 
-`const` declarations are not hoisted either, but they differ from `let` declarations in that they are treated as `constants`, meaning their values cannot changed once they are set. As such, `const` declarations must be initialized where declared.  
+`const` declarations are not hoisted either, but they differ from `let` declarations in that they are treated as constants, meaning their values cannot changed once they are set. As such, `const` declarations must be initialized where declared.  
 
 ``` javascript
 const firstName; // invalid, no initialization
@@ -146,8 +147,7 @@ Let's look at an example.
 
 We will start with a `Framework` class.
 `Framework` has two properties, a `language` string, and a `versions` array.
-If you are not familiar with the `class` syntax, you can read about it on [the MDN reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-We will be using the `class` syntax, if you are not familiar you can read more on
+If you are not familiar with the `class` syntax, you can read about it on [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) documentation.
 We'll then create two instances of that class, `ember` and `phoenix`.
 
 ```javascript
@@ -198,33 +198,40 @@ Because the inheritance of `this` re-assigning or binding `this` from a containi
 
 ### Syntax of arrow functions
 
-You can create a simple arrow function with a single argument without parens in this way:
+You can create a simple arrow function with a single argument without parenthesis in this way:
+
 ```javascript
-let someArrowFunc = value => value; // note the lack of parens around the arg value
-```
-Is just like:
-```javascript
-let someArrowFunc = function(value) {
-  return value;
-}
+let someArrowFunc = value => value; // note the lack of parenthesis around the arg value
 ```
 
-You can also create an arrow function passing in multiple arguments, but such a declaration requires parens:
+This is similar to:
+
 ```javascript
-let someArrowFunc = (value1, value2) => value1 || value2; // note the parens around the args
+let someArrowFunc = (value) => { return value; }
 ```
+
+You can also create an arrow function passing in multiple arguments, but such a declaration requires parenthesis:
+
+```javascript
+let someArrowFunc = (value1, value2) => value1 || value2; // note the parenthesis around the args
+```
+
 Is just like:
+
 ```javascript
 let someArrowFunc = function(value1, value2) {
   return value1 || value2;
 }
 ```
 
-For an arrow function without any arguments you must include an empty set of parens:
+For an arrow function without any arguments you must include an empty set of parenthesis:
+
 ```javascript
-let someArrowFunc = () => "I have no args"; // note the empty parens
+let someArrowFunc = () => "I have no args"; // note the empty parenthesis
 ```
+
 Is just like:
+
 ```javascript
 let someArrowFunc = function() {
   return "I have no args";
@@ -232,12 +239,15 @@ let someArrowFunc = function() {
 ```
 
 Of course you can also include a function body wrapped in `{}`:
+
 ```javascript
 let someArrowFunc = (value) => {
   return value;
 }
 ```
+
 Is just like:
+
 ```javascript
 let someArrowFunc = function(value) {
   return value;
@@ -245,6 +255,7 @@ let someArrowFunc = function(value) {
 ```
 
 And arrow functions can also be used as callbacks functions as well:
+
 ```javascript
 this.someArray.map((element) => {
   // note the anonymous arrow callback function passed to map
@@ -261,6 +272,7 @@ ES6 introduced a new more succinct syntax for object literal properties and meth
 Properties can now be set on object literals by including the name of the property only without the typical colon and value. This prevents some duplication when the object property is the same as the local variable you intend to set as the value of that property.
 
 For example, this:
+
 ```javascript
   let firstName = "Yehuda";
   let lastName  = "Katz";
@@ -272,6 +284,7 @@ For example, this:
 ```
 
 Can be written in ES6 as:
+
 ```javascript  
 let firstName = "Yehuda";
 let lastName  = "Katz";
@@ -283,6 +296,7 @@ let person = {
 ```
 
 However the property name and the name of the value being set needs to match in order for this to work. For example, this does *not* work in ES6:
+
 ```javascript  
 let foreName = "Yehuda";
 let surName  = "Katz";
