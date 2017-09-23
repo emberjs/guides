@@ -43,12 +43,87 @@ export default Ember.Component.extend({
 ```javascript
 export default Ember.Component.extend({
   todos: null,
+<<<<<<< HEAD
+=======
+
+>>>>>>> c522179be99faf1447072a327a1251834d207560
   init() {
     this._super(...arguments);
     this.todos = [
       …
     ]
   }
+});
+```
+
+## Arrow Functions
+
+You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. Arrow functions introduce a more concise syntax for functions, but they also have a number of differences from classic JavaScript functions.
+
+Arrow functions:
+
+* can make handling `this` binding more convenient. `this`, `super`, `arguments`, and `new.target` bindings are inherited from the closest containing non-arrow function.
+* cannot be called with `new`
+* have no prototype
+* no arguments object, must rely on named parameters
+* no duplicate parameters
+* are often better optimized by JavaScript engines
+
+Because the inheritance of `this` re-assigning or binding `this` from a containing function in order to preserve the context can be unnecessary, eliminating common patterns developed around such preservation of context.  
+
+### Syntax of arrow functions
+
+You can create a simple arrow function with a single argument without parens in this way:
+```javascript
+let someArrowFunc = value => value; // note the lack of parens around the arg value
+```
+Is just like:
+```javascript
+let someArrowFunc = function(value) {
+  return value;
+}
+```
+
+You can also create an arrow function passing in multiple arguments, but such a declaration requires parens:
+```javascript
+let someArrowFunc = (value1, value2) => value1 || value2; // note the parens around the args
+```
+Is just like:
+```javascript
+let someArrowFunc = function(value1, value2) {
+  return value1 || value2;
+}
+```
+
+For an arrow function without any arguments you must include an empty set of parens:
+```javascript
+let someArrowFunc = () => "I have no args"; // note the empty parens
+```
+Is just like:
+```javascript
+let someArrowFunc = function() {
+  return "I have no args";
+}
+```
+
+Of course you can also include a function body wrapped in `{}`:
+```javascript
+let someArrowFunc = (value) => {
+  return value;
+}
+```
+Is just like:
+```javascript
+let someArrowFunc = function(value) {
+  return value;
+}
+```
+
+And arrow functions can also be used as callbacks functions as well:
+```javascript
+this.someArray.map((element) => {
+  // note the anonymous arrow callback function passed to map
+  // some code
 });
 ```
 
