@@ -123,3 +123,93 @@ this.someArray.map((element) => {
   // some code
 });
 ```
+
+## Object Literal Shorthand
+
+ES6 introduced a new more succinct syntax for object literal properties and methods.
+
+### Property Initializer Syntax
+
+Properties can now be set on object literals by including the name of the property only without the typical colon and value. This prevents some duplication when the object property is the same as the local variable you intend to set as the value of that property.
+
+For example, this:
+```javascript
+  let firstName = "Yehuda";
+  let lastName  = "Katz";
+
+  let person = {
+    firstName: firstName,
+    lastName: lastName
+  };
+```
+
+Can be written in ES6 as:
+```javascript  
+let firstName = "Yehuda";
+let lastName  = "Katz";
+
+let person = {
+  firstName, // no colon and value
+  lastName
+};
+```
+
+However the property name and the name of the value being set needs to match in order for this to work. For example, this does *not* work in ES6:
+```javascript  
+let foreName = "Yehuda";
+let surName  = "Katz";
+
+let person = {
+  firstName, // does not work
+  lastName
+};
+```
+
+Note that if duplication is your intent you can now set duplicate properties on objects without throwing an error when in strict mode, which was not possible in ES5. For example, this does work in ES6:
+
+```javascript  
+  "use strict";
+
+  let person = {
+    firstName: "Yehuda",
+    firstName: "Tom" // no error here
+  };
+```
+
+### Concise Methods
+
+ES6 also eliminates the colon and function keyword from assigning methods to object literals.
+
+For example, this:
+
+```javascript
+let firstName = "Yehuda";
+let lastName  = "Katz";
+
+let person = {
+  firstName,
+  lastName,
+  fullName: function() {
+	//some code
+  }
+};
+```
+
+Can be written in ES6 as:
+
+```javascript
+let firstName = "Yehuda";
+let lastName  = "Katz";
+
+let person = {
+  firstName,
+  lastName,
+  fullName() { // no colon and function keyword
+	//some code
+  }
+};
+```
+
+The one difference with concise methods is that they can use super to access an object's prototype whereas regular methods cannot.
+
+For further reference on property initializer and concise method syntax see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
