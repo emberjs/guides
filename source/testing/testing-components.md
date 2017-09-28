@@ -172,7 +172,8 @@ of a test double (dummy function):
 
 ```tests/integration/components/comment-form-test.js
 test('should trigger external action on form submit', function(assert) {
-
+  assert.expect(1);
+  
   // test double for the external action
   this.set('externalAction', (actual) => {
     let expected = { comment: 'You are not a wizard!' };
@@ -189,6 +190,10 @@ test('should trigger external action on form submit', function(assert) {
    Ember.run(() => document.querySelector('.comment-input').click());
 });
 ```
+In this case, it is important to be explicit about our expectation that one assertion is run.
+Failure to execute the external action test double would cause that expectation to visibly fail, 
+which is what we want.
+
 ### Stubbing Services
 
 In cases where components have dependencies on Ember services, it is possible to stub these
