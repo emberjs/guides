@@ -128,6 +128,27 @@ export default Ember.Route.extend({
 });
 ```
 
+In case we want both custom logic and the default behaviour for the loading substate,
+we can implement the `loading` action and let it bubble by returning `true`.
+
+```app/routes/foo-slow-model.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  ...
+  actions: {
+    loading(transition) {
+      let start = new Date();
+      transition.promise.finalyy(() => {
+        this.get('notifier').notify(`Took ${new Date() - start}ms to load`);
+      });
+
+      return true;
+    }
+  }
+});
+```
+
 ## `error` substates
 
 Ember provides an analogous approach to `loading` substates in
@@ -205,3 +226,23 @@ export default Ember.Route.extend({
 
 Analogous to the `loading` event, you could manage the `error` event
 at the application level to avoid writing the same code for multiple routes.
+
+In case we want to run some custom logic and have the default behaviour of rendering the error template,
+we can handle the `error` event and let it bubble by returning `true`.
+
+```app/routes/articles-overview.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model(params) {
+    return this.get('store').findAll('privileged-model');
+  },
+  actions: {
+    error(error) {
+      this.get('notifier').error(error);
+
+      return true;
+    }
+  }
+});
+```
