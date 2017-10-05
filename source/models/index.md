@@ -1,162 +1,125 @@
-Models are objects that represent the underlying data that your
-application presents to the user. Different apps will have very
-different models, depending on what problems they're trying to solve.
+Ember ships with complete tools to help you connect your front end application
+to a back end server of your choice. Users get a speedy
+interface that displays consistent information. Developers get to skip writing
+server requests and managing state themselves.
 
-For example, a photo sharing application might have a `Photo`
-model to represent a particular photo, and a `PhotoAlbum` that
-represents a group of photos. In contrast, an online shopping app would
-probably have different models, like `ShoppingCart`, `Invoice`, or
-`LineItem`.
+Those tools are:
+- Models, which define the types of record available in your app, their
+attributes, and their relationships
+- The Store, a local cache of data that is kept updated
+as new back end serve requests are made. Your app UI automatically updates to
+display the latest information in the Store.
+- Ember Data Adapters, where you specify the URLs that requests should go to
+- Ember Data Serializers, where you can customize the text of requests in cases
+where the back end has nonstandard formatting
 
-Models tend to be _persistent_. That means the user does not expect
-model data to be lost when they close their browser window. To make sure
-no data is lost, if the user makes changes to a model, you need to store
-the model data somewhere that it will not be lost.
+Although most examples in these Guides focus on RESTful HTTP requests, Ember
+Data can be configured to fit almost any back end structure, like plain JSON,
+Websockets, GraphQL, and more. By extension, it can be used whether you have
+a relational database or a not.
 
-Typically, most models are loaded from and saved to a server that uses a
-database to store data. Usually you will send JSON representations of
-models back and forth to an HTTP server that you have written. However,
-Ember makes it easy to use other durable storage, such as saving to the
-user's hard disk with [IndexedDB][indexeddb], or hosted storage solutions that let you
-avoid writing and hosting your own servers.
+### Step by step initial setup
 
-[indexeddb]: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+#### Models
 
-Once you've loaded your models from storage, components know how to
-translate model data into a UI that your user can interact with.  For
-more information about how components get model data, see the
-[Specifying a Route's Model](../routing/specifying-a-routes-model)
-guide.
+First, define a Model for each kind of record that should be available in your
+app. Anything that a user should be able to create, see, edit, or delete should
+have a Model for it. For example, a photo sharing application might have a
+`Photo` model to represent an individual photo, and a `PhotoAlbum` that
+represents a group of photos. The `Photo` would have attributes like date and
+location, while the `PhotoAlbum` would have fields like category or title.
+Generally, the names of your models and their attributes should be close to
+the record types and fields in your database. Model files do not hold any data
+in them, but rather just define what kinds of data should go into the app.
 
-Ember Data, included by default when you create a new application, is a
-library that integrates tightly with Ember to make it easy to retrieve
-models from your server as JSON, save updates back to the server, and
-create new models in the browser.
+If you've been reading other
+sections of the guides, you should know that there's a big difference between
+Ember Data Models and the model function that is found in most routes. The Ember
+Data Model describes what kinds of fields are available for a type of record,
+and it's defined once in its own file. The model function (aka hook) is found
+in many route files, and it's usually responsible for looking up data in the
+store.
 
-Thanks to its use of the _adapter pattern_, Ember Data can be configured
-to work with many different kinds of backends. There is [an entire
-ecosystem of adapters][adapters] that allow your Ember app to talk to different
-types of servers without you writing any networking code.
+#### Adapter
+
+Next, create an adapter and set the URL that your back end requests should go
+to. When your app makes requests, by default they will use
+the URL in your adapter plus the plural model name. Your adapter will follow
+JSONAPI standards by default, but you have many options. Ember has JSON API, REST
+and JSON adapters available out of the box. There is [an entire
+ecosystem of community-built adapters][adapters] that allow your Ember app to
+talk to different types of servers without you writing any networking code.
+Or, if you need to, you can write your own custom adapter.
 
 [adapters]: http://emberobserver.com/categories/ember-data-adapters
 
-If you need to integrate your Ember.js app with a server that does not
-have an adapter available (for example, you hand-rolled an API server
-that does not adhere to any JSON specification), Ember Data is designed
-to be configurable to work with whatever data your server returns.
+#### Serializer
 
-Ember Data is also designed to work with streaming servers, like those
-powered by WebSockets. You can open a socket to your server and push
-changes into Ember Data whenever they occur, giving your app a real-time
-user interface that is always up-to-date.
+Time to create a serializer, if you even need one. If your back end follows
+JSONAPI specification, you are good to go. If not, or if you have some front end
+model names that are different than the record types in your back end, you can
+write a custom serializer. The serializer has two jobs - formatting your
+outgoing requests to match what your server expects, and processing the response
+so that it can be matched up correctly with an Ember Data Model. Similar to
+adapters, you can use one of Ember's out of the box options, find a community
+serializer, or write your own.
 
-At first, using Ember Data may feel different than the way you're used
-to writing JavaScript applications. Many developers are familiar with
-using AJAX to fetch raw JSON data from an endpoint, which may appear
-easy at first. Over time, however, complexity leaks out into your
-application code, making it hard to maintain.
+Both adapters and serializers can be customized for each kind of Model, but
+most new apps can just define one application-wide adapter that is used for
+all record types. These tools let you completely change how your API is
+implemented without impacting your front end Ember application code.
 
-With Ember Data, managing models as your application grows becomes both
-simple _and_ easy.
+#### Making Server Requests
 
-Once you have an understanding of Ember Data, you will have a much
-better way to manage the complexity of data loading in your application.
-This will allow your code to evolve without becoming a mess.
+Now you're ready to start making requests. If you have done front end
+development before, you may be familiar with writing requests by hand, on an
+as-needed and repeated basis... but here, Ember Data does all the heavy lifting.
+All you need to do is call a few special methods (like `findAll`, `findRecord`,
+`save`, and `destroy`) and the requests will be constructed for you, using
+information from your Models, Serializer, and Adapter.
 
-## The Store and a Single Source of Truth
+#### Loading the Server Response
 
-One common way of building web applications is to tightly couple user
-interface elements to data fetching. For example, imagine you are
-writing the admin section of a blogging app, which has a feature that
-lists the drafts for the currently logged in user.
+When response is received from the back end server, it is automatically matched up with a
+Model and saved in the Store. The store is a local cache of data that is kept
+up to date as you make more requests. This means that anywhere in your
+app that you need to reference or display data, you're looking at a single
+source of truth. It's like having a mini, temporary database available in the
+browser. Ember Data is smart enough that if you have redundant requests
+throughout your app, it will look in the Store first for the records, and
+save you an unnecessary server request. This is one of the ways that Ember
+apps achieve a speedy, smooth interface.
 
-You might be tempted to make the component responsible for fetching that
-data and storing it:
+#### Benefits to the developer
 
-```app/components/list-of-drafts.js
-import Ember from 'ember';
+All of these tools combined lead to fewer lines of code, high maintainability
+and extensibility, and an easy pathway for supporting changes made to your back end.
 
-export default Ember.Component.extend({
-  willRender() {
-    $.getJSON('/drafts').then(data => {
-      this.set('drafts', data);
-    });
-  }
-});
-```
+## Frequently Asked Questions
 
-You could then show the list of drafts in your component's template like
-this:
+## Can I use Ember Data with my rare and special back end server/database?
 
-```app/templates/components/list-of-drafts.hbs
-<ul>
-  {{#each drafts key="id" as |draft|}}
-    <li>{{draft.title}}</li>
-  {{/each}}
-</ul>
-```
+Yes, with some work on your part to write your own serializers and adapters.
+One of the goals of Ember Data is to make it possible to iterate on the back
+end without requiring a rewrite of the front end. For example, if a
+well-constructed Ember app is making its requests to a legacy back end server,
+switching over to a new server API could be as simple as writing some new
+adapters and serializers. This is one of the reasons why Ember is a good
+choice for long-lived or complex applications.
 
-This works great for the `list-of-drafts` component. However, your app
-is likely made up of many different components. On another page you
-may want a component to display the number of drafts. You may be
-tempted to copy and paste your existing `willRender` code into the new
-component.
+## Do I need to use Ember Data in my Ember app?
+No. If you prefer to manage requests yourself, you can. Some developers pick
+and choose which Ember Data tools to utilize, such as fetching information
+manually but still loading it into the Store.
 
-```app/components/drafts-button.js
-import Ember from 'ember';
-
-export default Ember.Component.extend({
-  willRender() {
-    $.getJSON('/drafts').then(data => {
-      this.set('drafts', data);
-    });
-  }
-});
-```
-
-```app/templates/components/drafts-button.hbs
-{{#link-to 'drafts' tagName="button"}}
-Drafts ({{drafts.length}})
-{{/link-to}}
-```
-
-Unfortunately, the app will now make two separate requests for the
-same information. Not only is the redundant data fetching costly in
-terms of wasted bandwidth and affecting the perceived speed of your
-app, it's easy for the two values to get out-of-sync. You yourself
-have probably used a web application where the list of items gets out
-of sync with the counter in a toolbar, leading to a frustrating and
-inconsistent experience.
-
-There is also a _tight coupling_ between your application's UI and the
-network code. If the url or the format of the JSON payload changes, it
-is likely to break all of your UI components in ways that are hard to
-track down.
-
-The SOLID principles of good design tell us that objects should have a
-single responsibility. The responsibility of a component should be
-presenting model data to the user, not fetching the model.
-
-Good Ember apps take a different approach. Ember Data gives you a single
-**store** that is the central repository of models in your application.
-Components and routes can ask the store for models, and the store is
-responsible for knowing how to fetch them.
-
-It also means that the store can detect that two different components
-are asking for the same model, allowing your app to only fetch the data
-from the server once. You can think of the store as a read-through cache
-for your app's models. Both your components and routes have access to
-this shared store; when they need to display or modify a model, they
-first ask the store for it.
-
-## Convention Over Configuration with JSON API
+## Why is JSON API the default?
 
 You can significantly reduce the amount of code you need to write and
 maintain by relying on Ember's conventions. Since these conventions
-will be shared among developers on your team, following them leads
-to code that is easier to maintain and understand.
+will be shared among developers on your team and in the community,
+following them leads to code that is easier to maintain and understand.
 
-Rather than create an arbitrary set of conventions, Ember Data is
+Ember Data is
 designed to work out of the box with [JSON API][json-api]. JSON API is a
 formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
@@ -176,129 +139,13 @@ Frameworks (or apps built on those frameworks) don't need to write
 lots of custom code to add support for a new database; as long as that
 database supports SQL, adding support for it is relatively easy.
 
-So too with JSON API. By using JSON API to interop between your Ember
+So too with JSON API. By using JSON API to communicate between your Ember
 app and your server, you can entirely change your backend stack without
 breaking your frontend. And as you add apps for other platforms, such as
 iOS and Android, you will be able to leverage JSON API libraries for
 those platforms to easily consume the same API your Ember app uses.
 
-## Models
-
-In Ember Data, each model is represented by a subclass of `Model` that
-defines the attributes, relationships, and behavior of the data that you
-present to the user.
-
-Models define the type of data that will be provided by your server. For
-example, a `Person` model might have a `firstName` attribute that is a
-string, and a `birthday` attribute that is a date:
-
-```app/models/person.js
-import DS from 'ember-data';
-
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  birthday:  DS.attr('date')
-});
-```
-
-A model also describes its relationships with other objects. For
-example, an `order` may have many `line-items`, and a
-`line-item` may belong to a particular `order`.
-
-```app/models/order.js
-import DS from 'ember-data';
-
-export default DS.Model.extend({
-  lineItems: DS.hasMany('line-item')
-});
-```
-
-```app/models/line-item.js
-import DS from 'ember-data';
-
-export default DS.Model.extend({
-  order: DS.belongsTo('order')
-});
-```
-
-Models don't have any data themselves, they define the attributes,
-relationships and behavior of specific instances, which are called
-**records**.
-
-## Records
-
-A **record** is an instance of a model that contains data loaded from a
-server. Your application can also create new records and save them back
-to the server.
-
-A record is uniquely identified by its model **type** and **ID**.
-
-For example, if you were writing a contact management app, you might
-have a `Person` model. An individual record in your app might
-have a type of `person` and an ID of `1` or `steve-buscemi`.
-
-```js
-this.get('store').findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
-```
-
-An ID is usually assigned to a record by the server when you save it for
-the first time, but you can also generate IDs client-side.
-
-## Adapter
-
-An **adapter** is an object that translates requests from Ember (such as
-"find the user with an ID of 1") into requests to a server.
-
-For example, if your application asks for a `Person` with an ID of
-`1`, how should Ember load it? Over HTTP or a WebSocket?  If
-it's HTTP, is the URL `/person/1` or `/resources/people/1`?
-
-The adapter is responsible for answering all of these questions.
-Whenever your app asks the store for a record that it doesn't have
-cached, it will ask the adapter for it. If you change a record and save
-it, the store will hand the record to the adapter to send the
-appropriate data to your server and confirm that the save was
-successful.
-
-Adapters let you completely change how your API is implemented without
-impacting your Ember application code.
-
-## Caching
-
-The store will automatically cache records for you. If a record had already
-been loaded, asking for it a second time will always return the same
-object instance. This minimizes the number of round-trips to the
-server, and allows your application to render its UI to the user as fast as
-possible.
-
-For example, the first time your application asks the store for a
-`person` record with an ID of `1`, it will fetch that information from
-your server.
-
-However, the next time your app asks for a `person` with ID `1`, the
-store will notice that it had already retrieved and cached that
-information from the server. Instead of sending another request for the
-same information, it will give your application the same record it had
-provided it the first time.  This feature—always returning the same
-record object, no matter how many times you look it up—is sometimes
-called an _identity map_.
-
-Using an identity map is important because it ensures that changes you
-make in one part of your UI are propagated to other parts of the UI. It
-also means that you don't have to manually keep records in sync—you can
-ask for a record by ID and not have to worry about whether other parts
-of your application have already asked for and loaded it.
-
-One downside to returning a cached record is you may find the state of
-the data has changed since it was first loaded into the store's
-identity map. In order to prevent this stale data from being a problem
-for long, Ember Data will automatically make a request in the
-background each time a cached record is returned from the store. When
-the new data comes in, the record is updated, and if there have been
-changes to the record since the initial render, the template is
-re-rendered with the new information.
-
-## Architecture Overview
+## How are server communications handled? Are they asynchronous?
 
 The first time your application asks the store for a record, the store
 sees that it doesn't have a local copy and requests it from your
