@@ -139,7 +139,7 @@ export default Ember.Route.extend({
   actions: {
     loading(transition) {
       let start = new Date();
-      transition.promise.finalyy(() => {
+      transition.promise.finally(() => {
         this.get('notifier').notify(`Took ${new Date() - start}ms to load`);
       });
 
