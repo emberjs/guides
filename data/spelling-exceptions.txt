@@ -29,6 +29,7 @@ belongsto
 bindingsee
 blogPost
 blogPost's
+Bluth
 bookmarklet
 boolean
 breakpoint
@@ -71,6 +72,7 @@ deserialize
 deserializer
 deserializing
 destructuring
+destructured
 django
 dom
 DNS
@@ -102,6 +104,7 @@ formnovalidate
 formtarget
 frontend
 fullname
+Fünke
 gc
 geolocation
 github

@@ -23,7 +23,7 @@ Note that such hoisting only applies to a variable's declaration, not its initia
 
 Because of hoisting, classic `var` variable declarations in JavaScript can sometimes be tricky and create confusion over a variable's life cycle.
 
-Let's take a look at an example of hoisting with `var`:  
+Lets take a look at an example of hoisting with `var`:  
 
 ``` javascript
 function getName(person) {
@@ -143,7 +143,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 One quirk of the JavaScript language that commonly trips up developers if that if you define an array or object property directly in your class,
 every instance of that class will share the same array/object.
 
-Let's look at an example.
+Lets look at an example.
 
 We will start with a `Framework` class.
 `Framework` has two properties, a `language` string, and a `versions` array.
@@ -152,7 +152,7 @@ We'll then create two instances of that class, `ember` and `phoenix`.
 
 ```javascript
 const Framework = Object.create({
-  language: 'JavaScript',
+  language: "JavaScript",
   versions: []
 });
 
@@ -183,7 +183,9 @@ export default Ember.Component.extend({
 
 ## Arrow Functions
 
-You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose. Arrow functions introduce a more concise syntax for functions, but they also have a number of differences from classic JavaScript functions.
+You may have noticed the new arrow function `=>` syntax, but not fully grasped its purpose.
+Arrow functions introduce a more concise syntax for functions,
+but they also have a number of differences from classic JavaScript functions.
 
 Arrow functions:
 
@@ -355,3 +357,95 @@ let person = {
 The one difference with concise methods is that they can use super to access an object's prototype whereas regular methods cannot.
 
 For further reference on property initializer and concise method syntax see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
+
+## Destructuring
+
+Destructuring simplifies the extraction of values from arrays and objects into variables. Previously in order to pull data out of an object and assign it to variables this was necessary:
+
+```javascript
+let person = {
+  firstName: "Gob",
+  lastName: "Bluth"
+};
+
+let firstName = person.firstName;
+let lastName = person.lastName;
+```
+
+In ES6 with destructuring this can be achieved with less ceremony:
+
+```javascript
+let person = {
+  firstName: "Tom",
+  lastName: "Dale"
+};
+
+let {firstName, lastName} = person;
+
+console.log(firstName); // outputs "Tom"
+console.log(lastName); // outputs "Dale"
+```
+
+On the right-hand side of the assignment is a reference to the object being destructured, this is sometimes known as the initializer.
+
+On the left-hand side of the assignment are the values to be unpacked from the sourced variable.
+
+Note that in above example the variable has the same as the property on the object. This is similar to the property initializer syntax discussed in object literals. However, this does not have to be the case, you can assign to new variable names. For example:
+
+```javascript
+let person = {
+  firstName: "Tom",
+  lastName: "Dale"
+};
+
+let {firstName: foo, lastName: bar} = person;
+
+console.log(foo); // outputs "Tom"
+console.log(bar); // outputs "Dale"
+```
+
+Destructuring can also be used on arrays:
+
+```javascript
+let people = ["Link", "Zelda", "Ganon"];
+
+let [firstPerson, secondPerson] = people;
+
+console.log(firstPerson); // outputs "Link"
+console.log(secondPerson; // outputs "Zelda"
+```
+
+Default values can also be assigned to variables in destructuring to prevent them from being undefined:
+
+```javascript
+let person = {
+  firstName: "George",
+  lastName: "Bluth"
+};
+
+let {firstName = "George", middleName= "Oscar", lastName = "Bluth"} = person;
+
+console.log(middleName); // outputs "Oscar"
+```
+
+And, destructuring can be used to unpack more complicated structures like nested objects and arrays:
+
+```javascript
+let person =
+  {
+    name: "Michael Bluth",
+    family: {
+      mother: "Jane Smith",
+      father: "George Oscar Bluth, Sr.",
+      siblings: [ "Lindsay Bluth Fünke","George Oscar Bluth II" ],
+      child: "George Michael Bluth"
+    }
+  };
+
+let { family: familyMembers, family: {siblings: [sister]} } = person;
+
+console.log(familyMembers.mother); // outputs "Jane Smith"
+console.log(sister); // outputs "Lindsay Bluth Fünke"
+```
+
+[For more on destructuring assignments.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
