@@ -106,7 +106,7 @@ When `{{post.body}}` is instantiated, it will have both the `editStyle` and `pos
 as well as the `bodyStyle` declared in the template.
 
 ```app/templates/index.hbs
-{{#blog-post editStyle="markdown-style" as |post|}}
+{{#blog-post editStyle="markdown-style" postData=myText as |post|}}
   <p class="author">by {{author}}</p>
   {{post.body bodyStyle="compact-style"}}
 {{/blog-post}}
