@@ -11,63 +11,88 @@ In this guide we will be covering some common JavaScript code patterns that appe
 and in particular those that explore the new features provided in ES6,
 so you can get a clearer sense of where the language ends and the framework starts.
 
-## `const` and `let` variable declarations
+## Variable declarations
 
-In JavaScript, prior to ES6, there was only one variable declaration known as `var`. With ES6's `const` and `let` declarations there are now a few additional ways to declare variables that change when and how variables can be used.
+JavaScript initially had two ways to declare variables, globally and `var`.
+With the release of ES2015, `const` and `let` were introduced.
+We will go through the different ways to declare a variable,
+also called bindings because they *bind* a value to a variable name,
+and why modern JavaScript tends to prefer `const` and `let`.
 
 ### `var`
 
-Classic `var` variable declarations are treated as if they were declared at the top of the function they are declared in irrespective of where in the function they are actually declared,
-including whether they are declared in a block such as an if statement. This treatment of `var` declarations is sometimes known as *hoisting*.
-Note that such hoisting only applies to a variable's declaration, not its initialization/assignment.
+`var` declarations exist in the entire body of the function where they are declared.
+If you try to access a `var` outside of the function it is declared,
+you will get an error that the `var` is not defined.
+This is called function-scoping, the existence of the `var` is scoped to the function.
 
-Because of hoisting, classic `var` variable declarations in JavaScript can sometimes be tricky and create confusion over a variable's life cycle.
+For our example, we will declare a `var` named `name`.
+We will try to access it both inside the function and outside,
+and see the results we get:
 
-Lets take a look at an example of hoisting with `var`:  
+```javascript
+console.log(name); // => name is not defined
 
-``` javascript
-function getName(person) {
-  // name declaration hoisted up here to the top of the function, and 'exists', but it is still currently unassigned and thus undefined
-  if (person) {
-    var name = 'Gob Bluth'; // assignment occurs and name is no longer undefined   
-    return name;
-  } else {
-    // because of the hoisting name exists here, but is also similarly undefined
-    return null;
-  }
+function myFunction() {
+  var name = "Tomster";
+
+  console.log(name); // => Tomster
+}
+```
+
+This also means that if you have an `if` or a `for` in your code and declare a `var` inside them,
+you can still access the variable outside of those blocks:
+
+```javascript
+console.log(name); // => undefined
+
+if (true) {
+  var name = "Tomster";
+
+  console.log(name); // => Tomster
+}
+```
+
+In the previous example, we can see that the first `console.log(name)` prints out `undefined` instead of the value.
+That is because of a feature of JavaScript called *hosting*.
+Any variable declaration is moved by the programming language to the top of the scope it belongs to.
+As we saw at the beginning, `var` is scoped to the function,
+so the previous example is the same as:
+
+```javascript
+var name;
+console.log(name); // => undefined
+
+if (true) {
+  name = "Tomster";
+
+  console.log(name); // => Tomster
 }
 ```
 
 ### `const` and `let`
 
-By introducing the block-level variables (also sometimes called bindings) `const` and `let` in ES6, variable scope has been made easier to more explicitly control.
+There are two major differences between `var` and both `const` and `let`.
+`const` and `let` are both block-level declarations, and they are *not* hoisted.
 
-#### Block-Level Bindings
-
-`const` and `let` are both block-level bindings.
 Because of this they are not accessible outside of the given block scope (meaning in a `function` or in `{}`) they are declared in.
-Also, `const` and `let` both have specific characteristics that allow you to infer more about what the variables are being used for.
+You can also not access them before they are declared, or you will get a `foo is not defined` error.
 
-`let` more or less can be used as a `var` was used,
-but with the important distinction that `let` declarations are *not* hoisted to the top of their enclosing block,
-so it's best to place them above where you will need to make reference to them.
+```javascript
+console.log(name) // => name is not defined
 
-``` javascript
-function getName(person) {
-  // name does not exist here, no hoisting
-  if (person) {
-    let name = 'Gob Bluth'; // name only exists here
-    return name;
-  } else {
-    // name does not exist here, no hoisting
-    return null;
-  }
+if (person) {
+  console.log(name) // => name is not defined
+  
+  let name = 'Gob Bluth'; // => Gob Bluth
+} else {
+  console.log(name) // => name is not defined
 }
 ```
 
-`const` declarations are not hoisted either, but they differ from `let` declarations in that they are treated as constants, meaning their values cannot changed once they are set. As such, `const` declarations must be initialized where declared.  
+`const` declarations are not hoisted either, but they differ from `let` declarations in that they are treated as constants, meaning their values cannot changed once they are set. As such, `const` declarations must be initialized where declared.
 
-``` javascript
+```javascript
 const firstName; // invalid, no initialization
 const firstName = 'Gob'; // valid
 firstName = 'George Michael'; // invalid, no re-assignment
@@ -92,7 +117,7 @@ Furthermore, `let` corrects some problematic behavior of `var` in loops.
 
 First, `let` behaves closer to expectations by restricting the accessibility of the counter variable to the block-level of the loop, while `var` does not.
 
-``` javascript
+```javascript
 for (var i = 0; i < 3; i++) {
   // some code here using i
 }
@@ -103,7 +128,7 @@ Because loop variables are accessible from outside the scope of a loop,
 when creating a function inside of a loop, the counter variable is shared across each iteration,
 potentially causing unexpected behavior.
 
-``` javascript
+```javascript
 var someArray = [];
 for (var i = 0; i < 3; i++) {
   someArray.push(function(){
@@ -119,7 +144,7 @@ someArray.forEach(function(item) {
 While an immediately invoked function expression (IIFE) could be used to correct for this unexpected behavior,
 the use of `let` declaration for the counter variable makes this unnecessary and arguably more cleanly solves the issue creating a new counter variable on each iteration through the loop.
 
-``` javascript
+```javascript
 var someArray = [];
 for (let i = 0; i < 3; i++) {
   someArray.push(function(){
@@ -134,9 +159,7 @@ someArray.forEach(function(item) {
 
 #### More Resources
 
-For further reference of `var`, `const` and `let` see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+For further reference you can check the MDN references for [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var), [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const), and [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let). 
 
 ## Object properties
 
@@ -161,7 +184,9 @@ let phoenix = Object.create(Framework);
 ```
 
 ```javascript
-export default Ember.Component.extend({
+import Component from '@ember/component';
+
+export default Component.extend({
   todos: [
     …
   ]
@@ -169,7 +194,9 @@ export default Ember.Component.extend({
 ```
 
 ```javascript
-export default Ember.Component.extend({
+import Component from '@ember/component';
+
+export default Component.extend({
   todos: null,
 
   init() {
