@@ -168,7 +168,9 @@ export default Ember.Component.extend({
 
 Here's an example test that asserts that the specified `externalAction` function
 is invoked when the component's internal `submitComment` action is triggered by making use
-of a test double (dummy function):
+of a test double (dummy function).
+`assert.expect(1)` at the top of the test makes sure that the assertion inside the
+external action is called:
 
 ```tests/integration/components/comment-form-test.js
 test('should trigger external action on form submit', function(assert) {
@@ -190,9 +192,6 @@ test('should trigger external action on form submit', function(assert) {
    Ember.run(() => document.querySelector('.comment-input').click());
 });
 ```
-In this case, it is important to be explicit about our expectation that one assertion is run.
-Failure to execute the external action test double would cause that expectation to visibly fail, 
-which is what we want.
 
 ### Stubbing Services
 
