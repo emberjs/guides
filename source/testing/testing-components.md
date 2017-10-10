@@ -191,7 +191,9 @@ export default Component.extend({
 
 Here's an example test that asserts that the specified `externalAction` function
 is invoked when the component's internal `submitComment` action is triggered by making use
-of a test double (dummy function):
+of a test double (dummy function).
+`assert.expect(1)` at the top of the test makes sure that the assertion inside the
+external action is called:
 
 ```tests/integration/components/comment-form-test.js
 import { moduleForComponent, test } from 'ember-qunit';
@@ -203,7 +205,8 @@ moduleForComponent('comment-form', 'Integration | Component | comment form', {
 });
 
 test('should trigger external action on form submit', function(assert) {
-
+  assert.expect(1);
+  
   // test double for the external action
   this.set('externalAction', (actual) => {
     let expected = { comment: 'You are not a wizard!' };
@@ -220,6 +223,7 @@ test('should trigger external action on form submit', function(assert) {
    Ember.run(() => document.querySelector('.comment-input').click());
 });
 ```
+
 ### Stubbing Services
 
 In cases where components have dependencies on Ember services, it is possible to stub these
