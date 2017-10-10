@@ -7,12 +7,15 @@ The easiest way to create a two-way binding is to use a [`computed.alias()`](htt
 that specifies the path to another object.
 
 ```javascript
-husband = Ember.Object.create({
+import EmberObject from '@ember/object';
+import { alias } from "@ember/object/computed"
+
+husband = EmberObject.create({
   pets: 0
 });
 
-Wife = Ember.Object.extend({
-  pets: Ember.computed.alias('husband.pets')
+Wife = EmberObject.extend({
+  pets: alias('husband.pets')
 });
 
 wife = Wife.create({
@@ -42,12 +45,16 @@ shipping address that starts the same as a billing address but can later be
 changed)
 
 ```javascript
-user = Ember.Object.create({
+import EmberObject, { computed } from '@ember/object';
+import Component from '@ember/component';
+import { oneWay } from "@ember/object/computed"
+
+user = EmberObject.create({
   fullName: 'Kara Gates'
 });
 
-UserComponent = Ember.Component.extend({
-  userName: Ember.computed.oneWay('user.fullName')
+UserComponent = Component.extend({
+  userName: oneWay('user.fullName')
 });
 
 userComponent = UserComponent.create({

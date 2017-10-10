@@ -16,9 +16,9 @@ Router.map(function() {
 ```
 
 ```app/routes/slow-model.js
-import Ember from 'ember';
+import Route from '@ember/routing/router';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return this.get('store').findAll('slow-model');
   }
@@ -84,21 +84,21 @@ It's important to note that `foo.bar.loading` is not considered now.
 ### The `loading` event
 
 If the various `beforeModel`/`model`/`afterModel` hooks
-don't immediately resolve, a [`loading`][1] event will be fired on that route.
-
-[1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
+don't immediately resolve, a [`loading`](http://emberjs.com/api/classes/Ember.Route.html#event_loading) event will be fired on that route.
 
 ```app/routes/foo-slow-model.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return this.get('store').findAll('slow-model');
   },
+
   actions: {
     loading(transition, originRoute) {
       let controller = this.controllerFor('foo');
       controller.set('currentlyLoading', true);
+
       return true; // allows the loading template to be shown
     }
   }
@@ -112,10 +112,11 @@ route, providing the `application` route the opportunity to manage it.
 When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
 
 ```app/routes/foo-slow-model.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  ...
+export default Route.extend({
+  …
+
   actions: {
     loading(transition, originRoute) {
       let controller = this.controllerFor('foo');
@@ -185,7 +186,7 @@ are not called. Only the `setupController` method of the error substate is
 called with the `error` as the model. See example below:
 
 ```js
-setupController: function(controller, error) {
+setupController(controller, error) {
   Ember.Logger.debug(error.message);
   this._super(...arguments);
 }
@@ -198,19 +199,18 @@ logged.
 
 If the `articles.overview` route's `model` hook returns a promise that rejects
 (for instance the server returned an error, the user isn't logged in,
-etc.), an [`error`][1] event will fire from that route and bubble upward.
+etc.), an [`error`](http://emberjs.com/api/classes/Ember.Route.html#event_error) event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#event_error
-
 ```app/routes/articles-overview.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(params) {
     return this.get('store').findAll('privileged-model');
   },
+
   actions: {
     error(error, transition) {
       if (error.status === '403') {

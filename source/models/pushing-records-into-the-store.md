@@ -39,9 +39,9 @@ export default DS.Model.extend({
 ```
 
 ```app/routes/application.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     this.get('store').push({
       data: [{
@@ -94,9 +94,9 @@ export default DS.RestSerializer.extend({
 ```
 
 ```app/routes/application.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     this.get('store').pushPayload({
       albums: [
@@ -128,9 +128,9 @@ so it can be accessed by other parts of your application.
 
 
 ```app/routes/confirm-payment.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   actions: {
     confirm: function(data) {
       $.ajax({

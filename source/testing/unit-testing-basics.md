@@ -3,13 +3,11 @@ is doing what was intended. Unlike acceptance tests, they are narrow in scope
 and do not require the Ember application to be running.
 
 As it is the basic object type in Ember, being able to test a simple
-[`Ember.Object`][1] sets the foundation for testing more specific parts of your
-Ember application such as controllers, components, etc. Testing an `Ember.Object`
+[`EmberObject`](http://emberjs.com/api/classes/Ember.Object.html) sets the foundation for testing more specific parts of your
+Ember application such as controllers, components, etc. Testing an `EmberObject`
 is as simple as creating an instance of the object, setting its state, and
 running assertions against the object. By way of example, let's look at a few
 common cases.
-
-[1]: http://emberjs.com/api/classes/Ember.Object.html
 
 ### Testing Computed Properties
 
@@ -17,13 +15,14 @@ Let's start by creating an object that has a `computedFoo` computed property
 based on a `foo` property.
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject, { computed } from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   foo: 'bar',
 
-  computedFoo: Ember.computed('foo', function() {
+  computedFoo: computed('foo', function() {
     const foo = this.get('foo');
+
     return `computed ${foo}`;
   })
 });
@@ -43,6 +42,7 @@ moduleFor('model:some-thing', 'Unit | some thing', {
 test('should correctly concat foo', function(assert) {
   const someThing = this.subject();
   someThing.set('foo', 'baz');
+
   assert.equal(someThing.get('computedFoo'), 'computed baz');
 });
 ```
@@ -60,10 +60,11 @@ the `testMethod` method alters some internal state of the object (by updating
 the `foo` property).
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   foo: 'bar',
+
   testMethod() {
     this.set('foo', 'baz');
   }
@@ -75,6 +76,12 @@ call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
 ```tests/unit/models/some-thing-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
+
 test('should update foo on testMethod', function(assert) {
   const someThing = this.subject();
   someThing.testMethod();
@@ -87,13 +94,15 @@ return value is calculated correctly. Suppose our object has a `calc` method
 that returns a value based on some internal state.
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   count: 0,
+
   calc() {
     this.incrementProperty('count');
     let count = this.get('count');
+
     return `count: ${count}`;
   }
 });
@@ -102,6 +111,12 @@ export default Ember.Object.extend({
 The test would call the `calc` method and assert it gets back the correct value.
 
 ```tests/unit/models/some-thing-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
+
 test('should return incremented count on calc', function(assert) {
   const someThing = this.subject();
   assert.equal(someThing.calc(), 'count: 1');
@@ -114,12 +129,14 @@ test('should return incremented count on calc', function(assert) {
 Suppose we have an object that has a property and a method observing that property.
 
 ```app/models/some-thing.js
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import { observer } from "@ember/object";
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   foo: 'bar',
   other: 'no',
-  doSomething: Ember.observer('foo', function() {
+
+  doSomething: observer('foo', function() {
     this.set('other', 'yes');
   })
 });
@@ -129,6 +146,12 @@ In order to test the `doSomething` method we create an instance of `SomeThing`,
 update the observed property (`foo`), and assert that the expected effects are present.
 
 ```tests/unit/models/some-thing-test.js
+import { moduleFor, test } from 'ember-qunit';
+
+moduleFor('model:some-thing', 'Unit | some thing', {
+  unit: true
+});
+
 test('should set other prop to yes when foo changes', function(assert) {
   const someThing = this.subject();
   someThing.set('foo', 'baz');

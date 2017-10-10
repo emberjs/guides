@@ -11,11 +11,12 @@ new `levelName` when the player reaches level 5.
 > model player`.
 
 ```app/models/player.js
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import { attr } from 'ember-data/model';
 
-export default DS.Model.extend({
-  level:     DS.attr('number', { defaultValue: 0 }),
-  levelName: DS.attr('string', { defaultValue: 'Noob' }),
+export default Model.extend({
+  level: attr('number', { defaultValue: 0 }),
+  levelName: attr('string', { defaultValue: 'Noob' }),
 
   levelUp() {
     let newLevel = this.incrementProperty('level');
@@ -31,7 +32,7 @@ level 4 to assert that the `levelName` changes. We will use `moduleForModel`:
 
 ```tests/unit/models/player-test.js
 import { moduleForModel, test } from 'ember-qunit';
-import Ember from 'ember';
+import { run } from "@ember/runloop";
 
 moduleForModel('player', 'Unit | Model | player', {
   // Specify the other units that are required for this test.
@@ -43,7 +44,7 @@ test('should increment level when told to', function(assert) {
   const player = this.subject({ level: 4 });
 
   // wrap asynchronous call in run loop
-  Ember.run(() => player.levelUp());
+  run(() => player.levelUp());
 
   assert.equal(player.get('level'), 5, 'level gets incremented');
   assert.equal(player.get('levelName'), 'Professional', 'new level is called professional');
@@ -61,17 +62,18 @@ Assume that a `User` can own a `Profile`.
 > generate model user` and `ember generate model profile`.
 
 ```app/models/profile.js
-import DS from 'ember-data';
+import Model from 'ember-data/model';
 
-export default DS.Model.extend({
+export default Model.extend({
 });
 ```
 
 ```app/models/user.js
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import { belongsTo } from 'ember-data/model';
 
-export default DS.Model.extend({
-  profile: DS.belongsTo('profile')
+export default Model.extend({
+  profile: belongsTo('profile')
 });
 ```
 
@@ -80,7 +82,7 @@ with this test.
 
 ```tests/unit/models/user-test.js
 import { moduleForModel, test } from 'ember-qunit';
-import Ember from 'ember';
+import { get } from "@ember/object"
 
 moduleForModel('user', 'Unit | Model | user', {
   // Specify the other units that are required for this test.
@@ -89,7 +91,7 @@ moduleForModel('user', 'Unit | Model | user', {
 
 test('should own a profile', function(assert) {
   const User = this.store().modelFor('user');
-  const relationship = Ember.get(User, 'relationshipsByName').get('profile');
+  const relationship = get(User, 'relationshipsByName').get('profile');
 
   assert.equal(relationship.key, 'profile', 'has relationship with profile');
   assert.equal(relationship.kind, 'belongsTo', 'kind of relationship is belongsTo');

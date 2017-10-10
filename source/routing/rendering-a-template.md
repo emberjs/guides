@@ -19,19 +19,16 @@ template. For example, the `posts.new` route will render its template into the
 `posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
 the `application.hbs`'s `{{outlet}}`.
 
-If you want to render a template other than the default one, set the route's [`templateName`][1] property to the name of
+If you want to render a template other than the default one, set the route's [`templateName`](http://emberjs.com/api/classes/Ember.Route.html#property_templateName) property to the name of
 the template you want to render instead.
 
 ```app/routes/posts.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   templateName: 'posts/favorite-posts'
 });
 ```
 
-You can override the [`renderTemplate()`][2] hook if you want finer control over template rendering.
+You can override the [`renderTemplate()`](http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate) hook if you want finer control over template rendering.
 Among other things, it allows you to choose the controller used to configure the template and specific outlet to render it into.
-
-[1]: http://emberjs.com/api/classes/Ember.Route.html#property_templateName
-[2]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate

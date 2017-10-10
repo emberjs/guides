@@ -20,9 +20,9 @@ made on the form, which can make for a pretty frustrating user experience.
 Here's one way this situation could be handled:
 
 ```app/routes/form.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   actions: {
     willTransition(transition) {
       if (this.controller.get('userHasEnteredData') &&
@@ -54,9 +54,9 @@ each get called with a transition object. This makes it possible for
 destination routes to abort attempted transitions.
 
 ```app/routes/disco.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   beforeModel(transition) {
     if (new Date() > new Date('January 1, 1980')) {
       alert('Sorry, you need a time machine to enter this route.');
@@ -74,9 +74,9 @@ page, and then redirecting them back to the authenticated route once
 they've logged in.
 
 ```app/routes/some-authenticated.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   beforeModel(transition) {
     if (!this.controllerFor('auth').get('userIsLoggedIn')) {
       let loginController = this.controllerFor('login');
@@ -88,9 +88,9 @@ export default Ember.Route.extend({
 ```
 
 ```app/controllers/login.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     login() {
       // Log the user in, then reattempt previous transition if it exists.

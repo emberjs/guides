@@ -32,9 +32,9 @@ Router.map(function() {
 ```
 
 ```app/routes/index.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   beforeModel(/* transition */) {
     this.transitionTo('posts'); // Implicitly aborts the on-going transition.
   }
@@ -65,9 +65,9 @@ Router.map(function() {
 ```
 
 ```app/routes/posts.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   afterModel(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('post', model.get('firstObject'));
@@ -102,9 +102,9 @@ Instead, we can use the [`redirect()`](http://emberjs.com/api/classes/Ember.Rout
 transition validated, and not cause the parent route's hooks to fire again:
 
 ```app/routes/posts.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   redirect(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('posts.post', model.get('firstObject'));

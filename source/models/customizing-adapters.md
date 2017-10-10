@@ -183,10 +183,11 @@ underscore_case instead of camelCase you could override the
 
 ```app/adapters/application.js
 import DS from 'ember-data';
+import { underscore } from '@ember/string';
 
 export default DS.JSONAPIAdapter.extend({
   pathForType: function(type) {
-    return Ember.String.underscore(type);
+    return underscore(type);
   }
 });
 ```
@@ -217,10 +218,13 @@ property dependent on the `session` service.
 
 ```app/adapters/application.js
 import DS from 'ember-data';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+
 
 export default DS.JSONAPIAdapter.extend({
-  session: Ember.inject.service('session'),
-  headers: Ember.computed('session.authToken', function() {
+  session: service('session'),
+  headers: computed('session.authToken', function() {
     return {
       'API_KEY': this.get('session.authToken'),
       'ANOTHER_HEADER': 'Some header value'
@@ -238,11 +242,13 @@ be recomputed with every request.
 
 ```app/adapters/application.js
 import DS from 'ember-data';
+import { computed } from '@ember/object';
+import { get } from '@ember/object';
 
 export default DS.JSONAPIAdapter.extend({
-  headers: Ember.computed(function() {
+  headers: computed(function() {
     return {
-      'API_KEY': Ember.get(document.cookie.match(/apiKey\=([^;]*)/), '1'),
+      'API_KEY': get(document.cookie.match(/apiKey\=([^;]*)/), '1'),
       'ANOTHER_HEADER': 'Some header value'
     };
   }).volatile()

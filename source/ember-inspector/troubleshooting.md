@@ -1,6 +1,6 @@
 Below are some common issues you may encounter when using the Inspector, along with the
 necessary steps to solve them. If your issue is not listed below, please submit an
-issue to the Inspector's [GitHub repo][ember-inspector-github].
+issue to the Inspector's [GitHub repo](https://github.com/emberjs/ember-inspector).
 
 ### Ember Application Not Detected
 
@@ -64,7 +64,4 @@ Firefox addons need to go through a review process with each update, so the Insp
 
 Unfortunately we don't have control over the Firefox review process, so if you need
 the latest Inspector version, download and install it manually from
-[GitHub][ember-inspector-github].
-
-
-[ember-inspector-github]: https://github.com/emberjs/ember-inspector
+[GitHub](https://github.com/emberjs/ember-inspector).

@@ -133,9 +133,7 @@ For now, let's generate an adapter for our application:
 ember generate adapter application
 ```
 
-This adapter will extend the [`JSONAPIAdapter`][1] base class from Ember Data:
-
-[1]: http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html
+This adapter will extend the [`JSONAPIAdapter`](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html) base class from Ember Data:
 
 ```app/adapters/application.js{+4}
 import DS from 'ember-data';
@@ -143,7 +141,6 @@ import DS from 'ember-data';
 export default DS.JSONAPIAdapter.extend({
   namespace: 'api'
 });
-
 ```
 
 If you were running `ember serve` in another shell, restart the server to include Mirage in your build.

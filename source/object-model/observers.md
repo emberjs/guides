@@ -8,19 +8,24 @@ Observers should contain behavior that reacts to changes in another property.
 Observers are especially useful when you need to perform some behavior after a
 binding has finished synchronizing.
 
-You can set up an observer on an object by using `Ember.observer`:
+You can set up an observer on an object by using `observer`:
 
 ```javascript
-Person = Ember.Object.extend({
+import EmberObject, {
+  computed,
+  observer
+} from '@ember/object';
+
+Person = EmberObject.extend({
   // these will be supplied by `create`
   firstName: null,
   lastName: null,
 
-  fullName: Ember.computed('firstName', 'lastName', function() {
+  fullName: computed('firstName', 'lastName', function() {
     return `${this.get('firstName')} ${this.get('lastName')}`;
   }),
 
-  fullNameChanged: Ember.observer('fullName', function() {
+  fullNameChanged: observer('fullName', function() {
     // deal with the change
     console.log(`fullName changed to: ${this.get('fullName')}`);
   })
@@ -46,8 +51,10 @@ as soon as one of the properties they observe changes. Because of this, it
 is easy to introduce bugs where properties are not yet synchronized:
 
 ```javascript
+import { observer } from '@ember/object';
+
 Person.reopen({
-  lastNameChanged: Ember.observer('lastName', function() {
+  lastNameChanged: observer('lastName', function() {
     // The observer depends on lastName and so does fullName. Because observers
     // are synchronous, when this function is called the value of fullName is
     // not updated yet so this will log the old value of fullName
@@ -60,8 +67,10 @@ This synchronous behavior can also lead to observers being fired multiple
 times when observing multiple properties:
 
 ```javascript
+import { observer } from '@ember/object';
+
 Person.reopen({
-  partOfNameChanged: Ember.observer('firstName', 'lastName', function() {
+  partOfNameChanged: observer('firstName', 'lastName', function() {
     // Because both firstName and lastName were set, this observer will fire twice.
   })
 });
@@ -76,9 +85,12 @@ happens in the next run loop once all bindings are synchronized:
 
 
 ```javascript
+import { observer } from '@ember/object';
+import { once } from "@ember/runloop"
+
 Person.reopen({
-  partOfNameChanged: Ember.observer('firstName', 'lastName', function() {
-    Ember.run.once(this, 'processFullName');
+  partOfNameChanged: observer('firstName', 'lastName', function() {
+    once(this, 'processFullName');
   }),
 
   processFullName() {
@@ -102,12 +114,15 @@ should also run after `init` by using [`Ember.on()`](http://emberjs.com/api/clas
 
 
 ```javascript
-Person = Ember.Object.extend({
+import EmberObject, { observer } from '@ember/object';
+import { on } from "@ember/object/evented"
+
+Person = EmberObject.extend({
   init() {
     this.set('salutation', 'Mr/Ms');
   },
 
-  salutationDidChange: Ember.on('init', Ember.observer('salutation', function() {
+  salutationDidChange: on('init', observer('salutation', function() {
     // some side effect of salutation changing
   }))
 });

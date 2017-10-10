@@ -316,12 +316,12 @@ payload. For example, if your backend returned attributes that are
 method like this.
 
 ```app/serializers/application.js
-import Ember from 'ember';
+import { underscore } from '@ember/string';
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
   keyForAttribute(attr) {
-    return Ember.String.underscore(attr);
+    return underscore(attr);
   }
 });
 ```
@@ -446,13 +446,14 @@ registered for use as attributes:
 
 ```app/transforms/coordinate-point.js
 import DS from 'ember-data';
+import EmberObject from '@ember/object';
 
 export default DS.Transform.extend({
   serialize(value) {
     return [value.get('x'), value.get('y')];
   },
   deserialize(value) {
-    return Ember.Object.create({ x: value[0], y: value[1] });
+    return EmberObject.create({ x: value[0], y: value[1] });
   }
 });
 ```

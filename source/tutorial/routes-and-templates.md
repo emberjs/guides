@@ -46,10 +46,10 @@ If we open `/app/router.js`, we'll see a new line of code for the **about** rout
 to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
 ```app/router.js{+10}
-import Ember from 'ember';
+import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = Ember.Router.extend({
+const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL
 });
@@ -233,9 +233,9 @@ Since we want our `rentals` route to serve as our home page, we will use the `re
 In our index route handler, we add the `replaceWith` invocation to `beforeModel`.
 
 ```app/routes/index.js{+4,+5,+6}
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   beforeModel() {
     this.replaceWith('rentals');
   }
@@ -364,4 +364,3 @@ In the screen recording below, we run the tests, deselect "Hide passed tests", a
 revealing the 3 tests we got passing.
 
 ![passing navigation tests](../../images/routes-and-templates/ember-route-tests.gif)
-

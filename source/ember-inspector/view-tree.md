@@ -3,8 +3,7 @@ The View Tree shows you the currently rendered templates, models, controllers, a
 
 <img src="../../images/guides/ember-inspector/view-tree-screenshot.png" width="680">
 
-Use the tips described in [Object Inspector][object-inspector] to inspect models and controllers. See below for templates and components.
-[object-inspector]:../object-inspector
+Use the tips described in [Object Inspector](../object-inspector) to inspect models and controllers. See below for templates and components.
 
 ### Inspecting Templates
 

@@ -2,9 +2,9 @@ If you need to display all of the keys or values of a JavaScript object in your 
 you can use the [`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in) helper:
 
 ```/app/components/store-categories.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   willRender() {
     // Set the "categories" property to a JavaScript object
     // with the category name as the key and the value a list

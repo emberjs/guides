@@ -12,6 +12,7 @@ apache
 api
 apis
 app's
+ApplicationInstance
 assistive
 async
 asynchronicity

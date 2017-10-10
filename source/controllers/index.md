@@ -79,9 +79,9 @@ You can then define what the action does within the `actions` hook
 of the controller, as you would with a component:
 
 ```app/controllers/blog-post.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   isExpanded: false,
 
   actions: {

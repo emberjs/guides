@@ -12,7 +12,7 @@ helper from [Writing Helpers].
 > format-currency`.
 
 ```app/helpers/format-currency.js
-import Ember from 'ember';
+import { helper } from "@ember/component/helper";
 
 export function formatCurrency([value, ...rest], namedArgs) {
   let dollars = Math.floor(value / 100);
@@ -23,7 +23,7 @@ export function formatCurrency([value, ...rest], namedArgs) {
   return `${sign}${dollars}.${cents}`;
 }
 
-export default Ember.Helper.helper(formatCurrency);
+export default helper(formatCurrency);
 ```
 
 Let's start by testing the helper by showing a simple unit test and then move on
@@ -54,7 +54,7 @@ with the `moduleForComponent` helpers, as shown in [Testing Components].
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('format-currency', 'Integration | Component | pretty color', {
+moduleForComponent('format-currency', 'Integration | Helper | format currency', {
   integration: true
 });
 
@@ -71,6 +71,13 @@ test('formats 199 with $ as currency sign', function(assert) {
 We can now also properly test if a helper will respond to property changes.
 
 ```tests/integration/helpers/format-currency-test.js
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('format-currency', 'Integration | Helper | format currency', {
+  integration: true
+});
+
 test('updates the currency sign when it changes', function(assert) {
   this.set('value', 199);
   this.set('sign', '$');

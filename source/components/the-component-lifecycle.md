@@ -60,9 +60,9 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 ```
 
 ```/app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   init() {
     this._super(...arguments);
     this.errors = [];
@@ -95,9 +95,9 @@ For example, if you have a component that renders based on a json configuration,
 you can leverage `didReceiveAttrs` to ensure the incoming config is always parsed.
 
 ```app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     const profile = this.get('data');
@@ -130,9 +130,9 @@ A component's [`$()`][dollar] method allows you to access the component's DOM el
 For example, you can set an attribute using jQuery's `attr()` method:
 
 ```app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.$().attr('contenteditable', true);
@@ -143,9 +143,9 @@ export default Ember.Component.extend({
 [`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
 
 ```app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.$('div p button').addClass('enabled');
@@ -158,9 +158,9 @@ Let's initialize our date picker by overriding the [`didInsertElement()`][did-in
 Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
 
 ```app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.$('input.date').myDatePickerLib();
@@ -177,9 +177,9 @@ For example, perhaps you have some custom CSS animations trigger when the compon
 is rendered and you want to handle some cleanup when it ends:
 
 ```app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.$().on('animationend', () => {
@@ -230,10 +230,10 @@ When rendered the component will iterate through the given list and apply a clas
 
 The scroll happens on `didRender`, where it will scroll the component's container to the element with the selected class name.
 
-```app/components/selected-item-list.js
-import Ember from 'ember';
+```/app/components/selected-item-list.js
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['item-list'],
 
   didReceiveAttrs() {
@@ -255,7 +255,7 @@ export default Ember.Component.extend({
 
 ### Detaching and Tearing Down Component Elements with `willDestroyElement`
 
-When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`][will-destroy-element] method,
+When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) method,
 allowing for any teardown logic to be performed.
 
 Component teardown can be triggered by a number of different conditions.
@@ -270,9 +270,9 @@ For instance, the user may navigate to a different route, or a conditional Handl
 Let's use this hook to cleanup our date picker and event listener from above:
 
 ```app/components/profile-editor.js
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   willDestroyElement() {
     this.$().off('animationend');
     this.$('input.date').myDatepickerLib().destroy();
@@ -280,5 +280,3 @@ export default Ember.Component.extend({
   }
 });
 ```
-
-[will-destroy-element]: http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement
