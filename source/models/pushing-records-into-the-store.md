@@ -19,7 +19,7 @@ you want to update the UI immediately.
 
 ### Pushing Records
 
-To push a record into the store, call the store's [`push()`](http://emberjs.com/api/data/classes/DS.Store.html#method_push) method.
+To push a record into the store, call the store's [`push()`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Store/methods/push?anchor=push) method.
 
 For example, imagine we want to preload some data into the store when
 the application boots for the first time.
@@ -78,7 +78,7 @@ the casing of the properties defined on the Model class.
 
 If you would like the data to be normalized by the model's default
 serializer before pushing it into the store, you can use the
-[`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
+[`store.pushPayload()`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Store/methods/push?anchor=pushPayload) method.
 
 ```app/serializers/album.js
 import DS from 'ember-data';

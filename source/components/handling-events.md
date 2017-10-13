@@ -92,7 +92,7 @@ function definition can define the event object as its first parameter.
 
 ```js
 actions: {
-  signUp(event){ 
+  signUp(event){
   	// Only when assigning the action to an inline handler, the event object
     // is passed to the action as the first parameter.
   }
@@ -116,7 +116,7 @@ actions: {
 }
 ```
 
-To utilize an `event` object as a function parameter: 
+To utilize an `event` object as a function parameter:
 
 - Define the event handler in the component (which is designed to receive the
   browser event object).
@@ -128,7 +128,7 @@ To utilize an `event` object as a function parameter:
 
 The event handling examples described above respond to one set of events.
 The names of the built-in events are listed below. Custom events can be
-registered by using [Application.customEvents](http://emberjs.com/api/classes/Ember.Application.html#property_customEvents).
+registered by using [Application.customEvents](https://www.emberjs.com/api/ember/2.16/classes/Application/properties/customEvents?anchor=customEvents).
 
 Touch events:
 

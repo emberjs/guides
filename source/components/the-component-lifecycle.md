@@ -193,15 +193,14 @@ There are a few things to note about the `didInsertElement()` hook:
 
 - It is only triggered once when the component element is first rendered.
 - In cases where you have components nested inside other components, the child component will always receive the `didInsertElement()` call before its parent does.
-- Setting properties on the component in [`didInsertElement()`][did-insert-element] triggers a re-render, and  for performance reasons,
+- Setting properties on the component in [`didInsertElement()`][did-insert-element] triggers a re-render, and for performance reasons,
   is not allowed.
-- While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using [`on()`][on], it is encouraged to override the default method itself,
+- While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
   particularly when order of execution is important.
 
-[did-insert-element]: http://emberjs.com/api/classes/Ember.Component.html#event_didInsertElement
-[dollar]: http://emberjs.com/api/classes/Ember.Component.html#method__
+[did-insert-element]: https://www.emberjs.com/api/ember/2.16/classes/Component/events/didInsertElement?anchor=didInsertElement
+[dollar]: https://www.emberjs.com/api/ember/2.16/classes/Component/methods/$?anchor=%24
 [event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
-[on]: http://emberjs.com/api/classes/Ember.Component.html#method_on
 
 ### Making Updates to the Rendered DOM with `didRender`
 
@@ -255,7 +254,7 @@ export default Component.extend({
 
 ### Detaching and Tearing Down Component Elements with `willDestroyElement`
 
-When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) method,
+When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](https://www.emberjs.com/api/ember/2.16/classes/Component/events/willDestroyElement?anchor=willDestroyElement) method,
 allowing for any teardown logic to be performed.
 
 Component teardown can be triggered by a number of different conditions.

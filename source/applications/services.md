@@ -1,4 +1,4 @@
-An [`Service`](http://emberjs.com/api/classes/Ember.Service.html) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
+An [`Service`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fservice) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
 
 Services are useful for features that require shared state or persistent connections. Example uses of services might
 include:
@@ -20,7 +20,7 @@ For example, the following command will create the `ShoppingCart` service:
 ember generate service shopping-cart
 ```
 
-Services must extend the [`Service`](http://emberjs.com/api/classes/Ember.Service.html) base class:
+Services must extend the [`Service`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fservice) base class:
 
 ```app/services/shopping-cart.js
 import Service from '@ember/service';
@@ -92,7 +92,7 @@ This injects the shopping cart service into the component and makes it available
 
 Sometimes a service may or may not exist, like when an initializer conditionally registers a service.
 Since normal injection will throw an error if the service doesn't exist,
-you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/classes/Ember.html#method_getOwner) instead. 
+you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/ember/2.16/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) instead.
 
 ```app/components/cart-contents.js
 import Component from '@ember/component';

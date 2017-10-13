@@ -38,14 +38,14 @@ and fire observers when any of the following events occurs:
 
 ### Multiple Dependent Keys
 
-It's important to note that the `@each` key can be dependant on more than one key. 
-For example, if you are using `Ember.computed` to sort an array by multiple keys, 
+It's important to note that the `@each` key can be dependant on more than one key.
+For example, if you are using `Ember.computed` to sort an array by multiple keys,
 you would declare the dependency with braces: `todos.@each.{priority,title}`
 
 ### Computed Property Macros
 
 Ember also provides a computed property macro
-[`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
+[`computed.filterBy`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject%2Fcomputed/methods/alias?anchor=filterBy&show=inherited%2Cprotected%2Cprivate%2Cdeprecated),
 which is a shorter way of expressing the above computed property:
 
 ```app/components/todo-list.js
@@ -133,10 +133,10 @@ export default Component.extend({
 Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
 to `todos`, but won't update if the value of `isDone` on a `todo` changes.
 
-Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.html) macros
+Several of the [Ember.computed](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject%2Fcomputed) macros
 utilize the `[]` key to implement common use-cases. For instance, to
 create a computed property that mapped properties from an array, you could use
-[Ember.computed.map](http://emberjs.com/api/classes/Ember.computed.html#method_map)
+[Ember.computed.map](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject%2Fcomputed/methods/map?anchor=map)
 or build the computed property yourself:
 
 ```javascript
