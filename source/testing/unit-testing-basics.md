@@ -3,7 +3,7 @@ is doing what was intended. Unlike acceptance tests, they are narrow in scope
 and do not require the Ember application to be running.
 
 As it is the basic object type in Ember, being able to test a simple
-[`EmberObject`](http://emberjs.com/api/classes/Ember.Object.html) sets the foundation for testing more specific parts of your
+[`EmberObject`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject?show=inherited%2Cprotected%2Cprivate%2Cdeprecated) sets the foundation for testing more specific parts of your
 Ember application such as controllers, components, etc. Testing an `EmberObject`
 is as simple as creating an instance of the object, setting its state, and
 running assertions against the object. By way of example, let's look at a few

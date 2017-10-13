@@ -22,7 +22,7 @@ Person = EmberObject.extend({
   fullName: computed('firstName', 'lastName', function() {
     let firstName = this.get('firstName');
     let lastName = this.get('lastName');
-    
+
     return `${firstName} ${lastName}`;
   })
 });
@@ -51,7 +51,7 @@ import Ember from 'ember':
   fullName: computed('firstName', 'lastName', function() {
     let firstName = this.get('firstName');
     let lastName = this.get('lastName');
-    
+
     return `${firstName} ${lastName}`;
   })
 …
@@ -67,7 +67,7 @@ import Ember from 'ember':
   fullName: computed('{firstName,lastName}', function() {
     let firstName = this.get('firstName');
     let lastName = this.get('lastName');
-    
+
     return `${firstName} ${lastName}`;
   })
 …
@@ -206,4 +206,4 @@ Person = EmberObject.extend({
 ```
 
 To see the full list of computed property macros, have a look at
-[the API documentation](http://emberjs.com/api/classes/Ember.computed.html)
+[the API documentation](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject)

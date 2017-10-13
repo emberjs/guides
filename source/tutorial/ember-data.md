@@ -3,7 +3,7 @@ As our application grows, we will want to persist our rental data on a server, a
 
 Ember comes with a data management library called [Ember Data](https://github.com/emberjs/data) to help deal with persistent application data.
 
-Ember Data requires you to define the structure of the data you wish to provide to your application by extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html).
+Ember Data requires you to define the structure of the data you wish to provide to your application by extending [`DS.Model`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Model).
 
 You can generate an Ember Data Model using Ember CLI.
 We'll call our model `rental` and generate it as follows:
@@ -21,7 +21,7 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-When we open the model file, we can see a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
+When we open the model file, we can see a blank class extending [`DS.Model`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Model):
 
 ```app/models/rental.js
 import DS from 'ember-data';
@@ -33,7 +33,7 @@ export default DS.Model.extend({
 
 Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
 _title_, _owner_, _city_, _property type_, _image_, _bedrooms_ and _description_.
-Define attributes by giving them the result of the function [`DS.attr()`](http://emberjs.com/api/data/classes/DS.html#method_attr).
+Define attributes by giving them the result of the function [`DS.attr()`](https://www.emberjs.com/api/ember-data/2.16/classes/DS/methods/attr?anchor=attr).
 For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
 ```app/models/rental.js
@@ -56,9 +56,9 @@ We now have a model object that we can use for our Ember Data implementation.
 
 To use our new Ember Data Model object, we need to update the `model` function we [previously defined](../model-hook/) in our route handler.
 Delete the hard-coded JavaScript Array, and replace it with the following call to the [Ember Data Store service](../../models/#toc_the-store-and-a-single-source-of-truth).
-The [store service](http://emberjs.com/api/data/classes/DS.Store.html) is injected into all routes and components in Ember.
+The [store service](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Store) is injected into all routes and components in Ember.
 It is the main interface you use to interact with Ember Data.
-In this case, call the [`findAll`](http://emberjs.com/api/data/classes/DS.Store.html#method_findAll) function on the store and provide it with the name of your newly created rental model class.
+In this case, call the [`findAll`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Store/methods/findAll?anchor=findAll) function on the store and provide it with the name of your newly created rental model class.
 
 ```app/routes/rentals.js{+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33}
 import Route from '@ember/routing/route';

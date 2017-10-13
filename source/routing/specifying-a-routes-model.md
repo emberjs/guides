@@ -9,7 +9,7 @@ Router.map(function() {
 });
 ```
 
-To load a model for the `favorite-posts` route, you would use the [`model()`](http://emberjs.com/api/classes/Ember.Route.html#method_model)
+To load a model for the `favorite-posts` route, you would use the [`model()`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/model?anchor=model)
 hook in the `favorite-posts` route handler:
 
 ```app/routes/favorite-posts.js
@@ -122,7 +122,7 @@ Routes without dynamic segments will always execute the model hook.
 ## Multiple Models
 
 Multiple models can be returned through an
-[RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+[RSVP.hash](https://www.emberjs.com/api/ember/2.16/classes/rsvp/methods/hash?anchor=hash).
 The `RSVP.hash` takes
 parameters that return promises, and when all parameter promises resolve, then
 the `RSVP.hash` promise resolves. For example:

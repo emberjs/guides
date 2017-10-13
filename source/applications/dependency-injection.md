@@ -2,11 +2,11 @@ Ember applications utilize the [dependency injection](https://en.wikipedia.org/w
 ("DI") design pattern to declare and instantiate classes of objects and dependencies between them.
 Applications and application instances each serve a role in Ember's DI implementation.
 
-An [`Application`](http://emberjs.com/api/classes/Ember.Application.html) serves as a "registry" for dependency declarations.
+An [`Application`](https://emberjs.com/api/ember/2.16/classes/Application) serves as a "registry" for dependency declarations.
 Factories (i.e. classes) are registered with an application,
 as well as rules about "injecting" dependencies that are applied when objects are instantiated.
 
-An [`ApplicationInstance`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html) serves as the "owner" for objects that are instantiated from registered factories.
+An [`ApplicationInstance`](https://emberjs.com/api/ember/2.16/classes/ApplicationInstance) serves as the "owner" for objects that are instantiated from registered factories.
 Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
 
 > _Note: Although an `Application` serves as the primary registry for an app,
@@ -194,7 +194,7 @@ export default Component.extend({
 ## Factory Instance Lookups
 
 To fetch an instantiated factory from the running application you can call the
-[`lookup`](http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup) method on an application instance. This method takes a string
+[`lookup`](https://emberjs.com/api/ember/2.16/classes/ApplicationInstance/methods/lookup?anchor=lookup) method on an application instance. This method takes a string
 to identify a factory and returns the appropriate object.
 
 ```javascript
@@ -225,9 +225,9 @@ export default {
 
 ### Getting an Application Instance from a Factory Instance
 
-[`Ember.getOwner`](http://emberjs.com/api/#method_getOwner) will retrieve the application instance that "owns" an
+[`Ember.getOwner`](https://emberjs.com/api/ember/2.16/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) will retrieve the application instance that "owns" an
 object. This means that framework objects like components, helpers, and routes
-can use [`Ember.getOwner`](http://emberjs.com/api/#method_getOwner) to perform lookups through their application
+can use [`Ember.getOwner`](https://emberjs.com/api/ember/2.16/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) to perform lookups through their application
 instance at runtime.
 
 For example, this component plays songs with different audio services based
