@@ -261,7 +261,10 @@ In cases like this, the parent template can provide the required parameter when 
 For example, if we want to use the button to send a message of type `"info"`:
 
 ```app/templates/components/send-message.hbs
-{{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage" "info")}}
+{{button-with-confirmation
+  text="Click to send your message."
+  onConfirm=(action "sendMessage" "info")
+}}
 ```
 
 Within `button-with-confirmation`, the code in the `submitConfirm` action does not change.
