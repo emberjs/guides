@@ -1,28 +1,56 @@
 ## Ember Guides Source
 
 [![Build Status](https://travis-ci.org/emberjs/guides.svg?branch=master)](https://travis-ci.org/emberjs/guides)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/emberjs/localized.svg)](https://crowdin.com/project/emberjs)
 
-The source for the Ember.js Guides.
+This is the source for the [Ember.js Guides](https://guides.emberjs.com).
+
+Looking for repositories for other parts of the site? Check out
+[website](https://github.com/emberjs/website),
+[ember-api-docs](https://github.com/ember-learn/ember-api-docs),
+[super-rentals tutorial](https://github.com/ember-learn/super-rentals),
+[statusboard](https://github.com/ember-learn/statusboard),
+and [styleguide](https://github.com/ember-learn/ember-styleguide)
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Translations
-
-Please see [TRANSLATIONS.md](TRANSLATIONS.md).
+Welcome and thanks for your help! Please see [CONTRIBUTING.md](CONTRIBUTING.md)
+for detailed instructions on how to format your work and submit a Pull Request.
 
 ## Project layout
 
-The Guides' content is in the `source` folder. The left nav bar is produced from
+The Guides content takes the form of Markdown files (just like most READMEs).
+The Guides themselves are in the `source` folder. The left nav bar is produced from
 `data/pages.yml`. `lib` contains Middleman plugins, and `spec` contains tests
 for those plugins.
 
-## Dependencies
+## Running locally with Docker (recommended)
 
-The Guides are built with Middleman, which runs on Ruby 1.9.3 or newer
-(2.0.0 recommended).
+This is the recommended method for new contributors.
+Although the Guides are built with Ruby, most work is done in Markdown files.
+You don't need to know Ruby or install its dependencies to help out. Simply follow
+the Docker container instructions below to install and run locally.
+
+First, install [Docker](https://www.docker.com/) and leave it running.
+
+Next, the commands below will install all necessary dependencies for the Guides
+app and start a server. This will take a little while to run,
+possibly a few minutes. The dependencies will be installed inside a Docker
+container, and do not affect your normal developer environment.
+
+```sh
+git clone git://github.com/emberjs/guides.git
+cd guides
+docker-compose build
+docker-compose up
+```
+
+You can view the site locally at [http://localhost:4567](http://localhost:4567)
+
+## Running locally with Ruby and Middleman
+
+The Docker method described above is recommended over installing dependencies
+separately. However, if necessary, these are the manual steps. The Guides are built
+with Middleman, which runs on Ruby 1.9.3 or newer.
 
 Mac users should install Ruby using rbenv to avoid changing their OS dependencies:
 
@@ -47,8 +75,6 @@ brew install aspell --with-lang-en
 On Windows, you can download an [installer](http://aspell.net/win32/), but unfortunately it is unmaintained. On Linux, you can install with your distribution's package manager. On all platforms, you can also [build the most recent version from source](http://aspell.net/man-html/Installing.html).
 
 Some Mac users may also need to install openSSL, which will be indicated in an error during the bundle command. See [Troubleshooting.md](TROUBLESHOOTING.md).
-
-## Developing with the Guides
 
 To get started:
 

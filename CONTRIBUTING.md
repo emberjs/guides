@@ -4,10 +4,54 @@ The Ember Guides are maintained and updated by an all-volunteer group of Ember c
 
 * _Fixing problems_: If you find a problem on a particular page in the Guides, the most helpful thing you can do is open a pull request. If you're not sure how to fix it, open an issue.
 * _Contributing solicited content_: We try to make it easy for people to contribute to the Guides by tagging issues with [help wanted](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) when appropriate. The best way to get started contributing content is to pick up one of these issues.
+Add a comment to let the maintainers know that you're interested, and post any questions you may have.
 * _Contributing unsolicited content_: If you'd like to contribute content that you think is missing, please start by checking the issues page. There may already be a plan to add this content! If not, open an issue yourself so that you can get feedback before you start writing. Our core contributors may ask you to start off by writing a blog post on your topic instead of or before opening a pull request on the Guides. This helps us keep the Guides consistent and streamlined.
 * _Writing infrastructure code_: You can also help out with the Guides by improving the code for the app that is used to build the content. Issues related to writing infrastructure code have the label [infrastructure](https://github.com/emberjs/guides/issues?q=is%3Aopen+is%3Aissue+label%3A%22infrastructure%22).
 
 Please note that no attempt is made to update content, layout, or styles for older versions of the Guides. They are considered static and immutable, as it is too difficult to maintain content for every version ever released. Issues will only be fixed for future releases.
+
+## Making Your First Pull Request
+
+Fork this repository (click "fork" on the repository's home page in GitHub)
+
+Clone the forked repository with `git clone <your fork's url>` and create a
+branch with `git checkout -b some-branch-name`.
+
+As you make commits, reference the issue number in your commit message, such as
+`git commit -m "add glasses to nearsighted hamster (#6217)"`
+
+Once you're at the point that you'd like feedback, submit a Pull Request (new
+Pull Request button). Choose `master` for the base and your branch name for `compare`.
+
+You'll see some tests running after you create the Pull Request. In order for
+your work to be merged, all tests must pass.
+
+If you have multiple commits for minor changes due to iteration, please squash
+your commits into one or two. You can do this with an interactive rebase:
+
+`git rebase -i <commit id that came just before your work>`
+
+This will open a text editor full of commit messages. Put `squash` in front of any commits
+that you want to be combined into the message above it. Save and close.
+Another window will pop up, inviting you to give the grouped commits a new name.
+Save it, and repeat until finished. When you're done, you will need to
+force push your branch. Note that this will completely overwrite that branch
+on your fork, so use with caution.
+
+Your PR will be reviewed by another contributor, and then either merged or have
+changes requested.
+
+## Keeping your fork updated
+
+As you tackle new Issues, you'll want to be sure that you always start by working
+on the most recent code. To sync up your fork's  `master` with a parent repository's
+master, set an upstream and pull from it. For this to work, you should make sure
+you're always committing to a branch, not master.
+
+```
+git remote add upstream https://github.com/emberjs/website.git
+git pull upstream master
+```
 
 ## Style Guide
 
