@@ -1,11 +1,11 @@
-As you learn about Ember, you'll see code like `Ember.Component.extend()` and
+As you learn about Ember, you'll see code like `Component.extend()` and
 `DS.Model.extend()`. Here, you'll learn about this `extend()` method, as well
 as other major features of the Ember object model.
 
 ### Defining Classes
 
 To define a new Ember _class_, call the [`extend()`][1] method on
-[`Ember.Object`][2]:
+[`EmberObject`][2]:
 
 [1]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/extend?anchor=extend
 [2]: https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject
@@ -24,7 +24,7 @@ This defines a new `Person` class with a `say()` method.
 
 You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
-of Ember's built-in [`Ember.Component`][3] class:
+of Ember's built-in [`Component`][3] class:
 
 [3]: https://www.emberjs.com/api/ember/2.16/classes/Component
 
