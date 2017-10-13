@@ -52,12 +52,23 @@ Some Mac users may also need to install openSSL, which will be indicated in an e
 
 To get started:
 
+#### Local Dev
 ``` sh
 git clone git://github.com/emberjs/guides.git
 cd guides
 bundle
 bundle exec middleman
 ```
+
+#### With Docker
+```sh
+git clone git://github.com/emberjs/guides.git
+cd guides
+docker-compose build
+docker-compose up
+```
+
+#### Viewing
 
 Then visit [http://localhost:4567/](http://localhost:4567/).
 
