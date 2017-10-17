@@ -14,6 +14,8 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "JavaScript Primer"
+      url: "js-primer"
 
 - title: "Tutorial"
   url: 'tutorial'
