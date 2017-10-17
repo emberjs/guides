@@ -13,6 +13,13 @@ so you can get a clearer sense of where the language ends and the framework star
 
 ## Variable declarations
 
+A variable declaration, also called binding, is when you assign a value to a variable name.
+An example of declaring a variable containing the number 42 is like so:
+
+```javascript
+var myNumber = 42;
+```
+
 JavaScript initially had two ways to declare variables, globally and `var`.
 With the release of ES2015, `const` and `let` were introduced.
 We will go through the different ways to declare a variable,
