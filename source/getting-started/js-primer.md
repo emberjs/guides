@@ -1,15 +1,10 @@
-While the Guides [assume you have a working knowledge of JavaScript](/#toc_assumptions),
-when learning a new framework it can be hard to know what is JavaScript and what is framework,
-especially if you are newer to the ecosystem and less familiar with JavaScript.
-
-On top of that, many new features were introduced to JavaScript with the release of newer specifications like ECMAScript 2015,
+Many new features were introduced to JavaScript with the release of newer specifications like ECMAScript 2015,
 also known as [ECMAScript 6 or ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla).
-With the current yearly cadence of ECMAScript specifications,
-developers might have not had time to get familiar with all the new features.
+While the Guides [assume you have a working knowledge of JavaScript](/#toc_assumptions),
+not every feature of the JavaScript language may be familiar to the developer.
 
-In this guide we will be covering some common JavaScript code patterns that appear in Ember applications,
-and in particular those that explore the new features provided in ES6,
-so you can get a clearer sense of where the language ends and the framework starts.
+In this guide we will be covering some JavaScript features,
+and how they are used in Ember applications.
 
 ## Variable declarations
 
@@ -28,17 +23,17 @@ and why modern JavaScript tends to prefer `const` and `let`.
 
 ### `var`
 
-`var` declarations exist in the entire body of the function where they are declared.
-If you try to access a `var` outside of the function it is declared,
-you will get an error that the `var` is not defined.
+Variable declarations using `var` exist in the entire body of the function where they are declared.
 This is called function-scoping, the existence of the `var` is scoped to the function.
+If you try to access a `var` outside of the function it is declared,
+you will get an error that the variable is not defined.
 
 For our example, we will declare a `var` named `name`.
 We will try to access it both inside the function and outside,
 and see the results we get:
 
 ```javascript
-console.log(name); // => name is not defined
+console.log(name); // ReferenceError: name is not defined
 
 function myFunction() {
   var name = "Tomster";
@@ -51,12 +46,12 @@ This also means that if you have an `if` or a `for` in your code and declare a `
 you can still access the variable outside of those blocks:
 
 ```javascript
-console.log(name); // => undefined
+console.log(name); // undefined
 
 if (true) {
   var name = "Tomster";
 
-  console.log(name); // => Tomster
+  console.log(name); // => "Tomster"
 }
 ```
 
@@ -68,12 +63,12 @@ so the previous example is the same as:
 
 ```javascript
 var name;
-console.log(name); // => undefined
+console.log(name); // undefined
 
 if (true) {
   name = "Tomster";
 
-  console.log(name); // => Tomster
+  console.log(name); // "Tomster"
 }
 ```
 
@@ -86,14 +81,14 @@ Because of this they are not accessible outside of the given block scope (meanin
 You can also not access them before they are declared, or you will get a [`ReferenceError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError).
 
 ```javascript
-console.log(name) // => name is not defined
+console.log(name) // ReferenceError: name is not defined
 
 if (person) {
-  console.log(name) // => name is not defined
+  console.log(name) // ReferenceError: name is not defined
   
-  let name = 'Gob Bluth'; // => Gob Bluth
+  let name = 'Gob Bluth'; // "Gob Bluth"
 } else {
-  console.log(name) // => name is not defined
+  console.log(name) // ReferenceError: name is not defined
 }
 ```
 
@@ -103,9 +98,9 @@ To use a `const` declaration you have to specify the value it refers,
 and you cannot change what the declaration refers to:
 
 ```javascript
-const firstName; // => Uncaught SyntaxError: Missing initializer in const declaration
+const firstName; // Uncaught SyntaxError: Missing initializer in const declaration
 const firstName = 'Gob';
-firstName = 'George Michael'; // => Uncaught SyntaxError: Identifier 'firstName' has already been declared
+firstName = 'George Michael'; // Uncaught SyntaxError: Identifier 'firstName' has already been declared
 ```
 
 Note that `const` does not mean that the value it refers to cannot change.
