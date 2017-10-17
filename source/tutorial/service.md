@@ -239,7 +239,7 @@ For our service unit test, we'll want to verify that locations that have been pr
 We will isolate our tests from actually calling Google Maps by stubbing our map utility.
 On line 6 of `maps-test.js` below we create an Ember object to simulate the behavior of the utility, but instead of creating a google map, we return an empty JavaScript object.
 
-Unit tests use the function called `this.subject` to instantiate the object to test, and let the test pass in initial values as arguments.
+To instantiate the object under test, use the `this.subject` function, passing in initial values as arguments.
 In our case we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
 ```tests/unit/services/maps-test.js
