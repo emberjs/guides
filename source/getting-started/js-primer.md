@@ -38,7 +38,7 @@ console.log(name); // ReferenceError: name is not defined
 function myFunction() {
   var name = "Tomster";
 
-  console.log(name); // => Tomster
+  console.log(name); // "Tomster"
 }
 ```
 
@@ -51,7 +51,7 @@ console.log(name); // undefined
 if (true) {
   var name = "Tomster";
 
-  console.log(name); // => "Tomster"
+  console.log(name); // "Tomster"
 }
 ```
 
@@ -113,8 +113,8 @@ const myObject = { name: "Tom Dale" };
 myArray.push(1);
 myObject.name = "Leah Silber";
 
-console.log(myArray); // => [1]
-console.log(myObject); // => {name: "Leah Silber"}
+console.log(myArray); // [1]
+console.log(myObject); // {name: "Leah Silber"}
 ```
 
 ### `for` loops
@@ -129,20 +129,20 @@ If you use `var`, this happens:
 
 ```javascript
 for (var i = 0; i < 3; i++) {
-  console.log(i) // => wil print 0, 1, 2, and 3 in succession
+  console.log(i) // 0, 1, 2, 3
 }
 
-console.log(i) // => 3
+console.log(i) // 3
 ```
 
 But if you use `let`, this happens instead:
 
 ```javascript
 for (let i = 0; i < 3; i++) {
-  console.log(i) // => wil print 0, 1, 2, and 3 in succession
+  console.log(i) // 0, 1, 2, 3
 }
 
-console.log(i) // => i is not defined
+console.log(i) // ReferenceError: i is not defined
 ```
 
 Using `let` will avoid accidentally leaking and changing the `i` variable from outside of the `for` block.
