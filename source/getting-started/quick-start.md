@@ -44,10 +44,11 @@ By providing everything you need to build production-ready web applications in a
 Ember makes starting new projects a breeze.
 
 Let's make sure everything is working properly.
-`cd` into the application directory `ember-quickstart` and start the development server by typing:
+`cd` into the application directory `ember-quickstart` , run `npm install` then start the development server by typing:
 
 ```sh
 cd ember-quickstart
+npm install
 ember serve
 ```
 
