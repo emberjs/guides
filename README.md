@@ -30,7 +30,7 @@ Although the Guides are built with Ruby, most work is done in Markdown files.
 You don't need to know Ruby or install its dependencies to help out. Simply follow
 the Docker container instructions below to install and run locally.
 
-First, install [Docker](https://www.docker.com/) and leave it running.
+First, install [Docker and Compose](https://store.docker.com/search?offering=community&type=edition) and leave it running.
 
 Next, the commands below will install all necessary dependencies for the Guides
 app and start a server. This will take a little while to run,
@@ -84,14 +84,6 @@ git clone git://github.com/emberjs/guides.git
 cd guides
 bundle
 bundle exec middleman
-```
-
-#### With Docker
-```sh
-git clone git://github.com/emberjs/guides.git
-cd guides
-docker-compose build
-docker-compose up
 ```
 
 #### Viewing
