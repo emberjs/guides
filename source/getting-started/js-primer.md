@@ -56,7 +56,7 @@ if (true) {
 ```
 
 In the previous example, we can see that the first `console.log(name)` prints out `undefined` instead of the value.
-That is because of a feature of JavaScript called *hosting*.
+That is because of a feature of JavaScript called *hoisting*.
 Any variable declaration is moved by the programming language to the top of the scope it belongs to.
 As we saw at the beginning, `var` is scoped to the function,
 so the previous example is the same as:
@@ -92,7 +92,7 @@ if (person) {
 }
 ```
 
-`const` declaration have an additional restriction, they are *constant references*,
+`const` declarations have an additional restriction, they are *constant references*,
 they always refer to the same thing.
 To use a `const` declaration you have to specify the value it refers,
 and you cannot change what the declaration refers to:
@@ -122,7 +122,7 @@ console.log(myObject); // {name: "Leah Silber"}
 Something that might be confusing is the behaviour of `let` in `for` loops.
 
 As we saw before, `let` declarations are scoped to the block they belong to.
-In `for` loops, any variable declared in the for syntax belongs to the loop's block.
+In `for` loops, any variable declared in the `for` syntax belongs to the loop's block.
 
 Let's look at some code to see what this looks like.
 If you use `var`, this happens:
