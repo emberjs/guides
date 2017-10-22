@@ -56,7 +56,7 @@ if (true) {
 ```
 
 In the previous example, we can see that the first `console.log(name)` prints out `undefined` instead of the value.
-That is because of a feature of JavaScript called *hosting*.
+That is because of a feature of JavaScript called *hoisting*.
 Any variable declaration is moved by the programming language to the top of the scope it belongs to.
 As we saw at the beginning, `var` is scoped to the function,
 so the previous example is the same as:
