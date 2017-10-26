@@ -114,6 +114,7 @@ otherwise we call a Google Maps utility to create one.
 
 ```app/services/maps.js
 import Service from '@ember/service';
+import { camelize } from '@ember/string';
 import EmberObject from '@ember/object';
 
 import MapUtil from '../utils/google-maps';
@@ -130,7 +131,7 @@ export default Service.extend({
   },
 
   getMapElement(location) {
-    let camelizedLocation = Ember.String.camelize(location);
+    let camelizedLocation = camelize(location);
     let element = this.get(`cachedMaps.${camelizedLocation}`);
     if (!element) {
       element = this.createMapElement();
