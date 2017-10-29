@@ -1,4 +1,4 @@
-An [`Service`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fservice) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
+A [`Service`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fservice) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
 
 Services are useful for features that require shared state or persistent connections. Example uses of services might
 include:
