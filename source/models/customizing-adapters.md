@@ -46,9 +46,8 @@ export default DS.JSONAPIAdapter.extend({
 });
 ```
 
-By default Ember Data comes with several built-in adapters. Feel free
-to use these adapters as a starting point for creating your own custom
-adapter.
+Ember Data comes with several built-in adapters.
+Feel free to use these adapters as a starting point for creating your own custom adapter.
 
 - [DS.Adapter](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Adapter) is the basic adapter
 with no functionality. It is generally a good starting point if you
@@ -156,7 +155,7 @@ Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
 
 #### Host Customization
 
-By default the adapter will target the current domain. If you would
+By default, the adapter will target the current domain. If you would
 like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
@@ -173,7 +172,7 @@ Requests for `person` would now target `https://api.example.com/people/1`.
 
 #### Path Customization
 
-By default the `JSONAPIAdapter` will attempt to pluralize and dasherize
+By default, the `JSONAPIAdapter` will attempt to pluralize and dasherize
 the model name to generate the path name. If this convention does not
 conform to your backend you can override the `pathForType` method.
 

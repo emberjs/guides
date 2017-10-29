@@ -42,7 +42,7 @@ export default Route.extend({
 });
 ```
 
-Each component, under the hood, is backed by an element. By default
+Each component is backed by an element under the hood. By default, 
 Ember will use a `<div>` element to contain your component's template.
 To learn how to change the element Ember uses for your component, see
 [Customizing a Component's

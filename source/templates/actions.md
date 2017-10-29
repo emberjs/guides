@@ -80,7 +80,7 @@ become `keyPress`.
 
 ## Allowing Modifier Keys
 
-By default the `{{action}}` helper will ignore click events with
+By default, the `{{action}}` helper will ignore click events with
 pressed modifier keys. You can supply an `allowedKeys` option
 to specify which keys should not be ignored.
 
