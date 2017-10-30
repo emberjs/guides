@@ -101,7 +101,7 @@ giving it the `image` class name so that our test can find it.
 
 ```app/templates/components/rental-listing.hbs{+2,+4,+5}
 <article class="listing">
-  <a class="image {{if isWide "wide"}}">
+  <a class="image {{if isWide 'wide'}}">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
