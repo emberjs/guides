@@ -81,10 +81,10 @@ If you take a look at `app/router.js`, you'll notice some syntax that may be
 unfamiliar to you.
 
 ```app/router.js
-import Router from '@ember/routing/router';
+import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = Router.extend({
+const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL
 });
