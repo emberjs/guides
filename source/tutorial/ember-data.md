@@ -36,7 +36,7 @@ _title_, _owner_, _city_, _property type_, _image_, _bedrooms_ and _description_
 Define attributes by giving them the result of the function [`DS.attr()`](https://www.emberjs.com/api/ember-data/2.16/classes/DS/methods/attr?anchor=attr).
 For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
-```app/models/rental.js
+```app/models/rental.js{+4,+5,+6,+7,+8,+9,+10}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
