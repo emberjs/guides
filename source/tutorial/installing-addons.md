@@ -24,6 +24,16 @@ Run the following command to install the addon:
 ember install ember-cli-tutorial-style
 ```
 
+Here is the output:
+
+```shell
+NPM: Installed ember-cli-tutorial-style
+installing ember-cli-tutorial-style
+  create public/assets/images/teaching.png
+  create vendor/ember-tutorial.css
+Installed addon package.
+```
+
 Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry
 in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will
 incorporate the new CSS and refreshing the browser window will give you this:
