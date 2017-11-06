@@ -336,10 +336,9 @@ escape the return value (that is, that it is _safe_) by using the
 
 ```app/helpers/make-bold.js
 import { helper } from "@ember/component/helper";
-import { htmlSafe } from "@ember/string";
 
 export function makeBold([param, ...rest]) {
-  return htmlSafe(`<b>${param}</b>`);
+  return Ember.String.htmlSafe(`<b>${param}</b>`);
 });
 
 export default helper(makeBold);
@@ -375,11 +374,10 @@ escape anything that may have come from an untrusted user with the
 ```app/helpers/make-bold.js
 import { helper } from "@ember/component/helper";
 import Handlebars from "handlebars";
-import { htmlSafe } from "@ember/string";
 
 export function makeBold([param, ...rest]) {
   let value = Handlebars.Utils.escapeExpression(param);
-  return htmlSafe(`<b>${value}</b>`);
+  return Ember.String.htmlSafe(`<b>${value}</b>`);
 });
 
 export default helper(makeBold);
