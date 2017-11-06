@@ -336,9 +336,10 @@ escape the return value (that is, that it is _safe_) by using the
 
 ```app/helpers/make-bold.js
 import { helper } from "@ember/component/helper";
+import { htmlSafe } from "@ember/string";
 
 export function makeBold([param, ...rest]) {
-  return Ember.String.htmlSafe(`<b>${param}</b>`);
+  return htmlSafe(`<b>${param}</b>`);
 });
 
 export default helper(makeBold);
@@ -374,7 +375,7 @@ escape anything that may have come from an untrusted user with the
 ```app/helpers/make-bold.js
 import { helper } from "@ember/component/helper";
 import Handlebars from "handlebars";
-import { htmlSafe } from "@ember/component";
+import { htmlSafe } from "@ember/string";
 
 export function makeBold([param, ...rest]) {
   let value = Handlebars.Utils.escapeExpression(param);
@@ -396,4 +397,4 @@ type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 [1]: https://www.emberjs.com/api/ember/2.16/classes/Helper
 [2]: https://www.emberjs.com/api/ember/2.16/classes/Helper/methods/compute?anchor=compute
 [3]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
-[4]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe
+[4]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe
