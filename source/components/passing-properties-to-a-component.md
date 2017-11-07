@@ -71,13 +71,9 @@ set the [`positionalParams`](https://www.emberjs.com/api/ember/2.16/classes/Comp
 ```app/components/blog-post.js
 import Component from '@ember/component';
 
-const BlogPostComponent = Component.extend({});
-
-BlogPostComponent.reopenClass({
+export default Component.extend({}).reopenClass({
   positionalParams: ['title', 'body']
 });
-
-export default BlogPostComponent;
 ```
 
 Then you can use the attributes in the component exactly as if they had been
@@ -95,18 +91,14 @@ will allow you to access those params as an array like so:
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
-const BlogPostComponent = Component.extend({
+export default Component.extend({
   title: computed('params.[]', function(){
     return this.get('params')[0];
   }),
   body: computed('params.[]', function(){
     return this.get('params')[1];
   })
-});
-
-BlogPostComponent.reopenClass({
+}).reopenClass({
   positionalParams: 'params'
 });
-
-export default BlogPostComponent;
 ```
