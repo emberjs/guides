@@ -218,9 +218,9 @@ To do this we'll simply provide the filter text to the filter function, so that 
 We will update the results on screen only if the original filter value and the current filter value are the same.
 
 ```app/controllers/rentals.js{-7,+8,+9,+10,+11,-13,+14,+15,+16,+17}
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     filterByCity(param) {
       if (param !== '') {
@@ -245,9 +245,9 @@ In the `filterByCity` function in the rental controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
 ```app/components/list-filter.js{-18,+9,+10,+11,+19,+20,+21,+22}
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['list-filter'],
   value: '',
 
