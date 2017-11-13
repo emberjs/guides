@@ -336,9 +336,10 @@ escape the return value (that is, that it is _safe_) by using the
 
 ```app/helpers/make-bold.js
 import { helper } from "@ember/component/helper";
+import { htmlSafe } from '@ember/string';
 
 export function makeBold([param, ...rest]) {
-  return Ember.String.htmlSafe(`<b>${param}</b>`);
+  return htmlSafe(`<b>${param}</b>`);
 });
 
 export default helper(makeBold);
