@@ -314,7 +314,7 @@ _asynchronous_ request to the server, and only when that request finishes
 loading can the record be created with its backing data.
 
 Because of this asynchronicity, the store immediately returns a
-_promise_ from the `find()` method. Similarly, any requests that the
+_promise_ from the `findRecord()` method. Similarly, any requests that the
 store makes to the adapter also return promises.
 
 Once the request to the server returns with a JSON payload for the
