@@ -372,12 +372,12 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```app/helpers/make-bold.js
+import Ember from "ember";
 import { helper } from "@ember/component/helper";
-import Handlebars from "handlebars";
 import { htmlSafe } from "@ember/string";
 
 export function makeBold([param, ...rest]) {
-  let value = Handlebars.Utils.escapeExpression(param);
+  let value = Ember.Handlebars.Utils.escapeExpression(param);
   return htmlSafe(`<b>${value}</b>`);
 });
 
