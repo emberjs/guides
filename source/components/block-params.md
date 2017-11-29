@@ -36,10 +36,10 @@ The names are bound in the order that they are passed to `yield` in the componen
 ### Supporting both block and non-block component usage in one template
 
 It is possible to support both block and non-block usage of a component from a single component template
-using the `hasBlock` property.
+using the `has-block` helper.
 
 ```app/templates/components/blog-post.hbs
-{{#if hasBlock}}
+{{#if (has-block)}}
   {{yield post.title post.body post.author}}  
 {{else}}
   <h1>{{post.title}}</h1>
