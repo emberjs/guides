@@ -214,8 +214,8 @@ Finally open the template file for our `rental-listing` component and add the ne
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.propertyType}}
-      - {{rental.propertyType}}
+    <span>Type:</span> {{rental-property-type rental.category}}
+      - {{rental.category}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
