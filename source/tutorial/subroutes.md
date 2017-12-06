@@ -316,7 +316,7 @@ Next, we can update the template for our show route (`app/templates/rentals/show
       <strong>Owner:</strong> {{model.owner}}
     </div>
     <div class="detail">
-      <strong>Type:</strong> {{rental-property-type model.propertyType}} - {{model.propertyType}}
+      <strong>Type:</strong> {{rental-property-type model.category}} - {{model.category}}
     </div>
     <div class="detail">
       <strong>Location:</strong> {{model.city}}
@@ -356,8 +356,8 @@ Clicking on the title will load the detail page for that rental.
     <span>Owner:</span> {{rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.propertyType}}
-      - {{rental.propertyType}}
+    <span>Type:</span> {{rental-property-type rental.category}}
+      - {{rental.category}}
   </div>
   <div class="detail location">
     <span>Location:</span> {{rental.city}}
