@@ -38,12 +38,14 @@ If `isAdministrator` is `false`, Handlebars will produce the following:
 <input type="checkbox">
 ```
 
-### Adding Data Attributes
+### Adding Other Attributes (Including Data Attributes)
 
-By default, helpers and components do not accept *data attributes*. For example
+By default, helpers and components only accept a limited number of HTML attributes.
+This means that some uncommon but perfectly valid attributes, such as `lang` or
+custom `data-*` attributes, will not work out of the box. For example, this template:
 
 ```handlebars
-{{#link-to "photos" data-toggle="dropdown"}}Photos{{/link-to}}
+{{#link-to "photos" data-toggle="dropdown" lang="es"}}Fotos{{/link-to}}
 
 {{input type="text" data-toggle="tooltip" data-placement="bottom" title="Name"}}
 ```
@@ -51,7 +53,7 @@ By default, helpers and components do not accept *data attributes*. For example
 renders the following HTML:
 
 ```html
-<a id="ember239" class="ember-view" href="#/photos">Photos</a>
+<a id="ember239" class="ember-view" href="#/photos">Fotos</a>
 
 <input id="ember257" class="ember-view ember-text-field" type="text"
        title="Name">
@@ -65,7 +67,7 @@ for the specific attribute:
 
 ```javascript
 Ember.LinkComponent.reopen({
-  attributeBindings: ['data-toggle']
+  attributeBindings: ['data-toggle', 'lang']
 });
 
 Ember.TextField.reopen({
@@ -76,7 +78,7 @@ Ember.TextField.reopen({
 Now the same template above renders the following HTML:
 
 ```html
-<a id="ember240" class="ember-view" href="#/photos" data-toggle="dropdown">Photos</a>
+<a id="ember240" class="ember-view" href="#/photos" data-toggle="dropdown" lang="es">Fotos</a>
 
 <input id="ember259" class="ember-view ember-text-field"
        type="text" data-toggle="tooltip" data-placement="bottom" title="Name">
