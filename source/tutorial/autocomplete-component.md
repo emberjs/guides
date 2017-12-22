@@ -438,7 +438,7 @@ represented by the variable `FILTERED_ITEMS` when any value is set.
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
-```tests/integration/components/list-filter-test.js
+```tests/integration/components/list-filter-test.js{+26,+27}
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
