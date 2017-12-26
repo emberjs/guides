@@ -1,4 +1,4 @@
-Components can be tested on different levels of complexity. Let's see how this plays out in a specific example:
+Components can be tested easily with a rendering test. Let's see how this plays out in a specific example:
 
 Let's assume we have a component with a `style` property that is updated
 whenever the value of the `name` property changes. The `style` attribute of the
@@ -281,7 +281,7 @@ module('Integration | Component | comment form', function(hooks) {
 ### Stubbing Services
 
 In cases where components have dependencies on Ember services, it is possible to stub these
-dependencies for integration tests. You stub Ember services by using the built-in `register()`
+dependencies for rendering tests. You stub Ember services by using the built-in `register()`
 function to register your stub service in place of the default.
 
 Imagine you have the following component that uses a location service to display the city
@@ -492,6 +492,7 @@ export default Component.extend({
 {{/each}}
 </ul>
 ```
+
 In your test, use the `settled` helper to wait until your debounce timer is up and then assert
 that the page is rendered appropriately.
 

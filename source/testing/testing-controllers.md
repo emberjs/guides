@@ -1,4 +1,4 @@
-_Unit testing methods and computed properties follows previous patterns shown
+_Container testing methods and computed properties follows previous patterns shown
 in [Unit Testing Basics] because Ember.Controller extends Ember.Object._
 
 Controllers can be tested using the `setupTest` helper which is part
@@ -146,5 +146,5 @@ module('Unit | Controller | comments', function(hooks) {
 });
 ```
 
-[Unit Testing Basics]: ../unit-testing-basics
+[Testing Basics]: ../unit-testing-basics
 [needs]: ../../controllers/dependencies-between-controllers

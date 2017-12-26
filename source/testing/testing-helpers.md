@@ -1,8 +1,8 @@
 _Testing helpers follows previous patterns shown in [Testing Components],
 because helpers are rendered to templates just like components._
 
-Helpers are best tested with integration tests, but can also be tested with unit
-tests. Integration tests will provide better coverage for helpers, as it more
+Helpers are best tested with rendering tests, but can also be tested with unit
+tests. Rendering tests will provide better coverage for helpers, as it more
 closely simulates the lifecycle of a helper than in isolation.
 
 We're going to demonstrate how to test helpers by testing the `format-currency`
@@ -27,7 +27,7 @@ export default helper(formatCurrency);
 ```
 
 Let's start by testing the helper by showing a simple unit test and then move on
-to testing with integration tests afterwards.
+to testing with a rendering test afterwards.
 
 Helpers are functions, which can be easily tested through `module` alone.
 

@@ -1,4 +1,4 @@
-_Unit testing methods and computed properties follows previous patterns shown
+_Container testing methods and computed properties follows previous patterns shown
 in [Unit Testing Basics] because DS.Model extends Ember.Object._
 
 [Ember Data] Models can be tested in a module that uses the `setupTest` helper.
@@ -106,5 +106,5 @@ look at the [Ember Data tests] for examples of deeper relationship testing if yo
 feel the need to do it._
 
 [Ember Data]: https://github.com/emberjs/data
-[Unit Testing Basics]: ../unit-testing-basics
+[Testing Basics]: ../unit-testing-basics
 [Ember Data tests]: https://github.com/emberjs/data/tree/master/tests

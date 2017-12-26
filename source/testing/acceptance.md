@@ -1,4 +1,4 @@
-To create an acceptance test, run `ember generate acceptance-test <name>`.
+To create an application test, run `ember generate acceptance-test <name>`.
 For example:
 
 ```shell
