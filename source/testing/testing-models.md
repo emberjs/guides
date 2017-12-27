@@ -1,5 +1,5 @@
 _Container testing methods and computed properties follows previous patterns shown
-in [Unit Testing Basics] because DS.Model extends Ember.Object._
+in [Testing Basics] because DS.Model extends Ember.Object._
 
 [Ember Data] Models can be tested in a module that uses the `setupTest` helper.
 
