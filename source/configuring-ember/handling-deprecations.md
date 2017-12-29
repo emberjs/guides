@@ -16,7 +16,7 @@ in release 2.0.0.
 
 
 ``` app/initializers/main.js
-import Ember from "ember";
+import Ember from 'ember';
 
 export function initialize() {
   if (Ember.Debug && typeof Ember.Debug.registerDeprecationHandler === 'function') {
