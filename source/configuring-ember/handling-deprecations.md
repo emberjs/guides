@@ -16,14 +16,21 @@ in release 2.0.0.
 
 
 ``` app/initializers/main.js
-if (Ember.Debug && typeof Ember.Debug.registerDeprecationHandler === 'function') {
+import Ember from 'ember';
+
+export function initialize() {
+  if (Ember.Debug && typeof Ember.Debug.registerDeprecationHandler === 'function') {
     Ember.Debug.registerDeprecationHandler((message, options, next) => {
-        if (options && options.until && options.until !== '2.0.0') {
-            return;
-        }
+      if (options && options.until && options.until !== '2.0.0') {
+        return;
+      } else {
         next(message, options);
+      }
     });
+  }
 }
+
+export default { initialize };
 ```
 
 The deprecation handler API was released in Ember 2.1.  If you would like to leverage this API in a prior release of Ember you can install
