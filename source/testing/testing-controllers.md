@@ -134,7 +134,7 @@ test('should modify the post model', function(assert) {
   const postCtrl = ctrl.get('post');
 
   // wrap the test in the run loop because we are dealing with async functions
-  Ember.run(function() {
+  run(function() {
 
     // set a generic model on the post controller
     postCtrl.set('model', Ember.Object.create({ title: 'foo' }));

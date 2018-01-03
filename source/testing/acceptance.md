@@ -204,12 +204,13 @@ export default registerHelper('shouldHaveElementWithCount',
 Here is an example of an async helper:
 
 ```tests/helpers/dblclick.js
+import { run } from '@ember/runloop';
 import { registerAsyncHelper } from "@ember/test"
 
 export default registerAsyncHelper('dblclick',
   function(app, assert, selector, context) {
     let $el = findWithAssert(selector, context);
-    Ember.run(() => $el.dblclick());
+    run(() => $el.dblclick());
   }
 );
 
