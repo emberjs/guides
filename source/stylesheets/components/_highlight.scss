@@ -134,7 +134,7 @@
     border-left-width: 13px;
     border-right-width: 13px;
     margin: 0 -13px;
-    width: 613px;
+    width: calc(100% - 13px);
   }
 
   .line-numbers .highlight-line {
