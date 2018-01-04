@@ -20,7 +20,7 @@ they must be declared on `controller:articles`.
 To add a `category`
 query parameter that will filter out all the articles that haven't
 been categorized as popular we'd specify `'category'`
-as one of `controller:article`'s `queryParams`:
+as one of `controller:articles`'s `queryParams`:
 
 ```app/controllers/articles.js
 import Controller from '@ember/controller';
