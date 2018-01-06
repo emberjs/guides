@@ -51,7 +51,7 @@ To dispatch an action on specific events, such as `enter` or `key-press`, use th
 {{input value=firstName key-press="updateFirstName"}}
 ```
 
-[Event Names](https://www.emberjs.com/api/ember/2.16/classes/Component#toc_event-names) must be dasherized.
+[Event Names](https://www.emberjs.com/api/ember/2.16/classes/Component) must be dasherized.
 
 ## Checkboxes
 
