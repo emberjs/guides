@@ -70,7 +70,7 @@ import Router from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.store.findAll('user').then((results) => {
+    return this.store.query('user', {}).then((results) => {
       return {
         users: results,
         meta: results.get('meta')
