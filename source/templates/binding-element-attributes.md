@@ -42,7 +42,7 @@ If `isAdministrator` is `false`, Handlebars will produce the following:
 
 By default, helpers and components only accept a limited number of HTML attributes.
 This means that some uncommon but perfectly valid attributes, such as `lang` or
-custom `data-*` attributes, will not work out of the box. For example, this template:
+custom `data-*` attributes must be specifically enabled. For example, this template:
 
 ```handlebars
 {{#link-to "photos" data-toggle="dropdown" lang="es"}}Fotos{{/link-to}}
