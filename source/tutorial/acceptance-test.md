@@ -110,7 +110,7 @@ test('visiting /', function(assert) {
 });
 ```
 
-Running `ember test --server` will now show 7 failing tests (out of 15). Each of the 6 tests we setup above will fail, plus one ESLint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
+Running `ember test --server` will now show 7 failing tests (out of 14). Each of the 6 tests we setup above will fail, plus one ESLint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
 
 As we continue through this tutorial, we'll use these acceptance tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.
 
