@@ -350,9 +350,10 @@ test('should link to contact information', function (assert) {
 });
 ```
 
-In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/assert/equal). `assert.equal()` checks
-to see if two items (our first and second arguments) equal each other.  If they don't, our test will fail.
-The third optional argument allows us to provide a nicer message which we'll be shown if this test fails.
+In the tests above, we're using [`assert.equal()`](https://api.qunitjs.com/assert/equal) to check if the first and second arguments equal each other.
+If they don't, our test will fail.
+
+The third optional argument allows us to provide a nicer message which will be shown if this test fails.
 
 In our tests, we also call two helpers (`visit` and `click`) one after another. Although Ember does a number
 of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers).
