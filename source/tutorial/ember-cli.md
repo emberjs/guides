@@ -68,7 +68,7 @@ are installed in the node_modules directory.
 **public**: This directory contains assets such as images and fonts.
 
 **vendor**: This directory is where front-end dependencies (such as JavaScript
-or CSS) that are not managed by Bower go.
+or CSS) that are not managed by NPM go.
 
 **tests / testem.js**: Automated tests for our app go in the `tests` folder,
 and Ember CLI's test runner **testem** is configured in `testem.js`.
