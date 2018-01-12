@@ -282,4 +282,3 @@ Adapters. Some good places to look for Ember Data Adapters include:
 
 - [Ember Observer](http://emberobserver.com/categories/data)
 - [GitHub](https://github.com/search?q=ember+data+adapter&ref=cmdform)
-- [Bower](http://bower.io/search/?q=ember-data-)
