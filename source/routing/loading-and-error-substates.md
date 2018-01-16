@@ -1,6 +1,10 @@
 The Ember Router allows you to provide feedback that a route is loading, as well
 as when an error occurs in loading a route.
 
+The `error` and `loading` substates exist as a part of each route, so they
+should not be added to your `router.js` file. To utilize a substate, the route, controller,
+and template may be optionally defined as desired.
+
 ## `loading` substates
 
 During the `beforeModel`, `model`, and `afterModel` hooks, data may take some
