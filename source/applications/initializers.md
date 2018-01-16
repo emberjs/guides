@@ -34,8 +34,7 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'shopping-cart',
-  initialize: initialize
+  initialize
 };
 ```
 
@@ -56,8 +55,7 @@ export function initialize(applicationInstance) {
 }
 
 export default {
-  name: 'logger',
-  initialize: initialize
+  initialize
 };
 ```
 
@@ -71,9 +69,8 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'config-reader',
   before: 'websocket-init',
-  initialize: initialize
+  initialize
 };
 ```
 
@@ -83,9 +80,8 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'websocket-init',
   after: 'config-reader',
-  initialize: initialize
+  initialize
 };
 ```
 
@@ -95,11 +91,39 @@ export function initialize(application) {
 };
 
 export default {
-  name: 'asset-init',
   after: ['config-reader', 'websocket-init'],
-  initialize: initialize
+  initialize
 };
 ```
 
 Note that ordering only applies to initializers of the same type (i.e. application or application instance).
 Application initializers will always run before application instance initializers.
+
+## Customizing Initializer Names
+
+By default initializer names are derived from their module name. This initializer will be given the name `logger`:
+
+```app/instance-initializers/logger.js
+export function initialize(applicationInstance) {
+  let logger = applicationInstance.lookup('logger:main');
+  logger.log('Hello from the instance initializer!');
+}
+
+export default { initialize };
+```
+
+If you want to change the name you can simply rename the file, but if needed you can also specify the name explicitly:
+
+```app/instance-initializers/logger.js
+export function initialize(applicationInstance) {
+  let logger = applicationInstance.lookup('logger:main');
+  logger.log('Hello from the instance initializer!');
+}
+
+export default {
+  name: 'my-logger',
+  initialize
+};
+```
+
+This initializer will now have the name `my-logger`.
