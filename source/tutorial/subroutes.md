@@ -35,9 +35,9 @@ This is where the active nested route will be rendered.
 </div>
 {{#list-filter
    filter=(action 'filterByCity')
-   as |rentals|}}
+   as |filteredResults|}}
   <ul class="results">
-    {{#each rentals as |rentalUnit|}}
+    {{#each filteredResults as |rentalUnit|}}
       <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
@@ -112,9 +112,9 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 </div>
 {{#list-filter
    filter=(action 'filterByCity')
-   as |rentals|}}
+   as |filteredResults|}}
   <ul class="results">
-    {{#each rentals as |rentalUnit|}}
+    {{#each filteredResults as |rentalUnit|}}
       <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
@@ -125,9 +125,9 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 ```app/templates/rentals/index.hbs{+1,+2,+3,+4,+5,+6,+7,+8,+9}
 {{#list-filter
    filter=(action 'filterByCity')
-   as |rentals|}}
+   as |filteredResults|}}
   <ul class="results">
-    {{#each rentals as |rentalUnit|}}
+    {{#each filteredResults as |rentalUnit|}}
       <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>

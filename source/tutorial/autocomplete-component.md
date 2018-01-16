@@ -22,7 +22,7 @@ Notice that below we "wrap" our rentals markup inside the open and closing menti
 This is an example of the [**block form**](../../components/wrapping-content-in-a-component) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
-In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
+In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14).
 
 ```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23}
 <div class="jumbo">
@@ -38,9 +38,9 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 
 {{#list-filter
    filter=(action 'filterByCity')
-   as |rentals|}}
+   as |filteredResults|}}
   <ul class="results">
-    {{#each rentals as |rentalUnit|}}
+    {{#each filteredResults as |rentalUnit|}}
       <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
@@ -71,7 +71,7 @@ the new value of the property is present in both the rendered web page and in th
 
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
-Here is what the component's JavaScript looks like:
+The `handleFilterEntry` action will apply the search term filter to the list of rentals, and set a component attribute called `results`. The `results` are passed to the `{{yield}}` helper in the template. In the yielded block component, those same `results` are referred to as `|filteredResults|`. Let's apply the filter to our rentals:
 
 ```app/components/list-filter.js
 import Component from '@ember/component';
