@@ -95,7 +95,7 @@ while the other two are listed as "Community".
 
 Update the content of the integration test to the following to fix it:
 
-```/tests/integration/helpers/rental-property-type-test.js{-15,+16}
+```/tests/integration/helpers/rental-property-type-test.js{-11,-16,+12,+17}
 
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -107,6 +107,7 @@ moduleForComponent('rental-property-type', 'helper:rental-property-type', {
 // Replace this with your real tests.
 test('it renders', function(assert) {
   this.set('inputValue', '1234');
+  this.set('inputValue', 'Standalone');
 
   this.render(hbs`{{rental-property-type inputValue}}`);
 
