@@ -148,11 +148,14 @@ The result of the query is returned to the caller.
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 Instead of simply returning the list of rentals, our Mirage HTTP GET handler for `rentals` will return rentals matching the string provided in the URL query parameter called `city`.
 
-```mirage/config.js
+```mirage/config.js{+4,-5,-6,-7,-44,-45,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57}
 export default function() {
   this.namespace = '/api';
 
   let rentals = [{
+  this.get('/rentals', function() {
+    return {
+      data: [{
       type: 'rentals',
       id: 'grand-old-mansion',
       attributes: {
@@ -189,6 +192,8 @@ export default function() {
         description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
       }
     }];
+  };
+});
 
   this.get('/rentals', function(db, request) {
     if(request.queryParams.city !== undefined) {
