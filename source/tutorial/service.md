@@ -61,7 +61,7 @@ const google = window.google;
 export default EmberObject.extend({
 
   init() {
-    this.set('geocoder', new google.maps.Geocoder());
+    this.set('geocoder', new window.google.maps.Geocoder());
   },
 
   createMap(element, location) {
