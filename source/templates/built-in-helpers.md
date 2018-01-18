@@ -36,3 +36,7 @@ format of a concatenated string.
 
 This will display the result of `this.get('foo.item1')` when index is 1,
 and `this.get('foo.item2')` when index is 2, etc.
+
+### Let it be
+
+Document `let`.
