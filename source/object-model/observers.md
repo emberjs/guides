@@ -86,7 +86,7 @@ happens in the next run loop once all bindings are synchronized:
 
 ```javascript
 import { observer } from '@ember/object';
-import { once } from "@ember/runloop"
+import { once } from '@ember/runloop';
 
 Person.reopen({
   partOfNameChanged: observer('firstName', 'lastName', function() {
@@ -115,7 +115,7 @@ should also run after `init` by using [`Ember.on()`](http://emberjs.com/api/clas
 
 ```javascript
 import EmberObject, { observer } from '@ember/object';
-import { on } from "@ember/object/evented"
+import { on } from '@ember/object/evented';
 
 Person = EmberObject.extend({
   init() {
