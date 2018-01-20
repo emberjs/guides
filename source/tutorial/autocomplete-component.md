@@ -250,7 +250,7 @@ In the `filterByCity` function in the rentals controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
 ```app/components/list-filter.js{-19,-9,+10,+11,+12,+20,+21,+22,+23,+24}
-import Ember from 'ember';
+import Component from '@ember/component';
 
 export default Component.extend({
   classNames: ['list-filter'],
@@ -258,7 +258,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get("filter")("").then((results) => this.set("results", results))
+    this.get('filter')('').then((results) => this.set('results', results));
     this.get('filter')('').then((allResults) => {
       this.set('results', allResults.results);
     });
