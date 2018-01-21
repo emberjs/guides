@@ -3,7 +3,7 @@ change application state. For example, imagine that you have a template
 that shows a blog title, and supports expanding the post to show the body.
 
 If you add the
-[`{{action}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/action?anchor=action)
+[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
 helper to any HTML DOM element, when a user clicks the element, the named event
 will be sent to the template's corresponding component or controller.
 
@@ -62,7 +62,7 @@ export default Component.extend({
 ## Specifying the Type of Event
 
 By default, the
-[`{{action}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/action?anchor=action)
+[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
 helper listens for click events and triggers the action when the user clicks
 on the element.
 
@@ -116,7 +116,7 @@ will trigger the action *and* the user will be directed to the new page.
 ## Modifying the action's first parameter
 
 If a `value` option for the
-[`{{action}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/action?anchor=action)
+[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
 helper is specified, its value will be considered a property path that will
 be read off of the first parameter of the action. This comes very handy with
 event listeners and enables to work with one-way bindings.

@@ -10,7 +10,7 @@ passing data to another helper or component.
 
 ### Using a helper to get a property dynamically
 
-The [`{{get}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/get?anchor=get) helper makes it easy to dynamically send the value of a
+The [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) helper makes it easy to dynamically send the value of a
 variable to another helper or component.
 This can be useful if you want
 to output one of several values based on the result of a computed property.
@@ -26,7 +26,7 @@ if the `part` computed property returns "zip", this will display the result of
 
 In the last section it was discussed that helpers can be nested.
 This can be combined with these sorts of dynamic helpers.
-For example, the [`{{concat}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/get?anchor=concat) helper makes it easy to dynamically send
+For example, the [`{{concat}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=concat) helper makes it easy to dynamically send
 a number of parameters to a component or helper as a single parameter in the
 format of a concatenated string.
 

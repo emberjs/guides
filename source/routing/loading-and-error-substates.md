@@ -88,7 +88,7 @@ It's important to note that `foo.bar.loading` is not considered now.
 ### The `loading` event
 
 If the various `beforeModel`/`model`/`afterModel` hooks
-don't immediately resolve, a [`loading`](https://www.emberjs.com/api/ember/2.16/classes/Route/events/loading?anchor=loading) event will be fired on that route.
+don't immediately resolve, a [`loading`](https://www.emberjs.com/api/ember/release/classes/Route/events/loading?anchor=loading) event will be fired on that route.
 
 ```app/routes/foo-slow-model.js
 import Route from '@ember/routing/route';
@@ -203,7 +203,7 @@ logged.
 
 If the `articles.overview` route's `model` hook returns a promise that rejects
 (for instance the server returned an error, the user isn't logged in,
-etc.), an [`error`](https://www.emberjs.com/api/ember/2.16/classes/Route/events/error?anchor=error) event will fire from that route and bubble upward.
+etc.), an [`error`](https://www.emberjs.com/api/ember/release/classes/Route/events/error?anchor=error) event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 

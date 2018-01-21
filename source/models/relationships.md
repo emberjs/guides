@@ -340,7 +340,7 @@ include those related records in the response returned to the client.
 The value of the parameter should be a comma-separated list of names of the
 relationships required.
 
-If you are using an adapter that supports JSON API, such as Ember's default [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPIAdapter),
+If you are using an adapter that supports JSON API, such as Ember's default [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter),
 you can easily add the `include` parameter to the server requests created by
 the `findRecord()`, `findAll()`,
 `query()` and `queryRecord()` methods.

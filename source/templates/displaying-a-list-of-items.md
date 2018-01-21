@@ -1,5 +1,5 @@
 To iterate over a list of items, use the
-[`{{#each}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=each)
+[`{{#each}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
 helper. The first argument to this helper is the array to be iterated, and
 the value being iterated is yielded as a block param. Block params are only
 available inside the block of their helper.
@@ -47,7 +47,7 @@ or removed from the iterated array, the DOM will be updated without having to
 write any additional code. That said, Ember requires that you use [special
 methods](../../object-model/enumerables/#toc_use-of-observable-methods-and-properties)
 to update bound arrays. Also be aware that [using the `key` option with an each
-helper](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=each)
+helper](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
 can improve re-render performance when an array is replaced with another
 containing similar items.
 
@@ -66,7 +66,7 @@ block param. Block params are space-separated, without commas. For example:
 
 ### Empty Lists
 
-The [`{{#each}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=each)
+The [`{{#each}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
 helper can have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 

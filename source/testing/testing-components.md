@@ -395,7 +395,7 @@ Often, interacting with a component will cause asynchronous behavior to occur, s
 `wait` helper is designed to handle these scenarios, by providing a hook to ensure assertions are made after
 all Ajax requests and timers are complete.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Frunloop/methods/debounce?anchor=debounce)
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce)
 to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate

@@ -9,7 +9,7 @@ objects in the following ways:
 
 * `String` is extended to add convenience methods, such as
   `camelize()` and `w()`. You can find a list of these methods with the
-  [Ember.String documentation](https://www.emberjs.com/api/ember/2.16/classes/String).
+  [Ember.String documentation](https://www.emberjs.com/api/ember/release/classes/String).
 
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
@@ -90,7 +90,7 @@ islands.includes('Oahu');
 ### Strings
 
 Strings will no longer have the convenience methods described in the
-[`Ember.String` API reference](https://www.emberjs.com/api/ember/2.16/classes/String).
+[`Ember.String` API reference](https://www.emberjs.com/api/ember/release/classes/String).
 Instead,
 you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
