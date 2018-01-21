@@ -139,13 +139,13 @@ presenting model data to the user, not fetching the model.
 
 Good Ember apps take a different approach. Ember Data gives you a single
 **store** that is the central repository of models in your application.
-Components and routes can ask the store for models, and the store is
+Routes and their corresponding controllers can ask the store for models, and the store is
 responsible for knowing how to fetch them.
 
 It also means that the store can detect that two different components
 are asking for the same model, allowing your app to only fetch the data
 from the server once. You can think of the store as a read-through cache
-for your app's models. Both your components and routes have access to
+for your app's models. Both routes and their corresponding controllers have access to
 this shared store; when they need to display or modify a model, they
 first ask the store for it.
 
