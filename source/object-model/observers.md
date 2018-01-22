@@ -110,7 +110,7 @@ Observers never fire until after the initialization of an object is complete.
 
 If you need an observer to fire as part of the initialization process, you
 cannot rely on the side effect of `set`. Instead, specify that the observer
-should also run after `init` by using [`Ember.on()`](http://emberjs.com/api/classes/Ember.html#method_on):
+should also run after `init` by using [`Ember.on()`](https://emberjs.com/api/ember/2.15/namespaces/Ember/methods/on?anchor=on):
 
 
 ```javascript

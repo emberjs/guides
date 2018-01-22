@@ -147,15 +147,15 @@ In the `andThen` helper, we finally make our call to `assert.equal` which makes 
 assertion that the text found in the first li of the ul whose class is "posts"
 is equal to "My new post".
 
-[1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
-[2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
-[3]: http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent
-[4]: http://emberjs.com/api/classes/Ember.Test.html#method_triggerEvent
-[5]: http://emberjs.com/api/classes/Ember.Test.html#method_visit
-[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentPath
-[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
-[8]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
-[9]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+[1]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/click?anchor=click
+[2]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/fillIn?anchor=fillIn
+[3]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/keyEvent?anchor=keyEvent
+[4]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/triggerEvent?anchor=triggerEvent
+[5]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/visit?anchor=visit
+[6]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/currentPath?anchor=currentPath
+[7]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/currentRouteName?anchor=currentRouteName
+[8]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/currentURL?anchor=currentURL
+[9]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/find?anchor=find
 
 ### Custom Test Helpers
 
@@ -178,8 +178,8 @@ called. The difference between `Ember.Test.registerHelper` and
 previous async helper has completed and any subsequent async helper will wait
 for it to finish before running.
 
-[10]: http://emberjs.com/api/classes/Ember.Test.html#method_registerAsyncHelper
-[11]: http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper
+[10]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/registerAsyncHelper?anchor=registerAsyncHelper
+[11]: https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/registerHelper?anchor=registerHelper
 
 The helper method will always be called with the current Application as the
 first parameter. Other parameters, such as assert, need to be provided when calling the helper. Helpers need to be registered prior to calling

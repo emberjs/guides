@@ -523,8 +523,8 @@ test('should filter the list of rentals by city.', function (assert) {
 
 We introduce two new helpers into this test, `fillIn` and `keyEvent`.
 
-* The [`fillIn`](http://emberjs.com/api/classes/Ember.Test.html#method_fillIn) helper "fills in" the given text into an input field matching the given selector.
-* The [`keyEvent`](http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent) helper sends a key stroke event to the UI, simulating the user typing a key.
+* The [`fillIn`](https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/fillIn?anchor=fillIn) helper "fills in" the given text into an input field matching the given selector.
+* The [`keyEvent`](https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/keyEvent?anchor=keyEvent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
 In `app/components/list-filter.js`, we have as the top-level element rendered by the component a class called `list-filter`.
 We locate the search input within the component using the selector `.list-filter input`,
