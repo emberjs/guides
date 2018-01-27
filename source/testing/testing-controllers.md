@@ -84,7 +84,7 @@ accomplished by injecting one controller into another. For example, here are two
 
 ```app/controllers/post.js
 import Controller from '@ember/controller';
-import { alias } from "@ember/object/computed";
+import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
   title: alias('model.title')
@@ -93,7 +93,7 @@ export default Controller.extend({
 
 ```app/controllers/comments.js
 import Controller, { inject as controller } from '@ember/controller';
-import { alias } from "@ember/object/computed";
+import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
   post: controller(),
@@ -106,7 +106,7 @@ our third argument that has the controller's `needs`.
 
 ```tests/unit/controllers/comments-test.js
 import { moduleFor, test } from 'ember-qunit';
-import EmberObject from "@ember/object";
+import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 
 moduleFor('controller:comments', 'Comments Controller', {
@@ -119,7 +119,7 @@ Now let's write a test that sets a property on our `post` model in the
 
 ```tests/unit/controllers/comments-test.js
 import { moduleFor, test } from 'ember-qunit';
-import EmberObject from "@ember/object";
+import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 
 moduleFor('controller:comments', 'Comments Controller', {
