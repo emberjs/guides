@@ -20,7 +20,7 @@ Router.map(function() {
 ```
 
 ```app/routes/slow-model.js
-import Route from '@ember/routing/router';
+import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
