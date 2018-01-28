@@ -33,6 +33,13 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    autoprefixer-rails (7.2.5)
+      execjs
+    bootstrap-navbar (3.0.0)
+      gem_config (~> 0.3)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     bourbon (4.2.6)
       sass (~> 3.4)
       thor (~> 0.19)
@@ -70,6 +77,7 @@ GEM
     eventmachine (1.0.8)
     execjs (2.6.0)
     ffi (1.9.10)
+    gem_config (0.3.1)
     haml (4.0.7)
       tilt
     hashie (3.4.3)
@@ -106,6 +114,9 @@ GEM
       uglifier (~> 2.5)
     middleman-alias (0.0.16)
       middleman-core (~> 3.2)
+    middleman-bootstrap-navbar (4.0.0)
+      bootstrap-navbar (~> 3.0)
+      middleman (>= 3.1)
     middleman-core (3.4.0)
       activesupport (~> 4.1)
       bundler (~> 1.1)
@@ -216,6 +227,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport (~> 4.1.11)
+  bootstrap-sass (~> 3.3.7)
   bourbon
   builder
   capybara
@@ -226,6 +238,7 @@ DEPENDENCIES
   listen
   middleman (~> 3.0)
   middleman-alias
+  middleman-bootstrap-navbar
   middleman-spellcheck!
   middleman-toc!
   neat
