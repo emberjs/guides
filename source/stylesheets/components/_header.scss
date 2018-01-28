@@ -1,101 +1,181 @@
-.header {
-  background: $ember-orange image-url("header.svg") top center no-repeat;
-  background-size: cover;
-  color: $white;
-  padding: 1em 0;
-  font-family: 'Source Sans Pro';
+/* Colors */
+@import "base/base";
+@import "base/bootstrap-navbar";
+$orange: #E04E39;
+$orange-darker: darken($orange, 10);
+$orange-darkest: darken($orange, 20);
+$orange-lighter: lighten($orange, 20);
+$orange-lightest: #f9e7e4; // aka "linen"
 
-  .container {
-    @include media($large-screen) {
-      display: flex;
-    }
-  }
+$white: #fdfdfd;
+$black: #212121;
 
-  .header-nav {
-    @include media($large-screen) {
-      align-items: center;
-      display: flex;
-      height: 2.8em;
-      justify-content: space-between;
-    }
-  }
+$blue: #1e719b; //used for tiny accents like the "job board" graphic
+$blue-lighter: #74b0ce;
+$gray: #454545;
+$gray-lighter: #999999;
+$gray-lightest: #eeeeee;
+$gray-darker: darken($gray, 10%);
+$gray-darkest: darken($gray, 15%);
 
-  a {
-    color: $white;
-    text-decoration: none;
-  }
-}
+$page-width: 960px;
+$col-width: 40px;
+$col-spacing: 20px;
+$sidebar-width: $col-width * 4 + $col-spacing * 3;
+$content-width: $page-width - $sidebar-width - $col-spacing * 2;
 
-.header-nav {
-  li {
-    @include margin(10px null);
-    text-align: center;
 
-    @include media($large-screen) {
-      @include flex(1 0 0);
-      display: inline-block;
-    }
-  }
-
-  li:not(.header-logo):not(.header-search) {
-    width: 32%;
-    display: inline-block;
-    @include media($large-screen) {
-      width: auto;
-    }
-  }
-
-  .header-logo {
-    @include media($large-screen) {
-      @include flex(1.5 0 0);
-    }
-  }
-
-  .header-search {
-    @include media($large-screen) {
-      @include flex(2 0 0);
-    }
-  }
-}
-
-.header-logo {
-  a {
-    @include size(100px 40px);
-    background: image-url("ember-logo.svg") no-repeat;
-    display: block;
-    margin: -15px auto 0 auto;
-    @include media($large-screen) {
-      margin-left: 0;
-    }
-  }
-}
-
-.header-search {
-
-  .algolia-autocomplete {
-    display: block !important; // beats `inline-block` added by DocSearch script
-  }
-  .search-input {
-    width: 100%;
-    height: 35px;
+/**
+  Header
+**/
+header {
+	.navbar {
     margin-bottom: 0;
-    padding-left: 2.5em;
-    border: none;
-    border-radius: 35px;
-    outline: none;
-    appearance: none;
-    background: image-url("search-icon.svg") rgba(white, 0.1) 10px 10px no-repeat;
-    box-shadow: none;
-    font-size: 0.9rem;
-    line-height: 35px;
-    color: $white;
+		&.navbar-inverse {
+			background-color: $orange;
+			border-radius: 0;
+			border-color: transparent;
+			.navbar-collapse, .navbar-form {
+				border-color: $orange-darkest;
+			}
+			.navbar-toggle {
+				border-color: white;
+				&:hover {
+					background-color: $orange-darker;
+				}
+			}
+			.navbar-brand {
+				img {
+				  margin-top: -10px;
+					@media screen and (min-width: 768px) {
+						margin-top: -10px;
+						margin-bottom: 0;
+						padding-bottom: 0;
+						margin-right: 10px;
+					}
+				}
+			}
+			.navbar-nav {
+				li {
+					a {
+            color: white;
+            &:focus {
+              outline: 5px auto -webkit-focus-ring-color;
+            }
+					}
+					&.active {
+						a {
+							background-color: white;
+							color: $orange-darkest;
+						}
+					}
+					&.open {
+						a {
+							background-color: white;
+							color: $orange-darkest;
+						}
+						.dropdown-menu {
+							background-color: white;
+							border-radius: 0;
+							@media screen and (min-width:768px){
+								border-radius: 0 0 4px 4px;
+								border-color-top: white;
+							}
+							li {
+								a {
+									&:hover,
+									:focus {
+										background-color: $orange-lightest;
+                    color: $orange-darkest;
+                    outline: 0 !important;
+									}
+								}
+								&.divider {
+									background-color: $orange-lightest;
+								}
+							}
+						}
+					}
+				}
+			}
+			form.navbar-right.navbar-form {
+				@media screen and (min-width: 768px) {
+					margin-bottom: 0;
+				}
+        .input-group {
+					min-width: 100%;
+        }
+				.form-control {
+					background: url(/images/search-icon.svg) rgba(255, 255, 255, 0.1) 10px 8px no-repeat;
+					border-color: transparent;
+					border-right: 0;
+					box-shadow: none;
+					border-radius: 35px;
+					color: white;
+					padding-left: 2.5em;
+					&::-ms-input-placeholder {
+						color: $orange-lightest !important;
+					}
+					&:-ms-input-placeholder{
+						color: $orange-lightest !important;
+					}
+					&::placeholder{
+						color: $orange-lightest !important;
+					}
+					&:placeholder {
+						color: $orange-lightest !important;
+					}
+        }
+			}
+		}
+	}
+}
 
-    @include placeholder {
-      color: $white;
-    }
-  }
-
-  @include media($large-screen) {
-    margin-left: 4%;
-  }
+// Algolia overrides
+.ds-dataset-1 {
+	span.ds-suggestions {
+		@media screen and (min-width:0px) and (max-width:768px) {
+			z-index:1000 !important;
+		}
+	}
+}
+.algolia-docsearch-footer {
+  border-top-color: $orange-lighter;
+}
+.algolia-docsearch-suggestion {
+  border-bottom-color: $orange-lighter;
+}
+.algolia-docsearch-suggestion--highlight {
+  color: $orange-darker;
+}
+.algolia-docsearch-suggestion--subcategory-column {
+  border-right-color: $orange-lighter;
+  color: $gray-darkest;
+  background-color: $orange-lightest;
+}
+.algolia-autocomplete {
+	width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+	width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+	color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #999;
+	border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+	cursor: pointer;
+	padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+	background-color: #B2D7FF;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+	font-weight: bold;
+	font-style: normal;
 }
