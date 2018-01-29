@@ -32,7 +32,7 @@ level 4 to assert that the `levelName` changes. We will use `moduleForModel`:
 
 ```tests/unit/models/player-test.js
 import { moduleForModel, test } from 'ember-qunit';
-import { run } from "@ember/runloop";
+import { run } from '@ember/runloop';
 
 moduleForModel('player', 'Unit | Model | player', {
   // Specify the other units that are required for this test.
@@ -82,7 +82,7 @@ with this test.
 
 ```tests/unit/models/user-test.js
 import { moduleForModel, test } from 'ember-qunit';
-import { get } from "@ember/object"
+import { get } from '@ember/object';
 
 moduleForModel('user', 'Unit | Model | user', {
   // Specify the other units that are required for this test.

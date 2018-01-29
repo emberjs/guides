@@ -130,7 +130,7 @@ Suppose we have an object that has a property and a method observing that proper
 
 ```app/models/some-thing.js
 import EmberObject from '@ember/object';
-import { observer } from "@ember/object";
+import { observer } from '@ember/object';
 
 export default EmberObject.extend({
   foo: 'bar',

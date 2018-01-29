@@ -96,8 +96,8 @@ you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/
 
 ```app/components/cart-contents.js
 import Component from '@ember/component';
-import { computed } from "@ember/object";
-import { getOwner } from "@ember/application";
+import { computed } from '@ember/object';
+import { getOwner } from '@ember/application';
 
 export default Component.extend({
   //will load the service in file /app/services/shopping-cart.js

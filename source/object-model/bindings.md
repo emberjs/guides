@@ -8,7 +8,7 @@ that specifies the path to another object.
 
 ```javascript
 import EmberObject from '@ember/object';
-import { alias } from "@ember/object/computed"
+import { alias } from '@ember/object/computed';
 
 husband = EmberObject.create({
   pets: 0
@@ -47,7 +47,7 @@ changed)
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 import Component from '@ember/component';
-import { oneWay } from "@ember/object/computed"
+import { oneWay } from '@ember/object/computed';
 
 user = EmberObject.create({
   fullName: 'Kara Gates'

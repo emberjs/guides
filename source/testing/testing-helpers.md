@@ -12,7 +12,7 @@ helper from [Writing Helpers].
 > format-currency`.
 
 ```app/helpers/format-currency.js
-import { helper } from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
 
 export function formatCurrency([value, ...rest], namedArgs) {
   let dollars = Math.floor(value / 100);
