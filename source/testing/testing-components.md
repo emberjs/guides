@@ -403,7 +403,7 @@ to limit requests to the server, and you want to verify that results are display
 
 ```app/components/delayed-typeahead.js
 import Component from '@ember/component';
-import { debounce } from "@ember/runloop";
+import { debounce } from '@ember/runloop';
 
 export default Component.extend({
   actions: {
