@@ -18,9 +18,6 @@ gem "middleman-toc", :git => "https://github.com/ember-learn/middleman-toc", :br
 gem "normalize-scss"
 gem "bourbon"
 gem "neat"
-gem 'bootstrap-sass', '~> 3.3.7'
-# gem 'sass-rails', '>= 3.2'
-gem 'middleman-bootstrap-navbar'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-js-md5"

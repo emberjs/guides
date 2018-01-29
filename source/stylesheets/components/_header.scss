@@ -1,4 +1,6 @@
 /* Colors */
+@import "base/base";
+@import "base/bootstrap-navbar";
 $orange: #E04E39;
 $orange-darker: darken($orange, 10);
 $orange-darkest: darken($orange, 20);
@@ -22,7 +24,7 @@ $col-spacing: 20px;
 $sidebar-width: $col-width * 4 + $col-spacing * 3;
 $content-width: $page-width - $sidebar-width - $col-spacing * 2;
 
-@import "base/base";
+
 /**
   Header
 **/

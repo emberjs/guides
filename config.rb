@@ -23,9 +23,6 @@ activate :directory_indexes
 activate :toc
 activate :highlighter
 activate :alias
-activate :bootstrap_navbar do |bootstrap_navbar|
-  bootstrap_navbar.bootstrap_version = '3.3.7'
-end
 
 def current_guide(mm_instance, current_page)
   path = current_page.path.gsub('.html', '')
