@@ -129,10 +129,11 @@ so it can be accessed by other parts of your application.
 
 ```app/routes/confirm-payment.js
 import Route from '@ember/routing/route';
+import $ from 'jquery';
 
 export default Route.extend({
   actions: {
-    confirm: function(data) {
+    confirm(data) {
       $.ajax({
         data: data,
         method: 'POST',
