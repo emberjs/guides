@@ -77,12 +77,12 @@ For example, if your server API provides an endpoint for the currently logged in
 and the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
 
 ```app/adapters/user.js
-import DS from "ember-data";
+import DS from 'ember-data';
 import $ from 'jquery';
 
 export default DS.Adapter.extend({
   queryRecord(store, type, query) {
-    return $.getJSON("/api/current_user");
+    return $.getJSON('/api/current_user');
   }
 });
 ```

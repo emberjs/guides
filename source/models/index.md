@@ -75,6 +75,7 @@ data and storing it:
 
 ```app/components/list-of-drafts.js
 import Component from '@ember/component';
+import $ from 'jquery';
 
 export default Component.extend({
   willRender() {
@@ -104,6 +105,7 @@ component.
 
 ```app/components/drafts-button.js
 import Component from '@ember/component';
+import $ from 'jquery';
 
 export default Component.extend({
   willRender() {
@@ -116,7 +118,7 @@ export default Component.extend({
 
 ```app/templates/components/drafts-button.hbs
 {{#link-to 'drafts' tagName="button"}}
-Drafts ({{drafts.length}})
+  Drafts ({{drafts.length}})
 {{/link-to}}
 ```
 
