@@ -89,8 +89,7 @@ export default DS.RestSerializer.extend({
     delete hash['song_count']
     return this._super(typeHash, hash);
   }
-
-})
+});
 ```
 
 ```app/routes/application.js
