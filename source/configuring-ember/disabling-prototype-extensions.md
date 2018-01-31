@@ -77,14 +77,14 @@ import { A } from '@ember/array';
 
 let islands = ['Oahu', 'Kauai'];
 islands.includes('Oahu');
-//=> TypeError: Object Oahu,Kauai has no method 'includes'
+// => TypeError: Object Oahu,Kauai has no method 'includes'
 
 // Convert `islands` to an array that implements the
 // Ember enumerable and array interfaces
 A(islands);
 
 islands.includes('Oahu');
-//=> true
+// => true
 ```
 
 ### Strings
@@ -98,11 +98,11 @@ pass the string to use as the first parameter:
 ```javascript
 import { camelize } from '@ember/string';
 
-"my_cool_class".camelize();
-//=> TypeError: Object my_cool_class has no method 'camelize'
+'my_cool_class'.camelize();
+// => TypeError: Object my_cool_class has no method 'camelize'
 
-camelize("my_cool_class");
-//=> "myCoolClass"
+camelize('my_cool_class');
+// => "myCoolClass"
 ```
 
 ### Functions
