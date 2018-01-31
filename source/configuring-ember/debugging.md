@@ -50,7 +50,7 @@ Ember.observersFor(comments, keyName);
 #### Log object bindings
 
 ```config/environments.js
-ENV.APP.LOG_BINDINGS = true
+ENV.APP.LOG_BINDINGS = true;
 ```
 
 ## Miscellaneous
@@ -73,8 +73,8 @@ export default Application.extend({
 #### Dealing with deprecations
 
 ```javascript
-Ember.ENV.RAISE_ON_DEPRECATION = true
-Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true
+Ember.ENV.RAISE_ON_DEPRECATION = true;
+Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ```
 
 
