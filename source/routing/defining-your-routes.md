@@ -269,5 +269,5 @@ so that when a user navigates to `/a/non-existent/path` they will be shown a mes
 To have your route do something beyond render a template with the same name, you'll
 need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
-for [the router](https://www.emberjs.com/api/ember/2.18/classes/Router) and for [route
-handlers](https://www.emberjs.com/api/ember/2.18/classes/Route).
+for [the router](https://www.emberjs.com/api/ember/release/classes/Router) and for [route
+handlers](https://www.emberjs.com/api/ember/release/classes/Route).
