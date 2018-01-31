@@ -96,7 +96,7 @@ was passed a model):
 <h1>Photos</h1>
 {{#each model as |photo|}}
   <p>
-    {{#link-to 'photo' photo}}
+    {{#link-to "photo" photo}}
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
     {{/link-to}}
   </p>
@@ -110,7 +110,7 @@ identifier, instead):
 <h1>Photos</h1>
 {{#each model as |photo|}}
   <p>
-    {{#link-to 'photo' photo.id}}
+    {{#link-to "photo" photo.id}}
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
     {{/link-to}}
   </p>

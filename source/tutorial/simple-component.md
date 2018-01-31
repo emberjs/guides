@@ -59,7 +59,7 @@ with our new `rental-listing` component:
   <p>
     We hope you find exactly what you're looking for in a place to stay.
   </p>
-  {{#link-to 'about' class="button"}}
+  {{#link-to "about" class="button"}}
     About Us
   {{/link-to}}
 </div>

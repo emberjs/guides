@@ -31,7 +31,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   <p>
     We hope you find exactly what you're looking for in a place to stay.
   </p>
-  {{#link-to 'about' class="button"}}
+  {{#link-to "about" class="button"}}
     About Us
   {{/link-to}}
 </div>

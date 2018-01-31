@@ -115,7 +115,7 @@ export default Component.extend({
 ```
 
 ```app/templates/components/drafts-button.hbs
-{{#link-to 'drafts' tagName="button"}}
+{{#link-to "drafts" tagName="button"}}
   Drafts ({{drafts.length}})
 {{/link-to}}
 ```
