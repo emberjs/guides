@@ -77,7 +77,7 @@ Super Rentals:
 </div>
 ```
 
-Now run `ember server` (or `ember serve`, or even `ember s` for short) on your command line to start
+Now run `ember serve` (or `ember server`, or even `ember s` for short) on your command line to start
 the Ember development server and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to
 see our new page in action!
 
