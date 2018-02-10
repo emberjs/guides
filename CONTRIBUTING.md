@@ -49,7 +49,7 @@ master, set an upstream and pull from it. For this to work, you should make sure
 you're always committing to a branch, not master.
 
 ```
-git remote add upstream https://github.com/emberjs/website.git
+git remote add upstream https://github.com/emberjs/guides.git
 git pull upstream master
 ```
 
