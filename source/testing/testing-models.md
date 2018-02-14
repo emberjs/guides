@@ -1,7 +1,7 @@
-_Unit testing methods and computed properties follows previous patterns shown
-in [Unit Testing Basics] because DS.Model extends Ember.Object._
+_Container testing methods and computed properties follows previous patterns shown
+in [Testing Basics] because DS.Model extends Ember.Object._
 
-[Ember Data] Models can be tested using the `moduleForModel` helper.
+[Ember Data] Models can be tested in a module that uses the `setupTest` helper.
 
 Let's assume we have a `Player` model that has `level` and `levelName`
 attributes. We want to call `levelUp()` to increment the `level` and assign a
@@ -28,28 +28,29 @@ export default Model.extend({
 ```
 
 Now let's create a test which will call `levelUp` on the player when they are
-level 4 to assert that the `levelName` changes. We will use `moduleForModel`:
+level 4 to assert that the `levelName` changes. We will use `module` together with the `setupTest` helper method:
 
 ```tests/unit/models/player-test.js
-import { moduleForModel, test } from 'ember-qunit';
-import { run } from '@ember/runloop';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+import { run } from "@ember/runloop";
 
-moduleForModel('player', 'Unit | Model | player', {
+module('Unit | Model | player', function(hooks) {
   // Specify the other units that are required for this test.
-  needs: []
-});
+  test('should increment level when told to', function(assert) {
+    const player = run(() => this.owner.lookup('service:store').createRecord('player'));
 
-test('should increment level when told to', function(assert) {
-  // this.subject aliases the createRecord method on the model
-  const player = this.subject({ level: 4 });
+    // wrap asynchronous call in run loop
+    run(() => player.levelUp());
 
-  // wrap asynchronous call in run loop
-  run(() => player.levelUp());
-
-  assert.equal(player.get('level'), 5, 'level gets incremented');
-  assert.equal(player.get('levelName'), 'Professional', 'new level is called professional');
+    assert.equal(player.get('level'), 5, 'level gets incremented');
+    assert.equal(player.get('levelName'), 'Professional', 'new level is called professional');
+  });
 });
 ```
+
+Also note, how both creating a record and updating properties on the record through the `levelUp` method requires
+us to wrap these operations into a `run` function. You can read more the Ember run loop [over here](https://guides.emberjs.com/v2.18.0/applications/run-loop/).
 
 ## Testing Relationships
 
@@ -77,24 +78,25 @@ export default Model.extend({
 });
 ```
 
-Then you could test that the relationship is wired up correctly
-with this test.
+Then you could test that the relationship by looking it up on the `user` model which it is part of.
 
 ```tests/unit/models/user-test.js
-import { moduleForModel, test } from 'ember-qunit';
-import { get } from '@ember/object';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+import { get } from "@ember/object"
 
-moduleForModel('user', 'Unit | Model | user', {
-  // Specify the other units that are required for this test.
-  needs: ['model:profile']
-});
+module('Unit | Model | user', function(hooks) {
+  setupTest(hooks);
 
-test('should own a profile', function(assert) {
-  const User = this.store().modelFor('user');
-  const relationship = get(User, 'relationshipsByName').get('profile');
+  test('should own a profile', function(assert) {
+    const User = this.owner.lookup('service:store').modelFor('user');
 
-  assert.equal(relationship.key, 'profile', 'has relationship with profile');
-  assert.equal(relationship.kind, 'belongsTo', 'kind of relationship is belongsTo');
+    // lookup the relationship on the user model
+    const relationship = get(User, 'relationshipsByName').get('profile');
+
+    assert.equal(relationship.key, 'profile', 'has relationship with profile');
+    assert.equal(relationship.kind, 'belongsTo', 'kind of relationship is belongsTo');
+  });
 });
 ```
 
@@ -104,5 +106,5 @@ look at the [Ember Data tests] for examples of deeper relationship testing if yo
 feel the need to do it._
 
 [Ember Data]: https://github.com/emberjs/data
-[Unit Testing Basics]: ../unit-testing-basics
+[Testing Basics]: ../unit-testing-basics
 [Ember Data tests]: https://github.com/emberjs/data/tree/master/tests

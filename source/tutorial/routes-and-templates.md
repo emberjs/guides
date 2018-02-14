@@ -325,7 +325,7 @@ Some of the helpers we'll use commonly are:
 
 * [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) - loads a given URL
 * [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
-* [`andThen`](../../testing/acceptance/#toc_wait-helpers) - waits for our previous commands to run before executing our function.
+* `andThen` - waits for our previous commands to run before executing our function.
   In our test below, we want to wait for our page to load after `click` is called so that we can double-check that the new page has loaded
 * [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
 

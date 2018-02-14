@@ -1,23 +1,22 @@
-Unit tests are generally used to test a small piece of code and ensure that it
-is doing what was intended. Unlike acceptance tests, they are narrow in scope
-and do not require the Ember application to be running.
+Unit tests (as well as container tests) are generally used to test a small piece of code
+and ensure that it is doing what was intended.
+Unlike application tests, they are narrow in scope and do not require the Ember application to be running.
 
-As it is the basic object type in Ember, being able to test a simple
-[`EmberObject`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject?show=inherited%2Cprotected%2Cprivate%2Cdeprecated) sets the foundation for testing more specific parts of your
-Ember application such as controllers, components, etc. Testing an `EmberObject`
-is as simple as creating an instance of the object, setting its state, and
-running assertions against the object. By way of example, let's look at a few
-common cases.
+Let's have a look at a common use case - testing a service - to understand the basic principles of testing in Ember.
+This will set the foundation for other parts of your Ember application such as controllers, components, helpers and others.
+Testing a service is as simple as creating a container test,
+looking up the service on the application's container and running assertions against it.
 
 ### Testing Computed Properties
 
-Let's start by creating an object that has a `computedFoo` computed property
+Let's start by creating an service that has a `computedFoo` computed property
 based on a `foo` property.
 
-```app/models/some-thing.js
-import EmberObject, { computed } from '@ember/object';
+```app/services/some-thing.js
+import Service from '@ember/service';
+import { computed } from '@ember/object';
 
-export default EmberObject.extend({
+export default Service.extend({
   foo: 'bar',
 
   computedFoo: computed('foo', function() {
@@ -28,30 +27,35 @@ export default EmberObject.extend({
 });
 ```
 
-Within the test for this object we'll create an instance, update the `foo` property (which
+Within the test for this object, we'll lookup the service instance, update the `foo` property (which
 should trigger the computed property), and assert that the logic in our
 computed property is working correctly.
 
-```tests/unit/models/some-thing-test.js
-import { moduleFor, test } from 'ember-qunit';
+```tests/unit/service/some-thing-test.js
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('model:some-thing', 'Unit | some thing', {
-  unit: true
-});
+module('Unit | Service | some thing', function(hooks) {
+  setupTest(hooks);
 
-test('should correctly concat foo', function(assert) {
-  const someThing = this.subject();
-  someThing.set('foo', 'baz');
+  test('should correctly concat foo', function(assert) {
+    const someThing = this.owner.lookup('service:some-thing');
+    someThing.set('foo', 'baz');
 
-  assert.equal(someThing.get('computedFoo'), 'computed baz');
+    assert.equal(someThing.get('computedFoo'), 'computed baz');
+  });
 });
 ```
 
-See that we have used `moduleFor`, one of the several unit-test helpers provided by Ember-Qunit.
-Test helpers provide us with some conveniences, such as the `subject` function that handles lookup and instantiation for our object under test.
-Note that in a unit test you can customize the initialization of your object under test by passing to the
-`subject` function an object containing the instance variables you would like to initialize.  For example, to initialize
-the property 'foo' in our object under test, we would call `this.subject({ foo: 'bar' });`
+See that first, we are creating a new testing module using the [`QUnit.module`](http://api.qunitjs.com/QUnit/module) function.
+This will scope all of our tests together into one group that can be configured
+and run independently from other modules defined in our test suite.
+Also, we have used `setupTest`, one of the several test helpers provided by [ember-qunit](https://github.com/emberjs/ember-qunit).
+The `setupTest` helper provides us with some conveniences, such as the `this.owner` object, that helps us to create or lookup objects
+which are needed to setup our test.
+In this example, we use the `this.owner` object to lookup the service instance that becomes our test subject: `someThing`.
+Note that in a unit test you can customize any object under test by setting its properties accordingly.
+We can use the `set` method of the test object to achieve this.
 
 ### Testing Object Methods
 
@@ -59,10 +63,10 @@ Next let's look at testing logic found within an object's method. In this case
 the `testMethod` method alters some internal state of the object (by updating
 the `foo` property).
 
-```app/models/some-thing.js
-import EmberObject from '@ember/object';
+```app/services/some-thing.js
+import Service from '@ember/service';
 
-export default EmberObject.extend({
+export default Service.extend({
   foo: 'bar',
 
   testMethod() {
@@ -75,26 +79,29 @@ To test it, we create an instance of our class `SomeThing` as defined above,
 call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
-```tests/unit/models/some-thing-test.js
-import { moduleFor, test } from 'ember-qunit';
+```tests/unit/services/some-thing-test.js
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('model:some-thing', 'Unit | some thing', {
-  unit: true
-});
+module('Unit | Service | some thing', function(hooks) {
+  setupTest(hooks);
 
-test('should update foo on testMethod', function(assert) {
-  const someThing = this.subject();
-  someThing.testMethod();
-  assert.equal(someThing.get('foo'), 'baz');
+  test('should update foo on testMethod', function(assert) {
+    const someThing = this.owner.lookup('service:some-thing');
+
+    someThing.testMethod();
+
+    assert.equal(someThing.get('foo'), 'baz');
+  });
 });
 ```
 
-In the event the object's method returns a value, you can simply assert that the
+In case the object's method returns a value, you can simply assert that the
 return value is calculated correctly. Suppose our object has a `calc` method
 that returns a value based on some internal state.
 
-```app/models/some-thing.js
-import EmberObject from '@ember/object';
+```app/services/some-thing.js
+import Service from '@ember/service';
 
 export default EmberObject.extend({
   count: 0,
@@ -110,17 +117,19 @@ export default EmberObject.extend({
 
 The test would call the `calc` method and assert it gets back the correct value.
 
-```tests/unit/models/some-thing-test.js
-import { moduleFor, test } from 'ember-qunit';
+```tests/unit/services/some-thing-test.js
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('model:some-thing', 'Unit | some thing', {
-  unit: true
-});
+module('Unit | Service | some thing', function(hooks) {
+  setupTest(hooks);
 
-test('should return incremented count on calc', function(assert) {
-  const someThing = this.subject();
-  assert.equal(someThing.calc(), 'count: 1');
-  assert.equal(someThing.calc(), 'count: 2');
+  test('should return incremented count on calc', function(assert) {
+    const someThing = this.owner.lookup('service:some-thing');
+
+    assert.equal(someThing.calc(), 'count: 1');
+    assert.equal(someThing.calc(), 'count: 2');
+  });
 });
 ```
 
@@ -128,11 +137,11 @@ test('should return incremented count on calc', function(assert) {
 
 Suppose we have an object that has a property and a method observing that property.
 
-```app/models/some-thing.js
-import EmberObject from '@ember/object';
-import { observer } from '@ember/object';
+```app/services/some-thing.js
+import Service from '@ember/service';
+import { observer } from "@ember/object";
 
-export default EmberObject.extend({
+export default Service.extend({
   foo: 'bar',
   other: 'no',
 
@@ -145,17 +154,19 @@ export default EmberObject.extend({
 In order to test the `doSomething` method we create an instance of `SomeThing`,
 update the observed property (`foo`), and assert that the expected effects are present.
 
-```tests/unit/models/some-thing-test.js
-import { moduleFor, test } from 'ember-qunit';
+```tests/unit/services/some-thing-test.js
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleFor('model:some-thing', 'Unit | some thing', {
-  unit: true
-});
+module('Unit | Service | some thing', function(hooks) {
+  setupTest(hooks);
 
-test('should set other prop to yes when foo changes', function(assert) {
-  const someThing = this.subject();
-  someThing.set('foo', 'baz');
-  assert.equal(someThing.get('other'), 'yes');
+  test('should set other prop to yes when foo changes', function(assert) {
+    const someThing = this.owner.lookup('service:some-thing');
+
+    someThing.set('foo', 'baz');
+    assert.equal(someThing.get('other'), 'yes');
+  });
 });
 ```
 
@@ -165,7 +176,7 @@ Some times you might be working on a feature, but know that a certain test will 
 You can do it by using `skip`:
 
 ```javascript
-import { test, skip } from 'ember-qunit';
+import { test, skip } from 'qunit';
 
 test('run this test', function(assert) {
     assert.ok(true)
