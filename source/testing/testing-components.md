@@ -1,4 +1,4 @@
-Components can be tested easily with a rendering test. Let's see how this plays out in a specific example:
+Components can be tested with integration tests using the `moduleForComponent` helper.
 
 Let's assume we have a component with a `style` property that is updated
 whenever the value of the `name` property changes. The `style` attribute of the
@@ -25,124 +25,74 @@ export default Component.extend({
 Pretty Color: {{name}}
 ```
 
-The `module` from QUnit will scope your tests into groups of tests which can be
-configured and run independently. Make sure to call the `setupRenderingTest` function together with the `hooks` parameter
-first in your new module. This will do all the setup necessary for testing your component for you,
-including setting up a way to access the rendered DOM of your component later on in the test
-and it will clean up after you once your tests in this module are finished.
+The `moduleForComponent` helper will find the component by name (`pretty-color`)
+and its template (if available).  Make sure to set `integration: true` to enable
+integration test capability.
 
 ```tests/integration/components/pretty-color-test.js
-import { module } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 
-module('Integration | Component | pretty color', function(hooks) {
-  setupRenderingTest(hooks);
-
+moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
+  integration: true
 });
 ```
-Inside of your `module` and after setting up the test, we can now start to create our first test case. Here we can use the `QUnit.test` helper and we can
-give it a descriptive name:
 
-```tests/integration/components/pretty-color-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-
-module('Integration | Component | pretty color', function(hooks) {
-  setupRenderingTest(hooks);
-
-  test('should change colors', async function(assert) {
-
-
-  });
-});
-```
-Also note how the callback function passed to the test helper is marked with the keyword `async`. The [ECMAScript 2017 feature async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) allows us to write asynchronous code in an easy-to-read, seemingly synchronous manner. We can better see what this means, once we start writing out our first test case:
-
-```tests/integration/components/pretty-color-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
-
-module('Integration | Component | pretty color', function(hooks) {
-  setupRenderingTest(hooks);
-
-  test('should change colors', async function(assert) {
-    assert.expect(1);
-
-    // set the outer context to red
-    this.set('colorValue', 'red');
-
-    await render(hbs`{{pretty-color name=colorValue}}`);
-
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
-  });
-});
-
-```
-
-Each test can use the `render()`
-function imported from the `@ember/test-helpers` package to create a new instance of the component by declaring
+Each test following the `moduleForComponent` call has access to the `render()`
+function, which lets us create a new instance of the component by declaring
 the component in template syntax, as we would in our application.
-Also notice, the keyword `await` in front of the call to `render`. It allows the test which we marked as `async` earlier to wait for any asynchronous behaviour to complete before any code which is written below that will be executed.
-In this case our first assertion will correctly execute after the component has fully rendered.
 
-Next we can test that changing the component's `name` property updates the
-component's `style` attribute and is reflected in the rendered HTML:
+We can test that changing the component's `name` property updates the
+component's `style` attribute and is reflected in the  rendered HTML:
 
 ```tests/integration/components/pretty-color-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | pretty color', function(hooks) {
-  setupRenderingTest(hooks);
-
-  test('it renders', async function(assert) {
-    assert.expect(2);
-
-    // set the outer context to red
-    this.set('colorValue', 'red');
-
-    await render(hbs`{{pretty-color name=colorValue}}`);
-
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
-
-    this.set('colorValue', 'blue');
-
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  });
+moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
+  integration: true
 });
 
+test('should change colors', function(assert) {
+  assert.expect(2);
+
+  // set the outer context to red
+  this.set('colorValue', 'red');
+
+  this.render(hbs`{{pretty-color name=colorValue}}`);
+
+  assert.equal(this.$('div').attr('style'), 'color: red', 'starts as red');
+
+  this.set('colorValue', 'blue');
+
+  assert.equal(this.$('div').attr('style'), 'color: blue', 'updates to blue');
+});
 ```
 
 We might also test this component to ensure that the content of its template is
 being rendered properly:
 
 ```tests/integration/components/pretty-color-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | pretty color', function(hooks) {
-  setupRenderingTest(hooks);
-
-  test('it renders', async function(assert) {
-    assert.expect(2);
-
-    this.set('colorValue', 'orange');
-
-    await render(hbs`{{pretty-color name=colorValue}}`);
-
-    assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
-
-    this.set('colorValue', 'blue');
-
-    assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
-  });
+moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
+  integration: true
 });
 
+test('should be rendered with its color name', function(assert) {
+  assert.expect(2);
+
+  this.set('colorValue', 'orange');
+
+  this.render(hbs`{{pretty-color name=colorValue}}`);
+
+  assert.equal(this.$().text().trim(), 'Pretty Color: orange', 'text starts as orange');
+
+  this.set('colorValue', 'green');
+
+  assert.equal(this.$().text().trim(), 'Pretty Color: green', 'text switches to green');
+
+});
 ```
 
 ### Testing User Interaction
@@ -179,35 +129,31 @@ export default Component.extend({
 </button>
 ```
 
-And our test might look like this:
+We recommend using native DOM events wrapped inside the run loop or the [`ember-native-dom-helpers`](https://github.com/cibernox/ember-native-dom-helpers) addon to simulate user interaction and test that the title is updated when the button is clicked.<br>
+Using jQuery to simulate user click events might lead to unexpected test results as the action can potentially be called twice.
 
 ```tests/integration/components/magic-title-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { click, render } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { run } from '@ember/runloop';
 
-module('Integration | Component | magic title', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('magic-title', 'Integration | Component | magic title', {
+  integration: true
+});
 
-  test('should update title on button click', async function(assert) {
-    assert.expect(2);
+test('should update title on button click', function(assert) {
+  assert.expect(2);
 
-    await render(hbs`{{magic-title}}`);
+  this.render(hbs`{{magic-title}}`);
 
-    assert.equal(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
+  assert.equal(this.$('h2').text(), 'Hello World', 'initial text is hello world');
 
-    //Click on the button
-    await click('.title-button');
+  //Click on the button
+  run(() => document.querySelector('.title-button').click());
 
-    assert.equal(this.element.querySelector('h2').textContent.trim(), 'This is Magic', 'title changes after click');
-  });
+  assert.equal(this.$('h2').text(), 'This is Magic', 'title changes after click');
 });
 ```
-
-Note how we make use of the `click` helper from [`ember-test-helpers`](https://github.com/emberjs/ember-test-helpers) to interact with the
-component DOM to trigger the `updateTitle` action.
-You can find many other helpful helpers for simulating user interaction in rendering tests in the [API documentation of ember-test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md).
 
 ### Testing Actions
 
@@ -250,38 +196,38 @@ of a test double (dummy function).
 external action is called:
 
 ```tests/integration/components/comment-form-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { fillIn, render } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { run } from '@ember/runloop';
 
-module('Integration | Component | comment form', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('comment-form', 'Integration | Component | comment form', {
+  integration: true
+});
 
-  test('should trigger external action on form submit', async function(assert) {
-    assert.expect(1);
+test('should trigger external action on form submit', function(assert) {
+  assert.expect(1);
 
-    // test double for the external action
-    this.set('externalAction', (actual) => {
-      let expected = { comment: 'You are not a wizard!' };
-      assert.deepEqual(actual, expected, 'submitted value is passed to external action');
-    });
-
-    await render(hbs`{{comment-form submitComment=(action externalAction)}}`);
-
-    // fill out the form and force an onchange
-    await fillIn('textarea', 'You are not a wizard!');
-
-    // click the button to submit the form
-    await click('.comment-input');
+  // test double for the external action
+  this.set('externalAction', (actual) => {
+    let expected = { comment: 'You are not a wizard!' };
+    assert.deepEqual(actual, expected, 'submitted value is passed to external action');
   });
+
+  this.render(hbs`{{comment-form submitComment=(action externalAction)}}`);
+
+  // fill out the form and force an onchange
+  this.$('textarea').val('You are not a wizard!');
+  this.$('textarea').change();
+
+  // click the button to submit the form
+   run(() => document.querySelector('.comment-input').click());
 });
 ```
 
 ### Stubbing Services
 
 In cases where components have dependencies on Ember services, it is possible to stub these
-dependencies for rendering tests. You stub Ember services by using the built-in `register()`
+dependencies for integration tests. You stub Ember services by using the built-in `register()`
 function to register your stub service in place of the default.
 
 Imagine you have the following component that uses a location service to display the city
@@ -316,11 +262,11 @@ To stub the location service in your test, create a local stub object that exten
 `Ember.Service`, and register the stub as the service your tests need in the
 beforeEach function.  In this case we initially force location to New York.
 
+
 ```tests/integration/components/location-indicator-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import Service from '@ember/service';
 
 //Stub location service
 const locationStub = Service.extend({
@@ -339,22 +285,23 @@ const locationStub = Service.extend({
   }
 });
 
-module('Integration | Component | location indicator', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('location-indicator', 'Integration | Component | location indicator', {
+  integration: true,
 
-  hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
-  });
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+    // Calling inject puts the service instance in the context of the test,
+    // making it accessible as "locationService" within each test
+    this.inject.service('location-service', { as: 'locationService' });
+  }
 });
 ```
 
 Once the stub service is registered the test simply needs to check that the stub data that
 is being returned from the service is reflected in the component output.
 
-```tests/integration/components/location-indicator-test.js{+34,+35,+36,+37,+38}
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+```tests/integration/components/location-indicator-test.js{+33,+34,+35,+36}
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';
 
@@ -375,28 +322,28 @@ const locationStub = Service.extend({
   }
 });
 
-module('Integration | Component | location indicator', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('location-indicator', 'Integration | Component | location indicator', {
+  integration: true,
 
-  hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
-  });
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+    // Calling inject puts the service instance in the context of the test,
+    // making it accessible as "locationService" within each test
+    this.inject.service('location-service', { as: 'locationService' });
+  }
+});
 
-  test('should reveal current location', async function(assert) {
-    await render(hbs`{{location-indicator}}`);
-    assert.equal(this.element.textContent.trim(),
-     'You currently are located in New York, USA');
-  });
+test('should reveal current location', function(assert) {
+  this.render(hbs`{{location-indicator}}`);
+  assert.equal(this.$().text().trim(), 'You currently are located in New York, USA');
 });
 ```
 
 In the next example, we'll add another test that validates that the display changes
 when we modify the values on the service.
 
-```tests/integration/components/location-indicator-test.js{+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53}
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+```tests/integration/components/location-indicator-test.js{+38,+39,+40,+41,+42,+43,+44,+45}
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';
 
@@ -417,52 +364,36 @@ const locationStub = Service.extend({
   }
 });
 
-module('Integration | Component | location indicator', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('location-indicator', 'Integration | Component | location indicator', {
+  integration: true,
 
-  hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
-  });
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+    // Calling inject puts the service instance in the context of the test,
+    // making it accessible as "locationService" within each test
+    this.inject.service('location-service', { as: 'locationService' });
+  }
+});
 
-  test('should reveal current location', function(assert) {
-    await render(hbs`{{location-indicator}}`);
-    assert.equal(this.element.textContent.trim(),
-     'You currently are located in New York, USA');
-  });
+test('should reveal current location', function(assert) {
+  this.render(hbs`{{location-indicator}}`);
+  assert.equal(this.$().text().trim(), 'You currently are located in New York, USA');
+});
 
-  test('should change displayed location when current location changes', async function (assert) {
-    await render(hbs`{{location-indicator}}`);
-
-    assert.equal(this.element.textContent.trim(),
-     'You currently are located in New York, USA', 'origin location should display');
-
-    this.set('locationService.city', 'Beijing');
-    this.set('locationService.country', 'China');
-    this.set('locationService.currentLocation', { x: 11111, y: 222222 });
-
-    assert.equal(this.element.textContent.trim(),
-     'You currently are located in Beijing, China', 'location display should change');
-  });
+test('should change displayed location when current location changes', function (assert) {
+  this.render(hbs`{{location-indicator}}`);
+  assert.equal(this.$().text().trim(), 'You currently are located in New York, USA', 'origin location should display');
+  this.set('locationService.city', 'Beijing');
+  this.set('locationService.country', 'China');
+  this.set('locationService.currentLocation', { x: 11111, y: 222222 });
+  assert.equal(this.$().text().trim(), 'You currently are located in Beijing, China', 'location display should change');
 });
 ```
 
 ### Waiting on Asynchronous Behavior
-Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.
-The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous
-behavior to complete that is triggered by a DOM interaction induced by those.  
-To use them in your tests, you can simply `await` any of them to make sure that subsequent assertions are executed at the right time
-when the asynchronous behavior has fully settled:
-
-```js
-await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
-assert.equal(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
-```
-
-Nearly all of the helpers for DOM interaction from `@ember/test-helpers` return a call to `settled` - a function
-that ensures that any Promises, operations in Ember's `run` loop, timers or Ajax requests have already resolved.
-The `settled` function itself returns a Promise that resolves once all async operations have come to an end.
-
-You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
+Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.  The
+`wait` helper is designed to handle these scenarios, by providing a hook to ensure assertions are made after
+all Ajax requests and timers are complete.
 
 Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce)
 to limit requests to the server, and you want to verify that results are displayed after typing a character.
@@ -493,38 +424,39 @@ export default Component.extend({
 </ul>
 ```
 
-In your test, use the `settled` helper to wait until your debounce timer is up and then assert
+In your integration test, use the `wait` function to wait until your debounce timer is up and then assert
 that the page is rendered appropriately.
 
 ```tests/integration/components/delayed-typeahead-test.js
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, settled } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
+import wait from 'ember-test-helpers/wait';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | delayed typeahead', {
+moduleForComponent('delayed-typeahead', 'Integration | Component | delayed typeahead', {
+  integration: true
+});
 
-  const stubResults = [
-    { name: 'result 1' },
-    { name: 'result 2' }
-  ];
+const stubResults = [
+  { name: 'result 1' },
+  { name: 'result 2' }
+];
 
-  test('should render results after typing a term', async function(assert) {
-    assert.expect(2);
+test('should render results after typing a term', function(assert) {
+  assert.expect(2);
 
-    this.set('results', []);
-    this.set('fetchResults', (value) => {
-      assert.equal(value, 'test', 'fetch closure action called with search value');
-      this.set('results', stubResults);
-    });
-
-    await render(hbs`{{delayed-typeahead fetchResults=fetchResults results=results}}`);
-    this.element.querySelector('input').value = 'test';
-    this.element.querySelector('input').dispatchEvent(new Event('keyup'));
-
-    await settled();
-
-    assert.equal(this.element.querySelector('.result').length, 2, 'two results rendered');
+  this.set('results', []);
+  this.set('fetchResults', (value) => {
+    assert.equal(value, 'test', 'fetch closure action called with search value');
+    this.set('results', stubResults);
   });
+
+  this.render(hbs`{{delayed-typeahead fetchResults=fetchResults results=results}}`);
+  this.$('input').val('test');
+  this.$('input').trigger('keyup');
+
+  return wait().then(() => {
+    assert.equal(this.$('.result').length, 2, 'two results rendered');
+  });
+
 });
 ```
