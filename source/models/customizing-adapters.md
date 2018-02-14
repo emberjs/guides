@@ -49,17 +49,17 @@ export default DS.JSONAPIAdapter.extend({
 Ember Data comes with several built-in adapters.
 Feel free to use these adapters as a starting point for creating your own custom adapter.
 
-- [DS.Adapter](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Adapter) is the basic adapter
+- [DS.Adapter](https://www.emberjs.com/api/ember-data/release/classes/DS.Adapter) is the basic adapter
 with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPIAdapter)
+- [DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter)
 The `JSONAPIAdapter` is the default adapter and follows JSON API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
-- [DS.RESTAdapter](https://www.emberjs.com/api/ember-data/2.16/classes/DS.RESTAdapter)
+- [DS.RESTAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.RESTAdapter)
 The `RESTAdapter` allows your store to communicate with an HTTP server
 by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default.
 
@@ -67,7 +67,7 @@ by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default
 ## Customizing the JSONAPIAdapter
 
 The
-[DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPIAdapter)
+[DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter)
 has a handful of hooks that are commonly used to extend it to work
 with non-standard backends.
 
