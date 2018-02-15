@@ -1,11 +1,12 @@
-Unit tests (as well as container tests) are generally used to test a small piece of code
-and ensure that it is doing what was intended.
-Unlike application tests, they are narrow in scope and do not require the Ember application to be running.
+Unit tests (as well as container tests) are generally used to test a small piece
+of code and ensure that it is doing what was intended. Unlike application tests,
+they are narrow in scope and do not require the Ember application to be running.
 
-Let's have a look at a common use case - testing a service - to understand the basic principles of testing in Ember.
-This will set the foundation for other parts of your Ember application such as controllers, components, helpers and others.
-Testing a service is as simple as creating a container test,
-looking up the service on the application's container and running assertions against it.
+Let's have a look at a common use case - testing a service - to understand the
+basic principles of testing in Ember. This will set the foundation for other
+parts of your Ember application such as controllers, components, helpers and
+others. Testing a service is as simple as creating a container test, looking up
+the service on the application's container and running assertions against it.
 
 ### Testing Computed Properties
 
@@ -27,9 +28,9 @@ export default Service.extend({
 });
 ```
 
-Within the test for this object, we'll lookup the service instance, update the `foo` property (which
-should trigger the computed property), and assert that the logic in our
-computed property is working correctly.
+Within the test for this object, we'll lookup the service instance, update the
+`foo` property (which should trigger the computed property), and assert that the
+logic in our computed property is working correctly.
 
 ```tests/unit/service/some-thing-test.js
 import { module, test } from 'qunit';
@@ -46,16 +47,18 @@ module('Unit | Service | some thing', function(hooks) {
   });
 });
 ```
-
-See that first, we are creating a new testing module using the [`QUnit.module`](http://api.qunitjs.com/QUnit/module) function.
-This will scope all of our tests together into one group that can be configured
-and run independently from other modules defined in our test suite.
-Also, we have used `setupTest`, one of the several test helpers provided by [ember-qunit](https://github.com/emberjs/ember-qunit).
-The `setupTest` helper provides us with some conveniences, such as the `this.owner` object, that helps us to create or lookup objects
-which are needed to setup our test.
-In this example, we use the `this.owner` object to lookup the service instance that becomes our test subject: `someThing`.
-Note that in a unit test you can customize any object under test by setting its properties accordingly.
-We can use the `set` method of the test object to achieve this.
+See that first, we are creating a new testing module using the
+[`QUnit.module`](http://api.qunitjs.com/QUnit/module) function. This will scope
+all of our tests together into one group that can be configured and run
+independently from other modules defined in our test suite. Also, we have used
+`setupTest`, one of the several test helpers provided by
+[ember-qunit](https://github.com/emberjs/ember-qunit). The `setupTest` helper
+provides us with some conveniences, such as the `this.owner` object, that helps
+us to create or lookup objects which are needed to setup our test. In this
+example, we use the `this.owner` object to lookup the service instance that
+becomes our test subject: `someThing`. Note that in a unit test you can
+customize any object under test by setting its properties accordingly. We can
+use the `set` method of the test object to achieve this.
 
 ### Testing Object Methods
 
@@ -152,7 +155,8 @@ export default Service.extend({
 ```
 
 In order to test the `doSomething` method we create an instance of `SomeThing`,
-update the observed property (`foo`), and assert that the expected effects are present.
+update the observed property (`foo`), and assert that the expected effects are
+present.
 
 ```tests/unit/services/some-thing-test.js
 import { module, test } from 'qunit';
@@ -172,8 +176,8 @@ module('Unit | Service | some thing', function(hooks) {
 
 ### Skipping tests
 
-Some times you might be working on a feature, but know that a certain test will fail so you might want to skip it.
-You can do it by using `skip`:
+Some times you might be working on a feature, but know that a certain test will
+fail so you might want to skip it. You can do it by using `skip`:
 
 ```javascript
 import { test, skip } from 'qunit';
