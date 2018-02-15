@@ -22,12 +22,12 @@ module('Acceptance | login', function(hooks) {
 });
 ```
 
-`module` allows you to scope your tests: Any test setup that is done inside of this scope will
-apply to all test cases contained in this module.
-Scoping your tests with `module` also allows you to execute your tests independently from other tests.
-For example, to only run your tests from your `login` module, run `ember test --module='Acceptance | login'`.
-`setupApplicationTest` deals with application setup and teardown.
-The `test` function contains an example test.
+`module` allows you to scope your tests: Any test setup that is done inside of
+this scope will apply to all test cases contained in this module. Scoping your
+tests with `module` also allows you to execute your tests independently from
+other tests. For example, to only run your tests from your `login` module, run
+`ember test --module='Acceptance | login'`. `setupApplicationTest` deals with
+application setup and teardown. The `test` function contains an example test.
 
 Almost every test has a pattern of visiting a route, interacting with the page
 (using the helpers), and checking for expected changes in the DOM.
@@ -89,7 +89,10 @@ Some of these handy helpers are:
     is complete.
 * [`fillIn(selector, value)`][2]
   - Fills in the selected input with the given value and returns a promise that
-     fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
+    fulfills when all resulting async behavior is complete. Works with
+    `<select>` elements as well as `<input>` elements. Keep in mind that with
+    `<select>` elements, `value` must be set to the _value_ of the `<option>`
+    tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
 * [`keyEvent(selector, type, keyCode)`][3]
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
@@ -100,19 +103,24 @@ Some of these handy helpers are:
   - Visits the given route and returns a promise that fulfills when all resulting
      async behavior is complete.
 
-You can find the full list of helpers in the [API Documentation of ember-test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md).
+You can find the full list of helpers in the
+[API Documentation of ember-test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md).
 
-The asynchronous test helpers from `@ember/test-helpers` are meant to be used together with the [ES2017 feature async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) to write easy-to-read tests which
-deal with asynchronous behavior as follows:
+The asynchronous test helpers from `@ember/test-helpers` are meant to be used
+together with the [ES2017 feature async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
+to write easy-to-read tests which deal with asynchronous behavior as follows:
 
-Mark the callback passed to the `test` function as asynchronous using the `async` keyword:
+Mark the callback passed to the `test` function as asynchronous using the
+`async` keyword:
 
 ```tests/acceptance/new-post-appears-first-test.js
   test('should add new post', async function(assert) {
 
   });
 ```
-Before making an assertion, wait for the execution of each asynchronous helper to finish with the `await` keyword:
+
+Before making an assertion, wait for the execution of each asynchronous helper
+to finish with the `await` keyword:
 
 ```tests/acceptance/new-post-appears-first-test.js
   test('should add new post', async function(assert) {
@@ -123,8 +131,9 @@ Before making an assertion, wait for the execution of each asynchronous helper t
   });
 ```
 
-Once we `await` the execution of the asynchronous helpers this way, we will ensure that all subsequent assertions are always made **after** the
-previous steps in the test have completed.
+Once we `await` the execution of the asynchronous helpers this way, we will
+ensure that all subsequent assertions are always made **after** the previous
+steps in the test have completed.
 
 ### Synchronous Helpers
 
@@ -178,8 +187,9 @@ for it to finish before running.
 [11]: http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper
 
 The helper method will always be called with the current Application as the
-first parameter. Other parameters, such as assert, need to be provided when calling the helper. Helpers need to be registered prior to calling
-`startApp`, but ember-cli will take care of it for you.
+first parameter. Other parameters, such as assert, need to be provided when
+calling the helper. Helpers need to be registered prior to calling `startApp`,
+but ember-cli will take care of it for you.
 
 Here is an example of a non-async helper:
 
@@ -248,8 +258,8 @@ module.exports = {
 };
 ```
 
-In `tests/helpers/start-app.js` you need to import the helper file: it
-will be registered then.
+In `tests/helpers/start-app.js` you need to import the helper file: it will be
+registered then.
 
 ```tests/helpers/start-app.js
 import Ember from 'ember';

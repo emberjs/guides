@@ -1,22 +1,22 @@
-_Container testing methods and computed properties follows previous patterns shown
-in [Testing Basics] because Ember.Route extends Ember.Object._
+_Container testing methods and computed properties follows previous patterns
+shown in [Testing Basics] because Ember.Route extends Ember.Object._
 
-Testing routes can be done both via application tests or container tests. Application tests
-will likely provide better coverage for routes because routes are typically used
-to perform transitions and load data, both of which are tested more easily in
-full context rather than isolation.
+Testing routes can be done both via application tests or container tests.
+Application tests will likely provide better coverage for routes because routes
+are typically used to perform transitions and load data, both of which are
+tested more easily in full context rather than isolation.
 
-That being said, sometimes it is important to test your routes in a smaller scope. For example,
-let's say we'd like to have an alert that can be triggered from anywhere within
-our application. The alert function `displayAlert` should be put into the
-`ApplicationRoute` because all actions and events bubble up to it from
-sub-routes and controllers.
+That being said, sometimes it is important to test your routes in a smaller
+scope. For example, let's say we'd like to have an alert that can be triggered
+from anywhere within our application. The alert function `displayAlert` should
+be put into the `ApplicationRoute` because all actions and events bubble up to
+it from sub-routes and controllers.
 
 > By default, Ember CLI does not generate a file for its application route.  To
 > extend the behavior of the ember application route we will run the command
-> `ember generate route application`.  Ember CLI does however generate an application
-> template, so when asked whether we want to overwrite `app/templates/application.hbs`
-> we will answer 'n'.
+> `ember generate route application`.  Ember CLI does however generate an
+> application template, so when asked whether we want to overwrite
+> `app/templates/application.hbs` we will answer 'n'.
 
 ```app/routes/application.js
 import Route from '@ember/route';

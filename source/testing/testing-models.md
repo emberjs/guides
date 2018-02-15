@@ -1,5 +1,5 @@
-_Container testing methods and computed properties follows previous patterns shown
-in [Testing Basics] because DS.Model extends Ember.Object._
+_Container testing methods and computed properties follows previous patterns
+shown in [Testing Basics] because DS.Model extends Ember.Object._
 
 [Ember Data] Models can be tested in a module that uses the `setupTest` helper.
 
@@ -26,9 +26,9 @@ export default Model.extend({
   }
 });
 ```
-
 Now let's create a test which will call `levelUp` on the player when they are
-level 4 to assert that the `levelName` changes. We will use `module` together with the `setupTest` helper method:
+level 4 to assert that the `levelName` changes. We will use `module` together
+with the `setupTest` helper method:
 
 ```tests/unit/models/player-test.js
 import { module, test } from 'qunit';
@@ -48,9 +48,9 @@ module('Unit | Model | player', function(hooks) {
   });
 });
 ```
-
-Also note, how both creating a record and updating properties on the record through the `levelUp` method requires
-us to wrap these operations into a `run` function. You can read more the Ember run loop [over here](https://guides.emberjs.com/v2.18.0/applications/run-loop/).
+Also note, how both creating a record and updating properties on the record
+through the `levelUp` method requires us to wrap these operations into a `run`
+function. You can read more the Ember run loop [over here](https://guides.emberjs.com/v2.18.0/applications/run-loop/).
 
 ## Testing Relationships
 
@@ -78,7 +78,8 @@ export default Model.extend({
 });
 ```
 
-Then you could test that the relationship by looking it up on the `user` model which it is part of.
+Then you could test that the relationship by looking it up on the `user` model
+which it is part of.
 
 ```tests/unit/models/user-test.js
 import { module, test } from 'qunit';
@@ -100,10 +101,10 @@ module('Unit | Model | user', function(hooks) {
 });
 ```
 
-_Ember Data contains extensive tests around the functionality of
-relationships, so you probably don't need to duplicate those tests.  You could
-look at the [Ember Data tests] for examples of deeper relationship testing if you
-feel the need to do it._
+_Ember Data contains extensive tests around the functionality of relationships,
+so you probably don't need to duplicate those tests.  You could look at the
+[Ember Data tests] for examples of deeper relationship testing if you feel the
+need to do it._
 
 [Ember Data]: https://github.com/emberjs/data
 [Testing Basics]: ../unit-testing-basics
