@@ -78,7 +78,7 @@ There are two major differences between `var` and both `const` and `let`.
 `const` and `let` are both block-level declarations, and they are *not* hoisted.
 
 Because of this they are not accessible outside of the given block scope (meaning in a `function` or in `{}`) they are declared in.
-You can also not access them before they are declared, or you will get a [`ReferenceError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError).
+You also cannot access them before they are declared, or you will get a [`ReferenceError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError).
 
 ```javascript
 console.log(name) // ReferenceError: name is not defined
