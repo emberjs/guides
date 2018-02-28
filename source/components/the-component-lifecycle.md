@@ -123,11 +123,11 @@ Ember guarantees that, by the time `didInsertElement()` is called:
 1. The component's element has been both created and inserted into the
    DOM.
 2. The component's element is accessible via the component's
-   [`$()`][dollar]
-   method.
+   [`element`][element]
+   property.
 
-A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element.
-For example, you can set an attribute using jQuery's `attr()` method:
+A component's [`element`][element] property allows you to access the component's DOM element.
+For example, you can set a property:
 
 ```app/components/profile-editor.js
 import Component from '@ember/component';
@@ -135,12 +135,13 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$().attr('contenteditable', true);
+    this.element.contentEditable = 'true';
   }
 });
 ```
 
-[`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
+[`element`][element] will return the component's root element,
+but you can also target child elements within the component's template by using `querySelector`:
 
 ```app/components/profile-editor.js
 import Component from '@ember/component';
@@ -148,14 +149,28 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$('div p button').addClass('enabled');
+    this.element.querySelector('div p button').classList.add('enabled');
   }
 });
 ```
 
 Let's initialize our date picker by overriding the [`didInsertElement()`][did-insert-element] method.
 
-Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
+Date picker libraries usually attach to an `<input>` element, so we will look for an appropriate input within our component's template.
+
+```app/components/profile-editor.js
+import Component from '@ember/component';
+
+export default Component.extend({
+  didInsertElement() {
+    this._super(...arguments);
+    myDatePickerLib(this.element.querySelector('input.date'));
+  }
+});
+```
+
+Should our data picker library come as a jQuery plugin, 
+we can also use the component's [`$`][dollar] method to get the component's root element as a jQuery object:
 
 ```app/components/profile-editor.js
 import Component from '@ember/component';
@@ -167,6 +182,10 @@ export default Component.extend({
   }
 });
 ```
+
+Note however that [`$`][dollar] should not be used if you do not want to depend on jQuery, 
+as this code would break when [removing jQuery](../../addons-and-dependencies/removing-jquery).
+
 
 [`didInsertElement()`][did-insert-element] is also a good place to
 attach event listeners. This is particularly useful for custom events or
@@ -182,9 +201,10 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$().on('animationend', () => {
-      $(this).removeClass('sliding-anim');
-    });
+    this._eventListener = () => {
+      this.element.classList.remove('sliding-anim');
+    };
+    this.element.addEventListener('animationend', this._eventListener);
   }
 });
 ```
@@ -199,7 +219,8 @@ There are a few things to note about the `didInsertElement()` hook:
   particularly when order of execution is important.
 
 [did-insert-element]: https://www.emberjs.com/api/ember/2.16/classes/Component/events/didInsertElement?anchor=didInsertElement
-[dollar]: https://www.emberjs.com/api/ember/2.16/classes/Component/methods/$?anchor=%24
+[element]: https://www.emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element
+[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
 [event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
 
 ### Making Updates to the Rendered DOM with `didRender`
@@ -247,7 +268,7 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.$('.item-list').scrollTop(this.$('.selected-item').position.top);
+    this.element.querySelector('.item-list').scrollTop = this.element.querySelector('.selected-item').offsetTop;
   }
 });
 ```
@@ -273,8 +294,8 @@ import Component from '@ember/component';
 
 export default Component.extend({
   willDestroyElement() {
-    this.$().off('animationend');
-    this.$('input.date').myDatepickerLib().destroy();
+    this.element.removeEventListener('animationend', this._eventListener);
+    myDatepickerLib.destroy(this.element.querySelector('input.date'));
     this._super(...arguments);
   }
 });
