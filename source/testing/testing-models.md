@@ -36,6 +36,8 @@ import { setupTest } from 'ember-qunit';
 import { run } from "@ember/runloop";
 
 module('Unit | Model | player', function(hooks) {
+  setupTest(hooks);
+
   // Specify the other units that are required for this test.
   test('should increment level when told to', function(assert) {
     const player = run(() => this.owner.lookup('service:store').createRecord('player'));
