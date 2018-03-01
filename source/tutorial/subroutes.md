@@ -6,7 +6,7 @@ Up to this point, we've generated four top level routes.
 * The `index` route, which we've set up to redirect to the `rentals` route.
 
 Our `rentals` route is going to serve multiple functions.
-From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
+From our [application tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
 To satisfy that requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
 
 By the end of this section we want to have created the following new routes:
@@ -342,6 +342,8 @@ Here, the `link-to` helper takes the route name and the rental model object as a
 When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/beforeModel?anchor=serialize) the object to the ID of the model into the URL.
 Alternately, you may just pass `rental.id` for clarity.
 
+Notice also that we are providing `rental.id` as the class attribute on the `link-to`.  The class name will help us find the link later on in testing.
+
 Clicking on the title will load the detail page for that rental.
 
 ```app/templates/components/rental-listing.hbs{-6,+7}
@@ -351,7 +353,7 @@ Clicking on the title will load the detail page for that rental.
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
-  <h3>{{#link-to "rentals.show" rental}}{{rental.title}}{{/link-to}}</h3>
+  <h3>{{#link-to "rentals.show" rental class=rental.id}}{{rental.title}}{{/link-to}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
   </div>
@@ -374,23 +376,21 @@ At this point you can do a [deployment](../deploying/) and share your Super Rent
 or you can use this as a base to explore other Ember features and addons.
 Regardless, we hope this has helped you get started with creating your own ambitious applications with Ember!
 
-### Acceptance Tests
+### Application Tests
 
 We want to verify that we can click on a specific rental and load a detailed view to the page.
 We'll click on the title and validate that an expanded description of the rental is shown.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+7,+8}
-test('should show details for a specific rental', function (assert) {
-  visit('/rentals');
-  click('a:contains("Grand Old Mansion")');
-  andThen(function() {
-    assert.equal(currentURL(), '/rentals/grand-old-mansion', 'should navigate to show route');
-    assert.equal(find('.show-listing h2').text(), "Grand Old Mansion", 'should list rental title');
-    assert.equal(find('.description').length, 1, 'should list a description of the property');
-  });
+```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6}
+test('should show details for a specific rental', async function(assert) {
+  await visit('/rentals');
+  await click(".grand-old-mansion");
+  assert.equal(currentURL(), '/rentals/grand-old-mansion', "should navigate to show route");
+  assert.ok(this.element.querySelector('.show-listing h2').textContent.includes("Grand Old Mansion"), 'should list rental title');
+  assert.ok(this.element.querySelector('.show-listing .description'), 'should list a description of the property');
 });
 ```
 
-At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
+At this point all our tests should pass, including the [list of application tests](../acceptance-test) we created as our beginning requirements.
 
-![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
+![Application Tests Pass](../../images/subroutes/all-acceptance-pass.png)

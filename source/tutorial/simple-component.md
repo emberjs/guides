@@ -202,40 +202,42 @@ Our component integration test will test two different behaviors:
 
 Let's update the default test to contain the scenarios we want to verify:
 
-```tests/integration/components/rental-listing-test.js{+3,+4,+9,+10,+11,+12,+13,+14,+15,+16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34}
-import { moduleForComponent, test } from 'ember-qunit';
+```tests/integration/components/rental-listing-test.js{+11,+12,+13,+14,+15,+16,+17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import EmberObject from '@ember/object';
-import { run } from '@ember/runloop';
 
-moduleForComponent('rental-listing', 'Integration | Component | rental listing', {
-  integration: true
-});
 
-test('should display rental details', function(assert) {
 
-});
+module('Integration | Component | rental listing', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('should toggle wide class on click', function(assert) {
+  test('should display rental details', async function(assert) {
 
-});
-test('it renders', function(assert) {
+  });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('should toggle wide class on click', async function(assert) {
 
-  this.render(hbs`{{rental-listing}}`);
+  });
 
-  assert.equal(this.$().text().trim(), '');
+  test('it renders', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
-  // Template block usage:
-  this.render(hbs`
-    {{#rental-listing}}
-      template block text
-    {{/rental-listing}}
-  `);
+    await render(hbs`{{rental-listing}}`);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), '');
+
+    // Template block usage:
+    await render(hbs`
+      {{#rental-listing}}
+        template block text
+      {{/rental-listing}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), 'template block text');
+  });
 });
 ```
 
@@ -243,65 +245,71 @@ For the test we'll pass the component a fake object that has all the properties 
 We'll give the variable the name `rental`, and in each test we'll set `rental` to our local scope, represented by the `this` object.
 The render template can access values in local scope.
 
-```tests/integration/components/rental-listing-test.js{+6,+7,+8,+9,+10,+11,+12,+13,+20,+24}
-import { moduleForComponent, test } from 'ember-qunit';
+```tests/integration/components/rental-listing-test.js{+5,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
-import { run } from '@ember/runloop';
 
-let rental = EmberObject.create({
-  image: 'fake.png',
-  title: 'test-title',
-  owner: 'test-owner',
-  category: 'test-type',
-  city: 'test-city',
-  bedrooms: 3
-});
 
-moduleForComponent('rental-listing', 'Integration | Component | rental listing', {
-  integration: true
-});
+module('Integration | Component | rental listing', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('should display rental details', function(assert) {
-  this.set('rentalObj', rental);
-});
+  hooks.beforeEach(function () {
+    this.rental = EmberObject.create({
+      image: 'fake.png',
+      title: 'test-title',
+      owner: 'test-owner',
+      type: 'test-type',
+      city: 'test-city',
+      bedrooms: 3
+    });
+  });
 
-test('should toggle wide class on click', function(assert) {
-  this.set('rentalObj', rental);
+  test('should display rental details', async function(assert) {
+
+  });
+
+  test('should toggle wide class on click', async function(assert) {
+
+  });
 });
 ```
 
 Now let's render our component using the `render` function.
 The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates.
-Since we set the `rentalObj` variable to our local scope, we can access it as part of our render string.
+Since we set the `rental` variable to our local scope in the `beforeEach` hook, we can access it as part of our render string.
 
-```tests/integration/components/rental-listing-test.js{+21,+26}
-import { moduleForComponent, test } from 'ember-qunit';
+```tests/integration/components/rental-listing-test.js{+23,+27}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
-import { run } from '@ember/runloop';
 
-let rental = EmberObject.create({
-  image: 'fake.png',
-  title: 'test-title',
-  owner: 'test-owner',
-  category: 'test-type',
-  city: 'test-city',
-  bedrooms: 3
-});
 
-moduleForComponent('rental-listing', 'Integration | Component | rental listing', {
-  integration: true
-});
+module('Integration | Component | rental listing', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('should display rental details', function(assert) {
-  this.set('rentalObj', rental);
-  this.render(hbs`{{rental-listing rental=rentalObj}}`);
-});
+  hooks.beforeEach(function () {
+    this.rental = EmberObject.create({
+      image: 'fake.png',
+      title: 'test-title',
+      owner: 'test-owner',
+      type: 'test-type',
+      city: 'test-city',
+      bedrooms: 3
+    });
+  });
 
-test('should toggle wide class on click', function(assert) {
-  this.set('rentalObj', rental);
-  this.render(hbs`{{rental-listing rental=rentalObj}}`);
+  test('should display rental details', async function(assert) {
+    await render(hbs`{{rental-listing rental=rental}}`);
+  });
+
+  test('should toggle wide class on click', async function(assert) {
+    await render(hbs`{{rental-listing rental=rental}}`);
+  });
 });
 ```
 
@@ -309,66 +317,67 @@ Finally, let's add our actions and assertions.
 
 In the first test, we just want to verify the output of the component, so we just assert that the title and owner text match what we provided in the fake `rental`.
 
-```tests/integration/components/rental-listing-test.js{+4,+5}
+```tests/integration/components/rental-listing-test.js{+3,+4}
 test('should display rental details', function(assert) {
-  this.set('rentalObj', rental);
-  this.render(hbs`{{rental-listing rental=rentalObj}}`);
+  await render(hbs`{{rental-listing rental=rental}}`);
   assert.equal(this.$('.listing h3').text(), 'test-title', 'Title: test-title');
   assert.equal(this.$('.listing .owner').text().trim(), 'Owner: test-owner', 'Owner: test-owner');
 });
 ```
+
 In the second test, we verify that clicking on the image toggles the size.
 We will assert that the component is initially rendered without the `wide` class name.
 Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
 Note that we find the image element using the CSS selector `.image`.
 
-```tests/integration/components/rental-listing-test.js{+4,+5,+6,+7,+8}
-test('should toggle wide class on click', function(assert) {
-  this.set('rentalObj', rental);
-  this.render(hbs`{{rental-listing rental=rentalObj}}`);
-  assert.equal(this.$('.image.wide').length, 0, 'initially rendered small');
-  run(() => document.querySelector('.image').click());
-  assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click');
-  run(() => document.querySelector('.image').click());
-  assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click');
-});
+```tests/integration/components/rental-listing-test.js{+3,+4,+5,+6,+7}
+  test('should toggle wide class on click', async function(assert) {
+    await render(hbs`{{rental-listing rental=rental}}`);
+    assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
+    await click('.image');
+    assert.ok(this.this.element.querySelector('.image.wide'), 'rendered wide after click');
+    await click('.image');
+    assert.notOk(this.element.querySelector('.image.wide'), 'rendered small after second click');
+  });
 ```
 The final test should look as follows:
 
 ```tests/integration/components/rental-listing-test.js
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
-import { run } from '@ember/runloop';
 
-let rental = EmberObject.create({
-  image: 'fake.png',
-  title: 'test-title',
-  owner: 'test-owner',
-  category: 'test-type',
-  city: 'test-city',
-  bedrooms: 3
-});
 
-moduleForComponent('rental-listing', 'Integration | Component | rental listing', {
-  integration: true
-});
+module('Integration | Component | rental listing', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('should display rental details', function(assert) {
-  this.set('rentalObj', rental);
-  this.render(hbs`{{rental-listing rental=rentalObj}}`);
-  assert.equal(this.$('.listing h3').text(), 'test-title', 'Title: test-title');
-  assert.equal(this.$('.listing .owner').text().trim(), 'Owner: test-owner', 'Owner: test-owner')
-});
+  hooks.beforeEach(function () {
+    this.rental = EmberObject.create({
+      image: 'fake.png',
+      title: 'test-title',
+      owner: 'test-owner',
+      type: 'test-type',
+      city: 'test-city',
+      bedrooms: 3
+    });
+  });
 
-test('should toggle wide class on click', function(assert) {
-  this.set('rentalObj', rental);
-  this.render(hbs`{{rental-listing rental=rentalObj}}`);
-  assert.equal(this.$('.image.wide').length, 0, 'initially rendered small');
-  run(() => document.querySelector('.image').click());
-  assert.equal(this.$('.image.wide').length, 1, 'rendered wide after click');
-  run(() => document.querySelector('.image').click());
-  assert.equal(this.$('.image.wide').length, 0, 'rendered small after second click');
+  test('should display rental details', async function(assert) {
+    await render(hbs`{{rental-listing rental=rental}}`);
+    assert.equal(this.element.querySelector('.listing h3').textContent, 'test-title', 'Title: test-title');
+    assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
+  });
+
+  test('should toggle wide class on click', async function(assert) {
+    await render(hbs`{{rental-listing rental=rental}}`);
+    assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
+    await click('.image');
+    assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
+    await click('.image');
+    assert.notOk(this.$('.image.wide'), 'rendered small after second click');
+  });
 });
 ```
 

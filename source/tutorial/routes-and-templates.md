@@ -261,10 +261,10 @@ Let's open it again (`/app/templates/application.hbs`) and replace its contents 
       </h1>
     {{/link-to}}
     <div class="links">
-      {{#link-to "about"}}
+      {{#link-to "about" class="menu-about"}}
         About
       {{/link-to}}
-      {{#link-to "contact"}}
+      {{#link-to "contact" class="menu-contact"}}
         Contact
       {{/link-to}}
     </div>
@@ -283,23 +283,29 @@ At this point, we should be able to navigate between our `about`, `contact`, and
 
 From here you can move on to the [next page](../model-hook/) or dive into testing the new functionality we just added.
 
-## Implementing Acceptance Tests
+## Implementing Application Tests
 
 Now that we have various pages in our application, let's walk through how to build tests for them.
 
 As mentioned earlier on the [Planning the Application page](../acceptance-test/),
-an Ember acceptance test automates interacting with our app in a similar way to a visitor.
+an Ember application test automates interacting with our app in a similar way to a visitor.
 
-If you open the acceptance test we created (`/tests/acceptance/list-rentals-test.js`), you'll see our
+If you open the application test we created (`/tests/acceptance/list-rentals-test.js`), you'll see our
 goals, which include the ability to navigate to an `about` page and a `contact` page. Let's start there.
 
 First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper
 and then make sure our current URL is `/rentals` once the redirect occurs.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
-test('should show rentals as the home page', function (assert) {
-  visit('/');
-  andThen(function() {
+```/tests/acceptance/list-rentals-test.js{+9,+10}
+import { module, test } from 'qunit';
+import { visit, currentURL } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
+
+module('Acceptance | list rentals', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('should show rentals as the home page', async function (assert) {
+    await visit('/');
     assert.equal(currentURL(), '/rentals', 'should redirect automatically');
   });
 });
@@ -307,7 +313,7 @@ test('should show rentals as the home page', function (assert) {
 
 Now run the tests by typing `ember test --server` in the command line (or `ember t -s` for short).
 
-Instead of 7 failures there should now be 6 (5 acceptance failures and 1 ESLint).
+Instead of 7 failures there should now be 6 (5 application failures and 1 ESLint).
 You can also run our specific test by selecting the entry called "Acceptance | list rentals"
 in the drop down input labeled "Module" on the test UI.
 
@@ -318,35 +324,39 @@ failing (because we haven't yet built them).
 
 ### Ember's test helpers
 
-Ember provides a variety of acceptance test helpers to make common tasks easier,
+Ember provides a variety of application test helpers to make common tasks easier,
 such as visiting routes, filling in fields, clicking on links/buttons, and waiting for pages to display.
 
 Some of the helpers we'll use commonly are:
 
-* [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) - loads a given URL
-* [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
-* `andThen` - waits for our previous commands to run before executing our function.
-  In our test below, we want to wait for our page to load after `click` is called so that we can double-check that the new page has loaded
-* [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
+* [`visit`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#visit) - loads a given URL
+* [`click`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click) - pretends to be a user clicking on a specific part of the screen
+* [`currentURL`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currenturl) - returns the URL of the page we're currently on
+
+Let's import these helpers into our application test:
+
+```/tests/acceptance/list-rentals-test.js
+import {
+  click,
+  currentURL,
+  visit
+} from '@ember/test-helpers'
+```
 
 ### Test visiting our About and Contact pages
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+10,+11,+12,+13,+14}
-test('should link to information about the company.', function (assert) {
-  visit('/');
-  click('a:contains("About")');
-  andThen(function() {
-    assert.equal(currentURL(), '/about', 'should navigate to about');
-  });
+```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+8,+9,+10}
+test('should link to about page', async function(assert) {
+  await visit('/');
+  await click(".menu-about");
+  assert.equal(currentURL(), '/about', 'should navigate to about');
 });
 
-test('should link to contact information', function (assert) {
-  visit('/');
-  click('a:contains("Contact")');
-  andThen(function() {
-    assert.equal(currentURL(), '/contact', 'should navigate to contact');
-  });
+test('should link to contacts page', async function(assert) {
+  await visit('/');
+  await click(".menu-contact");
+  assert.equal(currentURL(), '/contact', 'should navigate to contact');
 });
 ```
 
@@ -361,7 +371,7 @@ of things when we make those calls, Ember hides those complexities by giving us 
 If you left `ember test` running, it should have automatically updated to show the three tests related to
 navigating have now passed.
 
-In the screen recording below, we run the tests, deselect "Hide passed tests", and set the module to our acceptance test,
+In the screen recording below, we run the tests, deselect "Hide passed tests", and set the module to our application test,
 revealing the 3 tests we got passing.
 
 ![passing navigation tests](../../images/routes-and-templates/ember-route-tests.gif)
