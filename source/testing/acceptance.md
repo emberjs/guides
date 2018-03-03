@@ -90,7 +90,7 @@ Some of these handy helpers are:
 * [`fillIn(selector, value)`][2]
   - Fills in the selected input with the given value and returns a promise that
      fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
-* [`keyEvent(selector, type, keyCode)`][3]
+* [`triggerKeyEvent(selector, type, keyCode)`][3]
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
 * [`triggerEvent(selector, type, options)`][4]
@@ -130,25 +130,27 @@ previous steps in the test have completed.
 
 Synchronous helpers are performed immediately when triggered.
 
-* [`currentPath()`][6]
-  - Returns the current path.
-* [`currentRouteName()`][7]
+* [`currentRouteName()`][6]
   - Returns the currently active route name.
-* [`currentURL()`][8]
+* [`currentURL()`][7]
   - Returns the current URL.
-* [`find(selector, context)`][9]
+* [`find(selector, context)`][8]
   - Finds an element within the app's root element and within the context
     (optional). Scoping to the root element is especially useful to avoid
     conflicts with the test framework's reporter, and this is done by default
     if the context is not specified.
+* [`findAll(selector)`][9]
+  - Find all elements matched by the given selector. Equivalent to calling
+    querySelectorAll() on the test root element.  Returns an array of matched
+    elements.
 
 
 [1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
 [2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
-[3]: http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent
+[3]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md
 [4]: http://emberjs.com/api/classes/Ember.Test.html#method_triggerEvent
 [5]: http://emberjs.com/api/classes/Ember.Test.html#method_visit
-[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentPath
-[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
-[8]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
-[9]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
+[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
+[8]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+[9]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#findall
