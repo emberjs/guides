@@ -85,7 +85,7 @@ Then you could test that the relationship by looking it up on the `user` model w
 ```tests/unit/models/user-test.js
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { get } from "@ember/object"
+import { get } from '@ember/object';
 
 module('Unit | Model | user', function(hooks) {
   setupTest(hooks);
