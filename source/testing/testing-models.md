@@ -36,6 +36,8 @@ import { setupTest } from 'ember-qunit';
 import { run } from "@ember/runloop";
 
 module('Unit | Model | player', function(hooks) {
+  setupTest(hooks);
+
   // Specify the other units that are required for this test.
   test('should increment level when told to', function(assert) {
     const player = run(() => this.owner.lookup('service:store').createRecord('player'));
@@ -50,7 +52,7 @@ module('Unit | Model | player', function(hooks) {
 ```
 
 Also note, how both creating a record and updating properties on the record through the `levelUp` method requires
-us to wrap these operations into a `run` function. You can read more the Ember run loop [over here](https://guides.emberjs.com/v2.18.0/applications/run-loop/).
+us to wrap these operations into a `run` function. You can read more the Ember run loop [over here](../../applications/run-loop/).
 
 ## Testing Relationships
 
@@ -83,7 +85,7 @@ Then you could test that the relationship by looking it up on the `user` model w
 ```tests/unit/models/user-test.js
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { get } from "@ember/object"
+import { get } from '@ember/object';
 
 module('Unit | Model | user', function(hooks) {
   setupTest(hooks);

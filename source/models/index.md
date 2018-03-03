@@ -156,7 +156,7 @@ maintain by relying on Ember's conventions. Since these conventions
 will be shared among developers on your team, following them leads
 to code that is easier to maintain and understand.
 
-Rather than create an arbitrary set of conventions, Ember Data is
+Rather than creating an arbitrary set of conventions, Ember Data is
 designed to work out of the box with [JSON API][json-api]. JSON API is a
 formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.

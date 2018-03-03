@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'middleman-spellcheck',:git => "https://github.com/mwils/middleman-spellcheck.git", :branch => 'class'
 gem "redcarpet"
-gem "activesupport", '~> 4.1.11'
+gem "activesupport", '~> 4.2.10'
 gem "highline"
 gem "rake"
 gem "coderay", :git => "https://github.com/dgeb/coderay.git", :branch => "handlebars"

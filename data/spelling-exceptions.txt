@@ -203,6 +203,7 @@ promise's
 prs
 pseudocode
 pushpushobject
+querySelectorAll
 qunit
 readme
 readonly

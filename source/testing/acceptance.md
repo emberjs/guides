@@ -9,7 +9,7 @@ This generates this file:
 
 ```tests/acceptance/login-test.js
 import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
+import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | login', function(hooks) {
@@ -90,7 +90,7 @@ Some of these handy helpers are:
 * [`fillIn(selector, value)`][2]
   - Fills in the selected input with the given value and returns a promise that
      fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
-* [`keyEvent(selector, type, keyCode)`][3]
+* [`triggerKeyEvent(selector, type, keyCode)`][3]
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
 * [`triggerEvent(selector, type, options)`][4]
@@ -130,133 +130,27 @@ previous steps in the test have completed.
 
 Synchronous helpers are performed immediately when triggered.
 
-* [`currentPath()`][6]
-  - Returns the current path.
-* [`currentRouteName()`][7]
+* [`currentRouteName()`][6]
   - Returns the currently active route name.
-* [`currentURL()`][8]
+* [`currentURL()`][7]
   - Returns the current URL.
-* [`find(selector, context)`][9]
+* [`find(selector, context)`][8]
   - Finds an element within the app's root element and within the context
     (optional). Scoping to the root element is especially useful to avoid
     conflicts with the test framework's reporter, and this is done by default
     if the context is not specified.
+* [`findAll(selector)`][9]
+  - Find all elements matched by the given selector. Equivalent to calling
+    querySelectorAll() on the test root element.  Returns an array of matched
+    elements.
 
 
 [1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
 [2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
-[3]: http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent
+[3]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md
 [4]: http://emberjs.com/api/classes/Ember.Test.html#method_triggerEvent
 [5]: http://emberjs.com/api/classes/Ember.Test.html#method_visit
-[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentPath
-[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
-[8]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
-[9]: http://emberjs.com/api/classes/Ember.Test.html#method_find
-
-### Custom Test Helpers
-
-For creating your own test helper, run `ember generate test-helper
-<helper-name>`. Here is the result of running `ember g test-helper
-shouldHaveElementWithCount`:
-
-```tests/helpers/should-have-element-with-count.js
-import { registerAsyncHelper } from '@ember/test';
-
-export default registerAsyncHelper(
-    'shouldHaveElementWithCount', function(app) {
-});
-```
-
-[`Ember.Test.registerAsyncHelper`][10] and [`Ember.Test.registerHelper`][11]
-are used to register test helpers that will be injected when `startApp` is
-called. The difference between `Ember.Test.registerHelper` and
-`Ember.Test.registerAsyncHelper` is that the latter will not run until any
-previous async helper has completed and any subsequent async helper will wait
-for it to finish before running.
-
-[10]: http://emberjs.com/api/classes/Ember.Test.html#method_registerAsyncHelper
-[11]: http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper
-
-The helper method will always be called with the current Application as the
-first parameter. Other parameters, such as assert, need to be provided when calling the helper. Helpers need to be registered prior to calling
-`startApp`, but ember-cli will take care of it for you.
-
-Here is an example of a non-async helper:
-
-```tests/helpers/should-have-element-with-count.js
-import { registerHelper } from '@ember/test';
-
-export default registerHelper('shouldHaveElementWithCount',
-  function(app, assert, selector, n, context) {
-    const el = findWithAssert(selector, context);
-    const count = el.length;
-    assert.equal(count, n, `found ${count} times`);
-  }
-);
-
-// shouldHaveElementWithCount(assert, 'ul li', 3);
-```
-
-Here is an example of an async helper:
-
-```tests/helpers/dblclick.js
-import { run } from '@ember/runloop';
-import { registerAsyncHelper } from '@ember/test';
-
-export default registerAsyncHelper('dblclick',
-  function(app, assert, selector, context) {
-    let $el = findWithAssert(selector, context);
-    run(() => $el.dblclick());
-  }
-);
-
-// dblclick(assert, '#person-1')
-```
-
-Async helpers also come in handy when you want to group interaction
-into one helper. For example:
-
-```tests/helpers/add-contact.js
-import { registerAsyncHelper } from '@ember/test';
-
-export default registerAsyncHelper('addContact',
-  function(app, name) {
-    fillIn('#name', name);
-    click('button.create');
-  }
-);
-
-// addContact('Bob');
-// addContact('Dan');
-```
-
-Finally, don't forget to add your helpers in `tests/.eslintrc.js` and in
-`tests/helpers/start-app.js`. In `tests/.eslintrc.js` you need to add it in the
-`globals` section, otherwise you will get failing ESLint tests:
-
-```tests/.eslintrc.js{-4,+5,+6,+7,+8,+9,+10}
-module.exports = {
-  env: {
-    embertest: true
-  }
-  },
-  globals: {
-    shouldHaveElementWithCount: true,
-    dblclick: true,
-    addContact: true
-  }
-};
-```
-
-In `tests/helpers/start-app.js` you need to import the helper file: it
-will be registered then.
-
-```tests/helpers/start-app.js
-import Ember from 'ember';
-import Application from '../../app';
-import Router from '../../router';
-import config from '../../config/environment';
-import './should-have-element-with-count';
-import './dblclick';
-import './add-contact';
-```
+[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
+[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
+[8]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+[9]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#findall

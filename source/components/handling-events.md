@@ -33,7 +33,7 @@ import Ember from 'ember';
 
 export default Component.extend({
   doubleClick() {
-    Ember.Logger.info('DoubleClickableComponent was clicked!');
+    console.info('DoubleClickableComponent was clicked!');
     return true;
   }
 });

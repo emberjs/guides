@@ -209,32 +209,32 @@ And our API might setup these relationships like so:
 			"payment-methods": {
 				"data": [{
 					"id": "1",
-					"type": "PaymentMethodPaypal"
+					"type": "payment-method-paypal"
 				}, {
 					"id": "2",
-					"type": "PaymentMethodCc"
+					"type": "payment-method-cc"
 				}, {
 					"id": "3",
-					"type": "PaymentMethodApplePay"
+					"type": "payment-method-apple-pay"
 				}]
 			}
 		}
 	},
 	"included": [{
 		"id": "1",
-		"type": "PaymentMethodPaypal",
+		"type": "payment-method-paypal",
 		"attributes": {
 			"linked-email": "ryan@gosling.io"
 		}
 	}, {
 		"id": "2",
-		"type": "PaymentMethodCc",
+		"type": "payment-method-cc",
 		"attributes": {
 			"last4": "1335"
 		}
 	}, {
 		"id": "3",
-		"type": "PaymentMethodApplePay",
+		"type": "payment-method-apple-pay",
 		"attributes": {
 			"last4": "5513"
 		}
