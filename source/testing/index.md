@@ -141,4 +141,6 @@ run `ember test --module='Unit | Service | location'`.
 [Application tests]: ./acceptance
 [Testing Basics]: ./unit-testing-basics
 [Testing Components]: ./testing-components
+[Testing Controllers]: ./testing-controllers
+[Testing Routes]: ./testing-routes
 [Testing Helpers]: ./testing-helpers
