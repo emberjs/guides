@@ -138,9 +138,9 @@ run `ember test --module='Unit | Service | location'`.
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
 [Testem]: https://github.com/airportyh/testem
-[Application tests]: ../acceptance
-[Testing Basics]: ../unit-testing-basics
-[Testing Components]: ../testing-components
-[Testing Controllers]: ../testing-controllers
-[Testing Routes]: ../testing-routes
-[Testing Helpers]: ../testing-helpers
+[Application tests]: ./acceptance
+[Testing Basics]: ./unit-testing-basics
+[Testing Components]: ./testing-components
+[Testing Controllers]: ./testing-controllers
+[Testing Routes]: ./testing-routes
+[Testing Helpers]: ./testing-helpers
