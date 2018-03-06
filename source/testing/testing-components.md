@@ -29,7 +29,7 @@ The `module` from QUnit will scope your tests into groups of tests which can be
 configured and run independently. Make sure to call the `setupRenderingTest` function together with the `hooks` parameter
 first in your new module. This will do all the setup necessary for testing your component for you,
 including setting up a way to access the rendered DOM of your component later on in the test
-and it will clean up after you once your tests in this module are finished.
+and it will clean up after your tests in this module are finished.
 
 ```tests/integration/components/pretty-color-test.js
 import { module } from 'qunit';
