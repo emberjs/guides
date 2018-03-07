@@ -1,8 +1,8 @@
-Components can be tested easily with a rendering test. Let's see how this plays out in a specific example:
+Components can be tested easily with a rendering test.
+Let's see how this plays out in a specific example:
 
-Let's assume we have a component with a `style` property that is updated
-whenever the value of the `name` property changes. The `style` attribute of the
-component is bound to its `style` property.
+Let's assume we have a component with a `style` property that is updated whenever the value of the `name` property changes.
+The `style` attribute of the component is bound to its `style` property.
 
 > You can follow along by generating your own component with `ember generate
 > component pretty-color`.
@@ -25,11 +25,11 @@ export default Component.extend({
 Pretty Color: {{name}}
 ```
 
-The `module` from QUnit will scope your tests into groups of tests which can be
-configured and run independently. Make sure to call the `setupRenderingTest` function together with the `hooks` parameter
-first in your new module. This will do all the setup necessary for testing your component for you,
-including setting up a way to access the rendered DOM of your component later on in the test
-and it will clean up after you once your tests in this module are finished.
+The `module` from QUnit will scope your tests into groups of tests which can be configured and run independently.
+Make sure to call the `setupRenderingTest` function together with the `hooks` parameter first in your new module.
+This will do the necessary setup for testing your component for you,
+including setting up a way to access the rendered DOM of your component later on in the test,
+and cleaning up once your tests in this module are finished.
 
 ```tests/integration/components/pretty-color-test.js
 import { module } from 'qunit';
@@ -40,8 +40,9 @@ module('Integration | Component | pretty color', function(hooks) {
 
 });
 ```
-Inside of your `module` and after setting up the test, we can now start to create our first test case. Here we can use the `QUnit.test` helper and we can
-give it a descriptive name:
+
+Inside of your `module` and after setting up the test, we can now start to create our first test case.
+Here, we can use the `QUnit.test` helper and we can give it a descriptive name:
 
 ```tests/integration/components/pretty-color-test.js
 import { module, test } from 'qunit';
@@ -56,7 +57,11 @@ module('Integration | Component | pretty color', function(hooks) {
   });
 });
 ```
-Also note how the callback function passed to the test helper is marked with the keyword `async`. The [ECMAScript 2017 feature async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) allows us to write asynchronous code in an easy-to-read, seemingly synchronous manner. We can better see what this means, once we start writing out our first test case:
+
+Also note how the callback function passed to the test helper is marked with the keyword `async`.
+The [ECMAScript 2017 feature async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) allows us to write asynchronous code in an easy-to-read,
+seemingly synchronous manner.
+We can better see what this means, once we start writing out our first test case:
 
 ```tests/integration/components/pretty-color-test.js
 import { module, test } from 'qunit';
@@ -78,13 +83,12 @@ module('Integration | Component | pretty color', function(hooks) {
     assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
   });
 });
-
 ```
 
-Each test can use the `render()`
-function imported from the `@ember/test-helpers` package to create a new instance of the component by declaring
-the component in template syntax, as we would in our application.
-Also notice, the keyword `await` in front of the call to `render`. It allows the test which we marked as `async` earlier to wait for any asynchronous behaviour to complete before any code which is written below that will be executed.
+Each test can use the `render()` function imported from the `@ember/test-helpers` package to create a new instance of the component by declaring the component in template syntax,
+as we would in our application.
+Also notice, the keyword `await` in front of the call to `render`.
+It allows the test which we marked as `async` earlier to wait for any asynchronous behaviour to complete before executing the rest of the code below.
 In this case our first assertion will correctly execute after the component has fully rendered.
 
 Next we can test that changing the component's `name` property updates the
@@ -113,11 +117,9 @@ module('Integration | Component | pretty color', function(hooks) {
 
     assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  });
 });
-
 ```
 
-We might also test this component to ensure that the content of its template is
-being rendered properly:
+We might also test this component to ensure that the content of its template is being rendered properly:
 
 ```tests/integration/components/pretty-color-test.js
 import { module, test } from 'qunit';
@@ -142,17 +144,14 @@ module('Integration | Component | pretty color', function(hooks) {
     assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
   });
 });
-
 ```
 
 ### Testing User Interaction
 
-Components are a great way to create powerful, interactive, and self-contained
-custom HTML elements. It is important to test the component's methods _and_ the
-user's interaction with the component.
+Components are a great way to create powerful, interactive, and self-contained custom HTML elements.
+It is important to test the component's methods _and_ the user's interaction with the component.
 
-Imagine you have the following component that changes its title when a button is
-clicked on:
+Imagine you have the following component that changes its title when a button is clicked on:
 
 > You can follow along by generating your own component with `ember generate
 > component magic-title`.
@@ -205,17 +204,16 @@ module('Integration | Component | magic title', function(hooks) {
 });
 ```
 
-Note how we make use of the `click` helper from [`ember-test-helpers`](https://github.com/emberjs/ember-test-helpers) to interact with the
-component DOM to trigger the `updateTitle` action.
+Note how we make use of the `click` helper from [`ember-test-helpers`](https://github.com/emberjs/ember-test-helpers) to interact with the component DOM to trigger the `updateTitle` action.
 You can find many other helpful helpers for simulating user interaction in rendering tests in the [API documentation of ember-test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md).
 
 ### Testing Actions
 
-Components starting in Ember 2 utilize closure actions. Closure actions allow components
-to directly invoke functions provided by outer components.
+Components starting in Ember 2 utilize closure actions.
+Closure actions allow components to directly invoke functions provided by outer components.
 
-For example, imagine you have a comment form component that invokes a
-`submitComment` action when the form is submitted, passing along the form's data:
+For example, imagine you have a comment form component that invokes a `submitComment` action when the form is submitted,
+passing along the form's data:
 
 > You can follow along by generating your own component with `ember generate
 > component comment-form`.
@@ -243,9 +241,7 @@ export default Component.extend({
 </form>
 ```
 
-Here's an example test that asserts that the specified `externalAction` function
-is invoked when the component's internal `submitComment` action is triggered by making use
-of a test double (dummy function).
+Here's an example test that asserts that the specified `externalAction` function is invoked when the component's internal `submitComment` action is triggered by making use of a test double (dummy function).
 `assert.expect(1)` at the top of the test makes sure that the assertion inside the
 external action is called:
 
@@ -280,12 +276,11 @@ module('Integration | Component | comment form', function(hooks) {
 
 ### Stubbing Services
 
-In cases where components have dependencies on Ember services, it is possible to stub these
-dependencies for rendering tests. You stub Ember services by using the built-in `register()`
-function to register your stub service in place of the default.
+In cases where components have dependencies on Ember services,
+it is possible to stub these dependencies for rendering tests.
+You stub Ember services by using the built-in `register()` function to register your stub service in place of the default.
 
-Imagine you have the following component that uses a location service to display the city
-and country of your current location:
+Imagine you have the following component that uses a location service to display the city and country of your current location:
 
 > You can follow along by generating your own component with `ember generate
 > component location-indicator`.
@@ -312,9 +307,10 @@ export default Component.extend({
 ```app/templates/components/location-indicator.hbs
 You currently are located in {{city}}, {{country}}
 ```
-To stub the location service in your test, create a local stub object that extends
-`Ember.Service`, and register the stub as the service your tests need in the
-beforeEach function.  In this case we initially force location to New York.
+
+To stub the location service in your test, create a local stub object that extends `Ember.Service`,
+and register the stub as the service your tests need in the beforeEach function.
+In this case we initially force location to "New York".
 
 ```tests/integration/components/location-indicator-test.js
 import { module, test } from 'qunit';
@@ -349,8 +345,8 @@ module('Integration | Component | location indicator', function(hooks) {
 });
 ```
 
-Once the stub service is registered the test simply needs to check that the stub data that
-is being returned from the service is reflected in the component output.
+Once the stub service is registered,
+the test needs to check that the stub data from the service is reflected in the component output.
 
 ```tests/integration/components/location-indicator-test.js{+34,+35,+36,+37,+38}
 import { module, test } from 'qunit';
@@ -391,8 +387,7 @@ module('Integration | Component | location indicator', function(hooks) {
 });
 ```
 
-In the next example, we'll add another test that validates that the display changes
-when we modify the values on the service.
+In the next example, we'll add another test that validates that the display changes when we modify the values on the service.
 
 ```tests/integration/components/location-indicator-test.js{+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53}
 import { module, test } from 'qunit';
@@ -448,11 +443,10 @@ module('Integration | Component | location indicator', function(hooks) {
 ```
 
 ### Waiting on Asynchronous Behavior
+
 Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.
-The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous
-behavior to complete that is triggered by a DOM interaction induced by those.  
-To use them in your tests, you can simply `await` any of them to make sure that subsequent assertions are executed at the right time
-when the asynchronous behavior has fully settled:
+The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous behavior to complete that is triggered by a DOM interaction induced by those.  
+To use them in your tests, you can `await` any of them to make sure that subsequent assertions are executed once the asynchronous behavior has fully settled:
 
 ```js
 await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
@@ -465,8 +459,7 @@ The `settled` function itself returns a Promise that resolves once all async ope
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce)
-to limit requests to the server, and you want to verify that results are displayed after typing a character.
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
@@ -494,8 +487,7 @@ export default Component.extend({
 </ul>
 ```
 
-In your test, use the `settled` helper to wait until your debounce timer is up and then assert
-that the page is rendered appropriately.
+In your test, use the `settled` helper to wait until your debounce timer is up and then assert that the page is rendered appropriately.
 
 ```tests/integration/components/delayed-typeahead-test.js
 import { module, test } from 'qunit';
