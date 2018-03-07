@@ -73,7 +73,7 @@ back in a synchronized state when it makes its assertions. It saves you from
 having to wrap everything in code that does that, and it makes it easier to read
 your tests because there's less boilerplate in them.
 
-Ember includes several helpers to facilitate acceptance testing. There are two
+Ember includes several helpers to facilitate application testing. There are two
 types of helpers: **asynchronous** and **synchronous**.
 
 ### Asynchronous Helpers

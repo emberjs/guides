@@ -19,11 +19,12 @@ At this point, you can continue to the [next page](../routes-and-templates/) or 
 
 ### Testing Our Application As We Go
 
-We can represent the goals above as [Ember acceptance tests](../../testing/acceptance/). Acceptance tests interact with our app like an actual person would, but are automated, helping ensure that our app doesn't break in the future.
+We can represent the goals above as [Ember application tests](../../testing/acceptance/). Application tests interact with our app like an actual person would, but are automated, helping ensure that our app doesn't break as you make changes.
+You might hear these tests sometimes referred to as "acceptance tests" in Ember, as that's what they have been called in the past.
 
 When we create a new Ember Project using Ember CLI, it uses the [`QUnit`](https://qunitjs.com/) JavaScript test framework to define and run tests.
 
-We'll start by using Ember CLI to generate a new acceptance test:
+We'll start by using Ember CLI to generate a new application test:
 
 ```shell
 ember g acceptance-test list-rentals
@@ -36,24 +37,24 @@ installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```
 
-Opening that file will reveal some initial code that will try to go to the `list-rentals` route and verify that the route is loaded. The initial code is there to help us build our first acceptance test.
+Opening that file will reveal some initial code that will try to go to the `list-rentals` route and verify that the route is loaded. The initial code is there to help us build our first application test.
 
 Since we haven't added any functionality to our application yet, we'll use this first test to get started on running tests in our app.
 
 To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base url, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the url is what we want it to be.
 
-```/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}
-import { test } from 'qunit';
-import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
+```/tests/acceptance/list-rentals-test.js{-8,+9,-10,+11,-12,+13}
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, currentURL } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | list-rentals');
+module('Acceptance | my acceptance test', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visiting /list-rentals', function(assert) {
-test('visiting /', function(assert) {
-  visit('/list-rentals');
-  visit('/');
-
-  andThen(function() {
+  test('visiting /list-rentals', async function(assert) {
+  test('visiting /', async function(assert) {
+    await visit('/list-rentals');
+    await visit('/');
     assert.equal(currentURL(), '/list-rentals');
     assert.equal(currentURL(), '/');
   });
@@ -62,56 +63,58 @@ test('visiting /', function(assert) {
 
 A few of things to note in this simple test:
 
-* Acceptance tests are setup by calling the function `moduleForAcceptance`. This function ensures that your Ember application is started and shut down between each test.
+* Application tests are setup by calling the function `setupApplicationTest`. This function ensures that your Ember application is started and shut down between each test.
 * QUnit passes in an object called an [`assert`](https://api.qunitjs.com/assert/) to each test function. An `assert` has functions, such as `equal()`, that allow your test to check for conditions within the test environment. A test must have one passing assert to be successful.
-* Ember acceptance tests use a set of test helper functions, such as the `visit`, `andThen`, and `currentURL` functions used above. We'll discuss those functions in more detail later in the tutorial.
+* Ember application tests use a set of test helper functions, such as the `visit` and `currentURL` functions used above. We'll discuss those functions in more detail later in the tutorial.
 
 Now run your test suite with the CLI command, `ember test --server`.
 
-By default, when you run `ember test --server`, Ember CLI runs the [Testem test runner](https://github.com/testem/testem), which runs Qunit in Chrome and [PhantomJS](http://phantomjs.org/).
+By default, when you run `ember test --server`, Ember CLI runs the [Testem test runner](https://github.com/testem/testem), which runs Qunit in Chrome.
 
-Our launched Chrome web browser now shows 9 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful acceptance test, along with 8 passing ESLint tests. Ember tests each file you create for syntax issues (known as "linting") using [ESLint](http://eslint.org/).
+Our launched Chrome web browser now shows 9 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful application test, along with 8 passing ESLint tests. Ember tests each file you create for syntax issues (known as "linting") using [ESLint](http://eslint.org/).
 
 ![Initial Tests Screenshot](../../images/acceptance-test/initial-tests.png)
 
-### Adding Your Application Goals as Acceptance Tests
+### Adding Your Application Goals as Tests
 
 As mentioned before, our initial test just made sure everything was running properly. Now let's replace that test with the list of tasks we want our app to handle (described up above).
 
-```/tests/acceptance/list-rentals-test.js{+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25,-26,-27,-28,-29}
-import { test } from 'qunit';
-import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
+```/tests/acceptance/list-rentals-test.js{+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,-26,-27,-28,-29}
+import { module, test } from 'qunit';
+import { visit, currentURL } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | list-rentals');
+module('Acceptance | list-rentals', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('should show rentals as the home page', function (assert) {
-});
+  test('should show rentals as the home page', async function (assert) {
+  });
 
-test('should link to information about the company.', function (assert) {
-});
+  test('should link to information about the company.', async function (assert) {
+  });
 
-test('should link to contact information.', function (assert) {
-});
+  test('should link to contact information.', async function (assert) {
+  });
 
-test('should list available rentals.', function (assert) {
-});
+  test('should list available rentals.', async function (assert) {
+  });
 
-test('should filter the list of rentals by city.', function (assert) {
-});
+  test('should filter the list of rentals by city.', async function (assert) {
+  });
 
-test('should show details for a selected rental', function (assert) {
-});
-test('visiting /', function(assert) {
-  visit('/');
+  test('should show details for a selected rental', async function (assert) {
+  });
 
-  andThen(function() {
+  test('visiting /', async function(assert) {
+    await visit('/');
     assert.equal(currentURL(), '/');
   });
+
 });
 ```
 
 Running `ember test --server` will now show 7 failing tests (out of 14). Each of the 6 tests we setup above will fail, plus one ESLint test will fail saying, `assert is defined but never used`. The tests above fail because QUnit requires at least one check for a specific condition (known as an `assert`).
 
-As we continue through this tutorial, we'll use these acceptance tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.
+As we continue through this tutorial, we'll use these application tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.
 
 ![Initial Tests Screenshot](../../images/acceptance-test/acceptance-test.png)
