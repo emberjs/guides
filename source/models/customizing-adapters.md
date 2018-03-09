@@ -235,7 +235,7 @@ export default DS.JSONAPIAdapter.extend({
 In some cases, your dynamic headers may require data from some
 object outside of Ember's observer system (for example
 `document.cookie`). You can use the
-[volatile](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject%2Fcomputed/methods/property?anchor=volatile&show=inherited%2Cprotected%2Cprivate%2Cdeprecated)
+[volatile](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject%2Fcomputed/methods/property?anchor=volatile)
 function to set the property into a non-cached mode causing the headers to
 be recomputed with every request.
 

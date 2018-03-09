@@ -79,7 +79,7 @@ person.set('firstName', 'John');
 person.set('lastName', 'Smith');
 ```
 
-To get around these problems, you should make use of [`Ember.run.once()`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Frunloop/methods/once?anchor=once).
+To get around these problems, you should make use of [`Ember.run.once()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop/methods/once?anchor=once).
 This will ensure that any processing you need to do only happens once, and
 happens in the next run loop once all bindings are synchronized:
 
@@ -110,7 +110,7 @@ Observers never fire until after the initialization of an object is complete.
 
 If you need an observer to fire as part of the initialization process, you
 cannot rely on the side effect of `set`. Instead, specify that the observer
-should also run after `init` by using [`Ember.on()`](http://emberjs.com/api/classes/Ember.html#method_on):
+should also run after `init` by using [`Ember.on()`](https://emberjs.com/api/ember/2.15/namespaces/Ember/methods/on?anchor=on):
 
 
 ```javascript
@@ -145,7 +145,7 @@ get it in your `init()` method.
 ### Outside of class definitions
 
 You can also add observers to an object outside of a class definition
-using [`addObserver()`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject%2Fobservers/methods/addObserver?anchor=addObserver):
+using [`addObserver()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject%2Fobservers/methods/addObserver?anchor=addObserver):
 
 
 ```javascript

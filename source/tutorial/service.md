@@ -306,7 +306,7 @@ In the second test, only one assert is expected (line 33), since the map element
 Also, note that the second test uses a dummy object as the returned map element (defined on line 5).
 Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 39).
 
-The location in the cache has been [`camelized`](https://www.emberjs.com/api/ember/2.16/classes/String/methods/camelize?anchor=camelize) (line 35),
+The location in the cache has been [`camelized`](https://www.emberjs.com/api/ember/release/classes/String/methods/camelize?anchor=camelize) (line 30),
 so that it may be used as a key to look up our element.
 This matches the behavior in `getMapElement` when city has not yet been cached.
 

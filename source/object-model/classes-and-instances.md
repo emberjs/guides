@@ -7,8 +7,8 @@ as other major features of the Ember object model.
 To define a new Ember _class_, call the [`extend()`][1] method on
 [`EmberObject`][2]:
 
-[1]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/extend?anchor=extend
-[2]: https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject
+[1]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/extend?anchor=extend
+[2]: https://www.emberjs.com/api/ember/release/modules/@ember%2Fobject
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -26,7 +26,7 @@ You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
 of Ember's built-in [`Component`][3] class:
 
-[3]: https://www.emberjs.com/api/ember/2.16/classes/Component
+[3]: https://www.emberjs.com/api/ember/release/classes/Component
 
 ```app/components/todo-item.js
 import Component from '@ember/component';
@@ -75,7 +75,7 @@ One common example is when overriding the [`normalizeResponse()`][4] hook in one
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
 
-[4]: https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse
+[4]: https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
@@ -93,7 +93,7 @@ class by calling its [`create()`][5] method. Any methods, properties and
 computed properties you defined on the class will be available to
 instances:
 
-[5]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/create?anchor=create
+[5]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/create?anchor=create
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -145,7 +145,7 @@ When a new instance is created, its [`init()`][6] method is invoked
 automatically. This is the ideal place to implement setup required on new
 instances:
 
-[6]: https://www.emberjs.com/api/ember/2.16/classes/EmberObject/methods/init?anchor=init
+[6]: https://www.emberjs.com/api/ember/release/classes/EmberObject/methods/init?anchor=init
 
 ```js
 import EmberObject from '@ember/object';
@@ -229,8 +229,8 @@ Person.create({
 When accessing the properties of an object, use the [`get()`][7]
 and [`set()`][8] accessor methods:
 
-[7]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/get?anchor=get
-[8]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/set?anchor=set
+[7]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/get?anchor=get
+[8]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/set?anchor=set
 
 ```js
 import EmberObject from '@ember/object';

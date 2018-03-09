@@ -3,6 +3,7 @@ bindings in Ember.js can be used with any object. That said, bindings are most
 often used within the Ember framework itself, and for most problems Ember app
 developers face, computed properties are the appropriate solution.
 
+
 The easiest way to create a two-way binding is to use a [`computed.alias()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject%2Fcomputed/methods/alias?anchor=alias&show=inherited%2Cprotected%2Cprivate%2Cdeprecated),
 that specifies the path to another object.
 

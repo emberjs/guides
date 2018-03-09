@@ -11,7 +11,7 @@ Here's what our homepage will look like when we're done:
 ![super rentals homepage with rentals list](../../images/model-hook/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading the model with data for the page.
-It loads the data in a function called [`model`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/model?anchor=model).
+It loads the data in a function called [`model`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model).
 The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
 The model function we've added to our `rentals` route handler will be called when a user navigates to the rentals route via root URL `http://localhost:4200`, or via `http://localhost:4200/rentals`.
 
@@ -107,6 +107,7 @@ To check that rentals are listed with an automated test, we will create a test t
 
 In `app/templates/rentals.hbs`, we wrapped each rental display in an `article` element, and gave it a class called `listing`.
 We will use the listing class to find out how many rentals are shown on the page.
+
 
 To find the elements that have a class called `listing`, we'll use the method [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll~).
 The `querySelectorAll` method returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).

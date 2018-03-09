@@ -198,8 +198,8 @@ There are a few things to note about the `didInsertElement()` hook:
 - While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
   particularly when order of execution is important.
 
-[did-insert-element]: https://www.emberjs.com/api/ember/2.16/classes/Component/events/didInsertElement?anchor=didInsertElement
-[dollar]: https://www.emberjs.com/api/ember/2.16/classes/Component/methods/$?anchor=%24
+[did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
+[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
 [event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
 
 ### Making Updates to the Rendered DOM with `didRender`
@@ -254,7 +254,7 @@ export default Component.extend({
 
 ### Detaching and Tearing Down Component Elements with `willDestroyElement`
 
-When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](https://www.emberjs.com/api/ember/2.16/classes/Component/events/willDestroyElement?anchor=willDestroyElement) method,
+When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/willDestroyElement?anchor=willDestroyElement) method,
 allowing for any teardown logic to be performed.
 
 Component teardown can be triggered by a number of different conditions.

@@ -129,7 +129,7 @@ To utilize an `event` object as a function parameter:
 
 The event handling examples described above respond to one set of events.
 The names of the built-in events are listed below. Custom events can be
-registered by using [Application.customEvents](https://www.emberjs.com/api/ember/2.16/classes/Application/properties/customEvents?anchor=customEvents).
+registered by using [Application.customEvents](https://www.emberjs.com/api/ember/release/classes/Application/properties/customEvents?anchor=customEvents).
 
 Touch events:
 

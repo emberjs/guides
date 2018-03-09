@@ -10,7 +10,7 @@ Fortunately, Ember provides a way for projects to deal with deprecations in an o
 ## Filtering Deprecations
 
 When your project has a lot of deprecations, you can start by filtering out deprecations that do not have to be addressed right away.  You
-can use the [deprecation handlers](http://emberjs.com/api/classes/Ember.Debug.html#method_registerDeprecationHandler) API to check for what
+can use the [deprecation handlers](https://emberjs.com/api/ember/2.15/classes/Ember.Debug/methods/registerDeprecationHandler?anchor=registerDeprecationHandler) API to check for what
 release a deprecated feature will be removed.  An example handler is shown below that filters out all deprecations that are not going away
 in release 2.0.0.
 

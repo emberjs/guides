@@ -1,5 +1,5 @@
-Statements like [`if`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=if)
-and [`unless`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=unless)
+Statements like [`if`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
+and [`unless`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=unless)
 are implemented as built-in helpers. Helpers can be invoked three ways, each
 of which is illustrated below with conditionals.
 
@@ -12,7 +12,7 @@ displaying a property, but helpers accept arguments. For example:
 </div>
 ```
 
-[`{{if}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=if)
+[`{{if}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
 in this case returns `"zoooom"` when `isFast` is true and
 `"putt-putt-putt"` when `isFast` is false. Helpers invoked as inline expressions
 render a single value, the same way that properties are a single value.
@@ -53,7 +53,7 @@ properties on `person` only if that it is present:
 {{/if}}
 ```
 
-[`{{if}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=if)
+[`{{if}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
 checks for truthiness, which means all values except `false`,
 `undefined`, `null`, `''`, `0`  or `[]` (i.e., any JavaScript falsy value or an
 empty array).
@@ -81,7 +81,7 @@ of that invocation is rendered:
 ```
 
 The inverse of `{{if}}` is
-[`{{unless}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=unless),
+[`{{unless}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=unless),
 which can be used in the same three styles of invocation. For example, this
 template only shows an amount due when the user has not paid:
 

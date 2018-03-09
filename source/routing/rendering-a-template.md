@@ -19,7 +19,7 @@ template. For example, the `posts.new` route will render its template into the
 `posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
 the `application.hbs`'s `{{outlet}}`.
 
-If you want to render a template other than the default one, set the route's [`templateName`](https://www.emberjs.com/api/ember/2.16/classes/Route/properties/templateName?anchor=templateName) property to the name of
+If you want to render a template other than the default one, set the route's [`templateName`](https://www.emberjs.com/api/ember/release/classes/Route/properties/templateName?anchor=templateName) property to the name of
 the template you want to render instead.
 
 ```app/routes/posts.js
@@ -30,5 +30,5 @@ export default Route.extend({
 });
 ```
 
-You can override the [`renderTemplate()`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/renderTemplate?anchor=renderTemplate) hook if you want finer control over template rendering.
+You can override the [`renderTemplate()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/renderTemplate?anchor=renderTemplate) hook if you want finer control over template rendering.
 Among other things, it allows you to choose the controller used to configure the template and specific outlet to render it into.

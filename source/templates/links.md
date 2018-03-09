@@ -1,7 +1,7 @@
 ## The `{{link-to}}` Component
 
 You create a link to a route using the
-[`{{link-to}}`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`{{link-to}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 component.
 
 ```app/router.js
@@ -116,7 +116,7 @@ The `query-params` helper can be used to set query params on a link:
 ### Using link-to as an inline component
 
 In addition to being used as a block expression, the
-[`link-to`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`link-to`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 component can also be used in inline form by specifying the link text as the first
 argument to the component:
 
@@ -149,7 +149,7 @@ adding class names, Ember will also apply the standard `ember-view` and possibly
 ### Replacing history entries
 
 The default behavior for
-[`link-to`](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`link-to`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 is to add entries to the browser's history when transitioning between the
 routes. However, to replace the current entry in the browser's history you
 can use the `replace=true` option:
