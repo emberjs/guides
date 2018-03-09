@@ -89,8 +89,7 @@ export default DS.RestSerializer.extend({
     delete hash['song_count']
     return this._super(typeHash, hash);
   }
-
-})
+});
 ```
 
 ```app/routes/application.js
@@ -129,10 +128,11 @@ so it can be accessed by other parts of your application.
 
 ```app/routes/confirm-payment.js
 import Route from '@ember/routing/route';
+import $ from 'jquery';
 
 export default Route.extend({
   actions: {
-    confirm: function(data) {
+    confirm(data) {
       $.ajax({
         data: data,
         method: 'POST',

@@ -71,7 +71,7 @@ This helper will let us loop through each of the rental objects in our model:
   <p>
     We hope you find exactly what you're looking for in a place to stay.
   </p>
-  {{#link-to 'about' class="button"}}
+  {{#link-to "about" class="button"}}
     About Us
   {{/link-to}}
 </div>
@@ -101,29 +101,36 @@ From the rental variable in each step, we create a listing with information abou
 
 You may move onto the [next page](../installing-addons/) to keep implementing new features, or continue reading on testing the app you've created.
 
-### Acceptance Testing the Rental List
+### Application Testing the Rental List
 
 To check that rentals are listed with an automated test, we will create a test to visit the index route and check that the results show 3 listings.
 
 In `app/templates/rentals.hbs`, we wrapped each rental display in an `article` element, and gave it a class called `listing`.
 We will use the listing class to find out how many rentals are shown on the page.
 
-To find the elements that have a class called `listing`, we'll use a test helper called [find](https://emberjs.com/api/ember/2.15/classes/Ember.Test/methods/find?anchor=find).
-The `find` function returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
+
+To find the elements that have a class called `listing`, we'll use the method [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll~).
+The `querySelectorAll` method returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 In this case it will return an array of all the elements with a class called `listing`.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
-test('should list available rentals.', function (assert) {
-  visit('/');
-  andThen(function() {
-    assert.equal(find('.listing').length, 3, 'should see 3 listings');
-  });
+```/tests/acceptance/list-rentals-test.js{+4}
+import {
+  click,
+  currentURL,
+  visit
+} from '@ember/test-helpers'
+```
+
+```/tests/acceptance/list-rentals-test.js{+2,+3}
+test('should list available rentals.', async function(assert) {
+  await visit('/');
+  assert.equal(this.element.querySelectorAll('.results .listing').length, 3, 'should display 3 listings');
 });
 ```
 
 Run the tests again using the command `ember t -s`, and toggle "Hide passed tests" to show your new passing test.
 
-Now we are listing rentals, and verifying it with an acceptance test.
-This leaves us with 2 remaining acceptance test failures (and 1 eslint failure):
+Now we are listing rentals, and verifying it with an application test.
+This leaves us with 2 remaining application test failures (and 1 eslint failure):
 
 ![list rentals test passing](../../images/model-hook/model-hook.png)

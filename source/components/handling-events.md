@@ -18,7 +18,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   doubleClick() {
-    alert("DoubleClickableComponent was clicked!");
+    alert('DoubleClickableComponent was clicked!');
   }
 });
 ```
@@ -29,10 +29,11 @@ in your component.
 
 ```app/components/double-clickable.js
 import Component from '@ember/component';
+import Ember from 'ember';
 
 export default Component.extend({
   doubleClick() {
-    Ember.Logger.info("DoubleClickableComponent was clicked!");
+    console.info('DoubleClickableComponent was clicked!');
     return true;
   }
 });
@@ -83,7 +84,7 @@ assign a (closure) action to an inline event handler. Consider the
 template below which includes an `onclick` handler on a `button` element:
 
 ```hbs
-<button onclick={{action 'signUp'}}>Sign Up</button>
+<button onclick={{action "signUp"}}>Sign Up</button>
 ```
 
 The `signUp` action is simply a function defined on the `actions` hash
@@ -105,7 +106,7 @@ define an event parameter. The following example demonstrates the
 default behavior using an action.
 
 ```hbs
-<button {{action 'signUp'}}>Sign Up</button>
+<button {{action "signUp"}}>Sign Up</button>
 ```
 
 ```js

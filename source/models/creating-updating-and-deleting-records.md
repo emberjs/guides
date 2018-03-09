@@ -21,7 +21,7 @@ want to change:
 ```js
 this.get('store').findRecord('person', 1).then(function(tyrion) {
   // ...after the record has loaded
-  tyrion.set('firstName', "Yollo");
+  tyrion.set('firstName', 'Yollo');
 });
 ```
 
@@ -76,11 +76,11 @@ method. `changedAttributes` returns an object, whose keys are the changed
 properties and values are an array of values `[oldValue, newValue]`.
 
 ```js
-person.get('isAdmin');            //=> false
-person.get('hasDirtyAttributes'); //=> false
+person.get('isAdmin');            // => false
+person.get('hasDirtyAttributes'); // => false
 person.set('isAdmin', true);
-person.get('hasDirtyAttributes'); //=> true
-person.changedAttributes();       //=> { isAdmin: [false, true] }
+person.get('hasDirtyAttributes'); // => true
+person.changedAttributes();       // => { isAdmin: [false, true] }
 ```
 
 At this point, you can either persist your changes via `save()` or you can roll
@@ -90,14 +90,14 @@ for a saved record reverts all the `changedAttributes` to their original value.
 If the record `isNew` it will be removed from the store.
 
 ```js
-person.get('hasDirtyAttributes'); //=> true
-person.changedAttributes();       //=> { isAdmin: [false, true] }
+person.get('hasDirtyAttributes'); // => true
+person.changedAttributes();       // => { isAdmin: [false, true] }
 
 person.rollbackAttributes();
 
-person.get('hasDirtyAttributes'); //=> false
-person.get('isAdmin');            //=> false
-person.changedAttributes();       //=> {}
+person.get('hasDirtyAttributes'); // => false
+person.get('isAdmin');            // => false
+person.changedAttributes();       // => {}
 ```
 
 ## Handling Validation Errors

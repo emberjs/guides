@@ -226,6 +226,7 @@ The second is that `params` is an object, and can only have one value associated
 To put it in code, the following will *not* work properly:
 
 ```app/router.js
+// This won't work! The dynamic segments will collide.
 Router.map(function() {
   this.route('photo', { path: '/photo/:id' }, function() {
     this.route('comment', { path: '/comment/:id' });

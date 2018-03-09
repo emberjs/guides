@@ -38,7 +38,7 @@ This can be done on the result of a `store.query()` call:
 ```js
 store.query('post').then((result) => {
   let meta = result.get('meta');
-})
+});
 ```
 
 On a belongsTo relationship:
@@ -77,7 +77,6 @@ export default Route.extend({
       };
     });
   },
-  
   setupController(controller, { users, meta }) {
     this._super(controller, users);
     controller.set('meta', meta);

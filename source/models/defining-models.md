@@ -112,11 +112,11 @@ Here is a simple transform that converts values between cents and US dollars.
 import DS from 'ember-data';
 
 export default DS.Transform.extend({
-  deserialize: function(serialized) {
+  deserialize(serialized) {
     return serialized / 100; // returns dollars
   },
 
-  serialize: function(deserialized) {
+  serialize(deserialized) {
     return deserialized * 100; // returns cents
   }
 });

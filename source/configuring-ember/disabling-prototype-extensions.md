@@ -73,18 +73,18 @@ You can manually coerce a native array into an array that implements the
 required interfaces using the convenience method `Ember.A`:
 
 ```javascript
-import { A } from "@ember/array"
+import { A } from '@ember/array';
 
 let islands = ['Oahu', 'Kauai'];
 islands.includes('Oahu');
-//=> TypeError: Object Oahu,Kauai has no method 'includes'
+// => TypeError: Object Oahu,Kauai has no method 'includes'
 
 // Convert `islands` to an array that implements the
 // Ember enumerable and array interfaces
 A(islands);
 
 islands.includes('Oahu');
-//=> true
+// => true
 ```
 
 ### Strings
@@ -96,13 +96,13 @@ you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
 
 ```javascript
-import { camelize } from "@ember/string"
+import { camelize } from '@ember/string';
 
-"my_cool_class".camelize();
-//=> TypeError: Object my_cool_class has no method 'camelize'
+'my_cool_class'.camelize();
+// => TypeError: Object my_cool_class has no method 'camelize'
 
-camelize("my_cool_class");
-//=> "myCoolClass"
+camelize('my_cool_class');
+// => "myCoolClass"
 ```
 
 ### Functions
@@ -116,7 +116,7 @@ To annotate computed properties, use the `Ember.computed()` method to
 wrap the function:
 
 ```javascript
-import { computed } from "@ember/object"
+import { computed } from '@ember/object';
 
 // This won't work:
 fullName: function() {
@@ -133,7 +133,7 @@ fullName: computed('firstName', 'lastName', function() {
 Observers are annotated using `Ember.observer()`:
 
 ```javascript
-import { observer } from "@ember/object"
+import { observer } from '@ember/object';
 
 // This won't work:
 fullNameDidChange: function() {
@@ -150,7 +150,7 @@ fullNameDidChange: observer('fullName', function() {
 Evented functions are annotated using [`Ember.on()`](https://emberjs.com/api/ember/2.15/namespaces/Ember/methods/on?anchor=on):
 
 ```javascript
-import { on } from "@ember/object/evented"
+import { on } from '@ember/object/evented';
 
 // This won't work:
 doStuffWhenInserted: function() {

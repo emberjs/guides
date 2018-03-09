@@ -95,24 +95,33 @@ while the other two are listed as "Community".
 
 Update the content of the integration test to the following to fix it:
 
-```/tests/integration/helpers/rental-property-type-test.js{-11,-16,+12,+17}
-
-import { moduleForComponent, test } from 'ember-qunit';
+```/tests/integration/helpers/rental-property-type-test.js{-10,-11,-17,+12,+13,+18,+21,+22,+23,+24,+25,+26,+27}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('rental-property-type', 'helper:rental-property-type', {
-  integration: true
+module('Integration | Helper | my-helper', function(hooks) {
+  setupRenderingTest(hooks);
+
+  // Replace this with your real tests.
+  test('it renders', async function(assert) {
+    this.set('inputValue', '1234');
+  test('it renders correctly for a Standalone rental', function(assert) {
+    this.set('inputValue', 'Estate');
+
+    await render(hbs`{{rental-property-type inputValue}}`);
+
+    assert.equal(this.element.textContent.trim(), '1234');
+    assert.equal(this.element.textContent.trim(), 'Standalone');
+  });
+
+  test('it renders correctly for a Community rental', function(assert) {
+    this.set('inputValue', 'Apartment');
+
+    await render(hbs`{{rental-property-type inputValue}}`);
+
+    assert.equal(this.element.textContent.trim(), 'Community');
+  });
 });
-
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
-  this.set('inputValue', 'Standalone');
-
-  this.render(hbs`{{rental-property-type inputValue}}`);
-
-  assert.equal(this.$().text().trim(), '1234');
-  assert.equal(this.$().text().trim(), 'Standalone');
-});
-
 ```

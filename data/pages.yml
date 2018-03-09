@@ -180,9 +180,9 @@
   pages:
     - title: "Introduction"
       url: "index"
-    - title: "Acceptance Tests"
+    - title: "Application Tests"
       url: "acceptance"
-    - title: "Unit Testing Basics"
+    - title: "Testing Basics"
       url: "unit-testing-basics"
     - title: "Testing Components"
       url: "testing-components"

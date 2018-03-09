@@ -81,13 +81,14 @@ will be the fulfilled values from the promises.
 A basic example:
 
 ```app/routes/tardy.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+import { later } from '@ember/runloop';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return new RSVP.Promise(function(resolve) {
-      Ember.run.later(function() {
+      later(function() {
         resolve({ msg: 'Hold Your Horses' });
       }, 3000);
     });
@@ -124,10 +125,10 @@ default error handler unless it is handled by a custom error handler
 along the way, e.g.:
 
 ```app/routes/good-for-nothing.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return RSVP.reject("FAIL");
   },
@@ -158,9 +159,9 @@ you can catch promise rejects within the `model` hook itself and convert
 them into fulfills that won't halt the transition.
 
 ```app/routes/funky.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return iHopeThisWorks().catch(function() {
       // Promise rejected, fulfill with some default value to

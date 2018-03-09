@@ -20,7 +20,7 @@ Router.map(function() {
 ```
 
 ```app/routes/slow-model.js
-import Route from '@ember/routing/router';
+import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
@@ -137,9 +137,9 @@ In case we want both custom logic and the default behaviour for the loading subs
 we can implement the `loading` action and let it bubble by returning `true`.
 
 ```app/routes/foo-slow-model.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   ...
   actions: {
     loading(transition) {
@@ -191,7 +191,7 @@ called with the `error` as the model. See example below:
 
 ```js
 setupController(controller, error) {
-  Ember.Logger.debug(error.message);
+  console.log(error.message);
   this._super(...arguments);
 }
 ```
@@ -235,9 +235,9 @@ In case we want to run some custom logic and have the default behaviour of rende
 we can handle the `error` event and let it bubble by returning `true`.
 
 ```app/routes/articles-overview.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(params) {
     return this.get('store').findAll('privileged-model');
   },
