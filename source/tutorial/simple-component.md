@@ -335,7 +335,7 @@ Note that we find the image element using the CSS selector `.image`.
     await render(hbs`{{rental-listing rental=rental}}`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
-    assert.ok(this.this.element.querySelector('.image.wide'), 'rendered wide after click');
+    assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
     await click('.image');
     assert.notOk(this.element.querySelector('.image.wide'), 'rendered small after second click');
   });
