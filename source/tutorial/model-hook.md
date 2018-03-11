@@ -124,7 +124,7 @@ import {
 ```/tests/acceptance/list-rentals-test.js{+2,+3}
 test('should list available rentals.', async function(assert) {
   await visit('/');
-  assert.equal(this.element.querySelectorAll('.results .listing').length, 3, 'should display 3 listings');
+  assert.equal(this.element.querySelectorAll('.listing').length, 3, 'should display 3 listings');
 });
 ```
 
