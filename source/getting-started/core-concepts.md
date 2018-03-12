@@ -62,11 +62,22 @@ Let's see these core concepts in action by building a property rental applicatio
 
 ## Hooks
 
-In Ember, we generally use the term “hook” for functions that are automatically called within the Ember application. These are functions that can be expected to be called automatically, rather than having to call them specifically.
+In Ember, we use the term **hook** for methods that are automatically called within the Ember application. These are methods that can be expected to be called automatically, rather than having to call them specifically.
 
 Some examples of a hook are:
 
-* [Component Lifecycle Hooks](../../components/the-component-lifecycle/): The [`willRender()`](https://emberjs.com/api/ember/release/classes/Component/methods/willRender?anchor=willRender) hook gets called before each time a component renders
-* Route Hooks: The [`model()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model) hook is used to load the model on a route
+* [Component Lifecycle Hooks](../../components/the-component-lifecycle/): the [`willRender()`](https://emberjs.com/api/ember/release/classes/Component/methods/willRender?anchor=willRender) hook gets called before each time a component renders
+* Route Hooks: the [`model()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model) hook is used to load the model on a route
 
-Looking to define your own hook? You’ll just need to specify the appropriate method on your specific route, component, or object.
+In the following example, the [`didRender()`](https://emberjs.com/api/ember/release/classes/Component/methods?anchor=didRender) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
+
+```/app/components/foo-did-render-example.js
+import Component from '@ember/component';
+
+export default Component.extend({
+  didRender() {
+    this._super(...arguments);
+    console.log('I rendered!');
+  }
+});
+```
