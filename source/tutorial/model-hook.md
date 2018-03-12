@@ -12,7 +12,7 @@ Here's what our homepage will look like when we're done:
 
 In Ember, route handlers are responsible for loading the model with data for the page.
 It loads the data in a function called [`model`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model).
-The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
+The `model` function acts as a [hook](../../getting-started/core-concepts/#toc_hooks), meaning that Ember will call it for us during different times in our app.
 The model function we've added to our `rentals` route handler will be called when a user navigates to the rentals route via root URL `http://localhost:4200`, or via `http://localhost:4200/rentals`.
 
 Let's open `app/routes/rentals.js` and return an array of rental objects from the `model` function:

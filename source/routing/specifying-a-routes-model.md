@@ -22,7 +22,7 @@ export default Route.extend({
 });
 ```
 
-Typically, the `model` hook should return an [Ember Data](../../models/) record,
+Typically, the `model` [hook](../../getting-started/core-concepts/#toc_hooks) should return an [Ember Data](../../models/) record,
 but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises),
 or a plain JavaScript object or array.
 Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
