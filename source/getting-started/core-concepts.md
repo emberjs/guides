@@ -59,3 +59,14 @@ While templates describe how a user interface looks, components control how the 
 Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
 
 Let's see these core concepts in action by building a property rental application in the next lesson.
+
+## Hooks
+
+In Ember, we generally use the term “hook” for functions that are automatically called within the Ember application. These are functions that can be expected to be called automatically, rather than having to call them specifically.
+
+Some examples of a hook are:
+
+* [Component Lifecycle Hooks](../../components/the-component-lifecycle/): The [`willRender()`](https://emberjs.com/api/ember/release/classes/Component/methods/willRender?anchor=willRender) hook gets called before each time a component renders
+* Route Hooks: The [`model()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model) hook is used to load the model on a route
+
+Looking to define your own hook? You’ll just need to specify the appropriate method on your specific route, component, or object.
