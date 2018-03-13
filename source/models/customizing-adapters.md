@@ -1,17 +1,17 @@
-In Ember Data, the Adapter determines how data is persisted to a
-backend data store, such as the URL format and headers for a REST API.
-(The format of the data itself is determined by the
-[serializer](../customizing-serializers/).)
-Ember Data's default Adapter has some built-in
-assumptions of how a [REST API should look](http://jsonapi.org/). If
-your backend conventions differ from these assumptions Ember Data
-makes it easy to change its functionality by swapping out or extending
-the default Adapter.
+In Ember Data, an Adapter determines how data is persisted to a
+backend data store. Things such as the backend host, URL format
+ and headers used to talk to a REST API can all be configured 
+ in an adapter. You can even switch to storing data in local storage
+ using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter). 
+  
+Ember Data's default Adapter has some built-in assumptions about
+how a [REST API should look](http://jsonapi.org/). If your backend conventions
+differ from those assumptions, Ember Data allows either slight adjustments
+or you can switch to a different adapter if your backend works noticeably
+differently.
 
-Some reasons for customizing an Adapter include using
-`underscores_case` in your urls, using a medium other than REST to
-communicate with your backend API or even using a
-[local storage backend](https://github.com/locks/ember-localstorage-adapter).
+_(If you're looking to adjust how the data sent to the backend is formatted,
+check the [serializer](../customizing-serializers/) page.)_
 
 Extending Adapters is a natural process in Ember Data. Ember takes the
 position that you should extend an adapter to add different
