@@ -6,7 +6,7 @@ As components are rendered, re-rendered and finally removed, Ember provides _lif
 To get the most use out of a component, it is important to understand these lifecycle methods.
 
 ## Order of Lifecycle Hooks Called
-Listed below are the component lifecycle hooks in order of execution according to render scenario.
+Listed below are the component lifecycle [hooks](../../getting-started/core-concepts/#toc_hooks) in order of execution according to render scenario.
 
 ### On Initial Render
 
