@@ -63,7 +63,7 @@ module('Unit | Route | application', function(hooks) {
   test('should display an alert', function(assert) {
     assert.expect(2);
 
-    // with moduleFor, the subject returns an instance of the route
+    // get the route instance
     let route = this.owner.lookup('route:application');
 
     // stub window.alert to perform a qunit test
