@@ -3,7 +3,9 @@ To define a component, run:
 ```shell
 ember generate component my-component-name
 ```
-Ember components are used to encapsulate markup and style into reusable content. Components consist of two parts: a Javascript component file that defines behavior and its accompanying Handlebars template that defines the markup for the component's UI.
+
+Ember components are used to encapsulate markup and style into reusable content.
+Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
 
 Components must have at least one dash in their name. So `blog-post` is an acceptable
 name, and so is `audio-player-controls`, but `post` is not. This prevents clashes with
