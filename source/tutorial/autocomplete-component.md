@@ -467,10 +467,10 @@ represented by the variable `FILTERED_ITEMS` when any value is set.
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
-First add `triggerKeyEvent` to the list of imports.  The [`triggerKeyEvent`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper sends a key stroke event to the UI, simulating the user typing a key.
+First add `triggerKeyEvent` and `fillIn` to the list of imports.  The [`fillIn`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin) helper simulates the user filling in the element. The [`triggerKeyEvent`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
 ```tests/integration/components/list-filter-test.js
-import { render, settled, triggerKeyEvent } from '@ember/test-helpers';
+import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 ```
 
 Now use it to simulate the user typing a key into the search field.
@@ -501,6 +501,8 @@ test('should update with matching listings', async function (assert) {
     {{/list-filter}}
   `);
 
+  // filling in the component's input field with 's'
+  await fillIn(this.element.querySelector('.list-filter input'),'s');
   // The keyup event here should invoke an action that will cause the list to be filtered
   await triggerKeyEvent(this.element.querySelector('.list-filter input'), "keyup", 83);
 
