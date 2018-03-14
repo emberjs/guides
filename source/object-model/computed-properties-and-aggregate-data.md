@@ -5,9 +5,9 @@ array properties to track changes on them, `[]` and `@each`.
 
 ## `[]`
 
-Sometimes a computed property needs to update when items are added or removed from an array.
+Sometimes a computed property needs to update when items are added to, removed from, or replaced in an array.
 In those cases we can use the `[]` array key to tell the property to update at the right time.
-We'll use the obligatory todo list for our examples:
+We'll use the familiar todo list for our examples:
 
 ```app/components/todo-list.js
 import EmberObject, { computed } from '@ember/object';
@@ -37,6 +37,7 @@ and fire observers when any of the following events occurs:
 1. The `todos` property of the component is changed to a different array.
 2. An item is added to the `todos` array.
 3. An item is removed from the `todos` array.
+4. An item is replaced in the `todos` array.
 
 Notably, the computed property will not update if an individual todo is mutated.
 For that to happen, we need to use the special `@each` key.
@@ -77,7 +78,8 @@ and fire observers when any of the following events occurs:
 1. The `todos` property of the component is changed to a different array.
 2. An item is added to the `todos` array.
 3. An item is removed from the `todos` array.
-4. The `isDone` property of any of the objects in the `todos` array changes.
+4. An item is replaced in the `todos` array.
+5. The `isDone` property of any of the objects in the `todos` array changes.
 
 ### Multiple Dependent Keys
 
