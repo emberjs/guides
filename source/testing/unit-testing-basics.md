@@ -10,7 +10,7 @@ looking up the service on the application's container and running assertions aga
 
 ### Testing Computed Properties
 
-Let's start by creating an service that has a `computedFoo` computed property
+Let's start by creating a service that has a `computedFoo` computed property
 based on a `foo` property.
 
 ```app/services/some-thing.js

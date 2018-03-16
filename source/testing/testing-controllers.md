@@ -1,4 +1,4 @@
-_Container testing methods and computed properties follows previous patterns shown
+_Container testing methods and computed properties follow previous patterns shown
 in [Testing Basics] because Ember.Controller extends Ember.Object._
 
 Controllers can be tested using the `setupTest` helper which is part

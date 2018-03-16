@@ -1,4 +1,4 @@
-_Container testing methods and computed properties follows previous patterns shown
+_Container testing methods and computed properties follow previous patterns shown
 in [Testing Basics] because Ember.Route extends Ember.Object._
 
 Testing routes can be done both via application tests or container tests. Application tests
