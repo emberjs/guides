@@ -337,7 +337,6 @@ module('Integration | Component | rental-listing', function(hooks) {
 ```
 
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
-We provide an action function by setting it to the local scope of our test by calling `this.on`.
 
 ```tests/integration/components/list-filter-test.js{+5,+7,+8,+14,+15,+16,+17,+18}
 import { module, test } from 'qunit';
