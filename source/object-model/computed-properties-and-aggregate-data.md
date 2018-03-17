@@ -1,8 +1,52 @@
+When a computed property depends on the contents of an array, there are a few
+extra methods you'll need to use in order to correctly recognize when the
+contents of the array change. Arrays have two special keys you can append to
+array properties to track changes on them, `[]` and `@each`.
+
+## `[]`
+
+Sometimes a computed property needs to update when items are added to, removed from, or replaced in an array.
+In those cases we can use the `[]` array key to tell the property to update at the right time.
+We'll use the familiar todo list for our examples:
+
+```app/components/todo-list.js
+import EmberObject, { computed } from '@ember/object';
+import Component from '@ember/component';
+
+export default Component.extend({
+  todos: null,
+
+  init() {
+    this.set('todos', [
+      EmberObject.create({ title: 'Buy food', isDone: true }),
+      EmberObject.create({ title: 'Eat food', isDone: false }),
+      EmberObject.create({ title: 'Catalog Tomster collection', isDone: true }),
+    ]);
+  },
+
+  titles: computed('todos.[]', function() {
+    let todos = this.get('todos');
+    return todos.mapBy('title');
+  })
+});
+```
+
+The dependent key `todos.[]` instructs Ember.js to update bindings
+and fire observers when any of the following events occurs:
+
+1. The `todos` property of the component is changed to a different array.
+2. An item is added to the `todos` array.
+3. An item is removed from the `todos` array.
+4. An item is replaced in the `todos` array.
+
+Notably, the computed property will not update if an individual todo is mutated.
+For that to happen, we need to use the special `@each` key.
+
+## `@each`
+
 Sometimes you have a computed property whose value depends on the properties of
 items in an array. For example, you may have an array of todo items, and want
 to calculate the incomplete todo's based on their `isDone` property.
-
-## `@each`
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
@@ -31,16 +75,32 @@ export default Component.extend({
 Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings
 and fire observers when any of the following events occurs:
 
-1. The `isDone` property of any of the objects in the `todos` array changes.
+1. The `todos` property of the component is changed to a different array.
 2. An item is added to the `todos` array.
 3. An item is removed from the `todos` array.
-4. The `todos` property of the component is changed to a different array.
+4. An item is replaced in the `todos` array.
+5. The `isDone` property of any of the objects in the `todos` array changes.
 
 ### Multiple Dependent Keys
 
 It's important to note that the `@each` key can be dependent on more than one key.
 For example, if you are using `Ember.computed` to sort an array by multiple keys,
 you would declare the dependency with braces: `todos.@each.{priority,title}`
+
+### When to use `[]` and `@each`
+
+Both `[]` and `@each` will update bindings when the array is replaced and when the members of the
+array are changed.  If you're using `@each` on a particular property, you don't also need to use `[]`:
+
+```javascript
+  //specifying both '[]' and '@each' is redundant here
+  incomplete: computed('todos.[]', 'todos.@each.isDone', function() {
+  ...
+  })
+```
+
+Using `@each` is more expensive than `[]`, so default to `[]` if you don't actually have to observe property
+changes on individual members of the array.
 
 ### Computed Property Macros
 
