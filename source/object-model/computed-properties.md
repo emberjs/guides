@@ -82,7 +82,7 @@ let obj = EmberObject.extend({
   baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
 
   something: computed('baz.foo', 'baz.bar', function() {
-    return this.get('baz.foo') + ' ' + this.get('baz.bar');
+    return `${this.get('baz.foo')} ${this.get('baz.bar')}`;
   })
 });
 ```
@@ -96,7 +96,7 @@ let obj = EmberObject.extend({
   baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
 
   something: computed('baz.{foo,bar}', function() {
-    return this.get('baz.foo') + ' ' + this.get('baz.bar');
+    return `${this.get('baz.foo')} ${this.get('baz.bar')}`;
   })
 });
 ```
