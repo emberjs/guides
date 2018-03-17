@@ -108,3 +108,37 @@ Since we have already set up Ember Mirage in our development environment, Mirage
 When we deploy our app to a production server,
 we will likely want to replace Mirage with a remote server for Ember Data to communicate with for storing and retrieving persisted data.
 A remote server will allow for data to be shared and updated across users.
+
+### Setting up Application Tests to use Mirage
+
+If you remember back in the [Installing Addons](../installing-addons) section, we installed `ember-cli-mirage` for faking data coming from HTTP requests.
+Now that we've hooked in Ember Data, which by default attempts to fetch data via HTTP request, we will need to tell our application test to use Mirage for data faking.
+
+To tell our application tests to use Mirage, open `/tests/acceptance/list-rentals-test.js` and add the following code:
+
+First Add the import for Mirage's test setup function.
+
+```/tests/acceptance/list-rentals-test.js{+3}
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import {
+  click,
+  currentURL,
+  visit
+} from '@ember/test-helpers'
+
+```
+
+Next, call the setup function immediately after your call to set up the application test.
+
+```/tests/acceptance/list-rentals-test.js{+3}
+module('Acceptance | list rentals', function(hooks) {
+  setupApplicationTest(hooks);
+  setupMirage(hooks);
+  ...
+}
+
+```
+
+Now your tests should behave as before, except that they are now using the data we've set up for Mirage.
