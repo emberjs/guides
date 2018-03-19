@@ -84,44 +84,15 @@ ironMan.get('fullName'); // no console output since dependencies have not change
 
 ### Multiple dependents on the same object
 
-In the previous example, the `fullName` computed property depends on two other properties:
-
-```javascript
-import Ember from 'ember':
-
-…
-  fullName: computed('firstName', 'lastName', function() {
-    let firstName = this.get('firstName');
-    let lastName = this.get('lastName');
-
-    return `${firstName} ${lastName}`;
-  })
-…
-```
-
-We can also use a short-hand syntax called _brace expansion_ to declare the dependents.
-You surround the dependent properties with braces (`{}`), and separate with commas, like so:
-
-```javascript
-import Ember from 'ember':
-
-…
-  fullName: computed('{firstName,lastName}', function() {
-    let firstName = this.get('firstName');
-    let lastName = this.get('lastName');
-
-    return `${firstName} ${lastName}`;
-  })
-…
-```
-
-This is especially useful when you depend on properties of an object, since it allows you to replace:
+In the previous example, the `fullName` computed property depends on two other properties of the same object.  
+However, you may find that you have to observe properties a different object.
+For example, look at this computed property:
 
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
 let obj = EmberObject.extend({
-  baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
+  baz: { foo: 'BLAMMO', bar: 'BLAZORZ' },
 
   something: computed('baz.foo', 'baz.bar', function() {
     return `${this.get('baz.foo')} ${this.get('baz.bar')}`;
@@ -129,13 +100,14 @@ let obj = EmberObject.extend({
 });
 ```
 
-With:
+Since both `foo` and `bar` are properties on the `baz` object, we can use a short-hand syntax called _brace expansion_ to declare the dependents keys.
+You surround the dependent properties with braces (`{}`), and separate with commas, like so:
 
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
 let obj = EmberObject.extend({
-  baz: {foo: 'BLAMMO', bar: 'BLAZORZ'},
+  baz: { foo: 'BLAMMO', bar: 'BLAZORZ' },
 
   something: computed('baz.{foo,bar}', function() {
     return `${this.get('baz.foo')} ${this.get('baz.bar')}`;
