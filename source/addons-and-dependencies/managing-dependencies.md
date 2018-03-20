@@ -39,7 +39,7 @@ app.import('node_modules/moment/moment.js');
 You will need to add `"moment"` to the `globals` section in `.eslintrc.js` to prevent ESLint errors
 about using an undefined variable.
 
-Alternatively, you can also use the amd transform with libraries that support both global and amd, to allow you to 
+Alternatively, you can also use the amd transform with libraries that support both global and amd, allowing you to 
 `import` these assets.
 
 ```ember-cli-build.js
@@ -50,7 +50,7 @@ app.import('node_modules/moment/moment.js', {
 });
 ```
 
-This tranformation allows you to `import` moment in your app. (e.g. `import moment from 'moment';`)
+This transformation allows you to `import` moment in your app. (e.g. `import moment from 'moment';`)
 
 ### AMD JavaScript modules
 
