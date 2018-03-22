@@ -657,11 +657,6 @@ However, if your payload is extremely different from one of these
 serializers you can create your own by extending the `DS.Serializer`
 base class.
 
-A serializer in Ember Data is responsible for normalizing a payload
-from an adapter into the format that Ember Data understands.
-It is also responsible for transforming a snapshot of a record into
-the payload that an adapter will send to the backend.
-
 A serializer has two main roles in Ember Data.
 First, it is responsible for taking a response from an adapter and
 serializing it into the normalized JSON format that Ember Data
