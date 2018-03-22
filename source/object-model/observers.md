@@ -22,12 +22,12 @@ Person = EmberObject.extend({
   lastName: null,
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    return `${this.firstName} ${this.lastName}`;
   }),
 
   fullNameChanged: observer('fullName', function() {
     // deal with the change
-    console.log(`fullName changed to: ${this.get('fullName')}`);
+    console.log(`fullName changed to: ${this.fullName}`);
   })
 });
 
@@ -37,7 +37,7 @@ let person = Person.create({
 });
 
 // observer won't fire until `fullName` is consumed first
-person.get('fullName'); // "Yehuda Katz"
+person.fullName; // "Yehuda Katz"
 person.set('firstName', 'Brohuda'); // fullName changed to: Brohuda Katz
 ```
 
@@ -58,7 +58,7 @@ Person.reopen({
     // The observer depends on lastName and so does fullName. Because observers
     // are synchronous, when this function is called the value of fullName is
     // not updated yet so this will log the old value of fullName
-    console.log(this.get('fullName'));
+    console.log(this.fullName);
   })
 });
 ```
@@ -96,7 +96,7 @@ Person.reopen({
   processFullName() {
     // This will only fire once if you set two properties at the same time, and
     // will also happen in the next run loop once all properties are synchronized
-    console.log(this.get('fullName'));
+    console.log(this.fullName);
   }
 });
 

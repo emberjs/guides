@@ -25,7 +25,7 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   actions: {
     willTransition(transition) {
-      if (this.controller.get('userHasEnteredData') &&
+      if (this.controller.userHasEnteredData &&
           !confirm('Are you sure you want to abandon progress?')) {
         transition.abort();
       } else {

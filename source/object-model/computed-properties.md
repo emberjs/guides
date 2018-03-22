@@ -20,8 +20,8 @@ Person = EmberObject.extend({
   lastName: null,
 
   fullName: computed('firstName', 'lastName', function() {
-    let firstName = this.get('firstName');
-    let lastName = this.get('lastName');
+    let firstName = this.firstName;
+    let lastName = this.lastName;
 
     return `${firstName} ${lastName}`;
   })
@@ -32,7 +32,7 @@ let ironMan = Person.create({
   lastName:  'Stark'
 });
 
-ironMan.get('fullName'); // "Tony Stark"
+ironMan.fullName; // "Tony Stark"
 ```
 
 This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on.
@@ -44,7 +44,7 @@ Changing any of the dependent properties causes the cache to invalidate, so that
 
 A computed property will only recompute its value when it is _consumed._ Properties are consumed in two ways:
 
-1. By a `get`, for example `ironMan.get('fullName')`
+1. By a `get`, for example `ironMan.fullName`
 2. By being referenced in a handlebars template that is currently being rendered, for example `{{ironMan.fullName}}`
 
 Outside of those two circumstances the code in the property will not run, even if one of the property's dependencies are changed.
@@ -57,8 +57,8 @@ import Ember from 'ember':
 …
   fullName: computed('firstName', 'lastName', function() {
     console.log('compute fullName'); // track when the property recomputes
-    let firstName = this.get('firstName');
-    let lastName = this.get('lastName');
+    let firstName = this.firstName;
+    let lastName = this.lastName;
 
     return `${firstName} ${lastName}`;
   })
@@ -74,11 +74,11 @@ let ironMan = Person.create({
   lastName:  'Stark'
 });
 
-ironMan.get('fullName'); // 'compute fullName'
+ironMan.fullName; // 'compute fullName'
 ironMan.set('firstName', 'Bruce') // no console output
 
-ironMan.get('fullName'); // 'compute fullName'
-ironMan.get('fullName'); // no console output since dependencies have not changed
+ironMan.fullName; // 'compute fullName'
+ironMan.fullName; // no console output since dependencies have not changed
 ```
 
 
@@ -131,11 +131,11 @@ Person = EmberObject.extend({
   country: null,
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    return `${this.firstName} ${this.lastName}`;
   }),
 
   description: computed('fullName', 'age', 'country', function() {
-    return `${this.get('fullName')}; Age: ${this.get('age')}; Country: ${this.get('country')}`;
+    return `${this.fullName}; Age: ${this.age}; Country: ${this.country}`;
   })
 });
 
@@ -146,7 +146,7 @@ let captainAmerica = Person.create({
   country: 'USA'
 });
 
-captainAmerica.get('description'); // "Steve Rogers; Age: 80; Country: USA"
+captainAmerica.description; // "Steve Rogers; Age: 80; Country: USA"
 ```
 
 ### Dynamic updating
@@ -157,7 +157,7 @@ Let's use computed properties to dynamically update.
 ```javascript
 captainAmerica.set('firstName', 'William');
 
-captainAmerica.get('description'); // "William Rogers; Age: 80; Country: USA"
+captainAmerica.description; // "William Rogers; Age: 80; Country: USA"
 ```
 
 So this change to `firstName` was observed by `fullName` computed property, which was itself observed by the `description` property.
@@ -179,7 +179,7 @@ Person = EmberObject.extend({
 
   fullName: computed('firstName', 'lastName', {
     get(key) {
-      return `${this.get('firstName')} ${this.get('lastName')}`;
+      return `${this.firstName} ${this.lastName}`;
     },
     set(key, value) {
       let [firstName, lastName] = value.split(/\s+/);
@@ -193,8 +193,8 @@ Person = EmberObject.extend({
 
 let captainAmerica = Person.create();
 captainAmerica.set('fullName', 'William Burnside');
-captainAmerica.get('firstName'); // William
-captainAmerica.get('lastName'); // Burnside
+captainAmerica.firstName; // William
+captainAmerica.lastName; // Burnside
 ```
 
 ### Computed property macros
@@ -212,7 +212,7 @@ Person = EmberObject.extend({
   fullName: 'Tony Stark',
 
   isIronManLongWay: computed('fullName', function() {
-    return this.get('fullName') === 'Tony Stark';
+    return this.fullName === 'Tony Stark';
   }),
 
   isIronManShortWay: equal('fullName', 'Tony Stark')

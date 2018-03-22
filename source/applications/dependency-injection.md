@@ -250,8 +250,7 @@ export default Component.extend({
   }),
 
   click() {
-    let player = this.get('audioService');
-    player.play(this.get('song.file'));
+    this.audioService.play(this.get('song.file'));
   }
 });
 ```

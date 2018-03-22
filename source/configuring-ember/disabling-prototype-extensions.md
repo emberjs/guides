@@ -120,13 +120,13 @@ import { computed } from '@ember/object';
 
 // This won't work:
 fullName: function() {
-  return `${this.get('firstName')} ${this.get('lastName')}`;
+  return `${this.firstName} ${this.lastName}`;
 }.property('firstName', 'lastName')
 
 
 // Instead, do this:
 fullName: computed('firstName', 'lastName', function() {
-  return `${this.get('firstName')} ${this.get('lastName')}`;
+  return `${this.firstName} ${this.lastName}`;
 })
 ```
 

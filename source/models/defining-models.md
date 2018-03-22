@@ -57,7 +57,7 @@ export default DS.Model.extend({
   lastName: DS.attr(),
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    return `${this.firstName} ${this.lastName}`;
   })
 });
 ```
