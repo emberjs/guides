@@ -340,6 +340,14 @@ Note that we find the image element using the CSS selector `.image`.
     assert.notOk(this.element.querySelector('.image.wide'), 'rendered small after second click');
   });
 ```
+Since we're using the new function "click", we need to import it.
+
+```tests/integration/components/rental-listing-test.js{+3}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+```
 The final test should look as follows:
 
 ```tests/integration/components/rental-listing-test.js
