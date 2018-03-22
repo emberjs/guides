@@ -17,7 +17,7 @@ different element by specifying its `rootElement` property:
 …
 
 App = Ember.Application.extend({
-  rootElement: '#app'
+  rootElement: '#app',
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   Resolver
