@@ -517,7 +517,7 @@ module('Integration | Component | delayed typeahead', {
 
     await settled();
 
-    assert.equal(this.element.querySelector('.result').length, 2, 'two results rendered');
+    assert.equal(this.element.querySelectorAll('.result').length, 2, 'two results rendered');
   });
 });
 ```
