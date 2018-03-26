@@ -39,19 +39,6 @@ app.import('node_modules/moment/moment.js');
 You will need to add `"moment"` to the `globals` section in `.eslintrc.js` to prevent ESLint errors
 about using an undefined variable.
 
-Alternatively, you can also use the amd transform with libraries that support both global and amd, allowing you to 
-`import` these assets.
-
-```ember-cli-build.js
-app.import('node_modules/moment/moment.js', {
-  using: [
-    { transformation: 'amd', as: 'moment' }
-  ]
-});
-```
-
-This transformation allows you to `import` moment in your app. (e.g. `import moment from 'moment';`)
-
 ### AMD JavaScript modules
 
 Provide the asset path as the first argument, and the list of modules and exports as the second.
@@ -71,6 +58,38 @@ app.import('bower_components/ic-ajax/dist/named-amd/main.js', {
 ```
 
 You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
+
+You can also transform an anonymous AMD module to a named one by using the `amd` transformation.
+
+```ember-cli-build.js
+app.import('node_modules/moment/moment.js', {
+  using: [
+    { transformation: 'amd', as: 'moment' }
+  ]
+});
+```
+
+This transformation allows you to `import` moment in your app. (e.g. `import moment from 'moment';`)
+
+### CommonJS JavaScript modules
+
+[https://github.com/rwjblue/ember-cli-cjs-transform](ember-cli-cjs-transform) allows us to import CommonJS modules into
+our Ember app. It also does auto-rollup and some nice caching, so it should pull in all the deps that are pulled in
+with `require` for you automatically. It is not yet included with ember-cli by default, so you will need to install it.
+
+```
+ember install ember-cli-cjs-transform
+```
+
+```ember-cli-build.js
+app.import('node_modules/showdown/dist/showdown.js', {
+  using: [
+    { transformation: 'cjs', as: 'showdown' }
+  ]
+});
+```
+
+You can now `import` them in your app. (e.g. `import showdown from 'showdown';`)
 
 ### Environment-Specific Assets
 
