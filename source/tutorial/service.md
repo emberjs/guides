@@ -74,7 +74,7 @@ export default EmberObject.extend({
   },
 
   pinLocation(location, map) {
-    this.get('geocoder').geocode({address: location}, (result, status) => {
+    this.geocoder.geocode({address: location}, (result, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         let geometry = result[0].geometry.location;
         let position = { lat: geometry.lat(), lng: geometry.lng() };
@@ -126,10 +126,10 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    if (!this.get('cachedMaps')) {
+    if (!this.cachedMaps) {
       this.set('cachedMaps', EmberObject.create());
     }
-    if (!this.get('mapUtil')) {
+    if (!this.mapUtil) {
       this.set('mapUtil', MapUtil.create());
     }
   },
@@ -196,8 +196,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    let location = this.get('location');
-    let mapElement = this.get('maps').getMapElement(location);
+    let mapElement = this.maps.getMapElement(this.location);
     this.$('.map-container').append(mapElement);
   }
 });
