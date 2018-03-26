@@ -24,7 +24,8 @@ Your own assets (such as `robots.txt`, `favicon`, custom fonts, etc) should be p
 When you're using dependencies that are not included in an addon,
 you will have to instruct Ember CLI to include your assets in the build.
 This is done using the asset manifest file `ember-cli-build.js`.
-You should only try to import assets located in the `node_modules` and `vendor` folders.
+You should only try to import assets located in the `node_modules` and `vendor` folders. `bower_components` also still
+works, but is recommended against, unless you have no other choice. Even bower recommends not to use itself anymore.
 
 ### Globals provided by JavaScript assets
 
