@@ -104,7 +104,7 @@ that returns a value based on some internal state.
 ```app/services/some-thing.js
 import Service from '@ember/service';
 
-export default EmberObject.extend({
+export default Service.extend({
   count: 0,
 
   calc() {
