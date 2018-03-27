@@ -40,27 +40,9 @@ app.import('node_modules/moment/moment.js');
 You will need to add `"moment"` to the `globals` section in `.eslintrc.js` to prevent ESLint errors
 about using an undefined variable.
 
-### AMD JavaScript modules
+### Anonymous AMD JavaScript modules
 
-Provide the asset path as the first argument, and the list of modules and exports as the second.
-
-```ember-cli-build.js
-app.import('bower_components/ic-ajax/dist/named-amd/main.js', {
-  exports: {
-    'ic-ajax': [
-      'default',
-      'defineFixture',
-      'lookupFixture',
-      'raw',
-      'request'
-    ]
-  }
-});
-```
-
-You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from 'ic-ajax';`)
-
-You can also transform an anonymous AMD module to a named one by using the `amd` transformation.
+You can transform an anonymous AMD module to a named one by using the `amd` transformation.
 
 ```ember-cli-build.js
 app.import('node_modules/moment/moment.js', {
