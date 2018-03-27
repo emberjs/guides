@@ -56,7 +56,7 @@ This transformation allows you to `import` moment in your app. (e.g. `import mom
 
 ### CommonJS JavaScript modules
 
-[https://github.com/rwjblue/ember-cli-cjs-transform](ember-cli-cjs-transform) allows us to import CommonJS modules into
+[ember-cli-cjs-transform](https://github.com/rwjblue/ember-cli-cjs-transform) allows us to import CommonJS modules into
 our Ember app. It also does auto-rollup and some nice caching, so it should pull in all the deps that are pulled in
 with `require` for you automatically. It is not yet included with ember-cli by default, so you will need to install it.
 
