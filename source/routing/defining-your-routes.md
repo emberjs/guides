@@ -14,7 +14,7 @@ It also adds the route to the router.
 
 ## Basic Routes
 
-The [`map()`](https://www.emberjs.com/api/ember/release/classes/Router/methods/map?anchor=map) method
+The [`map()`](https://www.emberjs.com/api/ember/release/classes/EmberRouter/methods/map?anchor=map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
@@ -270,5 +270,5 @@ so that when a user navigates to `/a/non-existent/path` they will be shown a mes
 To have your route do something beyond render a template with the same name, you'll
 need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
-for [the router](https://www.emberjs.com/api/ember/release/classes/Router) and for [route
+for [the router](https://www.emberjs.com/api/ember/release/classes/EmberRouter) and for [route
 handlers](https://www.emberjs.com/api/ember/release/classes/Route).
