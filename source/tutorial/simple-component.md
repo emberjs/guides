@@ -202,7 +202,7 @@ Our component integration test will test two different behaviors:
 
 Let's update the default test to contain the scenarios we want to verify:
 
-```tests/integration/components/rental-listing-test.js{+11,+12,+13,+14,+15,+16,+17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35}
+```tests/integration/components/rental-listing-test.js{+11,+12,+13,+14,+15,+16,+17,+18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -220,7 +220,7 @@ module('Integration | Component | rental listing', function (hooks) {
   test('should toggle wide class on click', async function(assert) {
 
   });
-
+});
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
