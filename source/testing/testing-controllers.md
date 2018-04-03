@@ -65,8 +65,8 @@ module('Unit | Controller | posts', function(hooks) {
     let controller = this.owner.lookup('controller:posts');
 
     // check the properties before the action is triggered
-    assert.equal(controller.get('propA'), 'You need to write tests', 'propA initialized');
-    assert.equal(controller.get('propB'), 'And write one for me too', 'propB initialized');
+    assert.equal(controller.propA, 'You need to write tests', 'propA initialized');
+    assert.equal(controller.propB, 'And write one for me too', 'propB initialized');
 
     // trigger the action on the controller by using the `send` method,
     // passing in any params that our action may be expecting
@@ -74,8 +74,8 @@ module('Unit | Controller | posts', function(hooks) {
 
     // finally we assert that our values have been updated
     // by triggering our action.
-    assert.equal(controller.get('propA'), 'Testing is cool', 'propA updated');
-    assert.equal(controller.get('propB'), 'Testing Rocks!', 'propB updated');
+    assert.equal(controller.propA, 'Testing is cool', 'propA updated');
+    assert.equal(controller.propB, 'Testing Rocks!', 'propB updated');
   });
 });
 ```

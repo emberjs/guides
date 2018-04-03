@@ -185,7 +185,7 @@ let people = [
   Person.create({ name: 'Majd', isHappy: false })
 ];
 
-people.every((person, index, self) => person.get('isHappy'));
+people.every((person, index, self) => person.isHappy);
 
 //=> false
 ```
@@ -195,7 +195,7 @@ you can use the [`any()`](https://emberjs.com/api/ember/release/classes/MutableA
 
 
 ```javascript
-people.any((person, index, self) => person.get('isHappy'));
+people.any((person, index, self) => person.isHappy);
 
 //=> true
 ```

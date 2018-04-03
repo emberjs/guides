@@ -72,7 +72,7 @@ let User = EmberObject.extend({
   lastName: null,
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    return `${this.firstName} ${this.lastName}`;
   })
 });
 ```
