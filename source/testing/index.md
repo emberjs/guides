@@ -1,83 +1,154 @@
 Testing is a core part of the Ember framework and its development cycle.
 
-Let's assume you are writing an Ember application which will serve as a blog.
-This application would likely include models such as `user` and `post`.
-It would also include interactions such as _login_ and _create post_.
-Let's finally assume that you would like to have [automated tests] in place for your application.
+[QUnit](http://qunitjs.com/) is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
 
-There are four different types of test setups you can choose from:
+The testing pattern presented below is consistent across different testing frameworks. Only the setup test functions from [ember-qunit](https://github.com/emberjs/ember-qunit) needs to be replaced with the respective setup functions in the testing addon used in order to use other testing frameworks.
 
-### Application Tests
+### Unit Tests
 
-Some tests will require you to test user interaction and application flow.
-In these kinds of tests, you interact with the application in the same ways that a user would, such as filling out form fields and clicking buttons. You might also want to check if the user navigates to different routes while interacting with the application.
-Application tests ensure that the interactions within a project are basically functional, the core features of a project have not regressed, and the project's goals are being met.
+To get started writing tests, we start with a plain unit test. In the example below, we are testing the function `relativeDate()` by passing a mock value into the function and asserting if the output is what we expected.
 
-In the example scenario above, some of the tests you might write are:
+```utils/tests/relative-date-test.js
+import { module, test } from 'qunit';
 
-* A user is able to log in via the login form.
-* A user is able to create a blog post.
-* After saving a new post successfully, a user is then shown the list of prior posts.
-* A visitor does not have access to the admin panel.
+module('relativeDate', function(hooks) {
+  test('format relative dates correctly', function(assert) {
+    assert.equal(relativeDate('2018/01/28 22:24:30'), 'just now');
+    assert.equal(relativeDate('2018/01/28 22:23:30'), '1 minute ago');
+    assert.equal(relativeDate('2018/01/28 21:23:30'), '1 hour ago');
+    assert.equal(relativeDate('2018/01/27 22:23:30'), 'Yesterday');
+    assert.equal(relativeDate('2018/01/26 22:23:30'), '2 days ago');
+  });
+});
+```
 
-For tests that require a full application setup we can use the `setupApplicationTest` helper.
-You can read more about how to create these kinds of tests in the [Application tests] section.
+Notice how there is nothing Ember specific about the test, it is just a straightforward assertion with only QUnit test code in isolation. There is no need to add any Ember specific logic since it does not require the application's container to be setup nor any user interaction.
+
+Examples of Unit Tests are:
+
+* The return value of a `getFullName` utility combines its `firstName` and `lastName` parameters correctly.
+* A computed property macro formats a price depending on its `currency` and `cents` dependent keys.
+* A utility function that adds padding on a string based on the value passed.
+
+Unit Tests are useful for testing pure functions where the return value is only determined by its input values, without any observable side effects.
+
+### Container Tests
+
+If we need to test the functionality around an Ember class instance, such as a Controller, Service, or Route, we can use a container test to do that by setting up the application's container.
+
+To setup the application’s container, we import the [ember-qunit](https://github.com/emberjs/ember-qunit) addon which provides us with QUnit-specific wrappers around the helpers contained in [ember-test-helpers](https://github.com/emberjs/ember-test-helpers).
+
+In the example below, we import the `setupTest` function from `ember-qunit` and call it with the `hooks` object to setup the test context with access to the `this.owner` property. This provides us direct container access to interact with Ember's [Dependency Injection](https://guides.emberjs.com/v3.0.0/applications/dependency-injection/) system. Direct container access allows us to [lookup](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) everything in the application container, like Controllers, Routes, or Services in order to have an instance of it to test in our QUnit test module.
+
+For example, the following is a Container Test for the `flash-messages` service:
+
+```services/tests/flash-messages-test.js
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Service | flash-messages', function(hooks) {
+  setupTest(hooks);
+
+  test('it buffers messages', function(assert) {
+    let service = this.owner.lookup('service:flash-messages');
+
+    service.add('Hello');
+    service.add('World!');
+
+    assert.deepEqual(service.get('messages'), ['Hello', 'World!']);
+  });
+});
+```
+
+Container Tests are ideal for testing Controllers, Routes, or Services where we can look up the item we want to test, apply some action unto it, and test its result.
+
+Examples of Container Tests are:
+
+* A `fullName` attribute on a controller is computed by combining its `firstName` and `lastName` attributes.
+* A serializer properly converts the blog request payload into a blog post model object.
+* Blog dates are properly formatted through a `time` service.
+
+You can read more about these type of tests in the [Testing Routes] and [Testing Controllers] section.
 
 ### Rendering Tests
 
-Rendering tests will verify interactions between various parts of the application,
-such as behavior between UI controls.
-Typically they require the UI to be rendered to be able to execute user interactions in the testing scenario.
-They are valuable in ensuring data and actions are properly passed between different parts of the system
-and provide confidence that parts of the system will work within the application in multiple scenarios.
+If we need to test the interactions between various parts of the application, such as behaviour between UI controls we can utilize Rendering Tests. 
 
-Rendering tests are especially useful for verifying the correct behavior of components and helpers.
-The component or helper interacts with the system in the same way that it will within the context of the application,
-including being rendered from a template and receiving Ember's lifecycle hooks.
+Rendering Tests are, as the name suggests, rendering components and helpers by verifying the correct behaviour when the component or helper interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
 
-Examples of these kinds of tests are:
+In terms of setting up the test – Rendering Tests are roughly similar to Container Tests but instead of using `setupTest` from ember-qunit, we import and invoke `setupRendingTest` to render arbitrary templates, including components and helpers (`setupRendingTest` is actually using `setupTest` underneath so everything we had from Container Tests are still applicable.)
+
+For the example below, we also import the `render` and `click` functions from ember-test-helpers to show and interact with the component being tested as well as `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these APIs, we can test clicking on this component and check if the text is successfully updated with each click.
+
+```components/tests/x-counter-test.js
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+
+module('Component | counter', function(hooks) {
+  setupRenderingTest(hooks);
+
+  test('it should count clicks', async function(assert) {
+    this.set('value', 0);
+
+    await render(hbs`{{x-counter value=value onUpdate=( … )}}`);
+    assert.equal(this.element.textContent, '0 clicks');
+
+    await click('.counter');
+    assert.equal(this.element.textContent, '1 click');
+  });
+});
+```
+
+Rendering Tests provides confidence that parts of the system will work within the application in multiple scenarios from data and actions being properly passed between different parts of the system to having the UI rendered as expected.
+
+Examples of Rendering Tests are:
 
 * An author's full name and date are properly displayed in a blog post.
 * A user is prevented from typing more than 50 characters into post's title field.
 * Submitting a post without a title displays a red validation state on the field and gives the user text indicating that the title is required.
 * The blog post list scrolls to position a new post at the top of the viewport.
 
-We can create an isolated rendering test with the `setupRenderingTest` helper.
+Rendering Tests are used to test Components and Helpers where we need to render a layout and assert some interaction byproduct occurs.
+
 You can read more about it in the [Testing Components] or the [Testing Helpers] section.
 
-### Container Tests
+### Application Tests
 
-Container tests are useful if you are testing a small part of your app which doesn't require user interaction to be tested
-but which requires the application's container to be setup.
-If you would like to test the functionality regarding an Ember class instance,
-e.g. a controller, service or route, you can create this kind of test to verify its behavior.
+Finally if we are looking to test user interaction and application flow in order to verify user stories or a feature from an end-user perspective, we can use Application Tests. In these kinds of tests, we interact with the application in the same ways that a user would, such as filling out form fields and clicking buttons. Application tests ensure that the interactions within a project are basically functional, the core features of a project have not regressed, and the project's goals are being met.
 
-Some specific examples of these type of tests are:
+Similar to how Rendering Tests builds on top of Container Tests, to setup Application Tests, we import a setup method called `setupApplicationTest` from `ember-qunit` (this also uses `setupTest` underneath.) Unlike Rendering Tests, however, we import the `visit` helper from ember-test-helpers instead of the `render` helper. The visit helper is used to visit a route in the application where we need to assert some end-user behaviour.
 
-* A `fullName` attribute on a controller is computed by combining its `firstName` and `lastName` attributes.
-* A serializer properly converts the blog request payload into a blog post model object.
-* Blog dates are properly formatted through a `time` service.
+```tests/acceptance/post-creation-test.js
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, fillIn, click } from '@ember/test-helpers';
 
-We can create these isolated container tests with the `setupTest` helper.
-You can read more about these type of tests in the [Testing Routes] and [Testing Controllers] section.
+module('Acceptance | posts', function(hooks) {
+  setupApplicationTest(hooks);
 
-### Simple Unit Tests
+  test('should add new post', async function(assert) {
+    await visit('/posts/new');
+    await fillIn('input.title', 'My new post');
+    await click('button.submit');
 
-If you would like to test an isolated, small-scoped functionality, you can create a unit test.
-Unit tests are the go-to testing type if you neither require user interactions nor an application container setup to create your test case.
+    const title = this.element.querySelector('ul.posts li:first').textContent;
+    assert.equal(title, 'My new post');
+  });
+});
+```
 
-Some specific examples of these type of tests are:
+In the example above – the Application Test visits a route of the application, and then it fills in some information required, and then it clicks on a button. Afterwards, we are testing that this sequence of events in a certain route creates the desired effect that we want. In this case, our test looks to see if the text in the first element in a list matches what we filled in.
 
-* The return value of a `getFullName` utility combines its `firstName` and `lastName` parameters correctly.
-* A computed property macro formats a price depending on its `currency` and `cents` dependent keys.
-* A helper computes the current date properly.
+Examples of Application Tests are:
 
-We can create these type of isolated tests without the use of any additional helpers,
-as they neither require the application's container to be setup nor any user interaction.
+* A user being able to log in via the login form
+* A user is able to create a blog post.
+* After saving a new post successfully, a user is then shown the list of prior posts.
+* A visitor does not have access to the admin panel.
 
-### Testing Frameworks
-
-[QUnit] is the default testing framework for this guide, but others are supported, too through addons, e.g. [ember-mocha](https://github.com/emberjs/ember-mocha).
+You can read more about how to create these kinds of tests in the [Application tests] section.
 
 ### Testing Blueprints
 
@@ -135,7 +206,6 @@ When using QUnit it is possible to exclude tests by adding an exclamation point 
 You can also run a group of tests which you have scoped with a `module` before; e.g. for testing the module called `Unit | Service | location` only,
 run `ember test --module='Unit | Service | location'`.
 
-[automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
 [Testem]: https://github.com/airportyh/testem
 [Application tests]: ./acceptance
