@@ -115,7 +115,7 @@ Now implement the service as follows.
 Note that we check if a map already exists for the given location and use that one,
 otherwise we call a Google Maps utility to create one.
 
-```app/services/maps.js{+2,+3,+5,+9,+10,+11,+12,+13,+14,+15,+16,+18,+19+,+20,+21,+22,+23,+24,+25,+26,+27,+29,+30,+31,+32,+33}
+```app/services/maps.js{+2,+3,+5,+9,+10,+11,+12,+13,+14,+15,+16,+17,+19+,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34}
 import Service from '@ember/service';
 import { camelize } from '@ember/string';
 import EmberObject from '@ember/object';
@@ -125,6 +125,7 @@ import MapUtil from '../utils/google-maps';
 export default Service.extend({
 
   init() {
+    this._super(...arguments);
     if (!this.get('cachedMaps')) {
       this.set('cachedMaps', EmberObject.create());
     }
