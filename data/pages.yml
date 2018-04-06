@@ -229,6 +229,14 @@
     - title: "Managing Dependencies"
       url: "managing-dependencies"
 
+- title: "Deploying"
+  url: "deploying"
+  pages:
+    - title: "Static files"
+      url: "static-files"
+    - title: "Server-side Rendering"
+      url: "ssr"
+
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
   pages:
