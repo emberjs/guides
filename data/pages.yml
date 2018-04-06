@@ -251,6 +251,14 @@
     - title: "Debugging"
       url: "debugging"
 
+- title: "Server-side Rendering"
+  url: 'ssr'
+  pages:
+    - title: "What is Server-side Rendering?"
+      url: "what-is-ssr"
+    - title: "Setting up FastBoot"
+      url: "setup-fastboot"
+
 - title: "Contributing to Ember.js"
   url: 'contributing'
   pages:
