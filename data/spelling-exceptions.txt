@@ -30,6 +30,7 @@ belongsto
 bindingsee
 blogPost
 blogPost's
+Bluth
 bookmarklet
 boolean
 breakpoint
@@ -51,6 +52,7 @@ componentized
 concat
 config
 consolesending
+const
 controllerslog
 createpost
 css
@@ -74,6 +76,7 @@ deserialize
 deserializer
 deserializing
 destructuring
+destructured
 django
 dom
 DNS
@@ -105,6 +108,7 @@ formnovalidate
 formtarget
 frontend
 fullname
+Fünke
 gc
 geolocation
 github
@@ -123,6 +127,7 @@ htmlbars
 http
 httpd
 https
+IIFE
 iframe
 iframes
 indexeddb

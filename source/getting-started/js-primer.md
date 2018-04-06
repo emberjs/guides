@@ -85,7 +85,7 @@ console.log(name) // ReferenceError: name is not defined
 
 if (person) {
   console.log(name) // ReferenceError: name is not defined
-  
+
   let name = 'Gob Bluth'; // "Gob Bluth"
 } else {
   console.log(name) // ReferenceError: name is not defined
@@ -154,3 +154,83 @@ For further reference you can consult Developer Network articles:
 * [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
 * [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 * [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let).
+
+## Modules
+
+An Ember application's code is organized as modules, which means that the `import` and `export` keywords are used to require and expose functionality in other parts of your application. Files generated with the Ember CLI are already modules so conversion to modules is not typically necessary. That said, it is still helpful to have a basic understanding of how `import` and `export` work in ES6 so let's take a look at them.
+
+### Export
+
+Portions of code that you wish to share can be exported using the `export` keyword. You can specify `export` before any piece of code that should be made available outside of the module. So exporting could be applied to any value within a module. A variable, a function or an Ember class, module or namespace, are all exportable. For example:
+
+```javascript
+// export a variable
+export let name = "Yehuda Katz";
+
+// or export a function
+export function sayName(name) {
+  console.log(`My name is ${name}`);
+}
+
+// or export an ember component
+export default Component.extend({
+});
+```
+
+If a value has been assigned a binding, exporting does not have to happen in the same line as defining a value, you may specify your export later:
+
+```javascript
+// define a value
+let name = "Yehuda Katz";
+
+// export it later
+export name;
+```
+
+Remember that anything inside of a module that is not exported is private to that module and cannot be accessed from other modules.
+
+### Import
+
+The `import` keyword allows bindings that are exported from other modules to be included in the current module, for example:
+
+```javascript
+import Component from '@ember/component';
+```
+
+One or more identifiers can be specified after the `import` keyword. The module following the `from` keyword indicates where you wish to import from. Note that identifiers are treated like `const` declarations and thus they cannot be later reassigned once imported. You can, however, reassign identifiers on importation/exportation:
+
+```javascript
+export { Component as tomster };
+
+// and then ...
+import { tomster as zoey } from "@ember/component";
+```
+
+### Default
+
+Modules can also specify a default value for `import` and `export`. When default is applied to an exported binding that binding is considered the main export and is therefore simpler to import. Using default is typically how imports are constructed in Ember:
+
+```javascript
+export default Component; // note the default keyword
+
+import Component from '@ember/component'; // note the lack of curly braces around the default identifier
+```
+
+Default values can also be imported with other non-default values:
+
+```javascript
+export let name = "Yehuda";
+export default Component;
+
+import Component, { name } from "@ember/component"; // note the lack of curly braces around the default identifier, but curly braces around the non-default identifier
+```
+
+Or, default values can be reassigned on importation just like non-default values:
+
+```javascript
+export default Component;
+
+import { Component as tomster } from "@ember/component"; // note the curly braces around the default identifier because of reassignment
+```
+
+For further reference on  [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) of modules.
