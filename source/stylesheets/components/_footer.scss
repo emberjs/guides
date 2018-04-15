@@ -1,66 +1,146 @@
 .footer {
-  background-color: shade($creme, 3%);
-  border-top: 1px solid $linen;
-  text-align: center;
-  font-family: $footer-font-family;
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.footer > .container {
+  max-width: 960px;
+  margin: 0 auto;
+}
 
-  .container {
-    @include padding(2em 1em);
+.footer a:hover {
+  border-bottom: none;
+}
 
-    @include media($large-screen) {
-      align-items: center;
-      display: flex;
+@media screen and (max-width: 53.75rem) {
+  .footer .container {
+    padding: 2em 1em;
+
+    .footer-info {
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+    .footer-statement {
+      margin: 1.1em 0;
+    }
+    .footer-social {
+      line-height: 32px;
+      margin-bottom: 18px;
     }
   }
-  
-  a {
-    text-decoration: none;
-  }
+}
+// The styles bellow were ported from the compiled sass from
+// https://guides.emberjs.com/v2.3.0/
 
-  .footer-info {
-    color: $medium-gray;
-    font-size: $small-font-size;
-    font-weight: 600;
-    line-height: 2;
-    margin: 1em 0;
-    text-transform: uppercase;
+// Ideally we will install bourbon / bittters / neat
+// and reuse the same _base_ stylesheets as the guides.
+// Since that will affect many default styles hence
+// the overall visual aesthetics of the site, this is an intentional
+// intermediate step to quickly port the responsive footer.
 
-    @include media($large-screen) {
-      flex: 0 0 18em;
-      text-align: left;
-    }
-
-    a {
-      color: $ember-orange;
-    }
-  }
+.footer {
+  background-color: #f2ece9;
+  border-top: 1px solid #f9e7e4;
+  border-top: 1px solid #e5dbd6;
+  text-align: left;
 
   .footer-statement {
-    color: $medium-gray;
-    flex: 1;
-    font-size: 1.1rem;
-    margin: 1em 0;
+    text-align: center;
   }
+}
 
-  .footer-social {
-    margin: 1em 0;
+.footer .container {
+  padding: 1.875em 0;
+}
 
-    @include media($large-screen) {
-      flex: 0 0 10em;
-      text-align: right;
-    }
+.footer .container {
+  align-items:top;
+  display: flex
+}
 
-    a {
-      @include transition(opacity $duration, color $duration);
-      color: $medium-gray;
-      font-size: $large-font-size;
-      margin-left: 0.5em;
-      opacity: 0.7;
-
-      &:hover {
-        color: $ember-orange;
-        opacity: 1;
-      }
-    }
+@media screen and (max-width: 53.75rem) {
+  .footer .container {
+    text-align: center;
+    display: block;
   }
+}
+
+.footer .footer-info {
+  color: #555;
+  font-size: 11px;
+  line-height: 24px;
+  font-weight: 600;
+  margin: 0.875rem 0;
+  text-transform: uppercase
+}
+
+.footer .footer-info {
+  flex:0 0 18em;
+  text-align: left;
+}
+
+@media screen and (max-width: 53.75rem) {
+  .footer .footer-info {
+    text-align: center;
+  }
+}
+
+.footer .footer-info a {
+  color: #C0260B
+}
+
+.footer .footer-statement {
+  color: #666;
+  flex: 1;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  line-height: 26.4px;
+}
+
+.footer .footer-social {
+  margin: 1rem 0
+}
+
+.footer .footer-contributions {
+  font-size: 11px;
+  text-align: center;
+}
+
+.footer .footer-contributions .contributor {
+  flex: 1 0 11em;
+}
+
+.footer .footer-contributions .logo-heroku {
+  max-height: 35px;
+}
+
+.footer .footer-contributions .logo-fastly {
+  max-height: 45px;
+}
+
+@media screen and (min-width: 53.75rem) {
+  .footer .footer-contributions {
+    display: flex;
+    flex:0 0 21em;
+    max-width: 100%;
+    flex-flow: row wrap;
+  }
+}
+
+.footer .footer-social a {
+  -webkit-transition: opacity 200ms, color 200ms;
+  -moz-transition: opacity 200ms, color 200ms;
+  transition: opacity 200ms, color 200ms;
+  color: #999;
+  font-size: 1.5rem;
+  margin-left: 0.75rem;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.footer .footer-social a:hover {
+  color: #dd6a58;
+  opacity: 1;
+  text-decoration: underline;
 }
