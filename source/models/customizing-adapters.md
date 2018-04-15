@@ -199,14 +199,19 @@ Requests for `user-profile` would now target `/user_profile/1`.
 Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
 headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
 object and Ember Data will send them along with each ajax request.
+(Note that we set headers in `init()` because default property values
+should not be arrays or objects.)
 
 ```app/adapters/application.js
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({
-  headers: {
-    'API_KEY': 'secret key',
-    'ANOTHER_HEADER': 'Some header value'
+  init() {
+    this._super(...arguments);
+    this.set('headers', {
+      'API_KEY': 'secret key',
+      'ANOTHER_HEADER': 'Some header value'
+    });
   }
 });
 ```
