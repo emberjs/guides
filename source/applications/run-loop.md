@@ -124,14 +124,13 @@ What are the queues, and what is their priority order?
 
 ```javascript
 Ember.run.queues
-// => ["sync", "actions", "routerTransitions", "render", "afterRender", "destroy"]
+// => ["actions", "routerTransitions", "render", "afterRender", "destroy"]
 ```
 
-Because the priority is first to last, the "sync" queue has higher priority than the "render" or "destroy" queue.
+Because the priority is first to last, the "actions" queue has higher priority than the "render" or "destroy" queue.
 
 ## What happens in these queues?
 
-* The `sync` queue contains binding synchronization jobs.
 * The `actions` queue is the general work queue and will typically contain scheduled tasks e.g. promises.
 * The `routerTransitions` queue contains transition jobs in the router.
 * The `render` queue contains jobs meant for rendering, these will typically update the DOM.
