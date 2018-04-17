@@ -347,13 +347,13 @@ import {
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
 
 ```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+8,+9,+10}
-test('should link to about page', async function(assert) {
+test('should link to information about the company', async function(assert) {
   await visit('/');
   await click(".menu-about");
   assert.equal(currentURL(), '/about', 'should navigate to about');
 });
 
-test('should link to contacts page', async function(assert) {
+test('should link to contact information', async function(assert) {
   await visit('/');
   await click(".menu-contact");
   assert.equal(currentURL(), '/contact', 'should navigate to contact');
