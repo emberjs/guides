@@ -85,7 +85,7 @@ console.log(name) // ReferenceError: name is not defined
 
 if (person) {
   console.log(name) // ReferenceError: name is not defined
-  
+
   let name = 'Gob Bluth'; // "Gob Bluth"
 } else {
   console.log(name) // ReferenceError: name is not defined
@@ -147,6 +147,75 @@ console.log(i) // ReferenceError: i is not defined
 
 Using `let` will avoid accidentally leaking and changing the `i` variable from outside of the `for` block.
 
+## Promises
+
+A `Promise` is an object that may produce a value some time in the future: either a resolved value, or a reason that it’s not resolved (e.g., a network error occurred). A `Promise` may be in one of 3 possible states: `fulfilled`, `rejected`, or `pending`. Promises were introduced in ES6 JavaScript.
+
+Why are Promises needed in Ember? JavaScript is single threaded, and some things like querying data from your backend server take time, thus blocking the thread. It is efficient to not block the thread while these computations or data fetches occur - Promises to the rescue! They provide a solution by returning a proxy object for a value not necessarily known when the `Promise` is created. While the `Promise` code is running, the rest of the code moves on.
+
+For example, we will declare a basic `Promise` named `myPromiseObject`.
+
+```javascript
+let myPromiseObject = new Promise(function(resolve, reject) {
+  // on success
+  resolve(value);
+
+  // on failure
+  reject(reason);
+});
+```
+
+Promises come equipped with some methods, out of which `then()` and `catch()` are most commonly used. You can dive into details by checking out the reference links.
+`.then()` always returns a new `Promise`, so it’s possible to chain Promises with precise control over how and where errors are handled.
+
+We will use `myPromiseObject` declared above to show you how `then()` is used:
+
+```javascript
+myPromiseObject.then(function(value) {
+  // on fulfillment
+}, function(reason) {
+  // on rejection
+});
+```
+
+Let's look at some code to see how they are used in Ember:
+
+```javascript
+store.findRecord('person', 1).then(function(person) {
+  // Do something with person when promise is resolved.
+  person.set('name', 'Tom Dale');
+});
+```
+
+In the above snippet, `store.findRecord('person', 1)` can make a network request if the data is not
+already present in the store. It returns a `Promise` object which can resolve almost instantly if the data is present in store, or it can take some time to resolve if the data is being fetched by a network request.
+
+Now we can come to part where these promises are chained:
+
+```javascript
+store.findRecord('person', 1).then(function(person) {
+
+  return person.get('post'); //get all the posts linked with person.
+
+}).then(function(posts){
+
+  myFirstPost = posts.get('firstObject'); //get the first post from collection.
+  return myFirstPost.get('comment'); //get all the comments linked with myFirstPost.
+
+}).then(function(comments){
+
+  // do something with comments
+  return store.findRecord('book', 1); //query for another record
+
+}).catch(function(err){
+
+  //handle errors
+
+})
+```
+
+In the above code snippet, we assume that a person has many posts, and a post has many comments. So, `person.get('post')` will return a `Promise` object. We chain the response with `then()` so that when it's resolved, we get the first object from the resolved collection. Then, we get comments from it with `myFirstPost.get('comment')` which will again return a `promise` object, thus continuing the chain.
+
 ### Resources
 
 For further reference you can consult Developer Network articles:
@@ -154,3 +223,4 @@ For further reference you can consult Developer Network articles:
 * [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
 * [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 * [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let).
+* [`promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
