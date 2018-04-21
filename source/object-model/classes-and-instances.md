@@ -48,7 +48,7 @@ import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
   say(thing) {
-    alert(`${this.get('name')} says: ${thing}`);
+    alert(`${this.name} says: ${thing}`);
   }
 });
 
@@ -100,7 +100,7 @@ import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
   say(thing) {
-    alert(`${this.get('name')} says: ${thing}`);
+    alert(`${this.name} says: ${thing}`);
   }
 });
 
@@ -117,7 +117,7 @@ import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
   helloWorld() {
-    alert(`Hi, my name is ${this.get('name')}`);
+    alert(`Hi, my name is ${this.name}`);
   }
 });
 
@@ -152,7 +152,7 @@ import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
   init() {
-    alert(`${this.get('name')}, reporting for duty!`);
+    alert(`${this.name}, reporting for duty!`);
   }
 });
 
@@ -180,14 +180,14 @@ const Person = EmberObject.extend({
 Person.create({
   name: 'Stefan Penner',
   addItem() {
-    this.get('shoppingList').pushObject('bacon');
+    this.shoppingList.pushObject('bacon');
   }
 });
 
 Person.create({
   name: 'Robert Jackson',
   addItem() {
-    this.get('shoppingList').pushObject('sausage');
+    this.shoppingList.pushObject('sausage');
   }
 });
 
@@ -209,14 +209,14 @@ const Person = EmberObject.extend({
 Person.create({
   name: 'Stefan Penner',
   addItem() {
-    this.get('shoppingList').pushObject('bacon');
+    this.shoppingList.pushObject('bacon');
   }
 });
 
 Person.create({
   name: 'Robert Jackson',
   addItem() {
-    this.get('shoppingList').pushObject('sausage');
+    this.shoppingList.pushObject('sausage');
   }
 });
 
@@ -241,9 +241,9 @@ const Person = EmberObject.extend({
 
 let person = Person.create();
 
-person.get('name'); // 'Robert Jackson'
+person.name; // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
-person.get('name'); // 'Tobias Fünke'
+person.name; // 'Tobias Fünke'
 ```
 
 Make sure to use these accessor methods; otherwise, computed properties won't

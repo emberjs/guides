@@ -82,14 +82,12 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
+    this.filter('').then((results) => this.set('results', results));
   },
 
   actions: {
     handleFilterEntry() {
-      let filterInputValue = this.get('value');
-      let filterAction = this.get('filter');
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+      this.filter(this.value).then((filterResults) => this.set('results', filterResults));
     }
   }
 
@@ -258,8 +256,8 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
-    this.get('filter')('').then((allResults) => {
+    this.filter('').then((results) => this.set('results', results));
+    this.filter('').then((allResults) => {
       this.set('results', allResults.results);
     });
   },

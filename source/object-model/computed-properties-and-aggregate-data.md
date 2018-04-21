@@ -25,8 +25,7 @@ export default Component.extend({
   },
 
   titles: computed('todos.[]', function() {
-    let todos = this.get('todos');
-    return todos.mapBy('title');
+    return this.todos.mapBy('title');
   })
 });
 ```
@@ -66,7 +65,7 @@ export default Component.extend({
   },
 
   incomplete: computed('todos.@each.isDone', function() {
-    let todos = this.get('todos');
+    let todos = this.todos;
     return todos.filterBy('isDone', false);
   })
 });
@@ -204,7 +203,7 @@ import EmberObject, { computed } from '@ember/object';
 
 const Hamster = EmberObject.extend({
   excitingChores: computed('chores.[]', function() {
-    return this.get('chores').map(function(chore, index) {
+    return this.chores.map(function(chore, index) {
       return `CHORE ${index}: ${chore.toUpperCase()}!`;
     });
   })
@@ -214,9 +213,9 @@ const hamster = Hamster.create({
   chores: ['clean', 'write more unit tests']
 });
 
-hamster.get('excitingChores'); // ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!']
-hamster.get('chores').pushObject('review code');
-hamster.get('excitingChores'); // ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!', 'CHORE 3: REVIEW CODE!']
+hamster.excitingChores; // ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!']
+hamster.chores.pushObject('review code');
+hamster.excitingChores; // ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!', 'CHORE 3: REVIEW CODE!']
 ```
 
 By comparison, using the computed macro abstracts some of this away:
