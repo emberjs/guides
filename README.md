@@ -1,5 +1,14 @@
-## Ember Guides Source
+# **Notice:** This repository is deprecated
 
+We have been working hard to make it much easier to contribute to the Ember Guides over the last 6 months. As part of this process we have re-architected the Ember Guides so they are now a fully-fledged Ember application 🎉
+
+What does this mean right now? At the time of writing we have not swapped over to the new structure but we want to keep the swap-over time to a minimum. If you want to contribute to the guides from now on you should **contribute to the new infrastructure** instead of this repo.
+
+If you want to contribute to the **content** of the guides then make a PR on the new [guides-source repo](https://github.com/ember-learn/guides-source). This repo is almost 100% markdown and represents the content of the guides.
+
+If you want to contribute to **how the guides are displayed** then you will probably want to contribute to the [new guides-app](https://github.com/ember-learn/guides-app). We will be updating the contributing guides as part of this new deployment.
+
+## Ember Guides
 [![Build Status](https://travis-ci.org/emberjs/guides.svg?branch=master)](https://travis-ci.org/emberjs/guides)
 
 This is the source for the [Ember.js Guides](https://guides.emberjs.com).
