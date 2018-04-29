@@ -108,7 +108,8 @@ Data comes bundled with
 ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
-A common way to do this is:
+To do this, create a file containing your customizations and import it
+in `app.js`:
 
 ```app/app.js
 // sets up Ember.Inflector
@@ -120,16 +121,20 @@ import Inflector from 'ember-inflector';
 
 const inflector = Inflector.inflector;
 
-inflector.irregular('formula', 'formulae');
+// Tell the inflector that the plural of "campus" is "campuses"
+inflector.irregular('campus', 'campuses');
+
+// Tell the inflector that the plural of "advice" is "advice"
 inflector.uncountable('advice');
 
-// Meet Ember Inspector's expectation of an export
+// Modules must have an export, so we just export an empty object here
 export default {};
 ```
 
-This will tell the JSON API adapter that requests for `formula`
-should go to `/formulae/1` instead of `/formulas/1`, and that
-requests for `advice` should go to `/advice/1` instead of `/advices/1`.
+The JSON API adapter will now make requests for `Campus` models to
+`/campuses` and `/campuses/1` (instead of `/campus/` and `/campus/1`),
+and requests for `advice` to `/advice` and `/advice/1` (instead of
+`/advices/` and `/advices/1`).
 
 When specifying irregular inflection rules for compound words, only the final word or phrase should be specified. For example, to specify the plural of `redCow` as `redKine` or `red-cow` as `red-kine`, only the final word segments `cow` and `kine` should be specified:
 
