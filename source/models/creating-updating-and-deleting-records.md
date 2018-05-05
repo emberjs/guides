@@ -19,7 +19,7 @@ Making changes to Ember Data records is as simple as setting the attribute you
 want to change:
 
 ```js
-this.get('store').findRecord('person', 1).then(function(tyrion) {
+this.get('store').findRecord('person', 1).then((tyrion)=> {
   // ...after the record has loaded
   tyrion.set('firstName', 'Yollo');
 });
@@ -57,7 +57,7 @@ post.save(); // => POST to '/posts'
 Records that already exist on the backend are updated using the HTTP `PATCH` verb.
 
 ```javascript
-store.findRecord('post', 1).then(function(post) {
+store.findRecord('post', 1).then((post)=> {
   post.get('title'); // => "Rails is Omakase"
 
   post.set('title', 'A new post');
@@ -151,14 +151,14 @@ deletion can then be persisted using `save()`.  Alternatively, you can use
 the [`destroyRecord`](https://www.emberjs.com/api/ember-data/release/classes/DS.Model/methods/deleteRecord?anchor=destroyRecord) method to delete and persist at the same time.
 
 ```js
-store.findRecord('post', 1, { backgroundReload: false }).then(function(post) {
+store.findRecord('post', 1, { backgroundReload: false }).then((post)=> {
   post.deleteRecord();
   post.get('isDeleted'); // => true
   post.save(); // => DELETE to /posts/1
 });
 
 // OR
-store.findRecord('post', 2, { backgroundReload: false }).then(function(post) {
+store.findRecord('post', 2, { backgroundReload: false }).then((post)=> {
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```
