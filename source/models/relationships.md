@@ -175,7 +175,7 @@ import PaymentMethod from './payment-method';
 export default PaymentMethod.extend({
   last4: DS.attr(),
 
-  obfuscatedIdentifier: computed('last4', function () {
+  obfuscatedIdentifier: computed('last4', ()=> {
     return `**** **** **** ${this.get('last4')}`;
   })
 });
@@ -189,7 +189,7 @@ import PaymentMethod from './payment-method'
 export default PaymentMethod.extend({
   linkedEmail: DS.attr(),
 
-  obfuscatedIdentifier: computed('linkedEmail', function () {
+  obfuscatedIdentifier: computed('linkedEmail', ()=> {
     let last5 = this.get('linkedEmail').split('').reverse().slice(0, 5).reverse().join('');
 
     return `••••${last5}`;
@@ -302,7 +302,7 @@ The second way of doing the same thing is to link the two records together by up
 let comment = this.get('store').createRecord('comment', {
 });
 myBlogPost.get('comments').pushObject(comment);
-comment.save().then(function () {
+comment.save().then(()=> {
   myBlogPost.save();
 });
 ```
@@ -331,7 +331,7 @@ let blogPost = this.get('store').createRecord('blog-post', {
   body: 'Lorem ipsum'
 });
 
-this.get('store').findRecord('user', 1).then(function(user) {
+this.get('store').findRecord('user', 1).then((user)=> {
   blogPost.set('author', user);
 });
 ```
@@ -397,7 +397,7 @@ export default Route.extend({
     this.store.query('artist', {
       filter: {name: 'Adele'},
       include: 'albums'
-    }).then(function(artists) {
+    }).then((artists)=> {
       return artists.get('firstObject');
     });
   }
