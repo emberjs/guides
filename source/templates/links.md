@@ -5,8 +5,8 @@ You create a link to a route using the
 component.
 
 ```app/router.js
-Router.map(function() {
-  this.route('photos', function(){
+Router.map(()=> {
+  this.route('photos', ()=>{
     this.route('edit', { path: '/:photo_id' });
   });
 });
@@ -67,7 +67,7 @@ segment.
 
 ```app/router.js
 Router.map(function() {
-  this.route('photos', function(){
+  this.route('photos', ()=>{
     this.route('photo', { path: '/:photo_id' }, function(){
       this.route('comments');
       this.route('comment', { path: '/comments/:comment_id' });
