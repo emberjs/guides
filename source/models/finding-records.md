@@ -51,7 +51,7 @@ this.get('store').query('person', {
   filter: {
     name: 'Peter'
   }
-}).then(function(peters) {
+}).then((peters) => {
   // Do something with `peters`
 });
 ```
@@ -90,7 +90,7 @@ export default DS.Adapter.extend({
 then calling [`store.queryRecord()`](https://www.emberjs.com/api/ember-data/release/classes/DS.Store/methods/query?anchor=queryRecord) will retrieve that object from the server:
 
 ```javascript
-store.queryRecord('user', {}).then(function(user) {
+store.queryRecord('user', {}).then((user) => {
   let username = user.get('username');
   console.log(`Currently logged in as ${username}`);
 });
@@ -110,7 +110,7 @@ tom = store.query('user', {
   filter: {
     email: 'tomster@example.com'
   }
-}).then(function(users) {
+}).then((users) => {
   return users.get("firstObject");
 });
 ```
