@@ -20,7 +20,7 @@ calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('about', { path: '/about' });
   this.route('favorites', { path: '/favs' });
 });
@@ -33,7 +33,7 @@ You can leave off the path if it is the same as the route
 name. In this case, the following is equivalent to the above example:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('about');
   this.route('favorites', { path: '/favs' });
 });
@@ -57,7 +57,7 @@ points to the currently active route.
 Multi-word route names are conventionally dasherized, such as:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('blog-post', { path: '/blog-post' });
 });
 ```
@@ -69,7 +69,7 @@ the `blog-post.hbs` template, and be referred to as `blog-post` in any
 Multi-word route names that break this convention, such as:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('blog_post', { path: '/blog-post' });
 });
 ```
@@ -91,8 +91,8 @@ of another.
 You can define nested routes by passing a callback to `this.route`:
 
 ```app/router.js
-Router.map(function() {
-  this.route('posts', function() {
+Router.map(()=> {
+  this.route('posts', ()=> {
     this.route('new');
   });
 });
@@ -146,7 +146,7 @@ whenever you see a `function`, that's a new level.
 For example, if you write a simple router like this:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('favorites');
 });
 ```
@@ -154,7 +154,7 @@ Router.map(function() {
 It is the equivalent of:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('index', { path: '/' });
   this.route('favorites');
 });
@@ -168,8 +168,8 @@ template.
 A nested router like this:
 
 ```app/router.js
-Router.map(function() {
-  this.route('posts', function() {
+Router.map(()=> {
+  this.route('posts', ()=> {
     this.route('favorites');
   });
 });
@@ -178,9 +178,9 @@ Router.map(function() {
 Is the equivalent of:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('index', { path: '/' });
-  this.route('posts', function() {
+  this.route('posts', ()=> {
     this.route('index', { path: '/' });
     this.route('favorites');
   });
@@ -212,7 +212,7 @@ Enter _dynamic segments_.
 A dynamic segment is a portion of a URL that starts with a `:` and is followed by an identifier.
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
@@ -227,7 +227,7 @@ To put it in code, the following will *not* work properly:
 
 ```app/router.js
 // This won't work! The dynamic segments will collide.
-Router.map(function() {
+Router.map(()=> {
   this.route('photo', { path: '/photo/:id' }, function() {
     this.route('comment', { path: '/comment/:id' });
   });
@@ -237,7 +237,7 @@ Router.map(function() {
 But the following will:
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('photo', { path: '/photo/:photo_id' }, function() {
     this.route('comment', { path: '/comment/:comment_id' });
   });
@@ -253,7 +253,7 @@ This could be used, for example, if you'd like a catch-all route which is useful
 Wildcard routes begin with an asterisk.
 
 ```app/router.js
-Router.map(function() {
+Router.map(()=> {
   this.route('not-found', { path: '/*path' });
 });
 ```
