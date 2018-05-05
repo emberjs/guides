@@ -92,10 +92,10 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  title: computed('params.[]', function(){
+  title: computed('params.[]', ()=>{
     return this.get('params')[0];
   }),
-  body: computed('params.[]', function(){
+  body: computed('params.[]', ()=>{
     return this.get('params')[1];
   })
 }).reopenClass({
