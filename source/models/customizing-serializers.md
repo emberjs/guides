@@ -192,7 +192,7 @@ export default DS.JSONAPISerializer.extend({
     delete json.data.attributes.currency;
 
     return json;
-  },
+  }
 });
 ```
 
@@ -247,7 +247,7 @@ export default DS.JSONAPISerializer.extend({
     delete payload.data.attributes.cost;
 
     return this._super(...arguments);
-  },
+  }
 });
 ```
 
@@ -413,7 +413,7 @@ The JSON should encode the relationship as an ID to another record:
     "id": "1",
     "relationships": {
       "original-post": {
-        "data": { "type": "post", "id": "5" },
+        "data": { "type": "post", "id": "5" }
       }
     }
   }
@@ -724,12 +724,12 @@ return looks like this:
     type: "post",
     attributes: {
       title: "Rails is omakase",
-      tag: "rails",
+      tag: "rails"
     },
     relationships: {
       comments: {
         data: [{ id: "1", type: 'comment' },
-               { id: "2", type: 'comment' }],
+               { id: "2", type: 'comment' }]
       },
       relatedPosts: {
         links: {
