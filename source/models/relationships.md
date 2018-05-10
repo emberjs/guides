@@ -164,7 +164,7 @@ export default DS.Model.extend({
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  user: DS.belongsTo('user', { inverse: 'paymentMethods' }),
+  user: DS.belongsTo('user', { inverse: 'paymentMethods' })
 });
 ```
 
@@ -201,7 +201,7 @@ And our API might setup these relationships like so:
 
 ```json
 {
-	"data": {
+  "data": {
 		"id": "8675309",
 		"type": "user",
 		"attributes": {
@@ -395,7 +395,7 @@ export default Route.extend({
   model() {
     // GET to /artists?filter[name]=Adele&include=albums
     this.store.query('artist', {
-      filter: {name: 'Adele'},
+      filter: { name: 'Adele' },
       include: 'albums'
     }).then(function(artists) {
       return artists.get('firstObject');
