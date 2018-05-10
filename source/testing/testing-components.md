@@ -115,7 +115,8 @@ module('Integration | Component | pretty color', function(hooks) {
 
     this.set('colorValue', 'blue');
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  });
+    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');
+  });
 });
 ```
 
@@ -479,7 +480,7 @@ export default Component.extend({
 ```
 
 ```app/templates/components/delayed-typeahead.hbs
-{{input value=searchValue key-up=(action 'handleTyping')}}
+{{input value=searchValue key-up=(action "handleTyping")}}
 <ul>
 {{#each results as |result|}}
   <li class="result">{{result.name}}</li>
