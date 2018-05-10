@@ -33,7 +33,7 @@ level 4 to assert that the `levelName` changes. We will use `module` together wi
 ```tests/unit/models/player-test.js
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { run } from "@ember/runloop";
+import { run } from '@ember/runloop';
 
 module('Unit | Model | player', function(hooks) {
   setupTest(hooks);
