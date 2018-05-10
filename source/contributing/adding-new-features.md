@@ -42,7 +42,7 @@ form because functions change the surrounding scope and may introduce
 problems with early return.
 
 ```js
-if (Ember.FEATURES.isEnabled("feature")) {
+if (Ember.FEATURES.isEnabled('feature')) {
   // implementation
 }
 ```
@@ -84,7 +84,7 @@ module.exports = function(environment) {
       FEATURES: {
         htmlbars: true
       }
-    },
+    }
   }
 }
 ```
