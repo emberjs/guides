@@ -51,6 +51,37 @@ module('Acceptance | posts', function(hooks) {
 });
 ```
 
+You can also stub a service into the acceptance test:
+```tests/acceptance/login-test.js
+import { test } from 'qunit';
+import moduleForAcceptance from 'people/tests/helpers/module-for-acceptance';
+
+const userStub = Ember.Service.extend({
+  email: 'test@testing.com',
+  token: '',
+  isLoggedIn() {
+    return true;
+  },
+});
+
+moduleForAcceptance('Acceptance | login', {
+  beforeEach(){
+    this.application.register('service:user-service', userStub);
+    this.application.inject('route:application', 'currentUser', 'service:user-service');
+  }
+});
+
+test('visiting /login', function(assert) {
+  visit('/login');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/login');
+  });
+});
+```
+
+
+
 ## Test Helpers
 
 One of the major issues in testing web applications is that all code is
