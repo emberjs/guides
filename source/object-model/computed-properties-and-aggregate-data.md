@@ -205,7 +205,7 @@ import EmberObject, { computed } from '@ember/object';
 const Hamster = EmberObject.extend({
   excitingChores: computed('chores.[]', function() {
     return this.get('chores').map(function(chore, index) {
-      return `CHORE ${index}: ${chore.toUpperCase()}!`;
+      return `CHORE ${index + 1}: ${chore.toUpperCase()}!`;
     });
   })
 });
@@ -227,7 +227,7 @@ import { map } from '@ember/object/computed';
 
 const Hamster = EmberObject.extend({
   excitingChores: map('chores', function(chore, index) {
-    return `CHORE ${index}: ${chore.toUpperCase()}!`;
+    return `CHORE ${index + 1}: ${chore.toUpperCase()}!`;
   })
 });
 ```
