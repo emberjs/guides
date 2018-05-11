@@ -369,9 +369,9 @@ We will test the full logic of filtering in application tests, described in the 
 
 Since our component is expecting the filter process to be asynchronous, we return promises from our filter, using [Ember's RSVP library](https://www.emberjs.com/api/ember/release/modules/rsvp).
 
-Next, we'll add the call to render the component to show the cities we've provided above.
+Next, we'll add the call to render the component to show the cities we've provided above. Since we use `await` when rendering, we must also mark the test's function as `async`.
 
-```tests/integration/components/list-filter-test.js{+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33}
+```tests/integration/components/list-filter-test.js{+13,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
