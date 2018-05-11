@@ -348,7 +348,7 @@ module('Integration | Component | location indicator', function(hooks) {
 Once the stub service is registered,
 the test needs to check that the stub data from the service is reflected in the component output.
 
-```tests/integration/components/location-indicator-test.js{+34,+35,+36,+37,+38}
+```tests/integration/components/location-indicator-test.js
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -389,7 +389,7 @@ module('Integration | Component | location indicator', function(hooks) {
 
 In the next example, we'll add another test that validates that the display changes when we modify the values on the service.
 
-```tests/integration/components/location-indicator-test.js{+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53}
+```tests/integration/components/location-indicator-test.js
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
