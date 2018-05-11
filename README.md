@@ -1,4 +1,4 @@
-# **Notice:** This repository is deprecated
+# **Notice:** This repository is deprecated - no PRs or Issues please
 
 We have been working hard to make it much easier to contribute to the Ember Guides over the last 6 months. As part of this process we have re-architected the Ember Guides so they are now a fully-fledged Ember application 🎉
 
